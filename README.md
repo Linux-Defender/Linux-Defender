@@ -39,3 +39,5 @@ The Rust desktop build needs the GTK 3 and WebKitGTK 4.1 development libraries. 
 ## Upstream credits and relationship
 
 This project is independent and not affiliated with Microsoft, Cisco Talos, ClamAV, ClamTk, or ClamUI. The current application source is derived from linx-systems/clamui, licensed under MIT; retain its license and notices. ClamAV and ClamTk have their own licenses and copyrights. Review every imported or ported component's license before distribution. The name Linux Defender is a project name chosen by the maintainer; it does not indicate a Microsoft product or endorsement.
+
+Source integration and the remaining parity work are mapped in [the consolidation inventory](docs/revival/SOURCE-CONSOLIDATION.md).
