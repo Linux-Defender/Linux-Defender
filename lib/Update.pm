@@ -438,7 +438,6 @@ sub add_ua_proxy {
                     close( $FH );
                     $ENV{ HTTPS_PROXY }                  = "$url:$port";
                     $ENV{ HTTP_PROXY }                   = "$url:$port";
-                    $ENV{ PERL_LWP_SSL_VERIFY_HOSTNAME } = 0;
                     $ENV{ HTTPS_DEBUG }                  = 1;
                     $agent->proxy( http  => "$url:$port" );
                     $agent->proxy( https => "$url:$port" );
