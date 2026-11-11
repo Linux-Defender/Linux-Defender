@@ -5,9 +5,9 @@ description: Report vulnerabilities privately and use Linux Defender securely.
 
 ## Report a vulnerability
 
-**Do not open a public issue.** Use [GitHub Security Advisories](https://github.com/SAFETY-CHAT/Linux-Defender/security/advisories/new) for private disclosure and discussion, or email [clamui@rooki.xyz](mailto:clamui@rooki.xyz). Include a description, impact, reproduction steps or proof of concept, affected version, and any suggested mitigation.
+**Do not open a public issue with vulnerability details.** Use [GitHub's private vulnerability reporting](https://github.com/Linux-Defender/Linux-Defender/security/advisories/new) when it is enabled. If GitHub reports that private reporting is unavailable, ask maintainers to enable it without posting exploit details. Include a description, impact, reproduction steps or proof of concept, affected version, and any suggested mitigation.
 
-Linux Defender aims to acknowledge reports within 48 hours. Security updates currently target the latest minor release.
+Linux Defender is a development snapshot and does not yet have a published response-time SLA or signed releases. Once stable releases are published, security fixes should target the latest supported release.
 
 ## Relevant reports
 

@@ -189,7 +189,7 @@ ClamUI already provides file-manager actions for Dolphin, Nautilus, and Nemo. Li
 
 ## Local integration progress
 
-The user-owned [SAFETY-CHAT/Linux-Defender](https://github.com/SAFETY-CHAT/Linux-Defender) repository contained only its initial README when checked. The local branch `revival/unified-app` now includes the ClamUI master history at `32270d5` and the ClamTk revival history as a non-packaged `reference/clamtk` subtree. The former ClamUI revival checkout is preserved as local branch `archive/clamui-reborn`; its YARA work is ported in commit `ec133dc`. AppStream, Flatpak, desktop, and CLI identifiers still say ClamUI and are not release-ready under the new project name. No push has been made.
+The public [Linux-Defender/Linux-Defender](https://github.com/Linux-Defender/Linux-Defender) repository now contains the revival branch; PR #1 was merged into `main`. The local `revival/unified-app` branch includes the ClamUI history and the ClamTk revival history as a non-packaged `reference/clamtk` subtree. The former ClamUI revival checkout is preserved as local branch `archive/clamui-reborn`; its YARA work is ported in commit `ec133dc`. Several app/package/data identifiers still say ClamUI as compatibility identifiers; visible branding is Linux Defender. No Linux Defender release is published yet.
 
 The upstream ClamUI `main` head `6836eea` is an ancestor of the selected `master` head, not a newer release. It diverges from master due later commits; the default master branch restores scanner handling/tests and current dependencies, so main was not merged separately. Continue comparing branches when upstream history changes.
 

@@ -76,4 +76,4 @@ The CLI command name is still `clamui-scheduled-scan` during the application-ide
 
 ## Still stuck?
 
-Collect the Linux Defender commit, ClamAV version, distribution, desktop environment, scan backend, and exact error. Open a [GitHub issue](https://github.com/SAFETY-CHAT/Linux-Defender/issues). Report security vulnerabilities through the [private security policy](/Linux-Defender/docs/contributing/security/), not a public issue.
+Collect the Linux Defender commit, ClamAV version, distribution, desktop environment, scan backend, and exact error. Open a [GitHub issue](https://github.com/Linux-Defender/Linux-Defender/issues). Report security vulnerabilities through the [private security policy](/Linux-Defender/docs/contributing/security/), not a public issue.

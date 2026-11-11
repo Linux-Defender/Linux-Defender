@@ -86,8 +86,8 @@ const destinations: Array<{
   { id: "network", shortcut: "Ctrl+8", icon: "network" },
 ];
 
-const PROJECT_URL = "https://github.com/SAFETY-CHAT/Linux-Defender";
-const ISSUES_URL = "https://github.com/SAFETY-CHAT/Linux-Defender/issues";
+const PROJECT_URL = "https://github.com/Linux-Defender/Linux-Defender";
+const ISSUES_URL = "https://github.com/Linux-Defender/Linux-Defender/issues";
 
 function safeHttpUrl(value: string): string | null {
   try {

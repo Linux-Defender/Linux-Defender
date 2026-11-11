@@ -8,6 +8,7 @@ A community revival project for a single, maintainable Linux malware-scanning de
 
 - Ship one desktop app and one primary UI; do not require users to launch a separate Perl/GTK ClamTk app.
 - Keep Cisco Talos ClamAV and FreshClam installed and updated by the Linux distribution; do not bundle an engine or signatures.
+- When distributions and release channels are available, let them update Linux Defender itself: configured package repositories for native packages, Flatpak remotes for Flatpak builds, and the external AppImageUpdate/zsync tool for AppImages. None of those channels is published yet, so this development snapshot has no automatic application updates. Signature updates are a separate FreshClam service/timer responsibility.
 - Preserve useful ClamTk features and behavior through tested ports. The original ClamTk tree may be kept temporarily as a migration reference; it is not a second runtime or a packaged UI.
 - Keep optional local YARA rules opt-in and user-managed. Never download arbitrary signature feeds automatically.
 - Make VirusTotal file sharing and urlscan submissions explicit; report remote services separately from local antivirus verdicts.

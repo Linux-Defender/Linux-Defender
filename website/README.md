@@ -1,6 +1,6 @@
 # Linux Defender website
 
-The marketing site and documentation for Linux Defender. It uses Astro, Tailwind CSS, and Starlight, and is configured for the SAFETY-CHAT repository's GitHub Pages address: `https://safety-chat.github.io/Linux-Defender/`.
+The marketing site and documentation for Linux Defender. It uses Astro, Tailwind CSS, and Starlight, and is configured for the Linux-Defender repository's GitHub Pages address: `https://linux-defender.github.io/Linux-Defender/`.
 
 ## Work locally
 

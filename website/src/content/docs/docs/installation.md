@@ -21,6 +21,25 @@ sudo pacman -S --needed clamav
 
 If you already enabled `clamav-freshclam-once.timer`, leave updates to that timer. You can confirm its status and check the ClamAV database version from the Linux Defender Database page.
 
+## Software updates
+
+ClamAV signature updates and Linux Defender software updates use separate channels. FreshClam updates signatures through the service or timer supplied by the Linux distribution. Once releases are available, Linux Defender should update through its installation source: a configured system package repository for native packages, the Flatpak remote for a Flatpak installation, or the external AppImageUpdate tool with signed `.zsync` metadata for an AppImage.
+
+Linux Defender has no published release or signed installer packages yet, so none of those application-update paths is currently available. There is no universal in-app self-updater, and CachyOS/Arch does not yet have a Linux Defender package. The project is not yet validated across all distributions.
+
+## Compatibility status
+
+| Target | Current project status |
+| --- | --- |
+| CachyOS / Arch | Source-build instructions exist; no PKGBUILD/AUR package and no desktop validation yet. |
+| Debian / Ubuntu | DEB build workflow targets amd64 and arm64; no Linux Defender package release yet. |
+| Fedora | RPM workflow packages the privileged helper only, not the full desktop app. |
+| Flatpak | CI build target for x86_64 and aarch64; not published on Flathub or another update remote. |
+| AppImage | x86_64 build target; the release workflow prepares a signed GitHub zsync feed, but no release/feed is published yet. |
+| Other distributions | No compatibility claim until build, install, update, desktop, and scanner behavior are tested there. |
+
+The Rust/Tauri UI is shared, but GTK/WebKitGTK versions, helper packages, ClamAV paths, services, desktop menus, and release channels differ. A successful source build alone does not establish distribution support.
+
 ## Build and run on CachyOS / Arch
 
 Install Tauri's current Arch build dependencies, Rust, and Bun:

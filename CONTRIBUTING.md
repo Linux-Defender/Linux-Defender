@@ -1,22 +1,18 @@
-# Contributing to ClamUI
+# Contributing to Linux Defender
 
-Thanks for contributing. Report bugs and feature requests in [GitHub Issues](https://github.com/linx-systems/clamui/issues); report vulnerabilities privately through [SECURITY.md](SECURITY.md), never a public issue.
+Thanks for helping make Linux Defender reliable across Linux desktops. Report bugs and feature requests in [GitHub Issues](https://github.com/Linux-Defender/Linux-Defender/issues). Report vulnerabilities privately through [GitHub Security Advisories](https://github.com/Linux-Defender/Linux-Defender/security/advisories/new), not a public issue.
 
-Read the canonical contributor guides before starting:
+The repository's development guides are maintained in [`website/src/content/docs/docs/contributing/`](website/src/content/docs/docs/contributing/):
 
-- [Development and packaging](https://clamui.com/docs/contributing/development/)
-- [Rust/Tauri architecture and tray design](https://clamui.com/docs/contributing/architecture/)
-- [Translation](https://clamui.com/docs/contributing/translating/)
-- [Package signing](https://clamui.com/docs/contributing/signing/)
-- [Security policy](https://clamui.com/docs/contributing/security/)
+- [Development and packaging](website/src/content/docs/docs/contributing/development.md)
+- [Rust/Tauri architecture](website/src/content/docs/docs/contributing/architecture.md)
+- [Translation](website/src/content/docs/docs/contributing/translating.md)
+- [Package signing](website/src/content/docs/docs/contributing/signing.md)
+- [Security](website/src/content/docs/docs/contributing/security.md)
 - [Code of conduct](CODE_OF_CONDUCT.md)
 
-Keep pull requests focused and include the tests and documentation needed for the change. The application is Rust core code plus the Tauri/React desktop; do not add a Python application or tray-runtime dependency. Preserve host ClamAV and the authenticated privileged-helper boundary.
+Linux Defender is a Rust core with a Tauri/React desktop. Keep ClamAV and FreshClam host-managed, preserve the privileged-helper security boundary, and keep new signature feeds opt-in until their provenance, license, update integrity, and failure handling have been reviewed. Do not add a second Python/GTK application runtime.
 
-Install the repository hooks before contributing:
+Before opening a pull request, run the checks relevant to your change. For Rust changes, use `cargo fmt --all -- --check`, `cargo clippy --workspace --all-targets --locked -- -D warnings`, and `cargo test --workspace --locked`. For desktop and website changes, install dependencies with `bun install --frozen-lockfile` in the relevant directory, then run its check/build scripts. Include the exact checks and results in your pull request.
 
-```bash
-./scripts/hooks/install-hooks.sh
-```
-
-Participation is governed by the [Code of Conduct](CODE_OF_CONDUCT.md).
+The [issue and PR ledgers](docs/revival/) describe ongoing upstream parity work; review does not mean every report is implemented. Please keep those records current when porting behavior from ClamTk, ClamUI, or another project.

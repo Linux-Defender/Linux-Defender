@@ -65,7 +65,7 @@ The GitHub forks API returned 55 forks. Compared each fork's default-branch head
 
 | Fork | Finding | Disposition |
 |---|---|---|
-| [SAFETY-CHAT/clamtk-REBORN](https://github.com/SAFETY-CHAT/clamtk-REBORN) | Default branch is exactly upstream commit `694833d`; no unique changes yet. This is the user's fork. | Correct local starting point; revival work is on `revival/issue-pr-triage` |
+| [SAFETY-CHAT/clamtk-REBORN](https://github.com/Linux-Defender/clamtk-REBORN) | Default branch is exactly upstream commit `694833d`; no unique changes yet. This is the user's fork. | Correct local starting point; revival work is on `revival/issue-pr-triage` |
 | [clamtk/clamtk](https://github.com/clamtk/clamtk) | Same upstream code snapshot; README still says unmaintained. | No newer code to merge |
 | [piposeimandi/clamtk](https://github.com/piposeimandi/clamtk) | Four commits ahead. Update UI rewrite points its version check to the fork and reports completion without checking the FreshClam exit status; removed earlier status/error paths. Other changes mostly move modules and update release metadata. | Reviewed; do not merge wholesale; selective fixes may be worthwhile after tests |
 | [64BitUniverse/clamtk](https://github.com/64BitUniverse/clamtk) | Three commits of an unfinished PySide6/Python UI experiment; includes generated `__pycache__` binaries. | Not a drop-in fork; do not merge |

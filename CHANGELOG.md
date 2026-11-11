@@ -4,6 +4,8 @@
 
 ### Added
 
+- Updated the repository and contribution guidance for the `Linux-Defender/Linux-Defender` organization, corrected CI branch filters to `main`, and aligned public website/release links with the renamed repository.
+- Branded AppImage artifacts as Linux Defender and routed their signed zsync update metadata to this repository. The release workflow now attaches the AppImage and zsync sidecar; no signed release/feed exists yet, and this does not add a universal in-app updater.
 - Ported ClamUI upstream post-v0.6.0 updater fix for long-running FreshClam updates. Manual/forced updates now stop only after a configurable period without output (10-minute default; 1–1,440 minutes), rather than a fixed total runtime limit. Added settings UI, docs, regression tests, and translation catalog entries. Vietnamese strings are translated; other catalogs use English fallback pending human review.
 - Adopted ClamUI PR #298 website dependency updates. Deferred PR #299 TypeScript 7.0.2 because Astro 7.4.5's checker rejects TypeScript 7.
 
@@ -253,4 +255,4 @@
 - Hardened terminal/log output sanitization, scheduler quoting, profile import handling, ClamAV config parsing, quarantine cleanup, exclusion matching, and audit verdict handling.
 
 [0.3.0]: https://github.com/linx-systems/clamui/compare/v0.2.0...v0.3.0
-[Unreleased]: https://github.com/SAFETY-CHAT/Linux-Defender/compare/revival/unified-app...HEAD
+[Unreleased]: https://github.com/Linux-Defender/Linux-Defender/compare/main...HEAD

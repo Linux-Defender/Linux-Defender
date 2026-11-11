@@ -32,7 +32,7 @@ flowchart TB
 
 `po/LINGUAS` names the ten shipped gettext catalogs: `de`, `en`, `es`, `fr`, `hu`, `it`, `nb`, `pt_BR`, `vi`, and `zh_CN`. The Rust core supplies the selected catalog and its plural rule to the CLI, tray, and frontend; catalog extraction, loading, and packaging have no Python runtime dependency.
 
-The root [`AUTHORS`](https://github.com/SAFETY-CHAT/Linux-Defender/blob/master/AUTHORS) file is the canonical contributor list. The Rust build embeds it so every package can render About contributor credits offline, in the file's exact order. About shows translator credits only when the active catalog contains genuine contributor names; the literal `translator-credits` message is not a credit.
+The root [`AUTHORS`](https://github.com/Linux-Defender/Linux-Defender/blob/main/AUTHORS) file is the canonical contributor list. The Rust build embeds it so every package can render About contributor credits offline, in the file's exact order. About shows translator credits only when the active catalog contains genuine contributor names; the literal `translator-credits` message is not a credit.
 
 ## Request and event boundary
 

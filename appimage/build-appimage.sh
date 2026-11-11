@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the x86_64 ClamUI AppImage from the Rust/Tauri workspace.
+# Build the x86_64 Linux Defender AppImage from the Rust/Tauri workspace.
 # ClamAV and its signature database remain host-owned integrations.
 set -euo pipefail
 
@@ -7,7 +7,7 @@ readonly APP_ID="io.github.linx_systems.ClamUI"
 readonly SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 readonly PROJECT_ROOT="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
 readonly BUILD_DIR="$PROJECT_ROOT/build-appimage-temp"
-readonly APPDIR="$BUILD_DIR/ClamUI.AppDir"
+readonly APPDIR="$BUILD_DIR/Linux-Defender.AppDir"
 readonly TAURI_CONFIG="$PROJECT_ROOT/desktop/src-tauri/tauri.conf.json"
 readonly RELEASE_DIR="$PROJECT_ROOT/target/release"
 
@@ -24,16 +24,16 @@ show_help() {
     cat <<'EOF'
 Usage: ./appimage/build-appimage.sh [--help]
 
-Builds the x86_64 ClamUI AppImage with the Tauri bundler. Build on the oldest
+Builds the x86_64 Linux Defender AppImage with the Tauri bundler. Build on the oldest
 supported Linux baseline (Ubuntu 22.04-compatible) so bundled WebKitGTK/GTK
 libraries retain that compatibility floor.
 
 Required host tools: cargo, bun, appimagetool and pkg-config.
 
 UPDATE_INFORMATION may contain AppImageUpdate metadata, for example:
-  gh-releases-zsync|linx-systems|clamui|latest|ClamUI-*-x86_64.AppImage.zsync
+  gh-releases-zsync|Linux-Defender|Linux-Defender|latest|Linux-Defender-*-x86_64.AppImage.zsync
 
-Output: ClamUI-VERSION-x86_64.AppImage (and a .zsync sidecar when update
+Output: Linux-Defender-VERSION-x86_64.AppImage (and a .zsync sidecar when update
 information is supplied). The release workflow signs those artifacts after
 this script returns; this script never handles private keys.
 EOF
@@ -209,7 +209,7 @@ EOF
 create_appimage() {
     local version="$1"
     local appimagetool="$2"
-    local output="$PROJECT_ROOT/ClamUI-${version}-x86_64.AppImage"
+    local output="$PROJECT_ROOT/Linux-Defender-${version}-x86_64.AppImage"
     local -a args=(--appimage-extract-and-run)
 
     rm -f "$output" "$output.zsync"

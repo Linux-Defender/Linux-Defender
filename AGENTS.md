@@ -63,7 +63,7 @@ CI builds native artifacts on the Ubuntu 22.04-compatible baseline. A build on a
 
 ## Coding-agent skills
 
-Project-local coding-agent skills are optional development aids, not build or runtime dependencies. Their canonical imports are in `.agents/skills`; `.claude/skills` provides compatibility links. For installation details, see the published [Development guide](https://safety-chat.github.io/Linux-Defender/docs/contributing/development/).
+Project-local coding-agent skills are optional development aids, not build or runtime dependencies. Their canonical imports are in `.agents/skills`; `.claude/skills` provides compatibility links. For installation details, see the [Development guide](website/src/content/docs/docs/contributing/development.md).
 
 Refresh only a deliberately selected upstream skill. `skills-lock.json` records its source, selected path, and content hash; it does not pin a commit. Start OMP from the repository root: `.omp/config.yml` applies its cwd-scoped `ignoredSkills` filter while preserving global skill payloads.
 
@@ -85,7 +85,7 @@ Refresh only a deliberately selected upstream skill. `skills-lock.json` records 
 
 Preserve all seven `clamui` CLI subcommands, their flags, output schemas, stream destinations, and exit behavior. `clamui --help` and every CLI route must stay headless; `clamui-scheduled-scan` and `clamui-apply-preferences` are native entry points with their established contracts.
 
-Reuse existing gettext message IDs and plural behavior from `po/`/`po/LINGUAS`; active locales are `de`, `en`, `es`, `fr`, `hu`, `it`, `nb`, `pt_BR`, `vi`, and `zh_CN`. All user-facing gettext calls need static literal arguments: choose conditional translated branches outside helpers, then interpolate after translation or plural selection. Use the existing plural API, never new `file(s)`-style pseudo-plurals. Write `—` (prose break), `–` (range), and `…` directly; do not use ASCII ` - ` or `--` as prose separators. For a literal containing a dash, range, quotation, markup, or quoted UI label/command/key/package/file literal, put a `// Translators:` comment immediately above that literal argument—not above a lone call opener. State whether a quoted UI label must match its label translation or whether a protected literal stays unchanged. See the published [translation guide](https://safety-chat.github.io/Linux-Defender/docs/contributing/translating/) for the detailed translator conventions. Do not add a Python runtime requirement to build or load catalogs.
+Reuse existing gettext message IDs and plural behavior from `po/`/`po/LINGUAS`; active locales are `de`, `en`, `es`, `fr`, `hu`, `it`, `nb`, `pt_BR`, `vi`, and `zh_CN`. All user-facing gettext calls need static literal arguments: choose conditional translated branches outside helpers, then interpolate after translation or plural selection. Use the existing plural API, never new `file(s)`-style pseudo-plurals. Write `—` (prose break), `–` (range), and `…` directly; do not use ASCII ` - ` or `--` as prose separators. For a literal containing a dash, range, quotation, markup, or quoted UI label/command/key/package/file literal, put a `// Translators:` comment immediately above that literal argument—not above a lone call opener. State whether a quoted UI label must match its label translation or whether a protected literal stays unchanged. See the [translation guide](website/src/content/docs/docs/contributing/translating.md) for translator conventions. Do not add a Python runtime requirement to build or load catalogs.
 
 ## Packaging and documentation
 
@@ -93,10 +93,10 @@ Keep Flatpak builds for x86_64 and aarch64 on GNOME 51, the x86_64 AppImage, and
 
 Published documentation lives in `website/src/content/docs/docs/`. Start with:
 
-- [Installation](https://safety-chat.github.io/Linux-Defender/docs/installation/) for runtime and package requirements.
-- [Development](https://safety-chat.github.io/Linux-Defender/docs/contributing/development/) for source, validation, and packaging workflows.
-- [Architecture](https://safety-chat.github.io/Linux-Defender/docs/contributing/architecture/) for IPC, tray, and native-runtime boundaries.
-- [Configuration](https://safety-chat.github.io/Linux-Defender/docs/reference/configuration/) for persistent data and privileged host settings.
-- [Troubleshooting](https://safety-chat.github.io/Linux-Defender/docs/troubleshooting/) for user-facing recovery guidance.
+- [Installation](website/src/content/docs/docs/installation.md) for runtime and package requirements.
+- [Development](website/src/content/docs/docs/contributing/development.md) for source, validation, and packaging workflows.
+- [Architecture](website/src/content/docs/docs/contributing/architecture.md) for IPC, tray, and native-runtime boundaries.
+- [Configuration](website/src/content/docs/docs/reference/configuration.md) for persistent data and privileged host settings.
+- [Troubleshooting](website/src/content/docs/docs/troubleshooting.md) for user-facing recovery guidance.
 
 Use root-relative `/docs/.../` links in website content. Keep root discoverability files concise, release content sourced from `CHANGELOG.md` and `RELEASE_NOTES.md`, and generated `website/public/` assets untouched.

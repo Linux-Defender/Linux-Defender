@@ -14,7 +14,7 @@ const {
   path = "/",
 } = Astro.props;
 
-const siteUrl = "https://safety-chat.github.io";
+const siteUrl = "https://linux-defender.github.io";
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const canonical = new URL(`${base}${path}`, siteUrl).toString();
 const ogImage = new URL(`${base}/og-image.png`, siteUrl).toString();

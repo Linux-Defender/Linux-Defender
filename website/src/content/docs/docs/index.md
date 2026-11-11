@@ -26,4 +26,4 @@ Linux Defender is a Linux desktop interface for [ClamAV](https://www.clamav.net/
 - [Verify or sign release packages](/Linux-Defender/docs/contributing/signing/)
 - [Understand the tray architecture](/Linux-Defender/docs/contributing/architecture/)
 
-Report bugs and feature requests on [GitHub](https://github.com/SAFETY-CHAT/Linux-Defender/issues). Report vulnerabilities privately through the [security policy](/Linux-Defender/docs/contributing/security/).
+Report bugs and feature requests on [GitHub](https://github.com/Linux-Defender/Linux-Defender/issues). Report vulnerabilities privately through the [security policy](/Linux-Defender/docs/contributing/security/).

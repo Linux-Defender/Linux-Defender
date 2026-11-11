@@ -9,7 +9,7 @@ Unacceptable conduct includes sexualized language or attention, trolling or dero
 
 The code applies in project community spaces and when representing the project publicly. Community leaders may clarify standards and remove, edit, or reject contributions inconsistent with them, with fair and appropriate corrective action.
 
-Report abusive, harassing, or otherwise unacceptable behavior privately to the SAFETY-CHAT project maintainers. Do not post private details in a public issue. Reports should be reviewed promptly and fairly; leaders must respect reporter privacy and security.
+Report abusive, harassing, or otherwise unacceptable behavior privately to the Linux Defender project maintainers. Do not post private details in a public issue. Reports should be reviewed promptly and fairly; leaders must respect reporter privacy and security.
 
 ## Enforcement guidelines
 

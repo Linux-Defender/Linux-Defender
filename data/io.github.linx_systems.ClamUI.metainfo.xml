@@ -6,8 +6,8 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>MIT</project_license>
 
-    <developer id="io.github.safetychat">
-        <name>SAFETY-CHAT contributors</name>
+    <developer id="io.github.linux_defender">
+        <name>Linux Defender contributors</name>
     </developer>
 
     <description>
@@ -29,9 +29,9 @@
 
     <launchable type="desktop-id">io.github.linx_systems.ClamUI.desktop</launchable>
 
-    <url type="homepage">https://github.com/SAFETY-CHAT/Linux-Defender</url>
-    <url type="bugtracker">https://github.com/SAFETY-CHAT/Linux-Defender/issues</url>
-    <url type="vcs-browser">https://github.com/SAFETY-CHAT/Linux-Defender</url>
+    <url type="homepage">https://github.com/Linux-Defender/Linux-Defender</url>
+    <url type="bugtracker">https://github.com/Linux-Defender/Linux-Defender/issues</url>
+    <url type="vcs-browser">https://github.com/Linux-Defender/Linux-Defender</url>
 
     <provides>
         <binary>clamui</binary>
