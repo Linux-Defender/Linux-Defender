@@ -1,6 +1,6 @@
-# Vietnamese translation for ClamUI.
+# Vietnamese translation for Linux Defender.
 # Copyright (C) 2026 Linux Defender Contributors
-# This file is distributed under the same license as the ClamUI package.
+# This file is distributed under the same license as the Linux Defender package.
 # dinhkarate <dinhkarat@gmail.com>, 2026.
 #
 # Glossary:
@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/SAFETY-CHAT/Linux-Defender/issues\n"
-"POT-Creation-Date: 2026-11-11 15:04-0500\n"
+"POT-Creation-Date: 2026-11-11 16:17-0500\n"
 "PO-Revision-Date: 2026-11-03 21:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -282,9 +282,10 @@ msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster đang chạy và bảo vệ các kết nối"
 
 #: crates/clamui-core/src/audit.rs:1166
-msgid "Authorize ClamUI in Portmaster for per-module health"
-msgstr ""
-"Cấp quyền cho ClamUI trong Portmaster để xem tình trạng của từng mô-đun"
+msgid ""
+"Authorize Linux Defender in Portmaster for per-module health (legacy app "
+"identity: ClamUI)"
+msgstr "Ủy quyền cho Linux Defender trong Portmaster để xem tình trạng từng mô-đun (danh tính ứng dụng cũ: ClamUI)"
 
 #: crates/clamui-core/src/audit.rs:1169
 msgid "Authorize"
@@ -4908,7 +4909,10 @@ msgid ""
 "Review the folder contents before any files are sent. VirusTotal receives "
 "each file hash and filename; files without an existing report may be "
 "uploaded and shared with its security partners."
-msgstr "Review the folder contents before any files are sent. VirusTotal receives each file hash and filename; files without an existing report may be uploaded and shared with its security partners."
+msgstr ""
+"Review the folder contents before any files are sent. VirusTotal receives "
+"each file hash and filename; files without an existing report may be "
+"uploaded and shared with its security partners."
 
 #: desktop/src/pages/Scan.tsx:306
 msgid ""
@@ -5213,11 +5217,12 @@ msgstr "Không thể mở thư mục quy tắc YARA: {error}"
 
 #: desktop/src/pages/SettingsPreferences.tsx:198
 msgid ""
-"Add local YARA rules that ClamAV can load during standalone scans. ClamTk "
-"does not download rule feeds."
+"Add local YARA rules that ClamAV can load during standalone scans. Linux "
+"Defender does not download or update YARA rules; manage this folder yourself."
 msgstr ""
-"Thêm quy tắc YARA cục bộ để ClamAV tải khi quét độc lập. ClamTk không tải "
-"xuống nguồn cấp quy tắc."
+"Thêm quy tắc YARA cục bộ để ClamAV có thể nạp khi quét độc lập. Linux "
+"Defender không tải xuống hoặc cập nhật quy tắc YARA; hãy tự quản lý thư mục "
+"này."
 
 #: desktop/src/pages/SettingsPreferences.tsx:199
 msgid "Rules Folder"

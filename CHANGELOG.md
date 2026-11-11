@@ -6,7 +6,7 @@
 
 ### Added
 
-- Added a Vietnamese (`vi`) translation.
+- Vietnamese translation: Vietnamese (`vi`) joins the active desktop and CLI catalogs.
 - Added VirusTotal URL analysis and urlscan as explicit, consent-based online checks alongside local scanning.
 - Added upload/analysis progress and bounded, confirmed VirusTotal folder uploads; remote reputation results remain separate from local ClamAV detections.
 - Added a visible inventory of compatible ClamAV database/signature files and combined local YARA rules with the configured host ClamAV database for standalone scans.
@@ -20,7 +20,7 @@
 - Standalone ClamAV scans now count files without retaining unused file-path lists; daemon scan inputs, pre-counted totals, and progress estimates are unchanged.
 - Desktop quarantine browsing now retrieves bounded date/ID cursor pages with locale-aware literal Unicode search, stable insertion anchors, and stale-response guards; storage totals remain global and the headless CLI retains its complete legacy list.
 - Updated Rust dependencies: `glib` to 0.22.10, bundled `rusqlite` to 0.41.1, `base64` to 0.23.1, `rfd` to 0.17.2, and the locked `tauri` resolution to 2.12.5. The `rfd` update removes its `ashpd` portal chain (`async-fs`, `async-net`, and `urlencoding`) without altering existing `zbus` consumers, Flatpak permissions, or the native GTK 3/WebKitGTK 4.1 dependency boundary.
-- Updated desktop tooling: `@tauri-apps/cli` to 2.12.4, `@vitejs/plugin-react` to 5.2.0, and TypeScript to 7.0.2. Gettext extraction now uses the locked Babel parser because TypeScript 7 does not provide its former compiler API, and the desktop configuration declares Vite client types so stylesheet side-effect imports remain type-checkable.
+- Updated desktop tooling: `@tauri-apps/cli` to 2.12.4 and TypeScript to 7.0.2. Gettext extraction now uses the locked Babel parser because TypeScript 7 does not provide its former compiler API, and the desktop configuration declares Vite client types so stylesheet side-effect imports remain type-checkable.
 - Updated Rust dependencies: `signal-hook` to 0.4.6, `globset` to 0.4.21, `icu_locale_core` to 2.4.0, `ksni` to 0.3.7, `log` to 0.4.35, `open` to 5.4.5, `tauri-plugin-notification` to 2.8.0, `tauri-plugin-single-instance` to 2.5.5, `uuid` to 1.29.1, and `zip` to 9.4.1.
 - Updated desktop tooling: `@babel/parser` to 8.1.0, `@vitejs/plugin-react` to 6.2.1, and Vite to 8.3.5; refreshed the Bun, Yarn, and Flatpak dependency sources.
 
@@ -41,6 +41,7 @@
 
 ### Maintenance
 
+- Switched Debian, RPM, and AppImage CI builds to authenticated HTTPS Ubuntu Jammy mirrors and made repository update errors fatal while retaining the Ubuntu 22.04 baseline, dependencies, and package signing.
 - Updated GitHub Actions artifact upload to 7.0.2 and artifact download to 8.0.2.
 - Added concise GitHub bug report, feature request, and pull request templates.
 - Switched Dependabot's JavaScript projects to Bun, grouped weekly minor and patch updates, and automated the related Bun/Yarn and Flatpak dependency source refresh.

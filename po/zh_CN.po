@@ -1,12 +1,12 @@
 # Copyright (C) YEAR Linux Defender Contributors
-# This file is distributed under the same license as the ClamUI package.
+# This file is distributed under the same license as the Linux Defender package.
 #
 # SPDX-FileCopyrightText: 2026 Markson Hosben <marksonhosben@proton.me>
 msgid ""
 msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/SAFETY-CHAT/Linux-Defender/issues\n"
-"POT-Creation-Date: 2026-11-11 15:04-0500\n"
+"POT-Creation-Date: 2026-11-11 16:17-0500\n"
 "PO-Revision-Date: 2026-07-22 21:29+0800\n"
 "Last-Translator: Markson Hosben <marksonhosben@proton.me>\n"
 "Language-Team: Chinese <>\n"
@@ -254,9 +254,10 @@ msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster 正在运行并保护网络连接"
 
 #: crates/clamui-core/src/audit.rs:1166
-msgid "Authorize ClamUI in Portmaster for per-module health"
-msgstr "在 Portmaster 中授权 ClamUI，以查看各模块的运行状况"
-
+msgid ""
+"Authorize Linux Defender in Portmaster for per-module health (legacy app "
+"identity: ClamUI)"
+msgstr "在 Portmaster 中授权 Linux Defender 以查看各模块状态（旧应用标识：ClamUI）"
 #: crates/clamui-core/src/audit.rs:1169
 msgid "Authorize"
 msgstr "授权"
@@ -4777,7 +4778,10 @@ msgid ""
 "Review the folder contents before any files are sent. VirusTotal receives "
 "each file hash and filename; files without an existing report may be "
 "uploaded and shared with its security partners."
-msgstr "Review the folder contents before any files are sent. VirusTotal receives each file hash and filename; files without an existing report may be uploaded and shared with its security partners."
+msgstr ""
+"Review the folder contents before any files are sent. VirusTotal receives "
+"each file hash and filename; files without an existing report may be "
+"uploaded and shared with its security partners."
 
 #: desktop/src/pages/Scan.tsx:306
 msgid ""
@@ -5080,10 +5084,11 @@ msgstr "无法打开 YARA 规则文件夹：{error}"
 
 #: desktop/src/pages/SettingsPreferences.tsx:198
 msgid ""
-"Add local YARA rules that ClamAV can load during standalone scans. ClamTk "
-"does not download rule feeds."
+"Add local YARA rules that ClamAV can load during standalone scans. Linux "
+"Defender does not download or update YARA rules; manage this folder yourself."
 msgstr ""
-"添加本地 YARA 规则，供 ClamAV 在独立扫描时加载。ClamTk 不会下载规则源。"
+"Add local YARA rules that ClamAV can load during standalone scans. Linux "
+"Defender does not download or update YARA rules; manage this folder yourself."
 
 #: desktop/src/pages/SettingsPreferences.tsx:199
 msgid "Rules Folder"

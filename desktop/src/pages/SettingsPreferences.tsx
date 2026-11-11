@@ -195,7 +195,7 @@ function YaraPage({ settings, saveSetting }: { settings: Settings; saveSetting: 
   };
 
   return <div className="settings-preferences">
-    <Section title={_("YARA Rules")} description={_("Add local YARA rules that ClamAV can load during standalone scans. ClamTk does not download rule feeds.")}>
+    <Section title={_("YARA Rules")} description={_("Add local YARA rules that ClamAV can load during standalone scans. Linux Defender does not download or update YARA rules; manage this folder yourself.")}>
       <Field label={_("Rules Folder")} detail={_("Only regular .yar and .yara files in this folder are loaded.")}>
         <input type="text" value={directory} onChange={(event) => setDirectory(event.target.value)} onBlur={() => void saveSetting("yara_rules_directory", directory.trim())} />
       </Field>

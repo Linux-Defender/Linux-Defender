@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=ClamUI
+Name=Linux Defender
 GenericName=Antivirus Scanner
-Comment=A graphical interface for ClamAV antivirus
+Comment=Scan files and review Linux security with ClamAV
 Exec=clamui %U
 Icon=io.github.linx_systems.ClamUI
 Terminal=false

@@ -1163,7 +1163,7 @@ fn check_portmaster(ctx: &Context) -> AuditSection {
                     ctx,
                     "Module Status",
                     AuditStatus::Skipped,
-                    tr(ctx, "Authorize ClamUI in Portmaster for per-module health"),
+                    tr(ctx, "Authorize Linux Defender in Portmaster for per-module health (legacy app identity: ClamUI)"),
                 );
                 row.launch_command = Some("__portmaster_authorize__".to_owned());
                 row.launch_label = Some(tr(ctx, "Authorize"));

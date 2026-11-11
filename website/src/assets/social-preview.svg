@@ -22,7 +22,7 @@
   <path d="m152 203 32 11v25c0 23-13 37-32 48-19-11-32-25-32-48v-25l32-11Z" fill="url(#line)"/>
   <path d="m138 240 10 10 20-22" fill="none" stroke="#102334" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   <text x="96" y="366" fill="#f5fbff" font-family="Inter,Segoe UI,sans-serif" font-size="72" font-weight="700">Linux Defender</text>
-  <text x="100" y="425" fill="#a9c5d4" font-family="Inter,Segoe UI,sans-serif" font-size="26">Local scanning. Clear choices. One Linux security workspace.</text>
+  <text x="100" y="425" fill="#a9c5d4" font-family="Inter,Segoe UI,sans-serif" font-size="26">Local scanning. Clear choices. Linux security.</text>
   <g font-family="Inter,Segoe UI,sans-serif" font-size="17" font-weight="600">
     <rect x="100" y="468" width="168" height="40" rx="20" fill="#173b45" stroke="#64d5c1" stroke-opacity=".5"/>
     <text x="121" y="494" fill="#a8f3df">LOCAL · CLAMAV</text>

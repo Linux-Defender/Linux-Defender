@@ -9,6 +9,20 @@ use clamui_core::platform::{
     DeviceScanPolicy, DeviceType, IntegrationPaths, MountInfo,
 };
 
+#[test]
+fn bundled_integrations_show_linux_defender_brand_and_valid_dolphin_action() {
+    let dolphin =
+        include_str!("../assets/integrations/io.github.linx_systems.ClamUI.service.desktop");
+    let nemo = include_str!("../assets/integrations/io.github.linx_systems.ClamUI.nemo_action");
+    assert!(dolphin.contains("Name=Linux Defender Scanner"));
+    assert!(dolphin.contains("Actions=ScanWithLinuxDefender;"));
+    assert!(dolphin.contains("[Desktop Action ScanWithLinuxDefender]"));
+    assert!(dolphin.contains("Name=Scan with Linux Defender"));
+    assert!(nemo.contains("Name=Scan with Linux Defender"));
+    assert!(!dolphin.contains("ClamTk"));
+    assert!(!nemo.contains("ClamTk"));
+}
+
 fn temporary_share(name: &str) -> PathBuf {
     let nonce = SystemTime::now()
         .duration_since(UNIX_EPOCH)

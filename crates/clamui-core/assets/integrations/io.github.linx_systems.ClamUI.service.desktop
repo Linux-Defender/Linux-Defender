@@ -4,10 +4,10 @@ Name=Linux Defender Scanner
 Comment=Scan files and folders with Linux Defender antivirus
 ServiceTypes=KonqPopupMenu/Plugin
 MimeType=application/octet-stream;inode/directory;
-Actions=ScanWithLinux Defender;
+Actions=ScanWithLinuxDefender;
 X-KDE-Priority=TopLevel
 
-[Desktop Action ScanWithLinux Defender]
+[Desktop Action ScanWithLinuxDefender]
 Name=Scan with Linux Defender
 Icon=io.github.linx_systems.ClamUI
 Exec=flatpak run io.github.linx_systems.ClamUI %F

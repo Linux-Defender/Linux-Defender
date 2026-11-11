@@ -4,7 +4,8 @@ This branch adopts the upstream ClamUI v0.6.0 source baseline, then layers Linux
 
 ## Included
 
-- Upstream v0.6.0 scan reliability and responsiveness improvements, including bounded history and quarantine views, complete large-scan findings, progress coalescing, long daemon-path handling, Flatpak host database detection, trusted helper checks, Wayland startup handling, Vietnamese translations, and current dependency locks.
+- Upstream v0.6.0 scan reliability and responsiveness improvements, including bounded history and quarantine views, complete large-scan findings, progress coalescing, long daemon-path handling, Flatpak host database detection, trusted helper checks, Wayland startup handling, and current dependency locks. Vietnamese (`vi`) is active in both desktop and CLI catalogs.
+- Upstream native build maintenance: Debian, RPM, and AppImage CI uses authenticated HTTPS Ubuntu Jammy mirrors and fails on repository update errors while retaining the Ubuntu 22.04 baseline, dependencies, and package signing.
 - Local ClamAV scans with the configured host database, selected local YARA rules for standalone scans, scan profiles and options, quarantine, history, scheduling, security audit, tray and file-manager integrations.
 - Explicit VirusTotal file, folder, and URL analysis with progress and confirmation, plus urlscan URL checks with visibility selection. These services receive data only after the user confirms; their findings are reputation results, separate from a local ClamAV verdict.
 - A supported-database inventory and FreshClam status integration. The host package and service own the shared ClamAV definitions; Linux Defender does not yet install or maintain every third-party signature feed.
