@@ -1,6 +1,6 @@
 # ClamTk revival issue and PR ledger
 
-Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com/dave-theunsub/clamtk). Development checkout: `/home/kiras/ClamTk-REBORN`, branch `revival/issue-pr-triage`. Changes listed as local are not pushed or submitted upstream.
+Review snapshot: 2026-11-11. Upstream: [dave-theunsub/clamtk](https://github.com/dave-theunsub/clamtk). Development checkout: `/home/kiras/ClamTk-REBORN`, branch `revival/issue-pr-triage`. Changes listed as local are not pushed or submitted upstream.
 
 ## Open issues (23)
 
@@ -72,3 +72,11 @@ The GitHub forks API returned 55 forks. Compared each fork's default-branch head
 | [vitlav/clamtk](https://github.com/vitlav/clamtk) | Recently pushed, but default branch is exactly `694833d`; no unique code changes. | Nothing to merge |
 | [datumbox/clamtk](https://github.com/datumbox/clamtk) | One 2020 commit ahead on a much older base; adds `Encrypted.PDF` as a clean scanner status. | Historical one-line change; inspect compatibility before any adoption |
 | Other forks | Default branches were the same as or behind the upstream base; some are substantially behind. | No newer implementation identified in default-branch comparisons |
+
+## Related UI and desktop integrations
+
+The full point-in-time review of [ClamUI, its 60 open and 12 closed issues, all two open PRs, the KDE/GNOME/Nemo/Thunar integrations and their issues/PRs, and MidnightBSD mports PR #1935](RELATED-PROJECT-REVIEW.md) is in the companion report. ClamUI is a separate Rust/Tauri/React frontend; the file-manager projects are separate launch integrations. No code from these projects has been merged into this fork.
+
+The chosen target is one installable product with one modern UI and preserved ClamTk features/data/CLI behavior, tracking both upstreams and reviewing updates individually. ClamUI's latest source changelog records fixes for #264, #285, and #286 although the issues remain open; its current CI reports the core tests and major package/security checks passing. Its current open #304/#305/#282 reports still need release/desktop validation. Local ClamUI tests could not run here because `cargo` is unavailable. A separate local ClamUI working checkout is at `/home/kiras/Documents/Codex/ClamUI-REBORN`; a GitHub fork was not created because the GitHub web session requires sign-in.
+
+The file-manager launchers use `%F` for multi-selection while this ClamTk launcher reads only the first argument. CLI multi-file support is a concrete integration gap to fix before bundling those plugins.
