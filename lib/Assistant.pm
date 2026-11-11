@@ -50,6 +50,11 @@ sub show_window {
     $bbox->set_layout( 'start' );
     $box->add( $bbox );
 
+    my $help_label = Gtk3::Label->new( '' );
+    $help_label->set_line_wrap( TRUE );
+    $help_label->set_xalign( 0.0 );
+    $box->pack_start( $help_label, FALSE, FALSE, 8 );
+
     #<<<
     my $auto_button = Gtk3::RadioButton->new_with_label_from_widget(
             undef,
@@ -59,6 +64,9 @@ sub show_window {
         toggled => sub {
             if( $auto_button->get_active ) {
                 $pref = 'shared';
+                $help_label->set_text(
+                    _( 'Choose this only if a system service already updates the shared ClamAV signatures. ClamTk will not install or configure that service.' )
+                );
             } else {
                 $pref = 'single';
             }
@@ -73,6 +81,9 @@ sub show_window {
         toggled => sub {
             if( $man_button->get_active ) {
                 $pref = 'single';
+                $help_label->set_text(
+                    _( 'ClamTk updates signatures in your user folder. Scheduled updates use cron and will not catch up after the computer is off.' )
+                );
             } else {
                 $pref = 'shared';
             }
