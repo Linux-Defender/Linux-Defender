@@ -12,7 +12,7 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 | [#159](https://github.com/dave-theunsub/clamtk/issues/159) not responding during scan | Clamscan can reload signatures; clamdscan is suggested where a daemon is available. Needs an optional backend/design and reproducible timing tests. | Open; not fixed |
 | [#158](https://github.com/dave-theunsub/clamtk/issues/158) verbose scan log | Optional persistent all-file log; privacy, retention, and disk usage need product decisions. | Open; not implemented |
 | [#149](https://github.com/dave-theunsub/clamtk/issues/149) invisible buttons in dark mode | Theme-specific screenshot report; no GUI reproduction available in this headless environment. | Open; not reproduced |
-| [#147](https://github.com/dave-theunsub/clamtk/issues/147) toggle automatic DB update / scan on launch | The Assistant now exposes status, enable/disable, and run-now controls for Arch's `clamav-freshclam-once` system timer when that unit is installed. Scheduled scans remain a separate feature. | Local UI control added; system authorization and desktop behavior need CachyOS validation |
+| [#147](https://github.com/dave-theunsub/clamtk/issues/147) toggle automatic DB update / scan on launch | The Assistant now exposes status, enable/disable, and run-now controls for Arch's `clamav-freshclam-once` system timer when that unit is installed. Systemctl requests use `--no-block` so downloading definitions does not hold the UI open. Scheduled scans remain a separate feature. | Local UI control added; system authorization and desktop behavior need CachyOS validation |
 | [#146](https://github.com/dave-theunsub/clamtk/issues/146) discussion board | Repository hosting configuration request; community `clamtk/clamtk` has Discussions enabled. | Hosting-level, not app code |
 | [#142](https://github.com/dave-theunsub/clamtk/issues/142) tray icon | Requires desktop-shell-specific status/tray support and distro coverage. | Open; not implemented |
 | [#140](https://github.com/dave-theunsub/clamtk/issues/140) show scheduled scan time | Current upstream code already displays localized daily-scan status with a zero-padded time. | Appears addressed in code; issue remains open |
@@ -41,7 +41,7 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 
 ## Local verification
 
-- `prove -r t`: 70 tests pass across ten test files; coverage includes custom PATH discovery, literal scanner arguments, YARA-rule discovery, FreshClam timer status parsing, VirusTotal v3/keyring behavior, and urlscan privacy/validation behavior.
+- `prove -r t`: 76 tests pass across ten test files; coverage includes custom PATH discovery, literal scanner arguments, YARA-rule discovery, FreshClam timer status and nonblocking service arguments, VirusTotal v3/keyring behavior, and urlscan privacy/validation behavior.
 - `perl -Ilib -c lib/Scan.pm`: syntax OK.
 - `lib/Assistant.pm` syntax check passes using a temporary staged module tree matching the installed Perl module layout.
 - ClamAV 1.5.4 local smoke check loaded a test YARA rule alongside `/var/lib/clamav` and detected the matching harmless test string. No rule feed was downloaded.

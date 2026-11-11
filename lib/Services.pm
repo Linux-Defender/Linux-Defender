@@ -29,23 +29,25 @@ sub freshclam_status {
 }
 
 sub set_freshclam_timer {
-    my ( $enabled ) = @_;
-    my $pkexec = ClamTk::App::_find_executable('pkexec');
-    my $systemctl = ClamTk::App::_find_executable('systemctl');
+    my ( $enabled, $pkexec, $systemctl ) = @_;
+    $pkexec ||= ClamTk::App::_find_executable('pkexec');
+    $systemctl ||= ClamTk::App::_find_executable('systemctl');
     return 0 if !$pkexec || !$systemctl;
 
     my @args = $enabled
-        ? ( 'enable', '--now', 'clamav-freshclam-once.timer' )
-        : ( 'disable', '--now', 'clamav-freshclam-once.timer' );
+        ? ( 'enable', '--now', '--no-block', 'clamav-freshclam-once.timer' )
+        : ( 'disable', '--now', '--no-block', 'clamav-freshclam-once.timer' );
     return system( $pkexec, $systemctl, @args ) == 0 ? 1 : 0;
 }
 
 sub run_freshclam_once {
-    my $pkexec = ClamTk::App::_find_executable('pkexec');
-    my $systemctl = ClamTk::App::_find_executable('systemctl');
+    my ( $pkexec, $systemctl ) = @_;
+    $pkexec ||= ClamTk::App::_find_executable('pkexec');
+    $systemctl ||= ClamTk::App::_find_executable('systemctl');
     return 0 if !$pkexec || !$systemctl;
     return system(
-        $pkexec, $systemctl, 'start', 'clamav-freshclam-once.service'
+        $pkexec, $systemctl, 'start', '--no-block',
+        'clamav-freshclam-once.service'
     ) == 0 ? 1 : 0;
 }
 
