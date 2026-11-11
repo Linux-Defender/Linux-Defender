@@ -32,7 +32,7 @@ See the upstream development guide in website/src/content/docs/docs/contributing
 - cargo fmt --check --all
 - cargo clippy --workspace --all-targets --locked -- -D warnings
 - cd desktop && bun install --frozen-lockfile && bun run build
-- cargo run -p clamui from desktop/src-tauri after building the frontend
+- cd desktop && bun run tauri dev
 
 The Rust desktop build needs the GTK 3 and WebKitGTK 4.1 development libraries. Test the actual window, dark/light themes, Wayland/X11, FreshClam status, scan/cancel flows, quarantine restore, YARA rules, and package install on CachyOS before calling this stable.
 
