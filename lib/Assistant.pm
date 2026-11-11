@@ -14,6 +14,7 @@
 package ClamTk::Assistant;
 
 use Glib 'TRUE', 'FALSE';
+use ClamTk::Services;
 
 # use strict;
 # use warnings;
@@ -55,6 +56,93 @@ sub show_window {
     $help_label->set_xalign( 0.0 );
     $box->pack_start( $help_label, FALSE, FALSE, 8 );
 
+    my $service_label = Gtk3::Label->new('');
+    $service_label->set_line_wrap(TRUE);
+    $service_label->set_xalign(0.0);
+    $box->pack_start($service_label, FALSE, FALSE, 4);
+
+    my $service_buttons = Gtk3::ButtonBox->new('horizontal');
+    $service_buttons->set_layout('start');
+    $box->pack_start($service_buttons, FALSE, FALSE, 4);
+
+    my $timer_button = Gtk3::Button->new_with_label('');
+    my $update_now_button = Gtk3::Button->new_with_label(
+        _('Update signatures now')
+    );
+    $service_buttons->add($timer_button);
+    $service_buttons->add($update_now_button);
+
+    my $refresh_service_controls = sub {
+        if ( $pref ne 'shared' ) {
+            $service_label->hide;
+            $service_buttons->hide;
+            return;
+        }
+
+        $service_label->show;
+        $service_buttons->show;
+        my $state = ClamTk::Services::freshclam_status();
+        if ( !$state->{available} ) {
+            $service_label->set_text(
+                $state->{reason} eq 'timer-not-installed'
+                ? _( 'No supported system FreshClam timer was found. Install the ClamAV package or use per-user signature updates.' )
+                : _( 'Could not read the system FreshClam timer status.' )
+            );
+            $timer_button->set_sensitive(FALSE);
+            $update_now_button->set_sensitive(FALSE);
+            return;
+        }
+
+        if ( $state->{timer_active} ) {
+            $service_label->set_text(
+                _( 'Daily system signature updates are active.' )
+            );
+            $timer_button->set_label( _( 'Disable daily updates' ) );
+            $timer_button->{enable_timer} = 0;
+        } else {
+            $service_label->set_text(
+                _( 'Daily system signature updates are disabled.' )
+            );
+            $timer_button->set_label( _( 'Enable daily updates' ) );
+            $timer_button->{enable_timer} = 1;
+        }
+        $timer_button->set_sensitive(TRUE);
+        $update_now_button->set_sensitive( !$state->{service_active} );
+    };
+
+    $timer_button->signal_connect(
+        clicked => sub {
+            my $enabled = $timer_button->{enable_timer};
+            if ( ClamTk::Services::set_freshclam_timer($enabled) ) {
+                $service_label->set_text(
+                    $enabled
+                    ? _( 'Daily signature updates enabled.' )
+                    : _( 'Daily signature updates disabled.' )
+                );
+            } else {
+                $service_label->set_text(
+                    _( 'Could not change the timer. Check system authorization or the ClamAV package.' )
+                );
+            }
+            $refresh_service_controls->();
+        }
+    );
+
+    $update_now_button->signal_connect(
+        clicked => sub {
+            if ( ClamTk::Services::run_freshclam_once() ) {
+                $service_label->set_text(
+                    _( 'FreshClam update started. Check the system service log for its result.' )
+                );
+            } else {
+                $service_label->set_text(
+                    _( 'Could not start FreshClam. Check system authorization or the ClamAV package.' )
+                );
+            }
+            $refresh_service_controls->();
+        }
+    );
+
     #<<<
     my $auto_button = Gtk3::RadioButton->new_with_label_from_widget(
             undef,
@@ -65,8 +153,9 @@ sub show_window {
             if( $auto_button->get_active ) {
                 $pref = 'shared';
                 $help_label->set_text(
-                    _( 'Choose this only if a system service already updates the shared ClamAV signatures. ClamTk will not install or configure that service.' )
+                    _( 'Use the shared system signatures. If the ClamAV package provides the daily FreshClam timer, you can check or manage it below; system authorization may be required.' )
                 );
+                $refresh_service_controls->();
             } else {
                 $pref = 'single';
             }
@@ -84,6 +173,7 @@ sub show_window {
                 $help_label->set_text(
                     _( 'ClamTk updates signatures in your user folder. Scheduled updates use cron and will not catch up after the computer is off.' )
                 );
+                $refresh_service_controls->();
             } else {
                 $pref = 'shared';
             }
@@ -98,6 +188,7 @@ sub show_window {
     } elsif ( $pref eq 'single' ) {
         $man_button->set_active( TRUE );
     }
+    $refresh_service_controls->();
 
     my $infobar = Gtk3::InfoBar->new;
     $infobar->set_message_type( 'other' );
@@ -120,6 +211,7 @@ sub show_window {
     );
 
     $box->show_all();
+    $refresh_service_controls->();
     return $box;
 }
 

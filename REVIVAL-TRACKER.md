@@ -12,14 +12,14 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 | [#159](https://github.com/dave-theunsub/clamtk/issues/159) not responding during scan | Clamscan can reload signatures; clamdscan is suggested where a daemon is available. Needs an optional backend/design and reproducible timing tests. | Open; not fixed |
 | [#158](https://github.com/dave-theunsub/clamtk/issues/158) verbose scan log | Optional persistent all-file log; privacy, retention, and disk usage need product decisions. | Open; not implemented |
 | [#149](https://github.com/dave-theunsub/clamtk/issues/149) invisible buttons in dark mode | Theme-specific screenshot report; no GUI reproduction available in this headless environment. | Open; not reproduced |
-| [#147](https://github.com/dave-theunsub/clamtk/issues/147) toggle automatic DB update / scan on launch | Title-only request; these are separate preferences with different consequences. | Needs specification |
+| [#147](https://github.com/dave-theunsub/clamtk/issues/147) toggle automatic DB update / scan on launch | The Assistant now exposes status, enable/disable, and run-now controls for Arch's `clamav-freshclam-once` system timer when that unit is installed. Scheduled scans remain a separate feature. | Local UI control added; system authorization and desktop behavior need CachyOS validation |
 | [#146](https://github.com/dave-theunsub/clamtk/issues/146) discussion board | Repository hosting configuration request; community `clamtk/clamtk` has Discussions enabled. | Hosting-level, not app code |
 | [#142](https://github.com/dave-theunsub/clamtk/issues/142) tray icon | Requires desktop-shell-specific status/tray support and distro coverage. | Open; not implemented |
 | [#140](https://github.com/dave-theunsub/clamtk/issues/140) show scheduled scan time | Current upstream code already displays localized daily-scan status with a zero-padded time. | Appears addressed in code; issue remains open |
 | [#139](https://github.com/dave-theunsub/clamtk/issues/139) ClamAV binary paths | `App.pm` now detects `clamscan`, `clamdscan`, `freshclam`, and `sigtool` in common locations or through `PATH`; it also recognizes `/etc/clamav/freshclam.conf`. | Fix committed `854f3e4`; helper tests cover custom `PATH` and missing tools; distro package cases still need validation |
 | [#138](https://github.com/dave-theunsub/clamtk/issues/138) update UI glitches | PR #170 handles a redraw after update completion. Local change also checks FreshClam's exit status and leaves failures visible with a retry button. Reported Mint/XFCE layout still needs a GUI reproduction. | Local status fix committed `5ef5282`; GUI layout not verified |
 | [#137](https://github.com/dave-theunsub/clamtk/issues/137) Cinnamon window controls | Old Cinnamon/GTK decoration behavior; not reproduced on target desktop. | Open; not reproduced |
-| [#127](https://github.com/dave-theunsub/clamtk/issues/127) automatic update confusion | Assistant now explains the system-managed shared database vs ClamTk's per-user copy, and that cron does not catch up after downtime. | UI clarification committed `7d0bd08`; remaining scheduler behavior not changed |
+| [#127](https://github.com/dave-theunsub/clamtk/issues/127) automatic update confusion | Assistant explains shared vs per-user signatures and now reports/manages the supported Arch daily FreshClam timer. | Clarification committed `7d0bd08`; new controls are local and still need CachyOS UI/auth validation |
 | [#125](https://github.com/dave-theunsub/clamtk/issues/125) force quit / not responding | Older long-scan and signature-load reports overlap #159; not reproduced against current local versions. | Open; not fixed |
 | [#124](https://github.com/dave-theunsub/clamtk/issues/124) VirusTotal integration | Request includes automatic sample upload. Automatic uploading would expose user files; any future integration must remain explicit and consent-based. | No auto-upload change |
 | [#121](https://github.com/dave-theunsub/clamtk/issues/121) Timeshift/hard links | Current scanner excludes directories named `timeshift`; general hard-link explanation/support is not added. | Reported scenario appears covered; broader request open |
@@ -41,8 +41,9 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 
 ## Local verification
 
-- `prove -r t`: 34 tests pass across seven test files; coverage includes custom PATH discovery and literal scanner argument construction.
+- `prove -r t`: 42 tests pass across eight test files; coverage includes custom PATH discovery, literal scanner arguments, and FreshClam timer status parsing.
 - `perl -Ilib -c lib/Scan.pm`: syntax OK.
+- `lib/Assistant.pm` syntax check passes using a temporary staged module tree matching the installed Perl module layout.
 - PR-derived `GUI.pm` and `Update.pm` syntax checks passed earlier; GTK emitted sandbox dconf warnings.
 - No GUI display is available, so visual behavior, dark themes, Cinnamon/Mint, and CPU impact on Kira's desktop remain unverified.
 - Nothing has been pushed to GitHub. No system ClamAV database or services were modified.
