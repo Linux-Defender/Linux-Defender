@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Service
-Name=ClamUI VirusTotal Scanner
+Name=Linux Defender VirusTotal Scanner
 Comment=Scan files with VirusTotal online service
 ServiceTypes=KonqPopupMenu/Plugin
 MimeType=application/octet-stream;

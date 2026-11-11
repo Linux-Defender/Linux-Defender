@@ -269,7 +269,7 @@ export default function Logs({ active }: { active: boolean }) {
     try {
       const result = await request<unknown>("logs.get", { id: entry.id });
       const complete = parseLogEntry(result);
-      if (!complete) throw new Error(_("The log entry returned by ClamUI was incomplete."));
+      if (!complete) throw new Error(_("Linux Defender received an incomplete log entry."));
       setSelected((current) => current?.id === entry.id ? complete : current);
     } catch (error) {
       notify(_("Failed to load log details: {error}", { error: readableError(error) }), "error");

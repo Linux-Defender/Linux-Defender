@@ -175,6 +175,15 @@ fn cron_cleanup_removes_only_a_marker_with_a_recognized_clamui_command() {
 }
 
 #[test]
+fn branded_scheduler_removes_the_previous_clamui_cron_marker() {
+    let existing = "0 1 * * * /usr/bin/backup\n# ClamUI Scheduled Scan\n0 2 * * * /usr/bin/clamui-scheduled-scan --target /home\n";
+    assert_eq!(
+        remove_our_cron_lines(existing),
+        vec!["0 1 * * * /usr/bin/backup"]
+    );
+}
+
+#[test]
 fn explicit_schedule_overrides_take_precedence_over_persisted_names() {
     let schedule = ScheduleConfig::from_value(&serde_json::json!({
         "scheduled_scans_enabled": false,

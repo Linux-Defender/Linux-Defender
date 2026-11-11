@@ -16,15 +16,18 @@ bun --version
 cd /home/kiras/Linux-Defender
 git switch revival/unified-app
 cargo fmt --check --all
-cargo test --workspace --locked
+cargo test -p clamui-core --test virustotal --test urlscan --test platform --test scheduler --locked
+cargo test -p clamui --bin clamui --locked
 cd desktop
 bun install --frozen-lockfile
 bun run build
 bun run tauri dev
 ```
 
+For the new VirusTotal folder/progress feature, first run the mocked backend tests above. In the app, configure a personal VirusTotal API key in Preferences, open Scan, choose the folder icon in the scan actions, and inspect the complete file list and total size before clicking **Upload and scan folder**. Use a temporary folder with harmless files only; confirm the scan shows each file and progress, then use **Cancel scan** to verify cancellation. For URL checks, use only a non-sensitive public test URL and explicitly accept VirusTotal/urlscan sharing terms. Do not use malware samples or private files/URLs for this UI check.
+
 The first Rust build can take several minutes. The last command opens the development app; it does not install a system-wide release. Test scans only on files you choose, verify cancellation and quarantine/restore with harmless test files, check light/dark themes and Wayland/X11, and confirm FreshClam status. Never submit a file to VirusTotal or urlscan unless you understand and explicitly accept its sharing settings.
 
-Current sandbox results: `cargo fmt --check --all`, frontend build, and the focused platform integration suite (7 tests) pass. The full workspace run hits four helper tests that require filesystem/tool access unavailable in this sandbox. Skipping those allowed all 17 desktop unit tests and 103 core tests to pass, but CLI subprocess tests then remained active for over 60 seconds and the run was stopped. Run the full suite on CachyOS to distinguish sandbox limitations from host failures.
+Current sandbox results: formatting, frontend build, URLscan (4), platform integration (8), scheduler (8), translation extraction/checks, and desktop runtime (17) pass. The full workspace run hits four privileged-helper tests that require filesystem/tool access unavailable in this sandbox. Skipping those allowed 103 core tests and 17 desktop tests to pass, but the CLI subprocess suite stopped progressing after 13 of 18 reported completion and hit a 60-second cutoff. Five remaining CLI cases each also hit a 12-second cutoff when isolated. Run the full suite on CachyOS to distinguish sandbox limitations from host failures.
 
-Thunar action unit tests pass, but the in-app integration manager is currently Flatpak-only; the native CachyOS development build will not show that manager yet. To validate the actual Thunar menu, build/install the Flatpak and enable its Thunar Send To actions in Settings → Behavior → File Manager Integration on a machine with Thunar installed. KDE tray clicks and Dolphin menus can be tested in the normal CachyOS session. A successful build is not a visual desktop test or a claim of complete protection.
+Thunar action unit tests pass, but the in-app integration manager is currently Flatpak-only; the native CachyOS development build will not show that manager yet. To validate the actual Thunar menu, build/install the Flatpak and enable its Thunar Send To actions in Settings → Behavior → File Manager Integration on a machine with Thunar installed. URL Scan uses a private-by-default submission, but do not submit a sensitive URL during testing. KDE tray clicks and Dolphin menus can be tested in the normal CachyOS session. A successful build is not a visual desktop test or a claim of complete protection.

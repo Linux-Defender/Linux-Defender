@@ -67,7 +67,7 @@ fn run_gui(args: Vec<String>) -> i32 {
     match runtime::run(args) {
         Ok(()) => 0,
         Err(error) => {
-            eprintln!("ClamUI could not start: {error}");
+            eprintln!("Linux Defender could not start: {error}");
             1
         }
     }
@@ -81,7 +81,7 @@ fn unicode_args(raw_args: &[OsString]) -> Result<Vec<String>, ()> {
 }
 
 fn report_non_unicode_cli_argument(_: ()) -> i32 {
-    eprintln!("ClamUI CLI arguments must be valid Unicode; use the GUI file-selection route for arbitrary filesystem names.");
+    eprintln!("Linux Defender arguments must be valid Unicode; use the GUI file-selection route for arbitrary filesystem names.");
     2
 }
 
@@ -90,13 +90,13 @@ fn normalize_and_reexec_gui(executable: &Path, raw_args: &[OsString]) -> i32 {
     use std::os::unix::process::CommandExt;
 
     if env::var_os(NORMALIZED_GUI_ARGS).is_some() {
-        eprintln!("ClamUI could not normalize a non-Unicode GUI argument");
+        eprintln!("Linux Defender could not normalize a non-Unicode GUI argument");
         return 2;
     }
     let cwd = match env::current_dir() {
         Ok(cwd) => cwd,
         Err(error) => {
-            eprintln!("ClamUI could not determine the current directory: {error}");
+            eprintln!("Linux Defender could not determine the current directory: {error}");
             return 1;
         }
     };
@@ -116,12 +116,12 @@ fn normalize_and_reexec_gui(executable: &Path, raw_args: &[OsString]) -> i32 {
         .args(normalized)
         .env(NORMALIZED_GUI_ARGS, "1")
         .exec();
-    eprintln!("ClamUI could not restart with normalized GUI arguments: {error}");
+    eprintln!("Linux Defender could not restart with normalized GUI arguments: {error}");
     1
 }
 
 #[cfg(not(unix))]
 fn normalize_and_reexec_gui(_executable: &Path, _raw_args: &[OsString]) -> i32 {
-    eprintln!("ClamUI cannot preserve a non-Unicode GUI argument on this platform");
+    eprintln!("Linux Defender cannot preserve a non-Unicode GUI argument on this platform");
     2
 }

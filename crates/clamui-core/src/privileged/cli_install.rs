@@ -26,7 +26,7 @@ pub(super) fn install_cli_helper(ctx: &Context, prefix: &Path) -> AppResult<Stri
             return Err(crate::i18n::translate(
                 ctx,
                 // Translators: keep "Flatpak" and "clamui-privileged-helper" unchanged.
-                "ClamUI is running inside a Flatpak sandbox, which cannot install files on the host. Install the matching clamui-privileged-helper package on the host system instead.",
+                "Linux Defender is running inside a Flatpak sandbox, which cannot install files on the host. Install the matching clamui-privileged-helper package on the host system instead.",
             ));
         }
         if unsafe { libc::geteuid() } != 0 {
@@ -39,11 +39,12 @@ pub(super) fn install_cli_helper(ctx: &Context, prefix: &Path) -> AppResult<Stri
     }
 
     let executable = std::env::current_exe()
-        .map_err(|error| format!("cannot locate the running ClamUI executable: {error}"))?;
+        .map_err(|error| format!("cannot locate the running Linux Defender executable: {error}"))?;
     let source = executable
         .parent()
         .ok_or_else(|| {
-            "cannot locate the directory containing the running ClamUI executable".to_owned()
+            "cannot locate the directory containing the running Linux Defender executable"
+                .to_owned()
         })?
         .join(HELPER_NAME);
     install_from_source(ctx, &prefix_components, &source)
@@ -129,7 +130,7 @@ fn install_from_source(
     Ok(crate::i18n::translate(
         ctx,
         // Translators: keep the {bin} and {policy} placeholders; they are installed file paths.
-        "Installed privileged helper at {bin} and polkit policy at {policy}. Saving system ClamAV configuration from ClamUI should now work.",
+        "Installed privileged helper at {bin} and polkit policy at {policy}. Saving system ClamAV configuration from Linux Defender should now work.",
     )
     .replace("{bin}", &bin.display().to_string())
     .replace("{policy}", &policy.display().to_string()))

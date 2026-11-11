@@ -2,8 +2,8 @@ use clamui_core::credentials::{
     attributes, mask_api_key, validate_virustotal_api_key, Account, SERVICE_NAME,
 };
 use clamui_core::virustotal::{
-    HttpBody, HttpRequest, HttpResponse, HttpTransport, TransportError, VTScanStatus,
-    VirusTotalClient,
+    preview_folder, HttpBody, HttpRequest, HttpResponse, HttpTransport, TransportError,
+    VTScanStatus, VirusTotalClient, VT_FOLDER_MAX_FILES,
 };
 use std::collections::VecDeque;
 use std::ffi::CString;
@@ -190,6 +190,74 @@ fn scan_accepts_percent_encoded_local_file_uri_without_changing_result_identity(
 }
 
 #[test]
+fn folder_preview_is_sorted_skips_symlinks_and_reports_sizes() {
+    let fixture = fixture_dir();
+    let folder = fixture.path().join("folder");
+    fs::create_dir_all(folder.join("nested")).unwrap();
+    fs::write(folder.join("z.txt"), b"123").unwrap();
+    fs::write(folder.join("nested/a.txt"), b"12").unwrap();
+    symlink(folder.join("z.txt"), folder.join("link.txt")).unwrap();
+
+    let preview = preview_folder(folder.to_str().unwrap()).unwrap();
+
+    assert_eq!(preview.files.len(), 2);
+    assert!(preview.files[0].path.ends_with("nested/a.txt"));
+    assert!(preview.files[1].path.ends_with("z.txt"));
+    assert_eq!(preview.files.iter().map(|file| file.size).sum::<u64>(), 5);
+    assert_eq!(preview.total_bytes, 5);
+    assert_eq!(preview.skipped_entries, 1);
+}
+
+#[test]
+fn folder_preview_rejects_a_symlink_root_and_enforces_file_count_limit() {
+    let fixture = fixture_dir();
+    let folder = fixture.path().join("many");
+    fs::create_dir_all(&folder).unwrap();
+    for index in 0..=VT_FOLDER_MAX_FILES {
+        fs::write(folder.join(format!("{index}.txt")), b"x").unwrap();
+    }
+    let alias = fixture.path().join("alias");
+    symlink(&folder, &alias).unwrap();
+
+    assert!(preview_folder(alias.to_str().unwrap()).is_err());
+    assert!(preview_folder(folder.to_str().unwrap())
+        .unwrap_err()
+        .to_string()
+        .contains("file VirusTotal limit"));
+}
+
+#[test]
+fn progress_callback_reports_hash_lookup_and_analysis_link() {
+    let fake = Arc::new(FakeHttp::scripted(vec![
+        json_response(404, "{}"),
+        json_response(200, r#"{"data":{"id":"analysis-123"}}"#),
+        json_response(200, r#"{"data":{"attributes":{"status":"completed"}}}"#),
+        json_response(200, &report(0, 0)),
+    ]));
+    let client = VirusTotalClient::with_transport("a1", "http://fake/api/v3", fake).unwrap();
+    let fixture = fixture_dir();
+    let path = temporary_file(&fixture, "progress", b"content needing upload");
+    let events = Arc::new(Mutex::new(Vec::new()));
+    let captured = Arc::clone(&events);
+    let result = client.scan_file_with_progress(
+        path.to_str().unwrap(),
+        &AtomicBool::new(false),
+        Arc::new(move |event| captured.lock().unwrap().push(event)),
+    );
+
+    assert_eq!(result.status, VTScanStatus::Clean);
+    let events = events.lock().unwrap();
+    assert!(events.iter().any(|event| event.stage == "hashing"));
+    assert!(events.iter().any(|event| event.stage == "checking"));
+    assert!(events.iter().any(|event| event.stage == "uploading"));
+    assert!(events.iter().any(|event| {
+        event.stage == "analyzing"
+            && event.analysis_url.as_deref()
+                == Some("https://www.virustotal.com/gui/analysis/analysis-123")
+    }));
+}
+
+#[test]
 fn fake_http_unknown_file_uses_direct_streaming_upload_then_poll_and_hash_lookup() {
     let fake = Arc::new(FakeHttp::scripted(vec![
         json_response(404, "{}"),
@@ -297,5 +365,56 @@ fn cancelled_operation_never_uses_transport() {
 
     assert_eq!(result.status, VTScanStatus::Error);
     assert_eq!(result.error_message.as_deref(), Some("Scan cancelled"));
+    assert!(fake.requests().is_empty());
+}
+
+#[test]
+fn url_submission_polls_the_analysis_and_reports_url_engine_detections() {
+    let fake = Arc::new(FakeHttp::scripted(vec![
+        json_response(200, r#"{"data":{"id":"u-test-analysis-1"}}"#),
+        json_response(
+            200,
+            r#"{"data":{"attributes":{"status":"completed","stats":{"malicious":1,"suspicious":1,"harmless":2,"undetected":3},"results":{"Example AV":{"category":"malicious","result":"phishing"},"Other AV":{"category":"suspicious","result":"suspicious"},"Clean AV":{"category":"harmless","result":"clean"}}}}}"#,
+        ),
+    ]));
+    let client =
+        VirusTotalClient::with_transport("a1", "http://fake/api/v3", fake.clone()).unwrap();
+    let url = "https://example.org/path?campaign=demo";
+    let result = client.scan_url(url, &AtomicBool::new(false));
+
+    assert_eq!(result.status, VTScanStatus::Detected);
+    assert_eq!(result.url, url);
+    assert_eq!(result.detections, 2);
+    assert_eq!(result.total_engines, 7);
+    assert_eq!(result.detection_details.len(), 2);
+    assert_eq!(result.analysis_id.as_deref(), Some("u-test-analysis-1"));
+    assert_eq!(
+        result.analysis_url.as_deref(),
+        Some("https://www.virustotal.com/gui/analysis/u-test-analysis-1")
+    );
+    let requests = fake.requests();
+    assert_eq!(requests.len(), 2);
+    assert_eq!(requests[0].url, "http://fake/api/v3/urls");
+    assert!(matches!(&requests[0].body, HttpBody::Url(body) if body == url));
+    assert_eq!(
+        requests[1].url,
+        "http://fake/api/v3/analyses/u-test-analysis-1"
+    );
+}
+
+#[test]
+fn url_submission_rejects_credentials_and_non_web_schemes_before_network() {
+    let fake = Arc::new(FakeHttp::default());
+    let client =
+        VirusTotalClient::with_transport("a1", "http://fake/api/v3", fake.clone()).unwrap();
+
+    for url in [
+        "file:///etc/passwd",
+        "https://user:secret@example.org/",
+        "http://bad\nname/",
+    ] {
+        let result = client.scan_url(url, &AtomicBool::new(false));
+        assert_eq!(result.status, VTScanStatus::Error);
+    }
     assert!(fake.requests().is_empty());
 }

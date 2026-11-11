@@ -1,13 +1,13 @@
 # French translations for ClamUI package.
-# Copyright (C) 2026 ClamUI Contributors
+# Copyright (C) 2026 Linux Defender Contributors
 # This file is distributed under the same license as the ClamUI package.
 # Robin GUY <contact@robinguy.fr>, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ClamUI 0.5.1\n"
-"Report-Msgid-Bugs-To: https://github.com/linx-systems/clamui/issues\n"
-"POT-Creation-Date: 2026-11-11 01:05-0500\n"
+"Project-Id-Version: Linux Defender 0.5.1\n"
+"Report-Msgid-Bugs-To: https://github.com/SAFETY-CHAT/Linux-Defender/issues\n"
+"POT-Creation-Date: 2026-11-11 15:04-0500\n"
 "PO-Revision-Date: 2026-06-30 13:00+0200\n"
 "Last-Translator: Robin GUY <contact@robinguy.fr>\n"
 "Language-Team: French\n"
@@ -80,283 +80,283 @@ msgstr "Le service n'est pas en cours d'exécution"
 msgid "Start the daemon for faster scanning"
 msgstr "Démarrez le service pour accélérer les analyses"
 
-#: crates/clamui-core/src/audit.rs:441
+#: crates/clamui-core/src/audit.rs:447
 msgid "Freshclam service is active"
 msgstr "Le service freshclam est actif"
 
-#: crates/clamui-core/src/audit.rs:448
+#: crates/clamui-core/src/audit.rs:454
 msgid "Freshclam automatic update service is not running"
 msgstr ""
 "Le service de mise à jour automatique Freshclam n'est pas en cours "
 "d'exécution"
 
-#: crates/clamui-core/src/audit.rs:450
+#: crates/clamui-core/src/audit.rs:456
 msgid "Enable automatic database updates"
 msgstr "Activer les mises à jour automatiques de la base virale"
 
-#: crates/clamui-core/src/audit.rs:645
+#: crates/clamui-core/src/audit.rs:658
 msgid "{count} port listening, risky ports: {ports}"
 msgid_plural "{count} ports listening, risky ports: {ports}"
 msgstr[0] "{count} port en écoute, ports à risque : {ports}"
 msgstr[1] "{count} ports en écoute, ports à risque : {ports}"
 
-#: crates/clamui-core/src/audit.rs:656
+#: crates/clamui-core/src/audit.rs:669
 msgid "Review if these services need to be exposed"
 msgstr "Vérifiez si ces services doivent être exposés"
 
-#: crates/clamui-core/src/audit.rs:663
+#: crates/clamui-core/src/audit.rs:676
 msgid "{count} port listening"
 msgid_plural "{count} ports listening"
 msgstr[0] "{count} port en écoute"
 msgstr[1] "{count} ports en écoute"
 
-#: crates/clamui-core/src/audit.rs:671
+#: crates/clamui-core/src/audit.rs:684
 msgid "Review open ports and close unnecessary services"
 msgstr "Vérifiez les ports ouverts et arrêtez les services inutiles"
 
-#: crates/clamui-core/src/audit.rs:678
+#: crates/clamui-core/src/audit.rs:691
 msgid "No open ports detected"
 msgstr "Aucun port ouvert détecté"
 
-#: crates/clamui-core/src/audit.rs:709
+#: crates/clamui-core/src/audit.rs:722
 msgid "AppArmor is enabled"
 msgstr "AppArmor est activé"
 
-#: crates/clamui-core/src/audit.rs:716
+#: crates/clamui-core/src/audit.rs:729
 msgid "AppArmor module is loaded but not enabled"
 msgstr "Le module AppArmor est chargé mais n'est pas activé"
 
-#: crates/clamui-core/src/audit.rs:718
+#: crates/clamui-core/src/audit.rs:731
 msgid "Enable AppArmor for application sandboxing"
 msgstr "Activez AppArmor pour permettre les bacs-à-sable d'applications"
 
-#: crates/clamui-core/src/audit.rs:733
+#: crates/clamui-core/src/audit.rs:746
 msgid "SELinux is enforcing"
 msgstr "SELinux est en mode strict"
 
-#: crates/clamui-core/src/audit.rs:740
+#: crates/clamui-core/src/audit.rs:753
 msgid "SELinux is in permissive mode"
 msgstr "SELinux est en mode permissif"
 
-#: crates/clamui-core/src/audit.rs:742
+#: crates/clamui-core/src/audit.rs:755
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr ""
 "Envisagez de passer en mode d’application pour une protection renforcée"
 
-#: crates/clamui-core/src/audit.rs:753
+#: crates/clamui-core/src/audit.rs:766
 msgid "SELinux is disabled"
 msgstr "SELinux est désactivé"
 
-#: crates/clamui-core/src/audit.rs:755
+#: crates/clamui-core/src/audit.rs:768
 msgid "Enable SELinux for mandatory access control"
 msgstr "Activez SELinux pour bénéficier du contrôle d'accès obligatoire"
 
-#: crates/clamui-core/src/audit.rs:769
+#: crates/clamui-core/src/audit.rs:782
 msgid "No mandatory access control framework detected"
 msgstr "Aucune politique de contrôle d'accès obligatoire détectée"
 
-#: crates/clamui-core/src/audit.rs:771
+#: crates/clamui-core/src/audit.rs:784
 msgid "Consider enabling AppArmor or SELinux"
 msgstr "Envisagez d'activer AppArmor ou SELinux"
 
-#: crates/clamui-core/src/audit.rs:796
+#: crates/clamui-core/src/audit.rs:809
 msgid "Automatic security updates are enabled"
 msgstr "Les mises à jour automatiques de sécurité sont activées"
 
-#: crates/clamui-core/src/audit.rs:806
+#: crates/clamui-core/src/audit.rs:819
 msgid "Unattended upgrades is installed but disabled"
 msgstr "Unattended upgrades est installé mais désactivé"
 
-#: crates/clamui-core/src/audit.rs:808
+#: crates/clamui-core/src/audit.rs:821
 msgid "Enable automatic security updates"
 msgstr "Activer les mises à jour de sécurité automatiques"
 
-#: crates/clamui-core/src/audit.rs:821
+#: crates/clamui-core/src/audit.rs:834
 msgid "DNF automatic updates are enabled"
 msgstr "Les mises à jour automatiques DNF sont activées"
 
-#: crates/clamui-core/src/audit.rs:831
+#: crates/clamui-core/src/audit.rs:844
 msgid "DNF automatic is installed but timer is not active"
 msgstr "DNF automatic est installé mais son minuteur n'est pas activé"
 
-#: crates/clamui-core/src/audit.rs:833
+#: crates/clamui-core/src/audit.rs:846
 msgid "Enable automatic updates"
 msgstr "Activer les mises à jour automatiques"
 
-#: crates/clamui-core/src/audit.rs:846
+#: crates/clamui-core/src/audit.rs:859
 msgid "Could not determine automatic update status"
 msgstr "Impossible de déterminer l'état des mises à jour automatiques"
 
-#: crates/clamui-core/src/audit.rs:848
+#: crates/clamui-core/src/audit.rs:861
 msgid "Configure automatic security updates"
 msgstr "Configurer les mises à jour de sécurité automatiques"
 
-#: crates/clamui-core/src/audit.rs:862
+#: crates/clamui-core/src/audit.rs:875
 msgid "System reboot required to apply updates"
 msgstr "Redémarrage de l'ordinateur requis pour appliquer les mises à jour"
 
-#: crates/clamui-core/src/audit.rs:864
+#: crates/clamui-core/src/audit.rs:877
 msgid "Reboot the system to apply pending security updates"
 msgstr ""
 "Redémarrez le système pour appliquer les mises à jour de sécurité en attente"
 
-#: crates/clamui-core/src/audit.rs:909
+#: crates/clamui-core/src/audit.rs:922
 msgid "{name} is installed but not running"
 msgstr "{name} est installé, mais n’est pas en cours d’exécution"
 
-#: crates/clamui-core/src/audit.rs:927
+#: crates/clamui-core/src/audit.rs:940
 msgid "No intrusion detection system found"
 msgstr "Aucun système de détection des intrusions trouvé"
 
-#: crates/clamui-core/src/audit.rs:929
+#: crates/clamui-core/src/audit.rs:942
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr "Installez fail2ban ou CrowdSec pour vous protéger contre les attaques"
 
-#: crates/clamui-core/src/audit.rs:955
+#: crates/clamui-core/src/audit.rs:968
 msgid "SSH server is not running (no remote attack surface)"
 msgstr ""
 "Le serveur SSH n'est pas en cours d'exécution (aucune exposition aux "
 "attaques à distance)"
 
-#: crates/clamui-core/src/audit.rs:965
+#: crates/clamui-core/src/audit.rs:978
 msgid "SSH server is running"
 msgstr "Le serveur SSH est en cours d'exécution"
 
-#: crates/clamui-core/src/audit.rs:974
+#: crates/clamui-core/src/audit.rs:987
 msgid "Could not read SSH configuration"
 msgstr "Impossible de lire la configuration SSH"
 
-#: crates/clamui-core/src/audit.rs:992
+#: crates/clamui-core/src/audit.rs:1005
 msgid "Root login: {value}"
 msgstr "Connexion root : {value}"
 
-#: crates/clamui-core/src/audit.rs:999
+#: crates/clamui-core/src/audit.rs:1012
 msgid "Root login is allowed ({value})"
 msgstr "La connexion root est autorisée ({value})"
 
-#: crates/clamui-core/src/audit.rs:1005
+#: crates/clamui-core/src/audit.rs:1018
 msgid "Disable root SSH login for security"
 msgstr "Désactivez la connexion root via SSH pour plus de sécurité"
 
-#: crates/clamui-core/src/audit.rs:1019
+#: crates/clamui-core/src/audit.rs:1032
 msgid "Password authentication is disabled (key-only)"
 msgstr "L'authentification par mot de passe est désactivée (clef uniquement)"
 
-#: crates/clamui-core/src/audit.rs:1026
+#: crates/clamui-core/src/audit.rs:1039
 msgid "Password authentication is enabled"
 msgstr "L'authentification par mot de passe est activée"
 
-#: crates/clamui-core/src/audit.rs:1028
+#: crates/clamui-core/src/audit.rs:1041
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr ""
 "Envisagez de désactiver l’authentification par mot de passe au profit des "
 "clés SSH"
 
-#: crates/clamui-core/src/audit.rs:1045
+#: crates/clamui-core/src/audit.rs:1058
 msgid "X11 forwarding is disabled"
 msgstr "X11 Forwarding est désactivé"
 
-#: crates/clamui-core/src/audit.rs:1052
+#: crates/clamui-core/src/audit.rs:1065
 msgid "X11 forwarding is enabled"
 msgstr "X11 Forwarding est activé"
 
-#: crates/clamui-core/src/audit.rs:1054
+#: crates/clamui-core/src/audit.rs:1067
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr "Désactivez X11 Forwarding pour réduire la surface d'attaque"
 
-#: crates/clamui-core/src/audit.rs:1129
+#: crates/clamui-core/src/audit.rs:1142
 msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster est opérationnel et protège les connexions"
 
-#: crates/clamui-core/src/audit.rs:1153
+#: crates/clamui-core/src/audit.rs:1166
 msgid "Authorize ClamUI in Portmaster for per-module health"
 msgstr "Autorisez ClamUI dans Portmaster pour un contrôle de santé par module"
 
-#: crates/clamui-core/src/audit.rs:1156
+#: crates/clamui-core/src/audit.rs:1169
 msgid "Authorize"
 msgstr "Autoriser"
 
-#: crates/clamui-core/src/audit.rs:1166
+#: crates/clamui-core/src/audit.rs:1179
 msgid "Portmaster is installed but not running"
 msgstr "Portmaster est installé mais n'est pas en cours d'exécution"
 
-#: crates/clamui-core/src/audit.rs:1168
+#: crates/clamui-core/src/audit.rs:1181
 msgid "Start the Portmaster service to enable network protection"
 msgstr "Démarrez le service Portmaster pour activer la protection réseau"
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/clamui-core/src/audit.rs:1181
+#: crates/clamui-core/src/audit.rs:1194
 msgid "Not detected — optional network monitor and application firewall"
 msgstr ""
 "Non détecté — outil facultatif combinant surveillance du réseau et pare-feu "
 "applicatif"
 
-#: crates/clamui-core/src/audit.rs:1195
+#: crates/clamui-core/src/audit.rs:1208
 msgid "Could not probe Portmaster: {error}"
 msgstr "Impossible de sonder Portmaster : {error}"
 
-#: crates/clamui-core/src/audit.rs:1245
+#: crates/clamui-core/src/audit.rs:1258
 msgid "{name} is not installed"
 msgstr "{name} n’est pas installé"
 
-#: crates/clamui-core/src/audit.rs:1251
+#: crates/clamui-core/src/audit.rs:1264
 msgid "Install {name} for comprehensive security auditing"
 msgstr "Installez {name} pour un audit de sécurité complet"
 
-#: crates/clamui-core/src/audit.rs:1257
+#: crates/clamui-core/src/audit.rs:1270
 msgid "Install chkrootkit for rootkit detection"
 msgstr "Installez chkrootkit pour détecter des rootkits"
 
-#: crates/clamui-core/src/audit.rs:1276
+#: crates/clamui-core/src/audit.rs:1289
 msgid "Authentication was cancelled"
 msgstr "L'authentification a été annulée"
 
-#: crates/clamui-core/src/audit.rs:1284
+#: crates/clamui-core/src/audit.rs:1297
 msgid "Lynis audit timed out after 5 minutes"
 msgstr "L’audit Lynis a expiré après 5 minutes"
 
-#: crates/clamui-core/src/audit.rs:1286
+#: crates/clamui-core/src/audit.rs:1299
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr "L’analyse de rootkits a expiré après 5 minutes"
 
-#: crates/clamui-core/src/audit.rs:1304 crates/clamui-core/src/audit.rs:1348
+#: crates/clamui-core/src/audit.rs:1317 crates/clamui-core/src/audit.rs:1361
 msgid "Failed to run Lynis: {error}"
 msgstr "Échec de l’exécution de Lynis : {error}"
 
-#: crates/clamui-core/src/audit.rs:1310
+#: crates/clamui-core/src/audit.rs:1323
 msgid "Failed to run chkrootkit: {error}"
 msgstr "Échec de l’exécution de chkrootkit : {error}"
 
-#: crates/clamui-core/src/audit.rs:1376
+#: crates/clamui-core/src/audit.rs:1389
 msgid "Score: {score}/100"
 msgstr "Score : {score}/100"
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/clamui-core/src/audit.rs:1379
+#: crates/clamui-core/src/audit.rs:1392
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr ""
 "Exécutez « sudo lynis audit system » pour obtenir des recommandations "
 "détaillées"
 
-#: crates/clamui-core/src/audit.rs:1395
+#: crates/clamui-core/src/audit.rs:1408
 msgid "Audit completed (exit code {code})"
 msgstr "Audit terminé (code de sortie {code})"
 
-#: crates/clamui-core/src/audit.rs:1433 crates/clamui-core/src/audit.rs:1447
+#: crates/clamui-core/src/audit.rs:1446 crates/clamui-core/src/audit.rs:1460
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr "L’analyse de rootkits n’a pas pu être terminée (sortie {code})"
 
-#: crates/clamui-core/src/audit.rs:1477
+#: crates/clamui-core/src/audit.rs:1490
 msgid "No rootkits detected"
 msgstr "Aucun rootkit détecté"
 
-#: crates/clamui-core/src/audit.rs:1488
+#: crates/clamui-core/src/audit.rs:1501
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] "{count} rootkit potentiel détecté"
 msgstr[1] "{count} rootkits potentiels détectés"
 
-#: crates/clamui-core/src/audit.rs:1496
+#: crates/clamui-core/src/audit.rs:1509
 msgid "Investigate the detected threats immediately"
 msgstr "Enquêtez immédiatement sur les menaces détectées"
 
@@ -598,8 +598,8 @@ msgstr "Commande inconnue : {command}"
 
 #. Translators: The em dash separates the application name from its description.
 #: crates/clamui-core/src/cli.rs:140
-msgid "ClamUI — ClamAV antivirus management\n"
-msgstr "ClamUI — gestion de l’antivirus ClamAV\n"
+msgid "Linux Defender — ClamAV antivirus management\n"
+msgstr "Linux Defender — ClamAV antivirus management\n"
 
 #: crates/clamui-core/src/cli.rs:146
 msgid "Usage:"
@@ -665,8 +665,8 @@ msgid "Manage scan profiles"
 msgstr "Gérer les profils d'analyse"
 
 #: crates/clamui-core/src/cli.rs:215
-msgid "Show ClamAV and ClamUI status"
-msgstr "Afficher l'état de ClamAV et ClamUI"
+msgid "Show ClamAV and Linux Defender status"
+msgstr "Show ClamAV and Linux Defender status"
 
 #: crates/clamui-core/src/cli.rs:216
 msgid "View scan history"
@@ -1235,7 +1235,7 @@ msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key} : l’URL doit commencer par http(s)://, ftp(s):// ou file://"
 
 #. Translators: The em dash separates the fallback state from its security warning.
-#: crates/clamui-core/src/credentials.rs:158
+#: crates/clamui-core/src/credentials.rs:163
 msgid "Stored in settings file (keyring unavailable — less secure)"
 msgstr ""
 "Enregistré dans le fichier de paramètres (trousseau de clés indisponible — "
@@ -1246,31 +1246,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr "Robin GUY"
 
-#: crates/clamui-core/src/host.rs:868
+#: crates/clamui-core/src/host.rs:910
 msgid "Daemon not responding: {error}"
 msgstr "Le service ne répond pas : {error}"
 
-#: crates/clamui-core/src/host.rs:871
+#: crates/clamui-core/src/host.rs:913
 msgid "{binary} found but returned error: {error}"
 msgstr "{binary} a été trouvé mais a renvoyé une erreur : {error}"
 
-#: crates/clamui-core/src/host.rs:876
+#: crates/clamui-core/src/host.rs:918
 msgid "{service} is active"
 msgstr "{service} est actif"
 
-#: crates/clamui-core/src/host.rs:879
+#: crates/clamui-core/src/host.rs:921
 msgid "No virus database files found in {path}"
 msgstr "Aucun fichier de base de données virale trouvé dans {path}"
 
-#: crates/clamui-core/src/host.rs:885
+#: crates/clamui-core/src/host.rs:927
 msgid "Error accessing database {path}: {error}"
 msgstr "Erreur lors de l’accès à la base de données {path} : {error}"
 
-#: crates/clamui-core/src/host.rs:891
+#: crates/clamui-core/src/host.rs:933
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "{binary} n’est pas installé. Veuillez l’installer avec : {command}"
 
-#: crates/clamui-core/src/host.rs:901
+#: crates/clamui-core/src/host.rs:943
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
@@ -1398,7 +1398,7 @@ msgstr ""
 "l’outil système dédié aux interfaces de connexion est installé, puis "
 "réessayez."
 
-#: crates/clamui-core/src/platform.rs:452
+#: crates/clamui-core/src/platform.rs:484
 msgid "Not running as Flatpak"
 msgstr "Ne s'exécute pas en tant que Flatpak"
 
@@ -1465,13 +1465,13 @@ msgstr ""
 #. Translators: keep "Flatpak" and "clamui-privileged-helper" unchanged.
 #: crates/clamui-core/src/privileged/cli_install.rs:26
 msgid ""
-"ClamUI is running inside a Flatpak sandbox, which cannot install files on "
-"the host. Install the matching clamui-privileged-helper package on the host "
-"system instead."
+"Linux Defender is running inside a Flatpak sandbox, which cannot install "
+"files on the host. Install the matching clamui-privileged-helper package on "
+"the host system instead."
 msgstr ""
-"ClamUI s’exécute dans un bac à sable Flatpak, qui ne permet pas d’installer "
-"des fichiers sur l’hôte. Installez plutôt le paquet clamui-privileged-helper "
-"correspondant sur le système hôte."
+"Linux Defender is running inside a Flatpak sandbox, which cannot install "
+"files on the host. Install the matching clamui-privileged-helper package on "
+"the host system instead."
 
 #. Translators: keep the paths and "sudo clamui install-privileged-helper" command unchanged.
 #: crates/clamui-core/src/privileged/cli_install.rs:33
@@ -1483,19 +1483,18 @@ msgstr ""
 "exécutée en tant que root. Essayez : sudo clamui install-privileged-helper"
 
 #. Translators: keep the {error} placeholder; it is a sanitized installation error.
-#: crates/clamui-core/src/privileged/cli_install.rs:119
+#: crates/clamui-core/src/privileged/cli_install.rs:120
 msgid "Failed to install privileged helper: {error}"
 msgstr "Échec de l’installation de l’utilitaire privilégié : {error}"
 
 #. Translators: keep the {bin} and {policy} placeholders; they are installed file paths.
-#: crates/clamui-core/src/privileged/cli_install.rs:129
+#: crates/clamui-core/src/privileged/cli_install.rs:130
 msgid ""
 "Installed privileged helper at {bin} and polkit policy at {policy}. Saving "
-"system ClamAV configuration from ClamUI should now work."
+"system ClamAV configuration from Linux Defender should now work."
 msgstr ""
-"L’utilitaire privilégié a été installé à l’emplacement {bin} et la politique "
-"polkit à l’emplacement {policy}. L’enregistrement de la configuration "
-"système de ClamAV depuis ClamUI devrait désormais fonctionner."
+"Installed privileged helper at {bin} and polkit policy at {policy}. Saving "
+"system ClamAV configuration from Linux Defender should now work."
 
 #: crates/clamui-core/src/profiles.rs:240
 #: crates/clamui-core/src/profiles.rs:311
@@ -1632,53 +1631,53 @@ msgid "File hash mismatch — file may be corrupted"
 msgstr ""
 "L’empreinte du fichier ne correspond pas — le fichier est peut-être corrompu"
 
-#: crates/clamui-core/src/scanner.rs:401
+#: crates/clamui-core/src/scanner.rs:441
 msgid "No ClamAV database files were found in standard host locations"
 msgstr ""
 "Aucun fichier de base de données ClamAV n’a été trouvé dans les emplacements "
 "standard de l’hôte"
 
-#: crates/clamui-core/src/scanner.rs:462
+#: crates/clamui-core/src/scanner.rs:512
 msgid ""
-"Local YARA rules require the standalone clamscan backend. Change the scan "
-"backend preference to automatic or clamscan."
+"This profile includes scan options that require standalone clamscan. Change "
+"the scan backend preference to automatic or clamscan."
 msgstr ""
-"Les règles YARA locales nécessitent le moteur autonome clamscan. Réglez le "
-"moteur d’analyse sur automatique ou clamscan."
+"This profile includes scan options that require standalone clamscan. Change "
+"the scan backend preference to automatic or clamscan."
 
-#: crates/clamui-core/src/scanner.rs:1832
+#: crates/clamui-core/src/scanner.rs:2079
 msgid "Scan cancelled by user"
 msgstr "Analyse interrompue par l'utilisateur"
 
-#: crates/clamui-core/src/scanner.rs:1839
+#: crates/clamui-core/src/scanner.rs:2086
 msgid "No files could be scanned"
 msgstr "Aucun fichier n’a pu être analysé"
 
-#: crates/clamui-core/src/scanner.rs:1845
+#: crates/clamui-core/src/scanner.rs:2092
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "La cible d’analyse n’existe pas ou contient un octet NUL non valide"
 
-#: crates/clamui-core/src/scanner.rs:1852
+#: crates/clamui-core/src/scanner.rs:2099
 msgid "Scan target is not a regular file or directory"
 msgstr "La cible d’analyse n’est ni un fichier ordinaire ni un dossier"
 
-#: crates/clamui-core/src/scanner.rs:1861
+#: crates/clamui-core/src/scanner.rs:2108
 msgid "Threats were detected, but details are unavailable."
 msgstr "Des menaces ont été détectées, mais aucun détail n’est disponible."
 
-#: crates/clamui-core/src/scanner.rs:1873
+#: crates/clamui-core/src/scanner.rs:2120
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "Impossible d’accéder à {count} fichier"
 msgstr[1] "Impossible d’accéder à {count} fichiers"
 
-#: crates/clamui-core/src/scanner.rs:1886
+#: crates/clamui-core/src/scanner.rs:2133
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "Impossible de lire {count} fichier"
 msgstr[1] "Impossible de lire {count} fichiers"
 
-#: crates/clamui-core/src/scanner.rs:1905
+#: crates/clamui-core/src/scanner.rs:2152
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -1707,8 +1706,8 @@ msgstr ""
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
 #: crates/clamui-core/src/scheduler.rs:865
-msgid "ClamUI scheduled scan starting…"
-msgstr "Démarrage de l’analyse planifiée de ClamUI…"
+msgid "Linux Defender scheduled scan starting…"
+msgstr "Linux Defender scheduled scan starting…"
 
 #: crates/clamui-core/src/scheduler.rs:874
 msgid "Scheduled scan skipped (on battery power)"
@@ -1916,72 +1915,72 @@ msgstr ""
 "Impossible de déclencher la mise à jour du service freshclam. Essayez de "
 "redémarrer le service : sudo systemctl restart clamav-freshclam ({error})"
 
-#: crates/clamui-core/src/virustotal.rs:820
+#: crates/clamui-core/src/virustotal.rs:1182
 msgid "File too large ({size}MB). Maximum size is {max}MB"
 msgstr "Fichier trop gros ({size} Mo). La taille maximum est de {max} Mo"
 
-#: crates/clamui-core/src/virustotal.rs:824
+#: crates/clamui-core/src/virustotal.rs:1186
 msgid "Invalid file path"
 msgstr "Chemin de fichier non valide"
 
-#: crates/clamui-core/src/virustotal.rs:826
+#: crates/clamui-core/src/virustotal.rs:1188
 msgid "Path is not a regular file"
 msgstr "Le chemin n’est pas un fichier ordinaire"
 
-#: crates/clamui-core/src/virustotal.rs:828
+#: crates/clamui-core/src/virustotal.rs:1190
 msgid "File changed while hashing"
 msgstr "Le fichier a été modifié lors du calcul du hachage"
 
-#: crates/clamui-core/src/virustotal.rs:830
+#: crates/clamui-core/src/virustotal.rs:1192
 msgid "File changed before upload"
 msgstr "Le fichier a été modifié avant le téléversement"
 
-#: crates/clamui-core/src/virustotal.rs:832
+#: crates/clamui-core/src/virustotal.rs:1194
 msgid "File changed during upload"
 msgstr "Le fichier a été modifié pendant le téléversement"
 
-#: crates/clamui-core/src/virustotal.rs:841
+#: crates/clamui-core/src/virustotal.rs:1203
 msgid "VirusTotal: Clean scan"
 msgstr "VirusTotal : analyse sans menace détectée"
 
-#: crates/clamui-core/src/virustotal.rs:844
+#: crates/clamui-core/src/virustotal.rs:1206
 msgid "VirusTotal: {detections}/{total} engines detected threats"
 msgstr "VirusTotal : {detections}/{total} moteurs ont détecté des menaces"
 
-#: crates/clamui-core/src/virustotal.rs:851
+#: crates/clamui-core/src/virustotal.rs:1213
 msgid "VirusTotal: Threats detected"
 msgstr "VirusTotal : menaces détectées"
 
-#: crates/clamui-core/src/virustotal.rs:852
+#: crates/clamui-core/src/virustotal.rs:1214
 msgid "VirusTotal: Rate limit exceeded"
 msgstr "VirusTotal : limite de débit dépassée"
 
-#: crates/clamui-core/src/virustotal.rs:853
+#: crates/clamui-core/src/virustotal.rs:1215
 msgid "VirusTotal: Analysis pending"
 msgstr "VirusTotal : analyse en attente"
 
-#: crates/clamui-core/src/virustotal.rs:856
+#: crates/clamui-core/src/virustotal.rs:1218
 msgid "VirusTotal: File not previously analyzed"
 msgstr "VirusTotal : fichier non analysé auparavant"
 
-#: crates/clamui-core/src/virustotal.rs:858
+#: crates/clamui-core/src/virustotal.rs:1220
 msgid "VirusTotal: File too large for upload"
 msgstr "VirusTotal : fichier trop volumineux pour le téléversement"
 
-#: crates/clamui-core/src/virustotal.rs:859
+#: crates/clamui-core/src/virustotal.rs:1221
 msgid "VirusTotal: Scan error"
 msgstr "VirusTotal : erreur d’analyse"
 
-#: crates/clamui-core/src/virustotal.rs:864
+#: crates/clamui-core/src/virustotal.rs:1226
 msgid "Detections: {detections}/{total}"
 msgstr "Détections : {detections}/{total}"
 
-#: crates/clamui-core/src/virustotal.rs:878
+#: crates/clamui-core/src/virustotal.rs:1240
 msgid "Error: {error}"
 msgstr "Erreur : {error}"
 
 #. Translators: Keep `API` unchanged as the abbreviation for application programming interface.
-#: crates/clamui-core/src/virustotal.rs:986
+#: crates/clamui-core/src/virustotal.rs:1462
 msgid "API key saved"
 msgstr "Clef API enregistrée"
 
@@ -2080,12 +2079,12 @@ msgstr "Exporter"
 msgid "Open"
 msgstr "Ouvrir"
 
-#: desktop/src/App.tsx:118 desktop/src/pages/Scan.tsx:534
-#: desktop/src/pages/Scan.tsx:536
+#: desktop/src/App.tsx:118 desktop/src/pages/Scan.tsx:686
+#: desktop/src/pages/Scan.tsx:688
 msgid "Scan"
 msgstr "Analyse"
 
-#: desktop/src/App.tsx:120 desktop/src/pages/Database.tsx:263
+#: desktop/src/App.tsx:120 desktop/src/pages/Database.tsx:265
 #: desktop/src/pages/Preferences.tsx:15
 msgid "Database"
 msgstr "Base virale"
@@ -2124,36 +2123,40 @@ msgstr "Profils"
 msgid "Results"
 msgstr "Résultats"
 
-#: desktop/src/App.tsx:310 desktop/src/pages/ConfigPreferences.tsx:535
+#: desktop/src/App.tsx:309 desktop/src/pages/ConfigPreferences.tsx:535
 msgid "Could not open link"
 msgstr "Impossible d’ouvrir le lien"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/App.tsx:390 desktop/src/App.tsx:405 desktop/src/App.tsx:423
-#: desktop/src/pages/Scan.tsx:322
+#: desktop/src/App.tsx:389 desktop/src/App.tsx:404 desktop/src/App.tsx:422
+#: desktop/src/pages/Scan.tsx:465
 msgid "Scan in progress — wait for it to finish before changing targets"
 msgstr ""
 "Analyse en cours — attendez qu’elle soit terminée avant de modifier les "
 "cibles"
 
-#: desktop/src/App.tsx:469
+#: desktop/src/App.tsx:468
 msgid "The privileged-helper installation returned an invalid status."
 msgstr "L’installation du helper privilégié a renvoyé un état non valide."
 
-#: desktop/src/App.tsx:476
+#: desktop/src/App.tsx:475
 msgid "The privileged helper was installed successfully."
 msgstr "Le helper privilégié a été installé avec succès."
 
-#: desktop/src/App.tsx:478
+#: desktop/src/App.tsx:477
 msgid ""
 "The privileged helper is still unavailable. Try again or install it manually."
 msgstr ""
 "Le helper privilégié n’est toujours pas disponible. Réessayez ou installez-"
 "le manuellement."
 
-#: desktop/src/App.tsx:767
+#: desktop/src/App.tsx:766
 msgid "The privileged-helper status returned an invalid response."
 msgstr "L’état du helper privilégié a renvoyé une réponse non valide."
+
+#: desktop/src/App.tsx:867
+msgid "Linux Defender"
+msgstr "Linux Defender"
 
 #: desktop/src/App.tsx:872
 msgid "Back"
@@ -2204,12 +2207,12 @@ msgid "Dismiss"
 msgstr "Ignorer"
 
 #: desktop/src/App.tsx:1021
-msgid "About ClamUI"
-msgstr "À propos de ClamUI"
+msgid "About Linux Defender"
+msgstr "About Linux Defender"
 
 #: desktop/src/App.tsx:1022
-msgid "A native desktop interface for ClamAV."
-msgstr "Une interface de bureau native pour ClamAV."
+msgid "An on-demand Linux security scanner using your system's ClamAV tools."
+msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 
 #: desktop/src/App.tsx:1024
 msgid "Version"
@@ -2249,29 +2252,30 @@ msgid "Loading contributor credits…"
 msgstr "Chargement des crédits des contributeurs…"
 
 #: desktop/src/App.tsx:1051
-msgid "Close ClamUI?"
-msgstr "Fermer ClamUI ?"
+msgid "Close Linux Defender?"
+msgstr "Close Linux Defender?"
 
 #: desktop/src/App.tsx:1052
 msgid ""
-"Choose whether to keep ClamUI available in the system tray or quit it "
-"completely."
+"Choose whether to keep Linux Defender available in the system tray or quit "
+"it completely."
 msgstr ""
-"Choisissez de garder ClamUI disponible dans la zone de notification ou de le "
-"quitter complètement."
+"Choose whether to keep Linux Defender available in the system tray or quit "
+"it completely."
 
-#: desktop/src/App.tsx:1053 desktop/src/pages/Scan.tsx:186
+#: desktop/src/App.tsx:1053 desktop/src/pages/Scan.tsx:226
 msgid "Remember my choice"
 msgstr "Se souvenir de mon choix"
 
 #: desktop/src/App.tsx:1054 desktop/src/App.tsx:1058
-#: desktop/src/pages/Database.tsx:313 desktop/src/pages/Database.tsx:339
+#: desktop/src/pages/Database.tsx:326 desktop/src/pages/Database.tsx:352
 #: desktop/src/pages/Logs.tsx:412 desktop/src/pages/Network.tsx:441
 #: desktop/src/pages/Profiles.tsx:245 desktop/src/pages/Profiles.tsx:246
 #: desktop/src/pages/Quarantine.tsx:319 desktop/src/pages/Results.tsx:206
-#: desktop/src/pages/Scan.tsx:557 desktop/src/pages/Scan.tsx:563
+#: desktop/src/pages/Scan.tsx:714 desktop/src/pages/Scan.tsx:720
 #: desktop/src/pages/SettingsPreferences.tsx:407
 #: desktop/src/pages/SettingsPreferences.tsx:496
+#: desktop/src/pages/Urlscan.tsx:200
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -2299,7 +2303,8 @@ msgstr "Annuler l'analyse et fermer"
 
 #: desktop/src/App.tsx:1058 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:85 desktop/src/Modal.tsx:110
-#: desktop/src/pages/SettingsPreferences.tsx:296
+#: desktop/src/pages/Scan.tsx:310 desktop/src/pages/Scan.tsx:316
+#: desktop/src/pages/Scan.tsx:328 desktop/src/pages/SettingsPreferences.tsx:296
 msgid "Close"
 msgstr "Fermer"
 
@@ -2309,24 +2314,25 @@ msgstr "Installer le helper privilégié"
 
 #: desktop/src/App.tsx:1061
 msgid ""
-"ClamUI needs its matching privileged helper to save system configuration."
+"Linux Defender needs its matching privileged helper to save system "
+"configuration."
 msgstr ""
-"ClamUI a besoin de son helper privilégié correspondant pour enregistrer la "
-"configuration système."
+"Linux Defender needs its matching privileged helper to save system "
+"configuration."
 
 #: desktop/src/App.tsx:1063 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr ""
 "L’installation de l’utilitaire requiert une autorisation de l’administrateur."
 
-#. Translators: Keep Fedora, DNF, and ClamUI unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1064 desktop/src/HelperTrustErrorDialog.tsx:53
+#. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
+#: desktop/src/App.tsx:1064
 msgid ""
-"On Fedora with DNF, installation also adds the ClamUI signing key to the "
-"system RPM keyring."
+"On Fedora with DNF, installation also adds the signing key used by this "
+"build to the system RPM keyring."
 msgstr ""
-"Sous Fedora avec DNF, l’installation ajoute également la clé de signature de "
-"ClamUI au trousseau de clés RPM du système."
+"On Fedora with DNF, installation also adds the signing key used by this "
+"build to the system RPM keyring."
 
 #: desktop/src/App.tsx:1069 desktop/src/HelperTrustErrorDialog.tsx:76
 msgid "Installing privileged helper…"
@@ -2413,19 +2419,19 @@ msgstr "Les paramètres protégés sont bloqués"
 
 #: desktop/src/HelperTrustErrorDialog.tsx:46
 msgid ""
-"ClamUI could not save protected settings because its system helper is not "
-"installed."
+"Linux Defender could not save protected settings because its system helper "
+"is not installed."
 msgstr ""
-"ClamUI n’a pas pu enregistrer les paramètres protégés parce que son "
-"utilitaire système n’est pas installé."
+"Linux Defender could not save protected settings because its system helper "
+"is not installed."
 
 #: desktop/src/HelperTrustErrorDialog.tsx:47
 msgid ""
-"ClamUI blocked this operation because its system helper is missing or is not "
-"securely installed."
+"Linux Defender blocked this operation because its system helper is missing "
+"or is not securely installed."
 msgstr ""
-"ClamUI a bloqué cette opération parce que son utilitaire système est absent "
-"ou n’est pas installé de manière sécurisée."
+"Linux Defender blocked this operation because its system helper is missing "
+"or is not securely installed."
 
 #: desktop/src/HelperTrustErrorDialog.tsx:48
 msgid ""
@@ -2434,6 +2440,15 @@ msgid ""
 msgstr ""
 "L’utilitaire fournit un accès autorisé par l’administrateur aux paramètres "
 "ClamAV protégés."
+
+#. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
+#: desktop/src/HelperTrustErrorDialog.tsx:53
+msgid ""
+"On Fedora with DNF, installation also adds the Linux Defender signing key to "
+"the system RPM keyring."
+msgstr ""
+"On Fedora with DNF, installation also adds the Linux Defender signing key to "
+"the system RPM keyring."
 
 #: desktop/src/HelperTrustErrorDialog.tsx:59
 msgid "Helper location"
@@ -2453,16 +2468,16 @@ msgid "How to fix it"
 msgstr "Comment résoudre ce problème"
 
 #: desktop/src/HelperTrustErrorDialog.tsx:66
-msgid "Install the matching helper from the same trusted ClamUI release."
+msgid ""
+"Install the matching helper from the same trusted Linux Defender release."
 msgstr ""
-"Installez l’utilitaire correspondant depuis la même version de confiance de "
-"ClamUI."
+"Install the matching helper from the same trusted Linux Defender release."
 
 #: desktop/src/HelperTrustErrorDialog.tsx:67
-msgid "Reinstall the matching helper from the same trusted ClamUI release."
+msgid ""
+"Reinstall the matching helper from the same trusted Linux Defender release."
 msgstr ""
-"Réinstallez l’utilitaire correspondant depuis la même version de confiance "
-"de ClamUI."
+"Reinstall the matching helper from the same trusted Linux Defender release."
 
 #: desktop/src/HelperTrustErrorDialog.tsx:68
 msgid "Then return to Preferences and repeat the action."
@@ -2536,8 +2551,8 @@ msgid "Unknown"
 msgstr "Inconnu"
 
 #: desktop/src/main.tsx:27
-msgid "ClamUI could not start"
-msgstr "ClamUI n’a pas pu démarrer"
+msgid "Linux Defender could not start"
+msgstr "Linux Defender could not start"
 
 #: desktop/src/main.tsx:30 desktop/src/pages/Network.tsx:402
 #: desktop/src/pages/Network.tsx:403
@@ -2722,7 +2737,7 @@ msgstr "Impossible de copier la commande : {error}"
 
 #: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
 #: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:413
-#: desktop/src/pages/Scan.tsx:561 desktop/src/pages/Scan.tsx:565
+#: desktop/src/pages/Scan.tsx:718 desktop/src/pages/Scan.tsx:723
 #: desktop/src/pages/SettingsPreferences.tsx:494
 msgid "Copy"
 msgstr "Copier"
@@ -2798,14 +2813,14 @@ msgstr "Le démon clamd doit être en cours d’exécution."
 #. Translators: Keep the embedded file path, command, and command-line options unchanged.
 #: desktop/src/pages/Components.tsx:131
 msgid ""
-"Configuration is auto-detected in Preferences. On Fedora, ClamUI uses /etc/"
-"clamd.d/scan.conf. If clamd is running but unavailable, verify socket "
-"permissions and run: clamdscan --config-file=/etc/clamd.d/scan.conf --ping 3"
+"Configuration is auto-detected in Preferences. On Fedora, Linux Defender "
+"uses /etc/clamd.d/scan.conf. If clamd is running but unavailable, verify "
+"socket permissions and run: clamdscan --config-file=/etc/clamd.d/scan.conf --"
+"ping 3"
 msgstr ""
-"La configuration est détectée automatiquement dans les préférences. Sous "
-"Fedora, ClamUI utilise /etc/clamd.d/scan.conf. Si clamd est en cours "
-"d’exécution mais reste indisponible, vérifiez les droits d’accès au point de "
-"connexion et exécutez : clamdscan --config-file=/etc/clamd.d/scan.conf --"
+"Configuration is auto-detected in Preferences. On Fedora, Linux Defender "
+"uses /etc/clamd.d/scan.conf. If clamd is running but unavailable, verify "
+"socket permissions and run: clamdscan --config-file=/etc/clamd.d/scan.conf --"
 "ping 3"
 
 #: desktop/src/pages/Components.tsx:143 desktop/src/pages/Logs.tsx:98
@@ -2838,22 +2853,22 @@ msgstr ""
 "configuration propres à votre distribution."
 
 #: desktop/src/pages/Components.tsx:204 desktop/src/pages/Components.tsx:228
-#: desktop/src/pages/Database.tsx:267 desktop/src/pages/Database.tsx:289
+#: desktop/src/pages/Database.tsx:269 desktop/src/pages/Database.tsx:291
 msgid "Checking…"
 msgstr "Vérification en cours…"
 
-#: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:267
-#: desktop/src/pages/Scan.tsx:537
+#: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:269
+#: desktop/src/pages/Scan.tsx:689
 msgid "Refresh status"
 msgstr "Actualiser l’état"
 
 #: desktop/src/pages/Components.tsx:208
 msgid ""
-"Setup instructions are copy-only. ClamUI never installs packages or starts "
-"services for you."
+"Setup instructions are copy-only. Linux Defender never installs packages or "
+"starts services for you."
 msgstr ""
-"Les instructions de configuration sont uniquement à copier. ClamUI "
-"n’installe jamais de paquets ni ne démarre de services à votre place."
+"Setup instructions are copy-only. Linux Defender never installs packages or "
+"starts services for you."
 
 #: desktop/src/pages/Components.tsx:209
 msgid "Could not check component status: {error}"
@@ -2976,7 +2991,7 @@ msgstr "Ajouter"
 #: desktop/src/pages/ConfigPreferences.tsx:299
 #: desktop/src/pages/ConfigPreferences.tsx:345
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:554
+#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:711
 #: desktop/src/pages/SettingsPreferences.tsx:293
 msgid "Remove"
 msgstr "Supprimer"
@@ -3440,7 +3455,7 @@ msgid "Used for monthly scans."
 msgstr "Utilisé pour les analyses mensuelles."
 
 #: desktop/src/pages/ConfigPreferences.tsx:852
-#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:553
+#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:710
 msgid "Scan Targets"
 msgstr "Cibles de l'analyse"
 
@@ -3504,103 +3519,103 @@ msgstr ""
 "l’autre."
 
 #: desktop/src/pages/ConfigPreferences.tsx:870
-#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:185
+#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:225
 msgid "Saving…"
 msgstr "Enregistrement…"
 
-#: desktop/src/pages/Database.tsx:58
+#: desktop/src/pages/Database.tsx:60
 msgid "Active (PID {pid})"
 msgstr "Actif (PID {pid})"
 
-#: desktop/src/pages/Database.tsx:58
+#: desktop/src/pages/Database.tsx:60
 msgid "Active"
 msgstr "Actif"
 
-#: desktop/src/pages/Database.tsx:60
+#: desktop/src/pages/Database.tsx:62
 msgid "Installed but stopped"
 msgstr "Installé mais arrêté"
 
-#: desktop/src/pages/Database.tsx:62
+#: desktop/src/pages/Database.tsx:64
 msgid "No freshclam service detected; updates run manually"
 msgstr ""
 "Aucun service freshclam détecté ; les mises à jour sont exécutées "
 "manuellement"
 
-#: desktop/src/pages/Database.tsx:64
+#: desktop/src/pages/Database.tsx:66
 msgid "Service state could not be determined"
 msgstr "L’état du service n’a pas pu être déterminé"
 
-#: desktop/src/pages/Database.tsx:69
+#: desktop/src/pages/Database.tsx:71
 msgid "Database freshness information is unavailable"
 msgstr ""
 "Les informations sur l’actualité de la base de données ne sont pas "
 "disponibles"
 
-#: desktop/src/pages/Database.tsx:70
+#: desktop/src/pages/Database.tsx:72
 msgid "No readable virus database was found"
 msgstr "Aucune base de données virale lisible n’a été trouvée"
 
-#: desktop/src/pages/Database.tsx:72
+#: desktop/src/pages/Database.tsx:74
 msgid "{count} day old"
 msgid_plural "{count} days old"
 msgstr[0] "il y a {count} jour"
 msgstr[1] "il y a {count} jours"
 
-#: desktop/src/pages/Database.tsx:74
+#: desktop/src/pages/Database.tsx:76
 msgid "last updated {timestamp}"
 msgstr "dernière mise à jour : {timestamp}"
 
-#: desktop/src/pages/Database.tsx:75
+#: desktop/src/pages/Database.tsx:77
 msgid "freshness could not be determined"
 msgstr "L’actualité n’a pas pu être déterminée"
 
-#: desktop/src/pages/Database.tsx:76
+#: desktop/src/pages/Database.tsx:78
 msgid "Virus database available"
 msgstr "Base de données virale disponible"
 
-#: desktop/src/pages/Database.tsx:81
+#: desktop/src/pages/Database.tsx:83
 msgid "Status: {status}"
 msgstr "État : {status}"
 
-#: desktop/src/pages/Database.tsx:82
+#: desktop/src/pages/Database.tsx:84
 msgid "Method: {method}"
 msgstr "Méthode : {method}"
 
-#: desktop/src/pages/Database.tsx:82
+#: desktop/src/pages/Database.tsx:84
 msgid "freshclam service signal accepted"
 msgstr "Signal accepté par le service freshclam"
 
-#: desktop/src/pages/Database.tsx:82
+#: desktop/src/pages/Database.tsx:84
 msgid "manual freshclam"
 msgstr "freshclam manuel"
 
-#: desktop/src/pages/Database.tsx:83
+#: desktop/src/pages/Database.tsx:85
 msgid "Exit code: {code}"
 msgstr "Code de sortie : {code}"
 
-#: desktop/src/pages/Database.tsx:85
+#: desktop/src/pages/Database.tsx:87
 msgid "Database updated: {count}"
 msgid_plural "Databases updated: {count}"
 msgstr[0] "Base de données mise à jour : {count}"
 msgstr[1] "Bases de données mises à jour : {count}"
 
-#: desktop/src/pages/Database.tsx:86
+#: desktop/src/pages/Database.tsx:88
 msgid "Updated: {databases}"
 msgstr "Mis à jour : {databases}"
 
-#: desktop/src/pages/Database.tsx:87
+#: desktop/src/pages/Database.tsx:89
 msgid "Already current: {databases}"
 msgstr "Déjà à jour : {databases}"
 
-#: desktop/src/pages/Database.tsx:89
+#: desktop/src/pages/Database.tsx:91
 msgid "Rate limited: {database}{cooldown}"
 msgstr "Limitation de débit : {database}{cooldown}"
 
-#: desktop/src/pages/Database.tsx:89
+#: desktop/src/pages/Database.tsx:91
 msgid "until"
 msgstr "jusqu’à"
 
-#: desktop/src/pages/Database.tsx:92
+#: desktop/src/pages/Database.tsx:94
 msgid ""
 "The service accepted the signal; it performs the update asynchronously. "
 "Check its logs for completion."
@@ -3608,19 +3623,19 @@ msgstr ""
 "Le service a accepté le signal ; il effectue la mise à jour de manière "
 "asynchrone. Consultez ses journaux pour savoir si elle est terminée."
 
-#: desktop/src/pages/Database.tsx:100
+#: desktop/src/pages/Database.tsx:102
 msgid "freshclam output:"
 msgstr "Sortie de freshclam :"
 
-#: desktop/src/pages/Database.tsx:103
+#: desktop/src/pages/Database.tsx:105
 msgid "Error output:"
 msgstr "Sortie d’erreur :"
 
-#: desktop/src/pages/Database.tsx:199
+#: desktop/src/pages/Database.tsx:201
 msgid "Could not listen for update progress: {error}"
 msgstr "Impossible d’écouter la progression de la mise à jour : {error}"
 
-#: desktop/src/pages/Database.tsx:213
+#: desktop/src/pages/Database.tsx:215
 msgid ""
 "Force update requested: preserving existing databases until replacement "
 "succeeds."
@@ -3628,80 +3643,104 @@ msgstr ""
 "Mise à jour forcée demandée : conservation des bases de données existantes "
 "jusqu’à la réussite du remplacement."
 
-#: desktop/src/pages/Database.tsx:213
+#: desktop/src/pages/Database.tsx:215
 msgid "Update requested."
 msgstr "Mise à jour demandée."
 
-#: desktop/src/pages/Database.tsx:220
+#: desktop/src/pages/Database.tsx:222
 msgid "Database update failed"
 msgstr "Échec de la mise à jour de la base de données"
 
-#: desktop/src/pages/Database.tsx:221
+#: desktop/src/pages/Database.tsx:223
 msgid "Database update cancelled"
 msgstr "Mise à jour de la base virale annulée"
 
-#: desktop/src/pages/Database.tsx:222
+#: desktop/src/pages/Database.tsx:224
 msgid "Update signal accepted by the freshclam service"
 msgstr "Signal de mise à jour accepté par le service freshclam"
 
-#: desktop/src/pages/Database.tsx:223
+#: desktop/src/pages/Database.tsx:225
 msgid "Database update completed"
 msgstr "Mise à jour de la base de données terminée"
 
-#: desktop/src/pages/Database.tsx:223
+#: desktop/src/pages/Database.tsx:225
 msgid "Database is already up to date"
 msgstr "La base virale est déjà à jour"
 
-#: desktop/src/pages/Database.tsx:250
+#: desktop/src/pages/Database.tsx:252
 msgid "No matching update operation could be cancelled."
 msgstr "Aucune opération de mise à jour correspondante n’a pu être annulée."
 
-#: desktop/src/pages/Database.tsx:251
+#: desktop/src/pages/Database.tsx:253
 msgid "Cancellation requested; waiting for freshclam to stop."
 msgstr "Annulation demandée ; en attente de l’arrêt de freshclam."
 
-#: desktop/src/pages/Database.tsx:264
+#: desktop/src/pages/Database.tsx:266
 msgid "Update ClamAV virus definitions and inspect their current state."
 msgstr ""
 "Mettez à jour les définitions virales de ClamAV et examinez leur état actuel."
 
-#: desktop/src/pages/Database.tsx:271
+#: desktop/src/pages/Database.tsx:273
 msgid "Could not read updater status: {error}"
 msgstr "Impossible de lire l’état du programme de mise à jour : {error}"
 
-#: desktop/src/pages/Database.tsx:276
+#: desktop/src/pages/Database.tsx:278
 msgid "Virus definitions"
 msgstr "Définitions virales"
 
-#: desktop/src/pages/Database.tsx:282
+#: desktop/src/pages/Database.tsx:284
 msgid "Checking freshclam…"
 msgstr "Vérification de freshclam…"
 
-#: desktop/src/pages/Database.tsx:282
+#: desktop/src/pages/Database.tsx:284
 msgid "No freshclam status returned"
 msgstr "Aucun état de freshclam renvoyé"
 
-#: desktop/src/pages/Database.tsx:285
+#: desktop/src/pages/Database.tsx:287
 msgid "Available"
 msgstr "Disponible"
 
-#: desktop/src/pages/Database.tsx:285
+#: desktop/src/pages/Database.tsx:287
 msgid "Unavailable"
 msgstr "Indisponible"
 
-#: desktop/src/pages/Database.tsx:288
+#: desktop/src/pages/Database.tsx:290
 msgid "Update service"
 msgstr "Service de mise à jour"
 
-#: desktop/src/pages/Database.tsx:293
+#: desktop/src/pages/Database.tsx:295
 msgid "Database freshness"
 msgstr "État de mise à jour de la base de données"
 
-#: desktop/src/pages/Database.tsx:304 desktop/src/pages/Database.tsx:311
+#: desktop/src/pages/Database.tsx:302
+msgid "Recognized database and signature files"
+msgstr "Recognized database and signature files"
+
+#: desktop/src/pages/Database.tsx:303
+msgid ""
+"Files detected in the configured ClamAV database directory. This list does "
+"not confirm which files the active scanner loaded."
+msgstr ""
+"Files detected in the configured ClamAV database directory. This list does "
+"not confirm which files the active scanner loaded."
+
+#: desktop/src/pages/Database.tsx:305
+msgid "Show {count} recognized file"
+msgid_plural "Show {count} recognized files"
+msgstr[0] "Show {count} recognized file"
+msgstr[1] "Show {count} recognized files"
+
+#: desktop/src/pages/Database.tsx:309
+msgid "{count} detected"
+msgid_plural "{count} detected"
+msgstr[0] "{count} detected"
+msgstr[1] "{count} detected"
+
+#: desktop/src/pages/Database.tsx:317 desktop/src/pages/Database.tsx:324
 msgid "Update database"
 msgstr "Mettre à jour la base de données"
 
-#: desktop/src/pages/Database.tsx:305
+#: desktop/src/pages/Database.tsx:318
 msgid ""
 "A normal update asks an active freshclam service to update when possible. A "
 "force update bypasses the service and stages replacements before promoting "
@@ -3713,36 +3752,36 @@ msgstr ""
 "en service, puis restaure les bases précédentes en cas d’échec du "
 "remplacement."
 
-#: desktop/src/pages/Database.tsx:311
+#: desktop/src/pages/Database.tsx:324
 msgid "Updating…"
 msgstr "Mise à jour…"
 
-#: desktop/src/pages/Database.tsx:312 desktop/src/pages/Database.tsx:340
+#: desktop/src/pages/Database.tsx:325 desktop/src/pages/Database.tsx:353
 msgid "Force update"
 msgstr "Forcer la mise à jour"
 
-#: desktop/src/pages/Database.tsx:316
+#: desktop/src/pages/Database.tsx:329
 msgid "Install freshclam before requesting database updates."
 msgstr ""
 "Installez freshclam avant de demander des mises à jour de la base de données."
 
-#: desktop/src/pages/Database.tsx:317
+#: desktop/src/pages/Database.tsx:330
 msgid "Preparing the update progress listener…"
 msgstr "Préparation de l’écouteur de progression de la mise à jour…"
 
-#: desktop/src/pages/Database.tsx:323
+#: desktop/src/pages/Database.tsx:336
 msgid "Update log"
 msgstr "Journal de mise à jour"
 
-#: desktop/src/pages/Database.tsx:331
+#: desktop/src/pages/Database.tsx:344
 msgid "No update has been requested in this session."
 msgstr "Aucune mise à jour n’a été demandée au cours de cette session."
 
-#: desktop/src/pages/Database.tsx:336
+#: desktop/src/pages/Database.tsx:349
 msgid "Force database update?"
 msgstr "Forcer la mise à jour de la base de données ?"
 
-#: desktop/src/pages/Database.tsx:337
+#: desktop/src/pages/Database.tsx:350
 msgid ""
 "This bypasses the freshclam service and stages replacement databases. "
 "Existing definitions remain available until a replacement succeeds; they are "
@@ -3797,8 +3836,8 @@ msgid "Unable to load daemon logs."
 msgstr "Impossible de charger les journaux du démon."
 
 #: desktop/src/pages/Logs.tsx:272
-msgid "The log entry returned by ClamUI was incomplete."
-msgstr "L’entrée de journal renvoyée par ClamUI était incomplète."
+msgid "Linux Defender received an incomplete log entry."
+msgstr "Linux Defender received an incomplete log entry."
 
 #: desktop/src/pages/Logs.tsx:275
 msgid "Failed to load log details: {error}"
@@ -3898,7 +3937,7 @@ msgstr "Opérations d’analyse et de mise à jour précédentes"
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Quarantine.tsx:296
 #: desktop/src/pages/SettingsPreferences.tsx:407
 #: desktop/src/pages/SettingsPreferences.tsx:489
-#: desktop/src/pages/Statistics.tsx:234
+#: desktop/src/pages/Statistics.tsx:234 desktop/src/pages/Urlscan.tsx:171
 msgid "Refresh"
 msgstr "Actualiser"
 
@@ -3912,7 +3951,7 @@ msgid "Export JSON"
 msgstr "Exporter en JSON"
 
 #: desktop/src/pages/Logs.tsx:370 desktop/src/pages/Logs.tsx:412
-#: desktop/src/pages/Scan.tsx:553
+#: desktop/src/pages/Scan.tsx:710
 msgid "Clear All"
 msgstr "Tout effacer"
 
@@ -3947,7 +3986,7 @@ msgid "Export Text"
 msgstr "Exporter au format texte"
 
 #: desktop/src/pages/Logs.tsx:392 desktop/src/pages/Logs.tsx:402
-#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:561
+#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:718
 msgid "Fullscreen"
 msgstr "Plein écran"
 
@@ -4192,10 +4231,8 @@ msgstr ""
 "votre navigateur. Ne vérifiez pas d’adresses IP sensibles."
 
 #: desktop/src/pages/Network.tsx:439
-msgid "No port, process information, or API key is sent by ClamUI."
-msgstr ""
-"ClamUI n’envoie aucun numéro de port, aucune information sur les processus "
-"ni aucune clé d’API."
+msgid "No port, process information, or API key is sent by Linux Defender."
+msgstr "No port, process information, or API key is sent by Linux Defender."
 
 #: desktop/src/pages/Network.tsx:441
 msgid "Opening…"
@@ -4231,7 +4268,7 @@ msgstr "Analyse à l’accès"
 msgid "YARA Rules"
 msgstr "Règles YARA"
 
-#: desktop/src/pages/Preferences.tsx:21
+#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:165
 msgid "VirusTotal"
 msgstr "VirusTotal"
 
@@ -4289,7 +4326,7 @@ msgstr "Les noms de profils par défaut sont protégés"
 msgid "Description"
 msgstr "Description"
 
-#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:554
+#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:711
 msgid "No targets added"
 msgstr "Aucune cible n'a été ajoutée"
 
@@ -4310,8 +4347,22 @@ msgid "No exclusions added"
 msgstr "Aucune exclusion n'a été ajoutée"
 
 #: desktop/src/pages/Profiles.tsx:108
-msgid "Scan Options (JSON)"
-msgstr "Options d’analyse (JSON)"
+msgid "Advanced ClamAV scan options (JSON)"
+msgstr "Advanced ClamAV scan options (JSON)"
+
+#: desktop/src/pages/Profiles.tsx:108
+msgid ""
+"Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, "
+"AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, "
+"FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and "
+"SizeLimit. These options use standalone clamscan; automatic mode selects it, "
+"while daemon-only mode reports an error."
+msgstr ""
+"Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, "
+"AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, "
+"FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and "
+"SizeLimit. These options use standalone clamscan; automatic mode selects it, "
+"while daemon-only mode reports an error."
 
 #: desktop/src/pages/Profiles.tsx:109
 msgid "Save Profile"
@@ -4429,8 +4480,8 @@ msgid "Restoring…"
 msgstr "Restauration en cours…"
 
 #: desktop/src/pages/Quarantine.tsx:127 desktop/src/pages/Quarantine.tsx:165
-msgid "ClamUI returned invalid quarantine data."
-msgstr "ClamUI a renvoyé des données de quarantaine non valides."
+msgid "Linux Defender returned invalid quarantine data."
+msgstr "Linux Defender returned invalid quarantine data."
 
 #: desktop/src/pages/Quarantine.tsx:135 desktop/src/pages/Quarantine.tsx:172
 msgid "Failed to load quarantine: {error}"
@@ -4441,8 +4492,8 @@ msgid "Quarantine updates are unavailable: {error}"
 msgstr "Les mises à jour de la quarantaine sont indisponibles : {error}"
 
 #: desktop/src/pages/Quarantine.tsx:223
-msgid "ClamUI returned an invalid cleanup result."
-msgstr "ClamUI a renvoyé un résultat de nettoyage non valide."
+msgid "Linux Defender returned an invalid cleanup result."
+msgstr "Linux Defender returned an invalid cleanup result."
 
 #: desktop/src/pages/Quarantine.tsx:228
 msgid "Removed {count} old quarantine entry."
@@ -4463,8 +4514,8 @@ msgid "Failed to clear old quarantine items: {error}"
 msgstr "Échec de la suppression des anciens éléments en quarantaine : {error}"
 
 #: desktop/src/pages/Quarantine.tsx:251
-msgid "ClamUI returned an invalid quarantine result."
-msgstr "ClamUI a renvoyé un résultat non valide pour la quarantaine."
+msgid "Linux Defender returned an invalid quarantine result."
+msgstr "Linux Defender returned an invalid quarantine result."
 
 #: desktop/src/pages/Quarantine.tsx:254
 msgid "File restored successfully."
@@ -4723,7 +4774,7 @@ msgstr "Malveillant"
 msgid "Suspicious"
 msgstr "Suspect"
 
-#: desktop/src/pages/Results.tsx:110 desktop/src/pages/Scan.tsx:522
+#: desktop/src/pages/Results.tsx:110 desktop/src/pages/Scan.tsx:674
 msgid "Scan target"
 msgstr "Cible d’analyse"
 
@@ -4792,7 +4843,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "D’autres fichiers inaccessibles ne sont pas affichés dans cette vue."
 
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Results.tsx:201
-#: desktop/src/pages/Scan.tsx:561 desktop/src/pages/Scan.tsx:565
+#: desktop/src/pages/Scan.tsx:718 desktop/src/pages/Scan.tsx:723
 msgid "Scan details"
 msgstr "Détails de l’analyse"
 
@@ -4844,7 +4895,7 @@ msgstr "Copier le JSON"
 msgid "Copy Hash"
 msgstr "Copier l’empreinte de hachage"
 
-#: desktop/src/pages/Results.tsx:225
+#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:327
 msgid "View on VirusTotal"
 msgstr "Voir sur VirusTotal"
 
@@ -4876,44 +4927,44 @@ msgstr "Aucun résultat pour le moment"
 msgid "Start a scan to see its results here."
 msgstr "Lancez une analyse pour voir ses résultats ici."
 
-#: desktop/src/pages/Scan.tsx:89
+#: desktop/src/pages/Scan.tsx:90
 msgid "Scan complete with warnings"
 msgstr "Analyse terminée avec des avertissements"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:90
+#: desktop/src/pages/Scan.tsx:91
 msgid "Scan complete — no threats found"
 msgstr "Analyse terminée — aucune menace détectée"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:98
+#: desktop/src/pages/Scan.tsx:99
 msgid "Scan complete — {count} threat detected"
 msgid_plural "Scan complete — {count} threats detected"
 msgstr[0] "Analyse terminée — {count} menace détectée"
 msgstr[1] "Analyse terminée — {count} menaces détectées"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:108
+#: desktop/src/pages/Scan.tsx:109
 msgid "Scan cancelled — partial results are available"
 msgstr "Analyse annulée — des résultats partiels sont disponibles"
 
-#: desktop/src/pages/Scan.tsx:113 desktop/src/pages/Scan.tsx:524
+#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:676
 msgid "Scan error"
 msgstr "Erreur d’analyse"
 
-#: desktop/src/pages/Scan.tsx:113
+#: desktop/src/pages/Scan.tsx:114
 msgid "Unknown error"
 msgstr "Erreur inconnue"
 
-#: desktop/src/pages/Scan.tsx:148
+#: desktop/src/pages/Scan.tsx:178
 msgid "API key must contain exactly 64 hexadecimal characters"
 msgstr "La clé API doit contenir exactement 64 caractères hexadécimaux"
 
-#: desktop/src/pages/Scan.tsx:176
+#: desktop/src/pages/Scan.tsx:210
 msgid "VirusTotal Scan"
 msgstr "Analyse VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:177
+#: desktop/src/pages/Scan.tsx:211
 msgid ""
 "VirusTotal uploads one file at a time. Only send files you are authorized to "
 "share."
@@ -4921,58 +4972,164 @@ msgstr ""
 "VirusTotal téléverse un fichier à la fois. N’envoyez que les fichiers que "
 "vous êtes autorisé à partager."
 
-#: desktop/src/pages/Scan.tsx:181
+#: desktop/src/pages/Scan.tsx:214
+msgid "Calculating file hash…"
+msgstr "Calculating file hash…"
+
+#: desktop/src/pages/Scan.tsx:214
+msgid "Checking the VirusTotal file report…"
+msgstr "Checking the VirusTotal file report…"
+
+#: desktop/src/pages/Scan.tsx:214
+msgid "Uploading file to VirusTotal…"
+msgstr "Uploading file to VirusTotal…"
+
+#: desktop/src/pages/Scan.tsx:214
+msgid "VirusTotal is analyzing the file…"
+msgstr "VirusTotal is analyzing the file…"
+
+#: desktop/src/pages/Scan.tsx:216 desktop/src/pages/Scan.tsx:322
+#: desktop/src/pages/Urlscan.tsx:191
+msgid "Open VirusTotal analysis"
+msgstr "Open VirusTotal analysis"
+
+#: desktop/src/pages/Scan.tsx:217 desktop/src/pages/Scan.tsx:323
+msgid "Cancel scan"
+msgstr "Cancel scan"
+
+#: desktop/src/pages/Scan.tsx:221
 msgid "API key available"
 msgstr "Clé API disponible"
 
-#: desktop/src/pages/Scan.tsx:182 desktop/src/pages/Scan.tsx:559
+#: desktop/src/pages/Scan.tsx:222 desktop/src/pages/Scan.tsx:716
 msgid "Scanning…"
 msgstr "Analyse en cours…"
 
-#: desktop/src/pages/Scan.tsx:182 desktop/src/pages/Scan.tsx:559
+#: desktop/src/pages/Scan.tsx:222 desktop/src/pages/Scan.tsx:716
 msgid "Scan with VirusTotal"
 msgstr "Analyser avec VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:184 desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/Scan.tsx:224 desktop/src/pages/SettingsPreferences.tsx:407
 msgid "API Key"
 msgstr "Clé d’API"
 
-#: desktop/src/pages/Scan.tsx:185
+#: desktop/src/pages/Scan.tsx:225
 msgid "Save & Scan"
 msgstr "Enregistrer et analyser"
 
-#: desktop/src/pages/Scan.tsx:187
+#: desktop/src/pages/Scan.tsx:227
 msgid "Upload file manually"
 msgstr "Envoyer un fichier manuellement"
 
-#: desktop/src/pages/Scan.tsx:218
+#: desktop/src/pages/Scan.tsx:304
+msgid "VirusTotal Folder Scan"
+msgstr "VirusTotal Folder Scan"
+
+#: desktop/src/pages/Scan.tsx:305
+msgid ""
+"Review the folder contents before any files are sent. VirusTotal receives "
+"each file hash and filename; files without an existing report may be "
+"uploaded and shared with its security partners."
+msgstr "Review the folder contents before any files are sent. VirusTotal receives each file hash and filename; files without an existing report may be uploaded and shared with its security partners."
+
+#: desktop/src/pages/Scan.tsx:306
+msgid ""
+"This action includes hidden files, skips symbolic links, and is limited to "
+"100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
+msgstr ""
+"This action includes hidden files, skips symbolic links, and is limited to "
+"100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
+
+#: desktop/src/pages/Scan.tsx:309
+msgid "Preparing folder preview…"
+msgstr "Preparing folder preview…"
+
+#: desktop/src/pages/Scan.tsx:312
+msgid "{count} file, {size} MiB total"
+msgid_plural "{count} files, {size} MiB total"
+msgstr[0] "{count} file, {size} MiB total"
+msgstr[1] "{count} files, {size} MiB total"
+
+#: desktop/src/pages/Scan.tsx:313
+msgid "{count} unreadable entry will be skipped."
+msgid_plural "{count} unreadable entries will be skipped."
+msgstr[0] "{count} unreadable entry will be skipped."
+msgstr[1] "{count} unreadable entries will be skipped."
+
+#: desktop/src/pages/Scan.tsx:314
+msgid "No readable files were found in this folder."
+msgstr "No readable files were found in this folder."
+
+#: desktop/src/pages/Scan.tsx:315
+msgid ""
+"Configure a VirusTotal API key in Preferences before starting this scan."
+msgstr ""
+"Configure a VirusTotal API key in Preferences before starting this scan."
+
+#: desktop/src/pages/Scan.tsx:316
+msgid "Upload and scan folder"
+msgstr "Upload and scan folder"
+
+#: desktop/src/pages/Scan.tsx:319
+msgid "File {current} of {total}: {stage}"
+msgstr "File {current} of {total}: {stage}"
+
+#: desktop/src/pages/Scan.tsx:319
+msgid "hashing"
+msgstr "hashing"
+
+#: desktop/src/pages/Scan.tsx:319
+msgid "uploading"
+msgstr "uploading"
+
+#: desktop/src/pages/Scan.tsx:319
+msgid "analyzing"
+msgstr "analyzing"
+
+#: desktop/src/pages/Scan.tsx:326
+msgid "{count} of {total} file scanned"
+msgid_plural "{count} of {total} files scanned"
+msgstr[0] "{count} of {total} file scanned"
+msgstr[1] "{count} of {total} files scanned"
+
+#: desktop/src/pages/Scan.tsx:326
+msgid "{count} detection reported"
+msgid_plural "{count} detections reported"
+msgstr[0] "{count} detection reported"
+msgstr[1] "{count} detections reported"
+
+#: desktop/src/pages/Scan.tsx:326
+msgid "cancelled"
+msgstr "cancelled"
+
+#: desktop/src/pages/Scan.tsx:361
 msgid "Unable to load scan profiles"
 msgstr "Impossible de charger les profils d’analyse"
 
-#: desktop/src/pages/Scan.tsx:225
+#: desktop/src/pages/Scan.tsx:368
 msgid "Unable to check scanner status"
 msgstr "Impossible de vérifier l’état du moteur d’analyse"
 
-#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:340
+#: desktop/src/pages/Scan.tsx:402 desktop/src/pages/Scan.tsx:483
 msgid "Please select a file or folder to scan"
 msgstr "Veuillez sélectionner un fichier ou un dossier à analyser"
 
-#: desktop/src/pages/Scan.tsx:273
+#: desktop/src/pages/Scan.tsx:416
 msgid "Starting scan…"
 msgstr "Démarrage de l’analyse…"
 
-#: desktop/src/pages/Scan.tsx:340
+#: desktop/src/pages/Scan.tsx:483
 msgid "Quick Scan profile has no valid targets"
 msgstr "Le profil « Analyse rapide » ne contient aucune cible valide"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:354 desktop/src/pages/Scan.tsx:457
-#: desktop/src/pages/Scan.tsx:508
+#: desktop/src/pages/Scan.tsx:497 desktop/src/pages/Scan.tsx:600
+#: desktop/src/pages/Scan.tsx:660
 msgid "Scan in progress — wait for it to finish before adding targets"
 msgstr ""
 "Analyse en cours — attendez qu’elle se termine avant d’ajouter des cibles"
 
-#: desktop/src/pages/Scan.tsx:374
+#: desktop/src/pages/Scan.tsx:517
 msgid "VirusTotal scans one file at a time; {count} selection was ignored."
 msgid_plural ""
 "VirusTotal scans one file at a time; {count} selections were ignored."
@@ -4982,120 +5139,140 @@ msgstr[1] ""
 "VirusTotal analyse un fichier à la fois ; {count} sélections ont été "
 "ignorées."
 
-#: desktop/src/pages/Scan.tsx:389 desktop/src/pages/Scan.tsx:517
+#: desktop/src/pages/Scan.tsx:532 desktop/src/pages/Scan.tsx:669
 msgid "Only local files and folders can be scanned"
 msgstr "Seuls les fichiers et dossiers locaux peuvent être analysés"
 
-#: desktop/src/pages/Scan.tsx:466
+#: desktop/src/pages/Scan.tsx:609
 msgid "Unable to choose scan targets"
 msgstr "Impossible de sélectionner les cibles de l’analyse"
 
-#: desktop/src/pages/Scan.tsx:473
+#: desktop/src/pages/Scan.tsx:618
+msgid "Unable to open the folder picker"
+msgstr "Unable to open the folder picker"
+
+#: desktop/src/pages/Scan.tsx:625
 msgid "Cancelling scan…"
 msgstr "Annulation de l’analyse…"
 
-#: desktop/src/pages/Scan.tsx:475
+#: desktop/src/pages/Scan.tsx:627
 msgid "Unable to cancel scan"
 msgstr "Impossible d’annuler l’analyse"
 
-#: desktop/src/pages/Scan.tsx:491
+#: desktop/src/pages/Scan.tsx:643
 msgid "Running EICAR test…"
 msgstr "Exécution du test EICAR…"
 
-#: desktop/src/pages/Scan.tsx:536
+#: desktop/src/pages/Scan.tsx:688
 msgid "Backend"
 msgstr "Moteur"
 
-#: desktop/src/pages/Scan.tsx:537
+#: desktop/src/pages/Scan.tsx:689
 msgid "Manage Profiles"
 msgstr "Gérer les profils"
 
-#: desktop/src/pages/Scan.tsx:539 desktop/src/pages/Scan.tsx:561
+#: desktop/src/pages/Scan.tsx:691
+msgid "Scan type"
+msgstr "Scan type"
+
+#: desktop/src/pages/Scan.tsx:692
+msgid "Files & Folders"
+msgstr "Files & Folders"
+
+#: desktop/src/pages/Scan.tsx:693 desktop/src/pages/Urlscan.tsx:184
+msgid "Website URL"
+msgstr "Website URL"
+
+#: desktop/src/pages/Scan.tsx:696 desktop/src/pages/Scan.tsx:718
 msgid "Details"
 msgstr "Détails"
 
-#: desktop/src/pages/Scan.tsx:543
+#: desktop/src/pages/Scan.tsx:700
 msgid "Profile"
 msgstr "Profil"
 
-#: desktop/src/pages/Scan.tsx:549
+#: desktop/src/pages/Scan.tsx:706
 msgid "No Profile (Manual)"
 msgstr "Aucun profil (manuel)"
 
-#: desktop/src/pages/Scan.tsx:553
+#: desktop/src/pages/Scan.tsx:710
 msgid "Drop local files or folders here, or add them below."
 msgstr ""
 "Déposez des fichiers ou dossiers locaux ici, ou ajoutez-les ci-dessous."
 
-#: desktop/src/pages/Scan.tsx:557
+#: desktop/src/pages/Scan.tsx:714
 msgid "Scanning"
 msgstr "Analyse en cours"
 
-#: desktop/src/pages/Scan.tsx:557
+#: desktop/src/pages/Scan.tsx:714
 msgid "Waiting for scan data…"
 msgstr "En attente des données d’analyse…"
 
-#: desktop/src/pages/Scan.tsx:557
+#: desktop/src/pages/Scan.tsx:714
 msgid "Scan progress"
 msgstr "Progression de l’analyse"
 
-#: desktop/src/pages/Scan.tsx:557 desktop/src/pages/Scan.tsx:561
+#: desktop/src/pages/Scan.tsx:714 desktop/src/pages/Scan.tsx:718
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "{count} fichier analysé"
 msgstr[1] "{count} fichiers analysés"
 
-#: desktop/src/pages/Scan.tsx:557 desktop/src/pages/Scan.tsx:561
+#: desktop/src/pages/Scan.tsx:714 desktop/src/pages/Scan.tsx:718
 #: desktop/src/pages/Statistics.tsx:161
 msgid "{count} threat"
 msgid_plural "{count} threats"
 msgstr[0] "{count} menace"
 msgstr[1] "{count} menaces"
 
-#: desktop/src/pages/Scan.tsx:557
+#: desktop/src/pages/Scan.tsx:714
 msgid "Estimated file count exceeded"
 msgstr "Nombre estimé de fichiers dépassé"
 
-#: desktop/src/pages/Scan.tsx:557
+#: desktop/src/pages/Scan.tsx:714
 msgid ""
 "Live progress is disabled. The completed scan result will remain available."
 msgstr ""
 "Le suivi de la progression en temps réel est désactivé. Le résultat final de "
 "l’analyse restera disponible."
 
-#: desktop/src/pages/Scan.tsx:557
+#: desktop/src/pages/Scan.tsx:714
 msgid "Cancel All"
 msgstr "Tout annuler"
 
-#: desktop/src/pages/Scan.tsx:559
+#: desktop/src/pages/Scan.tsx:716
 msgid "Start Scan"
 msgstr "Lancer l’analyse"
 
-#: desktop/src/pages/Scan.tsx:559
+#: desktop/src/pages/Scan.tsx:716
 msgid "Run EICAR Test"
 msgstr "Exécuter le test EICAR"
 
-#: desktop/src/pages/Scan.tsx:559
-msgid "Select one file before using VirusTotal"
-msgstr "Sélectionnez un seul fichier avant d’utiliser VirusTotal"
+#: desktop/src/pages/Scan.tsx:716
+msgid "Select exactly one file before using VirusTotal"
+msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:561
+#: desktop/src/pages/Scan.tsx:716
+msgid "Scan a folder with VirusTotal"
+msgstr "Scan a folder with VirusTotal"
+
+#: desktop/src/pages/Scan.tsx:718
 msgid "Latest scan"
 msgstr "Dernière analyse"
 
-#: desktop/src/pages/Scan.tsx:561
+#: desktop/src/pages/Scan.tsx:718
 msgid "View Results"
 msgstr "Afficher les résultats"
 
-#: desktop/src/pages/Scan.tsx:563
+#: desktop/src/pages/Scan.tsx:720
 msgid "Virus database is not available"
 msgstr "La base de données virale n’est pas disponible"
 
-#: desktop/src/pages/Scan.tsx:563
+#: desktop/src/pages/Scan.tsx:720
 msgid "Update the database before starting a scan."
 msgstr "Mettez à jour la base de données avant de lancer une analyse."
 
-#: desktop/src/pages/Scan.tsx:563
+#: desktop/src/pages/Scan.tsx:720
 msgid "Open Database Updates"
 msgstr "Ouvrir les mises à jour de la base de données"
 
@@ -5235,14 +5412,15 @@ msgstr "Échec de l’intégration {action} : {error}"
 
 #: desktop/src/pages/SettingsPreferences.tsx:266
 msgid ""
-"Override the application language. Restart ClamUI to apply a language change."
+"Override the application language. Restart Linux Defender to apply a "
+"language change."
 msgstr ""
-"Modifiez la langue de l’application. Redémarrez ClamUI pour appliquer le "
-"changement de langue."
+"Override the application language. Restart Linux Defender to apply a "
+"language change."
 
 #: desktop/src/pages/SettingsPreferences.tsx:268
-msgid "Restart ClamUI to apply the new language"
-msgstr "Redémarrez ClamUI pour appliquer la nouvelle langue"
+msgid "Restart Linux Defender to apply the new language"
+msgstr "Restart Linux Defender to apply the new language"
 
 #: desktop/src/pages/SettingsPreferences.tsx:269
 msgid "Automatic (System)"
@@ -5316,12 +5494,12 @@ msgstr ""
 msgid "Configure Integration"
 msgstr "Configurer l'intégration"
 
-#. Translators: 'Scan with ClamUI' is the installed file-manager menu label; keep it in English.
+#. Translators: 'Scan with Linux Defender' is the installed file-manager menu label; keep it in English.
 #: desktop/src/pages/SettingsPreferences.tsx:281
-msgid "Install, repair, or remove 'Scan with ClamUI' context menu actions."
+msgid ""
+"Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 msgstr ""
-"Installer, réparer ou supprimer les actions « Scan with ClamUI » du menu "
-"contextuel."
+"Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 
 #: desktop/src/pages/SettingsPreferences.tsx:290
 msgid "Partially installed"
@@ -5453,6 +5631,7 @@ msgid "Unable to save the API key"
 msgstr "Impossible d’enregistrer la clé API"
 
 #: desktop/src/pages/SettingsPreferences.tsx:404
+#: desktop/src/pages/Urlscan.tsx:120
 msgid "API key deleted"
 msgstr "Clé API supprimée"
 
@@ -5470,10 +5649,12 @@ msgstr ""
 "explicitement activée ; elles ne sont jamais renvoyées à l’interface."
 
 #: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/Urlscan.tsx:47
 msgid "Configured ({masked}) using {backend}"
 msgstr "Configurée ({masked}) via {backend}"
 
 #: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/Urlscan.tsx:48
 msgid "masked"
 msgstr "masquée"
 
@@ -5486,6 +5667,7 @@ msgid "Keyring unavailable"
 msgstr "Trousseau de clés indisponible"
 
 #: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/Urlscan.tsx:54
 msgid "Not configured"
 msgstr "Non configurée"
 
@@ -5586,8 +5768,8 @@ msgid "Unable to clear logs: {error}"
 msgstr "Impossible d’effacer les journaux : {error}"
 
 #: desktop/src/pages/SettingsPreferences.tsx:464
-msgid "ClamUI System Information"
-msgstr "Informations système de ClamUI"
+msgid "Linux Defender System Information"
+msgstr "Linux Defender System Information"
 
 #: desktop/src/pages/SettingsPreferences.tsx:466
 msgid "Installation Type: {value}"
@@ -5840,8 +6022,8 @@ msgid "Threats"
 msgstr "Menaces"
 
 #: desktop/src/pages/Statistics.tsx:187
-msgid "ClamUI returned invalid statistics data."
-msgstr "ClamUI a renvoyé des données statistiques non valides."
+msgid "Linux Defender received invalid statistics data."
+msgstr "Linux Defender received invalid statistics data."
 
 #: desktop/src/pages/Statistics.tsx:192
 msgid "Failed to load statistics: {error}"
@@ -5988,6 +6170,254 @@ msgstr "Afficher les journaux d’analyse"
 msgid "See detailed scan history"
 msgstr "Consulter l’historique détaillé des analyses"
 
+#: desktop/src/pages/Urlscan.tsx:29
+msgid "Private — visible only to you"
+msgstr "Private — visible only to you"
+
+#: desktop/src/pages/Urlscan.tsx:30
+msgid "Unlisted — visible to urlscan Pro researchers"
+msgstr "Unlisted — visible to urlscan Pro researchers"
+
+#: desktop/src/pages/Urlscan.tsx:31
+msgid "Public — visible in urlscan search"
+msgstr "Public — visible in urlscan search"
+
+#: desktop/src/pages/Urlscan.tsx:52
+msgid "System keyring is locked"
+msgstr "System keyring is locked"
+
+#: desktop/src/pages/Urlscan.tsx:53
+msgid "System keyring is unavailable"
+msgstr "System keyring is unavailable"
+
+#: desktop/src/pages/Urlscan.tsx:91
+msgid "Enter your urlscan API key."
+msgstr "Enter your urlscan API key."
+
+#: desktop/src/pages/Urlscan.tsx:91
+msgid "Enter your VirusTotal API key."
+msgstr "Enter your VirusTotal API key."
+
+#: desktop/src/pages/Urlscan.tsx:103
+msgid "Unable to save the API key: {error}"
+msgstr "Unable to save the API key: {error}"
+
+#: desktop/src/pages/Urlscan.tsx:122
+msgid "Unable to delete the API key: {error}"
+msgstr "Unable to delete the API key: {error}"
+
+#: desktop/src/pages/Urlscan.tsx:136
+msgid "URL submitted to urlscan"
+msgstr "URL submitted to urlscan"
+
+#: desktop/src/pages/Urlscan.tsx:144
+msgid "URL analysis submitted to VirusTotal"
+msgstr "URL analysis submitted to VirusTotal"
+
+#: desktop/src/pages/Urlscan.tsx:154
+msgid ""
+"Private scans are visible only to you unless you share the result; urlscan "
+"retains them for a limited period."
+msgstr ""
+"Private scans are visible only to you unless you share the result; urlscan "
+"retains them for a limited period."
+
+#: desktop/src/pages/Urlscan.tsx:156
+msgid ""
+"Unlisted scans are not in public search, but vetted urlscan Pro researchers "
+"can see them."
+msgstr ""
+"Unlisted scans are not in public search, but vetted urlscan Pro researchers "
+"can see them."
+
+#: desktop/src/pages/Urlscan.tsx:157
+msgid ""
+"Public scans are visible in urlscan search and may expose the submitted URL "
+"to others."
+msgstr ""
+"Public scans are visible in urlscan search and may expose the submitted URL "
+"to others."
+
+#: desktop/src/pages/Urlscan.tsx:162
+msgid "Website URL inspection"
+msgstr "Website URL inspection"
+
+#: desktop/src/pages/Urlscan.tsx:163
+msgid "URL scan service"
+msgstr "URL scan service"
+
+#: desktop/src/pages/Urlscan.tsx:164
+msgid "urlscan.io"
+msgstr "urlscan.io"
+
+#: desktop/src/pages/Urlscan.tsx:169
+msgid "urlscan.io account"
+msgstr "urlscan.io account"
+
+#: desktop/src/pages/Urlscan.tsx:169
+msgid "VirusTotal account"
+msgstr "VirusTotal account"
+
+#: desktop/src/pages/Urlscan.tsx:170
+msgid ""
+"API keys are stored in the operating system keyring when available and are "
+"never sent to the interface."
+msgstr ""
+"API keys are stored in the operating system keyring when available and are "
+"never sent to the interface."
+
+#: desktop/src/pages/Urlscan.tsx:171
+msgid "Key status"
+msgstr "Key status"
+
+#: desktop/src/pages/Urlscan.tsx:172
+msgid "Personal API key"
+msgstr "Personal API key"
+
+#: desktop/src/pages/Urlscan.tsx:172
+msgid "Paste your urlscan API key"
+msgstr "Paste your urlscan API key"
+
+#: desktop/src/pages/Urlscan.tsx:172
+msgid "Paste your VirusTotal API key"
+msgstr "Paste your VirusTotal API key"
+
+#: desktop/src/pages/Urlscan.tsx:174
+msgid "Save key"
+msgstr "Save key"
+
+#: desktop/src/pages/Urlscan.tsx:174
+msgid "Delete key"
+msgstr "Delete key"
+
+#: desktop/src/pages/Urlscan.tsx:175
+msgid "Get an API key"
+msgstr "Get an API key"
+
+#: desktop/src/pages/Urlscan.tsx:180
+msgid "Submit a website for inspection"
+msgstr "Submit a website for inspection"
+
+#: desktop/src/pages/Urlscan.tsx:182
+msgid ""
+"urlscan visits the website in a remote browser and records its page "
+"activity. This is not a local file scan or an antivirus verdict."
+msgstr ""
+"urlscan visits the website in a remote browser and records its page "
+"activity. This is not a local file scan or an antivirus verdict."
+
+#: desktop/src/pages/Urlscan.tsx:183
+msgid ""
+"VirusTotal checks the URL with multiple security engines and blocklists. "
+"This is a remote reputation analysis, not a local file scan."
+msgstr ""
+"VirusTotal checks the URL with multiple security engines and blocklists. "
+"This is a remote reputation analysis, not a local file scan."
+
+#: desktop/src/pages/Urlscan.tsx:185
+msgid "Result visibility"
+msgstr "Result visibility"
+
+#: desktop/src/pages/Urlscan.tsx:187
+msgid ""
+"urlscan receives the complete URL, including its query string, and visits "
+"it. Never submit login links, session tokens, private/internal URLs, or "
+"confidential information."
+msgstr ""
+"urlscan receives the complete URL, including its query string, and visits "
+"it. Never submit login links, session tokens, private/internal URLs, or "
+"confidential information."
+
+#: desktop/src/pages/Urlscan.tsx:188
+msgid ""
+"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
+"shared with its community and security partners. Never submit login links, "
+"session tokens, private/internal URLs, or confidential information."
+msgstr ""
+"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
+"shared with its community and security partners. Never submit login links, "
+"session tokens, private/internal URLs, or confidential information."
+
+#: desktop/src/pages/Urlscan.tsx:190
+msgid "Submission accepted"
+msgstr "Submission accepted"
+
+#: desktop/src/pages/Urlscan.tsx:190
+msgid "Visibility: {visibility}"
+msgstr "Visibility: {visibility}"
+
+#: desktop/src/pages/Urlscan.tsx:190
+msgid "Open urlscan result"
+msgstr "Open urlscan result"
+
+#: desktop/src/pages/Urlscan.tsx:191
+msgid "VirusTotal reported detections"
+msgstr "VirusTotal reported detections"
+
+#: desktop/src/pages/Urlscan.tsx:191
+msgid "Analysis complete — no detections reported"
+msgstr "Analysis complete — no detections reported"
+
+#: desktop/src/pages/Urlscan.tsx:191
+msgid "Analysis is still processing"
+msgstr "Analysis is still processing"
+
+#: desktop/src/pages/Urlscan.tsx:191
+msgid "VirusTotal rate limit reached"
+msgstr "VirusTotal rate limit reached"
+
+#: desktop/src/pages/Urlscan.tsx:191
+msgid "VirusTotal analysis failed"
+msgstr "VirusTotal analysis failed"
+
+#: desktop/src/pages/Urlscan.tsx:191
+msgid "{detections} of {total} URL engines reported suspicious or malicious"
+msgstr "{detections} of {total} URL engines reported suspicious or malicious"
+
+#: desktop/src/pages/Urlscan.tsx:192 desktop/src/pages/Urlscan.tsx:200
+msgid "Submitting…"
+msgstr "Submitting…"
+
+#: desktop/src/pages/Urlscan.tsx:192
+msgid "Review submission"
+msgstr "Review submission"
+
+#: desktop/src/pages/Urlscan.tsx:194
+msgid "Confirm urlscan submission"
+msgstr "Confirm urlscan submission"
+
+#: desktop/src/pages/Urlscan.tsx:194
+msgid "Confirm VirusTotal URL submission"
+msgstr "Confirm VirusTotal URL submission"
+
+#: desktop/src/pages/Urlscan.tsx:196
+msgid ""
+"urlscan will visit this URL and store page activity. The service receives "
+"the full URL, including its query string."
+msgstr ""
+"urlscan will visit this URL and store page activity. The service receives "
+"the full URL, including its query string."
+
+#: desktop/src/pages/Urlscan.tsx:197
+msgid ""
+"VirusTotal will submit this URL for analysis and add it to its dataset, "
+"where it may be shared with its community and security partners."
+msgstr ""
+"VirusTotal will submit this URL for analysis and add it to its dataset, "
+"where it may be shared with its community and security partners."
+
+#: desktop/src/pages/Urlscan.tsx:198
+msgid "URL"
+msgstr "URL"
+
+#: desktop/src/pages/Urlscan.tsx:198
+msgid "Visibility"
+msgstr "Visibility"
+
+#: desktop/src/pages/Urlscan.tsx:200
+msgid "Submit URL"
+msgstr "Submit URL"
+
 #: desktop/src/profilePresentation.ts:30
 msgid "Fast scan of the Downloads folder for quick threat detection"
 msgstr ""
@@ -6002,3 +6432,58 @@ msgstr "Analyse complète de tous les répertoires accessibles du système"
 msgid "Scan of the user's home directory and personal files"
 msgstr ""
 "Analyse du répertoire personnel et des fichiers personnels de l’utilisateur"
+
+#~ msgid ""
+#~ "Review the folder contents before any files are sent. VirusTotal receives "
+#~ "each file hash; files without an existing report may be uploaded and "
+#~ "shared with its security partners."
+#~ msgstr ""
+#~ "Review the folder contents before any files are sent. VirusTotal receives "
+#~ "each file hash; files without an existing report may be uploaded and "
+#~ "shared with its security partners."
+
+#~ msgid "Select one file before using VirusTotal"
+#~ msgstr "Sélectionnez un seul fichier avant d’utiliser VirusTotal"
+
+#~ msgid "URL Scan"
+#~ msgstr "URL Scan"
+
+#~ msgid "urlscan API key saved"
+#~ msgstr "urlscan API key saved"
+
+#~ msgid "urlscan API key deleted"
+#~ msgstr "urlscan API key deleted"
+
+#~ msgid "ClamUI scheduled scan starting…"
+#~ msgstr "Démarrage de l’analyse planifiée de ClamUI…"
+
+#~ msgid "ClamUI could not start"
+#~ msgstr "ClamUI n’a pas pu démarrer"
+
+#~ msgid "The log entry returned by ClamUI was incomplete."
+#~ msgstr "L’entrée de journal renvoyée par ClamUI était incomplète."
+
+#~ msgid "ClamUI System Information"
+#~ msgstr "Informations système de ClamUI"
+
+#~ msgid "About ClamUI"
+#~ msgstr "À propos de ClamUI"
+
+#~ msgid "A native desktop interface for ClamAV."
+#~ msgstr "Une interface de bureau native pour ClamAV."
+
+#~ msgid "Close ClamUI?"
+#~ msgstr "Fermer ClamUI ?"
+
+#~ msgid ""
+#~ "Choose whether to keep ClamUI available in the system tray or quit it "
+#~ "completely."
+#~ msgstr ""
+#~ "Choisissez de garder ClamUI disponible dans la zone de notification ou de "
+#~ "le quitter complètement."
+
+#~ msgid ""
+#~ "ClamUI needs its matching privileged helper to save system configuration."
+#~ msgstr ""
+#~ "ClamUI a besoin de son helper privilégié correspondant pour enregistrer "
+#~ "la configuration système."

@@ -184,7 +184,7 @@ export default function Statistics({ active }: { active: boolean }) {
     try {
       const result = await request<unknown>("logs.statistics", { timeframe: selectedTimeframe });
       const parsed = parseStatistics(result);
-      if (!parsed) throw new Error(_("ClamUI returned invalid statistics data."));
+      if (!parsed) throw new Error(_("Linux Defender received invalid statistics data."));
       setStatistics(parsed);
     } catch (loadError) {
       const message = readableError(loadError);

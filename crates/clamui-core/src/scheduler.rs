@@ -12,7 +12,7 @@ use std::time::{Duration, Instant};
 
 pub const SERVICE_NAME: &str = "clamui-scheduled-scan";
 pub const TIMER_NAME: &str = "clamui-scheduled-scan";
-pub const CRON_MARKER: &str = "# ClamUI Scheduled Scan";
+pub const CRON_MARKER: &str = "# Linux Defender Scheduled Scan";
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "lowercase")]
@@ -564,11 +564,11 @@ pub fn service_file(command: &[String], schedule: &ScheduleConfig) -> String {
         command.replace('%', "%%"),
         arguments.replace('$', "$$").replace('%', "%%")
     );
-    format!("[Unit]\nDescription=ClamUI Scheduled Antivirus Scan\nAfter=network.target\n\n[Service]\nType=oneshot\nExecStart={command}\nNice=19\nIOSchedulingClass=idle\n\n[Install]\nWantedBy=default.target\n")
+    format!("[Unit]\nDescription=Linux Defender Scheduled Antivirus Scan\nAfter=network.target\n\n[Service]\nType=oneshot\nExecStart={command}\nNice=19\nIOSchedulingClass=idle\n\n[Install]\nWantedBy=default.target\n")
 }
 
 pub fn timer_file(calendar: &str) -> String {
-    format!("[Unit]\nDescription=ClamUI Scheduled Scan Timer\n\n[Timer]\nOnCalendar={calendar}\nPersistent=true\nRandomizedDelaySec=300\n\n[Install]\nWantedBy=timers.target\n")
+    format!("[Unit]\nDescription=Linux Defender Scheduled Scan Timer\n\n[Timer]\nOnCalendar={calendar}\nPersistent=true\nRandomizedDelaySec=300\n\n[Install]\nWantedBy=timers.target\n")
 }
 
 pub fn cron_command(command: &[String], schedule: &ScheduleConfig) -> String {
@@ -619,7 +619,7 @@ pub fn remove_our_cron_lines(existing: &str) -> Vec<String> {
             }
             continue;
         }
-        if line.trim() == CRON_MARKER {
+        if matches!(line.trim(), CRON_MARKER | "# ClamUI Scheduled Scan") {
             next_is_paired = true;
         } else {
             lines.push(line.to_owned());
@@ -865,7 +865,7 @@ fn run_scheduled_inner(args: &[String], ctx: Context) -> AppResult<i32> {
         &i18n::translate(
             &ctx,
             // Translators: The ellipsis indicates that the scheduled scan is starting.
-            "ClamUI scheduled scan starting…",
+            "Linux Defender scheduled scan starting…",
         ),
         false,
     );
@@ -1248,7 +1248,7 @@ fn scheduled_log(message: &str, _verbose_only: bool) {
 fn notify(title: &str, body: &str, urgency: &str) -> AppResult<()> {
     let mut args = vec![
         format!("--urgency={urgency}"),
-        "--app-name=ClamUI".to_owned(),
+        "--app-name=Linux Defender".to_owned(),
     ];
     let user_icon = env::var_os("HOME").map(PathBuf::from).map(|home| {
         home.join(".local/share/icons/hicolor/scalable/apps/io.github.linx_systems.ClamUI.png")

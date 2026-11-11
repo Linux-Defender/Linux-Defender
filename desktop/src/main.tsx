@@ -7,7 +7,7 @@ import "./styles.css";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
-  throw new Error("ClamUI could not find its application root");
+  throw new Error("Linux Defender could not find its application root");
 }
 
 const root = createRoot(rootElement);
@@ -24,7 +24,7 @@ void loadCatalog()
     root.render(
       <main className="startup-error">
         <section className="card" aria-labelledby="startup-error-title">
-          <h1 id="startup-error-title">{_("ClamUI could not start")}</h1>
+          <h1 id="startup-error-title">{_("Linux Defender could not start")}</h1>
           <p className="error">{message}</p>
           <button className="button primary" type="button" onClick={() => window.location.reload()}>
             {_("Retry")}

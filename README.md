@@ -2,7 +2,7 @@
 
 A community revival project for a single, maintainable Linux malware-scanning desktop app. The goal is one interface that carries forward useful ClamTk workflows and ClamUI features while using the system's supported ClamAV tools and signature database.
 
-**Development status:** early integration. The current source is based on ClamUI 0.5.1 (Rust core, Tauri desktop runtime, React/TypeScript UI). ClamTk parity, app identity migration, CachyOS packaging, and desktop validation are still in progress. Do not treat this branch as a finished or guaranteed protection product.
+**Development status:** early integration. The user-visible app name is Linux Defender; the source is based on ClamUI 0.5.1 (Rust core, Tauri desktop runtime, React/TypeScript UI). Internal application identifiers remain ClamUI temporarily to preserve installed data while migration is designed. ClamTk parity, CachyOS packaging, and desktop validation remain in progress. Do not treat this branch as a finished or guaranteed protection product.
 
 ## Design goals
 
@@ -16,13 +16,17 @@ A community revival project for a single, maintainable Linux malware-scanning de
 ## Current integration status
 
 - The upstream ClamUI Rust/Tauri/React app is the local foundation and its existing scanner, quarantine, scheduling, history, database controls, and VirusTotal integration are retained.
-- The first ClamTk parity port adds local YARA rule-directory selection for standalone clamscan; rules are not loaded in explicitly forced daemon mode.
-- The ClamTk scheduler, quarantine behavior, whitelist, URL reputation controls, translations, plugins, open issues, and PR-derived fixes still need a line-by-line parity and validation pass.
-- Package identity still uses the upstream ClamUI identifiers. Linux Defender branding and package IDs must be changed consistently before a release.
+- ClamTk profile engine options now apply to the scan. Supported limits, PUA/heuristic alerts, recursion, hidden files, and symlink choices are validated; unsupported options fail closed. Automatic mode chooses standalone `clamscan` when an option or local YARA rule needs it, while daemon-only mode reports an error. Local YARA scans pass both the configured ClamAV signature directory and each YARA file, so YARA adds to the official/shared signatures rather than replacing them.
+- Scan now has Files & Folders and Website URL modes. Website URL mode supports both VirusTotal URL analysis and urlscan.io, with explicit provider-specific sharing warnings and confirmation. urlscan defaults to Private; VirusTotal public API submissions and lookups are added to its dataset and can be shared.
+- VirusTotal file scans now show hashing/upload/analysis progress and an early analysis link. A separate VirusTotal folder action previews all included files before confirmation, skips symlinks, revalidates file identity, limits traversal to 10,000 entries and uploads to 100 files/1 GiB, and reports each result. This feature passed mocked backend tests but still needs real desktop and transport validation on CachyOS. Local ClamAV folder scanning remains a separate option. See [the Lenspect issue and PR review](docs/revival/LENSPECT-REVIEW.md).
+- Remaining ClamTk parity work includes one-time import of legacy preferences, history, schedules, quarantine payloads, and restore records; app self-update behavior remains owned by the distro package manager. Review `docs/revival/CHAT-AND-PROJECT-AUDIT.md` for all known parity gaps, release constraints, and CachyOS checks.
+- The visible window, About screen, tray tooltip, browser title, file-manager labels, schedule labels, and shield icon use Linux Defender. Internal bundle, protocol, data, and CLI identifiers still use ClamUI until a safe migration is implemented.
 
 ## Scanner boundary
 
-The app controls host-installed clamscan, clamdscan, and freshclam. FreshClam updates the shared system signature database. ClamUI is an on-demand scanning UI and does not by itself guarantee real-time protection. VirusTotal and urlscan are optional online reputation/submission services, not extra local antivirus engines; uploads require informed consent.
+The app controls host-installed clamscan, clamdscan, and freshclam. FreshClam updates the shared system signature database, including official `main`, `daily`, and `bytecode` definitions. ClamTk uses ClamAV's databases too; its per-user mode copies those definitions rather than adding a separate malware engine. Linux Defender also supports local user-managed YARA rules for standalone `clamscan`. ClamAV can load other compatible signature formats, but Linux Defender does not install or update third-party feeds such as SaneSecurity automatically; provider trust, compatibility, false positives, and update policy need a separate design. VirusTotal and urlscan are optional online services, not extra local signature databases.
+
+The Database page lists recognized files in the configured ClamAV database directory. This inventory is informational: it cannot confirm which files a running `clamd` process loaded. A detected file is not automatically trusted, enabled, or updated by Linux Defender.
 
 ## Build and test
 

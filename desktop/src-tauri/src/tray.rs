@@ -293,7 +293,7 @@ impl Tray for NativeTray {
     }
 
     fn title(&self) -> String {
-        "ClamUI".into()
+        "Linux Defender".into()
     }
 
     fn status(&self) -> Status {

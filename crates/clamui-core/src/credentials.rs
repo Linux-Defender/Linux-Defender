@@ -6,6 +6,7 @@ use std::collections::HashMap;
 
 pub const SERVICE_NAME: &str = "clamui";
 pub const VIRUSTOTAL_API_KEY: &str = "virustotal_api_key";
+pub const URLSCAN_API_KEY: &str = "urlscan_api_key";
 pub const PORTMASTER_API_TOKEN: &str = "portmaster_api_token";
 const PLAINTEXT_FALLBACK_SETTING: &str = "allow_plaintext_api_key_fallback";
 
@@ -14,6 +15,7 @@ const PLAINTEXT_FALLBACK_SETTING: &str = "allow_plaintext_api_key_fallback";
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Account {
     VirusTotalApiKey,
+    UrlscanApiKey,
     PortmasterApiToken,
 }
 
@@ -21,6 +23,7 @@ impl Account {
     pub const fn username(self) -> &'static str {
         match self {
             Self::VirusTotalApiKey => VIRUSTOTAL_API_KEY,
+            Self::UrlscanApiKey => URLSCAN_API_KEY,
             Self::PortmasterApiToken => PORTMASTER_API_TOKEN,
         }
     }
@@ -31,8 +34,9 @@ impl Account {
 
     const fn label(self) -> &'static str {
         match self {
-            Self::VirusTotalApiKey => "ClamUI VirusTotal API key",
-            Self::PortmasterApiToken => "ClamUI Portmaster API token",
+            Self::VirusTotalApiKey => "Linux Defender VirusTotal API key",
+            Self::UrlscanApiKey => "Linux Defender urlscan API key",
+            Self::PortmasterApiToken => "Linux Defender Portmaster API token",
         }
     }
 }
@@ -121,7 +125,8 @@ impl CredentialStore {
                 present: true,
                 backend: CredentialBackend::Keyring,
                 status: CredentialStatus::Configured,
-                masked: (account == Account::VirusTotalApiKey).then(|| mask_api_key(Some(&secret))),
+                masked: matches!(account, Account::VirusTotalApiKey | Account::UrlscanApiKey)
+                    .then(|| mask_api_key(Some(&secret))),
             }),
             Ok(None) => self.fallback_status(account, None),
             Err(KeyringFailure::Locked) => {
@@ -203,7 +208,8 @@ impl CredentialStore {
             } else {
                 unavailable_status.unwrap_or(CredentialStatus::NotConfigured)
             },
-            masked: (account == Account::VirusTotalApiKey && present)
+            masked: (matches!(account, Account::VirusTotalApiKey | Account::UrlscanApiKey)
+                && present)
                 .then(|| mask_api_key(secret.as_deref())),
         })
     }

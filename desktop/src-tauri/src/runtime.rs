@@ -57,12 +57,12 @@ struct OperationGuard<'a> {
 impl RunningJobs {
     fn register(&self, action: String) -> Result<OperationGuard<'_>, String> {
         if !self.accepting.load(Ordering::Acquire) {
-            return Err("ClamUI is shutting down".into());
+            return Err("Linux Defender is shutting down".into());
         }
         let token = self.next_token.fetch_add(1, Ordering::Relaxed);
         let mut entries = self.entries.lock().expect("job state poisoned");
         if !self.accepting.load(Ordering::Acquire) {
-            return Err("ClamUI is shutting down".into());
+            return Err("Linux Defender is shutting down".into());
         }
         entries.insert(token, action);
         Ok(OperationGuard { jobs: self, token })
@@ -195,7 +195,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
     let tray = TrayController::start(
         tray_events,
         TrayLabels {
-            show: "ClamUI".into(),
+            show: "Linux Defender".into(),
             quick_scan: translate(&ctx, "Quick Scan"),
             full_scan: translate(&ctx, "Full Scan"),
             home_folder: translate(&ctx, "Home Folder"),
@@ -276,7 +276,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
         })
         .setup(move |app| {
             WebviewWindowBuilder::new(app, "main", WebviewUrl::App("index.html".into()))
-                .title("ClamUI")
+                .title("Linux Defender")
                 .inner_size(900.0, 700.0)
                 .min_inner_size(360.0, 480.0)
                 .resizable(true)

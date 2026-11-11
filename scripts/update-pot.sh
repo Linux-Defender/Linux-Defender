@@ -1,5 +1,5 @@
 #!/bin/bash
-# Generate/update the POT (Portable Object Template) file for ClamUI translations.
+# Generate/update the POT (Portable Object Template) file for Linux Defender translations.
 #
 # Usage:
 #   ./scripts/update-pot.sh
@@ -412,10 +412,10 @@ extract() {
         --language="$language" \
         --from-code=UTF-8 \
         --add-comments=Translators: \
-        --package-name=ClamUI \
+        --package-name="Linux Defender" \
         --package-version="$VERSION" \
-        --copyright-holder="ClamUI Contributors" \
-        --msgid-bugs-address="https://github.com/linx-systems/clamui/issues" \
+        --copyright-holder="Linux Defender Contributors" \
+        --msgid-bugs-address="https://github.com/SAFETY-CHAT/Linux-Defender/issues" \
         "$@"
 }
 

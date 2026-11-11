@@ -7,6 +7,7 @@ import { formatScanOutput } from "../scanOutput";
 import { scanLogChunks } from "../scanLog";
 import { ScanLogViewport } from "../ScanLogViewport";
 import { profileDescription, profileLabel } from "../profilePresentation";
+import Urlscan from "./Urlscan";
 
 
 type Profile = { id: string; name: string; targets: string[]; exclusions: { paths?: string[]; patterns?: string[] }; is_default: boolean; description: string; options: Record<string, unknown> };
@@ -119,6 +120,32 @@ function VirusTotalDialog({ path, onClose }: { path: string; onClose: () => void
   const [remember, setRemember] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [progress, setProgress] = useState<{ stage: string; bytes_sent: number; bytes_total: number; analysis_url?: string } | null>(null);
+  const operationId = useRef<string | null>(null);
+
+  useEffect(() => {
+    let unlisten: (() => void) | undefined;
+    let mounted = true;
+    void onEvent((event) => {
+      if (event.event !== "virustotal-progress") return;
+      const payload = eventRecord(event.data);
+      const value = payload && payload.id === operationId.current ? eventRecord(payload.progress) : null;
+      if (!value || typeof value.stage !== "string") return;
+      setProgress({
+        stage: value.stage,
+        bytes_sent: typeof value.bytes_sent === "number" ? value.bytes_sent : 0,
+        bytes_total: typeof value.bytes_total === "number" ? value.bytes_total : 0,
+        analysis_url: typeof value.analysis_url === "string" ? value.analysis_url : undefined,
+      });
+    }).then((cleanup) => {
+      if (mounted) unlisten = cleanup;
+      else cleanup();
+    }).catch(() => undefined);
+    return () => {
+      mounted = false;
+      unlisten?.();
+    };
+  }, []);
 
   useEffect(() => {
     void request<{ present?: boolean; masked?: string }>("virustotal.key_status").then(setKeyStatus).catch((reason: unknown) => setError(String(reason)));
@@ -127,8 +154,11 @@ function VirusTotalDialog({ path, onClose }: { path: string; onClose: () => void
   const start = async () => {
     setBusy(true);
     setError(null);
+    setProgress(null);
     try {
-      const result = await request<Record<string, unknown>>("virustotal.scan", { id: `vt-${crypto.randomUUID()}`, path });
+      const id = `vt-${crypto.randomUUID()}`;
+      operationId.current = id;
+      const result = await request<Record<string, unknown>>("virustotal.scan", { id, path });
       try {
         sessionStorage.setItem("clamui-last-vt-result", JSON.stringify(result));
       } catch {
@@ -173,9 +203,19 @@ function VirusTotalDialog({ path, onClose }: { path: string; onClose: () => void
     }
   };
 
-  return <Modal title={_("VirusTotal Scan")} onClose={onClose}>
+  const cancel = async () => {
+    if (operationId.current) await request("virustotal.cancel", { id: operationId.current }).catch(() => undefined);
+  };
+
+  return <Modal title={_("VirusTotal Scan")} busy={busy} onClose={onClose}>
     <p>{_("VirusTotal uploads one file at a time. Only send files you are authorized to share.")}</p>
     <p className="monospace">{path}</p>
+    {busy && progress && <div className="progress-block" role="status" aria-live="polite">
+      <p>{progress.stage === "hashing" ? _("Calculating file hash…") : progress.stage === "checking" ? _("Checking the VirusTotal file report…") : progress.stage === "uploading" ? _("Uploading file to VirusTotal…") : _("VirusTotal is analyzing the file…")}</p>
+      {progress.stage === "hashing" || progress.stage === "uploading" ? <><progress max={Math.max(progress.bytes_total, 1)} value={Math.min(progress.bytes_sent, progress.bytes_total)} /><small>{(progress.bytes_sent / 1048576).toFixed(1)} / {(progress.bytes_total / 1048576).toFixed(1)} MiB</small></> : null}
+      {progress.analysis_url && <button className="button" type="button" onClick={() => void openExternal(progress.analysis_url!).catch((reason: unknown) => setError(String(reason)))}>{_("Open VirusTotal analysis")}</button>}
+      <button className="button" type="button" onClick={() => void cancel()}>{_("Cancel scan")}</button>
+    </div>}
     {error && <p className="error" role="alert">{error}</p>}
     {keyStatus?.present ? <>
       <p className="muted">{_("API key available")}{keyStatus.masked ? ` (${keyStatus.masked})` : ""}</p>
@@ -189,7 +229,109 @@ function VirusTotalDialog({ path, onClose }: { path: string; onClose: () => void
   </Modal>;
 }
 
+type VTFolderPreview = { folder_path: string; files: Array<{ path: string; size: number }>; total_bytes: number; skipped_entries: number };
+type VTFolderResult = { folder_path: string; total_files: number; scanned_files: number; skipped_entries: number; cancelled: boolean; results: Array<{ file_path: string; status: string; detections: number; total_engines: number; permalink?: string; error_message?: string }> };
+
+function VirusTotalFolderDialog({ path, onClose }: { path: string; onClose: () => void }) {
+  const [preview, setPreview] = useState<VTFolderPreview | null>(null);
+  const [keyPresent, setKeyPresent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<VTFolderResult | null>(null);
+  const [progress, setProgress] = useState<{ index: number; total: number; path: string; stage: string; sent: number; bytes: number; analysis_url?: string } | null>(null);
+  const operationId = useRef<string | null>(null);
+
+  useEffect(() => {
+    void Promise.all([
+      request<VTFolderPreview>("virustotal.folder_preview", { path }),
+      request<{ present?: boolean }>("virustotal.key_status"),
+    ]).then(([folder, key]) => {
+      setPreview(folder);
+      setKeyPresent(key.present === true);
+    }).catch((reason: unknown) => setError(String(reason)));
+  }, [path]);
+
+  useEffect(() => {
+    let unlisten: (() => void) | undefined;
+    let mounted = true;
+    void onEvent((event) => {
+      if (event.event !== "virustotal-progress") return;
+      const payload = eventRecord(event.data);
+      const value = payload && payload.id === operationId.current ? eventRecord(payload.progress) : null;
+      if (!payload || !value || typeof value.stage !== "string") return;
+      setProgress({
+        index: typeof payload.folder_index === "number" ? payload.folder_index : 1,
+        total: typeof payload.folder_total === "number" ? payload.folder_total : 1,
+        path: typeof payload.file_path === "string" ? payload.file_path : "",
+        stage: value.stage,
+        sent: typeof value.bytes_sent === "number" ? value.bytes_sent : 0,
+        bytes: typeof value.bytes_total === "number" ? value.bytes_total : 0,
+        analysis_url: typeof value.analysis_url === "string" ? value.analysis_url : undefined,
+      });
+    }).then((cleanup) => {
+      if (mounted) unlisten = cleanup;
+      else cleanup();
+    }).catch(() => undefined);
+    return () => {
+      mounted = false;
+      unlisten?.();
+    };
+  }, []);
+
+  const run = async () => {
+    if (!preview || !keyPresent) return;
+    const id = `vt-folder-${crypto.randomUUID()}`;
+    operationId.current = id;
+    setBusy(true);
+    setError(null);
+    setResult(null);
+    setProgress(null);
+    try {
+      const scan = await request<VTFolderResult>("virustotal.folder_scan", { id, path, files: preview.files });
+      setResult(scan);
+    } catch (reason) {
+      setError(String(reason));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const cancel = async () => {
+    if (operationId.current) await request("virustotal.cancel", { id: operationId.current }).catch(() => undefined);
+  };
+  const totalDetections = result?.results.reduce((sum, item) => sum + item.detections, 0) ?? 0;
+
+  return <Modal title={_("VirusTotal Folder Scan")} busy={busy} onClose={onClose}>
+    <p>{_("Review the folder contents before any files are sent. VirusTotal receives each file hash and filename; files without an existing report may be uploaded and shared with its security partners.")}</p>
+    <p className="muted">{_("This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.")}</p>
+    <p className="monospace">{path}</p>
+    {error && <p className="error" role="alert">{error}</p>}
+    {!preview && !error && <p role="status">{_("Preparing folder preview…")}</p>}
+    {!preview && error && <div className="dialog-actions"><button className="button" type="button" onClick={onClose}>{_("Close")}</button></div>}
+    {preview && !result && <>
+      <p>{ngettext("{count} file, {size} MiB total", "{count} files, {size} MiB total", preview.files.length, { count: preview.files.length, size: (preview.total_bytes / 1048576).toFixed(1) })}</p>
+      {preview.skipped_entries > 0 && <p className="muted">{ngettext("{count} unreadable entry will be skipped.", "{count} unreadable entries will be skipped.", preview.skipped_entries, { count: preview.skipped_entries })}</p>}
+      {preview.files.length > 0 ? <ul className="compact-list">{preview.files.map((file) => <li key={file.path}><code className="path-value">{file.path}</code> <small>{(file.size / 1048576).toFixed(1)} MiB</small></li>)}</ul> : <p>{_("No readable files were found in this folder.")}</p>}
+      {!keyPresent && <p className="muted">{_("Configure a VirusTotal API key in Preferences before starting this scan.")}</p>}
+      <div className="dialog-actions"><button className="button" type="button" onClick={onClose}>{_("Close")}</button><button className="button primary" type="button" disabled={busy || !keyPresent || preview.files.length === 0} onClick={() => void run()}>{_("Upload and scan folder")}</button></div>
+    </>}
+    {busy && progress && <div className="progress-block" role="status" aria-live="polite">
+      <p>{_("File {current} of {total}: {stage}", { current: progress.index, total: progress.total, stage: progress.stage === "hashing" ? _("hashing") : progress.stage === "uploading" ? _("uploading") : _("analyzing") })}</p>
+      {progress.stage === "hashing" || progress.stage === "uploading" ? <><progress max={Math.max(progress.bytes, 1)} value={Math.min(progress.sent, progress.bytes)} /><small>{(progress.sent / 1048576).toFixed(1)} / {(progress.bytes / 1048576).toFixed(1)} MiB</small></> : null}
+      <code className="path-value">{progress.path}</code>
+      {progress.analysis_url && <button className="button" type="button" onClick={() => void openExternal(progress.analysis_url!).catch((reason: unknown) => setError(String(reason)))}>{_("Open VirusTotal analysis")}</button>}
+      <button className="button" type="button" onClick={() => void cancel()}>{_("Cancel scan")}</button>
+    </div>}
+    {result && <>
+      <div className="notice" role="status"><strong>{ngettext("{count} of {total} file scanned", "{count} of {total} files scanned", result.scanned_files, { count: result.scanned_files, total: result.total_files })}</strong><p>{ngettext("{count} detection reported", "{count} detections reported", totalDetections, { count: totalDetections })}{result.cancelled ? ` — ${_("cancelled")}` : ""}</p></div>
+      <ul className="compact-list">{result.results.map((item) => <li key={item.file_path}><span className="row"><code className="path-value">{item.file_path}</code><strong>{item.detections}/{item.total_engines}</strong></span>{item.error_message && <small>{item.error_message}</small>}{item.permalink && <button className="button" type="button" onClick={() => void openExternal(item.permalink!).catch((reason: unknown) => setError(String(reason)))}>{_("View on VirusTotal")}</button>}</li>)}</ul>
+      <div className="dialog-actions"><button className="button primary" type="button" onClick={onClose}>{_("Close")}</button></div>
+    </>}
+  </Modal>;
+}
+
 export default function Scan() {
+  const [scanMode, setScanMode] = useState<"files" | "website">("files");
   const [paths, setPaths] = useState<string[]>([]);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [profileId, setProfileId] = useState("");
@@ -203,6 +345,7 @@ export default function Scan() {
   const [notice, setNotice] = useState<StatusNotice | null>(null);
   const [missingDatabase, setMissingDatabase] = useState(false);
   const [vtPath, setVtPath] = useState<string | null>(null);
+  const [vtFolder, setVtFolder] = useState<string | null>(null);
   const [fullscreenDetails, setFullscreenDetails] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const scanning = activeId !== null;
@@ -466,6 +609,15 @@ export default function Scan() {
       setNotice({ kind: "error", message: _("Unable to choose scan targets"), detail: String(reason) });
     }
   };
+
+  const chooseVirusTotalFolder = async () => {
+    try {
+      const selected = await openPaths({ directory: true, multiple: false });
+      if (selected[0]) setVtFolder(selected[0]);
+    } catch (reason) {
+      setNotice({ kind: "error", message: _("Unable to open the folder picker"), detail: String(reason) });
+    }
+  };
   const cancel = async () => {
     if (!activeIdRef.current) return;
     try {
@@ -531,11 +683,16 @@ export default function Scan() {
   const detailChunks = useMemo<readonly string[]>(() => result ? scanLogChunks(result) : [], [result]);
   const resultStatus = result?.status === "infected" ? "warning" : result?.status === "error" ? "error" : result?.status === "clean" ? "success" : "";
 
-  return <section className="page scan-page" onDragOver={(event) => event.preventDefault()} onDrop={drop} aria-label={_("Scan")}>
+  return <section className="page scan-page" onDragOver={scanMode === "files" ? (event) => event.preventDefault() : undefined} onDrop={scanMode === "files" ? drop : undefined} aria-label={_("Scan")}>
     <header className="page-header">
       <div><h1>{_("Scan")}</h1><p className="muted">{scanner?.active_backend || scanner?.backend ? `${_("Backend")}: ${scanner.active_backend ?? scanner.backend}` : ""}</p></div>
       <div className="actions"><button className="button" onClick={() => void refreshStatus()} disabled={scanning}>{_("Refresh status")}</button><button className="button" onClick={() => navigate("profiles")}>{_("Manage Profiles")}</button></div>
     </header>
+    <div className="tab-list scan-mode-tabs" role="tablist" aria-label={_("Scan type")}>
+      <button type="button" role="tab" id="scan-files-tab" aria-controls="scan-files-panel" aria-selected={scanMode === "files"} onClick={() => setScanMode("files")}>{_("Files & Folders")}</button>
+      <button type="button" role="tab" id="scan-website-tab" aria-controls="scan-website-panel" aria-selected={scanMode === "website"} disabled={scanning} onClick={() => setScanMode("website")}>{_("Website URL")}</button>
+    </div>
+    <div id="scan-files-panel" role="tabpanel" aria-labelledby="scan-files-tab" hidden={scanMode !== "files"}>
     {notice && <div className={`notice ${notice.kind}`} role={notice.kind === "error" ? "alert" : "status"}><strong>{notice.message}</strong>{notice.detail && <details><summary>{_("Details")}</summary><pre className="monospace">{notice.detail}</pre></details>}</div>}
 
     <section aria-labelledby="scan-profile-title">
@@ -556,12 +713,17 @@ export default function Scan() {
 
     {scanning && <section className="scan-progress grouped-list" aria-labelledby="scan-progress-title"><div className="group-row"><div className="row-copy"><h2 id="scan-progress-title" className="row-title">{_("Scanning")}</h2>{showLiveProgress ? <><p className="row-description path-value">{progress.current_file || _("Waiting for scan data…")}</p>{scanPercent === null ? <progress className="progress" aria-label={_("Scan progress")} /> : <progress className="progress" value={scanPercent} max="100" aria-label={_("Scan progress")}>{scanPercent}</progress>}<p className="muted inline-metadata"><span className="metadata-item">{ngettext("{count} file scanned", "{count} files scanned", filesScanned, { count: filesScanned })}</span><span className="metadata-item">{ngettext("{count} threat", "{count} threats", progress.infected_count ?? liveThreats.length, { count: progress.infected_count ?? liveThreats.length })}</span></p>{progress.estimate_exceeded && <p className="warning">{_("Estimated file count exceeded")}</p>}{liveThreats.length > 0 && <ul className="summary-list">{liveThreats.slice(-10).map((threat, index) => <li key={`${threat.file_path}-${index}`}><strong>{threat.threat_name}</strong><span className="path-value">{threat.file_path}</span></li>)}</ul>}</> : <p className="row-description">{_("Live progress is disabled. The completed scan result will remain available.")}</p>}</div><button className="button danger" onClick={() => void cancel()}>{paths.length > 1 ? _("Cancel All") : _("Cancel")}</button></div></section>}
 
-    <div className="actions scan-actions"><button className="button primary icon-button" title={scanning ? _("Scanning…") : _("Start Scan")} aria-label={scanning ? _("Scanning…") : _("Start Scan")} onClick={() => void startScan()} disabled={scanning || paths.length === 0}><Icon name="play" /></button><button className="button icon-button" title={_("Run EICAR Test")} aria-label={_("Run EICAR Test")} onClick={() => void runEicar()} disabled={scanning}><Icon name="shield" /></button><button className="button icon-button" title={_("Scan with VirusTotal")} aria-label={_("Scan with VirusTotal")} onClick={() => { if (paths[0]) setVtPath(paths[0]); else setNotice({ kind: "warning", message: _("Select one file before using VirusTotal") }); }} disabled={scanning || paths.length === 0}><Icon name="upload" /></button></div>
+    <div className="actions scan-actions"><button className="button primary icon-button" title={scanning ? _("Scanning…") : _("Start Scan")} aria-label={scanning ? _("Scanning…") : _("Start Scan")} onClick={() => void startScan()} disabled={scanning || paths.length === 0}><Icon name="play" /></button><button className="button icon-button" title={_("Run EICAR Test")} aria-label={_("Run EICAR Test")} onClick={() => void runEicar()} disabled={scanning}><Icon name="shield" /></button><button className="button icon-button" title={_("Scan with VirusTotal")} aria-label={_("Scan with VirusTotal")} onClick={() => { if (paths.length === 1 && paths[0]) setVtPath(paths[0]); else setNotice({ kind: "warning", message: _("Select exactly one file before using VirusTotal") }); }} disabled={scanning || paths.length !== 1}><Icon name="upload" /></button><button className="button icon-button" title={_("Scan a folder with VirusTotal")} aria-label={_("Scan a folder with VirusTotal")} onClick={() => void chooseVirusTotalFolder()} disabled={scanning}><Icon name="folder" /></button></div>
 
     {result && <><section className="scan-result-summary grouped-list" aria-labelledby="latest-scan-title"><div className="group-row"><div className="row-copy"><div className="row"><strong id="latest-scan-title">{_("Latest scan")}</strong><span className={`status-badge ${resultStatus}`}>{scanStatusLabel(result.status)}</span></div><p className="row-description inline-metadata"><span className="metadata-item">{ngettext("{count} file scanned", "{count} files scanned", result.scanned_files ?? 0, { count: result.scanned_files ?? 0 })}</span><span className="metadata-item">{ngettext("{count} threat", "{count} threats", result.infected_count ?? result.threat_details?.length ?? 0, { count: result.infected_count ?? result.threat_details?.length ?? 0 })}</span></p></div><div className="actions"><button className="button" onClick={() => navigate("results", { result })}>{_("View Results")}</button></div></div></section>{detailChunks.length > 0 && <details className="scan-details" onToggle={(event) => setDetailsOpen(event.currentTarget.open)}><summary>{_("Details")}</summary>{detailsOpen && <><div className="actions"><button className="button" onClick={() => void copyDetails(result)}><Icon name="copy" />{_("Copy")}</button><button className="button" onClick={() => setFullscreenDetails(true)}><Icon name="expand" />{_("Fullscreen")}</button></div><ScanLogViewport chunks={detailChunks} label={_("Scan details")} /></>}</details>}</>}
 
     {missingDatabase && <Modal title={_("Virus database is not available")} onClose={() => setMissingDatabase(false)}><p>{scanner?.database_error || scanner?.error || _("Update the database before starting a scan.")}</p><div className="dialog-actions"><button className="button primary" onClick={() => { setMissingDatabase(false); navigate("database"); }}>{_("Open Database Updates")}</button><button className="button" onClick={() => setMissingDatabase(false)}>{_("Cancel")}</button></div></Modal>}
     {vtPath && <VirusTotalDialog path={vtPath} onClose={() => setVtPath(null)} />}
+    {vtFolder && <VirusTotalFolderDialog path={vtFolder} onClose={() => setVtFolder(null)} />}
     {fullscreenDetails && result && detailChunks.length > 0 && <Modal title={_("Scan details")} onClose={() => setFullscreenDetails(false)} className="fullscreen-log"><div className="dialog-actions"><button className="button" onClick={() => void copyDetails(result)}><Icon name="copy" />{_("Copy")}</button></div><ScanLogViewport chunks={detailChunks} label={_("Scan details")} /></Modal>}
+    </div>
+    <div id="scan-website-panel" role="tabpanel" aria-labelledby="scan-website-tab" hidden={scanMode !== "website"}>
+      <Urlscan active={scanMode === "website"} />
+    </div>
   </section>;
 }

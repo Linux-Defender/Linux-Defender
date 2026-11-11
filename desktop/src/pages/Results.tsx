@@ -115,7 +115,7 @@ function ScanResultPanel({ result }: { result: ScanResult }) {
     const output = fullOutput();
     if (!output) throw new Error(_("No scan output is available"));
     if (output.length > LARGE_COPY_BYTES || byteSize(output) > LARGE_COPY_BYTES) {
-      await saveText(output, "clamui_scan_results.txt", [{ name: _("Text Files"), extensions: ["txt"] }]);
+      await saveText(output, "linux_defender_scan_results.txt", [{ name: _("Text Files"), extensions: ["txt"] }]);
     } else {
       await copyText(output);
     }
@@ -214,7 +214,7 @@ function VirusTotalPanel({ result }: { result: VTResult }) {
   const exportData = JSON.stringify(result, null, 2);
   const copyOrExport = async () => {
     try {
-      if (byteSize(exportData) > LARGE_COPY_BYTES) await saveText(exportData, "clamui_virustotal_results.json", [{ name: _("JSON Files"), extensions: ["json"] }]);
+      if (byteSize(exportData) > LARGE_COPY_BYTES) await saveText(exportData, "linux_defender_virustotal_results.json", [{ name: _("JSON Files"), extensions: ["json"] }]);
       else await copyText(exportData);
     } catch (reason) {
       setError(String(reason));

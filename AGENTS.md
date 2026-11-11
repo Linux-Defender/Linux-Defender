@@ -17,6 +17,10 @@ The frontend has one request path to the native runtime; the runtime forwards on
 
 The Rust core and desktop are the only application implementation. Make behavior changes in their owned source boundaries and preserve the established core-to-runtime-to-frontend contract.
 
+## Upstream parity maintenance
+
+When reviewing or adopting work from ClamTk, ClamUI, Lenspect, or another related scanner, keep the parity matrix in `docs/revival/RELATED-PROJECT-REVIEW.md` current. Record the upstream repository, reviewed default-branch commit/date, issue or PR identifiers, and whether each behavior is implemented, intentionally deferred, or still open. Review issue reports and PR diffs independently; a merged upstream PR is not proof that the behavior exists here. Port behavior into this single Rust/Tauri/React runtime and add a regression test at the owning boundary. Check privacy, network disclosure, credentials, file and URL limits, cancellation, accessibility, localization, platform compatibility, and license obligations before adoption. Do not copy GPL-licensed Lenspect code into this MIT-licensed project without an explicit licensing decision; behavior can be independently implemented and tested. Re-run the parity review when changing a related integration and before release.
+
 ## Build and test entry points
 
 Toolchain manifests are the source of truth. Typical local commands are:

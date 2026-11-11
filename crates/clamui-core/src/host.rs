@@ -9,7 +9,16 @@ use std::path::Path;
 use std::process::Stdio;
 use std::time::{Duration, Instant};
 
-const DATABASE_SUFFIXES: [&str; 3] = ["cvd", "cld", "cud"];
+const DATABASE_SUFFIXES: &[&str] = &["cvd", "cld", "cud"];
+const CLAMAV_SIGNATURE_SUFFIXES: &[&str] = &[
+    "cvd", "cld", "cud", "ndb", "ndu", "ldb", "ldu", "idb", "cdb", "cbc", "pdb", "gdb", "wdb",
+    "hdb", "hsb", "hdu", "hsu", "mdb", "msb", "mdu", "msu", "yar", "yara",
+];
+const SIGNATURE_INVENTORY_SUFFIXES: &[&str] = &[
+    "cvd", "cld", "cud", "cfg", "cat", "crb", "ftm", "ndb", "ndu", "ldb", "ldu", "idb", "cdb",
+    "cbc", "pdb", "gdb", "wdb", "hdb", "hsb", "hdu", "hsu", "mdb", "msb", "mdu", "msu", "yar",
+    "yara", "fp", "sfp", "ign", "ign2", "pwdb", "info",
+];
 const DEFAULT_DATABASE_DIRS: [&str; 2] = ["/var/lib/clamav", "/usr/local/share/clamav"];
 const CLAMD_CONFIGS: [&str; 3] = [
     "/etc/clamav/clamd.conf",
@@ -23,9 +32,10 @@ const FRESHCLAM_CONFIGS: [&str; 2] = ["/etc/clamav/freshclam.conf", "/etc/freshc
 const DATABASE_INVENTORY_OUTPUT_LIMIT: usize = 4 * 1024 * 1024;
 const DATABASE_INVENTORY_TIMEOUT: Duration = Duration::from_secs(5);
 
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
 pub(crate) struct DatabaseDirectoryInventory {
     pub files: u64,
+    pub names: Vec<String>,
     pub latest_modified_unix: Option<u64>,
 }
 
@@ -426,7 +436,7 @@ pub fn database_available(config_path: Option<&str>, require_readable: bool) -> 
 
 fn database_in_dir(dir: &str, require_readable: bool) -> AppResult<bool> {
     if is_flatpak() {
-        let script = "found=0; for f in \"$1\"/*.cvd \"$1\"/*.cld \"$1\"/*.cud; do [ -f \"$f\" ] || continue; found=1; if [ \"$2\" = 1 ]; then [ -r \"$f\" ] || continue; fi; exit 0; done; [ \"$found\" = 1 ] && exit 2; exit 1";
+        let script = "found=0; for f in \"$1\"/*.cvd \"$1\"/*.cld \"$1\"/*.cud \"$1\"/*.ndb \"$1\"/*.ndu \"$1\"/*.ldb \"$1\"/*.ldu \"$1\"/*.idb \"$1\"/*.cdb \"$1\"/*.cbc \"$1\"/*.pdb \"$1\"/*.gdb \"$1\"/*.wdb \"$1\"/*.hdb \"$1\"/*.hsb \"$1\"/*.hdu \"$1\"/*.hsu \"$1\"/*.mdb \"$1\"/*.msb \"$1\"/*.mdu \"$1\"/*.msu \"$1\"/*.yar \"$1\"/*.yara; do [ -f \"$f\" ] || continue; found=1; if [ \"$2\" = 1 ]; then [ -r \"$f\" ] || continue; fi; exit 0; done; [ \"$found\" = 1 ] && exit 2; exit 1";
         let output = run_host(
             "sh",
             &[
@@ -454,7 +464,7 @@ fn database_in_dir(dir: &str, require_readable: bool) -> AppResult<bool> {
                 .extension()
                 .and_then(|extension| extension.to_str())
                 .is_some_and(|extension| {
-                    DATABASE_SUFFIXES.contains(&extension.to_ascii_lowercase().as_str())
+                    CLAMAV_SIGNATURE_SUFFIXES.contains(&extension.to_ascii_lowercase().as_str())
                 })
         {
             if !require_readable || fs::File::open(&path).is_ok() {
@@ -472,8 +482,8 @@ fn database_in_dir(dir: &str, require_readable: bool) -> AppResult<bool> {
 /// Returns database-file metadata from the host filesystem.
 ///
 /// Flatpak must not inspect its sandbox's `/var` directly. The host branch
-/// emits timestamps only, so database filenames (which may contain arbitrary
-/// bytes) never need to cross the process boundary.
+/// emits NUL-delimited timestamp/name pairs so whitespace in filenames cannot
+/// corrupt records. Non-UTF-8 names make the optional inventory unavailable.
 pub(crate) fn database_directory_inventory(dir: &str) -> AppResult<DatabaseDirectoryInventory> {
     if is_flatpak() {
         let find_dir = if dir.starts_with('-') {
@@ -495,12 +505,23 @@ pub(crate) fn database_directory_inventory(dir: &str) -> AppResult<DatabaseDirec
         fs::read_dir(dir).map_err(|error| format!("Error accessing database {dir}: {error}"))?;
     let mut inventory = DatabaseDirectoryInventory::default();
     for entry in entries.flatten() {
-        let name = entry.file_name();
-        let name = name.to_string_lossy();
-        if !name.ends_with(".cvd") && !name.ends_with(".cld") && !name.ends_with(".cud") {
+        let path = entry.path();
+        if !path.is_file()
+            || !path
+                .extension()
+                .and_then(|extension| extension.to_str())
+                .is_some_and(|extension| {
+                    SIGNATURE_INVENTORY_SUFFIXES.contains(&extension.to_ascii_lowercase().as_str())
+                })
+        {
             continue;
         }
         inventory.files += 1;
+        if let Some(name) = path.file_name().and_then(|name| name.to_str()) {
+            if safe_database_filename(name) {
+                inventory.names.push(name.to_owned());
+            }
+        }
         if let Ok(modified) = entry.metadata().and_then(|metadata| metadata.modified()) {
             if let Ok(modified) = modified.duration_since(std::time::UNIX_EPOCH) {
                 let modified = modified.as_secs();
@@ -512,6 +533,7 @@ pub(crate) fn database_directory_inventory(dir: &str) -> AppResult<DatabaseDirec
             }
         }
     }
+    inventory.names.sort();
     Ok(inventory)
 }
 
@@ -525,18 +547,10 @@ fn host_database_directory_inventory(dir: &str) -> AppResult<DatabaseDirectoryIn
             "1",
             "-maxdepth",
             "1",
-            "(",
-            "-name",
-            "*.cvd",
-            "-o",
-            "-name",
-            "*.cld",
-            "-o",
-            "-name",
-            "*.cud",
-            ")",
+            "-type",
+            "f",
             "-printf",
-            "%T@\n",
+            "%T@\\0%f\\0",
         ],
         DATABASE_INVENTORY_TIMEOUT,
         DATABASE_INVENTORY_OUTPUT_LIMIT,
@@ -560,8 +574,23 @@ fn host_database_directory_inventory(dir: &str) -> AppResult<DatabaseDirectoryIn
 
 fn database_inventory_from_timestamps(timestamps: &str) -> AppResult<DatabaseDirectoryInventory> {
     let mut inventory = DatabaseDirectoryInventory::default();
-    for timestamp in timestamps.lines() {
+    let mut records = timestamps.split('\0');
+    while let Some(timestamp) = records.next() {
+        if timestamp.is_empty() {
+            continue;
+        }
+        let name = records
+            .next()
+            .ok_or_else(|| "Incomplete database inventory record".to_owned())?;
+        if !name.rsplit_once('.').is_some_and(|(_, extension)| {
+            SIGNATURE_INVENTORY_SUFFIXES.contains(&extension.to_ascii_lowercase().as_str())
+        }) {
+            continue;
+        }
         inventory.files += 1;
+        if safe_database_filename(name) {
+            inventory.names.push(name.to_owned());
+        }
         if let Some(timestamp) = parse_database_timestamp(timestamp)? {
             inventory.latest_modified_unix = Some(
                 inventory
@@ -570,7 +599,15 @@ fn database_inventory_from_timestamps(timestamps: &str) -> AppResult<DatabaseDir
             );
         }
     }
+    inventory.names.sort();
     Ok(inventory)
+}
+
+fn safe_database_filename(name: &str) -> bool {
+    !name.is_empty()
+        && name
+            .bytes()
+            .all(|byte| byte.is_ascii_alphanumeric() || matches!(byte, b'.' | b'_' | b'-'))
 }
 
 fn parse_database_timestamp(timestamp: &str) -> AppResult<Option<u64>> {
@@ -598,11 +635,16 @@ fn parse_database_timestamp(timestamp: &str) -> AppResult<Option<u64>> {
 
 pub fn database_status(config_path: Option<&str>) -> Value {
     let probe = database_available(config_path, true);
+    let inventory = probe
+        .path
+        .as_deref()
+        .and_then(|path| database_directory_inventory(path).ok())
+        .unwrap_or_default();
     if !probe.available {
-        return json!({"available": false, "detail": probe.detail, "path": probe.path, "age_days": Value::Null, "updated_at": Value::Null});
+        return json!({"available": false, "detail": probe.detail, "path": probe.path, "age_days": Value::Null, "updated_at": Value::Null, "files_detected": inventory.files, "file_names": inventory.names});
     }
     let Some(dir) = probe.path.clone() else {
-        return json!({"available": true, "detail": probe.detail, "path": Value::Null, "age_days": Value::Null, "updated_at": Value::Null});
+        return json!({"available": true, "detail": probe.detail, "path": Value::Null, "age_days": Value::Null, "updated_at": Value::Null, "files_detected": inventory.files, "file_names": inventory.names});
     };
     let newest = if is_flatpak() {
         let script = "find \"$1\" -maxdepth 1 -type f \\( -iname '*.cvd' -o -iname '*.cld' -o -iname '*.cud' \\) -printf '%T@ %p\\n' | sort -nr | head -n 1";
@@ -658,10 +700,10 @@ pub fn database_status(config_path: Option<&str>) -> Value {
             let age_days = ((now - timestamp).max(0) as f64 / 86_400.0).floor() as u64;
             let updated_at = chrono::DateTime::<chrono::Utc>::from_timestamp(timestamp, 0)
                 .map(|time| time.to_rfc3339());
-            json!({"available": true, "detail": probe.detail, "path": path, "age_days": age_days, "updated_at": updated_at})
+            json!({"available": true, "detail": probe.detail, "path": path, "age_days": age_days, "updated_at": updated_at, "files_detected": inventory.files, "file_names": inventory.names})
         }
         None => {
-            json!({"available": true, "detail": probe.detail, "path": dir, "age_days": Value::Null, "updated_at": Value::Null})
+            json!({"available": true, "detail": probe.detail, "path": dir, "age_days": Value::Null, "updated_at": Value::Null, "files_detected": inventory.files, "file_names": inventory.names})
         }
     }
 }
@@ -980,13 +1022,19 @@ mod tests {
         let main = database.join("main.cvd");
         let daily = database.join("daily\ncopy.cld");
         let ignored = database.join("ignored.CLD");
+        let custom = database.join("custom.ndb");
+        let yara = database.join("local.yar");
         fs::write(&main, "main").expect("write main database");
         fs::write(&daily, "daily").expect("write daily database");
         fs::write(&ignored, "ignored").expect("write ignored database");
+        fs::write(&custom, "custom").expect("write custom database");
+        fs::write(&yara, "yara").expect("write YARA database");
         for (path, timestamp) in [
             (&main, 1_700_000_100),
             (&daily, 1_700_000_200),
             (&ignored, 1_700_000_300),
+            (&custom, 1_700_000_400),
+            (&yara, 1_700_000_500),
         ] {
             fs::File::open(path)
                 .expect("open database file")
@@ -996,8 +1044,16 @@ mod tests {
 
         let direct = database_directory_inventory(database.to_str().expect("database path"))
             .expect("inventory database");
-        assert_eq!(direct.files, 2);
-        assert_eq!(direct.latest_modified_unix, Some(1_700_000_200));
+        assert_eq!(direct.files, 5);
+        assert_eq!(direct.latest_modified_unix, Some(1_700_000_500));
+        assert_eq!(
+            direct.names,
+            vec!["custom.ndb", "ignored.CLD", "local.yar", "main.cvd"]
+        );
+        assert!(
+            database_in_dir(database.to_str().expect("database path"), true)
+                .expect("custom signature is usable")
+        );
 
         let linked = root.path().join("database-link");
         symlink(&database, &linked).expect("link database directory");

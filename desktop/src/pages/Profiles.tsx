@@ -105,7 +105,7 @@ function ProfileEditor({ profile, onClose, onSaved }: { profile: Profile | null;
         </>}
       </section>
 
-      <label className="field">{_("Scan Options (JSON)")}<textarea className="monospace" value={draft.optionsText} disabled={busy} onChange={(event) => setDraft((current) => ({ ...current, optionsText: event.target.value }))} /></label>
+      <label className="field">{_("Advanced ClamAV scan options (JSON)")}<textarea className="monospace" value={draft.optionsText} disabled={busy} onChange={(event) => setDraft((current) => ({ ...current, optionsText: event.target.value }))} /><span className="muted">{_("Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.")}</span></label>
       <div className="dialog-actions"><button className="button primary" onClick={() => void save()} disabled={busy || !validName}><Icon name="save" />{busy ? _("Saving…") : _("Save Profile")}</button></div>
     </div>
   </Modal>;

@@ -130,7 +130,7 @@ function componentNote(id: ComponentId): string {
     case "clamd":
       return _(
         // Translators: Keep the embedded file path, command, and command-line options unchanged.
-        "Configuration is auto-detected in Preferences. On Fedora, ClamUI uses /etc/clamd.d/scan.conf. If clamd is running but unavailable, verify socket permissions and run: clamdscan --config-file=/etc/clamd.d/scan.conf --ping 3",
+        "Configuration is auto-detected in Preferences. On Fedora, Linux Defender uses /etc/clamd.d/scan.conf. If clamd is running but unavailable, verify socket permissions and run: clamdscan --config-file=/etc/clamd.d/scan.conf --ping 3",
       );
   }
 }
@@ -205,7 +205,7 @@ export default function Components(): JSX.Element {
         </button>
       </header>
 
-      <p className="notice warning">{_("Setup instructions are copy-only. ClamUI never installs packages or starts services for you.")}</p>
+      <p className="notice warning">{_("Setup instructions are copy-only. Linux Defender never installs packages or starts services for you.")}</p>
       {error && <p className="notice error" role="alert">{_("Could not check component status: {error}", { error })}</p>}
       {detectedDistro && detectedDistro !== "unknown" && <p className="muted">{_("Detected host family: {distro}.", { distro: detectedDistro.replace("_", " ") })}</p>}
 

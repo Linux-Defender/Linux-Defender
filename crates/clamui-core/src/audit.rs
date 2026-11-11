@@ -430,9 +430,15 @@ fn check_clamav_health(ctx: &Context) -> AuditSection {
     daemon.info_url = Some(URL_CLAMD.to_owned());
     section.push(daemon);
 
-    let freshclam_active = ["clamav-freshclam", "clamav-freshclam.timer"]
-        .iter()
-        .any(|service| service_active(service).0);
+    let freshclam_active = first_active_service(
+        &[
+            "clamav-freshclam",
+            "clamav-freshclam.timer",
+            "clamav-freshclam-once.timer",
+        ],
+        |service| service_active(service).0,
+    )
+    .is_some();
     let mut freshclam = if freshclam_active {
         check(
             ctx,
@@ -454,6 +460,13 @@ fn check_clamav_health(ctx: &Context) -> AuditSection {
     freshclam.info_url = Some(URL_FRESHCLAM.to_owned());
     section.push(freshclam);
     section
+}
+
+fn first_active_service<'a>(
+    services: &'a [&'a str],
+    mut is_active: impl FnMut(&str) -> bool,
+) -> Option<&'a str> {
+    services.iter().copied().find(|service| is_active(service))
 }
 
 pub fn parse_cvd_age(bytes: &[u8], now: SystemTime) -> Option<(i64, String)> {
@@ -1572,5 +1585,21 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
             portmaster::launch(command).map(|launched| json!({"launched": launched}))
         }
         _ => Err(format!("Unknown audit action: {action}")),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::first_active_service;
+
+    #[test]
+    fn freshclam_once_timer_is_recognized_by_the_audit_service_probe() {
+        let units = [
+            "clamav-freshclam",
+            "clamav-freshclam.timer",
+            "clamav-freshclam-once.timer",
+        ];
+        let active = first_active_service(&units, |unit| unit == "clamav-freshclam-once.timer");
+        assert_eq!(active, Some("clamav-freshclam-once.timer"));
     }
 }

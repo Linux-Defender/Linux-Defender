@@ -118,6 +118,23 @@ fn dolphin_repair_migrates_stale_legacy_service_menu() {
 }
 
 #[test]
+fn nautilus_install_renames_the_managed_scan_script_and_removes_legacy_label() {
+    let root = temporary_share("nautilus");
+    let paths = paths(root.clone(), None);
+    let scripts = root.join("nautilus/scripts");
+    fs::create_dir_all(&scripts).expect("create existing Nautilus scripts directory");
+    fs::write(scripts.join("Scan with ClamUI"), b"managed legacy launcher")
+        .expect("write legacy launcher");
+
+    install_integration_at(&paths, "nautilus", false).expect("install branded Nautilus actions");
+    assert!(scripts.join("Scan with Linux Defender").is_file());
+    assert!(!scripts.join("Scan with ClamUI").exists());
+
+    remove_integration_at(&paths, "nautilus").expect("remove Nautilus integration");
+    fs::remove_dir_all(root).expect("remove temporary integration root");
+}
+
+#[test]
 fn thunar_sendto_installs_multi_file_scan_and_explicit_virustotal_actions() {
     let root = temporary_share("thunar");
     let paths = paths(root.clone(), None);

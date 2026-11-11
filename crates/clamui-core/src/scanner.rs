@@ -5,7 +5,7 @@ use crate::scan_parser::{detection, wire_path, BackendEvidence, StreamEvidence};
 use crate::AppResult;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
-use std::collections::HashSet;
+use std::collections::{BTreeMap, HashSet};
 #[cfg(test)]
 use std::ffi::OsStr;
 use std::fs::{self, File, OpenOptions};
@@ -166,6 +166,42 @@ struct Exclusions {
     directories: Vec<String>,
     patterns: Vec<String>,
     yara_rules: Vec<PathBuf>,
+}
+
+#[derive(Default)]
+struct ScanOptions {
+    limits: BTreeMap<&'static str, String>,
+    pua: Option<bool>,
+    alert_broken: Option<bool>,
+    alert_macros: Option<bool>,
+    heuristic_alerts: Option<bool>,
+    follow_directory_symlinks: Option<bool>,
+    follow_file_symlinks: Option<bool>,
+    recursive: Option<bool>,
+    exclude_hidden: bool,
+}
+
+struct ScanExecution<'a> {
+    recursive: bool,
+    backend: &'a str,
+    force_stream: bool,
+    exclusions: &'a Exclusions,
+    options: &'a ScanOptions,
+    database_directory: Option<&'a str>,
+}
+
+impl ScanOptions {
+    fn requires_standalone(&self) -> bool {
+        !self.limits.is_empty()
+            || self.pua.is_some()
+            || self.alert_broken.is_some()
+            || self.alert_macros.is_some()
+            || self.heuristic_alerts.is_some()
+            || self.follow_directory_symlinks.is_some()
+            || self.follow_file_symlinks.is_some()
+            || self.recursive.is_some()
+            || self.exclude_hidden
+    }
 }
 
 #[derive(Default)]
@@ -392,11 +428,15 @@ fn status(ctx: &Context) -> AppResult<Value> {
         }
     };
     let database = database_status(ctx);
-    let database_available = daemon_available
-        || database
-            .get("available")
-            .and_then(Value::as_bool)
-            .unwrap_or(false);
+    let local_database_available = database
+        .get("available")
+        .and_then(Value::as_bool)
+        .unwrap_or(false);
+    let database_available = if backend == "daemon" {
+        daemon_available
+    } else {
+        local_database_available
+    };
     let database_error = (!database_available).then(|| {
         crate::i18n::translate(
             ctx,
@@ -430,8 +470,14 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
     if request.paths.is_empty() {
         return Err("scanner.scan requires at least one path".into());
     }
-    let mut exclusions = merged_exclusions(ctx, &request)?;
+    let (mut exclusions, options) = merged_scan_plan(ctx, &request)?;
     exclusions.yara_rules = yara_database_paths(ctx)?;
+    let database_directory = clamscan_database_directory(ctx);
+    if !exclusions.yara_rules.is_empty() && database_directory.is_none() {
+        return Err(
+            "Local YARA rules require a readable ClamAV signature database directory; refusing a YARA-only scan".to_owned()
+        );
+    }
     let id = request.id.unwrap_or_else(new_scan_id);
     let job = ctx.job(&id)?;
     let started = Instant::now();
@@ -442,7 +488,9 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
     if !matches!(configured.as_str(), "auto" | "daemon" | "clamscan") {
         return Err("backend_override must be auto, daemon, or clamscan".into());
     }
-    let selected_backend = if configured == "auto" && !exclusions.yara_rules.is_empty() {
+    let selected_backend = if configured == "auto"
+        && (!exclusions.yara_rules.is_empty() || options.requires_standalone())
+    {
         "clamscan".to_owned()
     } else {
         select_backend(ctx, &configured)
@@ -456,12 +504,14 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
             results.push(result);
             continue;
         }
-        let mut result = if selected_backend == "daemon" && !exclusions.yara_rules.is_empty() {
+        let mut result = if selected_backend == "daemon"
+            && (!exclusions.yara_rules.is_empty() || options.requires_standalone())
+        {
             ScanResult::error(
                 path,
                 crate::i18n::translate(
                     ctx,
-                    "Local YARA rules require the standalone clamscan backend. Change the scan backend preference to automatic or clamscan.",
+                    "This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.",
                 ),
                 &selected_backend,
             )
@@ -470,10 +520,14 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
                 ctx,
                 &job,
                 path,
-                request.recursive,
-                &selected_backend,
-                request.force_stream,
-                &exclusions,
+                ScanExecution {
+                    recursive: options.recursive.unwrap_or(request.recursive),
+                    backend: &selected_backend,
+                    force_stream: request.force_stream,
+                    exclusions: &exclusions,
+                    options: &options,
+                    database_directory: database_directory.as_deref(),
+                },
             )
         };
         localize_result(ctx, &mut result);
@@ -547,11 +601,16 @@ fn scan_target(
     ctx: &Context,
     job: &Job,
     raw_path: &str,
-    recursive: bool,
-    backend: &str,
-    force_stream: bool,
-    exclusions: &Exclusions,
+    execution: ScanExecution<'_>,
 ) -> ScanResult {
+    let ScanExecution {
+        recursive,
+        backend,
+        force_stream,
+        exclusions,
+        options,
+        database_directory,
+    } = execution;
     let path = match scan_path_from_wire(ctx, raw_path) {
         Ok(path) => path,
         Err(error) => return ScanResult::error(raw_path, error, backend),
@@ -605,7 +664,14 @@ fn scan_target(
     }
 
     let command = "clamscan".to_owned();
-    let args = clamscan_arguments(ctx, &path, recursive, exclusions);
+    let args = clamscan_arguments(
+        ctx,
+        &path,
+        recursive,
+        exclusions,
+        options,
+        database_directory,
+    );
     let mut progress = ProgressState::default();
     let total = Some(count.files).filter(|total| *total > 0);
     let output = execute(&command, &args, None, &job.cancelled, |line| {
@@ -982,6 +1048,8 @@ fn clamscan_arguments(
     path: &Path,
     recursive: bool,
     exclusions: &Exclusions,
+    options: &ScanOptions,
+    database_directory: Option<&str>,
 ) -> Vec<String> {
     let mut args = Vec::new();
     if recursive && path.is_dir() {
@@ -994,9 +1062,41 @@ fn clamscan_arguments(
         ("MaxRecursion", "--max-recursion"),
         ("MaxFiles", "--max-files"),
     ] {
-        if let Some(value) = clamd_limit(ctx, key) {
+        if let Some(value) = options
+            .limits
+            .get(key)
+            .cloned()
+            .or_else(|| clamd_limit(ctx, key))
+        {
             args.push(format!("{flag}={value}"));
         }
+    }
+    for (option, flag) in [
+        (options.pua, "--detect-pua"),
+        (options.alert_broken, "--alert-broken"),
+        (options.alert_macros, "--alert-macros"),
+    ] {
+        if let Some(enabled) = option {
+            args.push(format!("{flag}={}", if enabled { "yes" } else { "no" }));
+        }
+    }
+    if let Some(enabled) = options.heuristic_alerts {
+        args.push(format!(
+            "--heuristic-alerts={}",
+            if enabled { "yes" } else { "no" }
+        ));
+    }
+    if let Some(enabled) = options.follow_directory_symlinks {
+        args.push(format!("--follow-dir-symlinks={}", u8::from(enabled)));
+    }
+    if let Some(enabled) = options.follow_file_symlinks {
+        args.push(format!("--follow-file-symlinks={}", u8::from(enabled)));
+    }
+    if options.exclude_hidden {
+        args.extend(["--exclude".into(), "\\/\\.".into()]);
+    }
+    if let Some(directory) = database_directory {
+        args.push(format!("--database={directory}"));
     }
     for directory in &exclusions.directories {
         args.extend(["--exclude-dir".into(), directory_regex(directory)]);
@@ -1142,7 +1242,26 @@ fn clamd_limit(ctx: &Context, key: &str) -> Option<String> {
         .map(str::to_owned)
 }
 
-fn merged_exclusions(ctx: &Context, request: &ScanRequest) -> AppResult<Exclusions> {
+fn clamscan_database_directory(ctx: &Context) -> Option<String> {
+    for kind in ["freshclam", "clamd"] {
+        let config_path = crate::dispatch(ctx, "config.load", json!({"kind": kind}))
+            .ok()
+            .and_then(|config| {
+                config
+                    .get("path")
+                    .and_then(Value::as_str)
+                    .map(str::to_owned)
+            });
+        let probe = crate::host::database_available(config_path.as_deref(), true);
+        if probe.available {
+            return probe.path;
+        }
+    }
+    let probe = crate::host::database_available(None, true);
+    probe.available.then_some(probe.path).flatten()
+}
+
+fn merged_scan_plan(ctx: &Context, request: &ScanRequest) -> AppResult<(Exclusions, ScanOptions)> {
     let mut exclusions = Exclusions::default();
     append_exclusions(
         &mut exclusions,
@@ -1153,6 +1272,7 @@ fn merged_exclusions(ctx: &Context, request: &ScanRequest) -> AppResult<Exclusio
     if let Some(extra) = &request.exclusions {
         append_exclusions(&mut exclusions, extra);
     }
+    let mut options = ScanOptions::default();
     if request.profile_id.is_some() || request.profile_name.is_some() {
         let profiles = crate::dispatch(ctx, "profiles.list", json!({}))?;
         let records = profiles
@@ -1174,11 +1294,138 @@ fn merged_exclusions(ctx: &Context, request: &ScanRequest) -> AppResult<Exclusio
                 &mut exclusions,
                 profile.get("exclusions").unwrap_or(&Value::Null),
             );
+            options = parse_profile_options(profile.get("options").unwrap_or(&Value::Null))?;
         } else {
             return Err("Requested scan profile was not found".into());
         }
     }
-    Ok(exclusions)
+    Ok((exclusions, options))
+}
+
+fn parse_profile_options(value: &Value) -> AppResult<ScanOptions> {
+    let Some(object) = value.as_object() else {
+        return if value.is_null() {
+            Ok(ScanOptions::default())
+        } else {
+            Err("Scan profile options must be a JSON object".into())
+        };
+    };
+    if object.contains_key("SizeLimit") && object.contains_key("MaxFileSize") {
+        return Err("Choose either SizeLimit or MaxFileSize in a scan profile, not both".into());
+    }
+    if object.contains_key("Thorough")
+        && ["DetectPUA", "AlertBrokenExecutables", "AlertMacros"]
+            .iter()
+            .any(|key| object.contains_key(*key))
+    {
+        return Err(
+            "Choose Thorough or its individual detection options in a scan profile, not both"
+                .into(),
+        );
+    }
+    if object.contains_key("Heuristic") && object.contains_key("HeuristicAlerts") {
+        return Err(
+            "Choose either Heuristic or HeuristicAlerts in a scan profile, not both".into(),
+        );
+    }
+    let mut options = ScanOptions::default();
+    for (key, value) in object {
+        match key.as_str() {
+            "MaxFileSize" | "MaxScanSize" | "MaxRecursion" | "MaxFiles" => {
+                let raw = value
+                    .as_str()
+                    .map(str::to_owned)
+                    .or_else(|| value.as_u64().map(|number| number.to_string()))
+                    .ok_or_else(|| {
+                        format!("Scan profile option {key} must be a string or unsigned integer")
+                    })?;
+                let parsed = raw.trim();
+                let valid = if matches!(key.as_str(), "MaxFileSize" | "MaxScanSize") {
+                    valid_clamav_size(parsed)
+                } else {
+                    parsed.parse::<u64>().is_ok_and(|number| {
+                        if key == "MaxRecursion" {
+                            (1..=100).contains(&number)
+                        } else {
+                            number <= u32::MAX as u64
+                        }
+                    })
+                };
+                if !valid {
+                    return Err(format!(
+                        "Invalid value for scan profile option {key}: {raw}"
+                    ));
+                }
+                options.limits.insert(
+                    match key.as_str() {
+                        "MaxFileSize" => "MaxFileSize",
+                        "MaxScanSize" => "MaxScanSize",
+                        "MaxRecursion" => "MaxRecursion",
+                        _ => "MaxFiles",
+                    },
+                    parsed.to_owned(),
+                );
+            }
+            "DetectPUA"
+            | "AlertBrokenExecutables"
+            | "AlertMacros"
+            | "Thorough"
+            | "HeuristicAlerts"
+            | "Heuristic"
+            | "FollowDirectorySymlinks"
+            | "FollowFileSymlinks"
+            | "Recursive"
+            | "ScanHidden" => {
+                let enabled = value
+                    .as_bool()
+                    .ok_or_else(|| format!("Scan profile option {key} must be true or false"))?;
+                match key.as_str() {
+                    "DetectPUA" => options.pua = Some(enabled),
+                    "AlertBrokenExecutables" => options.alert_broken = Some(enabled),
+                    "AlertMacros" => options.alert_macros = Some(enabled),
+                    "Thorough" => {
+                        options.pua = Some(enabled);
+                        options.alert_broken = Some(enabled);
+                        options.alert_macros = Some(enabled);
+                    }
+                    "HeuristicAlerts" | "Heuristic" => options.heuristic_alerts = Some(enabled),
+                    "FollowDirectorySymlinks" => options.follow_directory_symlinks = Some(enabled),
+                    "FollowFileSymlinks" => options.follow_file_symlinks = Some(enabled),
+                    "Recursive" => options.recursive = Some(enabled),
+                    "ScanHidden" => options.exclude_hidden = !enabled,
+                    _ => {}
+                }
+            }
+            "SizeLimit" => {
+                let enabled = value.as_bool().ok_or_else(|| {
+                    "Scan profile option SizeLimit must be true or false".to_owned()
+                })?;
+                options
+                    .limits
+                    .insert("MaxFileSize", if enabled { "0" } else { "20M" }.into());
+            }
+            _ => return Err(format!("Unsupported scan profile option: {key}")),
+        }
+    }
+    Ok(options)
+}
+
+fn valid_clamav_size(value: &str) -> bool {
+    let upper = value.to_ascii_uppercase();
+    let digits = if upper
+        .chars()
+        .last()
+        .is_some_and(|suffix| matches!(suffix, 'K' | 'M' | 'G'))
+    {
+        &upper[..upper.len() - 1]
+    } else {
+        &upper
+    };
+    !digits.is_empty()
+        && digits.bytes().all(|byte| byte.is_ascii_digit())
+        && upper
+            .bytes()
+            .all(|byte| byte.is_ascii_digit() || matches!(byte, b'K' | b'M' | b'G'))
 }
 
 fn append_exclusions(into: &mut Exclusions, value: &Value) {
@@ -1752,7 +1999,7 @@ fn database_status(ctx: &Context) -> Value {
             newest = Some(newest.map_or(modified, |current: u64| current.max(modified)));
         }
     }
-    json!({"available": files > 0, "path": selected, "files": files, "latest_modified_unix": newest})
+    json!({"available": clamscan_database_directory(ctx).is_some(), "path": selected, "files": files, "latest_modified_unix": newest})
 }
 
 fn new_scan_id() -> String {
@@ -2097,6 +2344,8 @@ mod tests {
                 yara_rules: vec![rule.clone()],
                 ..Exclusions::default()
             },
+            &ScanOptions::default(),
+            Some("/var/lib/clamav"),
         );
 
         let separator = arguments
@@ -2107,9 +2356,101 @@ mod tests {
             arguments[separator - 1],
             format!("--database={}", rule.display())
         );
+        assert!(arguments.contains(&"--database=/var/lib/clamav".into()));
         assert_eq!(
             arguments.last(),
             Some(&target.to_string_lossy().into_owned())
+        );
+    }
+
+    #[test]
+    fn supported_profile_options_are_applied_as_safe_clamscan_arguments() {
+        let options = parse_profile_options(&json!({
+            "MaxFileSize": "40M",
+            "MaxRecursion": 25,
+            "Thorough": true,
+            "Heuristic": false,
+            "ScanHidden": false,
+            "Recursive": false,
+            "FollowFileSymlinks": true
+        }))
+        .expect("parse profile options");
+        assert!(options.requires_standalone());
+        assert_eq!(options.recursive, Some(false));
+
+        let root = tempfile::tempdir().expect("scan workspace");
+        let ctx = Context::with_paths(crate::common::Paths {
+            home: root.path().join("home"),
+            config_dir: root.path().join("config"),
+            data_dir: root.path().join("data"),
+        })
+        .expect("context");
+        let target = root.path().join("scan target");
+        let arguments = clamscan_arguments(
+            &ctx,
+            &target,
+            options.recursive.unwrap_or(true),
+            &Exclusions::default(),
+            &options,
+            None,
+        );
+
+        assert!(arguments.contains(&"--max-filesize=40M".into()));
+        assert!(arguments.contains(&"--max-recursion=25".into()));
+        assert!(arguments.contains(&"--detect-pua=yes".into()));
+        assert!(arguments.contains(&"--alert-broken=yes".into()));
+        assert!(arguments.contains(&"--alert-macros=yes".into()));
+        assert!(arguments.contains(&"--heuristic-alerts=no".into()));
+        assert!(arguments.contains(&"--follow-file-symlinks=1".into()));
+        assert!(arguments.contains(&"--exclude".into()));
+        assert!(arguments.contains(&"\\/\\.".into()));
+        assert!(!arguments.contains(&"-r".into()));
+    }
+
+    #[test]
+    fn invalid_or_unknown_profile_scan_options_fail_closed() {
+        assert!(parse_profile_options(&json!({"MaxFileSize": "20MG"})).is_err());
+        assert!(parse_profile_options(&json!({"MaxRecursion": 0})).is_err());
+        assert!(parse_profile_options(&json!({"--remove": true})).is_err());
+        assert!(parse_profile_options(&json!({"DetectPUA": "yes"})).is_err());
+        assert!(parse_profile_options(&json!({"SizeLimit": false, "MaxFileSize": "40M"})).is_err());
+        assert!(parse_profile_options(&json!({"Thorough": true, "DetectPUA": false})).is_err());
+    }
+
+    #[test]
+    fn scan_uses_engine_options_saved_in_the_selected_profile() {
+        let root = tempfile::tempdir().expect("profile workspace");
+        let ctx = Context::with_paths(crate::common::Paths {
+            home: root.path().join("home"),
+            config_dir: root.path().join("config"),
+            data_dir: root.path().join("data"),
+        })
+        .expect("context");
+        let profile = crate::dispatch(
+            &ctx,
+            "profiles.create",
+            json!({"name":"Deep scan", "options":{"DetectPUA":false, "MaxFileSize":"60M"}}),
+        )
+        .expect("create profile");
+        let request = ScanRequest {
+            id: None,
+            paths: vec!["/tmp/example".into()],
+            recursive: true,
+            profile_id: profile.get("id").and_then(Value::as_str).map(str::to_owned),
+            profile_name: None,
+            backend_override: None,
+            force_stream: false,
+            exclusions: None,
+            scheduled: false,
+        };
+
+        let (_, options) = merged_scan_plan(&ctx, &request).expect("load profile scan plan");
+
+        assert!(options.requires_standalone());
+        assert_eq!(options.pua, Some(false));
+        assert_eq!(
+            options.limits.get("MaxFileSize").map(String::as_str),
+            Some("60M")
         );
     }
 

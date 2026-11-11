@@ -263,9 +263,9 @@ function BehaviorPage({ settings, saveSetting, trayAvailable, isFlatpak }: { set
     : activeCatalog()?.language ?? "en";
 
   return <div className="settings-preferences">
-    <Section title={_("Language")} description={_("Override the application language. Restart ClamUI to apply a language change.")}>
+    <Section title={_("Language")} description={_("Override the application language. Restart Linux Defender to apply a language change.")}>
       <Field label={_("Language")}><select value={selectedLanguage} onChange={async (event) => {
-        if (await saveSetting("language", event.target.value)) notify(_("Restart ClamUI to apply the new language"), "info");
+        if (await saveSetting("language", event.target.value)) notify(_("Restart Linux Defender to apply the new language"), "info");
       }}><option value="auto">{_("Automatic (System)")}</option>{languages.map((language) => <option key={language.code} value={language.code}>{language.name}</option>)}</select></Field>
     </Section>
     {trayAvailable ? <Section title={_("Window Behavior")} description={_("Configure what happens when closing the main window.")}>
@@ -279,8 +279,8 @@ function BehaviorPage({ settings, saveSetting, trayAvailable, isFlatpak }: { set
     {isFlatpak && <Section title={_("File Manager Integration")} description={_("Add context menu actions for supported file managers.")}><button type="button" onClick={() => setDialogOpen(true)}>{_("Configure Integration")}</button></Section>}
     {dialogOpen && <Modal title={_("File Manager Integration")} onClose={() => setDialogOpen(false)}>
       <p>{_(
-        // Translators: 'Scan with ClamUI' is the installed file-manager menu label; keep it in English.
-        "Install, repair, or remove 'Scan with ClamUI' context menu actions.",
+        // Translators: 'Scan with Linux Defender' is the installed file-manager menu label; keep it in English.
+        "Install, repair, or remove 'Scan with Linux Defender' context menu actions.",
       )}</p>
       {integrations.map((integration) => {
         const status = integration.status === "installed"
@@ -461,7 +461,7 @@ function DebugPage({ settings, saveSetting }: { settings: Settings; saveSetting:
   const copySystem = async () => {
     if (!system) return;
     const lines = [
-      _("ClamUI System Information"),
+      _("Linux Defender System Information"),
       "=".repeat(40),
       _("Installation Type: {value}", { value: system.installation_type }),
       _("Distribution: {value}", { value: system.distribution }),

@@ -14,7 +14,11 @@ use std::{
 
 const SETTINGS_FILE: &str = "settings.json";
 const SETTINGS_LOCK_FILE: &str = ".settings.lock";
-const SECRET_SETTING_KEYS: &[&str] = &["virustotal_api_key", "portmaster_api_token"];
+const SECRET_SETTING_KEYS: &[&str] = &[
+    "virustotal_api_key",
+    "urlscan_api_key",
+    "portmaster_api_token",
+];
 
 pub fn dispatch(ctx: &crate::common::Context, action: &str, args: Value) -> AppResult<Value> {
     match action {
@@ -97,6 +101,7 @@ pub fn default_settings() -> Value {
         "clamd_size_limit_unit_migration_done": false,
         "privileged_helper_prompt_skipped_version": "",
         "virustotal_api_key": null,
+        "urlscan_api_key": null,
         "allow_plaintext_api_key_fallback": false,
         "virustotal_remember_no_key_action": "none",
         "debug_log_level": "WARNING",

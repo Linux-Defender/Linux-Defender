@@ -43,16 +43,16 @@ export function HelperTrustErrorDialog({
         <Icon name="warning" className="helper-trust-error-icon" />
         <div>
           <p>{missing
-            ? _("ClamUI could not save protected settings because its system helper is not installed.")
-            : _("ClamUI blocked this operation because its system helper is missing or is not securely installed.")}</p>
+            ? _("Linux Defender could not save protected settings because its system helper is not installed.")
+            : _("Linux Defender blocked this operation because its system helper is missing or is not securely installed.")}</p>
           <p>{_("The helper provides administrator-authorized access to protected ClamAV settings.")}</p>
         </div>
       </div>
       {canOfferInstall ? <>
         <p>{_("Installing the helper requires administrator authorization.")}</p>
         <p>{_(
-          // Translators: Keep Fedora, DNF, and ClamUI unchanged; DNF is Fedora's package manager.
-          "On Fedora with DNF, installation also adds the ClamUI signing key to the system RPM keyring.",
+          // Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
+          "On Fedora with DNF, installation also adds the Linux Defender signing key to the system RPM keyring.",
         )}</p>
       </> : null}
       <div className="helper-trust-error-location">
@@ -63,8 +63,8 @@ export function HelperTrustErrorDialog({
       <h3>{_("How to fix it")}</h3>
       <ol className="helper-trust-error-steps">
         <li>{missing
-          ? _("Install the matching helper from the same trusted ClamUI release.")
-          : _("Reinstall the matching helper from the same trusted ClamUI release.")}</li>
+          ? _("Install the matching helper from the same trusted Linux Defender release.")
+          : _("Reinstall the matching helper from the same trusted Linux Defender release.")}</li>
         <li>{_("Then return to Preferences and repeat the action.")}</li>
       </ol>
       {!missing && <p className="helper-trust-error-caution"><Icon name="shield" />{_("Do not change the permissions of an unknown executable to bypass this check.")}</p>}

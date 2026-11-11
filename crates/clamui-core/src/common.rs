@@ -81,7 +81,7 @@ impl Context {
             || paths.config_dir.as_os_str().is_empty()
             || paths.data_dir.as_os_str().is_empty()
         {
-            return Err("ClamUI paths must not be empty".to_owned());
+            return Err("Linux Defender paths must not be empty".to_owned());
         }
         Ok(Self {
             paths,

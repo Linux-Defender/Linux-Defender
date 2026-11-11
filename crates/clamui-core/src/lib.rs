@@ -24,6 +24,7 @@ pub mod scheduler;
 pub mod settings;
 pub mod threat;
 pub mod updater;
+pub mod urlscan;
 pub mod virustotal;
 
 pub use common::{Context, Event, Job, Paths};
@@ -53,6 +54,7 @@ pub fn dispatch(ctx: &Context, operation: &str, args: Value) -> AppResult<Value>
         "virustotal" => instrument(ctx, "virustotal", || {
             virustotal::dispatch(ctx, action, args)
         }),
+        "urlscan" => instrument(ctx, "urlscan", || urlscan::dispatch(ctx, action, args)),
         "audit" => instrument(ctx, "audit", || audit::dispatch(ctx, action, args)),
         "network" => instrument(ctx, "network", || network::dispatch(ctx, action, args)),
         "config" => instrument(ctx, "config", || config::dispatch(ctx, action, args)),

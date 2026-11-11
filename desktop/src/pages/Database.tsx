@@ -22,6 +22,8 @@ type DatabaseStatus = {
   path?: string | null;
   age_days?: number | null;
   updated_at?: string | null;
+  files_detected?: number;
+  file_names?: string[];
 };
 
 type UpdaterStatus = {
@@ -294,6 +296,17 @@ export default function Database({ startRequest }: DatabaseProps): JSX.Element {
               {status?.database?.path && <p className="row-description monospace">{status.database.path}</p>}
             </div>
             <span className={`status-badge ${status?.database?.available ? "success" : "warning"}`}>{databaseDescription(status?.database)}</span>
+          </div>
+          <div className="group-row">
+            <div className="row-copy">
+              <strong className="row-title">{_("Recognized database and signature files")}</strong>
+              <p className="row-description">{_("Files detected in the configured ClamAV database directory. This list does not confirm which files the active scanner loaded.")}</p>
+              {Boolean(status?.database?.file_names?.length) && <details>
+                <summary>{ngettext("Show {count} recognized file", "Show {count} recognized files", status?.database?.files_detected || 0, { count: status?.database?.files_detected || 0 })}</summary>
+                <ul className="monospace">{status?.database?.file_names?.map((name) => <li key={name}>{name}</li>)}</ul>
+              </details>}
+            </div>
+            <span className="status-badge">{ngettext("{count} detected", "{count} detected", status?.database?.files_detected || 0, { count: status?.database?.files_detected || 0 })}</span>
           </div>
         </div>
       </section>

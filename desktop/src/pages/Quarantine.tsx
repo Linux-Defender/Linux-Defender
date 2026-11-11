@@ -124,7 +124,7 @@ export default function Quarantine({ active }: { active: boolean }) {
         cursor: null,
       });
       const parsed = parseList(result);
-      if (!parsed) throw new Error(_("ClamUI returned invalid quarantine data."));
+      if (!parsed) throw new Error(_("Linux Defender returned invalid quarantine data."));
       if (generation !== responseGeneration.current) return;
       setData(parsed);
       setCursorHistory(parsed.cursor === null ? [] : [parsed.cursor]);
@@ -162,7 +162,7 @@ export default function Quarantine({ active }: { active: boolean }) {
           cursor,
         });
         const parsed = parseList(result);
-        if (!parsed) throw new Error(_("ClamUI returned invalid quarantine data."));
+        if (!parsed) throw new Error(_("Linux Defender returned invalid quarantine data."));
         if (generation !== responseGeneration.current) return;
         setData(parsed);
         setCursorHistory(parsed.cursor === null ? [] : [...historyBeforePage, parsed.cursor]);
@@ -220,7 +220,7 @@ export default function Quarantine({ active }: { active: boolean }) {
   const cleanupOld = async () => {
     try {
       const result = await request<unknown>("quarantine.cleanup", { days: 30 });
-      if (!result || typeof result !== "object" || typeof fieldValue(result, "removed", "removed") !== "number") throw new Error(_("ClamUI returned an invalid cleanup result."));
+      if (!result || typeof result !== "object" || typeof fieldValue(result, "removed", "removed") !== "number") throw new Error(_("Linux Defender returned an invalid cleanup result."));
       const removed = fieldValue(result, "removed", "removed");
       if (typeof removed !== "number") return;
       setBanner({
@@ -248,7 +248,7 @@ export default function Quarantine({ active }: { active: boolean }) {
     try {
       const response = await request<unknown>(`quarantine.${action}`, { id: entry.id });
       const result = parseResult(response);
-      if (!result) throw new Error(_("ClamUI returned an invalid quarantine result."));
+      if (!result) throw new Error(_("Linux Defender returned an invalid quarantine result."));
       setConfirmation(null);
       if (result.status === "success") {
         setBanner({ message: action === "restore" ? _("File restored successfully.") : _("File deleted successfully."), type: "success" });

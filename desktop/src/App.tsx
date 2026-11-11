@@ -86,8 +86,8 @@ const destinations: Array<{
   { id: "network", shortcut: "Ctrl+8", icon: "network" },
 ];
 
-const PROJECT_URL = "https://github.com/linx-systems/clamui";
-const ISSUES_URL = "https://github.com/linx-systems/clamui/issues";
+const PROJECT_URL = "https://github.com/SAFETY-CHAT/Linux-Defender";
+const ISSUES_URL = "https://github.com/SAFETY-CHAT/Linux-Defender/issues";
 
 function safeHttpUrl(value: string): string | null {
   try {
@@ -148,7 +148,6 @@ function isPageId(value: unknown): value is PageId {
     case "statistics":
     case "audit":
     case "network":
-      return true;
     case "preferences":
     case "profiles":
     case "results":
@@ -865,6 +864,7 @@ export default function App(): ReactNode {
   return (
     <div className={`app-shell${preferencesOpen ? " preferences-shell" : ""}`}>
       <header className="headerbar">
+        {!preferencesOpen ? <div className="brand" aria-label={_("Linux Defender")}> <span className="brand-mark" aria-hidden="true">LD</span><span>Linux Defender</span></div> : null}
         {preferencesOpen ? (
           <div className="header-title">
             <button className="button back-button" type="button" onClick={() => selectPage(previousPage)}>
@@ -1018,8 +1018,8 @@ export default function App(): ReactNode {
         } : undefined}
         onClose={() => setHelperTrustError(null)}
       /> : null}
-      {aboutOpen ? <Modal className="about-dialog" title={_("About ClamUI")} onClose={() => setAboutOpen(false)}>
-        <p>{_("A native desktop interface for ClamAV.")}</p>
+      {aboutOpen ? <Modal className="about-dialog" title={_("About Linux Defender")} onClose={() => setAboutOpen(false)}>
+        <p>{_("An on-demand Linux security scanner using your system's ClamAV tools.")}</p>
         <dl className="about-details">
           <dt>{_("Version")}</dt><dd>{startupInfo.version || "—"}</dd>
           <dt>{_("Language")}</dt><dd>{catalog?.language ?? "—"}</dd>
@@ -1048,8 +1048,8 @@ export default function App(): ReactNode {
           </section> : null}
         </> : <p className="muted" role="status">{_("Loading contributor credits…")}</p>}
       </Modal> : null}
-      {closeOpen ? <Modal title={_("Close ClamUI?")} onClose={() => setCloseOpen(false)}>
-        <p>{_("Choose whether to keep ClamUI available in the system tray or quit it completely.")}</p>
+      {closeOpen ? <Modal title={_("Close Linux Defender?")} onClose={() => setCloseOpen(false)}>
+        <p>{_("Choose whether to keep Linux Defender available in the system tray or quit it completely.")}</p>
         <label className="check-row"><input type="checkbox" checked={rememberCloseChoice} onChange={(event) => setRememberCloseChoice(event.currentTarget.checked)} />{_("Remember my choice")}</label>
         <div className="dialog-actions"><button className="button" type="button" onClick={() => setCloseOpen(false)}>{_("Cancel")}</button>{startupInfo.trayAvailable ? <button className="button" type="button" onClick={() => void completeClose("minimize", rememberCloseChoice)}>{_("Minimize to tray")}</button> : null}<button className="button danger" type="button" onClick={() => void completeClose("quit", rememberCloseChoice)}>{_("Quit")}</button></div>
       </Modal> : null}
@@ -1058,12 +1058,12 @@ export default function App(): ReactNode {
         <div className="dialog-actions"><button className="button" type="button" onClick={() => setScanCloseOpen(false)}>{scanJobId ? _("Keep Scanning") : _("Cancel")}</button><button className={scanJobId ? "button danger" : "button"} type="button" onClick={() => void cancelScanAndClose()}>{scanJobId ? _("Cancel Scan and Close") : _("Close")}</button></div>
       </Modal> : null}
       {onboardingOpen && !helperTrustError ? <Modal title={_("Install Privileged Helper")} busy={helperInstalling} onClose={() => void dismissOnboarding()}>
-        <p>{helperStatus?.detail ?? _("ClamUI needs its matching privileged helper to save system configuration.")}</p>
+        <p>{helperStatus?.detail ?? _("Linux Defender needs its matching privileged helper to save system configuration.")}</p>
         {helperStatus?.installable ? <>
           <p>{_("Installing the helper requires administrator authorization.")}</p>
           <p>{_(
-            // Translators: Keep Fedora, DNF, and ClamUI unchanged; DNF is Fedora's package manager.
-            "On Fedora with DNF, installation also adds the ClamUI signing key to the system RPM keyring.",
+            // Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
+            "On Fedora with DNF, installation also adds the signing key used by this build to the system RPM keyring.",
           )}</p>
         </> : null}
         {helperInstalling ? <p className="notice" role="status">{_("Installing privileged helper…")}</p> : null}

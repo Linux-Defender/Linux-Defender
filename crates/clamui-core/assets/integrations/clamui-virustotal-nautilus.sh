@@ -1,5 +1,5 @@
 #!/bin/bash
-# ClamUI VirusTotal Scanner - Nautilus Script (Flatpak version)
+# Linux Defender VirusTotal Scanner - Nautilus Script (Flatpak version)
 # This script is installed to ~/.local/share/nautilus/scripts/
 # and provides a "Scan with VirusTotal" context menu option.
 #
@@ -18,17 +18,17 @@ log "Script started (Flatpak version)"
 log "NAUTILUS_SCRIPT_SELECTED_FILE_PATHS: $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 log "Arguments: $*"
 
-# Check if ClamUI Flatpak is available
+# Check if Linux Defender Flatpak is available
 if ! flatpak info io.github.linx_systems.ClamUI &>/dev/null; then
-	log "ERROR: ClamUI Flatpak not installed"
+	log "ERROR: Linux Defender Flatpak not installed"
 	# Try to notify user
 	if command -v notify-send &>/dev/null; then
-		notify-send "ClamUI Not Found" "Please install ClamUI Flatpak to use VirusTotal scanning."
+		notify-send "Linux Defender Not Found" "Please install Linux Defender Flatpak to use VirusTotal scanning."
 	fi
 	exit 1
 fi
 
-log "ClamUI Flatpak found"
+log "Linux Defender Flatpak found"
 
 # Get selected files from Nautilus
 # NAUTILUS_SCRIPT_SELECTED_FILE_PATHS contains newline-separated paths
@@ -57,7 +57,7 @@ else
 	else
 		log "ERROR: No files provided (neither env var nor arguments)"
 		if command -v notify-send &>/dev/null; then
-			notify-send "ClamUI VirusTotal" "No file selected for scanning."
+			notify-send "Linux Defender VirusTotal" "No file selected for scanning."
 		fi
 	fi
 fi

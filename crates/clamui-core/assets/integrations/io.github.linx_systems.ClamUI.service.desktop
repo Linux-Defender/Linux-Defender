@@ -1,13 +1,13 @@
 [Desktop Entry]
 Type=Service
-Name=ClamUI Scanner
-Comment=Scan files and folders with ClamUI antivirus
+Name=Linux Defender Scanner
+Comment=Scan files and folders with Linux Defender antivirus
 ServiceTypes=KonqPopupMenu/Plugin
 MimeType=application/octet-stream;inode/directory;
-Actions=ScanWithClamUI;
+Actions=ScanWithLinux Defender;
 X-KDE-Priority=TopLevel
 
-[Desktop Action ScanWithClamUI]
-Name=Scan with ClamUI
+[Desktop Action ScanWithLinux Defender]
+Name=Scan with Linux Defender
 Icon=io.github.linx_systems.ClamUI
 Exec=flatpak run io.github.linx_systems.ClamUI %F

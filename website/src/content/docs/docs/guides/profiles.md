@@ -23,6 +23,24 @@ A target may be an absolute path or use `~`. Use path exclusions for a directory
 
 Global exclusions apply to every scan. Profile exclusions apply only to that profile; prefer them when an exclusion is task-specific.
 
+## Advanced ClamAV options
+
+The profile editor accepts a JSON `options` object for advanced ClamAV scan behavior. Supported keys are `MaxFileSize`, `MaxScanSize`, `MaxRecursion` (1–100), `MaxFiles`, `DetectPUA`, `AlertBrokenExecutables`, `AlertMacros`, `Thorough`, `HeuristicAlerts`, `FollowDirectorySymlinks`, `FollowFileSymlinks`, `Recursive`, `ScanHidden`, and `SizeLimit`. Size values accept bytes or a `K`, `M`, or `G` suffix. Boolean values must be JSON `true` or `false`.
+
+For example:
+
+```json
+{
+  "Thorough": true,
+  "MaxFileSize": "200M",
+  "MaxScanSize": "500M",
+  "MaxRecursion": 25,
+  "ScanHidden": true
+}
+```
+
+These profile options and local YARA rules require standalone `clamscan`. Automatic backend mode selects it; a daemon-only selection reports an error instead of silently skipping them. When YARA rules are selected, Linux Defender explicitly loads the configured ClamAV database directory together with each local rule file, so the local rules supplement the system signatures.
+
 ## Import and export
 
 Export profiles as JSON to back them up or share them. Exports can reveal user names and filesystem layout—review them before sharing. Imported profiles receive a new ID and are always non-default.

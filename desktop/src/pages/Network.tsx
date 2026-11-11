@@ -436,7 +436,7 @@ export default function Network(): JSX.Element {
         "Opening this report sends the IP address {address} to VirusTotal through your browser. Do not check sensitive IP addresses.",
         { address: confirmation.address },
       )}</p>
-      <p>{_("No port, process information, or API key is sent by ClamUI.")}</p>
+      <p>{_("No port, process information, or API key is sent by Linux Defender.")}</p>
       {reportError ? <p className="error" role="alert">{reportError}</p> : null}
       <div className="dialog-actions"><button className="button" disabled={openingReport} onClick={() => setConfirmation(null)} type="button" data-network-vt-cancel="true">{_("Cancel")}</button><button className="button primary" disabled={openingReport} onClick={() => void openVirusTotal()} type="button" data-network-vt-confirm="true"><Icon name="external-link" />{openingReport ? _("Opening…") : _("Open in browser")}</button></div>
     </Modal> : null}

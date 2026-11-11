@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "ClamUI",
+  "productName": "Linux Defender",
   "version": "0.5.1",
   "identifier": "io.github.linx-systems.ClamUI",
   "build": {

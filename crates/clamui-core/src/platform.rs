@@ -37,6 +37,12 @@ const NEMO_VIRUSTOTAL: &[u8] =
 const NAUTILUS_SCAN: &[u8] = include_bytes!("../assets/integrations/clamui-scan-nautilus.sh");
 const NAUTILUS_VIRUSTOTAL: &[u8] =
     include_bytes!("../assets/integrations/clamui-virustotal-nautilus.sh");
+const LEGACY_NAUTILUS_SCAN: &[IntegrationAsset] = &[IntegrationAsset {
+    source: "legacy-nautilus-scan",
+    destination: "nautilus/scripts/Scan with ClamUI",
+    bytes: b"",
+    executable: true,
+}];
 const DOLPHIN_SCAN: &[u8] =
     include_bytes!("../assets/integrations/io.github.linx_systems.ClamUI.service.desktop");
 const DOLPHIN_VIRUSTOTAL: &[u8] =
@@ -203,7 +209,7 @@ const NEMO_ASSETS: &[IntegrationAsset] = &[
 const NAUTILUS_ASSETS: &[IntegrationAsset] = &[
     IntegrationAsset {
         source: "clamui-scan-nautilus.sh",
-        destination: "nautilus/scripts/Scan with ClamUI",
+        destination: "nautilus/scripts/Scan with Linux Defender",
         bytes: NAUTILUS_SCAN,
         executable: true,
     },
@@ -646,6 +652,8 @@ fn install_integration(
     if manager == FileManager::Dolphin {
         remove_assets(paths, paths.dolphin_legacy_assets())?;
         refresh_dolphin_cache();
+    } else if manager == FileManager::Nautilus {
+        remove_assets(paths, LEGACY_NAUTILUS_SCAN)?;
     }
     Ok(())
 }
@@ -655,6 +663,8 @@ fn remove_integration(paths: &IntegrationPaths, manager: FileManager) -> AppResu
     if manager == FileManager::Dolphin {
         remove_assets(paths, paths.dolphin_legacy_assets())?;
         refresh_dolphin_cache();
+    } else if manager == FileManager::Nautilus {
+        remove_assets(paths, LEGACY_NAUTILUS_SCAN)?;
     }
     Ok(())
 }

@@ -2,6 +2,8 @@
 
 Review snapshot: 2026-11-11. Sources: public GitHub REST API, default-branch checkouts, READMEs/changelogs/security workflows, and public issue/PR discussions. This is point-in-time research, not a review of private branches or every historical commit.
 
+Lenspect's issues, all 25 PRs, remaining VirusTotal parity gaps, license boundary, and parity-maintenance rule are recorded in [LENSPECT-REVIEW.md](LENSPECT-REVIEW.md).
+
 ## Direction
 
 Kira wants one installable Linux security-scanning product that keeps ClamTk behavior, gains ClamUI behavior and a modern UI, and can be maintained by reviewing both projects continuously. A literal code merge is not a small patch: ClamTk is Perl/GTK3; ClamUI 0.5.1 is a Rust core + Tauri + React/TypeScript desktop app. ClamUI is MIT-licensed; ClamTk retains its GPL/Artistic licensing. MIT code can be incorporated with notices, but the combined product needs license/attribution review before distribution.
@@ -18,13 +20,33 @@ ClamUI already includes scan profiles, standalone and daemon scanning, schedulin
 | Scan workflow | Existing GTK scanning, pause/cancel, preferences | Profiles, multiple selected targets, structured results | One modern profile-based workflow; temporarily retain a compatibility path during migration, then one app entry point; multi-file CLI/context-menu support; exact per-item status and warning counts. |
 | History and quarantine | Restore records and the collision-safe unique quarantine names | Searchable history/logs and review flow | One recoverable quarantine store, no automatic deletion, preserve legacy restore-data migration. |
 | Scheduling | Existing cron scheduler and status | User-level systemd scheduling and profiles | UI-managed schedules with documented off-machine behavior and per-distro adapters; never silently install/enable services. |
-| Extra detections | Local YARA rules; explicit VirusTotal and urlscan actions | Security audit/component view | Local YARA folder selection and standalone scan loading are now ported; verify on CachyOS. Keep external reputation opt-in and host-security audit separate from malware verdicts. |
+| Extra detections | Local YARA rules; explicit VirusTotal and urlscan actions | Security audit/component view | Local YARA folder selection and standalone scan loading are ported. Website URL mode offers VirusTotal URL analysis or urlscan with Private default visibility; both explain data sharing. VirusTotal file progress and bounded, confirmed folder upload are implemented locally; verify on CachyOS. Keep remote reputation opt-in and distinct from local malware verdicts. |
 | Desktop integration | GTK desktop entry and distro add-ons | Tray and file-manager launchers | One app with Dolphin, Nautilus, Nemo, and Thunar Send To actions; preserve `%F` multi-selection and verify each desktop version. Thunar actions are now included in the Flatpak integration manager; desktop validation remains open. |
 | Packaging and languages | Preserve ClamTk translations and existing metadata | Flatpak/AppImage/DEB/RPM build matrix and ClamUI localization workflow | Restore ClamTk translation sources, preserve attribution, migrate the needed message catalogs, build CachyOS/Arch first, then CI across distro families. |
 
 ### Language and data migration boundary
 
 ClamTk and ClamUI should not become a mixed Perl/Rust runtime. Keep the existing Perl implementation as the behavior reference while the single Rust/Tauri product gains feature parity. Add a one-time, read-only-first migration for ClamTk preferences, scan history, scheduled-scan settings, quarantine payloads and restore records. Preserve the original data as a backup until the new app verifies each imported item. Never migrate the inherited source-embedded VirusTotal key; require a new personal key stored in the OS keyring. Keep the ClamAV engine and official signatures owned by the host package/service.
+
+### ClamTk screen-by-screen parity check
+
+Checked the actual `reference/clamtk/lib/GUI.pm`, `Shortcuts.pm`, `Prefs.pm`, and feature modules against the current React navigation and Rust operation surface. “Present” means a corresponding Linux Defender workflow exists; it does not claim pixel or behavior parity.
+
+| ClamTk screen / behavior | Linux Defender counterpart | Result and follow-up |
+|---|---|---|
+| Configuration: Settings | Preferences pages for behavior, exclusions, scanner, schedule, YARA, VirusTotal, device/on-access scanning | Broad counterpart exists. Legacy preferences import and exact default/edge behavior are not complete. |
+| Configuration: Whitelist | Preferences → Exclusions | Counterpart exists; compare each ClamTk pattern/path rule and prove migration preserves it. |
+| Configuration: Network / HTTP proxy | Preferences → Network | UI exists. VirusTotal and urlscan transports deliberately avoid inherited proxy settings in current implementation; verify whether proxy support is required and implement without weakening TLS checks. |
+| Configuration: Scheduler | Schedules page and user systemd scheduling | Counterpart exists; not the same cron format or lifecycle. Migrate schedule definitions and validate missed-run/offline behavior on CachyOS. |
+| Updates: Update signatures | Database page and FreshClam status/update controls | Uses host FreshClam/shared database. Per-user `single` database mode is not a parity target because it creates a duplicate definition store; communicate this clearly and migrate only when a concrete supported need exists. |
+| Updates: Update Assistant | Database/audit views and system timer status | Partial. ClamTk-specific update-mode assistant and all service variants are not ported; FreshClam's system service/timer remains owned by the distro. |
+| History | Results and historical scan logs | Counterpart exists; compare old history import, ordering, and failure/detail retention. |
+| Quarantine and restore | Quarantine page with review and restore operations | Counterpart exists; legacy payload/restore-record migration is open; verify unique-name collision and rollback safety. |
+| Scan file / directory | Scan → Files & Folders; profiles; CLI paths | Counterpart exists for local ClamAV, including recursive targets. Preserve original path identity, multi-selection, exclusions, cancellation, and per-target status. |
+| Analysis: file reputation | Scan with VirusTotal; Results page | File hash lookup, upload progress, in-progress analysis link, and bounded folder upload are implemented locally; desktop transport validation remains. Prior submission history/CSV compatibility is not ported. |
+| Analysis: Website scan | Scan → Website URL with VirusTotal and urlscan | Provider workflows exist with explicit confirmation; urlscan visibility is selectable and defaults Private. Verify live UI/keyring behavior on CachyOS without submitting private URLs. |
+| Startup update/signature warning | Database/Audit health indicators | Partial. Audit detects known FreshClam service/timer patterns, but startup warning timing and every distro service name need a compatibility matrix and live verification. |
+| Keyboard shortcuts and launcher path arguments | Tauri shortcuts, command-line paths, desktop actions | Partial. Keep ClamTk shortcuts and CLI invocation behavior in the migration checklist; test desktop multi-select and startup routing on KDE/GNOME/XFCE. |
 
 ## ClamUI repository snapshot
 

@@ -140,7 +140,7 @@ fn print_root_help(ctx: Option<&Context>) {
         tr(
             ctx,
             // Translators: The em dash separates the application name from its description.
-            "ClamUI — ClamAV antivirus management\n",
+            "Linux Defender — ClamAV antivirus management\n",
         )
     );
     println!("{}", tr(ctx, "Usage:"));
@@ -212,7 +212,7 @@ fn command_summaries() -> [(&'static str, &'static str); 7] {
         ("scan", tr!("Scan files or directories for threats")),
         ("quarantine", tr!("Manage quarantined files")),
         ("profile", tr!("Manage scan profiles")),
-        ("status", tr!("Show ClamAV and ClamUI status")),
+        ("status", tr!("Show ClamAV and Linux Defender status")),
         ("history", tr!("View scan history")),
         (
             "install-privileged-helper",
