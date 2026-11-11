@@ -200,14 +200,13 @@ sub update_signatures {
         $update_sig_pid = open( $update, '-|', "$freshclam --stdout" );
         defined( $update_sig_pid )
             or do {
-            set_infobar_text( 'error',
-                _( 'Error updating: try again later' ) );
+            mark_update_failed( _( 'Error updating: try again later' ) );
             return 0;
             };
         alarm 0;
     };
     if ( $@ && $@ eq "failed\n" ) {
-        set_infobar_text( 'error', _( 'Error updating: try again later' ) );
+        mark_update_failed( _( 'Error updating: try again later' ) );
         return 0;
     }
 
@@ -275,6 +274,14 @@ sub update_signatures {
         }
         Gtk3::main_iteration while Gtk3::events_pending;
     }
+    my $close_ok = close $update;
+    my $exit_status = $?;
+    if ( !_freshclam_succeeded( $close_ok, $exit_status ) ) {
+        warn "freshclam failed with wait status $exit_status\n";
+        mark_update_failed( _( 'Update failed: try again later' ) );
+        return FALSE;
+    }
+
     # Get local information. It would probably be okay to just
     # keep the same number we saw during the update, but this
     # gives the "for sure" sig version installed:
@@ -300,6 +307,22 @@ sub update_signatures {
     Gtk3::main_iteration while Gtk3::events_pending;
 
     return TRUE;
+}
+
+sub _freshclam_succeeded {
+    my ( $close_ok, $wait_status ) = @_;
+    return $close_ok && defined $wait_status && $wait_status == 0;
+}
+
+sub mark_update_failed {
+    my ( $message ) = @_;
+    Glib::Source->remove( $pb->{ timer } ) if $pb->{ timer };
+    $pb->hide;
+    set_infobar_text( 'error', $message );
+    set_infobar_button( _( 'Try again' ), -5 );
+    my $top = $infobar->get_toplevel;
+    $top->queue_resize;
+    $top->queue_draw;
 }
 
 # freshclam.dat remembers the cool-down (HTTP 429/403) received from the
