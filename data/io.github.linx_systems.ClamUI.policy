@@ -3,8 +3,8 @@
   "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
   "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
 <policyconfig>
-  <vendor>SAFETY-CHAT</vendor>
-  <vendor_url>https://github.com/SAFETY-CHAT/Linux-Defender</vendor_url>
+  <vendor>Linux Defender</vendor>
+  <vendor_url>https://github.com/Linux-Defender/Linux-Defender</vendor_url>
   <icon_name>io.github.linx_systems.ClamUI</icon_name>
 
   <action id="io.github.linx_systems.clamui.apply-preferences">

@@ -2,7 +2,7 @@
 name = "clamui"
 version = "0.6.0"
 edition = "2021"
-description = "ClamUI desktop runtime"
+description = "Linux Defender desktop runtime"
 license = "MIT"
 default-run = "clamui"
 

@@ -415,7 +415,7 @@ extract() {
         --package-name="Linux Defender" \
         --package-version="$VERSION" \
         --copyright-holder="Linux Defender Contributors" \
-        --msgid-bugs-address="https://github.com/SAFETY-CHAT/Linux-Defender/issues" \
+        --msgid-bugs-address="https://github.com/Linux-Defender/Linux-Defender/issues" \
         "$@"
 }
 

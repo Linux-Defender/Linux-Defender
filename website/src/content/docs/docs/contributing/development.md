@@ -5,7 +5,7 @@ description: Build and validate the Linux Defender Rust core, Tauri desktop, pac
 
 ## Prerequisites
 
-Linux Defender 0.6.0 is a development snapshot based on upstream ClamUI v0.6.0. It has a headless Rust core (`crates/clamui-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency. Linux Defender packages are not yet published.
+Linux Defender 0.6.0 is a development snapshot built on the upstream v0.6.0 source baseline. It has a headless Rust core (`crates/clamui-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency. Linux Defender packages are not yet published.
 
 ### Debian or Ubuntu
 
@@ -34,10 +34,10 @@ flatpak install --user --arch="$(flatpak --default-arch)" flathub \
   org.freedesktop.Sdk.Extension.rust-stable//26.08
 ```
 
-Clone the SAFETY-CHAT repository and switch to the Linux Defender development branch:
+Clone the Linux-Defender repository and switch to the Linux Defender development branch:
 
 ```bash
-git clone https://github.com/SAFETY-CHAT/Linux-Defender.git
+git clone https://github.com/Linux-Defender/Linux-Defender.git
 cd Linux-Defender
 git switch revival/unified-app
 ```
@@ -145,7 +145,7 @@ Protected configuration changes use the inherited authenticated protocol-v4 help
 
 ## Test before a pull request
 
-Use the [bug report or feature request forms](https://github.com/SAFETY-CHAT/Linux-Defender/issues/new/choose) for issues, and summarize your changes and actual verification in the pull request template.
+Use the [bug report or feature request forms](https://github.com/Linux-Defender/Linux-Defender/issues/new/choose) for issues, and summarize your changes and actual verification in the pull request template.
 
 Run the applicable checks from the repository root:
 
@@ -165,7 +165,7 @@ Recorded migration evidence includes Rust workspace tests and strict Clippy, rea
 
 ## Packaging boundaries
 
-Linux Defender preserves Debian, Flatpak, and x86_64 AppImage distribution formats. The Rust/Tauri packaging sources in this development branch live in [`debian/`](https://github.com/SAFETY-CHAT/Linux-Defender/tree/main/debian), [`flathub/`](https://github.com/SAFETY-CHAT/Linux-Defender/tree/main/flathub), [`appimage/`](https://github.com/SAFETY-CHAT/Linux-Defender/tree/main/appimage), and [`rpm/`](https://github.com/SAFETY-CHAT/Linux-Defender/tree/main/rpm). Use their checked-in manifests and scripts rather than recreating package logic locally.
+Linux Defender currently has build definitions for Debian packages, a Flatpak, an x86_64 AppImage, and Fedora helper RPMs. These are packaging targets, not a tested all-distro support guarantee, and no signed Linux Defender release is published. CachyOS/Arch has no package definition yet.
 
 A Debian release is a version- and architecture-matched application/helper pair. Flatpak declares GNOME 51 and dependencies for `x86_64` and `aarch64`, but a local build validates only its native architecture. AppImage remains x86_64. Fedora RPMs are helper-only. Every format retains the host ClamAV boundary.
 
@@ -175,7 +175,7 @@ Build with the maintained native packaging entry points:
 ./debian/build-deb.sh
 # Package the three binaries built on the Ubuntu 22.04-compatible baseline.
 CLAMUI_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release ./debian/build-deb.sh dist
-UPDATE_INFORMATION='gh-releases-zsync|SAFETY-CHAT|Linux-Defender|latest|Linux-Defender-*-x86_64.AppImage.zsync' ./appimage/build-appimage.sh
+UPDATE_INFORMATION='gh-releases-zsync|Linux-Defender|Linux-Defender|latest|Linux-Defender-*-x86_64.AppImage.zsync' ./appimage/build-appimage.sh
 ```
 
 ### Fedora helper RPM packaging
@@ -187,7 +187,7 @@ CLAMUI_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release CLAMUI_RPM_ARCH=x8
 
 The scripts can produce local `x86_64` or `aarch64` helper artifacts when built for the matching target; they contain the Rust helper and canonical policy, not the GUI or ClamAV. A local RPM is unsigned and is not an eligible installer asset. Only a matching signed RPM published with its detached signature can be used by the in-app Fedora installer. The RPM builder requires Cargo, `readelf` from `binutils`, and the `rpm`/`rpmbuild` package tools; a local source compilation also needs the usual Rust C toolchain, `pkg-config`, and GLib development files. It builds only the helper, so it needs neither Python nor the Bun/Tauri GUI toolchain. `CLAMUI_ARTIFACT_DIR`, `CARGO_TARGET_DIR`, and `CARGO_BUILD_TARGET` select a prebuilt or nondefault Cargo artifact; `CLAMUI_RPM_ARCH` asserts `x86_64` or `aarch64` against the helper ELF.
 
-`debian/build-deb.sh` is the authoritative Debian entry point: it produces the application/helper pair and stages the policy and scheduled-scan payload. `CLAMUI_ARTIFACT_DIR` must contain executable `clamui`, `clamui-scheduled-scan`, and `clamui-apply-preferences` binaries from the baseline build. The AppImage build produces `Linux Defender-<VERSION>-x86_64.AppImage` and its `.zsync` metadata.
+`debian/build-deb.sh` is the authoritative Debian entry point: it produces the application/helper pair and stages the policy and scheduled-scan payload. `CLAMUI_ARTIFACT_DIR` must contain executable `clamui`, `clamui-scheduled-scan`, and `clamui-apply-preferences` binaries from the baseline build. The AppImage build produces `Linux-Defender-<VERSION>-x86_64.AppImage`; when `UPDATE_INFORMATION` points to a published Linux Defender release feed, it also produces `.zsync` metadata. Until a signed Linux Defender release includes those assets, the AppImage update feed cannot update users.
 
 ### Dependabot and Flatpak sources
 
@@ -222,7 +222,7 @@ flatpak-builder --user --arch="$(flatpak --default-arch)" \
   flathub/io.github.linx_systems.ClamUI.local.yml
 ```
 
-The checked-in `flathub/io.github.linx_systems.ClamUI.yml` currently has the same checkout-source form. It is useful for local development, but neither checkout YAML is the immutable manifest required for an official release.
+The checked-in Flatpak manifest currently has the same checkout-source form. It is useful for local development, but neither checkout YAML is the immutable manifest required for an official release.
 
 ### Immutable Flatpak release packaging
 
@@ -241,7 +241,7 @@ Run the generator from a clean checkout whose intended source commit is already 
 ```bash
 release_commit="$(git rev-parse HEAD)"
 scripts/generate-flatpak-sources.sh \
-  --release-url https://github.com/SAFETY-CHAT/Linux-Defender.git \
+  --release-url https://github.com/Linux-Defender/Linux-Defender.git \
   --release-commit "$release_commit" \
   --release-output flathub/io.github.linx_systems.ClamUI.release.yml
 ```
@@ -260,7 +260,7 @@ flatpak-builder --user --arch="$(flatpak --default-arch)" \
   flathub/io.github.linx_systems.ClamUI.release.yml
 ```
 
-This local build neither installs nor replaces a Flatpak, and it proves only the host architecture. The manifest retains ClamUI compatibility identifiers and is not ready to publish as a Linux Defender Flatpak. Complete an application-ID and data migration first, then validate `x86_64` and `aarch64`, obtain Flathub review, and publish only after signed release assets and migration behavior are ready. Linux Defender has no published Flathub package or signed release bundles yet.
+This local build neither installs nor replaces a Flatpak, and it proves only the host architecture. The manifest retains legacy compatibility identifiers and is not ready to publish as a Linux Defender Flatpak. Complete an application-ID and data migration first, then validate `x86_64` and `aarch64`, obtain Flathub review, and publish only after signed release assets and migration behavior are ready. Linux Defender has no published Flathub package or signed release bundles yet.
 
 Before publishing, inspect package payloads for the right architecture, native command names, helper/policy paths, and absence of a Python application runtime. Build compatibility still requires proof from the baseline environment and target package/OS; do not infer it from this development guide.
 

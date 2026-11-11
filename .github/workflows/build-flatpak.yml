@@ -2,10 +2,10 @@ name: Build Flatpak
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     tags: ['v*']
   pull_request:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
   workflow_call:
 
@@ -44,13 +44,13 @@ jobs:
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           manifest-path: flathub/io.github.linx_systems.ClamUI.local.yml
-          bundle: clamui-${{ matrix.arch }}.flatpak
+          bundle: linux-defender-${{ matrix.arch }}.flatpak
           arch: ${{ matrix.arch }}
           cache-key: flatpak-builder-${{ matrix.runner }}-${{ matrix.arch }}
 
       - name: Upload Flatpak bundle artifact
         uses: actions/upload-artifact@v7.0.2
         with:
-          name: flatpak-bundle-${{ matrix.arch }}
-          path: clamui-${{ matrix.arch }}.flatpak
+          name: linux-defender-flatpak-${{ matrix.arch }}
+          path: linux-defender-${{ matrix.arch }}.flatpak
           retention-days: 7

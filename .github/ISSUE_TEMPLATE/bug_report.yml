@@ -1,10 +1,10 @@
 name: Bug report
-description: Report a problem with ClamUI.
+description: Report a problem with Linux Defender.
 body:
   - type: markdown
     attributes:
       value: |
-        Please search existing issues before reporting a bug. Report vulnerabilities [privately](https://github.com/linx-systems/clamui/security/advisories/new).
+        Please search existing issues before reporting a bug. For security vulnerabilities, use GitHub's private vulnerability reporting for this repository if it is enabled; otherwise contact a repository owner privately. Do not post exploit details in a public issue.
   - type: textarea
     id: what-happened
     attributes:
@@ -23,7 +23,7 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Include your ClamUI version, installation method, Linux distribution and version, architecture, desktop environment, and ClamAV version if relevant.
+      description: Include your Linux Defender version, installation method, Linux distribution and version, architecture, desktop environment, and ClamAV version if relevant.
     validations:
       required: true
   - type: textarea

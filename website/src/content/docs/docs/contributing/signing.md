@@ -5,9 +5,9 @@ description: Current Linux Defender release status and the verification rules fo
 
 ## Linux Defender artifacts
 
-Linux Defender 0.6.0 is a development snapshot. This repository has not published signed Linux Defender packages, an official release signing key, or release checksums. Do not install an artifact presented as a Linux Defender release until it is linked from the [SAFETY-CHAT releases page](https://github.com/SAFETY-CHAT/Linux-Defender/releases) and its signature instructions are published here.
+Linux Defender 0.6.0 is a development snapshot. This repository has not published signed Linux Defender packages, an official release signing key, or release checksums. Do not install an artifact presented as a Linux Defender release until it is linked from the [Linux Defender releases page](https://github.com/Linux-Defender/Linux-Defender/releases) and its signature instructions are published here.
 
-The ClamUI 0.6.0 signature key and release assets belong to the upstream ClamUI project. They do not verify Linux Defender builds or authorize Linux Defender packages. For upstream ClamUI releases, use its [official release page](https://github.com/linx-systems/clamui/releases) and instructions.
+The v0.6.0 upstream signature key and release assets belong to the original project. They do not verify Linux Defender builds or authorize Linux Defender packages. Use the [upstream release page](https://github.com/linx-systems/clamui/releases) only for artifacts published by that project.
 
 ## Checking a source checkout
 
@@ -18,7 +18,7 @@ git status --short --branch
 git rev-parse HEAD
 ```
 
-Build from a commit in the SAFETY-CHAT/Linux-Defender repository, keep the commit hash with your test notes, and review any local modifications. A locally built app is not a signed release artifact, even when its source came from GitHub.
+Build from a commit in the Linux-Defender/Linux-Defender repository, keep the commit hash with your test notes, and review any local modifications. A locally built app is not a signed release artifact, even when its source came from GitHub.
 
 ## Future packages
 

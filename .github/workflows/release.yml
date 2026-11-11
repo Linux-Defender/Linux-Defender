@@ -18,8 +18,14 @@ jobs:
       sign: true
     secrets: inherit
 
+  build-appimage:
+    uses: ./.github/workflows/build-appimage.yml
+    with:
+      sign: true
+    secrets: inherit
+
   release:
-    needs: [build-deb, build-rpm]
+    needs: [build-deb, build-rpm, build-appimage]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -40,6 +46,12 @@ jobs:
           pattern: rpm-package-*
           merge-multiple: true
           path: rpms
+
+      - name: Download AppImage artifacts
+        uses: actions/download-artifact@v8.0.2
+        with:
+          name: appimage-package
+          path: appimages
 
       - name: Read release notes
         id: notes
@@ -62,5 +74,7 @@ jobs:
             debs/clamui-privileged-helper_*_arm64.deb
             rpms/clamui-privileged-helper-*.rpm
             rpms/clamui-privileged-helper-*.rpm.asc
+            appimages/Linux-Defender-*.AppImage
+            appimages/Linux-Defender-*.AppImage.zsync
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

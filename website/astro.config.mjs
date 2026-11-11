@@ -1,11 +1,12 @@
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 import { satteri } from "@astrojs/markdown-satteri";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
 import { mermaidSatteriPlugin } from "./scripts/mermaid-satteri.mjs";
 
 export default defineConfig({
-  site: "https://safety-chat.github.io",
+  site: "https://linux-defender.github.io",
   base: "/Linux-Defender",
   output: "static",
   compressHTML: true,
@@ -19,6 +20,7 @@ export default defineConfig({
     }),
   },
   integrations: [
+    sitemap(),
     starlight({
       title: "Linux Defender Documentation",
       description: "Install, use, configure, and contribute to Linux Defender.",
@@ -30,7 +32,7 @@ export default defineConfig({
         {
           icon: "github",
           label: "Linux Defender on GitHub",
-          href: "https://github.com/SAFETY-CHAT/Linux-Defender",
+          href: "https://github.com/Linux-Defender/Linux-Defender",
         },
       ],
       sidebar: [

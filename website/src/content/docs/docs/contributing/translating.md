@@ -69,7 +69,7 @@ Each catalog's `Plural-Forms` header is runtime data and must match its language
 
 ## About and translator credits
 
-The root [`AUTHORS`](https://github.com/SAFETY-CHAT/Linux-Defender/blob/master/AUTHORS) file is canonical: one contributor per line, in the order shown there. The Rust build embeds that file, so every package can show the About contributor list offline and in that exact order.
+The root [`AUTHORS`](https://github.com/Linux-Defender/Linux-Defender/blob/main/AUTHORS) file is canonical: one contributor per line, in the order shown there. The Rust build embeds that file, so every package can show the About contributor list offline and in that exact order.
 
 For the About view's translator credits, translate `translator-credits` only to genuine contributor names. Leave it empty when no names can be credited; do not leave the literal `translator-credits` as the translation. The literal is suppressed rather than displayed as a person's credit.
 

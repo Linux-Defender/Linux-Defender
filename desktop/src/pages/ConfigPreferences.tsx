@@ -793,7 +793,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
           "Standalone Scanner (clamscan)",
         )}</option></select></label>
         <div className="setting-row"><span className="row-copy"><strong>{_("Daemon Status")}</strong><small className="muted">{scannerSummary}</small></span><button className="button" type="button" onClick={() => void refreshScanner()}>{_("Refresh Status")}</button></div>
-        <button className="button" type="button" onClick={() => void openReference("https://safety-chat.github.io/Linux-Defender/docs/reference/scan-backends/")}>{_("Documentation")}</button>
+        <button className="button" type="button" onClick={() => void openReference("https://linux-defender.github.io/Linux-Defender/docs/reference/scan-backends/")}>{_("Documentation")}</button>
       </section>
       <ConfigLocation label={_(
         // Translators: Keep clamd.conf unchanged; it is a configuration file name.

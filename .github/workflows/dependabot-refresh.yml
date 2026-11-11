@@ -3,7 +3,7 @@ name: Refresh Dependabot sources
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
-    branches: [master]
+    branches: [main]
     paths:
       - Cargo.lock
       - Cargo.toml
@@ -51,14 +51,14 @@ jobs:
         run: |
           set -euo pipefail
           [[ "$PR_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo 'Invalid pull request number' >&2; exit 1; }
-          if [[ "$EVENT_NAME" == workflow_dispatch && "$EVENT_REF" != refs/heads/master ]]; then
-            echo 'Run manual refresh from master, not the pull request branch.' >&2; exit 1
+          if [[ "$EVENT_NAME" == workflow_dispatch && "$EVENT_REF" != refs/heads/main ]]; then
+            echo 'Run manual refresh from main, not the pull request branch.' >&2; exit 1
           fi
           pr="$(gh api "repos/$REPO/pulls/$PR_NUMBER")"
           jq -e --arg repo "$REPO" '
             .state == "open" and .user.login == "dependabot[bot]" and
             .base.repo.full_name == $repo and .head.repo.full_name == $repo and
-            .base.ref == "master" and (.head.ref | test("^dependabot/(cargo|bun|npm_and_yarn)/[A-Za-z0-9._/+~-]+$")) and
+            .base.ref == "main" and (.head.ref | test("^dependabot/(cargo|bun|npm_and_yarn)/[A-Za-z0-9._/+~-]+$")) and
             (.head.sha | test("^[0-9a-f]{40}$")) and (.base.sha | test("^[0-9a-f]{40}$"))
           ' <<<"$pr" >/dev/null || { echo 'Pull request identity, repository, base, or branch is not eligible.' >&2; exit 1; }
           head="$(jq -r .head.sha <<<"$pr")"
@@ -99,7 +99,7 @@ jobs:
           set -euo pipefail
           git fetch --no-tags origin "$HEAD_SHA"
           if ! git merge-base --is-ancestor "$BASE_SHA" "$HEAD_SHA"; then
-            echo 'PR branch must include current master; request @dependabot rebase before refreshing.' >&2; exit 1
+            echo 'PR branch must include current main; request @dependabot rebase before refreshing.' >&2; exit 1
           fi
           mkdir -p "$SNAPSHOT/desktop"
           for file in Cargo.lock desktop/package.json desktop/bun.lock desktop/yarn.lock flathub/cargo-sources.json flathub/bun-sources.json; do
@@ -189,7 +189,7 @@ jobs:
             jq -e --arg repo "$REPO" --arg branch "$BRANCH" --arg head "$expected" --arg base "$BASE_SHA" '
               .state == "open" and .user.login == "dependabot[bot]" and
               .head.repo.full_name == $repo and .base.repo.full_name == $repo and
-              .base.ref == "master" and .base.sha == $base and
+              .base.ref == "main" and .base.sha == $base and
               .head.ref == $branch and .head.sha == $head
             ' <<<"$pr" >/dev/null || { echo 'PR identity, base, branch, or head changed; refusing to continue.' >&2; exit 1; }
           }
@@ -200,7 +200,7 @@ jobs:
               observed="$(jq -er --arg repo "$REPO" --arg branch "$BRANCH" --arg old "$old_head" --arg new "$new_head" --arg base "$BASE_SHA" '
                 select(.state == "open" and .user.login == "dependabot[bot]" and
                   .head.repo.full_name == $repo and .base.repo.full_name == $repo and
-                  .base.ref == "master" and .base.sha == $base and .head.ref == $branch and
+                  .base.ref == "main" and .base.sha == $base and .head.ref == $branch and
                   (.head.sha == $old or .head.sha == $new)) | .head.sha
               ' <<<"$pr")" || { echo 'PR identity, base, branch, or head changed while awaiting synchronization.' >&2; exit 1; }
               branch_head="$(gh api "repos/$REPO/git/ref/heads/$BRANCH" --jq '.object.sha')"
@@ -213,7 +213,7 @@ jobs:
           }
           check_pr "$HEAD_SHA"
           git fetch --no-tags origin "$HEAD_SHA"
-          git merge-base --is-ancestor "$BASE_SHA" "$HEAD_SHA" || { echo 'PR needs rebasing onto master.' >&2; exit 1; }
+          git merge-base --is-ancestor "$BASE_SHA" "$HEAD_SHA" || { echo 'PR needs rebasing onto main.' >&2; exit 1; }
           git checkout --detach "$HEAD_SHA"
           for file in desktop/bun.lock desktop/yarn.lock flathub/cargo-sources.json flathub/bun-sources.json; do
             [[ -f "$GENERATED/$file" && ! -L "$GENERATED/$file" ]] || { echo "Missing or unsafe artifact: $file" >&2; exit 1; }

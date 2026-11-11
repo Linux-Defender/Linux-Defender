@@ -1,6 +1,6 @@
-const RELEASES_URL = "https://github.com/SAFETY-CHAT/Linux-Defender/releases";
+const RELEASES_URL = "https://github.com/Linux-Defender/Linux-Defender/releases";
 const LATEST_RELEASE_API =
-  "https://api.github.com/repos/SAFETY-CHAT/Linux-Defender/releases/latest";
+  "https://api.github.com/repos/Linux-Defender/Linux-Defender/releases/latest";
 
 export interface LatestRelease {
   tag: string;

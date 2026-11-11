@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
-"Report-Msgid-Bugs-To: https://github.com/SAFETY-CHAT/Linux-Defender/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/issues\n"
 "POT-Creation-Date: 2026-11-11 16:44-0500\n"
 "PO-Revision-Date: 2026-09-13 09:59+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"

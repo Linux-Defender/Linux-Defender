@@ -1,5 +1,5 @@
 name: Feature request
-description: Suggest an improvement to ClamUI.
+description: Suggest an improvement to Linux Defender.
 body:
   - type: markdown
     attributes:

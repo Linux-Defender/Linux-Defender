@@ -1,8 +1,8 @@
-# Security Policy for ClamUI
+# Security Policy for Linux Defender
 # This file follows the security.txt standard (RFC 9116)
 # https://securitytxt.org/
 
-Contact: clamui[at]rooki.xyz
+Contact: https://github.com/Linux-Defender/Linux-Defender/security/advisories/new
 Preferred-Languages: en
-Canonical: https://github.com/linx-systems/clamui/blob/main/SECURITY.txt
-Policy: https://github.com/linx-systems/clamui/security/advisories
+Canonical: https://github.com/Linux-Defender/Linux-Defender/blob/main/SECURITY.txt
+Policy: https://github.com/Linux-Defender/Linux-Defender/blob/main/SECURITY.md

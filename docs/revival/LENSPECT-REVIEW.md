@@ -67,7 +67,7 @@ The API returned 25 PRs: one open and 24 closed. The only open behavior PR is #4
 
 ## Forks and limits of this review
 
-The public repository endpoint did not find `SAFETY-CHAT/lenspect-REBORN` at review time (HTTP 404); no fork comparison is claimed for that repository. Upstream lists 14 forks. This review checked Lenspect's current public default branch, issue list, and PR list; it did not diff all 14 forks or every historical branch/commit. Recheck the fork list and API before release. The user-owned Linux Defender remote is `SAFETY-CHAT/Linux-Defender`; this review did not push changes there.
+The public repository endpoint did not find `SAFETY-CHAT/lenspect-REBORN` at review time (HTTP 404); no fork comparison is claimed for that repository. Upstream lists 14 forks. This review checked Lenspect's current public default branch, issue list, and PR list; it did not diff all 14 forks or every historical branch/commit. Recheck the fork list and API before release. The later repository-rename and publication pass pushed branch `revival/unified-app`; PR #1 was merged into `main`. This Lenspect review still does not compare all upstream forks or historical branches.
 
 ## Required parity update rule
 

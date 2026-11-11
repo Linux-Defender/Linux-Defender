@@ -8,7 +8,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlsplit
 
-CANONICAL_HOSTS = {"safety-chat.github.io"}
+CANONICAL_HOSTS = {"linux-defender.github.io"}
 BASE_PATH = "/Linux-Defender"
 IGNORED_SCHEMES = {"data", "javascript", "mailto", "tel"}
 
@@ -83,7 +83,7 @@ def check_site(site: Path) -> list[str]:
 
     errors: list[str] = []
     for page, parser in pages.items():
-        base_url = f"https://safety-chat.github.io{BASE_PATH}{public_urls[page]}"
+        base_url = f"https://linux-defender.github.io{BASE_PATH}{public_urls[page]}"
         for link in parser.links:
             if not is_local(link):
                 continue
