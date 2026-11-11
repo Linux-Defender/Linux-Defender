@@ -17,6 +17,7 @@ use Glib 'TRUE', 'FALSE';
 use File::Find;
 use Cwd 'chdir';
 use Time::HiRes 'time';
+use Text::ParseWords 'shellwords';
 
 # use strict;
 # use warnings;
@@ -219,7 +220,7 @@ sub filter {
             'smb4k',
             "/run/user/$ENV{USER}/gvfs",
             "$ENV{HOME}/.gvfs" ) {
-                $directive .= " --exclude-dir=$m";
+                $directive .= ' --exclude-dir=' . _quote_shellword($m);
     }
     #>>>
 
@@ -238,7 +239,8 @@ sub filter {
         # of the whitelisted domains as part of a directory that
         # should be scanned.
         # Github #61 - https://github.com/dave-theunsub/clamtk/issues/61
-        $directive .= " --exclude-dir=^" . quotemeta( $ignore );
+        $directive .= ' --exclude-dir='
+            . _quote_shellword( '^' . quotemeta($ignore) );
     }
 
     # Remove mail directories and some backup directories for now.
@@ -260,7 +262,7 @@ sub filter {
 
         # But only if Trash directory is not being scanned
         if ( $scanthis !~ m#/.local/share/Trash# ) {
-            $directive .= ' --exclude="\/\."';
+            $directive .= ' ' . _quote_shellword('--exclude=\\/\\.');
         }
     }
 
@@ -343,9 +345,6 @@ sub scan {
 
     $pb->show;
 
-    my $quoted = quotemeta( $path_to_scan );
-    chomp( $quoted );
-
     # Leave if we have no real path
     if ( !$path_to_scan ) {
         warn "No path to scan!\n";
@@ -353,13 +352,14 @@ sub scan {
     }
 
     my $paths   = ClamTk::App->get_path( 'all' );
-    my $command = $paths->{ clamscan };
+    my $command = $paths->{ clampath };
     my $last_ui_update = 0;
     my $ui_update_interval = 0.1;
 
     # Use the user's sig db if it's selected
+    my @database_args;
     if ( ClamTk::Prefs->get_preference( 'Update' ) eq 'single' ) {
-        $command .= " --database=$paths->{db}";
+        push @database_args, "--database=$paths->{db}";
     }
 
     # Implicit fork; gives us the PID of clamscan so we can
@@ -367,9 +367,18 @@ sub scan {
     #<<<
     # Using the verbose (-v) switch gives us the next file
     # for the display "Scanning $1..."
-    $scan_pid
-        = open( $SCAN, '-|', "$command $directive -v $quoted 2>&1" );
+    my @argv = _scan_argv( $command, $directive, $path_to_scan,
+        @database_args );
+
+    # Fork directly and exec with an argument list. This keeps filenames and
+    # options out of a shell command string, while preserving scanner stderr
+    # in the output stream used by the progress UI.
+    $scan_pid = open( $SCAN, '-|' );
     defined( $scan_pid ) or die "couldn't fork: $!\n";
+    if ( $scan_pid == 0 ) {
+        open( STDERR, '>&', STDOUT ) or die "couldn't redirect stderr: $!\n";
+        exec { $argv[0] } @argv or die "couldn't run clamscan: $!\n";
+    }
     $window->queue_draw;
     Gtk3::main_iteration while Gtk3::events_pending;
     #>>>
@@ -497,9 +506,21 @@ sub scan {
     close( $SCAN );    # or warn "Unable to close scanner! $!\n";
 }
 
+sub _scan_argv {
+    my ( $clamscan, $directive, $path_to_scan, @database_args ) = @_;
+    return (
+        $clamscan, '--no-summary', '--block-encrypted', @database_args,
+        shellwords($directive), '-v', $path_to_scan
+    );
+}
+
+sub _quote_shellword {
+    my ($value) = @_;
+    $value =~ s/'/'\\''/g;
+    return "'$value'";
+}
+
 sub cancel_scan {
-    kill 15, $scan_pid + 1;
-    waitpid( $scan_pid + 1, 0 ) if ( $scan_pid + 1 );
     kill 15, $scan_pid if ( $scan_pid );
     waitpid( $scan_pid, 0 ) if ( $scan_pid );
 

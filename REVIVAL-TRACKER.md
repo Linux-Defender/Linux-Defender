@@ -25,7 +25,7 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 | [#121](https://github.com/dave-theunsub/clamtk/issues/121) Timeshift/hard links | Current scanner excludes directories named `timeshift`; general hard-link explanation/support is not added. | Reported scenario appears covered; broader request open |
 | [#119](https://github.com/dave-theunsub/clamtk/issues/119) hard-coded source path | Old help request no longer matches current code, which uses `App->get_path`. | Stale against current source |
 | [#91](https://github.com/dave-theunsub/clamtk/issues/91) Update Assistant confusion | Added explanatory mode-specific help in the Assistant. | UI clarification committed `7d0bd08`; not GUI-verified |
-| [#68](https://github.com/dave-theunsub/clamtk/issues/68) high CPU during scan | Scan UI previously updated detail labels and requested redraw per scanner output line. Locally throttled detail refreshes to 10 Hz. | Local fix committed `42c6f77`; needs desktop CPU/GUI validation |
+| [#68](https://github.com/dave-theunsub/clamtk/issues/68) high CPU during scan | Scan UI previously updated detail labels and requested redraw per scanner output line. Locally throttled detail refreshes to 10 Hz. Scanner invocation now uses direct argument passing rather than a shell command, preserving scan paths with spaces and shell metacharacters. | Local fixes; throttling committed `42c6f77`; argument handling covered by tests; needs desktop CPU/GUI validation |
 | [#53](https://github.com/dave-theunsub/clamtk/issues/53) duplicate quarantine names | Quarantine destination previously used only `basename`, allowing collisions and a failure path that could unlink the destination. Local fix now generates a content-specific unique storage name and keeps both restore records. | Local fix committed `b277d85`; 14 related tests pass |
 | [#39](https://github.com/dave-theunsub/clamtk/issues/39) scheduled report in tray | Legacy desktop notification feature request. | Open; not implemented |
 | [#36](https://github.com/dave-theunsub/clamtk/issues/36) bulk result actions | Blind bulk deletion risks false-positive damage; any batch action needs explicit selection and review. | Open; not implemented |
@@ -41,7 +41,7 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 
 ## Local verification
 
-- `prove -r t`: 27 tests pass across six test files after adding tool-discovery coverage.
+- `prove -r t`: 34 tests pass across seven test files; coverage includes custom PATH discovery and literal scanner argument construction.
 - `perl -Ilib -c lib/Scan.pm`: syntax OK.
 - PR-derived `GUI.pm` and `Update.pm` syntax checks passed earlier; GTK emitted sandbox dconf warnings.
 - No GUI display is available, so visual behavior, dark themes, Cinnamon/Mint, and CPU impact on Kira's desktop remain unverified.
