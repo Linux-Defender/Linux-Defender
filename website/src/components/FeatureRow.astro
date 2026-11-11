@@ -1,0 +1,28 @@
+---
+import type { Feature } from "../content/features";
+
+export interface Props {
+  feature: Feature;
+  index: number;
+}
+const { feature, index } = Astro.props;
+---
+
+<article class={`card h-full ${feature.highlight ? "border-clam-sky/35 bg-clam-sky/[0.045]" : ""}`}>
+  <div class="flex items-start justify-between gap-3">
+    <span class="eyebrow">{feature.eyebrow}</span>
+    <span class="font-mono text-xs text-white/30">0{index + 1}</span>
+  </div>
+  <h3 class="mt-4 text-xl font-semibold tracking-tight text-white">{feature.title}</h3>
+  <p class="mt-3 text-sm leading-relaxed text-white/65">{feature.blurb}</p>
+  <ul class="mt-5 space-y-2.5">
+    {feature.bullets.map((bullet) => (
+      <li class="flex items-start gap-2.5 text-sm text-white/70">
+        <svg class="mt-0.5 h-4 w-4 flex-none text-clam-sage" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m5 12 5 5L20 7"></path>
+        </svg>
+        <span>{bullet}</span>
+      </li>
+    ))}
+  </ul>
+</article>

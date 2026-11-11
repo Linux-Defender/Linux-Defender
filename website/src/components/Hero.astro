@@ -1,0 +1,36 @@
+---
+import ProductPreview from "./ProductPreview.astro";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<section id="top" class="relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-50 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"></div>
+  <div class="container-tight relative grid items-center gap-14 py-16 sm:py-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+    <div class="animate-fade-up">
+      <span class="eyebrow">
+        <span class="h-1.5 w-1.5 rounded-full bg-clam-sage"></span>
+        Development snapshot · 0.6.0 · Rust / Tauri / React
+      </span>
+      <h1 class="mt-5 max-w-2xl text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+        One workspace for
+        <span class="hero-gradient-text bg-gradient-to-r from-clam-sage via-white to-clam-sky bg-clip-text text-transparent">Linux security.</span>
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
+        Linux Defender brings local ClamAV scans, optional YARA rules, system checks, and consent-based VirusTotal and urlscan lookups into one desktop app.
+      </p>
+      <p class="mt-4 max-w-xl text-sm leading-relaxed text-white/50">
+        Local scanning stays on your computer. Online reputation checks send the selected file or URL only after you review and confirm. Linux Defender uses the host's ClamAV engine and FreshClam-managed database.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href={`${base}/docs/contributing/development/`} class="btn-primary">Build and test</a>
+        <a href="https://github.com/SAFETY-CHAT/Linux-Defender" rel="noopener" class="btn-ghost">Open the repository</a>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-mono text-white/50">
+        <span><b class="text-white/80">Local engine</b> · ClamAV</span>
+        <span><b class="text-white/80">Local rules</b> · YARA</span>
+        <span><b class="text-white/80">Online checks</b> · optional</span>
+      </div>
+    </div>
+    <div class="animate-fade-up [animation-delay:120ms]"><ProductPreview /></div>
+  </div>
+</section>

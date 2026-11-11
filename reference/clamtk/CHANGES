@@ -1,0 +1,206 @@
+CHANGELOG for ClamTk:
+
+6.18 - 20240126
+---------------
+    * Remove unnecessary line from #154 fix in App.pm
+    * Change default clamtk user directory to .config/clamtk (Github #161)
+    * Fix for scanned directories not showing in logs
+    * Add top-level heading to README.md
+    * Add af, ca, eu, and lt to desktop file
+    * Fix Punjabi (pa) string in desktop file
+    * Updated language files: Bulgarian (bg), Czech (cs), French (fr)
+
+6.17 - 20231215
+---------------
+    * Update App.pm to support $XDG_CONFIG_HOME environnement variable (Github #154)
+    * Updated language files: Polish (pl)
+
+6.16 - 20230602
+---------------
+    * Fix for Virustotal privacy warning before upload or sending file hash only
+      (Github #155) https://github.com/dave-theunsub/clamtk/issues/155
+    * Fix for New debs are made with tar.zst (Github #152)
+      https://github.com/dave-theunsub/clamtk/issues/152
+    * Remove (hopefully) no longer needed lines; improve a few others (Scan.pm)
+    * Updated language files: Dutch (nl)
+    * Update README and site links for updated GPG key
+    * Minor cleanup of man page
+    * Update year from 2022 -> 2023
+
+6.15 - 20221226
+---------------
+    * Fix for Unable to delete previous analysis result (Github #150)
+      https://github.com/dave-theunsub/clamtk/issues/150
+    * Updated language files: Indonesian (id), Swedish (sv), German (de), Chinese (zh_CN), Burmese (my)
+    * Fix to German language string in clamtk.desktop (Github PR #144)
+    * Update DISCLAIMER to use markdown (DISCLAIMER.md)
+    * Properly enter copyright symbol in LICENSE
+    * Update year from 2021 -> 2022
+
+6.14 - 20211120
+---------------
+    * Hopefully a fix for context-menu scanning image issues
+    * Update README.md links
+    * Update LICENSE text
+
+6.13 - 20210707
+---------------
+    * Fixes for appdata.xml (Github #131, Bugzilla #1819344)
+
+6.12 - 20210705
+---------------
+    * Fixes for appdata.xml (Github #128, Bugzilla #1819344)
+    * Partially work Github #129 (engine version, date of sigs, title)
+    * Update translations in clamtk.desktop
+
+6.11 - 20210409
+---------------
+    * Clamtk and Clamav do not update automatically (Github #127)
+      Please remove old scheduled tasks and re-add them to take effect
+
+6.10 - 20210313
+---------------
+    * Add appdata.xml file (Bugzilla #1819344)
+    * Updated language file: Finnish (fi)
+
+6.09 - 20210227
+---------------
+    * Remove code referencing old repo
+    * Closing: Gitlab #112, Github #8 (clamtk-gnome), Github #99, Github #118
+    * Move Greek (el_GR) language file to probably proper directory
+    * Updated language file: English (en_CA)
+
+6.08 - 20210218
+---------------
+    * Bug: app doesn't scan files/folders on demand  (Debian #981384)
+    * Bug: Do not inject 'no-separator' into window decoration
+      (Github #126)
+    * Add --alert-broken-media option for versions >= 103.1
+    * Remove older repo (clamtk-gtk3), use clamtk only
+
+6.07 - 20210130
+---------------
+    * Update to look for additional information during update
+      to know when finished
+    * Update dates to 2021
+
+6.06 - 20200916
+---------------
+    * Fix for 'Show Hidden Files' checkbox automatically
+      (Launchpad #1876497)
+    * Remove env from clamtk startup for correct
+      dependency detection (rpmlint)
+    * Minor language updates to desktop file
+    * Updated language files: Japanese (ja), English (en_AU),
+      Mon (mnw_MM), Finnish (fi), Malay (ms)
+
+6.05 - 20200809
+---------------
+    * Exclude Timeshift directory (Github #121)
+    * Added Help button in Analysis to explain its purpose
+      (Github #122)
+    * Updated language files: English (en_UK), Galician (gl),
+      Ukrainian (uk), French (fr), Afrikans (af), Hebrew (he),
+      Chinese (zh_TW)
+
+6.04 - 20200711
+---------------
+    * Add Encrypted.PDF as clean (Github #120). Also, remove alert-
+      encrypted-* options
+    * Add set LC_TIME (Gitlab commit a7b3a31c)
+    * More README cleanup
+    * Updated language files: Dutch (nl), Afrikans (af),
+      Indonesian (id), English (en_UK)
+
+6.03 - 20200423
+---------------
+    * Bug fix affecting manual updates
+    * Update year (2019 -> 2020)
+    * Clean up man page
+    * Heuristic scanning made an option rather than a default
+    * Fix icon mismatch in the Scheduler
+    * Fix icon glitch in Update
+    * Updated language files: English (en_UK), Indonesian (id),
+      Swedish (sv) (Launchpad #1688469)
+
+6.02 - 20190919
+---------------
+    * Updated language files: Turkish (tr), Kazakh (kk), Swedish (sv),
+      Malay (ms), English (en_AU), Finnish (fi), Spanish (es),
+      French (fr), Hebrew (he), Ukrainian (uk), Indonesian (id),
+      Polish (pl), German (de), Asturian (ast), Italian (it)
+    * UX improvement: Gitlab #80 - Top bar icons inconsistency
+    * Regression bug: Gitlab #83 - support for file name or folder
+      name with local charset in command line interface parameter
+    * Gitlab Merge Request !1 - Fix the hashbang and icon names
+      (started; will finish in 6.03)
+    * Improved README.md formatting; available in html and pdf
+      now as well
+
+6.01 - 20190329
+---------------
+    * Minor dependencies tweaks.
+      - Gitlab #60: https://gitlab.com/dave_m/clamtk/issues/60
+      - Thanks Tim!
+    * Formatted the README.md file a little better, mostly by just adding
+      some line breaks. Try opening it locally with a program like Okular.
+    * Re-added whitelist to scheduled scans. Remember to remove your current scan and reschedule if you need this.
+      - Github #115: https://github.com/dave-theunsub/clamtk/issues/115
+
+6.00 - 20190220
+---------------
+    * On to Gtk3! Thanks to Scott K for kicking me.
+      - For help: https://gitlab.com/dave_m/clamtk/wikis/Home
+      - For source: https://gitlab.com/dave_m/clamtk-gtk3
+      - Closes:
+        ^ Debian 912888: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912888
+        ^ Gitlab #59: https://gitlab.com/dave_m/clamtk/issues/59
+      - For more information, downloads, GPG key, etc:
+        https://gitlab.com/dave_m/clamtk/wikis/Home
+
+5.00 - 20131109
+---------------
+    * Right-click file manager support;
+      uses nautilus-python
+    * Use of Virustotal API; requires perl-JSON
+      and perl-LWP-Protocol-https
+    * Now using Time::Piece instead of Date::Calc;
+      it's a Perl built-in
+    * Now using Digest::SHA (sha256) instead of Digest::MD5
+    * Built-in documentation (requires yelp);
+      currently English only...
+    * Updated language files: German (de), Bulgarian (bg),
+      Galician (gl), Ukrainian (uk), Russian (ru),
+      English (en_UK), Malay (ms), Hebrew (he), Italian (it),
+
+4.00 - 20081013
+---------------
+	* There are quite a few changes in this release.
+	  Among the most notable is the ability of any user
+	  to maintain their own sig database and update them.
+	  Please see the file "README.4.0" for more
+	* Small fixes to display the correct virus db information
+	* Swedish language file added to Debian and FC3 builds
+
+3.00 - 20070808
+---------------
+	* Extended the signature updates time - it's usually needed
+	* Fixed the Russian language file, which is now UTF-8.
+	  Thanks, Vitaly!
+	* Added a line for internal encoding. Thanks, Vitaly!
+	* Added Swedish language file. Thanks, Petter!
+
+2.00 - 20050611
+---------------
+	* Code change: now using SimpleMenu for menu
+	  generation because... well, it's simpler
+	* Source is now in the form of clamtk-$VERSION.tar.gz
+	* Other minor fixes
+
+1.0 - xxxxxxxx
+--------------
+	* Certain files containing spaces were not being properly scanned
+	* Re-added quarantine scanning, which was accidentally removed
+	* Removed 'version'-check functionality since I'm moving the
+	  project to sourceforge.net. Might be added later
+	* Minor code tweaks
