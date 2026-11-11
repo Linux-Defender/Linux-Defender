@@ -15,6 +15,13 @@ Audit date: 2026-11-11. This consolidates Kira's requests in the Linux Defender 
 
 This pass does not complete ClamTk feature/data parity, create a Linux Defender installer or self-updater, add/maintain every compatible third-party signature feed, resolve all historical issues/PRs, or prove all-distro support. The implementation and validation limits below remain active.
 
+## ClamUI latest-source and PR refresh (2026-11-11)
+
+- Refreshed public ClamUI state: v0.6.0 release, default-branch updater fix from `30a72f0` (#307), 61 open issues, and 2 open PRs. The updater fix is ported with configurable inactivity timeout, settings UI, tests, docs, and catalogs. PR #298 website dependency updates are adopted; #299 TypeScript 7.0.2 is deferred because Astro 7.4.5 `astro check` rejects it.
+- The latest ClamUI issue #306 concerns cascading failures across custom FreshClam URLs. Linux Defender has no third-party feed manager; review licensing, source authenticity, and isolation before implementing arbitrary feeds. #304 remains unverified on Debian 12 Flatpak; #305 remains open upstream although its maintainer says the fix shipped in 0.6.0.
+- ClamTk's reviewed issue/PR counts remain 23 open issues and 4 open PRs. Review dispositions and feature gaps are in `CLAMTK-ISSUE-PR-TRACKER.md`; this does not mean all reported requests are fixed. ClamTk runtime/data migration and screen-by-screen parity remain incomplete.
+- Follow-up validation: workspace tests with five sandbox-dependent privileged tests filtered passed (all remaining targets; 1 ignored). The unfiltered workspace suite fails those five tests due absent/mismatched host ownership, checksum tools, and trusted `getent`. Rust format, workspace Clippy, desktop TypeScript/build, Website frozen install/Astro check/build, translation validation (10 locales, 1,363 message entries per catalog), POT freshness, extraction coverage, AppStream, and `git diff --check` passed. No CachyOS GUI/package test or online VirusTotal/urlscan submission was performed.
+
 ## What the project now contains
 
 | Request | Current evidence | Status |

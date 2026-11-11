@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Added
+
+- Ported ClamUI upstream post-v0.6.0 updater fix for long-running FreshClam updates. Manual/forced updates now stop only after a configurable period without output (10-minute default; 1–1,440 minutes), rather than a fixed total runtime limit. Added settings UI, docs, regression tests, and translation catalog entries. Vietnamese strings are translated; other catalogs use English fallback pending human review.
+- Adopted ClamUI PR #298 website dependency updates. Deferred PR #299 TypeScript 7.0.2 because Astro 7.4.5's checker rejects TypeScript 7.
+
+
 ## [0.6.0] - 2026-11-11
 
 ### Added

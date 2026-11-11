@@ -14,6 +14,8 @@ freshclam --version
 
 Use the distro's FreshClam service or timer to update signatures. On Kira's CachyOS setup, check `clamav-freshclam-once.timer` and its service journal. Do not run a second `freshclam` process while the service is updating the same database. A warning that FreshClam could not notify `clamd` means there is no reachable daemon socket; it does not undo a database update that passed its database test.
 
+If a manual or forced update stops for inactivity, check host `freshclam` output and connectivity. **Preferences → Behavior → Database Updates** controls the allowed time without stdout or stderr output (10 minutes by default). Active updates have no total time limit; signaling an existing update service is not subject to this setting.
+
 ## The desktop does not start on Wayland
 
 The native app uses Tauri with WebKitGTK 4.1 and GTK 3. On some Wayland and NVIDIA combinations, WebKitGTK's DMA-BUF renderer can fail during startup with `Error 71`. For a source-development launch, try:

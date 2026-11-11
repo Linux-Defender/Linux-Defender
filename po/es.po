@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/SAFETY-CHAT/Linux-Defender/issues\n"
-"POT-Creation-Date: 2026-11-11 16:17-0500\n"
+"POT-Creation-Date: 2026-11-11 16:44-0500\n"
 "PO-Revision-Date: 2026-04-27 19:42-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -274,7 +274,10 @@ msgstr "Portmaster se está ejecutando y protege las conexiones"
 msgid ""
 "Authorize Linux Defender in Portmaster for per-module health (legacy app "
 "identity: ClamUI)"
-msgstr "Autorizar a Linux Defender en Portmaster para consultar el estado de cada módulo (identidad de aplicación heredada: ClamUI)"
+msgstr ""
+"Autorizar a Linux Defender en Portmaster para consultar el estado de cada "
+"módulo (identidad de aplicación heredada: ClamUI)"
+
 #: crates/clamui-core/src/audit.rs:1169
 msgid "Authorize"
 msgstr "Autorizar"
@@ -1844,11 +1847,11 @@ msgstr "Omitiendo el escaneo: funcionando con batería ({percent:.0f} %)"
 msgid "Skipping scan: running on battery power"
 msgstr "Se omite el análisis: se está usando batería"
 
-#: crates/clamui-core/src/updater.rs:132
+#: crates/clamui-core/src/updater.rs:131
 msgid "Update cancelled by user"
 msgstr "Actualización cancelada por el usuario"
 
-#: crates/clamui-core/src/updater.rs:137
+#: crates/clamui-core/src/updater.rs:136
 msgid ""
 "Update process output did not close after cleanup; result cannot be "
 "classified."
@@ -1857,13 +1860,13 @@ msgstr ""
 "no se puede clasificar el resultado."
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/clamui-core/src/updater.rs:505
+#: crates/clamui-core/src/updater.rs:503
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr ""
 "Se ha enviado una señal de actualización al servicio freshclam (PID {pid})"
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/clamui-core/src/updater.rs:711
+#: crates/clamui-core/src/updater.rs:793
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -1871,9 +1874,15 @@ msgstr ""
 "Se está ejecutando otra instancia de freshclam (PID {pid}). Deténgala "
 "primero: sudo systemctl stop clamav-freshclam"
 
+#: crates/clamui-core/src/updater.rs:823
+msgid "Update timed out after {minutes} minute without output"
+msgid_plural "Update timed out after {minutes} minutes without output"
+msgstr[0] "Update timed out after {minutes} minutes without output"
+msgstr[1] "Update timed out after {minutes} minutes without output"
+
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/clamui-core/src/updater.rs:829
+#: crates/clamui-core/src/updater.rs:962
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] ""
@@ -1884,21 +1893,21 @@ msgstr[1] ""
 "de datos"
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/clamui-core/src/updater.rs:839
+#: crates/clamui-core/src/updater.rs:972
 msgid "Database update completed — Already up to date"
 msgstr "Actualización de la base de datos completada — Ya está actualizada"
 
-#: crates/clamui-core/src/updater.rs:906
+#: crates/clamui-core/src/updater.rs:1039
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "La configuración de freshclam seleccionada no existe: {path}"
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/clamui-core/src/updater.rs:938
+#: crates/clamui-core/src/updater.rs:1071
 msgid "Could not determine freshclam PID"
 msgstr "No se ha podido determinar el PID de freshclam"
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/clamui-core/src/updater.rs:948
+#: crates/clamui-core/src/updater.rs:1081
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
@@ -2210,8 +2219,8 @@ msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 msgid "Version"
 msgstr "Versión"
 
-#: desktop/src/App.tsx:1025 desktop/src/pages/SettingsPreferences.tsx:266
-#: desktop/src/pages/SettingsPreferences.tsx:267
+#: desktop/src/App.tsx:1025 desktop/src/pages/SettingsPreferences.tsx:269
+#: desktop/src/pages/SettingsPreferences.tsx:270
 msgid "Language"
 msgstr "Idioma"
 
@@ -2265,8 +2274,8 @@ msgstr "Recordar mi elección"
 #: desktop/src/pages/Profiles.tsx:245 desktop/src/pages/Profiles.tsx:246
 #: desktop/src/pages/Quarantine.tsx:319 desktop/src/pages/Results.tsx:206
 #: desktop/src/pages/Scan.tsx:714 desktop/src/pages/Scan.tsx:720
-#: desktop/src/pages/SettingsPreferences.tsx:407
-#: desktop/src/pages/SettingsPreferences.tsx:496
+#: desktop/src/pages/SettingsPreferences.tsx:424
+#: desktop/src/pages/SettingsPreferences.tsx:513
 #: desktop/src/pages/Urlscan.tsx:200
 msgid "Cancel"
 msgstr "Cancelar"
@@ -2296,7 +2305,7 @@ msgstr "Cancelar el escaneo y cerrar"
 #: desktop/src/App.tsx:1058 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:85 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:310 desktop/src/pages/Scan.tsx:316
-#: desktop/src/pages/Scan.tsx:328 desktop/src/pages/SettingsPreferences.tsx:296
+#: desktop/src/pages/Scan.tsx:328 desktop/src/pages/SettingsPreferences.tsx:313
 msgid "Close"
 msgstr "Cerrar"
 
@@ -2534,8 +2543,8 @@ msgstr "Cancelado"
 #: desktop/src/pages/Components.tsx:146 desktop/src/pages/Logs.tsx:104
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
-#: desktop/src/pages/SettingsPreferences.tsx:470
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:487
+#: desktop/src/pages/SettingsPreferences.tsx:511
 #: desktop/src/pages/Statistics.tsx:142
 msgid "Unknown"
 msgstr "Desconocido"
@@ -2729,7 +2738,7 @@ msgstr "No se pudo copiar el comando: {error}"
 #: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
 #: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:413
 #: desktop/src/pages/Scan.tsx:718 desktop/src/pages/Scan.tsx:723
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Copy"
 msgstr "Copiar"
 
@@ -2819,7 +2828,7 @@ msgid "Running"
 msgstr "En ejecución"
 
 #: desktop/src/pages/Components.tsx:143
-#: desktop/src/pages/SettingsPreferences.tsx:287
+#: desktop/src/pages/SettingsPreferences.tsx:304
 msgid "Installed"
 msgstr "Instalado"
 
@@ -2828,7 +2837,7 @@ msgid "Stopped"
 msgstr "Detenido"
 
 #: desktop/src/pages/Components.tsx:145 desktop/src/pages/Logs.tsx:102
-#: desktop/src/pages/SettingsPreferences.tsx:289
+#: desktop/src/pages/SettingsPreferences.tsx:306
 msgid "Not installed"
 msgstr "No instalado"
 
@@ -2974,7 +2983,7 @@ msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:294
 #: desktop/src/pages/ConfigPreferences.tsx:341
-#: desktop/src/pages/SettingsPreferences.tsx:363
+#: desktop/src/pages/SettingsPreferences.tsx:380
 msgid "Add"
 msgstr "Añadir"
 
@@ -2982,7 +2991,7 @@ msgstr "Añadir"
 #: desktop/src/pages/ConfigPreferences.tsx:345
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
 #: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:711
-#: desktop/src/pages/SettingsPreferences.tsx:293
+#: desktop/src/pages/SettingsPreferences.tsx:310
 msgid "Remove"
 msgstr "Eliminar"
 
@@ -3093,6 +3102,7 @@ msgid "Scan Archive Files"
 msgstr "Analizar archivos comprimidos"
 
 #: desktop/src/pages/ConfigPreferences.tsx:738
+#: desktop/src/pages/SettingsPreferences.tsx:282
 msgid "Database Updates"
 msgstr "Actualizaciones de la base de datos"
 
@@ -3450,7 +3460,7 @@ msgstr ""
 "personal sin guardarlo como un destino explícito."
 
 #: desktop/src/pages/ConfigPreferences.tsx:854
-#: desktop/src/pages/SettingsPreferences.tsx:385
+#: desktop/src/pages/SettingsPreferences.tsx:402
 msgid "Skip on Battery"
 msgstr "Omitir si se usa la batería"
 
@@ -3910,8 +3920,8 @@ msgstr "Operaciones anteriores de análisis y actualización"
 
 #: desktop/src/pages/Logs.tsx:367 desktop/src/pages/Logs.tsx:400
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Quarantine.tsx:296
-#: desktop/src/pages/SettingsPreferences.tsx:407
-#: desktop/src/pages/SettingsPreferences.tsx:489
+#: desktop/src/pages/SettingsPreferences.tsx:424
+#: desktop/src/pages/SettingsPreferences.tsx:506
 #: desktop/src/pages/Statistics.tsx:234 desktop/src/pages/Urlscan.tsx:171
 msgid "Refresh"
 msgstr "Actualizar"
@@ -4106,8 +4116,8 @@ msgid "Refreshing…"
 msgstr "Actualizando…"
 
 #: desktop/src/pages/Network.tsx:397
-#: desktop/src/pages/SettingsPreferences.tsx:486
-#: desktop/src/pages/SettingsPreferences.tsx:489
+#: desktop/src/pages/SettingsPreferences.tsx:503
+#: desktop/src/pages/SettingsPreferences.tsx:506
 msgid "Loading…"
 msgstr "Cargando…"
 
@@ -4209,7 +4219,7 @@ msgid "Opening…"
 msgstr "Abriendo…"
 
 #: desktop/src/pages/Preferences.tsx:13
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Behavior"
 msgstr "Comportamiento"
 
@@ -4415,7 +4425,7 @@ msgstr "Duplicar"
 
 #: desktop/src/pages/Profiles.tsx:237 desktop/src/pages/Profiles.tsx:245
 #: desktop/src/pages/Quarantine.tsx:307 desktop/src/pages/Quarantine.tsx:319
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -4978,7 +4988,7 @@ msgstr "Analizando…"
 msgid "Scan with VirusTotal"
 msgstr "Analizar con VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:224 desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/Scan.tsx:224 desktop/src/pages/SettingsPreferences.tsx:424
 msgid "API Key"
 msgstr "Clave de API"
 
@@ -5358,27 +5368,27 @@ msgstr "Elegir carpeta"
 msgid "Open Folder"
 msgstr "Abrir carpeta"
 
-#: desktop/src/pages/SettingsPreferences.tsx:231
+#: desktop/src/pages/SettingsPreferences.tsx:234
 msgid "Unable to read file manager integrations: {error}"
 msgstr "No se pudieron leer las integraciones del gestor de archivos: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:248
+#: desktop/src/pages/SettingsPreferences.tsx:251
 msgid "{name} integration removed"
 msgstr "Se eliminó la integración de {name}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:250
+#: desktop/src/pages/SettingsPreferences.tsx:253
 msgid "{name} integration repaired"
 msgstr "Se reparó la integración de {name}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:251
+#: desktop/src/pages/SettingsPreferences.tsx:254
 msgid "{name} integration installed"
 msgstr "Se instaló la integración de {name}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:254
+#: desktop/src/pages/SettingsPreferences.tsx:257
 msgid "Integration {action} failed: {error}"
 msgstr "La integración {action} falló: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:266
+#: desktop/src/pages/SettingsPreferences.tsx:269
 msgid ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
@@ -5386,36 +5396,36 @@ msgstr ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
 
-#: desktop/src/pages/SettingsPreferences.tsx:268
+#: desktop/src/pages/SettingsPreferences.tsx:271
 msgid "Restart Linux Defender to apply the new language"
 msgstr "Restart Linux Defender to apply the new language"
 
-#: desktop/src/pages/SettingsPreferences.tsx:269
+#: desktop/src/pages/SettingsPreferences.tsx:272
 msgid "Automatic (System)"
 msgstr "Automático (Sistema)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:271
 #: desktop/src/pages/SettingsPreferences.tsx:274
+#: desktop/src/pages/SettingsPreferences.tsx:277
 msgid "Window Behavior"
 msgstr "Comportamiento de la ventana"
 
-#: desktop/src/pages/SettingsPreferences.tsx:271
+#: desktop/src/pages/SettingsPreferences.tsx:274
 msgid "Configure what happens when closing the main window."
 msgstr "Configure lo que sucede al cerrar la ventana principal."
 
-#: desktop/src/pages/SettingsPreferences.tsx:272
+#: desktop/src/pages/SettingsPreferences.tsx:275
 msgid "When closing window"
 msgstr "Al cerrar la ventana"
 
-#: desktop/src/pages/SettingsPreferences.tsx:273
+#: desktop/src/pages/SettingsPreferences.tsx:276
 msgid "Start in System Tray"
 msgstr "Iniciar en la bandeja del sistema"
 
-#: desktop/src/pages/SettingsPreferences.tsx:273
+#: desktop/src/pages/SettingsPreferences.tsx:276
 msgid "Launch in the background and show only the tray icon."
 msgstr "Iniciar en segundo plano y mostrar solo el icono de la bandeja."
 
-#: desktop/src/pages/SettingsPreferences.tsx:274
+#: desktop/src/pages/SettingsPreferences.tsx:277
 msgid ""
 "System tray is not available. Window behavior settings require an active "
 "system tray."
@@ -5423,88 +5433,100 @@ msgstr ""
 "La bandeja del sistema no está disponible. La configuración del "
 "comportamiento de la ventana requiere una bandeja del sistema activa."
 
-#: desktop/src/pages/SettingsPreferences.tsx:275
+#: desktop/src/pages/SettingsPreferences.tsx:278
 msgid "Scan Behavior"
 msgstr "Comportamiento del análisis"
 
-#: desktop/src/pages/SettingsPreferences.tsx:276
+#: desktop/src/pages/SettingsPreferences.tsx:279
 msgid "Show Live Scan Progress"
 msgstr "Mostrar el progreso del análisis en tiempo real"
 
-#: desktop/src/pages/SettingsPreferences.tsx:276
+#: desktop/src/pages/SettingsPreferences.tsx:279
 msgid "Display files being scanned in real time."
 msgstr "Mostrar los archivos que se analizan en tiempo real."
 
-#: desktop/src/pages/SettingsPreferences.tsx:277
+#: desktop/src/pages/SettingsPreferences.tsx:280
 msgid "Desktop Notifications"
 msgstr "Notificaciones de escritorio"
 
-#: desktop/src/pages/SettingsPreferences.tsx:277
+#: desktop/src/pages/SettingsPreferences.tsx:280
 msgid "Allow scan, update, device, and VirusTotal notifications."
 msgstr ""
 "Permitir notificaciones de análisis, actualizaciones, dispositivos y "
 "VirusTotal."
 
-#: desktop/src/pages/SettingsPreferences.tsx:279
-#: desktop/src/pages/SettingsPreferences.tsx:280
+#: desktop/src/pages/SettingsPreferences.tsx:283
+msgid "Update inactivity timeout (minutes)"
+msgstr "Update inactivity timeout (minutes)"
+
+#: desktop/src/pages/SettingsPreferences.tsx:283
+msgid ""
+"Minutes without output before stopping a manual database update. Active "
+"updates have no total time limit."
+msgstr ""
+"Minutes without output before stopping a manual database update."
+"Active updates have no total time limit."
+
+#: desktop/src/pages/SettingsPreferences.tsx:296
+#: desktop/src/pages/SettingsPreferences.tsx:297
 msgid "File Manager Integration"
 msgstr "Integración con el gestor de archivos"
 
-#: desktop/src/pages/SettingsPreferences.tsx:279
+#: desktop/src/pages/SettingsPreferences.tsx:296
 msgid "Add context menu actions for supported file managers."
 msgstr ""
 "Añadir acciones al menú contextual para los gestores de archivos compatibles."
 
-#: desktop/src/pages/SettingsPreferences.tsx:279
+#: desktop/src/pages/SettingsPreferences.tsx:296
 msgid "Configure Integration"
 msgstr "Configurar la integración"
 
 #. Translators: 'Scan with Linux Defender' is the installed file-manager menu label; keep it in English.
-#: desktop/src/pages/SettingsPreferences.tsx:281
+#: desktop/src/pages/SettingsPreferences.tsx:298
 msgid ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 msgstr ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 
-#: desktop/src/pages/SettingsPreferences.tsx:290
+#: desktop/src/pages/SettingsPreferences.tsx:307
 msgid "Partially installed"
 msgstr "Instalado parcialmente"
 
-#: desktop/src/pages/SettingsPreferences.tsx:292
+#: desktop/src/pages/SettingsPreferences.tsx:309
 msgid "Not available"
 msgstr "No disponible"
 
-#: desktop/src/pages/SettingsPreferences.tsx:292
+#: desktop/src/pages/SettingsPreferences.tsx:309
 msgid "missing"
 msgstr "ausente"
 
-#: desktop/src/pages/SettingsPreferences.tsx:293
+#: desktop/src/pages/SettingsPreferences.tsx:310
 msgid "Repair"
 msgstr "Reparar"
 
-#: desktop/src/pages/SettingsPreferences.tsx:320
+#: desktop/src/pages/SettingsPreferences.tsx:337
 msgid "This exclusion already exists"
 msgstr "Esta exclusión ya existe"
 
-#: desktop/src/pages/SettingsPreferences.tsx:336
+#: desktop/src/pages/SettingsPreferences.tsx:353
 msgid "Unable to choose exclusions: {error}"
 msgstr "No se pueden elegir exclusiones: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:345
+#: desktop/src/pages/SettingsPreferences.tsx:362
 msgid "Preset Exclusions"
 msgstr "Exclusiones predefinidas"
 
-#: desktop/src/pages/SettingsPreferences.tsx:345
+#: desktop/src/pages/SettingsPreferences.tsx:362
 msgid "Common directories to exclude from scanning. Changes save immediately."
 msgstr ""
 "Directorios habituales que se excluirán del análisis. Los cambios se guardan "
 "inmediatamente."
 
-#: desktop/src/pages/SettingsPreferences.tsx:356
+#: desktop/src/pages/SettingsPreferences.tsx:373
 msgid "Custom Exclusions"
 msgstr "Exclusiones personalizadas"
 
-#: desktop/src/pages/SettingsPreferences.tsx:356
+#: desktop/src/pages/SettingsPreferences.tsx:373
 msgid ""
 "Select files or folders, or enter an absolute file path or pattern. Changes "
 "save immediately."
@@ -5512,99 +5534,99 @@ msgstr ""
 "Seleccione archivos o carpetas, o introduzca una ruta de archivo absoluta o "
 "un patrón. Los cambios se guardan inmediatamente."
 
-#: desktop/src/pages/SettingsPreferences.tsx:362
+#: desktop/src/pages/SettingsPreferences.tsx:379
 msgid "/path/to/exclude or *.tmp"
 msgstr "/path/to/exclude o *.tmp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:370
+#: desktop/src/pages/SettingsPreferences.tsx:387
 msgid "Remove {pattern}"
 msgstr "Eliminar {pattern}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "General"
 msgstr "General"
 
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "Automatically scan storage devices when they are connected."
 msgstr ""
 "Analizar automáticamente los dispositivos de almacenamiento cuando se "
 "conecten."
 
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "Enable Device Auto-Scan"
 msgstr "Activar análisis automático de dispositivos"
 
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "Device Types"
 msgstr "Tipos de dispositivos"
 
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "Select which kinds of mounted devices may be scanned."
 msgstr "Seleccione qué tipos de dispositivos montados se pueden analizar."
 
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "Options"
 msgstr "Opciones"
 
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "Max Device Size (GB)"
 msgstr "Tamaño máximo del dispositivo (GB)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "0 means no size limit; devices larger than 10,000 GB are not accepted."
 msgstr ""
 "0 significa que no hay límite de tamaño; no se aceptan dispositivos de más "
 "de 10.000 GB."
 
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "Scan Delay (seconds)"
 msgstr "Retraso del análisis (segundos)"
 
 #. Translators: The en dash marks the inclusive 0–60-second delay range; use your language's usual range typography.
-#: desktop/src/pages/SettingsPreferences.tsx:382
+#: desktop/src/pages/SettingsPreferences.tsx:399
 msgid "Wait after mounting before scanning (0–60 seconds)."
 msgstr "Espere después del montaje antes de analizar (0–60 segundos)."
 
-#: desktop/src/pages/SettingsPreferences.tsx:385
+#: desktop/src/pages/SettingsPreferences.tsx:402
 msgid "Auto-Quarantine Threats"
 msgstr "Poner amenazas en cuarentena automáticamente"
 
-#: desktop/src/pages/SettingsPreferences.tsx:385
+#: desktop/src/pages/SettingsPreferences.tsx:402
 msgid "Notifications"
 msgstr "Notificaciones"
 
-#: desktop/src/pages/SettingsPreferences.tsx:385
+#: desktop/src/pages/SettingsPreferences.tsx:402
 msgid "Show desktop notifications for device scan events."
 msgstr ""
 "Mostrar notificaciones de escritorio para eventos de análisis de "
 "dispositivos."
 
-#: desktop/src/pages/SettingsPreferences.tsx:385
+#: desktop/src/pages/SettingsPreferences.tsx:402
 msgid "Desktop notifications are globally disabled in Behavior."
 msgstr ""
 "Las notificaciones de escritorio están desactivadas globalmente en "
 "Comportamiento."
 
-#: desktop/src/pages/SettingsPreferences.tsx:398
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "VirusTotal API keys must be exactly 64 hexadecimal characters"
 msgstr ""
 "Las claves de API de VirusTotal deben tener exactamente 64 caracteres "
 "hexadecimales"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:417
 msgid "Unable to save the API key"
 msgstr "No se puede guardar la clave de API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:404
+#: desktop/src/pages/SettingsPreferences.tsx:421
 #: desktop/src/pages/Urlscan.tsx:120
 msgid "API key deleted"
 msgstr "Clave de API eliminada"
 
-#: desktop/src/pages/SettingsPreferences.tsx:404
+#: desktop/src/pages/SettingsPreferences.tsx:421
 msgid "Unable to delete the API key"
 msgstr "No se puede eliminar la clave de API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid ""
 "Keys are stored in the operating system keyring or the explicitly enabled "
 "compatibility fallback; they are never returned to the interface."
@@ -5613,66 +5635,66 @@ msgstr ""
 "mecanismo alternativo de compatibilidad habilitado explícitamente; nunca se "
 "devuelven a la interfaz."
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 #: desktop/src/pages/Urlscan.tsx:47
 msgid "Configured ({masked}) using {backend}"
 msgstr "Configurada ({masked}) mediante {backend}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 #: desktop/src/pages/Urlscan.tsx:48
 msgid "masked"
 msgstr "oculta"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Keyring is locked"
 msgstr "El llavero está bloqueado"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Keyring unavailable"
 msgstr "El llavero no está disponible"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 #: desktop/src/pages/Urlscan.tsx:54
 msgid "Not configured"
 msgstr "Sin configurar"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Exactly 64 hexadecimal characters."
 msgstr "Exactamente 64 caracteres hexadecimales."
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Save Key"
 msgstr "Guardar clave"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Get a free API key"
 msgstr "Obtener una clave de API gratuita"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Delete Key"
 msgstr "Eliminar clave"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "When API key is missing"
 msgstr "Cuando falta la clave de API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Always ask"
 msgstr "Preguntar siempre"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Open VirusTotal website"
 msgstr "Abrir el sitio web de VirusTotal"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Show notification only"
 msgstr "Mostrar solo una notificación"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Information"
 msgstr "Información"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid ""
 "Free tier: 4 requests per minute, 500 per day. Files up to 650 MB can be "
 "scanned."
@@ -5680,11 +5702,11 @@ msgstr ""
 "Nivel gratuito: 4 solicitudes por minuto, 500 al día. Se pueden analizar "
 "archivos de hasta 650 MB."
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid "Delete VirusTotal API key"
 msgstr "Eliminar la clave de API de VirusTotal"
 
-#: desktop/src/pages/SettingsPreferences.tsx:407
+#: desktop/src/pages/SettingsPreferences.tsx:424
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "use VirusTotal scanning."
@@ -5692,193 +5714,193 @@ msgstr ""
 "Esto elimina la clave del almacenamiento seguro. Tendrá que introducirla de "
 "nuevo para usar el análisis de VirusTotal."
 
-#: desktop/src/pages/SettingsPreferences.tsx:415
+#: desktop/src/pages/SettingsPreferences.tsx:432
 msgid "{count} file"
 msgid_plural "{count} files"
 msgstr[0] "{count} archivo"
 msgstr[1] "{count} archivos"
 
-#: desktop/src/pages/SettingsPreferences.tsx:422
+#: desktop/src/pages/SettingsPreferences.tsx:439
 msgid "Unable to read debug logs: {error}"
 msgstr "No se pueden leer los registros de depuración: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:430
+#: desktop/src/pages/SettingsPreferences.tsx:447
 msgid "Unable to read system information: {error}"
 msgstr "No se puede leer la información del sistema: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:437
+#: desktop/src/pages/SettingsPreferences.tsx:454
 msgid "ZIP archives"
 msgstr "Archivos ZIP"
 
-#: desktop/src/pages/SettingsPreferences.tsx:438
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "All files"
 msgstr "Todos los archivos"
 
-#: desktop/src/pages/SettingsPreferences.tsx:440
+#: desktop/src/pages/SettingsPreferences.tsx:457
 msgid "Logs exported successfully"
 msgstr "Registros exportados correctamente"
 
-#: desktop/src/pages/SettingsPreferences.tsx:442
+#: desktop/src/pages/SettingsPreferences.tsx:459
 msgid "Unable to export logs: {error}"
 msgstr "No se pudieron exportar los registros: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:454
+#: desktop/src/pages/SettingsPreferences.tsx:471
 msgid "{count} log file cleared"
 msgid_plural "{count} log files cleared"
 msgstr[0] "Se eliminó {count} archivo de registro"
 msgstr[1] "Se eliminaron {count} archivos de registro"
 
-#: desktop/src/pages/SettingsPreferences.tsx:457
+#: desktop/src/pages/SettingsPreferences.tsx:474
 msgid "Unable to clear logs: {error}"
 msgstr "No se pudieron eliminar los registros: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:464
+#: desktop/src/pages/SettingsPreferences.tsx:481
 msgid "Linux Defender System Information"
 msgstr "Linux Defender System Information"
 
-#: desktop/src/pages/SettingsPreferences.tsx:466
+#: desktop/src/pages/SettingsPreferences.tsx:483
 msgid "Installation Type: {value}"
 msgstr "Tipo de instalación: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:467
+#: desktop/src/pages/SettingsPreferences.tsx:484
 msgid "Distribution: {value}"
 msgstr "Distribución: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:485
 msgid "Desktop Environment: {value}"
 msgstr "Entorno de escritorio: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:469
+#: desktop/src/pages/SettingsPreferences.tsx:486
 msgid "Rust Runtime: {value}"
 msgstr "Entorno de ejecución de Rust: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:470
+#: desktop/src/pages/SettingsPreferences.tsx:487
 msgid "Tauri Runtime: {value}"
 msgstr "Entorno de ejecución de Tauri: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:471
+#: desktop/src/pages/SettingsPreferences.tsx:488
 msgid "Platform: {value}"
 msgstr "Plataforma: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:472
+#: desktop/src/pages/SettingsPreferences.tsx:489
 msgid "Architecture: {value}"
 msgstr "Arquitectura: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:473
+#: desktop/src/pages/SettingsPreferences.tsx:490
 msgid "Version: {value}"
 msgstr "Versión: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:477
+#: desktop/src/pages/SettingsPreferences.tsx:494
 msgid "System information copied to clipboard"
 msgstr "Información del sistema copiada al portapapeles"
 
-#: desktop/src/pages/SettingsPreferences.tsx:479
+#: desktop/src/pages/SettingsPreferences.tsx:496
 msgid "Unable to copy system information: {error}"
 msgstr "No se pudo copiar la información del sistema: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:484
+#: desktop/src/pages/SettingsPreferences.tsx:501
 msgid "Logging Settings"
 msgstr "Configuración de registros"
 
-#: desktop/src/pages/SettingsPreferences.tsx:484
+#: desktop/src/pages/SettingsPreferences.tsx:501
 msgid "Higher levels produce more detailed logs and apply immediately."
 msgstr ""
 "Los niveles más altos generan registros más detallados y se aplican "
 "inmediatamente."
 
-#: desktop/src/pages/SettingsPreferences.tsx:485
+#: desktop/src/pages/SettingsPreferences.tsx:502
 msgid "Log Level"
 msgstr "Nivel de registro"
 
-#: desktop/src/pages/SettingsPreferences.tsx:486
+#: desktop/src/pages/SettingsPreferences.tsx:503
 msgid "Log File Location"
 msgstr "Ubicación del archivo de registro"
 
-#: desktop/src/pages/SettingsPreferences.tsx:488
+#: desktop/src/pages/SettingsPreferences.tsx:505
 msgid "Log Management"
 msgstr "Gestión de registros"
 
-#: desktop/src/pages/SettingsPreferences.tsx:488
+#: desktop/src/pages/SettingsPreferences.tsx:505
 msgid ""
 "Export a ZIP archive for support or permanently clear the application logs."
 msgstr ""
 "Exporte un archivo ZIP para soporte o elimine permanentemente los registros "
 "de la aplicación."
 
-#: desktop/src/pages/SettingsPreferences.tsx:489
+#: desktop/src/pages/SettingsPreferences.tsx:506
 msgid "Current Log Size"
 msgstr "Tamaño actual de los registros"
 
-#: desktop/src/pages/SettingsPreferences.tsx:490
+#: desktop/src/pages/SettingsPreferences.tsx:507
 msgid "Export Logs"
 msgstr "Exportar registros"
 
-#: desktop/src/pages/SettingsPreferences.tsx:490
+#: desktop/src/pages/SettingsPreferences.tsx:507
 msgid "Save all sanitized debug logs to a ZIP archive."
 msgstr "Guarde todos los registros de depuración saneados en un archivo ZIP."
 
-#: desktop/src/pages/SettingsPreferences.tsx:491
+#: desktop/src/pages/SettingsPreferences.tsx:508
 msgid "Clear Logs"
 msgstr "Borrar registros"
 
-#: desktop/src/pages/SettingsPreferences.tsx:491
+#: desktop/src/pages/SettingsPreferences.tsx:508
 msgid "This permanently deletes all debug log files."
 msgstr ""
 "Esto elimina permanentemente todos los archivos de registro de depuración."
 
-#: desktop/src/pages/SettingsPreferences.tsx:491
+#: desktop/src/pages/SettingsPreferences.tsx:508
 msgid "Clear"
 msgstr "Borrar"
 
-#: desktop/src/pages/SettingsPreferences.tsx:493
+#: desktop/src/pages/SettingsPreferences.tsx:510
 msgid "System Information"
 msgstr "Información del sistema"
 
-#: desktop/src/pages/SettingsPreferences.tsx:493
+#: desktop/src/pages/SettingsPreferences.tsx:510
 msgid "Useful for troubleshooting and bug reports."
 msgstr "Útil para solucionar problemas y elaborar informes de errores."
 
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Installation Type"
 msgstr "Tipo de instalación"
 
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Distribution"
 msgstr "Distribución"
 
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Desktop Environment"
 msgstr "Entorno de escritorio"
 
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Rust Runtime"
 msgstr "Entorno de ejecución de Rust"
 
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Tauri Runtime"
 msgstr "Entorno de ejecución de Tauri"
 
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Platform"
 msgstr "Plataforma"
 
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Copy System Info"
 msgstr "Copiar información del sistema"
 
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Copy all system information to the clipboard."
 msgstr "Copiar toda la información del sistema al portapapeles."
 
-#: desktop/src/pages/SettingsPreferences.tsx:494
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Loading system information…"
 msgstr "Cargando información del sistema…"
 
-#: desktop/src/pages/SettingsPreferences.tsx:496
+#: desktop/src/pages/SettingsPreferences.tsx:513
 msgid "Clear logs"
 msgstr "Borrar registros"
 
-#: desktop/src/pages/SettingsPreferences.tsx:496
+#: desktop/src/pages/SettingsPreferences.tsx:513
 msgid ""
 "This permanently deletes {count} log file totaling {size}. This action "
 "cannot be undone."
@@ -5892,7 +5914,7 @@ msgstr[1] ""
 "Esto elimina permanentemente {count} archivos de registro con un total de "
 "{size}. Esta acción no se puede deshacer."
 
-#: desktop/src/pages/SettingsPreferences.tsx:496
+#: desktop/src/pages/SettingsPreferences.tsx:513
 msgid "Delete Logs"
 msgstr "Eliminar registros"
 

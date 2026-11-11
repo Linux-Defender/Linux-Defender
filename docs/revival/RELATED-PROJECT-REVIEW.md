@@ -2,13 +2,13 @@
 
 Review snapshot: 2026-11-11. Sources: public GitHub REST API, default-branch checkouts, READMEs/changelogs/security workflows, and public issue/PR discussions. This is point-in-time research, not a review of private branches or every historical commit.
 
-The ClamUI default branch advanced after the earlier v0.5.1 snapshot documented below. This update pass reviewed the official ClamUI v0.6.0 release, changelog, website, and source tag (`c62f373daf46ca2ed08ea831ae8dca89a65a0242`) and compared the intervening source diff. The 0.6.0 release added maintenance, dependency, packaging-workflow, and translation updates; the inspected diff did not contain new scanner/core behavior beyond what this fork already carries. Linux Defender's 0.6.0 version is a development snapshot with local additions; it is not the upstream ClamUI release and has no signed Linux Defender packages. Installed upstream ClamUI remains identified as `io.github.linx_systems.ClamUI`; its user data is not migrated into a new Linux Defender app identity yet.
+The ClamUI default branch advanced after the earlier v0.5.1 snapshot documented below. This pass checked the official v0.6.0 release and website, then reviewed the newer default-branch commit `30a72f036870e80c487bf95b13aa80bfc906bd4a` (2026-11-11), which fixes update inactivity handling for #307. That runtime fix is ported locally with a configurable inactivity timeout and regression tests. Vietnamese (`vi`) from v0.6.0 is active in the desktop and CLI catalogs. The two currently open upstream PRs are website dependency changes; #298 is adopted and validated, while #299’s TypeScript 7.0.2 bump is deferred because Astro 7.4.5 `astro check` explicitly rejects TypeScript 7 and requires TypeScript 6. Linux Defender's 0.6.0 version is a development snapshot with local additions; it is not the upstream ClamUI release and has no signed Linux Defender packages. Installed upstream ClamUI remains identified as `io.github.linx_systems.ClamUI`; its user data is not migrated into a new Linux Defender app identity yet.
 
 Lenspect's issues, all 25 PRs, remaining VirusTotal parity gaps, license boundary, and parity-maintenance rule are recorded in [LENSPECT-REVIEW.md](LENSPECT-REVIEW.md).
 
 ## Direction
 
-Kira wants one installable Linux security-scanning product that keeps ClamTk behavior, gains ClamUI behavior and a modern UI, and can be maintained by reviewing both projects continuously. A literal code merge is not a small patch: ClamTk is Perl/GTK3; ClamUI 0.5.1 is a Rust core + Tauri + React/TypeScript desktop app. ClamUI is MIT-licensed; ClamTk retains its GPL/Artistic licensing. MIT code can be incorporated with notices, but the combined product needs license/attribution review before distribution.
+Kira wants one installable Linux security-scanning product that keeps ClamTk behavior, gains ClamUI behavior and a modern UI, and can be maintained by reviewing both projects continuously. A literal code merge is not a small patch: ClamTk is Perl/GTK3; ClamUI is a Rust core + Tauri + React/TypeScript desktop app. ClamUI is MIT-licensed; ClamTk retains its GPL/Artistic licensing. MIT code can be incorporated with notices, but the combined product needs license/attribution review before distribution.
 
 The selected local target is one installable product with one primary modern UI and one runtime. ClamUI's Rust/Tauri/React application is the base in this repository; ClamTk is kept under `reference/clamtk` only for feature/data/CLI parity work, not as a second packaged UI. The final product should not run both language stacks or show two apps. Use host ClamAV and the system FreshClam database. Do not bundle a second engine or signature database. Review, test, then port upstream updates; do not auto-merge.
 
@@ -52,7 +52,9 @@ Checked the actual `reference/clamtk/lib/GUI.pm`, `Shortcuts.pm`, `Prefs.pm`, an
 
 ## ClamUI repository snapshot
 
-- Checked-out default-branch head: `32270d53ee2e412d5d46718cfa99eaf9bd346f62` (2026-11-07). Repository reports version 0.5.1; its README says Flathub still distributes historical 0.4.1.
+The following 60-issue list is the earlier 2026-11-07 snapshot and is superseded by the live 2026-11-11 refresh below.
+
+- Checked-out default-branch head: `32270d53ee2e412d5d46718cfa99eaf9bd346f62` (2026-11-07). Repository reported version 0.5.1; README then said Flathub still distributed historical 0.4.1.
 - Stack: Rust headless core + Tauri + React/TypeScript. Packages use host ClamAV; daemon mode requires host `clamd` and `clamdscan`.
 - GitHub API snapshot: 60 open issues, 12 closed issues, 2 open PRs (all indexed below).
 - Latest commit CI API snapshot: core tests, dependency audit, CodeQL, desktop build, Flatpak, RPM, DEB, and AppImage checks reported success. Two Dependabot status checks failed; details were not exposed by the public summary.
@@ -139,10 +141,16 @@ Closed issues visible in the same API snapshot (12):
 - [#173 Brave , Adguard, UBlockorigin](<https://github.com/linx-systems/clamui/issues/173>) — closed; recheck version applicability if revisited.
 - [#163 Dependency problems - policykit bug](<https://github.com/linx-systems/clamui/issues/163>) — closed; recheck version applicability if revisited.
 
+### ClamUI live refresh (2026-11-11)
+
+GitHub REST API snapshot: 61 open issues and 2 open pull requests. The 61st open issue is [#306](https://github.com/linx-systems/clamui/issues/306): a failed configured `DatabaseCustomURL` feed (HTTP 410) appears to prevent later custom URLs from being processed. Linux Defender does not configure or manage third-party feeds, so this is tracked as future feed-manager research; do not add arbitrary feeds without checking provider integrity, licensing, and failure isolation. Issue [#305](https://github.com/linx-systems/clamui/issues/305) remains open, but maintainers state its Wayland/NVIDIA startup fix is in ClamUI 0.6.0; Linux Defender's Flatpak manifest includes the related WebKit workaround. Issue [#304](https://github.com/linx-systems/clamui/issues/304) remains open as a Debian 12 Flatpak reproduction of #279; host database discovery code is present, but that exact environment is not verified. The current GitHub state is not equivalent to closing these reports.
+
+The post-release updater fix from upstream commit `30a72f0` (#307) is ported locally. Existing open issue reports remain tracked whether or not source fixes are present.
+
 ### Open ClamUI pull requests
 
-- [#299 TypeScript 5.9.3 → 7.0.2](https://github.com/linx-systems/clamui/pull/299): website-only (`website/package.json`, `website/bun.lock`); not code for ClamTk. If forking ClamUI, run its website checks and dependency audit before adopting.
-- [#298 website dependency group update](https://github.com/linx-systems/clamui/pull/298): website manifest/lockfile only (Astro/Starlight and related packages); validate in the ClamUI site project.
+- [#299 TypeScript 5.9.3 → 7.0.2](https://github.com/linx-systems/clamui/pull/299): website-only. Deferred: Astro 7.4.5 `astro check` fails with TypeScript 7.0.2 and reports that TypeScript 6 is required.
+- [#298 website dependency group update](https://github.com/linx-systems/clamui/pull/298): website manifest/lockfile only; adopted and validated in Linux Defender website check/build. This does not alter ClamTk parity.
 
 ## ClamTk desktop integration repositories
 
