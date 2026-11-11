@@ -2,7 +2,7 @@
 
 A community revival project for a single, maintainable Linux malware-scanning desktop app. The goal is one interface that carries forward useful ClamTk workflows and ClamUI features while using the system's supported ClamAV tools and signature database.
 
-**Development status:** early integration. The user-visible app name is Linux Defender; the source is based on ClamUI 0.5.1 (Rust core, Tauri desktop runtime, React/TypeScript UI). Internal application identifiers remain ClamUI temporarily to preserve installed data while migration is designed. ClamTk parity, CachyOS packaging, and desktop validation remain in progress. Do not treat this branch as a finished or guaranteed protection product.
+**Development status:** Linux Defender 0.6.0 development snapshot, based on ClamUI 0.6.0 (Rust core, Tauri desktop runtime, React/TypeScript UI). Internal application identifiers remain ClamUI temporarily to preserve installed data while migration is designed. ClamTk parity, CachyOS packaging, and desktop validation remain in progress. No Linux Defender signed installer packages are published; do not treat this branch as a finished or guaranteed protection product.
 
 ## Design goals
 
@@ -30,7 +30,7 @@ The Database page lists recognized files in the configured ClamAV database direc
 
 ## Build and test
 
-See the upstream development guide in website/src/content/docs/docs/contributing/development.md. Typical source checks are:
+See the [development guide](website/src/content/docs/docs/contributing/development.md). Typical source checks are:
 
 - cargo test --workspace --locked
 - cargo fmt --check --all

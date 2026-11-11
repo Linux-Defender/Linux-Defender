@@ -11,10 +11,9 @@ For one-off integrations, launch with paths:
 
 ```bash
 clamui /path/to/file /path/to/folder
-flatpak run io.github.linx_systems.ClamUI /path/to/file /path/to/folder
 ```
 
-Headless use is available through `clamui scan`; run `clamui scan --help` for the current options. Its standard ClamAV exit codes are `0` clean, `1` infected, and `2` error. Most ClamUI subcommands accept `--json` for scripts.
+The source build still uses the compatibility command name `clamui`; a Linux Defender Flatpak is not published yet. Headless use is available through `clamui scan`; run `clamui scan --help` for the current options. Its standard ClamAV exit codes are `0` clean, `1` infected, and `2` error. Most Linux Defender subcommands accept `--json` for scripts.
 
 ## Select the right scan
 
@@ -23,22 +22,28 @@ Headless use is available through `clamui scan`; run `clamui scan --help` for th
 | New download | Scan the file or use **Quick Scan** |
 | Personal files | **Home Folder** profile |
 | System-wide review | **Full Scan** when the machine is idle |
-| Recurring work | [Scheduled scan](/docs/guides/scheduling/) |
+| Recurring work | [Scheduled scan](/Linux-Defender/docs/guides/scheduling/) |
 | New removable media | Scan its mount point, or enable device auto-scan |
 
 **Quick Scan** targets `~/Downloads`. **Full Scan** targets `/` and excludes `/proc`, `/sys`, `/dev`, `/run`, `/tmp`, `/var/cache`, and `/var/tmp`. **Home Folder** targets `~` and excludes `~/.cache` and `~/.local/share/Trash`.
 
 ## Results and detections
 
-ClamUI displays clean, infected, error, or cancelled results with a file path and ClamAV detection name. A cancelled scan keeps the partial result collected before cancellation. Severity badges are guidance derived from detection names, not proof of actual malware behavior. Treat critical/high detections urgently; for uncertain, low, or heuristic detections, quarantine first and investigate.
+Linux Defender displays clean, infected, error, or cancelled results with a file path and ClamAV detection name. A cancelled scan keeps the partial result collected before cancellation. Severity badges are guidance derived from detection names, not proof of actual malware behavior. Treat critical/high detections urgently; for uncertain, low, or heuristic detections, quarantine first and investigate.
 
-**Quarantine** copies the file to owner-only storage, hashes it with SHA-256, and verifies that hash when restoring. It is safer than deleting immediately. See [quarantine](/docs/guides/quarantine/).
+**Quarantine** copies the file to owner-only storage, hashes it with SHA-256, and verifies that hash when restoring. It is safer than deleting immediately. See [quarantine](/Linux-Defender/docs/guides/quarantine/).
 
 Open **Scan Details** for an expanded result view. Choose **Copy** to place the displayed details on the clipboard.
 
 The **Scan Details** dialog keeps focus inside it: use `Tab` and `Shift+Tab` to move between **Copy** and **Close**. `Escape` closes it and returns focus to its **Fullscreen** opener.
 
 When notifications are enabled and permitted by the desktop, a completed scan sends a native notification. Use its **Show Scan** action to return to the scan results.
+
+## Optional online reputation checks
+
+Choose **Website URL** in Scan to submit a URL to VirusTotal or urlscan. Linux Defender asks you to confirm before sending it. VirusTotal URL submissions are added to its analysis dataset and may be shared with its security partners; urlscan offers **Private**, **Unlisted**, and **Public** visibility choices. Read the provider's terms and choose the visibility deliberately: [VirusTotal data use](https://docs.virustotal.com/docs/how-it-works), [urlscan visibility](https://docs.urlscan.io/pages/visibility).
+
+VirusTotal also supports file lookups and uploads, including a bounded, user-confirmed folder-upload flow with visible progress. Any uploaded file leaves your device. Its result is an online reputation report, not the local ClamAV scan result. The app does not submit files or URLs automatically.
 
 ## Test with EICAR
 
@@ -50,4 +55,4 @@ Enable **Preferences → Device Scan** to scan `removable`, `external`, and opti
 
 ## Speed and safety
 
-A daemon keeps signatures in memory and is better for repeated scans. Exclusions can reduce work, but never exclude the whole target, Downloads, or documents just to make a scan finish faster. Archive limits protect against resource-exhaustion archives; configure them in [Configuration](/docs/reference/configuration/).
+A daemon keeps signatures in memory and is better for repeated scans. Exclusions can reduce work, but never exclude the whole target, Downloads, or documents just to make a scan finish faster. Archive limits protect against resource-exhaustion archives; configure them in [Configuration](/Linux-Defender/docs/reference/configuration/).

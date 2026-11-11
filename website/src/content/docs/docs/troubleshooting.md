@@ -1,144 +1,68 @@
 ---
 title: Troubleshooting
-description: Resolve ClamAV, Tauri/WebKitGTK, daemon, integration, tray, and scan issues.
+description: Resolve host ClamAV, Wayland, daemon, helper, online-check, and scan issues.
 ---
 
 ## ClamAV is missing or definitions are old
 
-Install host ClamAV for every ClamUI package format, then update definitions:
+Linux Defender uses the host ClamAV tools and the database directory selected by host configuration. Check the engine and database versions in **Database**, or run:
 
 ```bash
 clamscan --version
 freshclam --version
-sudo freshclam
 ```
 
-Use the distribution commands in [installation](/docs/installation/). In Flatpak, these commands must succeed on the host; ClamUI invokes them through `flatpak-spawn --host`.
+Use the distro's FreshClam service or timer to update signatures. On Kira's CachyOS setup, check `clamav-freshclam-once.timer` and its service journal. Do not run a second `freshclam` process while the service is updating the same database. A warning that FreshClam could not notify `clamd` means there is no reachable daemon socket; it does not undo a database update that passed its database test.
 
-## The desktop does not start
+## The desktop does not start on Wayland
 
-The native desktop uses Tauri with WebKitGTK 4.1 and GTK 3. On a Debian-family development host, confirm the required runtime is installed:
+The native app uses Tauri with WebKitGTK 4.1 and GTK 3. On some Wayland and NVIDIA combinations, WebKitGTK's DMA-BUF renderer can fail during startup with `Error 71`. For a source-development launch, try:
 
 ```bash
-dpkg -l libwebkit2gtk-4.1-0 libgtk-3-0
+WEBKIT_DISABLE_DMABUF_RENDERER=1 bun run --cwd desktop tauri dev
 ```
 
-For a source build, install the development packages in [Development](/docs/contributing/development/#prerequisites). A build or launch on a newer host does not prove compatibility with the Ubuntu 22.04 baseline; use the project baseline build for release compatibility evidence.
+If the workaround fixes startup, report the desktop session, GPU driver, and exact error. It may reduce hardware acceleration. The matching workaround in upstream ClamUI's Flatpak does not mean Linux Defender has a released Flatpak.
 
-### Wayland `Error 71` in Flatpak
+## Daemon backend is unavailable
 
-WebKitGTK's DMA-BUF renderer path can fail during startup on some Wayland systems, especially with NVIDIA graphics, and report `Error 71`. The current Flatpak package configuration disables that WebKitGTK renderer path by default to avoid [issue #282](https://github.com/linx-systems/clamui/issues/282); it does not force X11 or set `WEBKIT_DISABLE_COMPOSITING_MODE`.
+The daemon backend needs host `clamd` and `clamdscan`, a running daemon, and a socket accessible to the current user. Select **Auto** or **Clamscan** if you do not need the daemon. Check the service name and socket from your distribution; Fedora commonly uses `clamd@scan` and `/etc/clamd.d/scan.conf`. See the [backend guide](/Linux-Defender/docs/reference/scan-backends/).
 
-For an older Flatpak package, disable the path for one launch:
+Daemon scans use a protected transport for long paths. ClamAV's file-list protocol cannot represent names containing newline, carriage return, or NUL characters; Linux Defender refuses those daemon targets rather than scanning a different name. Use standalone `clamscan` for that target.
 
-```bash
-flatpak run --env=WEBKIT_DISABLE_DMABUF_RENDERER=1 io.github.linx_systems.ClamUI
-```
+## A scan says no virus database was found
 
-The workaround trades the potentially faster DMA-BUF path for compatibility and may reduce hardware acceleration, depending on the WebKitGTK runtime. To re-enable it for one launch on systems where it is not needed, use the following command; this can restore the startup failure:
+Check the host `DatabaseDirectory` in `clamd.conf` or `freshclam.conf`, file permissions, and the path shown in Linux Defender's Database page. Flatpak builds call host ClamAV; they do not need duplicate database files copied into the sandbox. The recognized-file inventory is not proof that a running daemon has loaded every detected file.
 
-```bash
-flatpak run --env=WEBKIT_DISABLE_DMABUF_RENDERER=0 io.github.linx_systems.ClamUI
-```
+## Local YARA rules do not load
 
-## Daemon backend unavailable
+Open **Preferences → YARA Rules** and choose a readable directory containing regular `.yar` or `.yara` files. ClamAV supports a subset of YARA syntax. Linux Defender combines those files with the configured system ClamAV database for standalone scans and refuses a YARA-only scan. See [ClamAV's YARA notes](https://docs.clamav.net/manual/Signatures/YaraRules.html).
 
-The daemon backend needs `clamd` and `clamdscan` running. Check its service, then choose **Auto** or **Clamscan** if you do not need a persistent daemon:
+## VirusTotal or urlscan does not return a result
 
-```bash
-sudo systemctl status clamav-daemon
-sudo systemctl enable --now clamav-daemon
-clamdscan --version
-```
+Check network connectivity, the VirusTotal key in **Preferences → VirusTotal**, rate limits, provider status, and the analysis status shown in Scan. A file/URL result may take time after upload. The app does not submit files or URLs automatically. Review each confirmation carefully: VirusTotal and urlscan have different retention and sharing options. Never upload private files or URLs without authorization.
 
-Fedora commonly uses `clamd@scan` and `/etc/clamd.d/scan.conf`:
+## A privileged settings change is blocked
 
-```bash
-sudo systemctl enable --now clamd@scan
-```
+Protected host settings require a trusted helper and graphical Polkit authorization. Linux Defender 0.6.0 is a development snapshot; it has no Linux Defender-signed helper package. The inherited helper protocol and package identity are still ClamUI-compatible. Use only an already-installed helper whose owner, permissions, protocol, version, and architecture have been independently verified. Linux Defender has no signed helper package yet; do not install a helper from a different product release or bypass trust checks.
 
-Check `LocalSocketMode` and `LocalSocketGroup` when a running Fedora daemon is inaccessible. [Backend reference](/docs/reference/scan-backends/) lists socket paths and alternatives.
-
-`clamdscan` receives targets through a newline-delimited file list. A pathname containing a newline cannot be represented there, so ClamUI rejects that daemon scan rather than scanning the wrong target. Use the **Clamscan** backend for that file after confirming the pathname.
-
-## Flatpak cannot scan a location or update ClamAV
-
-Grant only the directory you need:
-
-```bash
-flatpak override --user --filesystem=/path/to/directory io.github.linx_systems.ClamUI
-```
-
-Database updates use host `freshclam`, which may need the host service's usual permissions. ClamUI cannot modify host configuration without the trusted canonical native helper and polkit policy; failure leaves protected files unchanged.
-
-
-## Privileged helper is not trusted
-
-ClamUI reports an explicit **system helper is not installed** diagnosis when the canonical helper path is missing. On supported Debian-family and Fedora hosts, native packages, AppImages, source builds, and Flatpak may show **Install Helper** for this local missing-helper case without downloading release metadata. It does nothing until you click it. Automatic installation can complete only when the matching signed published package is available; it verifies that package's signature, identity, version, size, digest, and compatible architecture before graphical Polkit authorization, and fails safely before authorization if no eligible asset exists. Debian alone may use a signed same-version architecture-independent helper as the published fallback when no exact-architecture asset exists. The UI never runs as root or collects an administrator password.
-
-The public 0.4.1 release predates the current Rust/Tauri development source, so its helper assets are not proof of a matching source-build repair, even if a version string happens to match. A repair package must be signed and published for the exact application release and host architecture; the Debian fallback above is the only architecture-independent exception. An already-installed, trusted protocol-v4 Debian `all` helper for the exact application upstream version remains valid, including a conventional numeric-leading Debian revision. A trusted canonical native helper also remains ready when no automatic-install backend exists or installed-package metadata cannot be inspected. These exceptions do not accept a successfully reported version or architecture mismatch, which remains outdated and prompts repair; untrusted helpers remain blocked, and Flatpak continues to validate its host package state. This installed-helper recognition correction does not expand fresh-host installation: automatic installation still requires a matching signed published asset. Do not disable verification or use an unsigned legacy download.
-
-On Fedora Workstation or Server, the offer presents the persistent system RPM-key trust notice before its DNF transaction. On Fedora Atomic desktops, it can install live only a missing helper with no unrelated pending deployment; after a successful live install, it refreshes the active Polkit service and verifies the ClamUI action is available. It does not import a host RPM key or reboot, and does not automatically replace an existing, outdated, or corrupt Atomic package.
-
-If a helper exists but is untrusted, ClamUI keeps it blocked unless it is a regular executable file, owned by root, not a symbolic link, executable by its owner, and not writable by its group or other users. The error does not identify which individual trust check failed. ClamUI does not execute an untrusted helper or offer an automatic replacement for it.
-
-If authorization is cancelled or the installation fails, the settings draft stays available: retry the offer or use the manual repair route below. After a successful installation, explicitly retry **Save & Apply**; protected changes are never applied automatically.
-
-Use the manual repair route when the helper is untrusted, the host is unsupported, or a source/development release has no eligible published package:
-
-- **Official Debian packages:** Reinstall the official application and `clamui-privileged-helper` packages as the same release version and architecture. A signed architecture-independent helper is acceptable only when it is the published same-version fallback. Follow [installation](/docs/installation/#debian-packages) and verify the packages with [package signing](/docs/contributing/signing/#debian-packages) before installing them.
-- **Fedora Workstation or Server:** Download only a matching published `clamui-privileged-helper-<VERSION>-1.<ARCH>.rpm` and its adjacent `.rpm.asc` for the host architecture. Complete [Fedora RPM package signing](/docs/contributing/signing/#fedora-rpm-packages), then continue in the same shell so its fingerprint-pinned `$pinned_key` and `$RPM` variables remain available:
-
-  ```bash
-  sudo rpm --import "$pinned_key"
-  sudo dnf --setopt=localpkg_gpgcheck=1 install -y "./$RPM"
-  ```
-
-- **Fedora Atomic (Silverblue, Kinoite, and similar):** After completing the [Fedora RPM verification](/docs/contributing/signing/#fedora-rpm-packages), continue in that same verified shell to layer the matching package and reboot into the new deployment. Use this repair path for upgrades, pending deployments, or an existing/corrupt helper; do not use the source installer against immutable `/usr`.
-
-  ```bash
-  sudo rpm-ostree install "./$RPM"
-  systemctl reboot
-  ```
-
-- **Source build or unavailable/unpublished development release on a mutable host:** Start from the current Rust/Tauri checkout on `migration/rust-tauri`, not the default `master` branch, and install the Rust/Cargo prerequisites from [Development](/docs/contributing/development/#prerequisites). Then build only the core binaries so the local `clamui-cli` and co-bundled helper are together:
-
-  ```bash
-  cargo build --locked -p clamui-core --bins
-  sudo ./target/debug/clamui-cli install-privileged-helper
-  ```
-
-  This is a local source-built helper installation, not a signed published-package installer. Do not use it from Flatpak or to modify an immutable Fedora Atomic deployment.
-
-- **Flatpak:** On an eligible Debian-family or Fedora host, use the in-app offer for a missing helper. If the host is unsupported or automatic installation cannot complete because no eligible published asset exists, keep protected writes blocked and repair only through the verified package or mutable-host source route for the same release. Do not use `sudo flatpak`, the native host installer command, or a staging prefix as a Flatpak repair; see [installation](/docs/installation/#flatpak).
-
-Do not change an unknown executable's ownership or permissions to bypass this check. After a successful manual repair, restart ClamUI and repeat the requested operation. If it still fails, open the dialog's **Technical details** panel and include the exact error, package format, version, and architecture in a [GitHub issue](https://github.com/linx-systems/clamui/issues).
-
-When a protected write is blocked, that protected write remains unapplied; settings already saved before it may still have succeeded. After completing the supported repair for your package format, retry the pending settings draft.
-
-## Recover a failed Save & Apply
-
-If a configuration **Save & Apply** attempt fails after ClamUI has prepared native ClamAV files, select **See Configuration** in the failure report. The read-only recovery view lists every full target path and the exact `clamd.conf` or `freshclam.conf` content from that failed attempt. Use **Copy Path** and **Copy Configuration** separately, then open the target with an administrative editor appropriate for that path—for example, `sudoedit /full/path/to/clamd.conf`.
-
-The view is a frozen record of the failed attempt, not later edits in the Preferences page. A helper error can happen after it has written some files, so inspect each existing target before replacing anything manually. **See Configuration** does not write or apply files, bypass helper trust checks, or expose application settings, VirusTotal data, or a general JSON dump.
+If authorization is cancelled or a helper check fails, the protected write remains blocked. Review the exact failure and retry only after a verified helper is available. If an apply fails after some host files were written, use **See Configuration** to inspect each target before manually changing it; the view is read-only.
 
 ## File-manager action or tray icon is absent
 
-For Flatpak context-menu actions, rerun **Preferences → Behavior → Configure Integration**, then restart the file manager or sign out/in. Native packages install the same Nautilus, Dolphin, and Nemo integration assets; use the integration status/repair action instead of copying old Python scripts by hand.
+Linux Defender's integration actions are managed by the development build and depend on the desktop and file-manager version. Recheck **Preferences → Behavior → Configure Integration**, then restart the affected file manager or desktop session. The tray requires an SNI watcher; GNOME users may need [AppIndicator Support](https://extensions.gnome.org/extension/615/appindicator-support/). Report the desktop environment and exact file-manager version if an action is missing.
 
-The tray needs an SNI watcher. GNOME requires [AppIndicator Support](https://extensions.gnome.org/extension/615/appindicator-support/). ClamUI's tray is pure Rust SNI/DBusMenu and does not need a Python service or `libdbusmenu` binding. The GUI remains usable when no tray is available.
+## Scans are slow or report a false positive
 
-## Scans are slow, fail, or find a false positive
-
-- Use **Auto** or a running daemon for frequent scans; `clamscan` reloads the database each time.
-- Confirm the account can read targets and do not unplug removable media during a scan.
-- If `clamscan` reports unavailable or unreadable definitions, repair the host ClamAV setup or use a reachable daemon backend.
-- Keep ClamAV definitions current. For a suspected false positive, quarantine first, inspect provenance and hashes, and use multiple engines only if the file is safe to disclose. Do not upload sensitive files to third parties.
-- Avoid unlimited archive limits: malicious archives can consume resources.
+- Use **Auto** or a running daemon for repeated scans; standalone `clamscan` reloads definitions each run.
+- Check that the account can read the targets and do not unplug removable media during a scan.
+- Keep archive and file-size limits finite; untrusted archives can consume CPU, memory, and disk.
+- Quarantine first, then research the exact ClamAV signature and file provenance. Heuristic detections can be false positives.
+- Compare online reputation only when sharing the file or URL is acceptable; an online reputation result is not a local antivirus verdict.
 
 ## Quarantine, schedules, and logs
 
-A restore refusal can mean the destination already exists or integrity verification failed; do not bypass the latter. Export important logs before using **Clear All**—clearing is permanent. Scheduled scans require either a user systemd timer or cron and a powered-on machine at run time. Test configuration without changing data:
+A restore refusal can mean the destination exists or the saved file's integrity check failed; do not bypass that check. Export important logs before **Clear All** because clearing is permanent. Scheduled scans need an enabled user systemd timer or cron job and a powered-on machine at run time. Check a schedule without changing data:
 
 ```bash
 clamui-scheduled-scan --dry-run
@@ -146,6 +70,8 @@ systemctl --user list-timers
 crontab -l
 ```
 
+The CLI command name is still `clamui-scheduled-scan` during the application-identity migration.
+
 ## Still stuck?
 
-Collect the relevant Log entry, ClamAV version, package format, desktop environment, and exact error, then search or open a [GitHub issue](https://github.com/linx-systems/clamui/issues). Report vulnerabilities through the [private security policy](/docs/contributing/security/), not a public issue.
+Collect the Linux Defender commit, ClamAV version, distribution, desktop environment, scan backend, and exact error. Open a [GitHub issue](https://github.com/SAFETY-CHAT/Linux-Defender/issues). Report security vulnerabilities through the [private security policy](/Linux-Defender/docs/contributing/security/), not a public issue.

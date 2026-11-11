@@ -3,7 +3,7 @@
   "configVersion": 0,
   "workspaces": {
     "": {
-      "name": "clamui-website",
+      "name": "linux-defender-website",
       "dependencies": {
         "@astrojs/starlight": "0.42.5",
         "astro": "^7.3.5",

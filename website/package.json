@@ -1,9 +1,9 @@
 {
-  "name": "clamui-website",
+  "name": "linux-defender-website",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Marketing site for ClamUI - https://clamui.com",
+  "description": "Marketing site and documentation for Linux Defender",
   "engines": {
     "node": ">=22.12.0"
   },

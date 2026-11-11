@@ -8,7 +8,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlsplit
 
-CANONICAL_HOSTS = {"clamui.com", "www.clamui.com"}
+CANONICAL_HOSTS = {"safety-chat.github.io"}
+BASE_PATH = "/Linux-Defender"
 IGNORED_SCHEMES = {"data", "javascript", "mailto", "tel"}
 
 
@@ -45,6 +46,9 @@ def public_path(site: Path, page: Path) -> str:
 
 def target_path(site: Path, target_url: str) -> Path | None:
     path = unquote(urlsplit(target_url).path).lstrip("/")
+    path = path.removeprefix(f"{BASE_PATH.lstrip('/')}/")
+    if path == BASE_PATH.lstrip("/"):
+        path = ""
     if not path:
         return site / "index.html"
 
@@ -79,7 +83,7 @@ def check_site(site: Path) -> list[str]:
 
     errors: list[str] = []
     for page, parser in pages.items():
-        base_url = f"https://clamui.com{public_urls[page]}"
+        base_url = f"https://safety-chat.github.io{BASE_PATH}{public_urls[page]}"
         for link in parser.links:
             if not is_local(link):
                 continue

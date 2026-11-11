@@ -1,11 +1,11 @@
 ---
 title: Development and packaging
-description: Set up the Rust core, Tauri desktop, packages, tests, and docs site.
+description: Build and validate the Linux Defender Rust core, Tauri desktop, packages, tests, and website.
 ---
 
 ## Prerequisites
 
-ClamUI has a headless Rust core (`crates/clamui-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency.
+Linux Defender 0.6.0 is a development snapshot based on upstream ClamUI v0.6.0. It has a headless Rust core (`crates/clamui-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency. Linux Defender packages are not yet published.
 
 ### Debian or Ubuntu
 
@@ -34,14 +34,15 @@ flatpak install --user --arch="$(flatpak --default-arch)" flathub \
   org.freedesktop.Sdk.Extension.rust-stable//26.08
 ```
 
-The Rust/Tauri source for the v0.5.1 release is on `master`; the `v0.4.1` tag preserves the historical Python release. Clone `master`:
+Clone the SAFETY-CHAT repository and switch to the Linux Defender development branch:
 
 ```bash
-git clone https://github.com/linx-systems/clamui.git
-cd clamui
+git clone https://github.com/SAFETY-CHAT/Linux-Defender.git
+cd Linux-Defender
+git switch revival/unified-app
 ```
 
-Native release artifacts must be built on the Ubuntu 22.04-compatible baseline used by CI to retain the intended glibc floor. A local build on a newer distribution does **not** establish that the artifact supports Ubuntu 22.04 or another older host.
+The inherited native package workflows use an Ubuntu 22.04-compatible baseline to retain the intended glibc floor. Linux Defender's modified packages still need clean builds and installation tests before any distribution claim; a local build on a newer distribution does **not** establish compatibility with Ubuntu 22.04 or older hosts.
 
 ## Work on the app
 
@@ -79,7 +80,7 @@ sudo clamui install-privileged-helper
 clamui-scheduled-scan --dry-run
 ```
 
-`install-privileged-helper` is the manual native/source-host path. Its real installation requires root and stages the co-bundled compiled helper with its canonical polkit policy; retain it for **mutable** source hosts. On supported Debian-family and Fedora hosts, a missing helper in native packages, AppImages, source builds, or Flatpak may show explicit in-app setup from the local capability check. Automatic setup requires an exact matching signed published package; before graphical Polkit authorization, it validates that package's signature, identity, version, size, digest, and compatible architecture, otherwise failing safely without authorization. Debian alone can use its signed same-version architecture-independent fallback only when the release explicitly provides it and no exact-architecture helper exists. Fedora Atomic contributors must use verified RPM layering and reboot for manual repair, never this source installer against immutable `/usr`. The Flatpak rejects this host command, so do not use `sudo flatpak`.
+`install-privileged-helper` is the inherited manual native/source-host path. Its real installation requires root and stages a compiled helper with its polkit policy; retain it only for **mutable** source hosts. Linux Defender has not published signed helper packages, so its release-driven helper installer is not ready for use. Fedora Atomic contributors must use verified RPM layering and reboot for manual repair, never this source installer against immutable `/usr`. The Flatpak rejects this host command, so do not use `sudo flatpak`.
 
 For source-host development, build only the headless binaries, then use the non-privileged staging mode in a directory you own:
 
@@ -119,7 +120,7 @@ Do not use `-g` or bulk-install an upstream repository. Imported payloads belong
 
 The project-only OMP filter is `.omp/config.yml` under `skills.ignoredSkills`; it excludes irrelevant global skills without deleting their global payloads. Start OMP from the repository root because project configuration is current-working-directory scoped.
 
-ClamAV and gettext guidance is authored for this project; the contributor rules and the existing [architecture](/docs/contributing/architecture/) and [translation](/docs/contributing/translating/) pages remain authoritative. The React guidance applies to the client UI: exclude Next.js and other server-only changes. Check native accessibility in Tauri/WebKitGTK—Chrome accessibility scores alone do not prove the desktop application is accessible.
+ClamAV and gettext guidance is authored for this project; the contributor rules and the existing [architecture](/Linux-Defender/docs/contributing/architecture/) and [translation](/Linux-Defender/docs/contributing/translating/) pages remain authoritative. The React guidance applies to the client UI: exclude Next.js and other server-only changes. Check native accessibility in Tauri/WebKitGTK—Chrome accessibility scores alone do not prove the desktop application is accessible.
 
 ### Data compatibility
 
@@ -138,13 +139,13 @@ The Flatpak equivalents live beneath `~/.var/app/io.github.linx_systems.ClamUI/`
 
 ### Host and privilege boundaries
 
-ClamUI uses host `clamscan` and `freshclam`; daemon mode also uses host `clamd` and `clamdscan`. Under Flatpak, calls cross the explicit `flatpak-spawn --host` boundary. Do not bundle or emulate ClamAV.
+Linux Defender uses host `clamscan` and `freshclam`; daemon mode also uses host `clamd` and `clamdscan`. Under Flatpak, calls cross the explicit `flatpak-spawn --host` boundary. Do not bundle or emulate ClamAV.
 
-Protected configuration changes use the authenticated protocol-v4 helper at `/usr/bin/clamui-apply-preferences` and the `io.github.linx_systems.ClamUI.policy` polkit policy. Preserve its allowlists, `PKEXEC_UID` validation, exit codes, and compatibility with an already-installed helper. The helper is native Rust, not a Python wrapper. A Flatpak has no direct host-file access; its explicit missing-helper offer uses a verified published package and graphical Polkit authorization where supported: the Debian-family transaction or the Fedora DNF/Atomic transaction described in [installation](/docs/installation/#fedora-helper-rpm). Unavailable trust or authorization must fail without changes.
+Protected configuration changes use the inherited authenticated protocol-v4 helper at `/usr/bin/clamui-apply-preferences` and `io.github.linx_systems.ClamUI.policy`. Preserve its allowlists, `PKEXEC_UID` validation, exit codes, and compatibility with an already-installed trusted helper. The helper is native Rust, not a Python wrapper. Linux Defender has not published its own signed helper package, so the in-app release installer cannot complete from this project yet. Keep the trust boundary fail-closed; never bypass a missing or invalid signature.
 
 ## Test before a pull request
 
-Use the [bug report or feature request forms](https://github.com/linx-systems/clamui/issues/new/choose) for issues, and summarize your changes and actual verification in the pull request template.
+Use the [bug report or feature request forms](https://github.com/SAFETY-CHAT/Linux-Defender/issues/new/choose) for issues, and summarize your changes and actual verification in the pull request template.
 
 Run the applicable checks from the repository root:
 
@@ -164,7 +165,7 @@ Recorded migration evidence includes Rust workspace tests and strict Clippy, rea
 
 ## Packaging boundaries
 
-ClamUI preserves Debian, Flatpak, and x86_64 AppImage distribution formats. The Rust/Tauri packaging sources on `master` live in [`debian/`](https://github.com/linx-systems/clamui/tree/master/debian), [`flathub/`](https://github.com/linx-systems/clamui/tree/master/flathub), [`appimage/`](https://github.com/linx-systems/clamui/tree/master/appimage), and [`rpm/`](https://github.com/linx-systems/clamui/tree/master/rpm). Use their checked-in manifests and scripts rather than recreating package logic locally.
+Linux Defender preserves Debian, Flatpak, and x86_64 AppImage distribution formats. The Rust/Tauri packaging sources in this development branch live in [`debian/`](https://github.com/SAFETY-CHAT/Linux-Defender/tree/main/debian), [`flathub/`](https://github.com/SAFETY-CHAT/Linux-Defender/tree/main/flathub), [`appimage/`](https://github.com/SAFETY-CHAT/Linux-Defender/tree/main/appimage), and [`rpm/`](https://github.com/SAFETY-CHAT/Linux-Defender/tree/main/rpm). Use their checked-in manifests and scripts rather than recreating package logic locally.
 
 A Debian release is a version- and architecture-matched application/helper pair. Flatpak declares GNOME 51 and dependencies for `x86_64` and `aarch64`, but a local build validates only its native architecture. AppImage remains x86_64. Fedora RPMs are helper-only. Every format retains the host ClamAV boundary.
 
@@ -174,7 +175,7 @@ Build with the maintained native packaging entry points:
 ./debian/build-deb.sh
 # Package the three binaries built on the Ubuntu 22.04-compatible baseline.
 CLAMUI_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release ./debian/build-deb.sh dist
-UPDATE_INFORMATION='gh-releases-zsync|linx-systems|clamui|latest|ClamUI-*-x86_64.AppImage.zsync' ./appimage/build-appimage.sh
+UPDATE_INFORMATION='gh-releases-zsync|SAFETY-CHAT|Linux-Defender|latest|Linux-Defender-*-x86_64.AppImage.zsync' ./appimage/build-appimage.sh
 ```
 
 ### Fedora helper RPM packaging
@@ -186,16 +187,16 @@ CLAMUI_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release CLAMUI_RPM_ARCH=x8
 
 The scripts can produce local `x86_64` or `aarch64` helper artifacts when built for the matching target; they contain the Rust helper and canonical policy, not the GUI or ClamAV. A local RPM is unsigned and is not an eligible installer asset. Only a matching signed RPM published with its detached signature can be used by the in-app Fedora installer. The RPM builder requires Cargo, `readelf` from `binutils`, and the `rpm`/`rpmbuild` package tools; a local source compilation also needs the usual Rust C toolchain, `pkg-config`, and GLib development files. It builds only the helper, so it needs neither Python nor the Bun/Tauri GUI toolchain. `CLAMUI_ARTIFACT_DIR`, `CARGO_TARGET_DIR`, and `CARGO_BUILD_TARGET` select a prebuilt or nondefault Cargo artifact; `CLAMUI_RPM_ARCH` asserts `x86_64` or `aarch64` against the helper ELF.
 
-`debian/build-deb.sh` is the authoritative Debian entry point: it produces the application/helper pair and stages the policy and scheduled-scan payload. `CLAMUI_ARTIFACT_DIR` must contain executable `clamui`, `clamui-scheduled-scan`, and `clamui-apply-preferences` binaries from the baseline build. The AppImage build produces `ClamUI-<VERSION>-x86_64.AppImage` and its `.zsync` metadata.
+`debian/build-deb.sh` is the authoritative Debian entry point: it produces the application/helper pair and stages the policy and scheduled-scan payload. `CLAMUI_ARTIFACT_DIR` must contain executable `clamui`, `clamui-scheduled-scan`, and `clamui-apply-preferences` binaries from the baseline build. The AppImage build produces `Linux Defender-<VERSION>-x86_64.AppImage` and its `.zsync` metadata.
 
 ### Dependabot and Flatpak sources
 
 Dependabot checks Cargo, the desktop and website Bun projects, and GitHub Actions weekly. Minor and patch version updates are grouped per project; major updates and security updates remain separate.
 
-`desktop/bun.lock` is the canonical desktop lockfile; `desktop/yarn.lock` is only its Bun-generated export for Flatpak's offline source generator. Eligible Cargo and desktop Dependabot pull requests automatically refresh the coupled lockfile export and Flatpak source JSON files; website and Actions updates do not need this refresh. The Dependabot branch must include current `master`; for an older pull request, comment `@dependabot rebase` first. If a refresh fails or an existing Dependabot pull request needs one, run **Dependabot source refresh** in GitHub Actions with its pull request number as `pr_number`, or use the command below, replacing `123` with that number:
+`desktop/bun.lock` is the canonical desktop lockfile; `desktop/yarn.lock` is only its Bun-generated export for Flatpak's offline source generator. Eligible Cargo and desktop Dependabot pull requests automatically refresh the coupled lockfile export and Flatpak source JSON files; website and Actions updates do not need this refresh. The Dependabot branch must include current `main`; for an older pull request, comment `@dependabot rebase` first. If a refresh fails or an existing Dependabot pull request needs one, run **Dependabot source refresh** in GitHub Actions with its pull request number as `pr_number`, or use the command below, replacing `123` with that number:
 
 ```bash
-gh workflow run dependabot-refresh.yml --ref master -f pr_number=123
+gh workflow run dependabot-refresh.yml --ref main -f pr_number=123
 ```
 
 Review the generated changes and the verification workflow results on the pull request. For a manual local refresh, export the Yarn lockfile and regenerate both Flatpak source lists using the generator prerequisites described below:
@@ -240,7 +241,7 @@ Run the generator from a clean checkout whose intended source commit is already 
 ```bash
 release_commit="$(git rev-parse HEAD)"
 scripts/generate-flatpak-sources.sh \
-  --release-url https://github.com/linx-systems/clamui.git \
+  --release-url https://github.com/SAFETY-CHAT/Linux-Defender.git \
   --release-commit "$release_commit" \
   --release-output flathub/io.github.linx_systems.ClamUI.release.yml
 ```
@@ -259,13 +260,13 @@ flatpak-builder --user --arch="$(flatpak --default-arch)" \
   flathub/io.github.linx_systems.ClamUI.release.yml
 ```
 
-This local build neither installs nor replaces an existing Flatpak, and it proves only the host architecture. Before a Flathub submission, independently complete the offline build and metadata/package validation for both `x86_64` and `aarch64`, then complete the Flathub review and publication process. GitHub v0.5.1 bundles and matching signed helper packages do not by themselves update Flathub; the live Flathub store remains the Python 0.4.1 release until that separate rollout. The Flatpak workflow triggers on `master` pushes, pull requests targeting `master`, `v*` tags, manual dispatch, or a workflow call.
+This local build neither installs nor replaces a Flatpak, and it proves only the host architecture. The manifest retains ClamUI compatibility identifiers and is not ready to publish as a Linux Defender Flatpak. Complete an application-ID and data migration first, then validate `x86_64` and `aarch64`, obtain Flathub review, and publish only after signed release assets and migration behavior are ready. Linux Defender has no published Flathub package or signed release bundles yet.
 
 Before publishing, inspect package payloads for the right architecture, native command names, helper/policy paths, and absence of a Python application runtime. Build compatibility still requires proof from the baseline environment and target package/OS; do not infer it from this development guide.
 
 ## Write documentation
 
-The Starlight source is `website/src/content/docs/docs/`. Reuse the existing focused pages, use root-relative `/docs/.../` links, and keep the existing sidebar structure unless navigation truly changes. Root `README.md` and `CONTRIBUTING.md` are short discovery pointers; `CHANGELOG.md` and `RELEASE_NOTES.md` remain canonical release sources rendered by MDX imports.
+The Starlight source is `website/src/content/docs/docs/`. Reuse the existing focused pages, use repository-page `/Linux-Defender/docs/.../` links, and keep the existing sidebar structure unless navigation truly changes. Root `README.md` and `CONTRIBUTING.md` are short discovery pointers; `CHANGELOG.md` and `RELEASE_NOTES.md` remain canonical release sources rendered by MDX imports.
 
 Website commands:
 
@@ -275,7 +276,7 @@ bun run --cwd website check
 bun run --cwd website build
 ```
 
-Do not edit generated `website/public/` or `website/dist/`. Keep the active `de`, `en`, `es`, `fr`, `hu`, `it`, `nb`, `pt_BR`, `vi`, and `zh_CN` gettext catalogs in `po/` and listed in `po/LINGUAS`; Rust build tooling and packaging export each catalog for the core and UI. Localized historical scan-summary recognition is embedded build data, not an archived catalog source, and catalog extraction, loading, and packaging have no Python runtime dependency. See [translation](/docs/contributing/translating/) for the catalog workflow.
+Do not edit generated `website/public/` or `website/dist/`. Keep the active `de`, `en`, `es`, `fr`, `hu`, `it`, `nb`, `pt_BR`, `vi`, and `zh_CN` gettext catalogs in `po/` and listed in `po/LINGUAS`; Rust build tooling and packaging export each catalog for the core and UI. Localized historical scan-summary recognition is embedded build data, not an archived catalog source, and catalog extraction, loading, and packaging have no Python runtime dependency. See [translation](/Linux-Defender/docs/contributing/translating/) for the catalog workflow.
 
 ## Update the application icon
 

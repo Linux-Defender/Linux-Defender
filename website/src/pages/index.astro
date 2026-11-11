@@ -18,14 +18,14 @@ import { features } from "../content/features";
 
     <section id="features" class="container-tight py-10 sm:py-16">
       <div class="max-w-2xl mb-10 sm:mb-16">
-        <span class="eyebrow">A guided tour</span>
-        <h2 class="mt-3 section-title">What's inside</h2>
+        <span class="eyebrow">One app, clear boundaries</span>
+        <h2 class="mt-3 section-title">The tools in one place</h2>
         <p class="mt-4 lede">
-          The practical security tools that make ClamAV feel at home on your desktop.
+          Local scanning, quarantine, system checks, and optional online reputation workflows in one Linux desktop app.
         </p>
       </div>
 
-      <div class="space-y-20 sm:space-y-28">
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {features.map((f, i) => <FeatureRow feature={f} index={i} />)}
       </div>
     </section>

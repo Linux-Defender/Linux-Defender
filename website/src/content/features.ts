@@ -3,89 +3,75 @@ export type Feature = {
   eyebrow: string;
   blurb: string;
   bullets: string[];
-  screenshot: string; // under /screenshots/
-  alt: string;
   highlight?: boolean;
 };
 
 export const features: Feature[] = [
   {
-    title: "System security audit",
-    eyebrow: "Flagship",
+    title: "Local file and folder scanning",
+    eyebrow: "ClamAV engine",
     blurb:
-      "Go beyond virus scanning. Tier 1 checks ClamAV health, firewall, MAC enforcement, SSH hardening, and more; opt-in Tier 2 deep scans run Lynis and chkrootkit with authorization.",
+      "Use the host-installed ClamAV engine for on-demand file, folder, home, and system scans. ClamAV and its configured signature database stay under your distro's package and FreshClam services.",
     bullets: [
-      "Tier 1 posture checks without root",
-      "Firewall, MAC, and SSH hardening review",
-      "Opt-in Tier 2 Lynis and rootkit checks",
+      "Standalone and optional daemon backends",
+      "Profiles, exclusions, progress, and readable results",
+      "No second bundled engine or private database copy",
     ],
-    screenshot: "/screenshots/audit_view.png",
-    alt: "ClamUI system security audit view",
+  },
+  {
+    title: "Multiple signatures and local YARA",
+    eyebrow: "Configured rules",
+    blurb:
+      "ClamAV can load compatible signature files from its configured database directory. Linux Defender shows the files it detects and can pass selected local YARA rules alongside that system database for standalone scans.",
+    bullets: [
+      "Show recognized host database files",
+      "Run local YARA rules with clamscan",
+      "Third-party feed installation and updates are still a separate task",
+    ],
+  },
+  {
+    title: "VirusTotal and urlscan",
+    eyebrow: "Online · opt in",
+    blurb:
+      "Check file, folder, or URL reputation with a chosen service. The app asks before sending data and reports online reputation separately from the local ClamAV result.",
+    bullets: [
+      "VirusTotal file and URL analysis",
+      "Bounded folder uploads and visible progress",
+      "urlscan URL checks with visibility selection",
+    ],
     highlight: true,
   },
   {
-    title: "Scan profiles & entry points",
-    eyebrow: "Reusable",
+    title: "Quarantine and recovery",
+    eyebrow: "Careful handling",
     blurb:
-      "Save the scans you actually run, launch them from supported file-manager menus, or opt in to scanning newly mounted removable media.",
+      "Keep flagged files in restricted local storage with integrity checks and a clear restore or delete path. Review a detection before taking action.",
     bullets: [
-      "Targets + exclusion globs per profile",
-      "Nautilus, Dolphin, and Nemo integration",
-      "Opt-in scans for removable devices",
+      "Hash-verified restore flow",
+      "Searchable, paged quarantine list",
+      "History and scan evidence for follow-up",
     ],
-    screenshot: "/screenshots/profile_management.png",
-    alt: "ClamUI profile management view",
   },
   {
-    title: "Quarantine, verified",
-    eyebrow: "Threat handling",
+    title: "Security audit and updates",
+    eyebrow: "Host status",
     blurb:
-      "Infected files are moved with restrictive permissions and SHA-256 hashed. Restore only if integrity checks pass - no silent tampering.",
+      "Review selected security posture checks and ClamAV service/database status in one place. The audit is advisory and does not change system settings.",
     bullets: [
-      "SHA-256 integrity verification",
-      "SQLite-backed metadata ledger",
-      "Secure restore + hard delete",
+      "Read-only firewall and host checks",
+      "Show FreshClam service and timer state",
+      "System-managed signature update schedule",
     ],
-    screenshot: "/screenshots/quarantine_view.png",
-    alt: "ClamUI quarantine management view",
   },
   {
-    title: "History & statistics",
-    eyebrow: "Visibility",
+    title: "Desktop integration",
+    eyebrow: "One Linux app",
     blurb:
-      "Paginated scan history with full result dumps, plus a dashboard of what's been caught, when, and where - so you're never guessing.",
+      "Use scan actions from the app, supported file managers, and the optional system tray. Distribution and desktop behavior still needs validation on each target.",
     bullets: [
-      "Per-scan detail with exportable CSV",
-      "Threat category breakdown",
-      "Pagination tuned for years of logs",
+      "Tray scan and update actions",
+      "File-manager actions for supported desktops",
+      "Scheduling, logs, and scan statistics",
     ],
-    screenshot: "/screenshots/history_view.png",
-    alt: "ClamUI scan history view",
-  },
-  {
-    title: "Configured, not configurable-to-death",
-    eyebrow: "Preferences",
-    blurb:
-      "Modular preferences pages surface the ClamAV settings that actually matter - freshclam, on-access (clamonacc), scheduled scans, VirusTotal - without dumping the full clamd.conf on you.",
-    bullets: [
-      "Auto-detects ClamAV daemon & config paths",
-      "Safe permission elevation to apply changes",
-      "Scheduled scans via systemd timers or cron",
-    ],
-    screenshot: "/screenshots/config_view.png",
-    alt: "ClamUI configuration view",
-  },
-  {
-    title: "VirusTotal, when you want it",
-    eyebrow: "Optional",
-    blurb:
-      "Enrich detections with a second opinion. API keys use the system keyring.",
-    bullets: [
-      "Keyring-backed API key storage by default",
-      "SHA-256 lookups + optional uploads",
-      "Rate-limit aware with retry/backoff",
-    ],
-    screenshot: "/screenshots/components_view.png",
-    alt: "ClamUI components view",
   },
 ];

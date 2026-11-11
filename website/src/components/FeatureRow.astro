@@ -6,58 +6,23 @@ export interface Props {
   index: number;
 }
 const { feature, index } = Astro.props;
-const flip = index % 2 === 1;
 ---
 
-<article
-  class={`grid lg:grid-cols-2 gap-10 lg:gap-14 items-center ${flip ? "lg:[&>div:first-child]:order-2" : ""}`}
->
-  <div>
-    <span class="eyebrow">
-      {feature.highlight && (
-        <span class="h-1.5 w-1.5 rounded-full bg-clam-amber"></span>
-      )}
-      {feature.eyebrow}
-    </span>
-    <h3 class="mt-3 section-title">{feature.title}</h3>
-    <p class="mt-4 lede">{feature.blurb}</p>
-    <ul class="mt-6 space-y-2.5">
-      {
-        feature.bullets.map((b) => (
-          <li class="flex items-start gap-2.5 text-sm text-white/75">
-            <svg
-              class="w-4 h-4 mt-0.5 flex-none text-clam-sage"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="m5 12 5 5L20 7"></path>
-            </svg>
-            <span>{b}</span>
-          </li>
-        ))
-      }
-    </ul>
+<article class={`card h-full ${feature.highlight ? "border-clam-sky/35 bg-clam-sky/[0.045]" : ""}`}>
+  <div class="flex items-start justify-between gap-3">
+    <span class="eyebrow">{feature.eyebrow}</span>
+    <span class="font-mono text-xs text-white/30">0{index + 1}</span>
   </div>
-
-  <div class="relative">
-    <div
-      class={`absolute -inset-6 bg-gradient-to-br ${feature.highlight ? "from-clam-amber/10" : "from-clam-forest/10"} to-clam-sky/10 blur-2xl rounded-full -z-10`}
-    ></div>
-    <div class={`transition-transform duration-700 ${flip ? "lg:-rotate-[0.5deg]" : "lg:rotate-[0.5deg]"}`}>
-      <img
-        src={feature.screenshot}
-        alt={feature.alt}
-        width="1200"
-        height="780"
-        loading="lazy"
-        decoding="async"
-        class="shot"
-      />
-    </div>
-  </div>
+  <h3 class="mt-4 text-xl font-semibold tracking-tight text-white">{feature.title}</h3>
+  <p class="mt-3 text-sm leading-relaxed text-white/65">{feature.blurb}</p>
+  <ul class="mt-5 space-y-2.5">
+    {feature.bullets.map((bullet) => (
+      <li class="flex items-start gap-2.5 text-sm text-white/70">
+        <svg class="mt-0.5 h-4 w-4 flex-none text-clam-sage" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m5 12 5 5L20 7"></path>
+        </svg>
+        <span>{bullet}</span>
+      </li>
+    ))}
+  </ul>
 </article>

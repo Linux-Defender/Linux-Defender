@@ -5,8 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { mermaidSatteriPlugin } from "./scripts/mermaid-satteri.mjs";
 
 export default defineConfig({
-  site: "https://clamui.com",
-  base: "/",
+  site: "https://safety-chat.github.io",
+  base: "/Linux-Defender",
   output: "static",
   compressHTML: true,
   markdown: {
@@ -20,17 +20,17 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: "ClamUI Documentation",
-      description: "Install, use, configure, and contribute to ClamUI.",
+      title: "Linux Defender Documentation",
+      description: "Install, use, configure, and contribute to Linux Defender.",
       logo: {
         src: "./src/assets/logo.svg",
-        alt: "ClamUI",
+        alt: "Linux Defender",
       },
       social: [
         {
           icon: "github",
-          label: "ClamUI on GitHub",
-          href: "https://github.com/linx-systems/clamui",
+          label: "Linux Defender on GitHub",
+          href: "https://github.com/SAFETY-CHAT/Linux-Defender",
         },
       ],
       sidebar: [

@@ -2,6 +2,8 @@
 
 Review snapshot: 2026-11-11. Sources: public GitHub REST API, default-branch checkouts, READMEs/changelogs/security workflows, and public issue/PR discussions. This is point-in-time research, not a review of private branches or every historical commit.
 
+The ClamUI default branch advanced after the earlier v0.5.1 snapshot documented below. This update pass reviewed the official ClamUI v0.6.0 release, changelog, website, and source tag (`c62f373daf46ca2ed08ea831ae8dca89a65a0242`) and compared the intervening source diff. The 0.6.0 release added maintenance, dependency, packaging-workflow, and translation updates; the inspected diff did not contain new scanner/core behavior beyond what this fork already carries. Linux Defender's 0.6.0 version is a development snapshot with local additions; it is not the upstream ClamUI release and has no signed Linux Defender packages. Installed upstream ClamUI remains identified as `io.github.linx_systems.ClamUI`; its user data is not migrated into a new Linux Defender app identity yet.
+
 Lenspect's issues, all 25 PRs, remaining VirusTotal parity gaps, license boundary, and parity-maintenance rule are recorded in [LENSPECT-REVIEW.md](LENSPECT-REVIEW.md).
 
 ## Direction

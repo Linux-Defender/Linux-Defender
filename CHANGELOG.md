@@ -2,9 +2,15 @@
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-11-11
+
 ### Added
 
 - Added a Vietnamese (`vi`) translation.
+- Added VirusTotal URL analysis and urlscan as explicit, consent-based online checks alongside local scanning.
+- Added upload/analysis progress and bounded, confirmed VirusTotal folder uploads; remote reputation results remain separate from local ClamAV detections.
+- Added a visible inventory of compatible ClamAV database/signature files and combined local YARA rules with the configured host ClamAV database for standalone scans.
+- Added recognition of CachyOS's `clamav-freshclam-once.timer` in the Security Audit.
 
 ### Changed
 
@@ -240,3 +246,4 @@
 - Hardened terminal/log output sanitization, scheduler quoting, profile import handling, ClamAV config parsing, quarantine cleanup, exclusion matching, and audit verdict handling.
 
 [0.3.0]: https://github.com/linx-systems/clamui/compare/v0.2.0...v0.3.0
+[Unreleased]: https://github.com/SAFETY-CHAT/Linux-Defender/compare/revival/unified-app...HEAD

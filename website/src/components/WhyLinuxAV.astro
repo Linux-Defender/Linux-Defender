@@ -2,19 +2,19 @@
 const qas = [
   {
     q: "Do I even need antivirus on Linux?",
-    a: "Desktop Linux malware is rare - but files don't stop at your laptop. If you share documents with Windows or macOS users, run a mail server, use Wine, mount network shares, or pull third-party installers, you're a vector whether or not you're a victim. ClamUI catches infected files before you forward them on.",
+    a: "Linux is not immune to malicious files. Scanning can help when you download software, share files with Windows or macOS users, use Wine, or mount network storage. A clean result is useful evidence, not a guarantee that a file or system is safe.",
   },
   {
     q: "Isn't ClamAV just a server tool?",
-    a: "ClamAV is an excellent engine available from many distros, but it's historically been CLI-first. ClamUI is a desktop interface around it: progress, profiles, quarantine, scheduled scans, and file-manager integration - with none of the engine hidden from you.",
+    a: "ClamAV performs local file detection using the host's configured signature database. Linux Defender adds a desktop workflow for profiles, progress, quarantine, schedules, and file-manager actions. FreshClam updates that shared database through the system's configured service or timer.",
   },
   {
     q: "Does this talk to the cloud?",
-    a: "Scanning, quarantine, and audit run locally. freshclam contacts official ClamAV mirrors to update signatures, and VirusTotal requests occur only when you opt in to that integration.",
+    a: "ClamAV scans and the host security audit run locally. FreshClam contacts configured mirrors for definition updates. VirusTotal and urlscan requests leave your device only after you choose a check and confirm the upload or URL submission; the services have their own data retention and sharing policies.",
   },
   {
-    q: "How does this differ from another GUI I tried?",
-    a: "Three things: a system security audit beyond virus scanning, a SHA-256-verified quarantine with a proper restore path, and a native Rust/Tauri Linux desktop interface using system GTK 3 and WebKitGTK 4.1. It's designed as a Linux desktop app first, not a Windows AV port.",
+    q: "Does one app mean one antivirus engine?",
+    a: "No. Linux Defender presents local ClamAV scans, local YARA rules, and optional online reputation checks in one interface. VirusTotal and urlscan are separate services, not local antivirus engines, and their results do not replace a ClamAV scan. Third-party ClamAV feeds still need compatible formats and safe update management.",
   },
 ];
 ---
@@ -22,9 +22,9 @@ const qas = [
 <section id="why" class="container-tight py-20 sm:py-28">
   <div class="max-w-2xl">
     <span class="eyebrow">Honest answers</span>
-    <h2 class="mt-3 section-title">Why antivirus on Linux?</h2>
+      <h2 class="mt-3 section-title">A practical security workspace for Linux</h2>
     <p class="mt-4 lede">
-      The most common comment about desktop AV on Linux is that it's unnecessary. That's half true - and the other half is where ClamUI earns its place.
+      Linux Defender puts useful local scanning and optional reputation tools together while keeping their limits and privacy boundaries visible.
     </p>
   </div>
 

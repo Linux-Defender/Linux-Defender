@@ -2,6 +2,19 @@
 
 Audit date: 2026-11-11. This consolidates Kira's requests in the Linux Defender revival chat with the current local checkout. Research counts and upstream state refer to the dated snapshots in the linked ledgers, not live GitHub status.
 
+## 0.6.0 update pass (2026-11-11)
+
+- Verified the ClamUI v0.6.0 release page, release notes, site, and source tag. The installed CachyOS packages previously reported in this chat are ClamAV `1.5.4-2`, ClamTk `6.18-1`, and the ClamUI Flatpak `0.6.0`; the Flatpak uses upstream ClamUI identity and data. This Linux Defender checkout is a separate development snapshot based on that ClamUI source baseline, with local scanner, URL/reputation, YARA, audit, and UI changes layered on it.
+- Raised workspace, Tauri, desktop, and website version metadata to `0.6.0`; updated changelog/release notes, AppStream name and owner text, and the UI documentation links. Kept the ClamUI desktop, Flatpak, helper, CLI, and XDG identifiers as compatibility IDs. Removed inherited upstream ClamUI screenshots from AppStream metadata rather than presenting them as Linux Defender screenshots.
+- Rebranded and redesigned the repository website for the SAFETY-CHAT project, switched GitHub Pages deployment to `/Linux-Defender`, removed the old `clamui.com` custom-domain file, replaced the published logo/social preview, and made installation instructions accurately say that no Linux Defender signed packages are published. The existing ClamUI/ClamTk source trees and app data were not removed or modified.
+- Rechecked built website links after fixing a generated favicon URL; local link and anchor validation passes. Website Astro diagnostics report 0 errors/warnings/hints and static build succeeds. A diagram renderer logged that the Playwright Chromium binary is absent, so diagram rendering/visual website validation remains open.
+- `cargo fmt --all -- --check`, workspace Clippy with warnings denied, desktop TypeScript check/build, Astro check/build (with its pinned Playwright Chromium installed under `/tmp`), built-site local-link checking, AppStream validation, and translation extraction/catalog validation pass. Visual browser snapshots checked the homepage in light and dark themes and caught/fixed preview contrast and the base-path favicon.
+- Full unfiltered `cargo test --workspace --locked` reports 108 passed, 4 failed, 1 ignored because sandbox ownership/trusted-host-tool assumptions fail. Running the workspace with those four exact failing tests skipped allowed all other tests to proceed; a separate integration test also failed because trusted `getent` cannot be established under sandbox ownership. Rerunning with those five specific environment-dependent tests filtered completed every other test target successfully: desktop 17/17; core 108 passed, 1 ignored; audit 6/6; CLI 18/18; config 7/7; history 20/20; platform 8/8; remaining privileged 5/5; scheduler 8/8; scanner 17/17; URL-scan 13/13; urlscan 4/4; VirusTotal 13/13; plus all other listed targets. This filtered run is useful coverage but does not replace a clean unfiltered run on CachyOS.
+- Translation checks now pass individually: `update-pot.sh --check`, `check-potfiles.sh`, and `check-translations.sh` (10 catalogs, 1,360 message IDs). English fallback entries remain and need human translation review.
+- No Linux Defender desktop window, CachyOS tray/file-manager behavior, package installation, real VirusTotal/urlscan transaction, or AppStream store submission was tested. No remote data was submitted. Nothing has been pushed yet.
+
+This pass does not complete ClamTk feature/data parity, create a Linux Defender installer or self-updater, add/maintain every compatible third-party signature feed, resolve all historical issues/PRs, or prove all-distro support. The implementation and validation limits below remain active.
+
 ## What the project now contains
 
 | Request | Current evidence | Status |

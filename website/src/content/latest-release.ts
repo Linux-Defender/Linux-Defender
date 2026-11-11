@@ -1,6 +1,6 @@
-const RELEASES_URL = "https://github.com/linx-systems/clamui/releases";
+const RELEASES_URL = "https://github.com/SAFETY-CHAT/Linux-Defender/releases";
 const LATEST_RELEASE_API =
-  "https://api.github.com/repos/linx-systems/clamui/releases/latest";
+  "https://api.github.com/repos/SAFETY-CHAT/Linux-Defender/releases/latest";
 
 export interface LatestRelease {
   tag: string;
@@ -8,7 +8,7 @@ export interface LatestRelease {
 }
 
 const FALLBACK_RELEASE: LatestRelease = {
-  tag: "releases",
+  tag: "0.6.0-dev",
   url: RELEASES_URL,
 };
 
@@ -16,7 +16,7 @@ export async function getLatestRelease(): Promise<LatestRelease> {
   try {
     const headers = new Headers({
       Accept: "application/vnd.github+json",
-      "User-Agent": "clamui-website-build",
+      "User-Agent": "linux-defender-website-build",
     });
 
     const token = process.env.GITHUB_TOKEN;

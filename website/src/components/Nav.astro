@@ -3,20 +3,21 @@ import ThemeToggle from "./ThemeToggle.astro";
 import { getLatestRelease } from "../content/latest-release";
 
 const release = await getLatestRelease();
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <header class="sticky top-0 z-40 backdrop-blur-md bg-clam-slate-ink/70 border-b hairline">
   <div class="container-tight flex items-center justify-between h-14">
     <div class="flex items-center gap-2">
-      <a href="#top" class="flex items-center gap-2.5 group" aria-label="ClamUI home">
+      <a href={`${base}/`} class="flex items-center gap-2.5 group" aria-label="Linux Defender home">
         <img
-          src="/favicon.svg"
+          src={`${base}/favicon.svg`}
           alt=""
           width="28"
           height="28"
           class="rounded-md transition-transform group-hover:-rotate-6"
         />
-        <span class="font-semibold tracking-tight text-white">ClamUI</span>
+        <span class="font-semibold tracking-tight text-white">Linux Defender</span>
       </a>
       <a
         href={release.url}
@@ -30,10 +31,10 @@ const release = await getLatestRelease();
 
     <nav aria-label="Primary" class="hidden md:flex items-center gap-1 text-sm text-white/70">
       <a href="#features" class="px-3 py-2 rounded-md hover:text-white hover:bg-white/[0.04]">Features</a>
-      <a href="#why" class="px-3 py-2 rounded-md hover:text-white hover:bg-white/[0.04]">Why Linux AV?</a>
-      <a href="#install" class="px-3 py-2 rounded-md hover:text-white hover:bg-white/[0.04]">Install</a>
+      <a href="#why" class="px-3 py-2 rounded-md hover:text-white hover:bg-white/[0.04]">Why one workspace?</a>
+      <a href="#install" class="px-3 py-2 rounded-md hover:text-white hover:bg-white/[0.04]">Test</a>
       <a
-        href="https://github.com/linx-systems/clamui"
+        href="https://github.com/SAFETY-CHAT/Linux-Defender"
         rel="noopener"
         class="px-3 py-2 rounded-md hover:text-white hover:bg-white/[0.04]"
       >
@@ -43,7 +44,7 @@ const release = await getLatestRelease();
 
     <div class="flex items-center gap-2">
       <a
-        href="/docs/"
+        href={`${base}/docs/`}
         class="inline-flex items-center rounded-md px-2 py-1 text-sm font-medium text-white/80 transition-colors hover:bg-white/[0.04] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clam-sage/60"
       >
         <span class="sm:hidden">Docs</span>
@@ -54,7 +55,7 @@ const release = await getLatestRelease();
         href="#install"
         class="btn-primary hidden sm:inline-flex"
       >
-        Install
+        Build &amp; test
       </a>
     </div>
   </div>

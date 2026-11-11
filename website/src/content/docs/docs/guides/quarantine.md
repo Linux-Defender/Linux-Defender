@@ -42,4 +42,4 @@ clamui quarantine --help
 clamui quarantine list --json
 ```
 
-The numeric item ID from `list` identifies restores and deletions. See the [FAQ](/docs/guides/faq/) for a false-positive workflow.
+The numeric item ID from `list` identifies restores and deletions. See the [FAQ](/Linux-Defender/docs/guides/faq/) for a false-positive workflow.

@@ -3,13 +3,13 @@ title: Code of conduct
 description: Contributor Covenant 2.1 and its enforcement process.
 ---
 
-ClamUI follows the [Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html). We commit to a harassment-free, welcoming, inclusive community and expect empathy, respectful disagreement, constructive feedback, accountability, and attention to the community's good.
+Linux Defender follows the [Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html). We commit to a harassment-free, welcoming, inclusive community and expect empathy, respectful disagreement, constructive feedback, accountability, and attention to the community's good.
 
 Unacceptable conduct includes sexualized language or attention, trolling or derogatory attacks, public or private harassment, publishing private information without permission, and other behavior that is unreasonable in a professional setting.
 
 The code applies in project community spaces and when representing the project publicly. Community leaders may clarify standards and remove, edit, or reject contributions inconsistent with them, with fair and appropriate corrective action.
 
-Report abusive, harassing, or otherwise unacceptable behavior to [security@clamui.com](mailto:security@clamui.com). Reports are reviewed promptly and fairly; leaders must respect reporter privacy and security.
+Report abusive, harassing, or otherwise unacceptable behavior privately to the SAFETY-CHAT project maintainers. Do not post private details in a public issue. Reports should be reviewed promptly and fairly; leaders must respect reporter privacy and security.
 
 ## Enforcement guidelines
 

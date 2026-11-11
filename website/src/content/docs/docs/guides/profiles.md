@@ -17,9 +17,9 @@ Built-in profiles can be edited but not deleted. **Restore default profiles** re
 
 1. Open profile management and choose **Add**.
 2. Give it a unique 1–50-character name, add files or directories, and add only necessary exclusions.
-3. Save it, select it from **Scan**, then choose **Use this profile**. ClamUI selects its targets and starts the scan.
+3. Save it, select it from **Scan**, then choose **Use this profile**. Linux Defender selects its targets and starts the scan.
 
-A target may be an absolute path or use `~`. Use path exclusions for a directory tree and glob patterns such as `*.tmp` for file names. Do not exclude all targets: ClamUI warns but a resulting profile scans nothing.
+A target may be an absolute path or use `~`. Use path exclusions for a directory tree and glob patterns such as `*.tmp` for file names. Do not exclude all targets: Linux Defender warns but a resulting profile scans nothing.
 
 Global exclusions apply to every scan. Profile exclusions apply only to that profile; prefer them when an exclusion is task-specific.
 
@@ -54,4 +54,4 @@ clamui profile import "$HOME/quick-scan.json"
 
 The CLI uses the supplied profile `FILE` path literally: a quoted `~` is not expanded. Let the shell expand `~`, or use `$HOME` as in the examples. This differs from scan targets, where `~` remains supported.
 
-An export wraps a public nine-field profile (`id`, `name`, `targets`, `exclusions`, `created_at`, `updated_at`, `is_default`, `description`, and `options`). Unknown metadata already stored on disk is retained. For older profiles, a non-string description is normalized to text instead of discarding the profile. See the [configuration reference](/docs/reference/configuration/) for the full configuration shape.
+An export wraps a public nine-field profile (`id`, `name`, `targets`, `exclusions`, `created_at`, `updated_at`, `is_default`, `description`, and `options`). Unknown metadata already stored on disk is retained. For older profiles, a non-string description is normalized to text instead of discarding the profile. See the [configuration reference](/Linux-Defender/docs/reference/configuration/) for the full configuration shape.

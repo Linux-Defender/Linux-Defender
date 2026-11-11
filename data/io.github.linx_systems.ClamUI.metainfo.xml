@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
     <id>io.github.linx_systems.ClamUI</id>
-    <name>ClamUI</name>
-    <summary>GUI for ClamAV</summary>
+    <name>Linux Defender</name>
+    <summary>Linux desktop security scanner</summary>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>MIT</project_license>
 
-    <developer id="io.github.linx_systems">
-        <name>ClamUI Contributors</name>
+    <developer id="io.github.safetychat">
+        <name>SAFETY-CHAT contributors</name>
     </developer>
 
     <description>
         <p>
-            ClamUI is a modern Linux desktop application that provides a user-friendly
-            graphical interface for host-installed ClamAV antivirus tools. Built with
-            Rust and Tauri, it provides a responsive, Adwaita-inspired desktop experience.
+            Linux Defender is a Linux desktop security scanner built with Rust, Tauri,
+            and React. It uses host-installed ClamAV for local scanning and offers
+            optional, consent-based VirusTotal and urlscan reputation checks.
         </p>
         <p>Features:</p>
         <ul>
@@ -22,54 +22,16 @@
             <li>Background scanning keeps the UI responsive during long scans</li>
             <li>Clear, readable display of scan results</li>
             <li>Graceful handling when ClamAV is not installed</li>
-            <li>Modern Adwaita styling with proper GNOME integration</li>
+            <li>Scan profiles, scheduling, history, and hash-verified quarantine</li>
+            <li>System audit and desktop integration for supported file managers</li>
         </ul>
     </description>
 
     <launchable type="desktop-id">io.github.linx_systems.ClamUI.desktop</launchable>
 
-    <screenshots>
-        <screenshot type="default">
-            <caption>Main application window</caption>
-            <image>https://github.com/linx-systems/clamui/raw/v0.1.7/screenshots/main_view.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Scan results display</caption>
-            <image>https://github.com/linx-systems/clamui/raw/v0.1.7/screenshots/main_view_with_scan_result.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Analysis view</caption>
-            <image>https://github.com/linx-systems/clamui/raw/v0.1.7/screenshots/analysis_view.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Components view</caption>
-            <image>https://github.com/linx-systems/clamui/raw/v0.1.7/screenshots/components_view.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>System security audit</caption>
-            <image>https://github.com/linx-systems/clamui/raw/v0.1.7/screenshots/audit_view.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Configuration settings</caption>
-            <image>https://github.com/linx-systems/clamui/raw/v0.1.7/screenshots/config_view.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Scan history</caption>
-            <image>https://github.com/linx-systems/clamui/raw/v0.1.7/screenshots/history_view.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Profile management</caption>
-            <image>https://github.com/linx-systems/clamui/raw/v0.1.7/screenshots/profile_management.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Quarantine management</caption>
-            <image>https://github.com/linx-systems/clamui/raw/v0.1.7/screenshots/quarantine_view.png</image>
-        </screenshot>
-    </screenshots>
-
-    <url type="homepage">https://github.com/linx-systems/clamui</url>
-    <url type="bugtracker">https://github.com/linx-systems/clamui/issues</url>
-    <url type="vcs-browser">https://github.com/linx-systems/clamui</url>
+    <url type="homepage">https://github.com/SAFETY-CHAT/Linux-Defender</url>
+    <url type="bugtracker">https://github.com/SAFETY-CHAT/Linux-Defender/issues</url>
+    <url type="vcs-browser">https://github.com/SAFETY-CHAT/Linux-Defender</url>
 
     <provides>
         <binary>clamui</binary>
@@ -100,6 +62,16 @@
     </keywords>
 
     <releases>
+        <release version="0.6.0" date="2026-11-11">
+            <description>
+                <p>Linux Defender 0.6.0 is a development snapshot based on ClamUI 0.6.0.</p>
+                <ul>
+                    <li>Improves large-scan evidence retention, history and quarantine responsiveness, and daemon path handling.</li>
+                    <li>Adds consent-based VirusTotal folder and URL analysis, urlscan URL checks, and visible upload progress.</li>
+                    <li>Connects standalone YARA scans to the configured host ClamAV database and exposes a signature inventory.</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.5.1" date="2026-11-01">
             <description>
                 <p>ClamUI 0.5.1 fixes Flatpak privileged-helper installation and improves error reporting.</p>

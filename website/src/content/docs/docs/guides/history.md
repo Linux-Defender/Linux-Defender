@@ -23,7 +23,7 @@ Native logs are JSON files under `~/.local/share/clamui/logs/`; Flatpak logs are
 
 ## Daemon output
 
-The **ClamAV Daemon** tab displays live `clamd` log output when it is accessible. Missing or permission-denied logs can mean that the daemon is not running, logs only to journald, or your user cannot read its log group. ClamUI checks common `/var/log/clamav/` locations.
+The **ClamAV Daemon** tab displays live `clamd` log output when it is accessible. Missing or permission-denied logs can mean that the daemon is not running, logs only to journald, or your user cannot read its log group. Linux Defender checks common `/var/log/clamav/` locations.
 
 ## Retention
 

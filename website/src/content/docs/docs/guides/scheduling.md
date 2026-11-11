@@ -3,7 +3,7 @@ title: Schedule scans
 description: Automate recurring scans without losing control of detections.
 ---
 
-Configure **Preferences → Scheduled Scans**, choose targets and a frequency, then use **Save & Apply**. ClamUI creates a user systemd timer where available, otherwise a cron job. It cannot run while the computer is off.
+Configure **Preferences → Scheduled Scans**, choose targets and a frequency, then use **Save & Apply**. Linux Defender creates a user systemd timer where available, otherwise a cron job. It cannot run while the computer is off.
 
 ## Recommended setup
 
@@ -31,6 +31,6 @@ crontab -l
 
 A missing systemd user instance and missing cron leave no available scheduler. Use Logs to confirm scan results and update notifications. The scheduler is per-user and does not need administrator access.
 
-On Debian package installations, ClamUI invokes `/usr/bin/clamui-scheduled-scan`; re-save a schedule after upgrading rather than manually repairing generated timer or cron commands.
+On Debian package installations, Linux Defender invokes `/usr/bin/clamui-scheduled-scan`; re-save a schedule after upgrading rather than manually repairing generated timer or cron commands.
 
-For exact JSON keys and examples, see [Configuration](/docs/reference/configuration/).
+For exact JSON keys and examples, see [Configuration](/Linux-Defender/docs/reference/configuration/).

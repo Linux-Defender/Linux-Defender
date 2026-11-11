@@ -3,7 +3,7 @@ title: Configuration reference
 description: XDG data, settings, profiles, and the protected host ClamAV boundary.
 ---
 
-ClamUI preserves its existing settings, profile, log, quarantine, and debug data across the Rust/Tauri migration. Most application preferences save immediately. **Scheduled Scans** and host ClamAV configuration use **Save & Apply** because they can change both local settings and host state. Direct JSON edits take effect after restart; ensure the file remains a JSON object before restarting.
+Linux Defender currently retains ClamUI's legacy XDG directory names and Flatpak app ID for compatibility. There is no automatic ClamTk-to-Linux-Defender data migration yet. Back up these paths before testing or changing installs. Most application preferences save immediately. **Scheduled Scans** and host ClamAV configuration use **Save & Apply** because they can change both local settings and host state. Direct JSON edits take effect after restart; ensure the file remains a JSON object before restarting.
 
 ## Locations
 
@@ -24,7 +24,7 @@ tar -C "${XDG_DATA_HOME:-$HOME/.local/share}" -czf clamui-data-backup.tar.gz cla
 
 ## Application settings
 
-The settings file is an object. ClamUI merges missing defaults, preserves unknown keys, normalizes old exclusion forms, and writes updates atomically. Important keys include:
+The settings file is an object. Linux Defender merges missing defaults, preserves unknown keys, normalizes old exclusion forms, and writes updates atomically. Important keys include:
 
 | Key | Default | Meaning |
 | --- | --- | --- |
@@ -61,9 +61,13 @@ When a valid size is reached, the active debug log rotates and retains the confi
 
 `exclusion_patterns` starts with enabled directory records for `node_modules`, `.git`, `.venv`, `build`, `dist`, and `__pycache__`. Exclusions apply to manual and scheduled scans. Use narrow exclusions; do not exclude all targets or documents merely to speed a scan.
 
+## Signature files and YARA rules
+
+Linux Defender scans with the configured host ClamAV database, which FreshClam maintains. The Database view can inventory recognized files in the configured database directory; that inventory alone does not prove that a running `clamd` loaded each file. Local YARA files are additive for standalone `clamscan` scans; daemon scans cannot load those per-scan rule files. Linux Defender does not install or update arbitrary third-party feeds.
+
 ## Scan backend and mounted devices
 
-`auto` selects a reachable daemon and otherwise `clamscan`; `clamd` is daemon-only and `clamscan` never attempts the daemon. ClamUI checks a configured `LocalSocket` and common host socket locations. See [scan backends](/docs/reference/scan-backends/) for setup and troubleshooting.
+`auto` selects a reachable daemon and otherwise `clamscan`; `clamd` is daemon-only and `clamscan` never attempts the daemon. Linux Defender checks a configured `LocalSocket` and common host socket locations. See [scan backends](/Linux-Defender/docs/reference/scan-backends/) for setup and troubleshooting.
 
 Mounted-device settings are `device_auto_scan_enabled`, `device_auto_scan_types`, `device_auto_scan_notify`, `device_auto_scan_max_size_gb`, `device_auto_scan_delay_seconds`, `device_auto_scan_auto_quarantine`, and `device_auto_scan_skip_on_battery`. The defaults scan removable and external mounts only when the feature is enabled; the default size limit is 32 GiB and the default delay is three seconds.
 
@@ -94,7 +98,7 @@ Built-in defaults are Quick Scan, Full Scan, and Home Folder. Their IDs are gene
 
 ## Host ClamAV settings
 
-**Database**, **Scanner**, and **On-Access** Preferences target host `freshclam.conf` and `clamd.conf`, including from Flatpak. They never write sandbox copies. The native `/usr/bin/clamui-apply-preferences` helper and `io.github.linx_systems.ClamUI.policy` authorize only allowlisted host configurations through the compatible protocol-v4 boundary. On native systems, a trusted canonical helper remains ready if automatic installation is unsupported or installed-package metadata cannot be inspected; a successfully reported version or architecture mismatch is reported as outdated and prompts repair, while every untrusted helper remains blocked. Flatpak continues to validate its host package state. On supported Debian-family and Fedora hosts, the local missing-helper diagnosis may show the explicit in-app offer without downloading release metadata. Automatic installation can complete only when matching signed published artifacts exist; before graphical Polkit authorization it verifies their signature, identity, version, size, digest, and compatible architecture, otherwise failing safely. Debian can use its signed same-version architecture-independent fallback only when no exact-architecture helper exists; Fedora requires the exact RPM. Missing trust, invalid input, or denied authorization fails closed without changing host configuration. See [installation](/docs/installation/#fedora-helper-rpm) for Fedora DNF and Atomic behavior.
+**Database**, **Scanner**, and **On-Access** Preferences target host `freshclam.conf` and `clamd.conf`, including from Flatpak. They never write sandbox copies. The native `/usr/bin/clamui-apply-preferences` helper and `io.github.linx_systems.ClamUI.policy` authorize only allowlisted host configurations through the compatible protocol-v4 boundary. These are transitional ClamUI identifiers; the Linux Defender-specific signed helper packages are not published yet, so automatic installation from a Linux Defender release is unavailable. Keep a trusted existing helper if already installed, and do not install an unrelated release's helper. Missing trust, invalid input, or denied authorization fails closed without changing host configuration. See [troubleshooting](/Linux-Defender/docs/troubleshooting/) for current recovery guidance.
 
 **Save & Apply** validates the snapshot captured when you click it. Configuration files, schedule settings, and timer/cron changes are not one atomic operation: later failures can leave earlier groups durable. Review each reported durable group and failure before retrying.
 
@@ -104,8 +108,8 @@ When a failed configuration **Save & Apply** has valid native file proposals, it
 
 The displayed content is a frozen failed-attempt snapshot, not a rendering of later preference edits. A helper failure may occur after writing one or more target files, so inspect each target before manually replacing it. Opening or copying from this view never applies a configuration, bypasses helper trust, or exposes application-settings JSON or VirusTotal data.
 
-When ClamUI reads legacy Clamd size-unit values, it normalizes them in memory and marks the raw configuration for pending repair. Reading or startup never writes the host configuration or requests elevation. **Save & Apply** carries that repair even if the displayed values match the baseline; only a successful repair clears it, while a failed apply or a new-path draft remains safe to review and retry.
+When Linux Defender reads legacy Clamd size-unit values, it normalizes them in memory and marks the raw configuration for pending repair. Reading or startup never writes the host configuration or requests elevation. **Save & Apply** carries that repair even if the displayed values match the baseline; only a successful repair clears it, while a failed apply or a new-path draft remains safe to review and retry.
 
 Database options include `DatabaseDirectory`, `UpdateLogFile`, `NotifyClamd`, `LogVerbose`, `LogSyslog`, `Checks`, `DatabaseMirror`, repeatable `DatabaseCustomURL`, and HTTP proxy fields. Scanner options include `ScanPE`, `ScanELF`, `ScanOLE2`, `ScanPDF`, `ScanHTML`, `ScanArchive`, `MaxFileSize`, `MaxScanSize`, `MaxRecursion`, `MaxFiles`, `LogFile`, `LogVerbose`, and `LogSyslog`. On-access options retain the existing include, exclude, prevention, extra-scanning, thread, size, timeout, retry, and UID directives.
 
-New custom configuration files are owner-only. Avoid unbounded archive/file limits on untrusted data, and set on-access exclusions for the scanner account before enabling monitoring. For task guidance, see [scan backends](/docs/reference/scan-backends/) and [settings](/docs/guides/settings/).
+New custom configuration files are owner-only. Avoid unbounded archive/file limits on untrusted data, and set on-access exclusions for the scanner account before enabling monitoring. For task guidance, see [scan backends](/Linux-Defender/docs/reference/scan-backends/) and [settings](/Linux-Defender/docs/guides/settings/).

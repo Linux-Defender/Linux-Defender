@@ -4,7 +4,7 @@
 # SPDX-FileCopyrightText: 2026 Markson Hosben <marksonhosben@proton.me>
 msgid ""
 msgstr ""
-"Project-Id-Version: Linux Defender 0.5.1\n"
+"Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/SAFETY-CHAT/Linux-Defender/issues\n"
 "POT-Creation-Date: 2026-11-11 15:04-0500\n"
 "PO-Revision-Date: 2026-07-22 21:29+0800\n"

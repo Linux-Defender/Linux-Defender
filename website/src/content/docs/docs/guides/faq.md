@@ -3,13 +3,25 @@ title: Frequently asked questions
 description: Practical answers for scanning, detections, performance, and external drives.
 ---
 
-## Is ClamUI the antivirus engine?
+## Is Linux Defender the antivirus engine?
 
-No. ClamUI is the desktop interface; [ClamAV](https://www.clamav.net/) performs detection. All package formats require host `clamscan` and `freshclam`; daemon mode adds `clamd` and `clamdscan`.
+No. Linux Defender is the desktop interface; [ClamAV](https://www.clamav.net/) performs detection. All package formats require host `clamscan` and `freshclam`; daemon mode adds `clamd` and `clamdscan`.
 
-## Can I use Ubuntu or Pop!_OS 22.04?
+## Which signatures does it use?
 
-Use the [Flatpak](/docs/installation/#flatpak) when it is available for your host. Native Tauri artifacts preserve their glibc floor only when built on the project's Ubuntu 22.04-compatible baseline; a newer-host build is not compatibility evidence. The Flatpak uses GNOME 51 for the UI but still needs the host ClamAV tools.
+ClamAV loads compatible signature files from its configured database directory. Linux Defender shows a recognized-file inventory and can pass selected local YARA files alongside that database for standalone scans. It does not yet install or automatically update every third-party feed. FreshClam and the system package/service own the shared ClamAV database.
+
+## Can I check a website URL or a folder with VirusTotal?
+
+Yes. Choose **Website URL** in Scan to use VirusTotal or urlscan. VirusTotal also accepts file and confirmed folder uploads. These are online reputation checks: Linux Defender asks before sending data and keeps their results separate from the local ClamAV verdict. Review the provider's privacy and visibility terms before submitting.
+
+## Is Linux Defender 0.6.0 ready to install?
+
+Not yet. It is a development snapshot with no signed Linux Defender package published. Use the source-build steps in [Installation and testing](/Linux-Defender/docs/installation/). ClamTk data migration, release signing, and CachyOS desktop validation remain open.
+
+## What distributions are supported?
+
+The current validation target is CachyOS/Arch. The app uses GTK 3 and WebKitGTK 4.1, and Linux Defender packages are not published yet. We will list each distribution only after its build, package, and desktop behavior have been tested.
 
 ## How often should I scan?
 

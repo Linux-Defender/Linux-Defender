@@ -9,14 +9,15 @@ export interface Props {
 }
 
 const {
-  title = "ClamUI - Antivirus, native to your Linux desktop",
-  description = "A native Rust/Tauri desktop app for ClamAV, using the system GTK 3 and WebKitGTK 4.1 runtime. Scan profiles, quarantine with SHA-256 verification, a system security audit, VirusTotal enrichment — open-source and MIT-licensed.",
+  title = "Linux Defender - one Linux security workspace",
+  description = "A Linux desktop security scanner combining local ClamAV, local YARA rules, system audit, and optional VirusTotal or urlscan checks.",
   path = "/",
 } = Astro.props;
 
-const siteUrl = "https://clamui.com";
-const canonical = new URL(path, siteUrl).toString();
-const ogImage = new URL("/og-image.png", siteUrl).toString();
+const siteUrl = "https://safety-chat.github.io";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const canonical = new URL(`${base}${path}`, siteUrl).toString();
+const ogImage = new URL(`${base}/og-image.png`, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -31,11 +32,11 @@ const ogImage = new URL("/og-image.png", siteUrl).toString();
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="mask-icon" href="/favicon.svg" color="#3d7a4e" />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    <link rel="mask-icon" href={`${base}/favicon.svg`} color="#64d5c1" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ClamUI" />
+    <meta property="og:site_name" content="Linux Defender" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -43,19 +44,19 @@ const ogImage = new URL("/og-image.png", siteUrl).toString();
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1280" />
     <meta property="og:image:height" content="640" />
-    <meta property="og:image:alt" content="ClamUI branded preview with scan results and security features" />
+    <meta property="og:image:alt" content="Linux Defender security scanner preview" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="ClamUI branded preview with scan results and security features" />
+    <meta name="twitter:image:alt" content="Linux Defender security scanner preview" />
 
     <script is:inline>
       // Theme bootstrap: honor saved preference, then OS, then default to dark.
       (function () {
         try {
-          const stored = localStorage.getItem("clamui-theme");
+          const stored = localStorage.getItem("linux-defender-site-theme");
           const prefersLight =
             stored === "light" ||
             (!stored &&
