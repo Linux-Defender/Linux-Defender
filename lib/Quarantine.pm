@@ -235,6 +235,26 @@ sub get_and_sort_viruses {
     return $hash;
 }
 
+# Pick a non-existing quarantine filename without replacing an earlier file.
+# The original path is kept in the restore index, so the added suffix is only
+# an internal storage name.  A short hash suffix handles the common case;
+# longer prefixes cover the unlikely event of a prefix collision.
+sub unique_quarantine_path {
+    my ( $directory, $basename, $hash ) = @_;
+    return unless defined $directory && defined $basename;
+    return unless defined $hash && $hash =~ /^[0-9a-f]{64}$/i;
+
+    my $candidate = "$directory/$basename";
+    return $candidate unless -e $candidate || -l $candidate;
+
+    for my $length ( 12, 16, 20, 24, 32, 40, 48, 56, 64 ) {
+        $candidate = "$directory/$basename.clamtk-" . substr( $hash, 0, $length );
+        return $candidate unless -e $candidate || -l $candidate;
+    }
+
+    return;
+}
+
 sub push_viruses {
     my $hash = shift;
 

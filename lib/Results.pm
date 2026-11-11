@@ -254,20 +254,39 @@ sub quarantine {
     my $mode = ( stat( $file ) )[ 2 ];
     my $perm = sprintf( "%03o", $mode & oct( 7777 ) );
 
-    # Update restore file by adding file, path and md5
-    ClamTk::Quarantine->add_hash( $file, $perm );
+    my $hash = get_hash( $file );
+    return FALSE unless defined $hash;
 
-    # Assign 600 permissions
-    chmod oct( 600 ), $file;
-    move( $file, "$paths/$basename" ) or do {
-        # When a 'mv' fails, it still probably did a 'cp'...
-        # 'mv' copies the file first, then unlinks the source.
-        # d'oh... so just to make sure, unlink the intended target
-        # and THEN return.
-        unlink( "$paths/$basename" )
-            or warn "Unable to delete tmp file $paths/$basename\n: $!\n";
+    my $destination
+        = ClamTk::Quarantine::unique_quarantine_path( $paths, $basename, $hash );
+    if ( !defined $destination ) {
+        warn "Unable to choose a unique quarantine name for >$file<\n";
+        return FALSE;
+    }
+
+    # Record the original location before moving, so a crash during the move
+    # cannot leave an un-restorable quarantined file.
+    return FALSE unless ClamTk::Quarantine->add_hash( $file, $perm );
+
+    move( $file, $destination ) or do {
+        warn "Unable to move >$file< to >$destination<: $!\n";
+        ClamTk::Quarantine->remove_hash( undef, $hash );
         return FALSE;
     };
+
+    # Assign 600 permissions after the move.  If that fails, try to put the
+    # original file back; retain its restore record if rollback also fails.
+    if ( !chmod( oct( 600 ), $destination ) ) {
+        warn "Unable to secure quarantined file >$destination<: $!\n";
+        if ( move( $destination, $file ) ) {
+            ClamTk::Quarantine->remove_hash( undef, $hash );
+        } else {
+            warn "Unable to roll back quarantine move >$destination< to >$file<: $!\n";
+        }
+        return FALSE;
+    }
+
+    return TRUE;
 }
 
 sub delete_file {
