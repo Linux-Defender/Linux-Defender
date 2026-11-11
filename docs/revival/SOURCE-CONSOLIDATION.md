@@ -15,6 +15,6 @@ This directory is the sole development checkout: `/home/kiras/Linux-Defender`. T
 
 ClamTk issue/PR details and the exact reviewed snapshots are in the linked ledgers. The ClamTk branch includes fixes and integrations for scanner argument handling, path discovery, FreshClam controls, YARA, VirusTotal API v3, and urlscan. Only YARA is currently a ClamTk parity feature in the Linux Defender UI. ClamUI already supplies VirusTotal file scanning with keyring-backed credentials. urlscan is not yet a native Linux Defender feature. Do not describe the product as feature-complete.
 
-## Existing folders that could not be removed
+## Cleanup status
 
-The previous checkout paths remain mounted as separate Btrfs subvolumes by the desktop execution environment. Their mount roots are `/home/kiras/ClamTk`, `/home/kiras/ClamTk-REBORN`, `/home/kiras/Documents/Codex/ClamUI-REBORN`, and `/home/kiras/Documents/Codex/Linux-Defender`; nested `.git` and tool configuration mounts are read-only. Deleting or moving those mount roots from this session would require unmounting them first. I did not unmount user directories or partially delete their contents. Their source changes are represented in this checkout as listed above.
+Kira removed the four redundant checkout folders after the source inventory was consolidated here. The verified current development folder is `/home/kiras/Linux-Defender`. The preserved ClamTk and ClamUI source/history needed for the revival is represented in this repo as described above; generated build caches from the deleted checkouts are not required.
