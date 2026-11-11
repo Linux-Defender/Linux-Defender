@@ -16,6 +16,7 @@ package ClamTk::Scan;
 use Glib 'TRUE', 'FALSE';
 use File::Find;
 use Cwd 'chdir';
+use Time::HiRes 'time';
 
 # use strict;
 # use warnings;
@@ -322,6 +323,11 @@ sub filter {
     clean_up();
 }
 
+sub _scan_ui_update_due {
+    my ( $now, $last_update, $interval ) = @_;
+    return $now - $last_update >= $interval;
+}
+
 sub scan {
     my ( $path_to_scan, $directive ) = @_;
     chomp( $path_to_scan );
@@ -348,6 +354,8 @@ sub scan {
 
     my $paths   = ClamTk::App->get_path( 'all' );
     my $command = $paths->{ clamscan };
+    my $last_ui_update = 0;
+    my $ui_update_interval = 0.1;
 
     # Use the user's sig db if it's selected
     if ( ClamTk::Prefs->get_preference( 'Update' ) eq 'single' ) {
@@ -374,7 +382,6 @@ sub scan {
     Gtk3::main_iteration while Gtk3::events_pending;
     while ( <$SCAN> ) {
         chomp;
-        $window->queue_draw;
         Gtk3::main_iteration while Gtk3::events_pending;
 
         # Warning stuff we don't need
@@ -384,17 +391,12 @@ sub scan {
         if ( /^Scanning (.*?)$/ ) {
             my $base = decode( 'UTF-8', basename( $1 ) );
             $dirname = decode( 'UTF-8', dirname( $1) );
+            my $now = time();
 
             # Lots of temporary things under /tmp/clamav;
             # we'll just ignore them.
             $dirs_scanned->{ $dirname } = 1;
 
-            # Display stuff in popup infobar
-            set_infobar_text(
-                $topbar,
-                # sprintf( _( 'Scanning %s...' ), $dirname )
-                sprintf( _( 'Scanning %s...' ), $base )
-            );
             $num_scanned++;
             if ( !$root_scan ) {
                 my $pb_current = $pb->get_fraction;
@@ -409,12 +411,23 @@ sub scan {
                 $pb->set_fraction( $pb_current );
             }
 
-            Gtk3::main_iteration while Gtk3::events_pending;
-            $files_scanned_label->set_text( sprintf _( "Files scanned: %d" ),
-                $num_scanned );
-            $topbar->show_all;
-            Gtk3::main_iteration while Gtk3::events_pending;
-            $window->queue_draw;
+            # Scanner output can arrive several times per millisecond. Updating
+            # GTK for every file creates needless GUI and redraw work.
+            # Keep the window responsive, but redraw scan details at most 10 Hz.
+            if ( _scan_ui_update_due( $now, $last_ui_update,
+                    $ui_update_interval ) )
+            {
+                set_infobar_text(
+                    $topbar,
+                    # sprintf( _( 'Scanning %s...' ), $dirname )
+                    sprintf( _( 'Scanning %s...' ), $base )
+                );
+                $files_scanned_label->set_text(
+                    sprintf _( "Files scanned: %d" ), $num_scanned );
+                $topbar->show_all;
+                $window->queue_draw;
+                $last_ui_update = $now;
+            }
             next;
         }
 
@@ -473,6 +486,10 @@ sub scan {
 
     }
 
+    # Ensure the final count is visible even when the scan ended inside the
+    # 100 ms refresh interval.
+    $files_scanned_label->set_text(
+        sprintf _( "Files scanned: %d" ), $num_scanned );
     Gtk3::main_iteration while Gtk3::events_pending;
     
     # Done scanning - close filehandle and return to
