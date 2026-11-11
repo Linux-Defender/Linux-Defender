@@ -1,6 +1,6 @@
 # Linux Defender contributor guide
 
-Linux Defender is a Linux desktop frontend for **host-installed ClamAV**, based on ClamUI. The app, launchers, helper, packaging, and data paths still use ClamUI compatibility identifiers; preserve those until a tested migration changes them. The production application is Rust: a headless core, a Tauri 2 native runtime, and a React/TypeScript frontend. Preserve the public desktop, AppStream, and Flatpak ID `io.github.linx_systems.ClamUI`, persisted user data, and the `clamui` command family. Tauri's private bundle identifier is `io.github.linx-systems.ClamUI`; do not substitute it into public identity assets.
+Linux Defender is a Linux desktop frontend for **host-installed ClamAV**. Its Rust/Tauri/React source incorporates an MIT-licensed upstream foundation. The app, launchers, helper, packaging, and data paths still use legacy compatibility identifiers; preserve those until a tested migration changes them. The production application is Rust: a headless core, a Tauri 2 native runtime, and a React/TypeScript frontend. Preserve existing public desktop, AppStream, and Flatpak IDs, persisted user data, and command aliases until a tested migration is complete.
 
 ## Architecture and boundaries
 
@@ -19,7 +19,7 @@ The Rust core and desktop are the only application implementation. Make behavior
 
 ## Upstream parity maintenance
 
-When reviewing or adopting work from ClamTk, ClamUI, Lenspect, or another related scanner, keep the parity matrix in `docs/revival/RELATED-PROJECT-REVIEW.md` current. Record the upstream repository, reviewed default-branch commit/date, issue or PR identifiers, and whether each behavior is implemented, intentionally deferred, or still open. Review issue reports and PR diffs independently; a merged upstream PR is not proof that the behavior exists here. Port behavior into this single Rust/Tauri/React runtime and add a regression test at the owning boundary. Check privacy, network disclosure, credentials, file and URL limits, cancellation, accessibility, localization, platform compatibility, and license obligations before adoption. Do not copy GPL-licensed Lenspect code into this MIT-licensed project without an explicit licensing decision; behavior can be independently implemented and tested. Re-run the parity review when changing a related integration and before release.
+When reviewing or adopting work from ClamTk, Lenspect, or another related scanner, keep the parity matrix in `docs/revival/RELATED-PROJECT-REVIEW.md` current. Record the upstream repository, reviewed default-branch commit/date, issue or PR identifiers, and whether each behavior is implemented, intentionally deferred, or still open. Review issue reports and PR diffs independently; a merged upstream PR is not proof that the behavior exists here. Port behavior into this single Rust/Tauri/React runtime and add a regression test at the owning boundary. Check privacy, network disclosure, credentials, file and URL limits, cancellation, accessibility, localization, platform compatibility, and license obligations before adoption. Do not copy GPL-licensed Lenspect code into this MIT-licensed project without an explicit licensing decision; behavior can be independently implemented and tested. Re-run the parity review when changing a related integration and before release.
 
 ## Build and test entry points
 

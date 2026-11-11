@@ -5,7 +5,7 @@ description: Build and validate the Linux Defender Rust core, Tauri desktop, pac
 
 ## Prerequisites
 
-Linux Defender 0.6.0 is a development snapshot based on upstream ClamUI v0.6.0. It has a headless Rust core (`crates/clamui-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency. Linux Defender packages are not yet published.
+Linux Defender 0.6.0 is a development snapshot built on the upstream v0.6.0 source baseline. It has a headless Rust core (`crates/clamui-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency. Linux Defender packages are not yet published.
 
 ### Debian or Ubuntu
 
@@ -222,7 +222,7 @@ flatpak-builder --user --arch="$(flatpak --default-arch)" \
   flathub/io.github.linx_systems.ClamUI.local.yml
 ```
 
-The checked-in `flathub/io.github.linx_systems.ClamUI.yml` currently has the same checkout-source form. It is useful for local development, but neither checkout YAML is the immutable manifest required for an official release.
+The checked-in Flatpak manifest currently has the same checkout-source form. It is useful for local development, but neither checkout YAML is the immutable manifest required for an official release.
 
 ### Immutable Flatpak release packaging
 
@@ -260,7 +260,7 @@ flatpak-builder --user --arch="$(flatpak --default-arch)" \
   flathub/io.github.linx_systems.ClamUI.release.yml
 ```
 
-This local build neither installs nor replaces a Flatpak, and it proves only the host architecture. The manifest retains ClamUI compatibility identifiers and is not ready to publish as a Linux Defender Flatpak. Complete an application-ID and data migration first, then validate `x86_64` and `aarch64`, obtain Flathub review, and publish only after signed release assets and migration behavior are ready. Linux Defender has no published Flathub package or signed release bundles yet.
+This local build neither installs nor replaces a Flatpak, and it proves only the host architecture. The manifest retains legacy compatibility identifiers and is not ready to publish as a Linux Defender Flatpak. Complete an application-ID and data migration first, then validate `x86_64` and `aarch64`, obtain Flathub review, and publish only after signed release assets and migration behavior are ready. Linux Defender has no published Flathub package or signed release bundles yet.
 
 Before publishing, inspect package payloads for the right architecture, native command names, helper/policy paths, and absence of a Python application runtime. Build compatibility still requires proof from the baseline environment and target package/OS; do not infer it from this development guide.
 

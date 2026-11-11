@@ -5,7 +5,7 @@ description: Update ClamAV, run a first scan, and handle its result.
 
 ## 1. Launch the development build
 
-Linux Defender 0.6.0 is currently a source-build snapshot. There is no published Linux Defender Flatpak, AppImage, DEB, or RPM yet. Follow [the CachyOS build steps](/Linux-Defender/docs/installation/) or [the development guide](/Linux-Defender/docs/contributing/development/); commands and identifiers inherited from ClamUI are compatibility details, not a Linux Defender installer.
+Linux Defender 0.6.0 is currently a source-build snapshot. There is no published Linux Defender Flatpak, AppImage, DEB, or RPM yet. Follow [the CachyOS build steps](/Linux-Defender/docs/installation/) or [the development guide](/Linux-Defender/docs/contributing/development/); its legacy commands and identifiers are compatibility details, not an installer.
 
 ## 2. Update definitions
 

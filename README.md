@@ -1,8 +1,8 @@
 # Linux Defender
 
-A community revival project for a single, maintainable Linux malware-scanning desktop app. The goal is one interface that carries forward useful ClamTk workflows and ClamUI features while using the system's supported ClamAV tools and signature database.
+A community project for one maintainable Linux malware-scanning desktop app. The goal is one interface that carries forward useful ClamTk workflows and the current Rust/Tauri feature set while using the system's supported ClamAV tools and signature database.
 
-**Development status:** Linux Defender 0.6.0 development snapshot, based on ClamUI 0.6.0 (Rust core, Tauri desktop runtime, React/TypeScript UI). Internal application identifiers remain ClamUI temporarily to preserve installed data while migration is designed. ClamTk parity, CachyOS packaging, and desktop validation remain in progress. No Linux Defender signed installer packages are published; do not treat this branch as a finished or guaranteed protection product.
+**Development status:** Linux Defender 0.6.0 development snapshot (Rust core, Tauri desktop runtime, React/TypeScript UI). Legacy application, executable, helper, and data identifiers remain temporarily so existing settings and integrations are not lost while migration is designed. ClamTk parity, CachyOS packaging, and desktop validation remain in progress. No Linux Defender signed installer packages are published; do not treat this branch as a finished or guaranteed protection product.
 
 ## Design goals
 
@@ -16,12 +16,12 @@ A community revival project for a single, maintainable Linux malware-scanning de
 
 ## Current integration status
 
-- The upstream ClamUI Rust/Tauri/React app is the local foundation and its existing scanner, quarantine, scheduling, history, database controls, and VirusTotal integration are retained.
+- The Rust/Tauri/React foundation provides scanning, quarantine, scheduling, history, database controls, and VirusTotal integration.
 - ClamTk profile engine options now apply to the scan. Supported limits, PUA/heuristic alerts, recursion, hidden files, and symlink choices are validated; unsupported options fail closed. Automatic mode chooses standalone `clamscan` when an option or local YARA rule needs it, while daemon-only mode reports an error. Local YARA scans pass both the configured ClamAV signature directory and each YARA file, so YARA adds to the official/shared signatures rather than replacing them.
 - Scan now has Files & Folders and Website URL modes. Website URL mode supports both VirusTotal URL analysis and urlscan.io, with explicit provider-specific sharing warnings and confirmation. urlscan defaults to Private; VirusTotal public API submissions and lookups are added to its dataset and can be shared.
 - VirusTotal file scans now show hashing/upload/analysis progress and an early analysis link. A separate VirusTotal folder action previews all included files before confirmation, skips symlinks, revalidates file identity, limits traversal to 10,000 entries and uploads to 100 files/1 GiB, and reports each result. This feature passed mocked backend tests but still needs real desktop and transport validation on CachyOS. Local ClamAV folder scanning remains a separate option. See [the Lenspect issue and PR review](docs/revival/LENSPECT-REVIEW.md).
 - Remaining ClamTk parity work includes one-time import of legacy preferences, history, schedules, quarantine payloads, and restore records; app self-update behavior remains owned by the distro package manager. Review `docs/revival/CHAT-AND-PROJECT-AUDIT.md` for all known parity gaps, release constraints, and CachyOS checks.
-- The visible window, About screen, tray tooltip, browser title, file-manager labels, schedule labels, and shield icon use Linux Defender. Internal bundle, protocol, data, and CLI identifiers still use ClamUI until a safe migration is implemented.
+- The visible window, About screen, tray tooltip, browser title, file-manager labels, schedule labels, and shield icon use Linux Defender. Legacy internal identifiers remain until a safe migration is implemented.
 
 ## Scanner boundary
 
@@ -43,6 +43,6 @@ The Rust desktop build needs the GTK 3 and WebKitGTK 4.1 development libraries. 
 
 ## Upstream credits and relationship
 
-This project is independent and not affiliated with Microsoft, Cisco Talos, ClamAV, ClamTk, or ClamUI. The current application source is derived from linx-systems/clamui, licensed under MIT; retain its license and notices. ClamAV and ClamTk have their own licenses and copyrights. Review every imported or ported component's license before distribution. The name Linux Defender is a project name chosen by the maintainer; it does not indicate a Microsoft product or endorsement.
+This project is independent and not affiliated with Microsoft, Cisco Talos, ClamAV, or ClamTk. Portions of the Rust/Tauri/React source are derived from the original MIT-licensed upstream project; its license and notices are retained. ClamAV and ClamTk have their own licenses and copyrights. Review every imported or ported component's license before distribution. The name Linux Defender is a project name chosen by the maintainer; it does not indicate a Microsoft product or endorsement.
 
 Source integration and the remaining parity work are mapped in [the consolidation inventory](docs/revival/SOURCE-CONSOLIDATION.md).

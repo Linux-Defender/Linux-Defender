@@ -24,7 +24,7 @@ The native app uses Tauri with WebKitGTK 4.1 and GTK 3. On some Wayland and NVID
 WEBKIT_DISABLE_DMABUF_RENDERER=1 bun run --cwd desktop tauri dev
 ```
 
-If the workaround fixes startup, report the desktop session, GPU driver, and exact error. It may reduce hardware acceleration. The matching workaround in upstream ClamUI's Flatpak does not mean Linux Defender has a released Flatpak.
+If the workaround fixes startup, report the desktop session, GPU driver, and exact error. It may reduce hardware acceleration. This workaround has only been verified in an upstream Flatpak; Linux Defender has no released Flatpak yet.
 
 ## Daemon backend is unavailable
 
@@ -46,7 +46,7 @@ Check network connectivity, the VirusTotal key in **Preferences → VirusTotal**
 
 ## A privileged settings change is blocked
 
-Protected host settings require a trusted helper and graphical Polkit authorization. Linux Defender 0.6.0 is a development snapshot; it has no Linux Defender-signed helper package. The inherited helper protocol and package identity are still ClamUI-compatible. Use only an already-installed helper whose owner, permissions, protocol, version, and architecture have been independently verified. Linux Defender has no signed helper package yet; do not install a helper from a different product release or bypass trust checks.
+Protected host settings require a trusted helper and graphical Polkit authorization. Linux Defender 0.6.0 is a development snapshot; it has no Linux Defender-signed helper package. Legacy helper protocol and package identifiers remain for upgrade compatibility. Use only an already-installed helper whose owner, permissions, protocol, version, and architecture have been independently verified. Linux Defender has no signed helper package yet; do not install a helper from a different product release or bypass trust checks.
 
 If authorization is cancelled or a helper check fails, the protected write remains blocked. Review the exact failure and retry only after a verified helper is available. If an apply fails after some host files were written, use **See Configuration** to inspect each target before manually changing it; the view is read-only.
 

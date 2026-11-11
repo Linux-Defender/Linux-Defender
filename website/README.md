@@ -13,7 +13,7 @@ bun run build
 bun run preview
 ```
 
-`prebuild` and `predev` copy the Linux Defender logo and its social-card image into `public/`. The older ClamUI screenshots remain in the repository as reference material and are not published as Linux Defender screenshots.
+`prebuild` and `predev` copy the Linux Defender logo and its social-card image into `public/`. Older upstream screenshots remain in the repository only as reference material and are not published as Linux Defender screenshots.
 
 ## Write documentation
 

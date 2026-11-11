@@ -5,7 +5,7 @@ description: How Linux Defender separates its headless Rust core, Tauri UI, and 
 
 Linux Defender is a Rust core plus a Tauri 2 desktop application with a React/TypeScript frontend. The core owns scanning, persistence, scheduling, host integration, and privilege-sensitive behavior; it has no Tauri or GTK widget dependency. The desktop owns WebKitGTK presentation, native dialogs, single-instance forwarding, and the pure-Rust StatusNotifierItem (SNI) tray.
 
-On Linux, GTK application identity opt-in is enabled with the canonical public ID `io.github.linx_systems.ClamUI`, preserving the official desktop-file and logo association. It is separate from Tauri's private bundle identifier.
+On Linux, GTK application identity opt-in uses the retained public ID `io.github.linx_systems.ClamUI` for upgrade compatibility. It is separate from Tauri's private bundle identifier and will need a tested migration before the product identity is fully renamed.
 
 ```mermaid
 flowchart TB

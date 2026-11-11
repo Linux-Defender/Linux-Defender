@@ -3,7 +3,7 @@ title: Configuration reference
 description: XDG data, settings, profiles, and the protected host ClamAV boundary.
 ---
 
-Linux Defender currently retains ClamUI's legacy XDG directory names and Flatpak app ID for compatibility. There is no automatic ClamTk-to-Linux-Defender data migration yet. Back up these paths before testing or changing installs. Most application preferences save immediately. **Scheduled Scans** and host ClamAV configuration use **Save & Apply** because they can change both local settings and host state. Direct JSON edits take effect after restart; ensure the file remains a JSON object before restarting.
+Linux Defender currently retains legacy XDG directory names and a legacy Flatpak app ID for compatibility. There is no automatic ClamTk-to-Linux-Defender data migration yet. Back up these paths before testing or changing installs. Most application preferences save immediately. **Scheduled Scans** and host ClamAV configuration use **Save & Apply** because they can change both local settings and host state. Direct JSON edits take effect after restart; ensure the file remains a JSON object before restarting.
 
 ## Locations
 
@@ -101,7 +101,7 @@ Built-in defaults are Quick Scan, Full Scan, and Home Folder. Their IDs are gene
 
 ## Host ClamAV settings
 
-**Database**, **Scanner**, and **On-Access** Preferences target host `freshclam.conf` and `clamd.conf`, including from Flatpak. They never write sandbox copies. The native `/usr/bin/clamui-apply-preferences` helper and `io.github.linx_systems.ClamUI.policy` authorize only allowlisted host configurations through the compatible protocol-v4 boundary. These are transitional ClamUI identifiers; the Linux Defender-specific signed helper packages are not published yet, so automatic installation from a Linux Defender release is unavailable. Keep a trusted existing helper if already installed, and do not install an unrelated release's helper. Missing trust, invalid input, or denied authorization fails closed without changing host configuration. See [troubleshooting](/Linux-Defender/docs/troubleshooting/) for current recovery guidance.
+**Database**, **Scanner**, and **On-Access** Preferences target host `freshclam.conf` and `clamd.conf`, including from Flatpak. They never write sandbox copies. The native `/usr/bin/clamui-apply-preferences` helper and its legacy policy ID authorize only allowlisted host configurations through the compatible protocol-v4 boundary. Linux Defender's signed helper package is not published yet, so automatic installation from a Linux Defender release is unavailable. Keep a trusted existing helper if already installed, and do not install an unrelated release's helper. Missing trust, invalid input, or denied authorization fails closed without changing host configuration. See [troubleshooting](/Linux-Defender/docs/troubleshooting/) for current recovery guidance.
 
 **Save & Apply** validates the snapshot captured when you click it. Configuration files, schedule settings, and timer/cron changes are not one atomic operation: later failures can leave earlier groups durable. Review each reported durable group and failure before retrying.
 
