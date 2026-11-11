@@ -21,7 +21,7 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 | [#137](https://github.com/dave-theunsub/clamtk/issues/137) Cinnamon window controls | Old Cinnamon/GTK decoration behavior; not reproduced on target desktop. | Open; not reproduced |
 | [#127](https://github.com/dave-theunsub/clamtk/issues/127) automatic update confusion | Assistant explains shared vs per-user signatures and now reports/manages the supported Arch daily FreshClam timer. | Clarification committed `7d0bd08`; new controls are local and still need CachyOS UI/auth validation |
 | [#125](https://github.com/dave-theunsub/clamtk/issues/125) force quit / not responding | Older long-scan and signature-load reports overlap #159; not reproduced against current local versions. | Open; not fixed |
-| [#124](https://github.com/dave-theunsub/clamtk/issues/124) VirusTotal integration | Request includes automatic sample upload. Automatic uploading would expose user files; any future integration must remain explicit and consent-based. | No auto-upload change |
+| [#124](https://github.com/dave-theunsub/clamtk/issues/124) VirusTotal integration | Replaced the source-embedded key in the working tree with a personal key stored through Secret Service, migrated lookups/uploads to API v3, added a confirmation before hash lookup plus a separate confirmation before file upload, and switched hashing to a streaming implementation. | Local implementation and mocked API/keyring tests pass; GUI and live API need desktop validation. The old key remains in inherited Git history and its owner should rotate it if still active. |
 | [#121](https://github.com/dave-theunsub/clamtk/issues/121) Timeshift/hard links | Current scanner excludes directories named `timeshift`; general hard-link explanation/support is not added. | Reported scenario appears covered; broader request open |
 | [#119](https://github.com/dave-theunsub/clamtk/issues/119) hard-coded source path | Old help request no longer matches current code, which uses `App->get_path`. | Stale against current source |
 | [#91](https://github.com/dave-theunsub/clamtk/issues/91) Update Assistant confusion | Added explanatory mode-specific help in the Assistant. | UI clarification committed `7d0bd08`; not GUI-verified |
@@ -41,7 +41,7 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 
 ## Local verification
 
-- `prove -r t`: 44 tests pass across eight test files; coverage includes custom PATH discovery, literal scanner arguments, YARA-rule discovery, and FreshClam timer status parsing.
+- `prove -r t`: 58 tests pass across nine test files; coverage includes custom PATH discovery, literal scanner arguments, YARA-rule discovery, FreshClam timer status parsing, and VirusTotal v3/keyring behavior.
 - `perl -Ilib -c lib/Scan.pm`: syntax OK.
 - `lib/Assistant.pm` syntax check passes using a temporary staged module tree matching the installed Perl module layout.
 - ClamAV 1.5.4 local smoke check loaded a test YARA rule alongside `/var/lib/clamav` and detected the matching harmless test string. No rule feed was downloaded.

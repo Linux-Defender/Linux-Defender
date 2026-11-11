@@ -21,13 +21,10 @@ $| = 1;
 
 use LWP::UserAgent;
 use LWP::Protocol::https;
-use MIME::Base64 'decode_base64';
-use Digest::SHA 'sha256_hex';
 use File::Basename 'basename';
 use File::Copy 'move';
 use Text::CSV;
-use JSON;
-use Encode 'encode';
+use ClamTk::VirusTotal;
 
 use POSIX 'locale_h';
 use Locale::gettext;
@@ -79,13 +76,7 @@ sub show_window {
     $window->set_titlebar( $hb );
 
     my $help_message = _(
-        "This section allows you to check the status of a file from Virustotal. If a file has been previously submitted, you will see the results of the scans from dozens of antivirus and security vendors. This allows you to make a more informed decision about the safety of a file.
-
-If the file has never been submitted to Virustotal, you can submit it yourself. When you resubmit the file minutes later, you should see the results.
-
-Please note you should never submit sensitive files to Virustotal.  Any uploaded file can be viewed by Virustotal customers. Do not submit anything with personal information or passwords.
-
-https://www.virustotal.com/gui/home/search"
+        "VirusTotal can provide a report from many security vendors. ClamTk first sends the selected file's SHA-256 hash after you confirm. If no report exists, a separate confirmation is required before ClamTk uploads the file. Standard submissions may be shared with VirusTotal's examining partners. Never submit confidential files or files containing personal information."
     );
 
     my $help_btn  = Gtk3::ToolButton->new();
@@ -96,6 +87,15 @@ https://www.virustotal.com/gui/home/search"
     $help_btn->set_tooltip_text( _( 'What is this?' ) );
     $help_btn->signal_connect( clicked => sub { popup( $help_message ) } );
     $hb->pack_start( $help_btn );
+
+    my $key_btn = Gtk3::ToolButton->new();
+    $key_btn->set_icon_name('dialog-password');
+    $key_btn->set_label( _( 'VirusTotal key' ) );
+    $key_btn->set_tooltip_text(
+        _( 'Store your personal VirusTotal API key in the desktop keyring' )
+    );
+    $key_btn->signal_connect( clicked => sub { configure_api_key() } );
+    $hb->pack_end($key_btn);
 
     my $box = Gtk3::Box->new( 'vertical', 5 );
     $box->set_homogeneous( FALSE );
@@ -291,15 +291,25 @@ sub analysis_frame_one {
 
             $submitted++;
 
-            # VT size limit using the API is 32MB
-            # https://www.virustotal.com/en/faq/
-            my $size = -s $filename;
-            my $mb   = $size / ( 1024 * 1024 );
-            if ( $mb > 32 ) {
-                warn "filesize too large - must be smaller than 32MB\n";
-                popup( _( 'Uploaded files must be smaller than 32MB' ) );
+            if ( !ClamTk::VirusTotal::api_key() ) {
+                popup(
+                    _( 'Set your personal VirusTotal API key with the key button in this window before checking a file.' )
+                );
                 return;
             }
+
+            my $hash_warning
+                = _(
+                "ClamTk will send this file's SHA-256 hash to VirusTotal to look for an existing report. This does not upload the file, but VirusTotal may add queried indicators to its dataset. Continue only if sharing the hash is okay."
+                );
+            my $hash_dialog = Gtk3::MessageDialog->new(
+                $window,
+                [ qw( modal destroy-with-parent ) ],
+                'warning', 'ok-cancel', $hash_warning
+            );
+            my $hash_confirm = $hash_dialog->run;
+            $hash_dialog->destroy;
+            return if $hash_confirm ne 'ok';
 
             # Gtk3::main_iteration while Gtk3::events_pending;
             my ( $vt_results, $new_window, $is_error )
@@ -312,6 +322,13 @@ sub analysis_frame_one {
 
                 #} elsif ( $new_window && !$is_error ) {
             } elsif ( $vt_results == 0 ) {
+
+                # The public upload endpoint accepts files up to 32 MB.
+                my $size = -s $filename;
+                if ( $size > 32 * 1024 * 1024 ) {
+                    popup( _( 'VirusTotal uploads through this integration are limited to 32 MB.' ) );
+                    return;
+                }
 
                 my $warn_message
                     = _(
@@ -518,105 +535,29 @@ sub read_files {
 }
 
 sub check_for_existing {
-
-    # First, set the infobar so the
-    # user knows something is happening:
     set_infobar_mode( _( 'Please wait...' ) );
     $window->queue_draw;
 
     my $file = shift;
-    my $url  = 'https://www.virustotal.com/vtapi/v2/file/report';
-
-    my $local_tk_version = ClamTk::App->get_TK_version();
-
-    my $hash = get_hash( $file );
-
-    my $ua = add_ua_proxy();
-
-    #<<<
-    my @req = (
-        $url,
-        [
-            resource => $hash,
-            apikey   => getapi(),
-        ]
-    );
-    #>>>
-
+    my $hash = get_hash($file);
+    my $report = ClamTk::VirusTotal::check_hash( $hash, add_ua_proxy() );
     set_infobar_mode( ' ' );
 
-    # $new_window = switch to results tab
-    my $new_window = TRUE;
-
-    # $is_error = connection (or other) issue
-    my $is_error = FALSE;
-
-    my $response = $ua->post( @req );
-
-    # warn "is_err = >", $response->is_error, "<\n";
-
-    my $data;
-    if ( $response->is_success ) {
-        my $json = JSON->new->utf8->allow_nonref;
-        eval { $data = $json->decode( $response->decoded_content ); };
-        if ( $@ ) {
-            warn "error reading/decoding json: $@\n";
-            $new_window              = FALSE;
-            $is_error                = TRUE;
-            $data->{ response_code } = -4;
-            return ( $data->{ response_code }, $new_window, $is_error );
+    if ( $report->{status} eq 'found' ) {
+        for my $row ( @{ $report->{results} } ) {
+            my $iter = $store->append;
+            $store->set(
+                $iter,
+                VENDOR, $row->[0],
+                RESULT, $row->[1],
+                DATE,   $row->[2]
+            );
         }
-
-        # warn "response_code from submission >", $data->{ response_code },
-        #    "<\n";
-        # Response codes:
-        # 0 = not present in dataset
-        # -2 = queued for analysis
-        # 1 = present and can be retrieved
-        if ( $data->{ response_code } == 1 ) {
-
-            # $return = $data->{ positives } . ' / ' . $data->{ total };
-            for my $mark ( $data->{ scans } ) {
-                while ( my ( $vendor, $v ) = each %$mark ) {
-                    my $iter = $store->append;
-                    #<<<
-                    $store->set(
-                        $iter,
-                        VENDOR, $vendor,
-                        RESULT,
-                        ( $v->{ result } )
-                        ? $v->{ result }
-                        : '---',
-                        DATE, $v->{ update },
-                    );
-                    #>>>
-                }
-            }
-        } elsif ( $data->{ response_code } == 0 ) {
-
-            # $return     = _( 'No information on this file' );
-            $new_window = FALSE;
-            $is_error   = FALSE;
-        } elsif ( $data->{ response_code } == -2 ) {
-
-            # $return     = _( 'File is pending analysis' );
-            $new_window = FALSE;
-            $is_error   = FALSE;
-        } else {
-            # $return     = _( 'An unknown error occurred' );
-            $data->{ response_code } = -4;
-            $new_window              = FALSE;
-            $is_error                = TRUE;
-        }
-    } else {
-        $data->{ response_code } = -4;
-        $new_window              = FALSE;
-        $is_error                = TRUE;
-        warn "Unable to connect in submission: ", $response->status_line,
-            "\n";
+        return ( 1, TRUE, FALSE );
     }
-    set_infobar_mode( ' ' );
-    return ( $data->{ response_code }, $new_window, $is_error );
+    return ( 0, FALSE, FALSE ) if $report->{status} eq 'not-found';
+    warn "VirusTotal lookup failed: $report->{status}\n";
+    return ( -4, FALSE, TRUE );
 }
 
 sub submit_new {
@@ -625,45 +566,27 @@ sub submit_new {
     # something is happening:
     set_infobar_mode( _( 'Please wait...' ) );
     $window->queue_draw;
-    my $url = 'https://www.virustotal.com/vtapi/v2/file/scan';
-
-    my $ua               = add_ua_proxy();
-    my $local_tk_version = ClamTk::App->get_TK_version();
-
-    my $u_filename = encode( 'UTF-8', $filename );
-
-    #<<<
-    my $response = $ua->post(
-        $url,
-            Content_Type => 'multipart/form-data',
-            Content => [
-                    apikey   => getapi(),
-                    file     => [ $u_filename ]
-                    #file     => [ $filename ]
-            ],
+    my $response = ClamTk::VirusTotal::submit_file(
+        $filename, add_ua_proxy()
     );
-    #>>>
 
     set_infobar_mode( ' ' );
     $bar->show_all;
     $window->queue_draw;
 
-    if ( $response->is_success ) {
+    if ( $response->{status} eq 'accepted' ) {
 
         # Save off the results; might use them later
         my $file = ClamTk::App->get_path( 'virustotal_links' );
         my $hash = get_hash( $filename );
-
-        my $json_text = $response->decoded_content;
-        my $data      = $response->as_string;
-        my $json_hash = decode_json( $json_text );
 
         open( my $f, '>>:encoding(UTF-8)', $file );
 
         # or warn "Unable to save virustotal results: $!\n";
         my $csv = Text::CSV->new( { binary => 1, eol => "\n" } );
         my $ref;
-        $ref->[ 0 ] = [ $filename, $hash, $json_hash->{ permalink } ];
+        $ref->[ 0 ] = [ $filename, $hash,
+            "https://www.virustotal.com/gui/file/$hash" ];
         $csv->print( $f, $_ ) for ( @$ref );
         close( $f );
 
@@ -673,35 +596,43 @@ sub submit_new {
     }
 }
 
-sub getapi {
-    #<<<
-    return decode_base64(
-              'MDMwNmU3MT'
-            . 'ZjYjQxNTMz'
-            . 'OWFkZDQ5ND'
-            . 'JkOTg4ZWVm'
-            . 'MDU3MjlmND'
-            . 'AxYmM0NjIw'
-            . 'MjZmNDQ2OD'
-            . 'gzYjcxNmIy'
-            . 'NTAxZg=='
+sub configure_api_key {
+    my $dialog = Gtk3::Dialog->new(
+        _( 'Configure VirusTotal API key' ), $window,
+        [ qw( modal destroy-with-parent ) ]
     );
-    #>>>
+    $dialog->add_button( _( 'Cancel' ), 'cancel' );
+    $dialog->add_button( _( 'Save' ),   'ok' );
+
+    my $content = $dialog->get_content_area;
+    my $label = Gtk3::Label->new(
+        _( 'Your key is saved in the desktop keyring and is never stored in the ClamTk source or preferences.' )
+    );
+    $label->set_line_wrap(TRUE);
+    $content->pack_start($label, FALSE, FALSE, 8);
+
+    my $entry = Gtk3::Entry->new;
+    $entry->set_visibility(FALSE);
+    $entry->set_placeholder_text( _( 'Paste your personal VirusTotal API key' ) );
+    $content->pack_start($entry, FALSE, FALSE, 8);
+    $dialog->show_all;
+    my $response = $dialog->run;
+    my $key = $entry->get_text;
+    $dialog->destroy;
+
+    return if $response ne 'ok';
+    if ( ClamTk::VirusTotal::save_api_key($key) ) {
+        popup( _( 'VirusTotal API key saved to the desktop keyring.' ) );
+    } else {
+        popup( _( 'Could not save the key. Check that a Secret Service keyring is installed and unlocked.' ) );
+    }
 }
 
 sub get_hash {
-    my ( $file ) = shift;
-
-    my $slurp = do {
-        local $/ = undef;
-        open( my $f, '<', $file ) or do {
-            warn "Unable to open >$file< for hashing: $!\n";
-            return;
-        };
-        binmode( $f );
-        <$f>;
-    };
-    return sha256_hex( $slurp );
+    my ($file) = @_;
+    my $hash = ClamTk::VirusTotal::sha256_file($file);
+    warn "Unable to read >$file< for hashing: $!\n" if !defined $hash;
+    return $hash;
 }
 
 sub save_file {
