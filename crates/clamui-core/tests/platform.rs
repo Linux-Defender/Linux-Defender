@@ -117,6 +117,32 @@ fn dolphin_repair_migrates_stale_legacy_service_menu() {
     fs::remove_dir_all(root).expect("remove temporary integration root");
 }
 
+#[test]
+fn thunar_sendto_installs_multi_file_scan_and_explicit_virustotal_actions() {
+    let root = temporary_share("thunar");
+    let paths = paths(root.clone(), None);
+    assert_eq!(status(&paths, "thunar"), "not_installed");
+
+    install_integration_at(&paths, "thunar", false).expect("install Thunar Send To actions");
+    assert_eq!(status(&paths, "thunar"), "installed");
+
+    let scan = fs::read_to_string(
+        root.join("Thunar/sendto/io.github.linx_systems.ClamUI.thunar-scan.desktop"),
+    )
+    .expect("read Thunar scanner action");
+    assert!(scan.contains("Exec=flatpak run io.github.linx_systems.ClamUI %F"));
+
+    let virustotal = fs::read_to_string(
+        root.join("Thunar/sendto/io.github.linx_systems.ClamUI.thunar-virustotal.desktop"),
+    )
+    .expect("read Thunar VirusTotal action");
+    assert!(virustotal.contains("--virustotal %F"));
+
+    remove_integration_at(&paths, "thunar").expect("remove Thunar actions");
+    assert_eq!(status(&paths, "thunar"), "not_installed");
+    fs::remove_dir_all(root).expect("remove temporary integration root");
+}
+
 #[cfg(unix)]
 #[test]
 fn installation_rejects_a_symlinked_destination_parent() {

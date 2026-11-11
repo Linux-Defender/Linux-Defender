@@ -41,6 +41,11 @@ const DOLPHIN_SCAN: &[u8] =
     include_bytes!("../assets/integrations/io.github.linx_systems.ClamUI.service.desktop");
 const DOLPHIN_VIRUSTOTAL: &[u8] =
     include_bytes!("../assets/integrations/io.github.linx_systems.ClamUI-virustotal.desktop");
+const THUNAR_SCAN: &[u8] =
+    include_bytes!("../assets/integrations/io.github.linx_systems.ClamUI.thunar-scan.desktop");
+const THUNAR_VIRUSTOTAL: &[u8] = include_bytes!(
+    "../assets/integrations/io.github.linx_systems.ClamUI.thunar-virustotal.desktop"
+);
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize)]
 #[serde(rename_all = "snake_case")]
@@ -114,6 +119,7 @@ enum FileManager {
     Nemo,
     Nautilus,
     Dolphin,
+    Thunar,
 }
 
 impl FileManager {
@@ -122,6 +128,7 @@ impl FileManager {
             "nemo" => Ok(Self::Nemo),
             "nautilus" => Ok(Self::Nautilus),
             "dolphin" => Ok(Self::Dolphin),
+            "thunar" => Ok(Self::Thunar),
             _ => Err(format!("Unknown file manager: {value}")),
         }
     }
@@ -131,6 +138,7 @@ impl FileManager {
             Self::Nemo => "nemo",
             Self::Nautilus => "nautilus",
             Self::Dolphin => "dolphin",
+            Self::Thunar => "thunar",
         }
     }
 
@@ -139,6 +147,7 @@ impl FileManager {
             Self::Nemo => "Nemo",
             Self::Nautilus => "Nautilus",
             Self::Dolphin => "Dolphin",
+            Self::Thunar => "Thunar",
         }
     }
 
@@ -147,6 +156,7 @@ impl FileManager {
             Self::Nemo => "Linux Mint / Cinnamon file manager",
             Self::Nautilus => "GNOME Files",
             Self::Dolphin => "KDE file manager",
+            Self::Thunar => "XFCE file manager (Send To menu)",
         }
     }
 }
@@ -232,6 +242,20 @@ const DOLPHIN_LEGACY_ASSETS: &[IntegrationAsset] = &[
         executable: true,
     },
 ];
+const THUNAR_ASSETS: &[IntegrationAsset] = &[
+    IntegrationAsset {
+        source: "io.github.linx_systems.ClamUI.thunar-scan.desktop",
+        destination: "Thunar/sendto/io.github.linx_systems.ClamUI.thunar-scan.desktop",
+        bytes: THUNAR_SCAN,
+        executable: false,
+    },
+    IntegrationAsset {
+        source: "io.github.linx_systems.ClamUI.thunar-virustotal.desktop",
+        destination: "Thunar/sendto/io.github.linx_systems.ClamUI.thunar-virustotal.desktop",
+        bytes: THUNAR_VIRUSTOTAL,
+        executable: false,
+    },
+];
 
 /// Runtime paths are injectable so the copy/repair/remove behavior is deterministic in tests.
 #[derive(Clone, Debug)]
@@ -287,6 +311,7 @@ impl IntegrationPaths {
             FileManager::Nemo => NEMO_ASSETS,
             FileManager::Nautilus => NAUTILUS_ASSETS,
             FileManager::Dolphin => self.dolphin_assets(),
+            FileManager::Thunar => THUNAR_ASSETS,
         }
     }
 }
@@ -422,6 +447,7 @@ fn integrations_status(ctx: &Context) -> Value {
         FileManager::Nemo,
         FileManager::Nautilus,
         FileManager::Dolphin,
+        FileManager::Thunar,
     ]
     .into_iter()
     .map(|manager| integration_info(&paths, manager))
@@ -532,6 +558,7 @@ fn integration_available(paths: &IntegrationPaths, manager: FileManager) -> bool
         FileManager::Nemo => paths.local_share.join("nemo"),
         FileManager::Nautilus => paths.local_share.join("nautilus"),
         FileManager::Dolphin => paths.local_share.join(paths.dolphin_parent()),
+        FileManager::Thunar => paths.local_share.join("Thunar"),
     };
     directory.exists()
         || directory

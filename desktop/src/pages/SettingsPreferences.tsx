@@ -7,7 +7,7 @@ import { Modal } from "../Modal";
 type Settings = Record<string, unknown>;
 type SaveSetting = (key: string, value: unknown) => Promise<boolean>;
 type Integration = {
-  file_manager: "nemo" | "nautilus" | "dolphin";
+  file_manager: "nemo" | "nautilus" | "dolphin" | "thunar";
   display_name: string;
   description: string;
   status: "installed" | "partial" | "not_installed";

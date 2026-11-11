@@ -13,7 +13,7 @@ This directory is the sole development checkout: `/home/kiras/Linux-Defender`. T
 | `SAFETY-CHAT/clamtk-REBORN` | Active branch snapshot `4c55d73` under `reference/clamtk/`. Includes the local issue/PR code changes and integration modules. | Reference copy preserved; most features have not yet been ported to the Linux Defender UI. |
 | ClamTk KDE/GNOME/Nemo/Thunar integrations, ClamUI forks/issues/PRs, and MidnightBSD packaging references | Findings are recorded in `RELATED-PROJECT-REVIEW.md` and `CLAMTK-ISSUE-PR-TRACKER.md`. | Reviewed as references; not all are merged or implemented. |
 
-ClamTk issue/PR details and the exact reviewed snapshots are in the linked ledgers. The ClamTk branch includes fixes and integrations for scanner argument handling, path discovery, FreshClam controls, YARA, VirusTotal API v3, and urlscan. Only YARA is currently a ClamTk parity feature in the Linux Defender UI. ClamUI already supplies VirusTotal file scanning with keyring-backed credentials. urlscan is not yet a native Linux Defender feature. Do not describe the product as feature-complete.
+ClamTk issue/PR details and the exact reviewed snapshots are in the linked ledgers. The ClamTk branch includes fixes and integrations for scanner argument handling, path discovery, FreshClam controls, YARA, VirusTotal API v3, and urlscan. Linux Defender has ported local YARA rule loading and now includes a managed Thunar Send To integration alongside ClamUI's existing Dolphin/Nautilus/Nemo actions. ClamUI already supplies VirusTotal file scanning with keyring-backed credentials. urlscan is not yet a native Linux Defender feature. Do not describe the product as feature-complete.
 
 ## Cleanup status
 

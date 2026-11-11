@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Check with VirusTotal
+Comment=Review selected files with VirusTotal
+Exec=flatpak run io.github.linx_systems.ClamUI --virustotal %F
+Icon=io.github.linx_systems.ClamUI
+Terminal=false
+NoDisplay=true
