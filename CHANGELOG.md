@@ -57,4 +57,4 @@
 - Made the escaped-writer deadline regression fixture wait for process readiness, eliminating a CI startup race without relaxing the deadline.
 
 [Unreleased]: https://github.com/Linux-Defender/Linux-Defender/compare/main...HEAD
-[Upstream history archive](docs/revival/UPSTREAM-CHANGELOG.md) preserves the source project's earlier release notes for provenance; they are not Linux Defender releases.
+[Upstream history archive](https://github.com/Linux-Defender/Linux-Defender/blob/main/docs/revival/UPSTREAM-CHANGELOG.md) preserves the source project's earlier release notes for provenance; they are not Linux Defender releases.
