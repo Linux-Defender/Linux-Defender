@@ -12,14 +12,19 @@ use File::Spec;
 
 sub api_key {
     my ($secret_tool) = @_;
-    return $ENV{ CLAMTK_VIRUSTOTAL_API_KEY }
-        if defined $ENV{ CLAMTK_VIRUSTOTAL_API_KEY }
-        && length $ENV{ CLAMTK_VIRUSTOTAL_API_KEY };
+    return secret_key( 'virustotal', 'CLAMTK_VIRUSTOTAL_API_KEY', $secret_tool );
+}
 
+sub secret_key {
+    my ( $account, $environment_variable, $secret_tool ) = @_;
+    return $ENV{$environment_variable}
+        if defined $environment_variable
+        && defined $ENV{$environment_variable}
+        && length $ENV{$environment_variable};
     $secret_tool ||= _find_executable('secret-tool');
-    return if !$secret_tool;
+    return if !$secret_tool || !$account;
     my $pid = open( my $pipe, '-|', $secret_tool, 'lookup',
-        'application', 'clamtk', 'account', 'virustotal' );
+        'application', 'clamtk', 'account', $account );
     return if !defined $pid;
     local $/;
     my $key = <$pipe> // '';
@@ -31,13 +36,18 @@ sub api_key {
 
 sub save_api_key {
     my ( $key, $secret_tool ) = @_;
+    return save_secret_key( 'virustotal', $key, $secret_tool );
+}
+
+sub save_secret_key {
+    my ( $account, $key, $secret_tool ) = @_;
     return 0 if !defined $key || $key !~ /\S/;
     $secret_tool ||= _find_executable('secret-tool');
-    return 0 if !$secret_tool;
+    return 0 if !$secret_tool || !$account;
 
     my $pid = open( my $pipe, '|-', $secret_tool, 'store',
-        '--label=ClamTk VirusTotal API key',
-        'application', 'clamtk', 'account', 'virustotal' );
+        "--label=ClamTk $account API key",
+        'application', 'clamtk', 'account', $account );
     return 0 if !defined $pid;
     print {$pipe} $key, "\n" or return 0;
     return close $pipe ? 1 : 0;

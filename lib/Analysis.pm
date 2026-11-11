@@ -25,6 +25,7 @@ use File::Basename 'basename';
 use File::Copy 'move';
 use Text::CSV;
 use ClamTk::VirusTotal;
+use ClamTk::Urlscan;
 
 use POSIX 'locale_h';
 use Locale::gettext;
@@ -117,6 +118,11 @@ sub show_window {
         page_two(),
         Gtk3::Label->new( _( 'Results' ) ),
         1,
+    );
+    $nb->insert_page(
+        page_three(),
+        Gtk3::Label->new( _( 'Website scan' ) ),
+        2,
     );
     #>>>
 
@@ -230,6 +236,111 @@ sub page_two {
         clicked => sub {
             return unless ( $store->iter_n_children );
             save_file();
+        }
+    );
+
+    return $box;
+}
+
+sub page_three {
+    my $box = Gtk3::Box->new( 'vertical', 8 );
+    $box->set_border_width(12);
+
+    my $intro = Gtk3::Label->new(
+        _( 'Submit a website URL for remote inspection by urlscan.io. This visits the URL and records page activity; it does not scan local files.' )
+    );
+    $intro->set_line_wrap(TRUE);
+    $intro->set_xalign(0.0);
+    $box->pack_start($intro, FALSE, FALSE, 4);
+
+    my $url_entry = Gtk3::Entry->new;
+    $url_entry->set_placeholder_text( _('https://example.org/') );
+    $box->pack_start($url_entry, FALSE, FALSE, 4);
+
+    my $visibility_row = Gtk3::Box->new('horizontal', 6);
+    $box->pack_start($visibility_row, FALSE, FALSE, 4);
+    $visibility_row->pack_start(
+        Gtk3::Label->new( _( 'Result visibility' ) ), FALSE, FALSE, 0
+    );
+    my $visibility = Gtk3::ComboBoxText->new;
+    $visibility->append_text('Private');
+    $visibility->append_text('Unlisted');
+    $visibility->append_text('Public');
+    $visibility->set_active(0);
+    $visibility_row->pack_start($visibility, FALSE, FALSE, 0);
+
+    my $button_row = Gtk3::ButtonBox->new('horizontal');
+    $button_row->set_layout('start');
+    $box->pack_start($button_row, FALSE, FALSE, 4);
+    my $key_button = Gtk3::Button->new_with_label(
+        _( 'Set urlscan API key' )
+    );
+    my $scan_button = Gtk3::Button->new_with_label(
+        _( 'Check website' )
+    );
+    $button_row->add($key_button);
+    $button_row->add($scan_button);
+
+    my $status = Gtk3::Label->new('');
+    $status->set_line_wrap(TRUE);
+    $status->set_xalign(0.0);
+    $box->pack_start($status, FALSE, FALSE, 4);
+    my $result_link = Gtk3::LinkButton->new_with_label(
+        'https://urlscan.io/', _( 'Open urlscan result' )
+    );
+    $result_link->hide;
+    $box->pack_start($result_link, FALSE, FALSE, 4);
+
+    $key_button->signal_connect(
+        clicked => sub { configure_urlscan_key() }
+    );
+    $scan_button->signal_connect(
+        clicked => sub {
+            my $url = $url_entry->get_text;
+            if ( !ClamTk::Urlscan::validate_url($url) ) {
+                $status->set_text(
+                    _( 'Enter a valid HTTP or HTTPS URL without embedded login credentials.' )
+                );
+                return;
+            }
+            if ( !ClamTk::VirusTotal::secret_key(
+                    'urlscan', 'CLAMTK_URLSCAN_API_KEY' ) )
+            {
+                $status->set_text(
+                    _( 'Set your personal urlscan API key before submitting a URL.' )
+                );
+                return;
+            }
+
+            my $selected_visibility = lc( $visibility->get_active_text );
+            my $warning = sprintf(
+                _("urlscan.io will visit this URL and record its page activity. Result visibility: %s. The service receives the full URL, including its query string. Do not submit login links, session tokens, private or internal URLs, or confidential information. Continue?"),
+                $selected_visibility
+            );
+            my $confirm = Gtk3::MessageDialog->new(
+                $window,
+                [ qw( modal destroy-with-parent ) ],
+                'warning', 'ok-cancel', "$warning\n\n$url"
+            );
+            my $response = $confirm->run;
+            $confirm->destroy;
+            return if $response ne 'ok';
+
+            $status->set_text( _( 'Submitting URL…' ) );
+            my $result = ClamTk::Urlscan::submit_url(
+                $url, $selected_visibility, add_ua_proxy()
+            );
+            if ( $result->{status} eq 'accepted' ) {
+                $status->set_text(
+                    _( 'Submitted. The scan may take at least 30 seconds to finish.' )
+                );
+                $result_link->set_uri($result->{result_url});
+                $result_link->show;
+            } else {
+                $status->set_text(
+                    _( 'Could not submit this URL to urlscan. Check the key, network connection, and service limits.' )
+                );
+            }
         }
     );
 
@@ -623,6 +734,38 @@ sub configure_api_key {
     return if $response ne 'ok';
     if ( ClamTk::VirusTotal::save_api_key($key) ) {
         popup( _( 'VirusTotal API key saved to the desktop keyring.' ) );
+    } else {
+        popup( _( 'Could not save the key. Check that a Secret Service keyring is installed and unlocked.' ) );
+    }
+}
+
+sub configure_urlscan_key {
+    my $dialog = Gtk3::Dialog->new(
+        _( 'Configure urlscan API key' ), $window,
+        [ qw( modal destroy-with-parent ) ]
+    );
+    $dialog->add_button( _( 'Cancel' ), 'cancel' );
+    $dialog->add_button( _( 'Save' ),   'ok' );
+
+    my $content = $dialog->get_content_area;
+    my $label = Gtk3::Label->new(
+        _( 'Your personal urlscan key is saved in the desktop keyring, not in ClamTk preferences or source.' )
+    );
+    $label->set_line_wrap(TRUE);
+    $content->pack_start($label, FALSE, FALSE, 8);
+
+    my $entry = Gtk3::Entry->new;
+    $entry->set_visibility(FALSE);
+    $entry->set_placeholder_text( _( 'Paste your personal urlscan API key' ) );
+    $content->pack_start($entry, FALSE, FALSE, 8);
+    $dialog->show_all;
+    my $response = $dialog->run;
+    my $key = $entry->get_text;
+    $dialog->destroy;
+
+    return if $response ne 'ok';
+    if ( ClamTk::VirusTotal::save_secret_key( 'urlscan', $key ) ) {
+        popup( _( 'urlscan API key saved to the desktop keyring.' ) );
     } else {
         popup( _( 'Could not save the key. Check that a Secret Service keyring is installed and unlocked.' ) );
     }

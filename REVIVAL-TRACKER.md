@@ -41,10 +41,11 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 
 ## Local verification
 
-- `prove -r t`: 58 tests pass across nine test files; coverage includes custom PATH discovery, literal scanner arguments, YARA-rule discovery, FreshClam timer status parsing, and VirusTotal v3/keyring behavior.
+- `prove -r t`: 70 tests pass across ten test files; coverage includes custom PATH discovery, literal scanner arguments, YARA-rule discovery, FreshClam timer status parsing, VirusTotal v3/keyring behavior, and urlscan privacy/validation behavior.
 - `perl -Ilib -c lib/Scan.pm`: syntax OK.
 - `lib/Assistant.pm` syntax check passes using a temporary staged module tree matching the installed Perl module layout.
 - ClamAV 1.5.4 local smoke check loaded a test YARA rule alongside `/var/lib/clamav` and detected the matching harmless test string. No rule feed was downloaded.
+- Optional urlscan submission now has a separate website page, Secret Service key storage, HTTP(S)-only URL validation, a Private-by-default selector, and explicit per-URL confirmation; API behavior is mocked in tests and no URL was submitted.
 - PR-derived `GUI.pm` and `Update.pm` syntax checks passed earlier; GTK emitted sandbox dconf warnings.
 - No GUI display is available, so visual behavior, dark themes, Cinnamon/Mint, and CPU impact on Kira's desktop remain unverified.
 - Nothing has been pushed to GitHub. No system ClamAV database or services were modified.
