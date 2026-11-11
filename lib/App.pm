@@ -19,6 +19,7 @@ $| = 1;
 
 use Time::Piece;
 use File::Basename 'basename';
+use File::Spec;
 
 use POSIX 'locale_h';
 use Locale::gettext;
@@ -93,19 +94,20 @@ sub get_path {
     $path->{ whitelist_dir }
         = join( ';', $path->{ viruses }, '/sys/', '/dev/', '/proc/' );
 
-    # Most times freshclam is under /usr/bin
-    $path->{ freshclam }
-        = ( -e '/usr/bin/freshclam' )       ? '/usr/bin/freshclam'
-        : ( -e '/usr/local/bin/freshclam' ) ? '/usr/local/bin/freshclam'
-        : ( -e '/opt/local/bin/freshclam' ) ? '/opt/local/bin/freshclam'
-        :                                     '';
+    # Prefer common package locations, then honor PATH for custom prefixes,
+    # Nix-style profiles, and other distribution layouts.
+    $path->{ freshclam } = _find_executable(
+        'freshclam',
+        '/usr/bin/freshclam', '/usr/local/bin/freshclam',
+        '/opt/local/bin/freshclam'
+    );
 
     # Most times freshclam.conf is under /etc
     # If Update eq "shared":
     $path->{ systemfreshclamconf }
-        = ( -e '/etc/freshclam.conf' )
-        ? '/etc/freshclam.conf'
-        : '';
+        = ( -e '/etc/clamav/freshclam.conf' )
+        ? '/etc/clamav/freshclam.conf'
+        : ( -e '/etc/freshclam.conf' ) ? '/etc/freshclam.conf' : '';
 
     # Local freshclam.conf is under ~/.clamtk/db/
     # If Update eq "single":
@@ -116,31 +118,31 @@ sub get_path {
     # : '';
 
     # Use sigtool for db info
-    $path->{ sigtool }
-        = ( -e '/usr/bin/sigtool' )       ? '/usr/bin/sigtool'
-        : ( -e '/usr/local/bin/sigtool' ) ? '/usr/local/bin/sigtool'
-        : ( -e '/opt/local/bin/sigtool' ) ? '/opt/local/bin/sigtool'
-        :                                   '';
+    $path->{ sigtool } = _find_executable(
+        'sigtool',
+        '/usr/bin/sigtool', '/usr/local/bin/sigtool',
+        '/opt/local/bin/sigtool'
+    );
 
     # Most times clamscan is under /usr/bin
     # We'll use clampath as the actual path
     # and clamscan as clampath + scan options
-    $path->{ clampath }
-        = ( -e '/usr/bin/clamscan' )       ? '/usr/bin/clamscan'
-        : ( -e '/usr/local/bin/clamscan' ) ? '/usr/local/bin/clamscan'
-        : ( -e '/opt/local/bin/clamscan' ) ? '/opt/local/bin/clamscan'
-        :                                    '';
+    $path->{ clampath } = _find_executable(
+        'clamscan',
+        '/usr/bin/clamscan', '/usr/local/bin/clamscan',
+        '/opt/local/bin/clamscan'
+    );
 
     $path->{ clamscan } = $path->{ clampath };
 
     # Most times clamscan is under /usr/bin
     # We'll use clampath as the actual path
     # and clamscan as clampath + scan options
-    $path->{ clamdpath }
-        = ( -e '/usr/bin/clamdscan' )       ? '/usr/bin/clamdscan'
-        : ( -e '/usr/local/bin/clamdscan' ) ? '/usr/local/bin/clamdscan'
-        : ( -e '/opt/local/bin/clamdscan' ) ? '/opt/local/bin/clamdscan'
-        :                                     '';
+    $path->{ clamdpath } = _find_executable(
+        'clamdscan',
+        '/usr/bin/clamdscan', '/usr/local/bin/clamdscan',
+        '/opt/local/bin/clamdscan'
+    );
 
     $path->{ clamdscan } = $path->{ clamdpath };
 
@@ -149,6 +151,22 @@ sub get_path {
     $path->{ clamscan } .= ' --no-summary --block-encrypted ';
 
     return ( $wanted eq 'all' ) ? $path : $path->{ $wanted };
+}
+
+sub _find_executable {
+    my ( $program, @preferred ) = @_;
+
+    for my $candidate ( @preferred ) {
+        return $candidate if -f $candidate && -x $candidate;
+    }
+
+    for my $directory ( File::Spec->path ) {
+        next if !defined $directory || $directory eq '';
+        my $candidate = File::Spec->catfile( $directory, $program );
+        return $candidate if -f $candidate && -x $candidate;
+    }
+
+    return '';
 }
 
 sub get_daily_sigs_path {

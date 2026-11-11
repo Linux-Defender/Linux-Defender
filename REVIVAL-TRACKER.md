@@ -16,7 +16,7 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 | [#146](https://github.com/dave-theunsub/clamtk/issues/146) discussion board | Repository hosting configuration request; community `clamtk/clamtk` has Discussions enabled. | Hosting-level, not app code |
 | [#142](https://github.com/dave-theunsub/clamtk/issues/142) tray icon | Requires desktop-shell-specific status/tray support and distro coverage. | Open; not implemented |
 | [#140](https://github.com/dave-theunsub/clamtk/issues/140) show scheduled scan time | Current upstream code already displays localized daily-scan status with a zero-padded time. | Appears addressed in code; issue remains open |
-| [#139](https://github.com/dave-theunsub/clamtk/issues/139) ClamAV binary paths | Current `App.pm` detects `/usr/local/bin` for ClamAV tools. Package dependency/install behavior still belongs to distro recipes. | Partly addressed in code; package cases unverified |
+| [#139](https://github.com/dave-theunsub/clamtk/issues/139) ClamAV binary paths | `App.pm` now detects `clamscan`, `clamdscan`, `freshclam`, and `sigtool` in common locations or through `PATH`; it also recognizes `/etc/clamav/freshclam.conf`. | Local change in progress; helper tests cover custom `PATH` and missing tools; distro package cases still need validation |
 | [#138](https://github.com/dave-theunsub/clamtk/issues/138) update UI glitches | PR #170 handles a redraw after update completion. Local change also checks FreshClam's exit status and leaves failures visible with a retry button. Reported Mint/XFCE layout still needs a GUI reproduction. | Local status fix committed `5ef5282`; GUI layout not verified |
 | [#137](https://github.com/dave-theunsub/clamtk/issues/137) Cinnamon window controls | Old Cinnamon/GTK decoration behavior; not reproduced on target desktop. | Open; not reproduced |
 | [#127](https://github.com/dave-theunsub/clamtk/issues/127) automatic update confusion | Assistant now explains the system-managed shared database vs ClamTk's per-user copy, and that cron does not catch up after downtime. | UI clarification committed `7d0bd08`; remaining scheduler behavior not changed |
@@ -41,7 +41,7 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 
 ## Local verification
 
-- `prove -r t`: 25 tests pass across five test files.
+- `prove -r t`: 27 tests pass across six test files after adding tool-discovery coverage.
 - `perl -Ilib -c lib/Scan.pm`: syntax OK.
 - PR-derived `GUI.pm` and `Update.pm` syntax checks passed earlier; GTK emitted sandbox dconf warnings.
 - No GUI display is available, so visual behavior, dark themes, Cinnamon/Mint, and CPU impact on Kira's desktop remain unverified.
