@@ -6,6 +6,8 @@ on:
     paths:
       - "website/**"
       - ".github/workflows/deploy-website.yml"
+      - ".github/workflows/static.yml"
+      - ".github/workflows/jekyll-gh-pages.yml"
       - "screenshots/**"
       - "icons/**"
       - "CHANGELOG.md"

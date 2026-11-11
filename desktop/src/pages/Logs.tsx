@@ -280,7 +280,7 @@ export default function Logs({ active }: { active: boolean }) {
     try {
       const content = await request<string>("logs.export", { schema: "ui", format, ...(ids ? { ids } : {}) });
       const extension = format === "text" ? "txt" : format;
-      const saved = await saveText(content, ids ? `clamui-log-${ids[0]}.${extension}` : `clamui-logs.${extension}`, [{ name: format === "text" ? _("Text") : format.toUpperCase(), extensions: [extension] }]);
+      const saved = await saveText(content, ids ? `linux-defender-log-${ids[0]}.${extension}` : `linux-defender-logs.${extension}`, [{ name: format === "text" ? _("Text") : format.toUpperCase(), extensions: [extension] }]);
       if (saved) notify(ids ? _("Exported selected log.") : _("Exported all logs."), "success");
     } catch (error) {
       notify(`${_("Failed to export logs")}: ${readableError(error)}`, "error");
@@ -290,7 +290,7 @@ export default function Logs({ active }: { active: boolean }) {
   const exportSelectedText = async () => {
     if (!selected) return;
     try {
-      const saved = await saveText(formatDetail(selected, selected.timestamp), `clamui-log-${selected.id}.txt`, [{ name: _("Text"), extensions: ["txt"] }]);
+      const saved = await saveText(formatDetail(selected, selected.timestamp), `linux-defender-log-${selected.id}.txt`, [{ name: _("Text"), extensions: ["txt"] }]);
       if (saved) notify(_("Exported selected log."), "success");
     } catch (error) {
       notify(`${_("Failed to export log")}: ${readableError(error)}`, "error");
