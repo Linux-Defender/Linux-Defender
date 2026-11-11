@@ -45,10 +45,19 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 - `perl -Ilib -c lib/Scan.pm`: syntax OK.
 - `lib/Assistant.pm` syntax check passes using a temporary staged module tree matching the installed Perl module layout.
 - ClamAV 1.5.4 local smoke check loaded a test YARA rule alongside `/var/lib/clamav` and detected the matching harmless test string. No rule feed was downloaded.
-- Optional urlscan submission now has a separate website page, Secret Service key storage, HTTP(S)-only URL validation, a Private-by-default selector, and explicit per-URL confirmation; API behavior is mocked in tests and no URL was submitted.
+- The Assistant exposes the installed Arch/CachyOS FreshClam daily timer, enable/disable controls, and a run-now action. Those controls queue the systemd operation with `--no-block`; tests verify all commands are restricted to the known ClamAV units.
+- Settings exposes a local YARA rules directory. Rules are user-managed and never downloaded automatically; ClamAV's YARA implementation has compatibility limits.
+- Analysis exposes VirusTotal API v3 hash lookup and file upload, with separate consent dialogs and keys stored in Secret Service where available. It exposes urlscan URL submission with a Private default and a separate consent step. Neither service was contacted with a real account, key, file, or URL.
 - PR-derived `GUI.pm` and `Update.pm` syntax checks passed earlier; GTK emitted sandbox dconf warnings.
 - No GUI display is available, so visual behavior, dark themes, Cinnamon/Mint, and CPU impact on Kira's desktop remain unverified.
 - Nothing has been pushed to GitHub. No system ClamAV database or services were modified.
+
+## Packaging and support matrix
+
+- The first target remains CachyOS/Arch, using the distribution's ClamAV/FreshClam package and system signature database. This project does not bundle or replace the Cisco-Talos ClamAV engine.
+- A reproducible install package is not ready. The current checkout lacks the translation catalogs present in the Arch `clamtk` package, and the new integrations add optional runtime dependencies (`libsecret`/`secret-tool`, `polkit`/`pkexec`, and `xdg-utils`/`xdg-open`). Restore and verify translation sources and packaging metadata before building a replacement package.
+- Other Linux distributions still need package/path mapping and CI smoke coverage. No “all Linux” claim is made until those distro-family checks exist.
+- Research lead: [Fangfrisch](https://github.com/rseichter/fangfrisch) is an optional unprivileged updater for third-party ClamAV databases (including Sanesecurity and URLhaus). Provider trust, license/terms, keys, false positives, update status, and separate database paths need review before any UI-managed integration; nothing is enabled or downloaded.
 
 ## Fork network review
 
