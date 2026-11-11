@@ -90,6 +90,7 @@ pub fn default_settings() -> Value {
         "schedule_day_of_month": 1,
         "exclusion_patterns": default_exclusion_patterns(),
         "scan_backend": "auto",
+        "yara_rules_directory": "",
         "daemon_socket_path": "",
         "clamd_conf_path": "",
         "freshclam_conf_path": "",

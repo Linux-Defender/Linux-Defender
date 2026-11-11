@@ -165,6 +165,7 @@ fn default_recursive() -> bool {
 struct Exclusions {
     directories: Vec<String>,
     patterns: Vec<String>,
+    yara_rules: Vec<PathBuf>,
 }
 
 #[derive(Default)]
@@ -348,6 +349,10 @@ fn status(ctx: &Context) -> AppResult<Value> {
         .unwrap_or("auto")
         .to_owned();
     let clamscan = probe_program("clamscan", &["--version"]);
+    let (yara_rules, yara_error) = match yara_database_paths(ctx) {
+        Ok(rules) => (rules, None),
+        Err(error) => (Vec::new(), Some(error)),
+    };
     let clamdscan = probe_program("clamdscan", &["--version"]);
     let daemon_ping = if clamdscan.available {
         probe_clamd(ctx, &["--ping", "1"])
@@ -375,6 +380,9 @@ fn status(ctx: &Context) -> AppResult<Value> {
                 daemon_ping.error.clone().or(clamdscan.error.clone())
             },
         ),
+        "auto" if !yara_rules.is_empty() => {
+            ("clamscan", clamscan.available, clamscan.error.clone())
+        }
         _ => {
             if daemon_available {
                 ("daemon", true, None)
@@ -404,6 +412,8 @@ fn status(ctx: &Context) -> AppResult<Value> {
         "configured_backend": configured_backend,
         "database_available": database_available,
         "database_error": database_error,
+        "local_yara_rule_count": yara_rules.len(),
+        "local_yara_error": yara_error,
         "daemon_status": {
             "available": daemon_available,
             "connected": daemon_ping.available,
@@ -420,7 +430,8 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
     if request.paths.is_empty() {
         return Err("scanner.scan requires at least one path".into());
     }
-    let exclusions = merged_exclusions(ctx, &request)?;
+    let mut exclusions = merged_exclusions(ctx, &request)?;
+    exclusions.yara_rules = yara_database_paths(ctx)?;
     let id = request.id.unwrap_or_else(new_scan_id);
     let job = ctx.job(&id)?;
     let started = Instant::now();
@@ -431,7 +442,11 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
     if !matches!(configured.as_str(), "auto" | "daemon" | "clamscan") {
         return Err("backend_override must be auto, daemon, or clamscan".into());
     }
-    let selected_backend = select_backend(ctx, &configured);
+    let selected_backend = if configured == "auto" && !exclusions.yara_rules.is_empty() {
+        "clamscan".to_owned()
+    } else {
+        select_backend(ctx, &configured)
+    };
     let mut results = Vec::with_capacity(request.paths.len());
 
     for (index, path) in request.paths.iter().enumerate() {
@@ -441,15 +456,26 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
             results.push(result);
             continue;
         }
-        let mut result = scan_target(
-            ctx,
-            &job,
-            path,
-            request.recursive,
-            &selected_backend,
-            request.force_stream,
-            &exclusions,
-        );
+        let mut result = if selected_backend == "daemon" && !exclusions.yara_rules.is_empty() {
+            ScanResult::error(
+                path,
+                crate::i18n::translate(
+                    ctx,
+                    "Local YARA rules require the standalone clamscan backend. Change the scan backend preference to automatic or clamscan.",
+                ),
+                &selected_backend,
+            )
+        } else {
+            scan_target(
+                ctx,
+                &job,
+                path,
+                request.recursive,
+                &selected_backend,
+                request.force_stream,
+                &exclusions,
+            )
+        };
         localize_result(ctx, &mut result);
         results.push(result);
         if job.cancelled.load(Ordering::Acquire) {
@@ -978,9 +1004,63 @@ fn clamscan_arguments(
     for pattern in &exclusions.patterns {
         args.extend(["--exclude".into(), glob_regex(pattern)]);
     }
+    for rule in &exclusions.yara_rules {
+        args.push(format!("--database={}", rule.display()));
+    }
     args.push("--".into());
     args.push(path.to_string_lossy().into_owned());
     args
+}
+
+fn yara_database_paths(ctx: &Context) -> AppResult<Vec<PathBuf>> {
+    let configured = ctx
+        .settings()?
+        .get("yara_rules_directory")
+        .and_then(Value::as_str)
+        .unwrap_or_default()
+        .trim()
+        .to_owned();
+    if configured.is_empty() {
+        return Ok(Vec::new());
+    }
+    let directory = crate::common::expand_path(&configured);
+    let metadata = fs::symlink_metadata(&directory).map_err(|error| {
+        format!(
+            "Unable to inspect configured local YARA rules directory {}: {error}",
+            directory.display()
+        )
+    })?;
+    if !metadata.is_dir() {
+        return Err(format!(
+            "Configured local YARA rules path is not a directory: {}",
+            directory.display()
+        ));
+    }
+    let entries = fs::read_dir(&directory).map_err(|error| {
+        format!(
+            "Unable to read configured local YARA rules directory {}: {error}",
+            directory.display()
+        )
+    })?;
+    let mut rules = Vec::new();
+    for entry in entries {
+        let entry = entry.map_err(|error| error.to_string())?;
+        let kind = entry.file_type().map_err(|error| error.to_string())?;
+        if !kind.is_file() {
+            continue;
+        }
+        let path = entry.path();
+        let extension = path
+            .extension()
+            .and_then(|extension| extension.to_str())
+            .unwrap_or_default()
+            .to_ascii_lowercase();
+        if matches!(extension.as_str(), "yar" | "yara") {
+            rules.push(path);
+        }
+    }
+    rules.sort();
+    Ok(rules)
 }
 
 fn daemon_arguments(ctx: &Context, force_stream: bool) -> AppResult<Vec<String>> {
@@ -1964,6 +2044,93 @@ fn directory_regex(pattern: &str) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn local_yara_loading_uses_only_sorted_regular_rule_files() {
+        let root = tempfile::tempdir().expect("rules workspace");
+        let rules = root.path().join("rules");
+        fs::create_dir(&rules).expect("create rules folder");
+        fs::write(rules.join("z-last.YARA"), "rule z { condition: true }")
+            .expect("write YARA file");
+        fs::write(rules.join("a-first.yar"), "rule a { condition: true }")
+            .expect("write YARA file");
+        fs::write(rules.join("ignored.txt"), "not a rule").expect("write unrelated file");
+        fs::create_dir(rules.join("nested.yar")).expect("create nested directory");
+        std::os::unix::fs::symlink(rules.join("a-first.yar"), rules.join("linked.yar"))
+            .expect("create symlink");
+        let ctx = Context::with_paths(crate::common::Paths {
+            home: root.path().join("home"),
+            config_dir: root.path().join("config"),
+            data_dir: root.path().join("data"),
+        })
+        .expect("context");
+        ctx.update_settings(json!({
+            "yara_rules_directory": rules.to_string_lossy()
+        }))
+        .expect("configure YARA folder");
+
+        let found = yara_database_paths(&ctx).expect("load rule paths");
+
+        assert_eq!(
+            found,
+            [rules.join("a-first.yar"), rules.join("z-last.YARA")]
+        );
+    }
+
+    #[test]
+    fn clamscan_arguments_pass_yara_files_as_individual_database_arguments() {
+        let root = tempfile::tempdir().expect("scan workspace");
+        let ctx = Context::with_paths(crate::common::Paths {
+            home: root.path().join("home"),
+            config_dir: root.path().join("config"),
+            data_dir: root.path().join("data"),
+        })
+        .expect("context");
+        let target = root.path().join("a file to scan");
+        let rule = root.path().join("rules with spaces.yar");
+
+        let arguments = clamscan_arguments(
+            &ctx,
+            &target,
+            false,
+            &Exclusions {
+                yara_rules: vec![rule.clone()],
+                ..Exclusions::default()
+            },
+        );
+
+        let separator = arguments
+            .iter()
+            .position(|argument| argument == "--")
+            .expect("scan option terminator");
+        assert_eq!(
+            arguments[separator - 1],
+            format!("--database={}", rule.display())
+        );
+        assert_eq!(
+            arguments.last(),
+            Some(&target.to_string_lossy().into_owned())
+        );
+    }
+
+    #[test]
+    fn missing_configured_yara_folder_fails_closed() {
+        let root = tempfile::tempdir().expect("rules workspace");
+        let ctx = Context::with_paths(crate::common::Paths {
+            home: root.path().join("home"),
+            config_dir: root.path().join("config"),
+            data_dir: root.path().join("data"),
+        })
+        .expect("context");
+        ctx.update_settings(json!({
+            "yara_rules_directory": root.path().join("missing").to_string_lossy()
+        }))
+        .expect("configure missing YARA folder");
+
+        assert!(yara_database_paths(&ctx)
+            .expect_err("missing configured directory must not look like no rules")
+            .contains("Unable to inspect configured local YARA rules directory"));
+    }
 
     #[test]
     fn caret_is_literal_in_fnmatch_character_classes_for_daemon_and_clamscan() {

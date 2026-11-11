@@ -7,7 +7,7 @@ import SettingsPreferences from "./SettingsPreferences";
 
 type Settings = Record<string, unknown>;
 type ConfigSection = "database" | "scanner" | "scheduled" | "onaccess" | "save";
-type PreferencePage = "behavior" | "exclusions" | "database" | "scanner" | "scheduled" | "device_scan" | "onaccess" | "virustotal" | "debug" | "save";
+type PreferencePage = "behavior" | "exclusions" | "database" | "scanner" | "scheduled" | "device_scan" | "onaccess" | "yara" | "virustotal" | "debug" | "save";
 
 const NAVIGATION: Array<{ id: PreferencePage; label: () => string; config?: ConfigSection }> = [
   { id: "behavior", label: () => _("Behavior") },
@@ -17,6 +17,7 @@ const NAVIGATION: Array<{ id: PreferencePage; label: () => string; config?: Conf
   { id: "scheduled", label: () => _("Scheduled"), config: "scheduled" },
   { id: "device_scan", label: () => _("Device Scan") },
   { id: "onaccess", label: () => _("On-Access"), config: "onaccess" },
+  { id: "yara", label: () => _("YARA Rules") },
   { id: "virustotal", label: () => _("VirusTotal") },
   { id: "debug", label: () => _("Debug") },
   { id: "save", label: () => _("Save"), config: "save" },

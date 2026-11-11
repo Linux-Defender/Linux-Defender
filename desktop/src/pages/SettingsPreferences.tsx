@@ -165,9 +165,48 @@ export default function SettingsPreferences({
 
   if (selectedPage === "exclusions") return <ExclusionsPage settings={settings} saveSetting={saveSetting} />;
   if (selectedPage === "device_scan") return <DeviceScanPage settings={settings} saveSetting={saveSetting} />;
+  if (selectedPage === "yara") return <YaraPage settings={settings} saveSetting={saveSetting} />;
   if (selectedPage === "virustotal") return <VirusTotalPage settings={settings} saveSetting={saveSetting} />;
   if (selectedPage === "debug") return <DebugPage settings={settings} saveSetting={saveSetting} />;
   return <BehaviorPage settings={settings} saveSetting={saveSetting} trayAvailable={trayAvailable} isFlatpak={isFlatpak} />;
+}
+
+function YaraPage({ settings, saveSetting }: { settings: Settings; saveSetting: SaveSetting }) {
+  const [directory, setDirectory] = useState(() => valueString(settings, "yara_rules_directory", ""));
+  useEffect(() => {
+    setDirectory(valueString(settings, "yara_rules_directory", ""));
+  }, [settings.yara_rules_directory]);
+
+  const chooseDirectory = async () => {
+    try {
+      const [selected] = await openPaths({ directory: true, multiple: false });
+      if (selected && await saveSetting("yara_rules_directory", selected)) setDirectory(selected);
+    } catch (error) {
+      notify(_("Unable to choose the YARA rules folder: {error}", { error: String(error) }), "error");
+    }
+  };
+
+  const openDirectory = async () => {
+    try {
+      await openPath(directory);
+    } catch (error) {
+      notify(_("Unable to open the YARA rules folder: {error}", { error: String(error) }), "error");
+    }
+  };
+
+  return <div className="settings-preferences">
+    <Section title={_("YARA Rules")} description={_("Add local YARA rules that ClamAV can load during standalone scans. ClamTk does not download rule feeds.")}>
+      <Field label={_("Rules Folder")} detail={_("Only regular .yar and .yara files in this folder are loaded.")}>
+        <input type="text" value={directory} onChange={(event) => setDirectory(event.target.value)} onBlur={() => void saveSetting("yara_rules_directory", directory.trim())} />
+      </Field>
+      <p>{_("Rules are used only with the standalone clamscan backend. Automatic scanning selects it when rules are present; an explicitly selected daemon backend cannot load these rules.")}</p>
+      <p>{_("Use rules only from sources you trust. ClamAV supports a subset of YARA rules.")}</p>
+      <div className="button-row">
+        <button type="button" onClick={() => void chooseDirectory()}>{_("Choose Folder")}</button>
+        <button type="button" disabled={!directory.trim()} onClick={() => void openDirectory()}>{_("Open Folder")}</button>
+      </div>
+    </Section>
+  </div>;
 }
 
 function BehaviorPage({ settings, saveSetting, trayAvailable, isFlatpak }: { settings: Settings; saveSetting: SaveSetting; trayAvailable: boolean; isFlatpak: boolean }) {
