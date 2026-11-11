@@ -41,9 +41,10 @@ Review snapshot: 2026-11-10. Upstream: [dave-theunsub/clamtk](https://github.com
 
 ## Local verification
 
-- `prove -r t`: 42 tests pass across eight test files; coverage includes custom PATH discovery, literal scanner arguments, and FreshClam timer status parsing.
+- `prove -r t`: 44 tests pass across eight test files; coverage includes custom PATH discovery, literal scanner arguments, YARA-rule discovery, and FreshClam timer status parsing.
 - `perl -Ilib -c lib/Scan.pm`: syntax OK.
 - `lib/Assistant.pm` syntax check passes using a temporary staged module tree matching the installed Perl module layout.
+- ClamAV 1.5.4 local smoke check loaded a test YARA rule alongside `/var/lib/clamav` and detected the matching harmless test string. No rule feed was downloaded.
 - PR-derived `GUI.pm` and `Update.pm` syntax checks passed earlier; GTK emitted sandbox dconf warnings.
 - No GUI display is available, so visual behavior, dark themes, Cinnamon/Mint, and CPU impact on Kira's desktop remain unverified.
 - Nothing has been pushed to GitHub. No system ClamAV database or services were modified.

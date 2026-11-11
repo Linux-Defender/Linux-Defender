@@ -18,6 +18,7 @@ package ClamTk::Settings;
 $| = 1;
 
 use File::Basename 'basename';
+use File::Path 'make_path';
 
 use Glib 'TRUE', 'FALSE';
 
@@ -125,6 +126,35 @@ sub show_window {
             ClamTk::Prefs->set_preference( 'GUICheck', $btn->get_active
                 ? 1
                 : 0 );
+        }
+    );
+
+    my $rules_frame = Gtk3::Frame->new( _( 'Local YARA rules' ) );
+    $box->pack_start( $rules_frame, FALSE, FALSE, 10 );
+    my $rules_box = Gtk3::Box->new( 'vertical', 6 );
+    $rules_box->set_border_width( 8 );
+    $rules_frame->add( $rules_box );
+
+    my $rules_path = ClamTk::App->get_path('yara_rules');
+    make_path( $rules_path, { mode => 0700 } ) if !-d $rules_path;
+    my $rules_note = Gtk3::Label->new(
+        _( 'ClamAV can load compatible YARA rule files from this folder during scans. Only add rules from sources you trust; ClamTk does not download rule feeds.' )
+    );
+    $rules_note->set_line_wrap(TRUE);
+    $rules_note->set_xalign(0.0);
+    $rules_box->pack_start($rules_note, FALSE, FALSE, 0);
+
+    my $rules_button = Gtk3::Button->new_with_label(
+        _( 'Open local YARA rules folder' )
+    );
+    $rules_box->pack_start($rules_button, FALSE, FALSE, 0);
+    $rules_button->signal_connect(
+        clicked => sub {
+            my $opener = ClamTk::App::_find_executable('xdg-open');
+            if ($opener) {
+                system( $opener, $rules_path ) == 0
+                    or warn "Could not open YARA rules folder: $!\n";
+            }
         }
     );
 

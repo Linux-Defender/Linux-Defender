@@ -80,6 +80,9 @@ sub get_path {
     # The db directory stores virus defs/freshclam-related stuff
     $path->{ db } = $path->{ clamtk } . '/db';
 
+    # Optional user-managed YARA rules loaded by ClamAV during scans.
+    $path->{ yara_rules } = $path->{ clamtk } . '/yara';
+
     # The submit directory stores file submission information
     $path->{ submit } = $path->{ clamtk } . '/submit';
 

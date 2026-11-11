@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 use Test::More;
+use File::Temp 'tempdir';
+use File::Spec;
 use FindBin;
 
 require "$FindBin::Bin/../lib/Scan.pm";
@@ -29,5 +31,22 @@ is(
 is( $argv[5], "--exclude-dir=$excluded", 'preserves spaces and metacharacters in an exclude path' );
 is( $argv[-1], $target, 'passes the scan target literally as one argument' );
 is( $hidden_exclude[3], '--exclude=\\/\\.', 'preserves the hidden-file exclusion regex' );
+
+my $rules_dir = tempdir( CLEANUP => 1 );
+for my $name ( 'first.yar', 'second.YARA', 'ignore.txt' ) {
+    open( my $rule, '>', File::Spec->catfile( $rules_dir, $name ) )
+        or die "create test rule: $!";
+    close $rule;
+}
+is_deeply(
+    [ ClamTk::Scan::_yara_database_args($rules_dir) ],
+    [ "--database=$rules_dir/first.yar", "--database=$rules_dir/second.YARA" ],
+    'loads only supported YARA file extensions in a stable order'
+);
+is_deeply(
+    [ ClamTk::Scan::_yara_database_args("$rules_dir/missing") ],
+    [],
+    'skips a missing optional YARA rule directory'
+);
 
 done_testing();

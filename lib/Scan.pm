@@ -361,6 +361,7 @@ sub scan {
     if ( ClamTk::Prefs->get_preference( 'Update' ) eq 'single' ) {
         push @database_args, "--database=$paths->{db}";
     }
+    push @database_args, _yara_database_args( $paths->{yara_rules} );
 
     # Implicit fork; gives us the PID of clamscan so we can
     # kill it if the user hits the Stop button
@@ -512,6 +513,17 @@ sub _scan_argv {
         $clamscan, '--no-summary', '--block-encrypted', @database_args,
         shellwords($directive), '-v', $path_to_scan
     );
+}
+
+sub _yara_database_args {
+    my ($directory) = @_;
+    return if !defined $directory || !-d $directory;
+
+    opendir( my $dh, $directory ) or return;
+    my @rules = sort grep { /\.(?:yar|yara)\z/i && -f "$directory/$_" }
+        readdir($dh);
+    closedir $dh;
+    return map { "--database=$directory/$_" } @rules;
 }
 
 sub _quote_shellword {

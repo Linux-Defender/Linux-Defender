@@ -66,6 +66,16 @@ sub structure {
         chmod oct( $mask ), $paths->{ db };
     }
 
+    # User-managed ClamAV-compatible YARA rules. Never download rule feeds
+    # automatically; the user chooses and maintains these files.
+    if ( !-d $paths->{ yara_rules } ) {
+        eval { mkpath( $paths->{ yara_rules }, { mode => oct('0700') } ) };
+        warn $@ if $@;
+        return 0 if $@;
+    } else {
+        chmod oct('0700'), $paths->{ yara_rules };
+    }
+
     # This is /home/user/.clamtk/prefs,
     # a custom INI-style file.
     if ( !-e $paths->{ prefs } ) {
