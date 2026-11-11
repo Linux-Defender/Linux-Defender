@@ -19,7 +19,7 @@ ClamUI already includes scan profiles, standalone and daemon scanning, schedulin
 | History and quarantine | Restore records and the collision-safe unique quarantine names | Searchable history/logs and review flow | One recoverable quarantine store, no automatic deletion, preserve legacy restore-data migration. |
 | Scheduling | Existing cron scheduler and status | User-level systemd scheduling and profiles | UI-managed schedules with documented off-machine behavior and per-distro adapters; never silently install/enable services. |
 | Extra detections | Local YARA rules; explicit VirusTotal and urlscan actions | Security audit/component view | Local YARA folder selection and standalone scan loading are now ported; verify on CachyOS. Keep external reputation opt-in and host-security audit separate from malware verdicts. |
-| Desktop integration | GTK desktop entry and distro add-ons | Tray and file-manager launchers | One package with optional Dolphin, Nautilus, Nemo, and Thunar actions; first fix `%F` multi-selection and verify each desktop version. |
+| Desktop integration | GTK desktop entry and distro add-ons | Tray and file-manager launchers | One package with optional Dolphin, Nautilus, Nemo, and Thunar actions; preserve `%F` multi-selection and verify each desktop version. |
 | Packaging and languages | Preserve ClamTk translations and existing metadata | Flatpak/AppImage/DEB/RPM build matrix and ClamUI localization workflow | Restore ClamTk translation sources, preserve attribution, migrate the needed message catalogs, build CachyOS/Arch first, then CI across distro families. |
 
 ### Language and data migration boundary
@@ -31,7 +31,7 @@ ClamTk and ClamUI should not become a mixed Perl/Rust runtime. Keep the existing
 - Checked-out default-branch head: `32270d53ee2e412d5d46718cfa99eaf9bd346f62` (2026-11-07). Repository reports version 0.5.1; its README says Flathub still distributes historical 0.4.1.
 - Stack: Rust headless core + Tauri + React/TypeScript. Packages use host ClamAV; daemon mode requires host `clamd` and `clamdscan`.
 - GitHub API snapshot: 60 open issues, 12 closed issues, 2 open PRs (all indexed below).
-- Latest commit CI API snapshot: core tests, dependency audit, CodeQL, desktop build, Flatpak, RPM, DEB, and AppImage checks reported success. Two Dependabot status checks failed; details were not exposed by the public summary. Local core tests could not run because `cargo` is not installed here.
+- Latest commit CI API snapshot: core tests, dependency audit, CodeQL, desktop build, Flatpak, RPM, DEB, and AppImage checks reported success. Two Dependabot status checks failed; details were not exposed by the public summary.
 - High-priority open reports: #304 database discovery/load failure, #305 Wayland/NVIDIA startup crash, and #282 related Wayland crash. Maintainer comments say fixes are expected in a later release; not yet validated in a released desktop build.
 - Current `CHANGELOG.md` records fixes for #264 (newline paths), #285 (large-scan results after output limit), and #286 (long daemon file-list paths). GitHub still shows those issues open. Treat as code-fixed candidates; verify source tests and released behavior.
 - #112's concern that Flatpak bundled/used an internal ClamAV engine appears addressed in current README and source policy: current packages use host ClamAV. Do not carry old issue conclusions forward without version checks.
@@ -122,6 +122,12 @@ Closed issues visible in the same API snapshot (12):
 
 ## ClamTk desktop integration repositories
 
+### Tray and desktop action comparison
+
+ClamTk has no tray implementation in its current source; upstream issue [#142](https://github.com/dave-theunsub/clamtk/issues/142) requests one. The ClamUI tray code already used by this unified app toggles the window on primary/left click. Its secondary/right-click menu offers Show, Quick Scan, Full Scan, Update Database, scan profiles, and Quit. Keep that single tray implementation; actual left/right-click behavior still needs testing in CachyOS KDE Plasma and GNOME (including their SNI/AppIndicator watcher requirements).
+
+ClamUI already provides file-manager actions for Dolphin, Nautilus, and Nemo. There is no Thunar action in the current candidate, so XFCE/Thunar is a concrete integration gap. The ClamTk companion projects document Dolphin/Konqueror right-click actions, Nautilus actions, Nemo actions, and a Thunar “Send To” action, but their repositories are unmaintained. Port the user-facing behavior into Linux Defender’s packaging instead of copying those legacy add-ons wholesale. Ensure every integration passes all selected paths; `%F` multi-selection must not silently scan only the first item.
+
 | Repository | Snapshot | Open issues / PRs | Review |
 |---|---|---|---|
 | [clamtk-kde](https://github.com/dave-theunsub/clamtk-kde) | Last default-branch commit 2024-03-30; desktop entry calls `clamtk %F`. | Issues #1 multi-file scan, #2 missing Dolphin service-menu entry for old KDE Neon .deb; no open PRs. | Optional Dolphin integration, not UI code. `%F` can pass multiple paths but ClamTk currently reads only `ARGV[0]`; multi-selection remains a real CLI gap. |
@@ -151,8 +157,8 @@ Closed issues visible in the same API snapshot (12):
 
 ## Local integration progress
 
-The user-owned [SAFETY-CHAT/Linux-Defender](https://github.com/SAFETY-CHAT/Linux-Defender) repository contained only its initial README when checked. The local branch `revival/unified-app` now includes the ClamUI master history at `32270d5` and the ClamTk revival history as a non-packaged `reference/clamtk` subtree. Commit `ec133dc` ports the YARA rule-folder feature into the Rust/React app. AppStream, Flatpak, desktop, and CLI identifiers still say ClamUI and are not release-ready under the new project name. No push has been made.
+The user-owned [SAFETY-CHAT/Linux-Defender](https://github.com/SAFETY-CHAT/Linux-Defender) repository contained only its initial README when checked. The local branch `revival/unified-app` now includes the ClamUI master history at `32270d5` and the ClamTk revival history as a non-packaged `reference/clamtk` subtree. The former ClamUI revival checkout is preserved as local branch `archive/clamui-reborn`; its YARA work is ported in commit `ec133dc`. AppStream, Flatpak, desktop, and CLI identifiers still say ClamUI and are not release-ready under the new project name. No push has been made.
 
 The upstream ClamUI `main` head `6836eea` is an ancestor of the selected `master` head, not a newer release. It diverges from master due later commits; the default master branch restores scanner handling/tests and current dependencies, so main was not merged separately. Continue comparing branches when upstream history changes.
 
-ClamTk's 23 open issues and four open PR dispositions above are still the ledger; review does not equal a fix. The current UI has passed `bun run build`, `cargo check -p clamui`, and the core test suite except five environment-dependent privileged-tool cases in this sandbox. The actual window, themes, auto-update services, and CachyOS package still require desktop validation. Nothing has been pushed.
+ClamTk's 23 open issues and four open PR dispositions above are still the ledger; review does not equal a fix. Local verification in the unified checkout: `cargo fmt --check --all` passed; `clamui-core` tests passed (103 passed, 1 ignored, 4 host-specific tests filtered); VirusTotal mocked tests passed (8); the desktop TypeScript/Vite build and translation checks passed (10 locales, 1,275 messages). The full workspace test suite has not completed because four CLI scan integration tests hung in this sandbox. The actual window, tray clicks, themes, auto-update services, and CachyOS package still require desktop validation. Nothing has been pushed.
