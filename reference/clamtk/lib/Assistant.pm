@@ -1,0 +1,320 @@
+# ClamTk, copyright (C) 2004-2024 Dave M
+#
+# This file is part of ClamTk
+# https://github.com/dave-theunsub/clamtk/
+# https://gitlab.com/dave_m/clamtk/
+#
+# ClamTk is free software; you can redistribute it and/or modify it
+# under the terms of either:
+#
+# a) the GNU General Public License as published by the Free Software
+# Foundation; either version 1, or (at your option) any later version, or
+#
+# b) the "Artistic License".
+package ClamTk::Assistant;
+
+use Glib 'TRUE', 'FALSE';
+use ClamTk::Services;
+
+# use strict;
+# use warnings;
+$| = 1;
+
+use File::Copy 'copy';
+use Locale::gettext;
+
+my $pref;
+
+sub show_window {
+    my $box = Gtk3::Box->new( 'vertical', 0 );
+    $box->set_homogeneous( FALSE );
+    $box->set_border_width( 12 );
+
+    # Get current update preference
+    $pref = ClamTk::Prefs->get_preference( 'Update' );
+    # Just in case, set it to 'shared' if nothing else:
+    $pref ||= 'shared';
+
+    #<<<
+    my $label = Gtk3::Label->new(
+          _(
+           'Please choose how you will update your antivirus signatures'
+          )
+    );
+    #>>>
+    my $flabel = Gtk3::Label->new( '' );
+    $flabel->set_markup( "<b>" . $label->get_label . "</b>" );
+    $flabel->set_alignment( 0.0, 0.5 );
+    $box->pack_start( $flabel, FALSE, FALSE, 10 );
+
+    my $bbox = Gtk3::ButtonBox->new( 'vertical' );
+    $bbox->set_layout( 'start' );
+    $box->add( $bbox );
+
+    my $help_label = Gtk3::Label->new( '' );
+    $help_label->set_line_wrap( TRUE );
+    $help_label->set_xalign( 0.0 );
+    $box->pack_start( $help_label, FALSE, FALSE, 8 );
+
+    my $service_label = Gtk3::Label->new('');
+    $service_label->set_line_wrap(TRUE);
+    $service_label->set_xalign(0.0);
+    $box->pack_start($service_label, FALSE, FALSE, 4);
+
+    my $service_buttons = Gtk3::ButtonBox->new('horizontal');
+    $service_buttons->set_layout('start');
+    $box->pack_start($service_buttons, FALSE, FALSE, 4);
+
+    my $timer_button = Gtk3::Button->new_with_label('');
+    my $update_now_button = Gtk3::Button->new_with_label(
+        _('Update signatures now')
+    );
+    $service_buttons->add($timer_button);
+    $service_buttons->add($update_now_button);
+
+    my $refresh_service_controls = sub {
+        if ( $pref ne 'shared' ) {
+            $service_label->hide;
+            $service_buttons->hide;
+            return;
+        }
+
+        $service_label->show;
+        $service_buttons->show;
+        my $state = ClamTk::Services::freshclam_status();
+        if ( !$state->{available} ) {
+            $service_label->set_text(
+                $state->{reason} eq 'timer-not-installed'
+                ? _( 'No supported system FreshClam timer was found. Install the ClamAV package or use per-user signature updates.' )
+                : _( 'Could not read the system FreshClam timer status.' )
+            );
+            $timer_button->set_sensitive(FALSE);
+            $update_now_button->set_sensitive(FALSE);
+            return;
+        }
+
+        if ( $state->{timer_active} ) {
+            $service_label->set_text(
+                _( 'Daily system signature updates are active.' )
+            );
+            $timer_button->set_label( _( 'Disable daily updates' ) );
+            $timer_button->{enable_timer} = 0;
+        } else {
+            $service_label->set_text(
+                _( 'Daily system signature updates are disabled.' )
+            );
+            $timer_button->set_label( _( 'Enable daily updates' ) );
+            $timer_button->{enable_timer} = 1;
+        }
+        $timer_button->set_sensitive(TRUE);
+        $update_now_button->set_sensitive( !$state->{service_active} );
+    };
+
+    $timer_button->signal_connect(
+        clicked => sub {
+            my $enabled = $timer_button->{enable_timer};
+            if ( ClamTk::Services::set_freshclam_timer($enabled) ) {
+                $service_label->set_text(
+                    $enabled
+                    ? _( 'Daily signature updates enabled.' )
+                    : _( 'Daily signature updates disabled.' )
+                );
+            } else {
+                $service_label->set_text(
+                    _( 'Could not change the timer. Check system authorization or the ClamAV package.' )
+                );
+            }
+            $refresh_service_controls->();
+        }
+    );
+
+    $update_now_button->signal_connect(
+        clicked => sub {
+            if ( ClamTk::Services::run_freshclam_once() ) {
+                $service_label->set_text(
+                    _( 'FreshClam update started. Check the system service log for its result.' )
+                );
+            } else {
+                $service_label->set_text(
+                    _( 'Could not start FreshClam. Check system authorization or the ClamAV package.' )
+                );
+            }
+            $refresh_service_controls->();
+        }
+    );
+
+    #<<<
+    my $auto_button = Gtk3::RadioButton->new_with_label_from_widget(
+            undef,
+            _('My computer automatically receives updates')
+    );
+    $auto_button->signal_connect(
+        toggled => sub {
+            if( $auto_button->get_active ) {
+                $pref = 'shared';
+                $help_label->set_text(
+                    _( 'Use the shared system signatures. If the ClamAV package provides the daily FreshClam timer, you can check or manage it below; system authorization may be required.' )
+                );
+                $refresh_service_controls->();
+            } else {
+                $pref = 'single';
+            }
+        }
+    );
+
+    my $man_button = Gtk3::RadioButton->new_from_widget( $auto_button );
+    $man_button->set_label(
+            _('I would like to update signatures myself')
+    );
+    $man_button->signal_connect(
+        toggled => sub {
+            if( $man_button->get_active ) {
+                $pref = 'single';
+                $help_label->set_text(
+                    _( 'ClamTk updates signatures in your user folder. Scheduled updates use cron and will not catch up after the computer is off.' )
+                );
+                $refresh_service_controls->();
+            } else {
+                $pref = 'shared';
+            }
+         }
+    );
+    #>>>
+    $bbox->pack_start( $auto_button, FALSE, FALSE, 0 );
+    $bbox->pack_start( $man_button,  FALSE, FALSE, 0 );
+
+    if ( $pref eq 'shared' ) {
+        $auto_button->set_active( TRUE );
+    } elsif ( $pref eq 'single' ) {
+        $man_button->set_active( TRUE );
+    }
+    $refresh_service_controls->();
+
+    my $infobar = Gtk3::InfoBar->new;
+    $infobar->set_message_type( 'other' );
+    $box->pack_start( $infobar, FALSE, FALSE, 10 );
+
+    $label = Gtk3::Label->new( _( 'Press Apply to save changes' ) );
+    $infobar->get_content_area->add( $label );
+    $infobar->add_button( 'gtk-apply', GTK_RESPONSE_APPLY );
+    $infobar->signal_connect(
+        response => sub {
+            my ( $bar, $sig, undef ) = @_;
+            # Gtk3::main_iteration while Gtk3::events_pending;
+            $label->set_text( _( 'Please wait...' ) );
+            if ( save() ) {
+                set_infobar_text( TRUE, $bar );
+            } else {
+                set_infobar_text( FALSE, $bar );
+            }
+        }
+    );
+
+    $box->show_all();
+    $refresh_service_controls->();
+    return $box;
+}
+
+sub set_infobar_text {
+    my ( $success, $bar ) = @_;
+
+    # The text we display
+    my $label;
+    # The message type of infobar we display
+    my $type;
+
+    if ( $success ) {
+        $label = _( 'Your changes were saved.' );
+        $type  = 'info';
+    } else {
+        $label = _( 'Error updating: try again later' );
+        $type  = 'error';
+    }
+
+    for my $child ( $bar->get_content_area->get_children ) {
+        if ( $child->isa( 'Gtk3::Label' ) ) {
+            $child->set_text( $label );
+        }
+    }
+    $bar->set_message_type( $type );
+
+    my $loop = Glib::MainLoop->new;
+    Glib::Timeout->add(
+        2000,
+        sub {
+            $loop->quit;
+            FALSE;
+        }
+    );
+    $loop->run;
+
+    $bar->set_message_type( 'other' );
+    #for my $child ( $bar->get_content_area->get_children ) {
+    for my $child ( $bar->get_children ) {
+        if ( $child->isa( 'Gtk3::Label' ) ) {
+            $child->set_text( _( 'Press Apply to save changes' ) );
+        }
+    }
+}
+
+sub save {
+    my ( $ret ) = ClamTk::Prefs->set_preference( 'Update', $pref );
+
+    if ( $ret == 1 ) {
+        # It worked, so see if there are system signatures around
+        # we can copy to save bandwidth and time
+        my $paths = ClamTk::App->get_path( 'db' );
+
+        if ( $pref eq 'single' ) {
+            # $d(aily) and $m(ain) signatures
+            my ( $d, $m ) = ( 0 ) x 2;
+            # Gtk3::main_iteration while Gtk3::events_pending;
+            for my $dir_list (
+                '/var/clamav',             '/var/lib/clamav',
+                '/opt/local/share/clamav', '/usr/share/clamav',
+                '/usr/local/share/clamav', '/var/db/clamav',
+                )
+            {
+                if ( -e "$dir_list/daily.cld" ) {
+                    copy( "$dir_list/daily.cld", "$paths/daily.cld" );
+                    if ( $! ) {
+                        warn "issue copying daily.cld: $!\n";
+                    }
+                    $d = 1;
+                } elsif ( -e "$dir_list/daily.cvd" ) {
+                    copy( "$dir_list/daily.cvd", "$paths/daily.cvd" );
+                    if ( $! ) {
+                        warn "issue copying daily.cvd: $!\n";
+                    }
+                    $d = 1;
+                }
+                if ( -e "$dir_list/main.cld" ) {
+                    copy( "$dir_list/main.cld", "$paths/main.cld" );
+                    if ( $! ) {
+                        warn "issue copying main.cld: $!\n";
+                    }
+                    $m = 1;
+                } elsif ( -e "$dir_list/main.cvd" ) {
+                    copy( "$dir_list/main.cvd", "$paths/main.cvd" );
+                    if ( $! ) {
+                        warn "issue copying main.cvd: $!\n";
+                    }
+                    $m = 1;
+                }
+                if ( -e "$dir_list/bytecode.cld" ) {
+                    copy( "$dir_list/bytecode.cld", "$paths/bytecode.cld" );
+                    if ( $! ) {
+                        warn "issue copying bytecode: $!\n";
+                    }
+                }
+                last if ( $d && $m );
+            }
+        }
+    }
+    # Update statusbar
+    ClamTk::GUI->startup();
+
+    return 1;
+}
+
+1;
