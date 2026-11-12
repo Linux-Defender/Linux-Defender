@@ -167,11 +167,10 @@ fn thunar_sendto_installs_multi_file_scan_and_explicit_virustotal_actions() {
     .expect("read Thunar scanner action");
     assert!(scan.contains("Exec=flatpak run io.github.linuxdefender.linuxdefender %F"));
 
-    let virustotal =
-        fs::read_to_string(root.join(
-            "Thunar/sendto/io.github.linuxdefender.linuxdefender.thunar-virustotal.desktop",
-        ))
-        .expect("read Thunar VirusTotal action");
+    let virustotal = fs::read_to_string(
+        root.join("Thunar/sendto/io.github.linuxdefender.linuxdefender.thunar-virustotal.desktop"),
+    )
+    .expect("read Thunar VirusTotal action");
     assert!(virustotal.contains("--virustotal %F"));
 
     remove_integration_at(&paths, "thunar").expect("remove Thunar actions");

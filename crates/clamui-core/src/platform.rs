@@ -45,9 +45,8 @@ const LEGACY_NAUTILUS_SCAN: &[IntegrationAsset] = &[IntegrationAsset {
     bytes: b"",
     executable: true,
 }];
-const DOLPHIN_SCAN: &[u8] = include_bytes!(
-    "../assets/integrations/io.github.linuxdefender.linuxdefender.service.desktop"
-);
+const DOLPHIN_SCAN: &[u8] =
+    include_bytes!("../assets/integrations/io.github.linuxdefender.linuxdefender.service.desktop");
 const DOLPHIN_VIRUSTOTAL: &[u8] = include_bytes!(
     "../assets/integrations/io.github.linuxdefender.linuxdefender-virustotal.desktop"
 );

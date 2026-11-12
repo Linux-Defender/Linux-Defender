@@ -14,15 +14,19 @@ Confirm the tools and run tests:
 cargo --version
 bun --version
 cd /home/kiras/Linux-Defender
-git switch revival/unified-app
-cargo fmt --check --all
-cargo test -p clamui-core --test virustotal --test urlscan --test platform --test scheduler --locked
-cargo test -p clamui --bin clamui --locked
+git fetch origin
+git switch rebrand/linux-defender-identity
+git pull --ff-only
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets --locked -- -D warnings
+cargo test --workspace --locked
 cd desktop
 bun install --frozen-lockfile
 bun run build
 bun run tauri dev
 ```
+
+This tests the pushed identity-rebrand branch from PR #3. It does not merge or install the app system-wide. To test the current `revival/unified-app` branch instead, skip the `git switch` and `git pull` lines.
 
 For the new VirusTotal folder/progress feature, first run the mocked backend tests above. In the app, configure a personal VirusTotal API key in Preferences, open Scan, choose the folder icon in the scan actions, and inspect the complete file list and total size before clicking **Upload and scan folder**. Use a temporary folder with harmless files only; confirm the scan shows each file and progress, then use **Cancel scan** to verify cancellation. For URL checks, use only a non-sensitive public test URL and explicitly accept VirusTotal/urlscan sharing terms. Do not use malware samples or private files/URLs for this UI check.
 

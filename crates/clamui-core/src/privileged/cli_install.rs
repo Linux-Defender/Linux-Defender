@@ -577,8 +577,8 @@ mod tests {
         let detail = install_test_source(&context(root.path()), &prefix, &source)
             .expect("stage helper and policy");
         let helper = prefix.join("usr/bin/clamui-apply-preferences");
-        let policy = prefix
-            .join("usr/share/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy");
+        let policy =
+            prefix.join("usr/share/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy");
 
         assert_eq!(
             fs::read(&helper).expect("read staged helper"),
