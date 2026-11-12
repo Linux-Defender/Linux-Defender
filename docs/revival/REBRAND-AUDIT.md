@@ -14,6 +14,8 @@ The MIT license retains the original upstream copyright notice alongside the Lin
 
 The repository-pinned public key identifies `Linux Defender Release Signing`, fingerprint `28CA212A766A6D51273EBBD277B8EC8622C91282`, created 2026-11-12 and expiring 2028-11-11. GitHub Actions secrets named `GPG_PRIVATE_KEY` and `GPG_PASSPHRASE` are configured. Secret values are not readable through the CLI and were not exposed. No signed Linux Defender helper release has yet been published; key presence alone does not validate a signed artifact.
 
+GitHub reports one open moderate dependency alert, [GHSA-wrw7-89jp-8q8g](https://github.com/Linux-Defender/Linux-Defender/security/dependabot/1), for `glib` in `Cargo.lock`. This checkout resolves `glib 0.18.5` through the GTK 3 / WebKitGTK stack (`gtk 0.18.2`); the advisory's first patched version is `glib 0.20.0`. The branding update does not change this dependency. Resolve it by evaluating a compatible Tauri/GTK stack upgrade, then rerun the full test and packaging matrix.
+
 ## Latest ClamUI update
 
 The upstream [ClamUI v0.6.0 release](https://github.com/linx-systems/clamui/releases/tag/v0.6.0) was published 2026-11-11. Default branch head checked: `fd2481dcf95c889cf623017433cc2ff17fbe427e` (2026-11-11 22:00 UTC).
