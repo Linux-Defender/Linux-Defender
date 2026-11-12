@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the native ClamUI Debian packages.
+# Build the native Linux Defender Debian packages.
 # Usage: ./debian/build-deb.sh [OUTPUT_DIR]
 
 set -euo pipefail
@@ -7,7 +7,7 @@ umask 022
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-PACKAGE_NAME="clamui"
+PACKAGE_NAME="linux-defender"
 BUILD_DIR=""
 
 log_info() { printf '[INFO] %s\n' "$1"; }
@@ -17,7 +17,7 @@ show_help() {
     cat <<'EOF'
 Usage: ./debian/build-deb.sh [OUTPUT_DIR]
 
-Builds matching architecture-specific ClamUI and privileged-helper Debian
+Builds matching architecture-specific Linux Defender and privileged-helper Debian
 packages. OUTPUT_DIR defaults to the project root.
 
 Set CLAMUI_ARTIFACT_DIR to an existing release-artifact directory containing
@@ -207,34 +207,34 @@ stage_required_file() {
 }
 
 stage_desktop_assets() {
-    stage_required_file "$PROJECT_ROOT/data/io.github.linx_systems.ClamUI.desktop" \
-        "$BUILD_DIR/usr/share/applications/io.github.linx_systems.ClamUI.desktop" 0644
-    stage_required_file "$PROJECT_ROOT/icons/io.github.linx_systems.ClamUI.svg" \
-        "$BUILD_DIR/usr/share/icons/hicolor/scalable/apps/io.github.linx_systems.ClamUI.svg" 0644
-    stage_required_file "$PROJECT_ROOT/icons/io.github.linx_systems.ClamUI.png" \
-        "$BUILD_DIR/usr/share/icons/hicolor/128x128/apps/io.github.linx_systems.ClamUI.png" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linx_systems.ClamUI.metainfo.xml" \
-        "$BUILD_DIR/usr/share/metainfo/io.github.linx_systems.ClamUI.metainfo.xml" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.desktop" \
+        "$BUILD_DIR/usr/share/applications/io.github.linuxdefender.linuxdefender.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/icons/io.github.linuxdefender.linuxdefender.svg" \
+        "$BUILD_DIR/usr/share/icons/hicolor/scalable/apps/io.github.linuxdefender.linuxdefender.svg" 0644
+    stage_required_file "$PROJECT_ROOT/icons/io.github.linuxdefender.linuxdefender.png" \
+        "$BUILD_DIR/usr/share/icons/hicolor/128x128/apps/io.github.linuxdefender.linuxdefender.png" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.metainfo.xml" \
+        "$BUILD_DIR/usr/share/metainfo/io.github.linuxdefender.linuxdefender.metainfo.xml" 0644
 
-    stage_required_file "$PROJECT_ROOT/data/io.github.linx_systems.ClamUI.nemo_action" \
-        "$BUILD_DIR/usr/share/nemo/actions/io.github.linx_systems.ClamUI.nemo_action" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linx_systems.ClamUI-virustotal.nemo_action" \
-        "$BUILD_DIR/usr/share/nemo/actions/io.github.linx_systems.ClamUI-virustotal.nemo_action" 0644
-    stage_required_file "$PROJECT_ROOT/scripts/clamui-scan-nautilus.sh" \
-        "$BUILD_DIR/usr/share/clamui/integrations/clamui-scan-nautilus.sh" 0755
-    stage_required_file "$PROJECT_ROOT/scripts/clamui-virustotal-nautilus.sh" \
-        "$BUILD_DIR/usr/share/clamui/integrations/clamui-virustotal-nautilus.sh" 0755
+    stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.nemo_action" \
+        "$BUILD_DIR/usr/share/nemo/actions/io.github.linuxdefender.linuxdefender.nemo_action" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender-virustotal.nemo_action" \
+        "$BUILD_DIR/usr/share/nemo/actions/io.github.linuxdefender.linuxdefender-virustotal.nemo_action" 0644
+    stage_required_file "$PROJECT_ROOT/scripts/linux-defender-scan-nautilus.sh" \
+        "$BUILD_DIR/usr/share/linux-defender/integrations/linux-defender-scan-nautilus.sh" 0755
+    stage_required_file "$PROJECT_ROOT/scripts/linux-defender-virustotal-nautilus.sh" \
+        "$BUILD_DIR/usr/share/linux-defender/integrations/linux-defender-virustotal-nautilus.sh" 0755
 
-    stage_required_file "$PROJECT_ROOT/data/io.github.linx_systems.ClamUI.service.desktop" \
-        "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linx_systems.ClamUI.service.desktop" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linx_systems.ClamUI.service.desktop" \
-        "$BUILD_DIR/usr/share/kservices5/ServiceMenus/io.github.linx_systems.ClamUI.service.desktop" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linx_systems.ClamUI-virustotal.desktop" \
-        "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linx_systems.ClamUI-virustotal.desktop" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linx_systems.ClamUI-virustotal.desktop" \
-        "$BUILD_DIR/usr/share/kservices5/ServiceMenus/io.github.linx_systems.ClamUI-virustotal.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.service.desktop" \
+        "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linuxdefender.linuxdefender.service.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.service.desktop" \
+        "$BUILD_DIR/usr/share/kservices5/ServiceMenus/io.github.linuxdefender.linuxdefender.service.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender-virustotal.desktop" \
+        "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linuxdefender.linuxdefender-virustotal.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender-virustotal.desktop" \
+        "$BUILD_DIR/usr/share/kservices5/ServiceMenus/io.github.linuxdefender.linuxdefender-virustotal.desktop" 0644
     stage_required_file "$PROJECT_ROOT/signing-key.asc" \
-        "$BUILD_DIR/usr/share/clamui/signing-key.asc" 0644
+        "$BUILD_DIR/usr/share/linux-defender/signing-key.asc" 0644
 }
 
 stage_control_files() {

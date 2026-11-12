@@ -9,5 +9,5 @@ X-KDE-Priority=TopLevel
 
 [Desktop Action ScanWithLinuxDefender]
 Name=Scan with Linux Defender
-Icon=io.github.linx_systems.ClamUI
+Icon=io.github.linuxdefender.linuxdefender
 Exec=clamui %F

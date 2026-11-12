@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the version-matched native ClamUI privileged-helper Debian package.
+# Build the version-matched native Linux Defender privileged-helper Debian package.
 # Usage: ./debian/build-privileged-helper-deb.sh [OUTPUT_DIR]
 
 set -euo pipefail
@@ -16,7 +16,7 @@ show_help() {
     cat <<'EOF'
 Usage: ./debian/build-privileged-helper-deb.sh [OUTPUT_DIR]
 
-Builds clamui-privileged-helper for the native dpkg architecture. OUTPUT_DIR
+Builds linux-defender-privileged-helper for the native dpkg architecture. OUTPUT_DIR
 defaults to the project root.
 EOF
 }
@@ -52,7 +52,7 @@ extract_version() {
         log_error "Could not extract a workspace version from Cargo.toml"
         return 1
     fi
-    DEB_FILENAME="clamui-privileged-helper_${VERSION}_${ARCHITECTURE}.deb"
+    DEB_FILENAME="linux-defender-privileged-helper_${VERSION}_${ARCHITECTURE}.deb"
 }
 
 artifact_dir() {
@@ -113,7 +113,7 @@ stage_required_file() {
 }
 
 stage_package() {
-    BUILD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/clamui-helper-deb.XXXXXX")"
+    BUILD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/linux-defender-helper-deb.XXXXXX")"
     chmod 0755 "$BUILD_DIR"
     trap cleanup EXIT
     install -d -m 0755 \
@@ -125,8 +125,8 @@ stage_package() {
     # names the same canonical helper path and action ID as the native binary.
     install -m 0755 "$ARTIFACT_DIR/clamui-apply-preferences" \
         "$BUILD_DIR/usr/bin/clamui-apply-preferences"
-    stage_required_file "$PROJECT_ROOT/data/io.github.linx_systems.ClamUI.policy" \
-        "$BUILD_DIR/usr/share/polkit-1/actions/io.github.linx_systems.ClamUI.policy" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.policy" \
+        "$BUILD_DIR/usr/share/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy" 0644
 
     sed -e "s/VERSION/$VERSION/g" -e "s/ARCHITECTURE/$ARCHITECTURE/g" \
         "$SCRIPT_DIR/DEBIAN/control.helper" > "$BUILD_DIR/DEBIAN/control"

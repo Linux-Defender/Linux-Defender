@@ -6,9 +6,9 @@ const renderer = fileURLToPath(
   new URL("../../scripts/flatpak-release-source.awk", import.meta.url),
 );
 const checkoutManifest = fileURLToPath(
-  new URL("../../flathub/io.github.linx_systems.ClamUI.yml", import.meta.url),
+  new URL("../../flathub/io.github.linuxdefender.linuxdefender.yml", import.meta.url),
 );
-const releaseUrl = "https://github.com/linx-systems/clamui.git";
+const releaseUrl = "https://github.com/Linux-Defender/Linux-Defender.git";
 const releaseCommit = "0123456789abcdef0123456789abcdef01234567";
 
 type ClamuiModule = {

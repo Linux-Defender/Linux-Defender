@@ -22,15 +22,15 @@ Open **Quarantine**, search by threat or original path, then choose **Restore** 
 Default native paths are:
 
 ```text
-~/.local/share/clamui/quarantine/
-~/.local/share/clamui/quarantine.db
+~/.local/share/linux-defender/quarantine/
+~/.local/share/linux-defender/quarantine.db
 ```
 
 For Flatpak they are under:
 
 ```text
-~/.var/app/io.github.linx_systems.ClamUI/data/clamui/quarantine/
-~/.var/app/io.github.linx_systems.ClamUI/data/clamui/quarantine.db
+~/.var/app/io.github.linuxdefender.linuxdefender/data/linux-defender/quarantine/
+~/.var/app/io.github.linuxdefender.linuxdefender/data/linux-defender/quarantine.db
 ```
 
 `quarantine_directory` can move newly quarantined files, but the SQLite metadata database remains in the standard data directory. Changing it does not relocate existing items. Manual changes bypass integrity and database checks; use them only for recovery after backing up the database.

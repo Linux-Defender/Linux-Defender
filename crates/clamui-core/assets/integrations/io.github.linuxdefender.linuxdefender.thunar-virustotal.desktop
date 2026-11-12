@@ -2,7 +2,7 @@
 Type=Application
 Name=Check with VirusTotal
 Comment=Review selected files with VirusTotal
-Exec=flatpak run io.github.linx_systems.ClamUI --virustotal %F
-Icon=io.github.linx_systems.ClamUI
+Exec=flatpak run io.github.linuxdefender.linuxdefender --virustotal %F
+Icon=io.github.linuxdefender.linuxdefender
 Terminal=false
 NoDisplay=true

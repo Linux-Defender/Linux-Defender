@@ -1,11 +1,11 @@
 #!/bin/sh
-# Install Nemo context menu actions for ClamUI (Flatpak version)
+# Install Nemo context menu actions for Linux Defender (Flatpak version)
 #
 # This script copies the Nemo action files from the Flatpak to the user's
 # local Nemo actions directory, enabling right-click context menu integration.
 #
 # Usage:
-#   flatpak run --command=clamui-install-nemo-actions io.github.linx_systems.ClamUI
+#   flatpak run --command=clamui-install-nemo-actions io.github.linuxdefender.linuxdefender
 #
 # Or from within the Flatpak environment:
 #   clamui-install-nemo-actions
@@ -31,7 +31,7 @@ log_error() {
 }
 
 # Source directory (inside Flatpak)
-SOURCE_DIR="/app/share/clamui/nemo-actions"
+SOURCE_DIR="/app/share/linux-defender/integrations"
 
 # Destination directory (user's home)
 DEST_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nemo/actions"
@@ -39,8 +39,8 @@ DEST_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nemo/actions"
 # Check if running inside Flatpak
 if [ ! -d "$SOURCE_DIR" ]; then
     log_error "Nemo action files not found at $SOURCE_DIR"
-    log_error "This script should be run from within the ClamUI Flatpak:"
-    log_error "  flatpak run --command=clamui-install-nemo-actions io.github.linx_systems.ClamUI"
+    log_error "This script should be run from within the Linux Defender Flatpak:"
+    log_error "  flatpak run --command=clamui-install-nemo-actions io.github.linuxdefender.linuxdefender"
     exit 1
 fi
 
@@ -66,5 +66,5 @@ log_info "You may need to restart Nemo for changes to take effect:"
 log_info "  nemo -q"
 log_info ""
 log_info "After restart, right-click any file or folder to see:"
-log_info "  - 'Scan with ClamUI' - Scan with local ClamAV"
+log_info "  - 'Scan with Linux Defender' - Scan with local ClamAV"
 log_info "  - 'Scan with VirusTotal' - Scan online (single file only)"

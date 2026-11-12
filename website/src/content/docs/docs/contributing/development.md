@@ -124,24 +124,24 @@ ClamAV and gettext guidance is authored for this project; the contributor rules 
 
 ### Data compatibility
 
-Work against the existing XDG layouts, never ad-hoc project-local data:
+Linux Defender uses the following XDG layouts. On first startup it moves the prior ClamUI directories to these names without deleting their contents. If both old and new data directories are non-empty, startup stops and leaves both untouched for manual backup and merge:
 
 ```text
-$XDG_CONFIG_HOME/clamui/settings.json
-$XDG_CONFIG_HOME/clamui/profiles.json
-$XDG_DATA_HOME/clamui/logs/
-$XDG_DATA_HOME/clamui/quarantine.db
-$XDG_DATA_HOME/clamui/quarantine/
-$XDG_DATA_HOME/clamui/debug/
+$XDG_CONFIG_HOME/linux-defender/settings.json
+$XDG_CONFIG_HOME/linux-defender/profiles.json
+$XDG_DATA_HOME/linux-defender/logs/
+$XDG_DATA_HOME/linux-defender/quarantine.db
+$XDG_DATA_HOME/linux-defender/quarantine/
+$XDG_DATA_HOME/linux-defender/debug/
 ```
 
-The Flatpak equivalents live beneath `~/.var/app/io.github.linx_systems.ClamUI/`. Preserve atomic settings writes, unknown settings keys, existing JSON/SQLite schemas, privacy migrations, restrictive file modes, and profile/import compatibility. The core must remain GTK-widget and Tauri independent so these behaviors also work through the CLI.
+The Flatpak equivalents live beneath `~/.var/app/io.github.linuxdefender.linuxdefender/`. The first launch also checks the previous Flatpak app directory and moves the old settings and data subdirectories when the new paths are empty. Preserve atomic settings writes, unknown settings keys, existing JSON/SQLite schemas, privacy migrations, restrictive file modes, and profile/import compatibility. The core must remain GTK-widget and Tauri independent so these behaviors also work through the CLI.
 
 ### Host and privilege boundaries
 
 Linux Defender uses host `clamscan` and `freshclam`; daemon mode also uses host `clamd` and `clamdscan`. Under Flatpak, calls cross the explicit `flatpak-spawn --host` boundary. Do not bundle or emulate ClamAV.
 
-Protected configuration changes use the inherited authenticated protocol-v4 helper at `/usr/bin/clamui-apply-preferences` and `io.github.linx_systems.ClamUI.policy`. Preserve its allowlists, `PKEXEC_UID` validation, exit codes, and compatibility with an already-installed trusted helper. The helper is native Rust, not a Python wrapper. Linux Defender has not published its own signed helper package, so the in-app release installer cannot complete from this project yet. Keep the trust boundary fail-closed; never bypass a missing or invalid signature.
+Protected configuration changes use the inherited authenticated protocol-v4 helper at `/usr/bin/clamui-apply-preferences` and `io.github.linuxdefender.linuxdefender.policy`. Preserve its allowlists, `PKEXEC_UID` validation, exit codes, and compatibility with an already-installed trusted helper. The helper is native Rust, not a Python wrapper. Linux Defender has not published its own signed helper package, so the in-app release installer cannot complete from this project yet. Keep the trust boundary fail-closed; never bypass a missing or invalid signature.
 
 ## Test before a pull request
 
@@ -182,10 +182,10 @@ UPDATE_INFORMATION='gh-releases-zsync|Linux-Defender|Linux-Defender|latest|Linux
 
 ```bash
 ./rpm/build-privileged-helper-rpm.sh dist
-CLAMUI_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release CLAMUI_RPM_ARCH=x86_64 ./rpm/build-privileged-helper-rpm.sh dist
+CLAMUI_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release LINUX_DEFENDER_RPM_ARCH=x86_64 ./rpm/build-privileged-helper-rpm.sh dist
 ```
 
-The scripts can produce local `x86_64` or `aarch64` helper artifacts when built for the matching target; they contain the Rust helper and canonical policy, not the GUI or ClamAV. A local RPM is unsigned and is not an eligible installer asset. Only a matching signed RPM published with its detached signature can be used by the in-app Fedora installer. The RPM builder requires Cargo, `readelf` from `binutils`, and the `rpm`/`rpmbuild` package tools; a local source compilation also needs the usual Rust C toolchain, `pkg-config`, and GLib development files. It builds only the helper, so it needs neither Python nor the Bun/Tauri GUI toolchain. `CLAMUI_ARTIFACT_DIR`, `CARGO_TARGET_DIR`, and `CARGO_BUILD_TARGET` select a prebuilt or nondefault Cargo artifact; `CLAMUI_RPM_ARCH` asserts `x86_64` or `aarch64` against the helper ELF.
+The scripts can produce local `x86_64` or `aarch64` helper artifacts when built for the matching target; they contain the Rust helper and canonical policy, not the GUI or ClamAV. A local RPM is unsigned and is not an eligible installer asset. Only a matching signed RPM published with its detached signature can be used by the in-app Fedora installer. The RPM builder requires Cargo, `readelf` from `binutils`, and the `rpm`/`rpmbuild` package tools; a local source compilation also needs the usual Rust C toolchain, `pkg-config`, and GLib development files. It builds only the helper, so it needs neither Python nor the Bun/Tauri GUI toolchain. `CLAMUI_ARTIFACT_DIR`, `CARGO_TARGET_DIR`, and `CARGO_BUILD_TARGET` select a prebuilt or nondefault Cargo artifact; `LINUX_DEFENDER_RPM_ARCH` asserts `x86_64` or `aarch64` against the helper ELF.
 
 `debian/build-deb.sh` is the authoritative Debian entry point: it produces the application/helper pair and stages the policy and scheduled-scan payload. `CLAMUI_ARTIFACT_DIR` must contain executable `clamui`, `clamui-scheduled-scan`, and `clamui-apply-preferences` binaries from the baseline build. The AppImage build produces `Linux-Defender-<VERSION>-x86_64.AppImage`; when `UPDATE_INFORMATION` points to a published Linux Defender release feed, it also produces `.zsync` metadata. Until a signed Linux Defender release includes those assets, the AppImage update feed cannot update users.
 
@@ -210,7 +210,7 @@ scripts/generate-flatpak-sources.sh
 
 ### Local Flatpak checkout build
 
-`flathub/io.github.linx_systems.ClamUI.local.yml` is a developer checkout recipe. It uses `type: dir`, includes the working tree, and is not an immutable release manifest. Use a fresh directory under the checkout so the build target, Builder state, and exported repository are owned by you and on the same filesystem. This command neither installs nor replaces an existing Flatpak, and it does not delete an existing build directory:
+`flathub/io.github.linuxdefender.linuxdefender.local.yml` is a developer checkout recipe. It uses `type: dir`, includes the working tree, and is not an immutable release manifest. Use a fresh directory under the checkout so the build target, Builder state, and exported repository are owned by you and on the same filesystem. This command neither installs nor replaces an existing Flatpak, and it does not delete an existing build directory:
 
 ```bash
 mkdir -p target
@@ -219,7 +219,7 @@ flatpak-builder --user --arch="$(flatpak --default-arch)" \
   --state-dir="$flatpak_workdir/state" \
   --repo="$flatpak_workdir/repo" \
   "$flatpak_workdir/build" \
-  flathub/io.github.linx_systems.ClamUI.local.yml
+  flathub/io.github.linuxdefender.linuxdefender.local.yml
 ```
 
 The checked-in Flatpak manifest currently has the same checkout-source form. It is useful for local development, but neither checkout YAML is the immutable manifest required for an official release.
@@ -243,7 +243,7 @@ release_commit="$(git rev-parse HEAD)"
 scripts/generate-flatpak-sources.sh \
   --release-url https://github.com/Linux-Defender/Linux-Defender.git \
   --release-commit "$release_commit" \
-  --release-output flathub/io.github.linx_systems.ClamUI.release.yml
+  --release-output flathub/io.github.linuxdefender.linuxdefender.release.yml
 ```
 
 This rewrites both checked-in source JSON files and writes the Git-pinned release manifest explicitly. Review all three files together: the generated manifest replaces the complete checkout `dir` source block, including its exclusions, with the URL and exact commit while retaining the other source entries and JSON includes. This produces GitHub Flatpak release packaging input and a candidate Flathub submission manifest; it does not update the live Flathub store.
@@ -257,7 +257,7 @@ flatpak-builder --user --arch="$(flatpak --default-arch)" \
   --state-dir="$flatpak_release_dir/state" \
   --repo="$flatpak_release_dir/repo" \
   "$flatpak_release_dir/build" \
-  flathub/io.github.linx_systems.ClamUI.release.yml
+  flathub/io.github.linuxdefender.linuxdefender.release.yml
 ```
 
 This local build neither installs nor replaces a Flatpak, and it proves only the host architecture. The manifest retains legacy compatibility identifiers and is not ready to publish as a Linux Defender Flatpak. Complete an application-ID and data migration first, then validate `x86_64` and `aarch64`, obtain Flathub review, and publish only after signed release assets and migration behavior are ready. Linux Defender has no published Flathub package or signed release bundles yet.
@@ -280,4 +280,4 @@ Do not edit generated `website/public/` or `website/dist/`. Keep the active `de`
 
 ## Update the application icon
 
-`icons/io.github.linx_systems.ClamUI.svg` is the source icon; `icons/io.github.linx_systems.ClamUI.png` is its checked-in 128×128 rendering. When the SVG changes, regenerate and commit both files once. Builds install the committed PNG and never convert it at runtime.
+`icons/io.github.linuxdefender.linuxdefender.svg` is the source icon; `icons/io.github.linuxdefender.linuxdefender.png` is its checked-in 128×128 rendering. When the SVG changes, regenerate and commit both files once. Builds install the committed PNG and never convert it at runtime.

@@ -190,7 +190,11 @@ pub fn request_app_token() -> AuthorizationResult {
     };
     let response = match client
         .get(format!("{API_BASE}/app/auth"))
-        .query(&[("app-name", "ClamUI"), ("ttl", "24h"), ("read", "user")])
+        .query(&[
+            ("app-name", "Linux Defender"),
+            ("ttl", "24h"),
+            ("read", "user"),
+        ])
         .send()
     {
         Ok(response) => response,

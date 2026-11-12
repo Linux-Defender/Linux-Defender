@@ -1,4 +1,4 @@
-//! Localized scan-summary templates emitted by earlier ClamUI releases.
+//! Localized scan-summary templates emitted by earlier compatible releases.
 //!
 //! This deliberately contains only the four summary keys that the log reader
 //! recognizes. It preserves historical forms independently from the active PO

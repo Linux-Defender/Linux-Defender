@@ -10,7 +10,7 @@ pub const URLSCAN_API_KEY: &str = "urlscan_api_key";
 pub const PORTMASTER_API_TOKEN: &str = "portmaster_api_token";
 const PLAINTEXT_FALLBACK_SETTING: &str = "allow_plaintext_api_key_fallback";
 
-/// The only account names ClamUI stores. Keeping this closed prevents this
+/// The only account names Linux Defender stores. Keeping this closed prevents this
 /// module from becoming a generic secret exfiltration API.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Account {

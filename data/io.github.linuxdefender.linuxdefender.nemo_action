@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=Scan with Linux Defender
+Comment=Scan selected files and folders with Linux Defender
+Exec=clamui %F
+Icon-Name=io.github.linuxdefender.linuxdefender
+Selection=any
+Extensions=any;

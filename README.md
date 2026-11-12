@@ -43,6 +43,6 @@ The Rust desktop build needs the GTK 3 and WebKitGTK 4.1 development libraries. 
 
 ## Upstream credits and relationship
 
-This project is independent and not affiliated with Microsoft, Cisco Talos, ClamAV, or ClamTk. Portions of the Rust/Tauri/React source are derived from the original MIT-licensed upstream project; its license and notices are retained. ClamAV and ClamTk have their own licenses and copyrights. Review every imported or ported component's license before distribution. The name Linux Defender is a project name chosen by the maintainer; it does not indicate a Microsoft product or endorsement.
+Linux Defender is led by project owner and maintainer [Kira (SAFETY-CHAT)](https://github.com/SAFETY-CHAT). This project is independent and not affiliated with Microsoft, Cisco Talos, ClamAV, or ClamTk. Portions of the Rust/Tauri/React source are derived from the original MIT-licensed upstream project; its license and notices are retained in `LICENSE`. ClamAV and ClamTk have their own licenses and copyrights. Review every imported or ported component's license before distribution. The name Linux Defender is a project name chosen by its maintainer; it does not indicate a Microsoft product or endorsement.
 
 Source integration and the remaining parity work are mapped in [the consolidation inventory](docs/revival/SOURCE-CONSOLIDATION.md).

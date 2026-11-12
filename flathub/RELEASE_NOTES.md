@@ -1,14 +1,14 @@
-# ClamUI v0.5.1 AppStream release description
+# Linux Defender 0.6.0 release description
 
 ```xml
 <description>
-  <p>ClamUI 0.5.1 fixes Flatpak privileged-helper installation and improves error reporting.</p>
+  <p>Linux Defender 0.6.0 is a development snapshot of the Linux desktop security scanner.</p>
   <ul>
-    <li>Use authoritative host passwd lookups for helper downloads and configuration staging.</li>
-    <li>Select and execute trusted host checksum and GnuPG tools while preserving pinned-signature and archive-member checks.</li>
-    <li>Keep complete installation errors readable and selectable, including long paths.</li>
+    <li>Uses the host ClamAV installation and configured signature database for local scans.</li>
+    <li>Provides explicit, consent-based VirusTotal file and URL checks, plus urlscan URL checks.</li>
+    <li>Preserves existing user settings, scan history, quarantine records, and profiles during the application identity migration.</li>
   </ul>
 </description>
 ```
 
-This description is prepared for Flathub submission; it does not state that the store has published v0.5.1.
+This description is prepared for store review; it does not claim that Flathub has published the app.

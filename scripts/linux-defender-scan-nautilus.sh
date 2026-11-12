@@ -1,9 +1,9 @@
 #!/bin/bash
-# ClamUI Scanner - Nautilus Script
+# Linux Defender Scanner - Nautilus Script
 # This script is installed to ~/.local/share/nautilus/scripts/
-# and provides a "Scan with ClamUI" context menu option.
+# and provides a "Scan with Linux Defender" context menu option.
 #
-# Usage: Called by Nautilus file manager when selecting "Scripts > Scan with ClamUI"
+# Usage: Called by Nautilus file manager when selecting "Scripts > Scan with Linux Defender"
 # The selected files are passed via NAUTILUS_SCRIPT_SELECTED_FILE_PATHS environment variable.
 
 # Enable logging for debugging
@@ -18,18 +18,18 @@ log "Script started"
 log "NAUTILUS_SCRIPT_SELECTED_FILE_PATHS: $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 log "Arguments: $*"
 
-# Check if clamui is available
+# Keep the historical executable as a compatibility entry point.
 if ! command -v clamui &> /dev/null; then
-    log "ERROR: clamui command not found in PATH"
+    log "ERROR: Linux Defender is not installed (compatibility command 'clamui' was not found)"
     log "PATH: $PATH"
     # Try to notify user
     if command -v notify-send &> /dev/null; then
-        notify-send "ClamUI Not Found" "Please install ClamUI to use ClamAV scanning."
+        notify-send "Linux Defender Not Found" "Please install Linux Defender to use ClamAV scanning."
     fi
     exit 1
 fi
 
-log "clamui found at: $(command -v clamui)"
+log "Linux Defender launcher found at: $(command -v clamui)"
 
 # Get selected files from Nautilus
 # NAUTILUS_SCRIPT_SELECTED_FILE_PATHS contains newline-separated paths
@@ -39,11 +39,11 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
 
     log "Found ${#files[@]} files from NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 
-    # Launch clamui with all selected files
+    # Launch Linux Defender with all selected files.
     if [[ ${#files[@]} -gt 0 ]]; then
-        log "Launching: clamui ${files[*]}"
+        log "Launching Linux Defender for selected files"
         clamui "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
-        log "clamui exited with code: $?"
+        log "Linux Defender exited with code: $?"
     else
         log "ERROR: No files in array"
     fi
@@ -51,13 +51,13 @@ else
     # Fallback: try to use positional arguments
     if [[ $# -gt 0 ]]; then
         log "Using positional arguments: $*"
-        log "Launching: clamui $*"
+        log "Launching Linux Defender for selected paths"
         clamui "$@" 2>&1 | tee -a "$LOG_FILE"
-        log "clamui exited with code: $?"
+        log "Linux Defender exited with code: $?"
     else
         log "ERROR: No files provided (neither env var nor arguments)"
         if command -v notify-send &> /dev/null; then
-            notify-send "ClamUI" "No file selected for scanning."
+            notify-send "Linux Defender" "No file selected for scanning."
         fi
     fi
 fi

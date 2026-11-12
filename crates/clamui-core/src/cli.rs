@@ -33,7 +33,7 @@ pub fn is_cli(args: &[String]) -> bool {
     )
 }
 
-/// Runs the ClamUI headless CLI. `args` excludes argv0.
+/// Runs the Linux Defender headless CLI. `args` excludes argv0.
 pub fn run(args: &[String]) -> i32 {
     match args.first().map(String::as_str) {
         None | Some("--help") | Some("-h") => root_help(),

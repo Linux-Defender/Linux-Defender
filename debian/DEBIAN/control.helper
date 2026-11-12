@@ -1,19 +1,19 @@
-Package: clamui-privileged-helper
+Package: linux-defender-privileged-helper
 Version: VERSION
 Section: utils
 Priority: optional
 Architecture: ARCHITECTURE
 Depends: pkexec | policykit-1
-Replaces: clamui (<= VERSION)
-Maintainer: ClamUI Contributors <clamui@rooki.xyz>
-Homepage: https://github.com/linx-systems/clamui
-Description: Root-owned native pkexec helper and polkit policy for ClamUI
+Replaces: linux-defender (<= VERSION)
+Maintainer: Linux Defender contributors <noreply@github.com>
+Homepage: https://github.com/Linux-Defender/Linux-Defender
+Description: Root-owned native pkexec helper and polkit policy for Linux Defender
  Root-owned Rust helper (/usr/bin/clamui-apply-preferences) and the matching
- polkit policy that let ClamUI apply authorized host ClamAV configuration via
+ polkit policy that let Linux Defender apply authorized host ClamAV configuration via
  pkexec.
  .
- This package coexists with clamui and owns only the privileged helper and
- policy. clamui depends on this exact version.
+ This package coexists with linux-defender and owns only the privileged helper and
+ policy. linux-defender depends on this exact version.
  .
  Replaces lets dpkg transfer ownership of the helper and policy from an older
- clamui package of at most the same version without forcing an uninstall.
+ linux-defender package of at most the same version without forcing an uninstall.

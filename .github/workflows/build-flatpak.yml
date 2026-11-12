@@ -43,7 +43,7 @@ jobs:
       - name: Build Flatpak
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
-          manifest-path: flathub/io.github.linx_systems.ClamUI.local.yml
+          manifest-path: flathub/io.github.linuxdefender.linuxdefender.local.yml
           bundle: linux-defender-${{ matrix.arch }}.flatpak
           arch: ${{ matrix.arch }}
           cache-key: flatpak-builder-${{ matrix.runner }}-${{ matrix.arch }}

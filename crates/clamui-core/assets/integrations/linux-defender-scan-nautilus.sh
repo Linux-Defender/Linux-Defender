@@ -1,13 +1,13 @@
 #!/bin/bash
-# Linux Defender VirusTotal Scanner - Nautilus Script (Flatpak version)
+# Linux Defender Scanner - Nautilus Script (Flatpak version)
 # This script is installed to ~/.local/share/nautilus/scripts/
-# and provides a "Scan with VirusTotal" context menu option.
+# and provides a "Scan with Linux Defender" context menu option.
 #
-# Usage: Called by Nautilus file manager when selecting "Scripts > Scan with VirusTotal"
+# Usage: Called by Nautilus file manager when selecting "Scripts > Scan with Linux Defender"
 # The selected files are passed via NAUTILUS_SCRIPT_SELECTED_FILE_PATHS environment variable.
 
 # Enable logging for debugging
-LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/clamui/virustotal-nautilus.log"
+LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/clamui/scan-nautilus.log"
 mkdir -p "$(dirname "$LOG_FILE")"
 
 log() {
@@ -19,11 +19,11 @@ log "NAUTILUS_SCRIPT_SELECTED_FILE_PATHS: $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 log "Arguments: $*"
 
 # Check if Linux Defender Flatpak is available
-if ! flatpak info io.github.linx_systems.ClamUI &>/dev/null; then
+if ! flatpak info io.github.linuxdefender.linuxdefender &>/dev/null; then
 	log "ERROR: Linux Defender Flatpak not installed"
 	# Try to notify user
 	if command -v notify-send &>/dev/null; then
-		notify-send "Linux Defender Not Found" "Please install Linux Defender Flatpak to use VirusTotal scanning."
+		notify-send "Linux Defender Not Found" "Please install Linux Defender Flatpak to use ClamAV scanning."
 	fi
 	exit 1
 fi
@@ -38,11 +38,10 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
 
 	log "Found ${#files[@]} files from NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 
-	# Launch clamui with --virustotal flag for the first file
-	# (VirusTotal only supports single file scanning)
+	# Launch clamui with all selected files
 	if [[ ${#files[@]} -gt 0 ]]; then
-		log "Launching: flatpak run io.github.linx_systems.ClamUI --virustotal \"${files[0]}\""
-		flatpak run io.github.linx_systems.ClamUI --virustotal "${files[0]}" 2>&1 | tee -a "$LOG_FILE"
+		log "Launching: flatpak run io.github.linuxdefender.linuxdefender ${files[*]}"
+		flatpak run io.github.linuxdefender.linuxdefender "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
 		log "clamui exited with code: $?"
 	else
 		log "ERROR: No files in array"
@@ -50,14 +49,14 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
 else
 	# Fallback: try to use positional arguments
 	if [[ $# -gt 0 ]]; then
-		log "Using positional argument: $1"
-		log "Launching: flatpak run io.github.linx_systems.ClamUI --virustotal \"$1\""
-		flatpak run io.github.linx_systems.ClamUI --virustotal "$1" 2>&1 | tee -a "$LOG_FILE"
+		log "Using positional arguments: $*"
+		log "Launching: flatpak run io.github.linuxdefender.linuxdefender $*"
+		flatpak run io.github.linuxdefender.linuxdefender "$@" 2>&1 | tee -a "$LOG_FILE"
 		log "clamui exited with code: $?"
 	else
 		log "ERROR: No files provided (neither env var nor arguments)"
 		if command -v notify-send &>/dev/null; then
-			notify-send "Linux Defender VirusTotal" "No file selected for scanning."
+			notify-send "Linux Defender" "No file selected for scanning."
 		fi
 	fi
 fi
