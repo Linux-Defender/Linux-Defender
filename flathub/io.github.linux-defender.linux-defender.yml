@@ -1,4 +1,4 @@
-app-id: io.github.linux_defender.LinuxDefender
+app-id: io.github.linux-defender.linux-defender
 runtime: org.gnome.Platform
 runtime-version: "51"
 sdk: org.gnome.Sdk
@@ -65,10 +65,10 @@ modules:
       - cargo build --offline --locked --release -p clamui-core --bin clamui-scheduled-scan
       - install -Dm755 target/release/clamui /app/bin/clamui
       - install -Dm755 target/release/clamui-scheduled-scan /app/bin/clamui-scheduled-scan
-      - install -Dm644 data/io.github.linux_defender.LinuxDefender.desktop /app/share/applications/io.github.linux_defender.LinuxDefender.desktop
-      - install -Dm644 data/io.github.linux_defender.LinuxDefender.metainfo.xml /app/share/metainfo/io.github.linux_defender.LinuxDefender.metainfo.xml
-      - install -Dm644 icons/io.github.linux_defender.LinuxDefender.svg /app/share/icons/hicolor/scalable/apps/io.github.linux_defender.LinuxDefender.svg
-      - install -Dm644 icons/io.github.linux_defender.LinuxDefender.png /app/share/icons/hicolor/128x128/apps/io.github.linux_defender.LinuxDefender.png
+      - install -Dm644 data/io.github.linux-defender.linux-defender.desktop /app/share/applications/io.github.linux-defender.linux-defender.desktop
+      - install -Dm644 data/io.github.linux-defender.linux-defender.metainfo.xml /app/share/metainfo/io.github.linux-defender.linux-defender.metainfo.xml
+      - install -Dm644 icons/io.github.linux-defender.linux-defender.svg /app/share/icons/hicolor/scalable/apps/io.github.linux-defender.linux-defender.svg
+      - install -Dm644 icons/io.github.linux-defender.linux-defender.png /app/share/icons/hicolor/128x128/apps/io.github.linux-defender.linux-defender.png
       - install -d /app/share/linux-defender
       - cp -a crates/clamui-core/assets/integrations /app/share/linux-defender/integrations
       - find /app/share/linux-defender/integrations -type f -name '*.sh' -exec chmod 0755 '{}' +

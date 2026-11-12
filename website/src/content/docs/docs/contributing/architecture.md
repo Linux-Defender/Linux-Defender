@@ -5,7 +5,7 @@ description: How Linux Defender separates its headless Rust core, Tauri UI, and 
 
 Linux Defender is a Rust core plus a Tauri 2 desktop application with a React/TypeScript frontend. The core owns scanning, persistence, scheduling, host integration, and privilege-sensitive behavior; it has no Tauri or GTK widget dependency. The desktop owns WebKitGTK presentation, native dialogs, single-instance forwarding, and the pure-Rust StatusNotifierItem (SNI) tray.
 
-Linux Defender now uses the `io.github.linux_defender.LinuxDefender` application ID in desktop metadata and Tauri. The core migrates the old per-user ClamUI settings and data directories on first launch. A collision between old and new non-empty data directories stops startup with both copies left untouched so the user can back them up and merge them safely.
+Linux Defender now uses the `io.github.linux-defender.linux-defender` application ID in desktop metadata and Tauri. The core migrates the old per-user ClamUI settings and data directories on first launch. A collision between old and new non-empty data directories stops startup with both copies left untouched so the user can back them up and merge them safely.
 
 ```mermaid
 flowchart TB

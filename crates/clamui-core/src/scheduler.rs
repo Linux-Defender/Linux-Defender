@@ -716,7 +716,7 @@ fn shell_words(input: &str) -> Vec<String> {
 fn launcher_command() -> Option<Vec<String>> {
     if is_flatpak() {
         let app_id = env::var("FLATPAK_ID")
-            .unwrap_or_else(|_| "io.github.linux_defender.LinuxDefender".to_owned());
+            .unwrap_or_else(|_| "io.github.linux-defender.linux-defender".to_owned());
         return Some(vec![
             "flatpak".to_owned(),
             "run".to_owned(),
@@ -1252,15 +1252,15 @@ fn notify(title: &str, body: &str, urgency: &str) -> AppResult<()> {
     ];
     let user_icon = env::var_os("HOME").map(PathBuf::from).map(|home| {
         home.join(
-            ".local/share/icons/hicolor/scalable/apps/io.github.linux_defender.LinuxDefender.png",
+            ".local/share/icons/hicolor/scalable/apps/io.github.linux-defender.linux-defender.png",
         )
     });
     let icon = [
         PathBuf::from(
-            "/app/share/icons/hicolor/scalable/apps/io.github.linux_defender.LinuxDefender.png",
+            "/app/share/icons/hicolor/scalable/apps/io.github.linux-defender.linux-defender.png",
         ),
         PathBuf::from(
-            "/usr/share/icons/hicolor/scalable/apps/io.github.linux_defender.LinuxDefender.png",
+            "/usr/share/icons/hicolor/scalable/apps/io.github.linux-defender.linux-defender.png",
         ),
     ]
     .into_iter()

@@ -163,12 +163,12 @@ stage_sources() {
     install -d -m 0755 "$SOURCES_DIR"
     install -m 0755 "$HELPER" "$SOURCES_DIR/clamui-apply-preferences"
 
-    local policy="$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender.policy"
+    local policy="$PROJECT_ROOT/data/io.github.linux-defender.linux-defender.policy"
     if [ ! -f "$policy" ]; then
         log_error "Required package asset is missing: $policy"
         return 1
     fi
-    install -m 0644 "$policy" "$SOURCES_DIR/io.github.linux_defender.LinuxDefender.policy"
+    install -m 0644 "$policy" "$SOURCES_DIR/io.github.linux-defender.linux-defender.policy"
 }
 
 verify_package_metadata() {

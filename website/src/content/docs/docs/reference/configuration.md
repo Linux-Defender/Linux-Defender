@@ -9,11 +9,11 @@ Linux Defender uses its own XDG data directory and Flatpak app ID. On first laun
 
 | Data | Native default | Flatpak default |
 | --- | --- | --- |
-| Settings | `~/.config/linux-defender/settings.json` | `~/.var/app/io.github.linux_defender.LinuxDefender/config/linux-defender/settings.json` |
-| Profiles | `~/.config/linux-defender/profiles.json` | `~/.var/app/io.github.linux_defender.LinuxDefender/config/linux-defender/profiles.json` |
-| Logs | `~/.local/share/linux-defender/logs/` | `~/.var/app/io.github.linux_defender.LinuxDefender/data/linux-defender/logs/` |
-| Quarantine database and payloads | `~/.local/share/linux-defender/quarantine.db`, `quarantine/` | `~/.var/app/io.github.linux_defender.LinuxDefender/data/linux-defender/` |
-| Debug logs | `~/.local/share/linux-defender/debug/` | `~/.var/app/io.github.linux_defender.LinuxDefender/data/linux-defender/debug/` |
+| Settings | `~/.config/linux-defender/settings.json` | `~/.var/app/io.github.linux-defender.linux-defender/config/linux-defender/settings.json` |
+| Profiles | `~/.config/linux-defender/profiles.json` | `~/.var/app/io.github.linux-defender.linux-defender/config/linux-defender/profiles.json` |
+| Logs | `~/.local/share/linux-defender/logs/` | `~/.var/app/io.github.linux-defender.linux-defender/data/linux-defender/logs/` |
+| Quarantine database and payloads | `~/.local/share/linux-defender/quarantine.db`, `quarantine/` | `~/.var/app/io.github.linux-defender.linux-defender/data/linux-defender/` |
+| Debug logs | `~/.local/share/linux-defender/debug/` | `~/.var/app/io.github.linux-defender.linux-defender/data/linux-defender/debug/` |
 
 `XDG_CONFIG_HOME` and `XDG_DATA_HOME` change native base paths. In Flatpak they apply inside the sandbox. Back up both locations, not only `settings.json`:
 

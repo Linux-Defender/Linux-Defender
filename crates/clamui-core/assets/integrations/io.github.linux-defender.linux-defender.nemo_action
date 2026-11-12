@@ -1,7 +1,7 @@
 [Nemo Action]
 Name=Scan with Linux Defender
 Comment=Scan selected files/folders with Linux Defender antivirus
-Exec=flatpak run io.github.linux_defender.LinuxDefender %F
-Icon-Name=io.github.linux_defender.LinuxDefender
+Exec=flatpak run io.github.linux-defender.linux-defender %F
+Icon-Name=io.github.linux-defender.linux-defender
 Selection=any
 Extensions=any;

@@ -6,7 +6,7 @@ const renderer = fileURLToPath(
   new URL("../../scripts/flatpak-release-source.awk", import.meta.url),
 );
 const checkoutManifest = fileURLToPath(
-  new URL("../../flathub/io.github.linux_defender.LinuxDefender.yml", import.meta.url),
+  new URL("../../flathub/io.github.linux-defender.linux-defender.yml", import.meta.url),
 );
 const releaseUrl = "https://github.com/Linux-Defender/Linux-Defender.git";
 const releaseCommit = "0123456789abcdef0123456789abcdef01234567";

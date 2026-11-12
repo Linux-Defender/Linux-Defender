@@ -13,7 +13,7 @@ use std::sync::atomic::{AtomicU64, Ordering};
 
 const POLICY_BYTES: &[u8] = include_bytes!(concat!(
     env!("CARGO_MANIFEST_DIR"),
-    "/../../data/io.github.linux_defender.LinuxDefender.policy"
+    "/../../data/io.github.linux-defender.linux-defender.policy"
 ));
 const HELPER_NAME: &str = "clamui-apply-preferences";
 const DIRECTORY_MODE: u32 = 0o755;
@@ -110,7 +110,7 @@ fn install_from_source(
         )?;
         atomic_install_bytes(
             &actions,
-            OsStr::new("io.github.linux_defender.LinuxDefender.policy"),
+            OsStr::new("io.github.linux-defender.linux-defender.policy"),
             POLICY_BYTES,
             0o644,
             prefix_components.is_empty(),
@@ -577,8 +577,8 @@ mod tests {
         let detail = install_test_source(&context(root.path()), &prefix, &source)
             .expect("stage helper and policy");
         let helper = prefix.join("usr/bin/clamui-apply-preferences");
-        let policy =
-            prefix.join("usr/share/polkit-1/actions/io.github.linux_defender.LinuxDefender.policy");
+        let policy = prefix
+            .join("usr/share/polkit-1/actions/io.github.linux-defender.linux-defender.policy");
 
         assert_eq!(
             fs::read(&helper).expect("read staged helper"),

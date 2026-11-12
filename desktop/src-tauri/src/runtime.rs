@@ -29,7 +29,7 @@ use tauri::{
 use tauri_plugin_clipboard_manager::ClipboardExt;
 use tauri_plugin_notification::{Action, ActionType, NotificationExt};
 
-const CANONICAL_LINUX_APPLICATION_ID: &str = "io.github.linux_defender.LinuxDefender";
+const CANONICAL_LINUX_APPLICATION_ID: &str = "io.github.linux-defender.linux-defender";
 
 pub struct AppState {
     ctx: Context,

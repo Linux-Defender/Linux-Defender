@@ -52,8 +52,8 @@ case "$1" in
 
         # Touch the desktop file to trigger file monitor refresh
         # Some DEs watch for mtime changes on desktop files
-        if [ -f /usr/share/applications/io.github.linux_defender.LinuxDefender.desktop ]; then
-            touch /usr/share/applications/io.github.linux_defender.LinuxDefender.desktop 2>/dev/null || true
+        if [ -f /usr/share/applications/io.github.linux-defender.linux-defender.desktop ]; then
+            touch /usr/share/applications/io.github.linux-defender.linux-defender.desktop 2>/dev/null || true
         fi
         ;;
 

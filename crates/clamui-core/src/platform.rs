@@ -31,9 +31,9 @@ const RECENTLY_SCANNED_TTL: Duration = Duration::from_secs(60);
 const RETRY_DELAY: Duration = Duration::from_secs(10);
 
 const NEMO_SCAN: &[u8] =
-    include_bytes!("../assets/integrations/io.github.linux_defender.LinuxDefender.nemo_action");
+    include_bytes!("../assets/integrations/io.github.linux-defender.linux-defender.nemo_action");
 const NEMO_VIRUSTOTAL: &[u8] = include_bytes!(
-    "../assets/integrations/io.github.linux_defender.LinuxDefender-virustotal.nemo_action"
+    "../assets/integrations/io.github.linux-defender.linux-defender-virustotal.nemo_action"
 );
 const NAUTILUS_SCAN: &[u8] =
     include_bytes!("../assets/integrations/linux-defender-scan-nautilus.sh");
@@ -45,16 +45,17 @@ const LEGACY_NAUTILUS_SCAN: &[IntegrationAsset] = &[IntegrationAsset {
     bytes: b"",
     executable: true,
 }];
-const DOLPHIN_SCAN: &[u8] =
-    include_bytes!("../assets/integrations/io.github.linux_defender.LinuxDefender.service.desktop");
+const DOLPHIN_SCAN: &[u8] = include_bytes!(
+    "../assets/integrations/io.github.linux-defender.linux-defender.service.desktop"
+);
 const DOLPHIN_VIRUSTOTAL: &[u8] = include_bytes!(
-    "../assets/integrations/io.github.linux_defender.LinuxDefender-virustotal.desktop"
+    "../assets/integrations/io.github.linux-defender.linux-defender-virustotal.desktop"
 );
 const THUNAR_SCAN: &[u8] = include_bytes!(
-    "../assets/integrations/io.github.linux_defender.LinuxDefender.thunar-scan.desktop"
+    "../assets/integrations/io.github.linux-defender.linux-defender.thunar-scan.desktop"
 );
 const THUNAR_VIRUSTOTAL: &[u8] = include_bytes!(
-    "../assets/integrations/io.github.linux_defender.LinuxDefender.thunar-virustotal.desktop"
+    "../assets/integrations/io.github.linux-defender.linux-defender.thunar-virustotal.desktop"
 );
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize)]
@@ -198,14 +199,14 @@ struct IntegrationAsset {
 
 const NEMO_ASSETS: &[IntegrationAsset] = &[
     IntegrationAsset {
-        source: "io.github.linux_defender.LinuxDefender.nemo_action",
-        destination: "nemo/actions/io.github.linux_defender.LinuxDefender.nemo_action",
+        source: "io.github.linux-defender.linux-defender.nemo_action",
+        destination: "nemo/actions/io.github.linux-defender.linux-defender.nemo_action",
         bytes: NEMO_SCAN,
         executable: false,
     },
     IntegrationAsset {
-        source: "io.github.linux_defender.LinuxDefender-virustotal.nemo_action",
-        destination: "nemo/actions/io.github.linux_defender.LinuxDefender-virustotal.nemo_action",
+        source: "io.github.linux-defender.linux-defender-virustotal.nemo_action",
+        destination: "nemo/actions/io.github.linux-defender.linux-defender-virustotal.nemo_action",
         bytes: NEMO_VIRUSTOTAL,
         executable: false,
     },
@@ -226,45 +227,45 @@ const NAUTILUS_ASSETS: &[IntegrationAsset] = &[
 ];
 const DOLPHIN_MODERN_ASSETS: &[IntegrationAsset] = &[
     IntegrationAsset {
-        source: "io.github.linux_defender.LinuxDefender.service.desktop",
-        destination: "kio/servicemenus/io.github.linux_defender.LinuxDefender.service.desktop",
+        source: "io.github.linux-defender.linux-defender.service.desktop",
+        destination: "kio/servicemenus/io.github.linux-defender.linux-defender.service.desktop",
         bytes: DOLPHIN_SCAN,
         executable: true,
     },
     IntegrationAsset {
-        source: "io.github.linux_defender.LinuxDefender-virustotal.desktop",
-        destination: "kio/servicemenus/io.github.linux_defender.LinuxDefender-virustotal.desktop",
+        source: "io.github.linux-defender.linux-defender-virustotal.desktop",
+        destination: "kio/servicemenus/io.github.linux-defender.linux-defender-virustotal.desktop",
         bytes: DOLPHIN_VIRUSTOTAL,
         executable: true,
     },
 ];
 const DOLPHIN_LEGACY_ASSETS: &[IntegrationAsset] = &[
     IntegrationAsset {
-        source: "io.github.linux_defender.LinuxDefender.service.desktop",
+        source: "io.github.linux-defender.linux-defender.service.desktop",
         destination:
-            "kservices5/ServiceMenus/io.github.linux_defender.LinuxDefender.service.desktop",
+            "kservices5/ServiceMenus/io.github.linux-defender.linux-defender.service.desktop",
         bytes: DOLPHIN_SCAN,
         executable: true,
     },
     IntegrationAsset {
-        source: "io.github.linux_defender.LinuxDefender-virustotal.desktop",
+        source: "io.github.linux-defender.linux-defender-virustotal.desktop",
         destination:
-            "kservices5/ServiceMenus/io.github.linux_defender.LinuxDefender-virustotal.desktop",
+            "kservices5/ServiceMenus/io.github.linux-defender.linux-defender-virustotal.desktop",
         bytes: DOLPHIN_VIRUSTOTAL,
         executable: true,
     },
 ];
 const THUNAR_ASSETS: &[IntegrationAsset] = &[
     IntegrationAsset {
-        source: "io.github.linux_defender.LinuxDefender.thunar-scan.desktop",
-        destination: "Thunar/sendto/io.github.linux_defender.LinuxDefender.thunar-scan.desktop",
+        source: "io.github.linux-defender.linux-defender.thunar-scan.desktop",
+        destination: "Thunar/sendto/io.github.linux-defender.linux-defender.thunar-scan.desktop",
         bytes: THUNAR_SCAN,
         executable: false,
     },
     IntegrationAsset {
-        source: "io.github.linux_defender.LinuxDefender.thunar-virustotal.desktop",
+        source: "io.github.linux-defender.linux-defender.thunar-virustotal.desktop",
         destination:
-            "Thunar/sendto/io.github.linux_defender.LinuxDefender.thunar-virustotal.desktop",
+            "Thunar/sendto/io.github.linux-defender.linux-defender.thunar-virustotal.desktop",
         bytes: THUNAR_VIRUSTOTAL,
         executable: false,
     },

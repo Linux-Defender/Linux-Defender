@@ -125,8 +125,8 @@ stage_package() {
     # names the same canonical helper path and action ID as the native binary.
     install -m 0755 "$ARTIFACT_DIR/clamui-apply-preferences" \
         "$BUILD_DIR/usr/bin/clamui-apply-preferences"
-    stage_required_file "$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender.policy" \
-        "$BUILD_DIR/usr/share/polkit-1/actions/io.github.linux_defender.LinuxDefender.policy" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linux-defender.linux-defender.policy" \
+        "$BUILD_DIR/usr/share/polkit-1/actions/io.github.linux-defender.linux-defender.policy" 0644
 
     sed -e "s/VERSION/$VERSION/g" -e "s/ARCHITECTURE/$ARCHITECTURE/g" \
         "$SCRIPT_DIR/DEBIAN/control.helper" > "$BUILD_DIR/DEBIAN/control"

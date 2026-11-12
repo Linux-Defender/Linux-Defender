@@ -207,32 +207,32 @@ stage_required_file() {
 }
 
 stage_desktop_assets() {
-    stage_required_file "$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender.desktop" \
-        "$BUILD_DIR/usr/share/applications/io.github.linux_defender.LinuxDefender.desktop" 0644
-    stage_required_file "$PROJECT_ROOT/icons/io.github.linux_defender.LinuxDefender.svg" \
-        "$BUILD_DIR/usr/share/icons/hicolor/scalable/apps/io.github.linux_defender.LinuxDefender.svg" 0644
-    stage_required_file "$PROJECT_ROOT/icons/io.github.linux_defender.LinuxDefender.png" \
-        "$BUILD_DIR/usr/share/icons/hicolor/128x128/apps/io.github.linux_defender.LinuxDefender.png" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender.metainfo.xml" \
-        "$BUILD_DIR/usr/share/metainfo/io.github.linux_defender.LinuxDefender.metainfo.xml" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linux-defender.linux-defender.desktop" \
+        "$BUILD_DIR/usr/share/applications/io.github.linux-defender.linux-defender.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/icons/io.github.linux-defender.linux-defender.svg" \
+        "$BUILD_DIR/usr/share/icons/hicolor/scalable/apps/io.github.linux-defender.linux-defender.svg" 0644
+    stage_required_file "$PROJECT_ROOT/icons/io.github.linux-defender.linux-defender.png" \
+        "$BUILD_DIR/usr/share/icons/hicolor/128x128/apps/io.github.linux-defender.linux-defender.png" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linux-defender.linux-defender.metainfo.xml" \
+        "$BUILD_DIR/usr/share/metainfo/io.github.linux-defender.linux-defender.metainfo.xml" 0644
 
-    stage_required_file "$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender.nemo_action" \
-        "$BUILD_DIR/usr/share/nemo/actions/io.github.linux_defender.LinuxDefender.nemo_action" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender-virustotal.nemo_action" \
-        "$BUILD_DIR/usr/share/nemo/actions/io.github.linux_defender.LinuxDefender-virustotal.nemo_action" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linux-defender.linux-defender.nemo_action" \
+        "$BUILD_DIR/usr/share/nemo/actions/io.github.linux-defender.linux-defender.nemo_action" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linux-defender.linux-defender-virustotal.nemo_action" \
+        "$BUILD_DIR/usr/share/nemo/actions/io.github.linux-defender.linux-defender-virustotal.nemo_action" 0644
     stage_required_file "$PROJECT_ROOT/scripts/linux-defender-scan-nautilus.sh" \
         "$BUILD_DIR/usr/share/linux-defender/integrations/linux-defender-scan-nautilus.sh" 0755
     stage_required_file "$PROJECT_ROOT/scripts/linux-defender-virustotal-nautilus.sh" \
         "$BUILD_DIR/usr/share/linux-defender/integrations/linux-defender-virustotal-nautilus.sh" 0755
 
-    stage_required_file "$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender.service.desktop" \
-        "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linux_defender.LinuxDefender.service.desktop" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender.service.desktop" \
-        "$BUILD_DIR/usr/share/kservices5/ServiceMenus/io.github.linux_defender.LinuxDefender.service.desktop" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender-virustotal.desktop" \
-        "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linux_defender.LinuxDefender-virustotal.desktop" 0644
-    stage_required_file "$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender-virustotal.desktop" \
-        "$BUILD_DIR/usr/share/kservices5/ServiceMenus/io.github.linux_defender.LinuxDefender-virustotal.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linux-defender.linux-defender.service.desktop" \
+        "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linux-defender.linux-defender.service.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linux-defender.linux-defender.service.desktop" \
+        "$BUILD_DIR/usr/share/kservices5/ServiceMenus/io.github.linux-defender.linux-defender.service.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linux-defender.linux-defender-virustotal.desktop" \
+        "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linux-defender.linux-defender-virustotal.desktop" 0644
+    stage_required_file "$PROJECT_ROOT/data/io.github.linux-defender.linux-defender-virustotal.desktop" \
+        "$BUILD_DIR/usr/share/kservices5/ServiceMenus/io.github.linux-defender.linux-defender-virustotal.desktop" 0644
     stage_required_file "$PROJECT_ROOT/signing-key.asc" \
         "$BUILD_DIR/usr/share/linux-defender/signing-key.asc" 0644
 }
