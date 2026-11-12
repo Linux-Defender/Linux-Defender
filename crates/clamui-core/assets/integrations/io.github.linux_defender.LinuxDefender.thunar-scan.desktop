@@ -2,7 +2,7 @@
 Type=Application
 Name=Scan with Linux Defender
 Comment=Scan selected files and folders with Linux Defender
-Exec=flatpak run io.github.linx_systems.ClamUI %F
-Icon=io.github.linx_systems.ClamUI
+Exec=flatpak run io.github.linux_defender.LinuxDefender %F
+Icon=io.github.linux_defender.LinuxDefender
 Terminal=false
 NoDisplay=true

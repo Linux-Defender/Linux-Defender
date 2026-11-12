@@ -1,6 +1,6 @@
-# ClamUI
+# Linux Defender
 
-ClamUI configures host ClamAV tools and presents their scan outcomes.
+Linux Defender configures host ClamAV tools and presents their scan outcomes.
 
 ## Language
 

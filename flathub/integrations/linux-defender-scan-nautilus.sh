@@ -19,7 +19,7 @@ log "NAUTILUS_SCRIPT_SELECTED_FILE_PATHS: $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 log "Arguments: $*"
 
 # Check if Linux Defender Flatpak is available
-if ! flatpak info io.github.linx_systems.ClamUI &>/dev/null; then
+if ! flatpak info io.github.linux_defender.LinuxDefender &>/dev/null; then
 	log "ERROR: Linux Defender Flatpak not installed"
 	# Try to notify user
 	if command -v notify-send &>/dev/null; then
@@ -38,11 +38,11 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
 
 	log "Found ${#files[@]} files from NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 
-	# Launch clamui with all selected files
+# Launch Linux Defender with all selected files.
 	if [[ ${#files[@]} -gt 0 ]]; then
-		log "Launching: flatpak run io.github.linx_systems.ClamUI ${files[*]}"
-		flatpak run io.github.linx_systems.ClamUI "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
-		log "clamui exited with code: $?"
+		log "Launching: flatpak run io.github.linux_defender.LinuxDefender ${files[*]}"
+		flatpak run io.github.linux_defender.LinuxDefender "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
+        log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files in array"
 	fi
@@ -50,9 +50,9 @@ else
 	# Fallback: try to use positional arguments
 	if [[ $# -gt 0 ]]; then
 		log "Using positional arguments: $*"
-		log "Launching: flatpak run io.github.linx_systems.ClamUI $*"
-		flatpak run io.github.linx_systems.ClamUI "$@" 2>&1 | tee -a "$LOG_FILE"
-		log "clamui exited with code: $?"
+		log "Launching: flatpak run io.github.linux_defender.LinuxDefender $*"
+		flatpak run io.github.linux_defender.LinuxDefender "$@" 2>&1 | tee -a "$LOG_FILE"
+        log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files provided (neither env var nor arguments)"
 		if command -v notify-send &>/dev/null; then

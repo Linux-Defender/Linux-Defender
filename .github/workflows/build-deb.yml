@@ -89,7 +89,7 @@ jobs:
           shopt -s nullglob
           arch="${{ matrix.architecture }}"
           debs=()
-          for package in clamui clamui-privileged-helper; do
+          for package in linux-defender linux-defender-privileged-helper; do
             pattern="dist/${package}_*_${arch}.deb"
             matches=( $pattern )
             if [ "${#matches[@]}" -ne 1 ]; then
@@ -115,7 +115,7 @@ jobs:
         with:
           name: debian-packages-${{ matrix.architecture }}
           path: |
-            dist/clamui_*_${{ matrix.architecture }}.deb
-            dist/clamui-privileged-helper_*_${{ matrix.architecture }}.deb
+            dist/linux-defender_*_${{ matrix.architecture }}.deb
+            dist/linux-defender-privileged-helper_*_${{ matrix.architecture }}.deb
           if-no-files-found: error
           retention-days: 7

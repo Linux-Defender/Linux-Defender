@@ -5,9 +5,9 @@ description: Current Linux Defender release status and the verification rules fo
 
 ## Linux Defender artifacts
 
-Linux Defender 0.6.0 is a development snapshot. This repository has not published signed Linux Defender packages, an official release signing key, or release checksums. Do not install an artifact presented as a Linux Defender release until it is linked from the [Linux Defender releases page](https://github.com/Linux-Defender/Linux-Defender/releases) and its signature instructions are published here.
+Linux Defender 0.6.0 is a development snapshot. The repository has an official release signing key, but has not published signed Linux Defender packages or release checksums. Do not install an artifact presented as a Linux Defender release until it is linked from the [Linux Defender releases page](https://github.com/Linux-Defender/Linux-Defender/releases) and its signature instructions are published here.
 
-The v0.6.0 upstream signature key and release assets belong to the original project. They do not verify Linux Defender builds or authorize Linux Defender packages. Use the [upstream release page](https://github.com/linx-systems/clamui/releases) only for artifacts published by that project.
+The Linux Defender release key is published in `signing-key.asc`. Its fingerprint is `28CA212A766A6D51273EBBD277B8EC8622C91282`. Verify that a package is linked from the [Linux Defender releases page](https://github.com/Linux-Defender/Linux-Defender/releases) and signed by this key before installation.
 
 ## Checking a source checkout
 

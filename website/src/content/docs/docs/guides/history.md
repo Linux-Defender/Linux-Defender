@@ -19,7 +19,7 @@ clamui history --help
 clamui history --json
 ```
 
-Native logs are JSON files under `~/.local/share/clamui/logs/`; Flatpak logs are under `~/.var/app/io.github.linx_systems.ClamUI/data/clamui/logs/`.
+Native logs are JSON files under `~/.local/share/linux-defender/logs/`; Flatpak logs are under `~/.var/app/io.github.linux_defender.LinuxDefender/data/linux-defender/logs/`.
 
 ## Daemon output
 

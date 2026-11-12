@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the version-matched native ClamUI privileged-helper RPM package.
+# Build the version-matched native Linux Defender privileged-helper RPM package.
 # Usage: ./rpm/build-privileged-helper-rpm.sh [OUTPUT_DIR]
 
 set -euo pipefail
@@ -17,13 +17,13 @@ show_help() {
     cat <<'EOF'
 Usage: ./rpm/build-privileged-helper-rpm.sh [OUTPUT_DIR]
 
-Builds an x86_64 or aarch64 clamui-privileged-helper RPM. OUTPUT_DIR defaults
+Builds an x86_64 or aarch64 linux-defender-privileged-helper RPM. OUTPUT_DIR defaults
 to the project root. Set CLAMUI_ARTIFACT_DIR to an existing directory containing
 clamui-apply-preferences to package a prebuilt native helper. Otherwise the
 script runs the locked clamui-core helper-only Cargo build.
 
 CARGO_TARGET_DIR and CARGO_BUILD_TARGET select the normal Cargo artifact
-location. CLAMUI_RPM_ARCH may be set to x86_64 or aarch64 to assert the
+location. LINUX_DEFENDER_RPM_ARCH may be set to x86_64 or aarch64 to assert the
 architecture of the helper ELF before it is packaged.
 EOF
 }
@@ -132,8 +132,8 @@ verify_helper_architecture() {
             ;;
     esac
 
-    if [ -n "${CLAMUI_RPM_ARCH:-}" ] && [ "$CLAMUI_RPM_ARCH" != "$RPM_ARCH" ]; then
-        log_error "CLAMUI_RPM_ARCH=$CLAMUI_RPM_ARCH does not match helper ELF architecture $RPM_ARCH"
+    if [ -n "${LINUX_DEFENDER_RPM_ARCH:-}" ] && [ "$LINUX_DEFENDER_RPM_ARCH" != "$RPM_ARCH" ]; then
+        log_error "LINUX_DEFENDER_RPM_ARCH=$LINUX_DEFENDER_RPM_ARCH does not match helper ELF architecture $RPM_ARCH"
         return 1
     fi
 
@@ -157,18 +157,18 @@ check_prerequisites() {
 }
 
 stage_sources() {
-    RPMBUILD_TOPDIR="$(mktemp -d "${TMPDIR:-/tmp}/clamui-helper-rpm.XXXXXX")"
+    RPMBUILD_TOPDIR="$(mktemp -d "${TMPDIR:-/tmp}/linux-defender-helper-rpm.XXXXXX")"
     SOURCES_DIR="$RPMBUILD_TOPDIR/SOURCES"
     trap cleanup EXIT
     install -d -m 0755 "$SOURCES_DIR"
     install -m 0755 "$HELPER" "$SOURCES_DIR/clamui-apply-preferences"
 
-    local policy="$PROJECT_ROOT/data/io.github.linx_systems.ClamUI.policy"
+    local policy="$PROJECT_ROOT/data/io.github.linux_defender.LinuxDefender.policy"
     if [ ! -f "$policy" ]; then
         log_error "Required package asset is missing: $policy"
         return 1
     fi
-    install -m 0644 "$policy" "$SOURCES_DIR/io.github.linx_systems.ClamUI.policy"
+    install -m 0644 "$policy" "$SOURCES_DIR/io.github.linux_defender.LinuxDefender.policy"
 }
 
 verify_package_metadata() {
@@ -176,7 +176,7 @@ verify_package_metadata() {
     local -a metadata
     mapfile -t metadata < <(rpm --query --package --queryformat '%{NAME}\n%{VERSION}\n%{RELEASE}\n%{EPOCH}\n%{ARCH}\n' "$package")
     if [ "${#metadata[@]}" -ne 5 ] \
-        || [ "${metadata[0]}" != "clamui-privileged-helper" ] \
+        || [ "${metadata[0]}" != "linux-defender-privileged-helper" ] \
         || [ "${metadata[1]}" != "$VERSION" ] \
         || [ "${metadata[2]}" != "1" ] \
         || [ "${metadata[3]}" != "0" ] \
@@ -187,7 +187,7 @@ verify_package_metadata() {
 }
 
 build_package() {
-    local expected_name="clamui-privileged-helper-${VERSION}-1.${RPM_ARCH}.rpm"
+    local expected_name="linux-defender-privileged-helper-${VERSION}-1.${RPM_ARCH}.rpm"
     local package="$RPMBUILD_TOPDIR/RPMS/$RPM_ARCH/$expected_name"
     local output="$OUTPUT_DIR/$expected_name"
 
@@ -195,7 +195,7 @@ build_package() {
         --define "_topdir $RPMBUILD_TOPDIR" \
         --define "clamui_version $VERSION" \
         --define "_build_id_links none" \
-        -bb "$SCRIPT_DIR/clamui-privileged-helper.spec"
+        -bb "$SCRIPT_DIR/linux-defender-privileged-helper.spec"
 
     if [ ! -f "$package" ]; then
         log_error "rpmbuild did not produce the expected package: $package"

@@ -5,9 +5,9 @@
 <policyconfig>
   <vendor>Linux Defender</vendor>
   <vendor_url>https://github.com/Linux-Defender/Linux-Defender</vendor_url>
-  <icon_name>io.github.linx_systems.ClamUI</icon_name>
+  <icon_name>io.github.linux_defender.LinuxDefender</icon_name>
 
-  <action id="io.github.linx_systems.clamui.apply-preferences">
+  <action id="io.github.linux_defender.linuxdefender.apply-preferences">
     <description>Apply Linux Defender system configuration changes</description>
     <message>Authentication is required to save ClamAV system settings from Linux Defender.</message>
     <defaults>

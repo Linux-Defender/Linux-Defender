@@ -6,8 +6,8 @@ resolver = "2"
 version = "0.6.0"
 edition = "2021"
 license = "MIT"
-authors = ["ClamUI Contributors"]
-repository = "https://github.com/linx-systems/clamui"
+authors = ["Linux Defender contributors"]
+repository = "https://github.com/Linux-Defender/Linux-Defender"
 
 [workspace.dependencies]
 base64 = "0.23"

@@ -99,7 +99,6 @@ const ONACCESS_BOOLEAN_FIELDS = [
 ] as const;
 
 const SUGGESTED_SIGNATURE_URLS = [
-  "https://urlhaus.abuse.ch/downloads/urlhaus.ndb",
   "http://sigs.interserver.net/interserver256.hdb",
   "http://sigs.interserver.net/interservertopline.db",
   "http://sigs.interserver.net/shell.ldb",
@@ -757,8 +756,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
         <CustomUrlListField values={freshclamValues.DatabaseCustomURL ?? []} onChange={(next) => updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", next))} />
         <div className="toolbar actions"><button className="button" type="button" onClick={addSuggestedUrls}>{_("Suggested")}</button></div>
         <p className="muted">{_(
-          // Translators: Suggested and Save & Apply are button labels; use their translations. Keep URLhaus and InterServer unchanged.
-          "Suggested adds URLhaus and three InterServer databases to this draft. Save & Apply is still required.",
+          // Translators: Suggested and Save & Apply are button labels; use their translations. Keep InterServer unchanged.
+          "Suggested adds three InterServer databases to this draft. Save & Apply is still required.",
         )}</p>
         <p className="muted">{_(
           // Translators: Keep the URI schemes unchanged.
@@ -766,7 +765,6 @@ export default function ConfigPreferences({ section }: { section: string }) {
         )}</p>
       </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("Signature Providers")}</h3>
-        <div className="setting-row"><span className="row-copy"><strong>URLhaus</strong><small className="muted">{_("Free malware URL blocklist; no registration required.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://urlhaus.abuse.ch/api/")}>{_("Open provider")}</button></div>
         <div className="setting-row"><span className="row-copy"><strong>SecuriteInfo</strong><small className="muted">{_("Registration is required; URLs include your personal API key.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://www.securiteinfo.com/")}>{_("Open provider")}</button></div>
         <div className="setting-row"><span className="row-copy"><strong>SaneSecurity</strong><small className="muted">{_(
           // Translators: Keep fangfrisch and clamav-unofficial-sigs unchanged; they are tool names.

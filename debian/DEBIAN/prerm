@@ -1,10 +1,10 @@
 #!/bin/bash
-# ClamUI pre-removal script
+# Linux Defender pre-removal script
 # Performs cleanup tasks before package removal
 
 set -e
 
-# prerm script for clamui
+# prerm script for linux-defender
 #
 # See https://www.debian.org/doc/debian-policy/ for policy details
 #
@@ -16,7 +16,7 @@ set -e
 
 case "$1" in
     remove)
-        # ClamUI is a GUI application without background services
+        # Linux Defender is a GUI application without background services
         # No processes to stop or state to save before removal
         # Icon cache and desktop database updates happen in postrm
         :

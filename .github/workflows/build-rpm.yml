@@ -60,7 +60,7 @@ jobs:
 
       - name: Build RPM helper package
         env:
-          CLAMUI_RPM_ARCH: ${{ matrix.arch }}
+          LINUX_DEFENDER_RPM_ARCH: ${{ matrix.arch }}
         run: ./rpm/build-privileged-helper-rpm.sh dist
 
       - name: Verify RPM bootstrap rejects an invalid detached signature
@@ -69,7 +69,7 @@ jobs:
         run: |
           set -euo pipefail
           shopt -s nullglob
-          rpms=( "dist/clamui-privileged-helper-"*-1."$RPM_ARCH".rpm )
+          rpms=( "dist/linux-defender-privileged-helper-"*-1."$RPM_ARCH".rpm )
           test "${#rpms[@]}" -eq 1
           export CLAMUI_TEST_HELPER_RPM="$(realpath "${rpms[0]}")"
           cargo test --release -p clamui-core rpm_bootstrap_rejects_invalid_signature -- --ignored
@@ -85,7 +85,7 @@ jobs:
       - name: Sign and verify RPM helper package
         if: startsWith(github.ref, 'refs/tags/') || inputs.sign == true
         env:
-          EXPECTED_FINGERPRINT: 037273A518BE90BA6EA27B3CDEF2A3E473DE1E26
+          EXPECTED_FINGERPRINT: 28CA212A766A6D51273EBBD277B8EC8622C91282
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           RPM_ARCH: ${{ matrix.arch }}
         run: |
@@ -97,7 +97,7 @@ jobs:
           test "$imported_fingerprint" = "$EXPECTED_FINGERPRINT"
 
           shopt -s nullglob
-          rpms=( "dist/clamui-privileged-helper-"*-1."$RPM_ARCH".rpm )
+          rpms=( "dist/linux-defender-privileged-helper-"*-1."$RPM_ARCH".rpm )
           test "${#rpms[@]}" -eq 1
           rpm="${rpms[0]}"
 
@@ -129,7 +129,7 @@ jobs:
 
           mapfile -t metadata < <(rpm --query --package --queryformat '%{NAME}\n%{VERSION}\n%{RELEASE}\n%{EPOCH}\n%{ARCH}\n' "$rpm")
           test "${#metadata[@]}" -eq 5
-          test "${metadata[0]}" = "clamui-privileged-helper"
+          test "${metadata[0]}" = "linux-defender-privileged-helper"
           expected_version="$(grep -E '^version[[:space:]]*=' Cargo.toml | head -n 1)"
           expected_version="${expected_version#*=}"
           expected_version="${expected_version//[[:space:]]/}"
@@ -157,7 +157,7 @@ jobs:
         with:
           name: rpm-package-${{ matrix.arch }}
           path: |
-            dist/clamui-privileged-helper-*-1.${{ matrix.arch }}.rpm
-            dist/clamui-privileged-helper-*-1.${{ matrix.arch }}.rpm.asc
+            dist/linux-defender-privileged-helper-*-1.${{ matrix.arch }}.rpm
+            dist/linux-defender-privileged-helper-*-1.${{ matrix.arch }}.rpm.asc
           if-no-files-found: error
           retention-days: 7

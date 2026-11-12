@@ -57,7 +57,7 @@ fn protocol_and_policy_identity_are_stable() {
     assert_eq!(MAX_CONFIG_READ_BYTES, 1024 * 1024);
     assert_eq!(
         POLICY_ACTION,
-        "io.github.linx_systems.clamui.apply-preferences"
+        "io.github.linux_defender.linuxdefender.apply-preferences"
     );
 }
 

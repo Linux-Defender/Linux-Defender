@@ -1,6 +1,6 @@
 # Linux Defender contributor guide
 
-Linux Defender is a Linux desktop frontend for **host-installed ClamAV**. Its Rust/Tauri/React source incorporates an MIT-licensed upstream foundation. The app, launchers, helper, packaging, and data paths still use legacy compatibility identifiers; preserve those until a tested migration changes them. The production application is Rust: a headless core, a Tauri 2 native runtime, and a React/TypeScript frontend. Preserve existing public desktop, AppStream, and Flatpak IDs, persisted user data, and command aliases until a tested migration is complete.
+Linux Defender is a Linux desktop frontend for **host-installed ClamAV**. Its Rust/Tauri/React source incorporates an MIT-licensed upstream foundation. The Linux Defender product name is the only user-facing brand. Retain original contributor notices and historical upstream references where required, and retain old command, data, helper, and secret-service identifiers only as compatibility contracts until their migration has dedicated tests. The production application is Rust: a headless core, a Tauri 2 native runtime, and a React/TypeScript frontend.
 
 ## Architecture and boundaries
 
@@ -13,7 +13,7 @@ Linux Defender is a Linux desktop frontend for **host-installed ClamAV**. Its Ru
 | `debian/`, `flathub/`, `appimage/` | Distribution-specific packaging; keep the same app identity and host-ClamAV boundary in every format. |
 | `website/` | The published Astro/Starlight documentation site. |
 
-The frontend has one request path to the native runtime; the runtime forwards only allowlisted operations to the core. Core events use `{ event, data }` on `clamui-event`. Do not add arbitrary frontend filesystem, shell, process, remote-navigation, or generic IPC access. Keep slow work off the UI thread and scope cancellation to its operation ID.
+The frontend has one request path to the native runtime; the runtime forwards only allowlisted operations to the core. Core events currently use `{ event, data }` on the compatibility channel `clamui-event`. Do not add arbitrary frontend filesystem, shell, process, remote-navigation, or generic IPC access. Keep slow work off the UI thread and scope cancellation to its operation ID.
 
 The Rust core and desktop are the only application implementation. Make behavior changes in their owned source boundaries and preserve the established core-to-runtime-to-frontend contract.
 

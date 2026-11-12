@@ -29,9 +29,10 @@ pub(crate) fn install_cli_helper(ctx: &Context, prefix: &Path) -> AppResult<Stri
 pub const PROTOCOL_VERSION: u8 = 4;
 pub const MAX_CONFIG_READ_BYTES: usize = 1024 * 1024;
 pub const HELPER_PATH: &str = "/usr/bin/clamui-apply-preferences";
-pub const POLICY_PATH: &str = "/usr/share/polkit-1/actions/io.github.linx_systems.ClamUI.policy";
-pub const POLICY_ACTION: &str = "io.github.linx_systems.clamui.apply-preferences";
-pub const HELPER_PACKAGE: &str = "clamui-privileged-helper";
+pub const POLICY_PATH: &str =
+    "/usr/share/polkit-1/actions/io.github.linux_defender.LinuxDefender.policy";
+pub const POLICY_ACTION: &str = "io.github.linux_defender.linuxdefender.apply-preferences";
+pub const HELPER_PACKAGE: &str = "linux-defender-privileged-helper";
 
 const ALLOWED_DEST_DIRS: [&str; 3] = ["/etc/clamav", "/etc/clamd.d", "/etc/clamav-unofficial-sigs"];
 const ALLOWED_DEST_FILE: &str = "/etc/freshclam.conf";
@@ -41,7 +42,7 @@ const LEGACY_HELPER_MODULES: [&str; 2] = [
     "/usr/lib/clamui/clamui_privileged_paths.py",
 ];
 const PINNED_SIGNING_KEY: &[u8] = include_bytes!("../../../signing-key.asc");
-const PINNED_SIGNING_FINGERPRINT: &str = "037273A518BE90BA6EA27B3CDEF2A3E473DE1E26";
+const PINNED_SIGNING_FINGERPRINT: &str = "28CA212A766A6D51273EBBD277B8EC8622C91282";
 const MAX_HELPER_METADATA_BYTES: usize = 256 * 1024;
 const MAX_HELPER_PACKAGE_BYTES: u64 = 64 * 1024 * 1024;
 const O_NOFOLLOW: i32 = 0o400000;
@@ -79,7 +80,7 @@ target=$stage/helper.deb
 [ "$(/usr/bin/stat -c %s -- "$target")" = "$size" ] || exit 4
 [ "$(/usr/bin/sha256sum -- "$target" | /usr/bin/cut -d' ' -f1)" = "$digest" ] || exit 4
 fields=$(/usr/bin/timeout 300 /usr/bin/dpkg-deb --show '--showformat=${Package}\n${Version}\n${Architecture}\n' -- "$target") || exit 5
-[ "$fields" = "clamui-privileged-helper
+[ "$fields" = "linux-defender-privileged-helper
 $version
 $arch" ] || exit 5
 set +e
@@ -126,7 +127,7 @@ target_signature=$stage/helper.rpm.asc
 [ "$(/usr/bin/sha256sum -- "$target" | /usr/bin/cut -d' ' -f1)" = "$digest" ] || exit 4
 [ "$(/usr/bin/sha256sum -- "$target_signature" | /usr/bin/cut -d' ' -f1)" = "$signature_digest" ] || exit 4
 fields=$(/usr/bin/timeout 300 /usr/bin/rpm --query --queryformat '%{NAME}\n%{EPOCHNUM}\n%{VERSION}\n%{RELEASE}\n%{ARCH}\n' --package "$target") || exit 5
-[ "$fields" = "clamui-privileged-helper
+[ "$fields" = "linux-defender-privileged-helper
 0
 $version
 1
@@ -158,10 +159,10 @@ while IFS=: read -r kind _ _ _ _ _ _ _ _ fingerprint _; do
 done <<CLAMUI_KEY_LISTING
 $key_listing
 CLAMUI_KEY_LISTING
-[ "$key_count" -eq 1 ] && [ "$primary_fingerprint" = 037273A518BE90BA6EA27B3CDEF2A3E473DE1E26 ] || exit 6
+[ "$key_count" -eq 1 ] && [ "$primary_fingerprint" = 28CA212A766A6D51273EBBD277B8EC8622C91282 ] || exit 6
 "$gpg" --batch --no-options --homedir "$gnupg" --import "$key" || exit 6
 status=$("$gpg" --batch --no-options --homedir "$gnupg" --status-fd=1 --verify "$target_signature" "$target" 2>/dev/null) || exit 6
-case "$status" in *"[GNUPG:] VALIDSIG 037273A518BE90BA6EA27B3CDEF2A3E473DE1E26 "*) ;; *) exit 6;; esac
+case "$status" in *"[GNUPG:] VALIDSIG 28CA212A766A6D51273EBBD277B8EC8622C91282 "*) ;; *) exit 6;; esac
 rpmdb=$stage/rpmdb
 /usr/bin/mkdir -m 700 -- "$rpmdb"
 /usr/bin/rpmkeys --dbpath "$rpmdb" --define '_keyring rpmdb' --define '_pkgverify_level all' --import "$key" || exit 6
@@ -176,7 +177,7 @@ case "$backend" in
   atomic)
     /usr/bin/timeout 30 /usr/bin/rpm-ostree status --pending-exit-77 >/dev/null || exit 8
     set +e
-    /usr/bin/rpm --query -- clamui-privileged-helper >/dev/null 2>&1
+    /usr/bin/rpm --query -- linux-defender-privileged-helper >/dev/null 2>&1
     package_status=$?
     set -e
     [ "$package_status" -eq 1 ] || exit 8
@@ -185,7 +186,7 @@ case "$backend" in
     status=$?
     [ "$status" -eq 0 ] || exit "$status"
     /usr/bin/timeout 30 /usr/bin/systemctl try-restart polkit.service || exit 9
-    /usr/bin/timeout 30 /usr/bin/pkaction --action-id io.github.linx_systems.clamui.apply-preferences >/dev/null || exit 9
+    /usr/bin/timeout 30 /usr/bin/pkaction --action-id io.github.linux_defender.linuxdefender.apply-preferences >/dev/null || exit 9
     status=0
     ;;
 esac
@@ -2062,7 +2063,7 @@ fn verify_deb_signature(path: &Path) -> AppResult<()> {
             flatpak,
         )?;
         if !import_status.success() {
-            return Err("cannot import ClamUI signing key".to_owned());
+            return Err("cannot import Linux Defender signing key".to_owned());
         }
         let (verify_status, verified_stdout, verified_stderr) = host_bounded_output_in_environment(
             gpg,
@@ -2157,7 +2158,8 @@ fn verify_pinned_key_material(gpg: &str, key_path: &Path, flatpak: bool) -> AppR
     }
     if !status.success() || public_keys != 1 || primary != Some(PINNED_SIGNING_FINGERPRINT) {
         return Err(
-            "compiled ClamUI signing key does not have the pinned primary fingerprint".to_owned(),
+            "compiled Linux Defender signing key does not have the pinned primary fingerprint"
+                .to_owned(),
         );
     }
     Ok(())
@@ -2193,7 +2195,7 @@ fn verify_rpm_detached_signature(package: &Path, signature: &Path) -> AppResult<
             flatpak,
         )?;
         if !import_status.success() {
-            return Err("cannot import ClamUI signing key".to_owned());
+            return Err("cannot import Linux Defender signing key".to_owned());
         }
         let (verify_status, _, verified_stderr) = host_bounded_output_in_environment(
             gpg,
@@ -2525,7 +2527,7 @@ fn trusted_helper_status(
             package_name: HELPER_PACKAGE.to_owned(),
             version,
             detail: Some(
-                "The host helper package version does not match this ClamUI version.".to_owned(),
+                "The host helper package version does not match this Linux Defender version.".to_owned(),
             ),
             installed: false,
             installable: false,
@@ -2596,7 +2598,7 @@ pub fn status() -> PrivilegedHelperStatus {
                 unavailable_helper_status(
                     version,
                     state,
-                    "The Atomic host already has a privileged-helper RPM. Repair or upgrade it manually; ClamUI only performs new add-only live installations.".to_owned(),
+                    "The Atomic host already has a privileged-helper RPM. Repair or upgrade it manually; Linux Defender only performs new add-only live installations.".to_owned(),
                 )
             } else if backend.is_none() && state == CanonicalHelperState::Missing {
                 unavailable_helper_status(
@@ -2623,7 +2625,7 @@ fn download_bounded(url: &str, destination: &Path, limit: usize) -> AppResult<()
             .get(url)
             .header(
                 reqwest::header::USER_AGENT,
-                concat!("ClamUI/", env!("CARGO_PKG_VERSION")),
+                concat!("Linux-Defender/", env!("CARGO_PKG_VERSION")),
             )
             .send()
             .and_then(reqwest::blocking::Response::error_for_status)
@@ -2695,7 +2697,7 @@ fn release_asset_metadata(
     content_types: &[&str],
 ) -> AppResult<(u64, String, String)> {
     let expected_url = format!(
-        "https://github.com/linx-systems/clamui/releases/download/v{}/{expected_name}",
+        "https://github.com/Linux-Defender/Linux-Defender/releases/download/v{}/{expected_name}",
         app_version()
     );
     let size = asset
@@ -2821,8 +2823,9 @@ fn select_release_asset(
 
 fn release_asset(backend: HelperBackend) -> AppResult<HelperAsset> {
     let version = app_version();
-    let release =
-        format!("https://api.github.com/repos/linx-systems/clamui/releases/tags/v{version}");
+    let release = format!(
+        "https://api.github.com/repos/Linux-Defender/Linux-Defender/releases/tags/v{version}"
+    );
     let directory = unique_directory(&env::temp_dir(), "clamui-release")?;
     let temp = directory.join("release.json");
     let result = (|| -> AppResult<HelperAsset> {
@@ -2962,7 +2965,7 @@ pub fn dispatch(ctx: &Context, action: &str, _args: Value) -> AppResult<Value> {
                     "{}: {error}",
                     crate::i18n::translate(
                         ctx,
-                        // Translators: "privileged-helper" identifies the ClamUI helper component.
+                        // Translators: "privileged-helper" identifies the Linux Defender helper component.
                         "The privileged-helper installation failed. Try again or install it manually.",
                     )
                 )
@@ -2996,8 +2999,11 @@ mod rpm_bootstrap_tests {
         fs::set_permissions(&package, fs::Permissions::from_mode(0o600))
             .expect("secure staged helper RPM");
         let signature = root.path().join("helper.rpm.asc");
-        fs::write(&signature, b"not a detached ClamUI helper RPM signature\n")
-            .expect("write invalid detached signature");
+        fs::write(
+            &signature,
+            b"not a detached Linux Defender helper RPM signature\n",
+        )
+        .expect("write invalid detached signature");
         fs::set_permissions(&signature, fs::Permissions::from_mode(0o600))
             .expect("secure invalid detached signature");
 
@@ -3076,7 +3082,7 @@ mod helper_install_policy_tests {
             "state": "uploaded",
             "content_type": content_type,
             "browser_download_url":
-                format!("https://github.com/linx-systems/clamui/releases/download/v{version}/{}", name),
+                format!("https://github.com/Linux-Defender/Linux-Defender/releases/download/v{version}/{}", name),
             "digest": format!("sha256:{}", "a".repeat(64)),
         })
     }

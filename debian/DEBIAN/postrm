@@ -1,10 +1,10 @@
 #!/bin/bash
-# ClamUI post-removal script
+# Linux Defender post-removal script
 # Updates icon cache and desktop database after package removal
 
 set -e
 
-# postrm script for clamui
+# postrm script for linux-defender
 #
 # See https://www.debian.org/doc/debian-policy/ for policy details
 #

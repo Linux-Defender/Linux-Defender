@@ -48,14 +48,14 @@ pub fn translate(ctx: &Context, message: &str) -> String {
 ///
 /// The generated catalogs retain GNU gettext's singular and plural message
 /// IDs as one NUL-separated key. Selection deliberately recognizes only the
-/// plural rules used by ClamUI's shipped catalogs; it never evaluates catalog
+/// plural rules used by the shipped catalogs; it never evaluates catalog
 /// expressions at runtime. If the selected localized form is unavailable,
 /// the caller's English singular or plural message is returned instead.
 pub fn translate_plural(ctx: &Context, singular: &str, plural: &str, count: u64) -> String {
     translate_plural_from_catalog(active_catalog(ctx), singular, plural, count).to_owned()
 }
 
-/// Format a precise, offset-aware timestamp using the active ClamUI locale.
+/// Format a precise, offset-aware timestamp using the active locale.
 ///
 /// Core messages retain the original offset instead of converting it to local
 /// time, so diagnostic timestamps describe the instant reported by their

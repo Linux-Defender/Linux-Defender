@@ -1,4 +1,4 @@
-app-id: io.github.linx_systems.ClamUI
+app-id: io.github.linux_defender.LinuxDefender
 runtime: org.gnome.Platform
 runtime-version: "51"
 sdk: org.gnome.Sdk
@@ -34,7 +34,7 @@ finish-args:
   - --talk-name=org.freedesktop.StatusNotifierWatcher
 
   # Host ClamAV, systemd user scheduling, and file-manager integrations remain
-  # host integrations. ClamUI does not ship a scanner engine or virus database.
+  # host integrations. Linux Defender does not ship a scanner engine or virus database.
   - --filesystem=xdg-run/gvfsd
   - --filesystem=host
   - --talk-name=org.freedesktop.Flatpak
@@ -65,13 +65,13 @@ modules:
       - cargo build --offline --locked --release -p clamui-core --bin clamui-scheduled-scan
       - install -Dm755 target/release/clamui /app/bin/clamui
       - install -Dm755 target/release/clamui-scheduled-scan /app/bin/clamui-scheduled-scan
-      - install -Dm644 data/io.github.linx_systems.ClamUI.desktop /app/share/applications/io.github.linx_systems.ClamUI.desktop
-      - install -Dm644 data/io.github.linx_systems.ClamUI.metainfo.xml /app/share/metainfo/io.github.linx_systems.ClamUI.metainfo.xml
-      - install -Dm644 icons/io.github.linx_systems.ClamUI.svg /app/share/icons/hicolor/scalable/apps/io.github.linx_systems.ClamUI.svg
-      - install -Dm644 icons/io.github.linx_systems.ClamUI.png /app/share/icons/hicolor/128x128/apps/io.github.linx_systems.ClamUI.png
-      - install -d /app/share/clamui
-      - cp -a crates/clamui-core/assets/integrations /app/share/clamui/integrations
-      - find /app/share/clamui/integrations -type f -name '*.sh' -exec chmod 0755 '{}' +
+      - install -Dm644 data/io.github.linux_defender.LinuxDefender.desktop /app/share/applications/io.github.linux_defender.LinuxDefender.desktop
+      - install -Dm644 data/io.github.linux_defender.LinuxDefender.metainfo.xml /app/share/metainfo/io.github.linux_defender.LinuxDefender.metainfo.xml
+      - install -Dm644 icons/io.github.linux_defender.LinuxDefender.svg /app/share/icons/hicolor/scalable/apps/io.github.linux_defender.LinuxDefender.svg
+      - install -Dm644 icons/io.github.linux_defender.LinuxDefender.png /app/share/icons/hicolor/128x128/apps/io.github.linux_defender.LinuxDefender.png
+      - install -d /app/share/linux-defender
+      - cp -a crates/clamui-core/assets/integrations /app/share/linux-defender/integrations
+      - find /app/share/linux-defender/integrations -type f -name '*.sh' -exec chmod 0755 '{}' +
     sources:
       - type: dir
         skip:

@@ -3,23 +3,23 @@ title: Configuration reference
 description: XDG data, settings, profiles, and the protected host ClamAV boundary.
 ---
 
-Linux Defender currently retains legacy XDG directory names and a legacy Flatpak app ID for compatibility. There is no automatic ClamTk-to-Linux-Defender data migration yet. Back up these paths before testing or changing installs. Most application preferences save immediately. **Scheduled Scans** and host ClamAV configuration use **Save & Apply** because they can change both local settings and host state. Direct JSON edits take effect after restart; ensure the file remains a JSON object before restarting.
+Linux Defender uses its own XDG data directory and Flatpak app ID. On first launch, it moves previous ClamUI settings and data into the Linux Defender locations without changing file contents. If both old and new directories contain files, startup reports the conflict and leaves both copies untouched. Back up these paths before changing installs. Most application preferences save immediately. **Scheduled Scans** and host ClamAV configuration use **Save & Apply** because they can change both local settings and host state. Direct JSON edits take effect after restart; ensure the file remains a JSON object before restarting.
 
 ## Locations
 
 | Data | Native default | Flatpak default |
 | --- | --- | --- |
-| Settings | `~/.config/clamui/settings.json` | `~/.var/app/io.github.linx_systems.ClamUI/config/clamui/settings.json` |
-| Profiles | `~/.config/clamui/profiles.json` | `~/.var/app/io.github.linx_systems.ClamUI/config/clamui/profiles.json` |
-| Logs | `~/.local/share/clamui/logs/` | `~/.var/app/io.github.linx_systems.ClamUI/data/clamui/logs/` |
-| Quarantine database and payloads | `~/.local/share/clamui/quarantine.db`, `quarantine/` | `~/.var/app/io.github.linx_systems.ClamUI/data/clamui/` |
-| Debug logs | `~/.local/share/clamui/debug/` | `~/.var/app/io.github.linx_systems.ClamUI/data/clamui/debug/` |
+| Settings | `~/.config/linux-defender/settings.json` | `~/.var/app/io.github.linux_defender.LinuxDefender/config/linux-defender/settings.json` |
+| Profiles | `~/.config/linux-defender/profiles.json` | `~/.var/app/io.github.linux_defender.LinuxDefender/config/linux-defender/profiles.json` |
+| Logs | `~/.local/share/linux-defender/logs/` | `~/.var/app/io.github.linux_defender.LinuxDefender/data/linux-defender/logs/` |
+| Quarantine database and payloads | `~/.local/share/linux-defender/quarantine.db`, `quarantine/` | `~/.var/app/io.github.linux_defender.LinuxDefender/data/linux-defender/` |
+| Debug logs | `~/.local/share/linux-defender/debug/` | `~/.var/app/io.github.linux_defender.LinuxDefender/data/linux-defender/debug/` |
 
 `XDG_CONFIG_HOME` and `XDG_DATA_HOME` change native base paths. In Flatpak they apply inside the sandbox. Back up both locations, not only `settings.json`:
 
 ```bash
-tar -C "${XDG_CONFIG_HOME:-$HOME/.config}" -czf clamui-config-backup.tar.gz clamui
-tar -C "${XDG_DATA_HOME:-$HOME/.local/share}" -czf clamui-data-backup.tar.gz clamui
+tar -C "${XDG_CONFIG_HOME:-$HOME/.config}" -czf linux-defender-config-backup.tar.gz linux-defender
+tar -C "${XDG_DATA_HOME:-$HOME/.local/share}" -czf linux-defender-data-backup.tar.gz linux-defender
 ```
 
 ## Application settings

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Service
+Name=Linux Defender Scanner
+Comment=Scan files and folders with Linux Defender
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=application/octet-stream;inode/directory;
+Actions=ScanWithLinuxDefender;
+X-KDE-Priority=TopLevel
+
+[Desktop Action ScanWithLinuxDefender]
+Name=Scan with Linux Defender
+Icon=io.github.linux_defender.LinuxDefender
+Exec=flatpak run io.github.linux_defender.LinuxDefender %F

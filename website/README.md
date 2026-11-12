@@ -21,7 +21,7 @@ Write guides in `src/content/docs/docs/`, add new pages to the sidebar in `astro
 
 ## Deployment
 
-The GitHub Actions workflow builds `website/dist` and deploys it to GitHub Pages. Repository Pages must be enabled with GitHub Actions as the source. No custom domain is configured; do not point this project at `clamui.com`.
+The GitHub Actions workflow builds `website/dist` and deploys it to GitHub Pages. Repository Pages must be enabled with GitHub Actions as the source. No custom domain is configured.
 
 ## Structure
 

@@ -13,7 +13,7 @@ use std::sync::atomic::{AtomicU64, Ordering};
 
 const POLICY_BYTES: &[u8] = include_bytes!(concat!(
     env!("CARGO_MANIFEST_DIR"),
-    "/../../data/io.github.linx_systems.ClamUI.policy"
+    "/../../data/io.github.linux_defender.LinuxDefender.policy"
 ));
 const HELPER_NAME: &str = "clamui-apply-preferences";
 const DIRECTORY_MODE: u32 = 0o755;
@@ -110,7 +110,7 @@ fn install_from_source(
         )?;
         atomic_install_bytes(
             &actions,
-            OsStr::new("io.github.linx_systems.ClamUI.policy"),
+            OsStr::new("io.github.linux_defender.LinuxDefender.policy"),
             POLICY_BYTES,
             0o644,
             prefix_components.is_empty(),
@@ -577,7 +577,8 @@ mod tests {
         let detail = install_test_source(&context(root.path()), &prefix, &source)
             .expect("stage helper and policy");
         let helper = prefix.join("usr/bin/clamui-apply-preferences");
-        let policy = prefix.join("usr/share/polkit-1/actions/io.github.linx_systems.ClamUI.policy");
+        let policy =
+            prefix.join("usr/share/polkit-1/actions/io.github.linux_defender.LinuxDefender.policy");
 
         assert_eq!(
             fs::read(&helper).expect("read staged helper"),
@@ -593,7 +594,7 @@ mod tests {
         );
         assert!(String::from_utf8(fs::read(&policy).expect("read policy"))
             .expect("policy is UTF-8")
-            .contains("io.github.linx_systems.clamui.apply-preferences"));
+            .contains("io.github.linux_defender.linuxdefender.apply-preferences"));
         assert!(detail.contains("clamui-apply-preferences"));
     }
 

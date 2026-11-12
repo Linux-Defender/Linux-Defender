@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# local-run.sh - Build and run the Rust/Tauri ClamUI application from source.
+# local-run.sh - Build and run the Rust/Tauri Linux Defender application from source.
 # This script never installs OS packages or requests root privileges.
 #
 # Usage:
 #   ./scripts/local-run.sh                      # Sync frontend dependencies and start Tauri dev
 #   ./scripts/local-run.sh --deps               # Sync locked Bun dependencies only
 #   ./scripts/local-run.sh --run                # Run without prerequisite checks
-#   ./scripts/local-run.sh --run -- /path/file  # Pass arguments to ClamUI
+#   ./scripts/local-run.sh --run -- /path/file  # Pass arguments to Linux Defender
 
 set -euo pipefail
 
@@ -70,5 +70,5 @@ if [ "$DEPS_ONLY" = true ]; then
     exit 0
 fi
 
-printf 'Starting ClamUI development runtime...\n'
+printf 'Starting Linux Defender development runtime...\n'
 exec bun run --cwd "$PROJECT_ROOT/desktop" tauri dev -- "${APP_ARGS[@]}"

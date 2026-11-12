@@ -200,7 +200,7 @@ fn history_rejects_non_positive_limit() {
 fn history_short_options_and_oversized_limit_preserve_filtered_history() {
     let mut setup = cli();
     let root = isolated_xdg(&mut setup);
-    let logs = root.join("data/clamui/logs");
+    let logs = root.join("data/linux-defender/logs");
     std::fs::create_dir_all(&logs).expect("create history directory");
     for (file_name, entry) in [
         (
@@ -370,7 +370,7 @@ fn profile_actions_honor_terminators_and_literal_tilde_paths() {
 fn quarantine_signed_or_oversized_ids_are_operational_failures_without_mutation() {
     let mut setup = cli();
     let root = isolated_xdg(&mut setup);
-    let database = root.join("data/clamui/quarantine.db");
+    let database = root.join("data/linux-defender/quarantine.db");
     std::fs::create_dir_all(database.parent().expect("quarantine data directory"))
         .expect("create quarantine data directory");
     let connection = Connection::open(&database).expect("open quarantine database");

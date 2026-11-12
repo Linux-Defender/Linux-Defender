@@ -30,7 +30,7 @@ pub mod virustotal;
 pub use common::{Context, Event, Job, Paths};
 use serde_json::Value;
 
-/// Routes only documented ClamUI operations. It intentionally exposes no generic
+/// Routes only documented Linux Defender operations. It intentionally exposes no generic
 /// process, filesystem, database, or shell execution primitive.
 pub fn dispatch(ctx: &Context, operation: &str, args: Value) -> AppResult<Value> {
     let (domain, action) = operation

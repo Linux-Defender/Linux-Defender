@@ -43,12 +43,93 @@ impl Paths {
             .map(PathBuf::from)
             .unwrap_or_else(|| home.join(".local/share"));
 
-        Ok(Self {
-            home,
-            config_dir: config_home.join("clamui"),
-            data_dir: data_home.join("clamui"),
-        })
+        Self {
+            home: home.clone(),
+            config_dir: config_home.join("linux-defender"),
+            data_dir: data_home.join("linux-defender"),
+        }
+        .migrate_legacy_data(&home, &config_home, &data_home)
     }
+
+    fn migrate_legacy_data(
+        self,
+        home: &Path,
+        config_home: &Path,
+        data_home: &Path,
+    ) -> AppResult<Self> {
+        let is_flatpak = env::var_os("FLATPAK_ID").is_some();
+        let (legacy_config, legacy_data) = if is_flatpak {
+            let old_app = home.join(".var/app/io.github.linx_systems.ClamUI");
+            (old_app.join("config/clamui"), old_app.join("data/clamui"))
+        } else {
+            (config_home.join("clamui"), data_home.join("clamui"))
+        };
+
+        migrate_legacy_directory(&legacy_config, &self.config_dir)?;
+        migrate_legacy_directory(&legacy_data, &self.data_dir)?;
+        Ok(self)
+    }
+}
+
+/// Moves an existing per-user data directory without copying or deleting its
+/// contents. If both old and new directories contain data, fail clearly so
+/// startup never silently chooses one database/settings tree over the other.
+fn migrate_legacy_directory(legacy: &Path, current: &Path) -> AppResult<()> {
+    let legacy_metadata = match fs::symlink_metadata(legacy) {
+        Ok(metadata) => metadata,
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(()),
+        Err(error) => return Err(format!("Could not inspect legacy data directory: {error}")),
+    };
+    if !legacy_metadata.is_dir() {
+        return Err(format!(
+            "Legacy data path {} is not a regular directory; move it aside before starting Linux Defender",
+            legacy.display()
+        ));
+    }
+
+    let current_metadata = match fs::symlink_metadata(current) {
+        Ok(metadata) => Some(metadata),
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => None,
+        Err(error) => {
+            return Err(format!(
+                "Could not inspect Linux Defender data directory: {error}"
+            ))
+        }
+    };
+    if let Some(metadata) = current_metadata {
+        if !metadata.is_dir() {
+            return Err(format!(
+                "Linux Defender data path {} is not a regular directory",
+                current.display()
+            ));
+        }
+        let mut entries = fs::read_dir(current)
+            .map_err(|error| format!("Could not inspect Linux Defender data directory: {error}"))?;
+        if entries.next().is_some() {
+            return Err(format!(
+                "Both old and new Linux Defender data directories contain files. They were left untouched; back up and merge {} into {} before retrying",
+                legacy.display(),
+                current.display()
+            ));
+        }
+        fs::remove_dir(current)
+            .map_err(|error| format!("Could not prepare Linux Defender data migration: {error}"))?;
+    }
+
+    let parent = current
+        .parent()
+        .ok_or_else(|| "Linux Defender data directory has no parent".to_owned())?;
+    fs::create_dir_all(parent)
+        .map_err(|error| format!("Could not create Linux Defender data directory: {error}"))?;
+    fs::rename(legacy, current).map_err(|error| {
+        format!(
+            "Could not migrate existing Linux Defender data from {} to {}: {error}. The original data remains in place",
+            legacy.display(),
+            current.display()
+        )
+    })?;
+    log::info!("Migrated Linux Defender data from {}", legacy.display());
+    Ok(())
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -501,6 +582,51 @@ pub fn now_iso() -> String {
 mod tests {
     use super::*;
     use std::sync::atomic::Ordering;
+
+    #[test]
+    fn legacy_data_directory_is_moved_without_changing_contents() {
+        let temporary = tempfile::tempdir().expect("temp dir");
+        let legacy = temporary.path().join("clamui");
+        let current = temporary.path().join("linux-defender");
+        fs::create_dir(&legacy).expect("legacy dir");
+        fs::write(legacy.join("settings.json"), b"{\"retained\":true}").expect("legacy settings");
+
+        migrate_legacy_directory(&legacy, &current).expect("migration");
+
+        assert!(!legacy.exists());
+        assert_eq!(
+            fs::read(current.join("settings.json")).expect("migrated settings"),
+            b"{\"retained\":true}"
+        );
+    }
+
+    #[test]
+    fn legacy_data_collision_fails_without_mutating_either_directory() {
+        let temporary = tempfile::tempdir().expect("temp dir");
+        let legacy = temporary.path().join("clamui");
+        let current = temporary.path().join("linux-defender");
+        fs::create_dir(&legacy).expect("legacy dir");
+        fs::create_dir(&current).expect("current dir");
+        fs::write(legacy.join("settings.json"), b"old").expect("legacy settings");
+        fs::write(current.join("settings.json"), b"new").expect("current settings");
+
+        assert!(migrate_legacy_directory(&legacy, &current).is_err());
+        assert_eq!(fs::read(legacy.join("settings.json")).unwrap(), b"old");
+        assert_eq!(fs::read(current.join("settings.json")).unwrap(), b"new");
+    }
+
+    #[test]
+    fn legacy_data_symlink_is_rejected() {
+        let temporary = tempfile::tempdir().expect("temp dir");
+        let target = temporary.path().join("target");
+        let legacy = temporary.path().join("clamui");
+        std::os::unix::fs::symlink(&target, &legacy).expect("legacy symlink");
+
+        assert!(
+            migrate_legacy_directory(&legacy, &temporary.path().join("linux-defender")).is_err()
+        );
+        assert!(legacy.is_symlink());
+    }
 
     #[test]
     fn jobs_are_isolated_and_unregistered_on_drop() {

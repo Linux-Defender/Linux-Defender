@@ -443,7 +443,7 @@ POT_INPUTS=()
 msgcat --use-first --output="$TMPDIR/clamui.pot" "${POT_INPUTS[@]}"
 
 # xgettext's template placeholder is not valid once the POT contains plural
-# entries. ClamUI's source language is English, so publish its closed rule.
+# entries. Linux Defender's source language is English, so publish its closed rule.
 CANONICAL_POT="$TMPDIR/clamui-canonical.pot"
 while IFS= read -r line || [ -n "$line" ]; do
     case "$line" in
