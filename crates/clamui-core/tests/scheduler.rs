@@ -153,7 +153,7 @@ fn cron_cleanup_removes_only_a_marker_with_a_recognized_clamui_command() {
         "0 2 * * * /usr/bin/clamui-scheduled-scan --target /home"
     ));
     assert!(is_clamui_cron_command(
-        "0 2 * * * flatpak run --command=clamui-scheduled-scan io.github.linux-defender.linux-defender"
+        "0 2 * * * flatpak run --command=clamui-scheduled-scan io.github.linuxdefender.linuxdefender"
     ));
     assert!(is_clamui_cron_command(
         "0 2 * * * python3 -m src.cli.scheduled_scan"

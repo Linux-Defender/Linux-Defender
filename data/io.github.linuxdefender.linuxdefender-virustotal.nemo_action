@@ -2,6 +2,6 @@
 Name=Scan with VirusTotal
 Comment=Scan selected file with VirusTotal online service
 Exec=clamui --virustotal %F
-Icon-Name=io.github.linux-defender.linux-defender
+Icon-Name=io.github.linuxdefender.linuxdefender
 Selection=s
 Extensions=any;

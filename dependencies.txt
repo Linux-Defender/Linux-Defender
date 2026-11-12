@@ -42,7 +42,7 @@ Desktop and Flatpak runtime
   clamav, clamav-freshclam, pkexec or policykit-1, and the matching helper.
 - The x86_64 AppImage bundles its GTK/WebKitGTK runtime; host ClamAV and
   optional host integrations remain separate.
-- Flatpak app ID: io.github.linux-defender.linux-defender. Runtime: org.gnome.Platform
+- Flatpak app ID: io.github.linuxdefender.linuxdefender. Runtime: org.gnome.Platform
   51. Recipes target x86_64 and aarch64. The GNOME runtime supplies the
   sandbox desktop libraries, not the host ClamAV engine or definitions.
   Session D-Bus access is declared for Secret Service, notifications and
@@ -119,6 +119,6 @@ Cargo.toml; crates/clamui-core/Cargo.toml; desktop/src-tauri/Cargo.toml;
 Cargo.lock; desktop/package.json; desktop/bun.lock; desktop/yarn.lock;
 debian/DEBIAN/control and control.helper; debian/build-deb.sh;
 rpm/clamui-privileged-helper.spec; appimage/build-appimage.sh;
-flathub/io.github.linux-defender.linux-defender.yml; .github/workflows/build-deb.yml,
+flathub/io.github.linuxdefender.linuxdefender.yml; .github/workflows/build-deb.yml,
 build-rpm.yml, build-appimage.yml and build-flatpak.yml; and the installation,
 scheduling, settings and security-audit guides under website/src/content/docs.

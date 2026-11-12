@@ -11,11 +11,11 @@ readonly FLATHUB_DIR="$PROJECT_ROOT/flathub"
 readonly CARGO_LOCK="$PROJECT_ROOT/Cargo.lock"
 readonly BUN_LOCK="$PROJECT_ROOT/desktop/bun.lock"
 readonly YARN_LOCK="$PROJECT_ROOT/desktop/yarn.lock"
-readonly CHECKOUT_MANIFEST="$FLATHUB_DIR/io.github.linux-defender.linux-defender.yml"
+readonly CHECKOUT_MANIFEST="$FLATHUB_DIR/io.github.linuxdefender.linuxdefender.yml"
 
 release_url=""
 release_commit=""
-release_output="$FLATHUB_DIR/io.github.linux-defender.linux-defender.release.yml"
+release_output="$FLATHUB_DIR/io.github.linuxdefender.linuxdefender.release.yml"
 
 usage() {
     cat <<'EOF'

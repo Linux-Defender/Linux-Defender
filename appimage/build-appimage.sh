@@ -3,7 +3,7 @@
 # ClamAV and its signature database remain host-owned integrations.
 set -euo pipefail
 
-readonly APP_ID="io.github.linux-defender.linux-defender"
+readonly APP_ID="io.github.linuxdefender.linuxdefender"
 readonly SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 readonly PROJECT_ROOT="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
 readonly BUILD_DIR="$PROJECT_ROOT/build-appimage-temp"

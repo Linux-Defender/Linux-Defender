@@ -39,7 +39,7 @@ This removes only Linux Defender executables and desktop/file-manager integratio
 installed in the selected local prefix. It never removes settings, profiles,
 logs, quarantine data, scan history, or other user data.
 
-For Flatpak, run: flatpak uninstall io.github.linux-defender.linux-defender
+For Flatpak, run: flatpak uninstall io.github.linuxdefender.linuxdefender
 For a Debian or other distribution package, use that distribution's package
 manager. This script deliberately does not remove the system privileged helper.
 EOF
@@ -101,18 +101,18 @@ remove_binaries() {
 
 remove_desktop_integration() {
     log_info "Removing Linux Defender desktop and file-manager integration"
-    remove_file "${DESKTOP_DIR}/io.github.linux-defender.linux-defender.desktop"
+    remove_file "${DESKTOP_DIR}/io.github.linuxdefender.linuxdefender.desktop"
     remove_file "${DESKTOP_DIR}/io.github.linx_systems.ClamUI.desktop"
-    remove_file "${ICON_THEME_DIR}/scalable/apps/io.github.linux-defender.linux-defender.svg"
-    remove_file "${ICON_THEME_DIR}/128x128/apps/io.github.linux-defender.linux-defender.png"
+    remove_file "${ICON_THEME_DIR}/scalable/apps/io.github.linuxdefender.linuxdefender.svg"
+    remove_file "${ICON_THEME_DIR}/128x128/apps/io.github.linuxdefender.linuxdefender.png"
     remove_file "${ICON_THEME_DIR}/scalable/apps/io.github.linx_systems.ClamUI.svg"
     remove_file "${ICON_THEME_DIR}/128x128/apps/io.github.linx_systems.ClamUI.png"
-    remove_file "${NEMO_ACTION_DIR}/io.github.linux-defender.linux-defender.nemo_action"
-    remove_file "${NEMO_ACTION_DIR}/io.github.linux-defender.linux-defender-virustotal.nemo_action"
-    remove_file "${DOLPHIN_KIO_DIR}/io.github.linux-defender.linux-defender.service.desktop"
-    remove_file "${DOLPHIN_KIO_DIR}/io.github.linux-defender.linux-defender-virustotal.desktop"
-    remove_file "${DOLPHIN_LEGACY_DIR}/io.github.linux-defender.linux-defender.service.desktop"
-    remove_file "${DOLPHIN_LEGACY_DIR}/io.github.linux-defender.linux-defender-virustotal.desktop"
+    remove_file "${NEMO_ACTION_DIR}/io.github.linuxdefender.linuxdefender.nemo_action"
+    remove_file "${NEMO_ACTION_DIR}/io.github.linuxdefender.linuxdefender-virustotal.nemo_action"
+    remove_file "${DOLPHIN_KIO_DIR}/io.github.linuxdefender.linuxdefender.service.desktop"
+    remove_file "${DOLPHIN_KIO_DIR}/io.github.linuxdefender.linuxdefender-virustotal.desktop"
+    remove_file "${DOLPHIN_LEGACY_DIR}/io.github.linuxdefender.linuxdefender.service.desktop"
+    remove_file "${DOLPHIN_LEGACY_DIR}/io.github.linuxdefender.linuxdefender-virustotal.desktop"
 
     if [ -n "$NAUTILUS_SCRIPTS_DIR" ]; then
         remove_file "${NAUTILUS_SCRIPTS_DIR}/Scan with Linux Defender"

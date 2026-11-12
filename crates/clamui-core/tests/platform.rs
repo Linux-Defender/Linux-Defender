@@ -12,10 +12,10 @@ use clamui_core::platform::{
 #[test]
 fn bundled_integrations_show_linux_defender_brand_and_valid_dolphin_action() {
     let dolphin = include_str!(
-        "../assets/integrations/io.github.linux-defender.linux-defender.service.desktop"
+        "../assets/integrations/io.github.linuxdefender.linuxdefender.service.desktop"
     );
     let nemo =
-        include_str!("../assets/integrations/io.github.linux-defender.linux-defender.nemo_action");
+        include_str!("../assets/integrations/io.github.linuxdefender.linuxdefender.nemo_action");
     assert!(dolphin.contains("Name=Linux Defender Scanner"));
     assert!(dolphin.contains("Actions=ScanWithLinuxDefender;"));
     assert!(dolphin.contains("[Desktop Action ScanWithLinuxDefender]"));
@@ -99,11 +99,11 @@ fn nemo_install_repair_and_remove_are_stateful_and_idempotent() {
     install_integration_at(&paths, "nemo", false).expect("install nemo integration");
     assert_eq!(status(&paths, "nemo"), "installed");
     assert!(root
-        .join("nemo/actions/io.github.linux-defender.linux-defender.nemo_action")
+        .join("nemo/actions/io.github.linuxdefender.linuxdefender.nemo_action")
         .is_file());
 
     fs::remove_file(
-        root.join("nemo/actions/io.github.linux-defender.linux-defender-virustotal.nemo_action"),
+        root.join("nemo/actions/io.github.linuxdefender.linuxdefender-virustotal.nemo_action"),
     )
     .expect("make partial installation");
     assert_eq!(status(&paths, "nemo"), "partial");
@@ -127,10 +127,10 @@ fn dolphin_repair_migrates_stale_legacy_service_menu() {
     install_integration_at(&modern, "dolphin", true).expect("repair dolphin into modern directory");
     assert_eq!(status(&modern, "dolphin"), "installed");
     assert!(root
-        .join("kio/servicemenus/io.github.linux-defender.linux-defender.service.desktop")
+        .join("kio/servicemenus/io.github.linuxdefender.linuxdefender.service.desktop")
         .is_file());
     assert!(!root
-        .join("kservices5/ServiceMenus/io.github.linux-defender.linux-defender.service.desktop")
+        .join("kservices5/ServiceMenus/io.github.linuxdefender.linuxdefender.service.desktop")
         .exists());
     fs::remove_dir_all(root).expect("remove temporary integration root");
 }
@@ -162,14 +162,14 @@ fn thunar_sendto_installs_multi_file_scan_and_explicit_virustotal_actions() {
     assert_eq!(status(&paths, "thunar"), "installed");
 
     let scan = fs::read_to_string(
-        root.join("Thunar/sendto/io.github.linux-defender.linux-defender.thunar-scan.desktop"),
+        root.join("Thunar/sendto/io.github.linuxdefender.linuxdefender.thunar-scan.desktop"),
     )
     .expect("read Thunar scanner action");
-    assert!(scan.contains("Exec=flatpak run io.github.linux-defender.linux-defender %F"));
+    assert!(scan.contains("Exec=flatpak run io.github.linuxdefender.linuxdefender %F"));
 
     let virustotal =
         fs::read_to_string(root.join(
-            "Thunar/sendto/io.github.linux-defender.linux-defender.thunar-virustotal.desktop",
+            "Thunar/sendto/io.github.linuxdefender.linuxdefender.thunar-virustotal.desktop",
         ))
         .expect("read Thunar VirusTotal action");
     assert!(virustotal.contains("--virustotal %F"));
@@ -225,7 +225,7 @@ fn removal_rejects_symlinked_managed_parent_without_touching_target() {
     let outside = temporary_share("remove-outside");
     let actions = outside.join("actions");
     fs::create_dir_all(&actions).expect("create external actions");
-    let protected = actions.join("io.github.linux-defender.linux-defender.nemo_action");
+    let protected = actions.join("io.github.linuxdefender.linuxdefender.nemo_action");
     fs::write(&protected, b"external integration").expect("create protected external file");
     symlink(&outside, root.join("nemo")).expect("create unsafe managed parent");
 

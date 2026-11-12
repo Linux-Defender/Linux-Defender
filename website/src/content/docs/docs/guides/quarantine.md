@@ -29,8 +29,8 @@ Default native paths are:
 For Flatpak they are under:
 
 ```text
-~/.var/app/io.github.linux-defender.linux-defender/data/linux-defender/quarantine/
-~/.var/app/io.github.linux-defender.linux-defender/data/linux-defender/quarantine.db
+~/.var/app/io.github.linuxdefender.linuxdefender/data/linux-defender/quarantine/
+~/.var/app/io.github.linuxdefender.linuxdefender/data/linux-defender/quarantine.db
 ```
 
 `quarantine_directory` can move newly quarantined files, but the SQLite metadata database remains in the standard data directory. Changing it does not relocate existing items. Manual changes bypass integrity and database checks; use them only for recovery after backing up the database.

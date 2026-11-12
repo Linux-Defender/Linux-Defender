@@ -19,7 +19,7 @@ log "NAUTILUS_SCRIPT_SELECTED_FILE_PATHS: $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 log "Arguments: $*"
 
 # Check if Linux Defender Flatpak is available
-if ! flatpak info io.github.linux-defender.linux-defender &>/dev/null; then
+if ! flatpak info io.github.linuxdefender.linuxdefender &>/dev/null; then
 	log "ERROR: Linux Defender Flatpak not installed"
 	# Try to notify user
 	if command -v notify-send &>/dev/null; then
@@ -40,8 +40,8 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
 
 # Launch Linux Defender with all selected files.
 	if [[ ${#files[@]} -gt 0 ]]; then
-		log "Launching: flatpak run io.github.linux-defender.linux-defender ${files[*]}"
-		flatpak run io.github.linux-defender.linux-defender "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
+		log "Launching: flatpak run io.github.linuxdefender.linuxdefender ${files[*]}"
+		flatpak run io.github.linuxdefender.linuxdefender "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
         log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files in array"
@@ -50,8 +50,8 @@ else
 	# Fallback: try to use positional arguments
 	if [[ $# -gt 0 ]]; then
 		log "Using positional arguments: $*"
-		log "Launching: flatpak run io.github.linux-defender.linux-defender $*"
-		flatpak run io.github.linux-defender.linux-defender "$@" 2>&1 | tee -a "$LOG_FILE"
+		log "Launching: flatpak run io.github.linuxdefender.linuxdefender $*"
+		flatpak run io.github.linuxdefender.linuxdefender "$@" 2>&1 | tee -a "$LOG_FILE"
         log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files provided (neither env var nor arguments)"

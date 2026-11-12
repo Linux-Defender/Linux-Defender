@@ -30,7 +30,7 @@ pub const PROTOCOL_VERSION: u8 = 4;
 pub const MAX_CONFIG_READ_BYTES: usize = 1024 * 1024;
 pub const HELPER_PATH: &str = "/usr/bin/clamui-apply-preferences";
 pub const POLICY_PATH: &str =
-    "/usr/share/polkit-1/actions/io.github.linux-defender.linux-defender.policy";
+    "/usr/share/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy";
 pub const POLICY_ACTION: &str = "io.github.linux_defender.linuxdefender.apply-preferences";
 pub const HELPER_PACKAGE: &str = "linux-defender-privileged-helper";
 

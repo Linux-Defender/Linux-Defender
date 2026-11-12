@@ -9,5 +9,5 @@ X-KDE-Priority=TopLevel
 
 [Desktop Action ScanWithVirusTotal]
 Name=Scan with VirusTotal
-Icon=io.github.linux-defender.linux-defender
+Icon=io.github.linuxdefender.linuxdefender
 Exec=clamui --virustotal %F

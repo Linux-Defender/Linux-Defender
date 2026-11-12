@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-    <id>io.github.linux-defender.linux-defender</id>
+    <id>io.github.linuxdefender.linuxdefender</id>
     <name>Linux Defender</name>
     <summary>Linux desktop security scanner</summary>
     <metadata_license>CC0-1.0</metadata_license>
@@ -27,7 +27,7 @@
         </ul>
     </description>
 
-    <launchable type="desktop-id">io.github.linux-defender.linux-defender.desktop</launchable>
+    <launchable type="desktop-id">io.github.linuxdefender.linuxdefender.desktop</launchable>
 
     <url type="homepage">https://github.com/Linux-Defender/Linux-Defender</url>
     <url type="bugtracker">https://github.com/Linux-Defender/Linux-Defender/issues</url>

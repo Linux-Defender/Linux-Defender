@@ -9,5 +9,5 @@ X-KDE-Priority=TopLevel
 
 [Desktop Action ScanWithVirusTotal]
 Name=Scan with VirusTotal
-Icon=io.github.linux-defender.linux-defender
-Exec=flatpak run io.github.linux-defender.linux-defender --virustotal %F
+Icon=io.github.linuxdefender.linuxdefender
+Exec=flatpak run io.github.linuxdefender.linuxdefender --virustotal %F
