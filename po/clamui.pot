@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-11 19:52-0500\n"
+"POT-Creation-Date: 2026-11-11 20:12-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1295,7 +1295,7 @@ msgid ""
 "installed and try again."
 msgstr ""
 
-#: crates/clamui-core/src/platform.rs:491
+#: crates/clamui-core/src/platform.rs:492
 msgid "Not running as Flatpak"
 msgstr ""
 
