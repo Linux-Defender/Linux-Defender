@@ -6,7 +6,7 @@ use crate::{
     tray::{TrayController, TrayEvent, TrayLabels},
 };
 use base64::{engine::general_purpose::STANDARD, Engine};
-use clamui_core::{
+use linux_defender_core::{
     common::{path_from_wire, path_to_wire, Context, Event},
     dispatch,
     i18n::translate,
@@ -38,7 +38,7 @@ pub struct AppState {
     scan_progress: Mutex<ScanProgressCoalescer>,
     start_minimized_pending: AtomicBool,
     tray: Arc<TrayController>,
-    monitor: Mutex<Option<clamui_core::platform::MonitorHandle>>,
+    monitor: Mutex<Option<linux_defender_core::platform::MonitorHandle>>,
     notifications: Notifications,
 }
 
@@ -113,7 +113,7 @@ impl AppState {
     }
 
     fn shutdown(&self) {
-        let _ = clamui_core::logs::write_debug(
+        let _ = linux_defender_core::logs::write_debug(
             &self.ctx,
             "INFO",
             "native-runtime",
@@ -126,7 +126,7 @@ impl AppState {
         self.ctx.cancel_all();
         self.active_jobs.wait_until_idle();
         self.tray.shutdown();
-        let _ = clamui_core::logs::write_debug(
+        let _ = linux_defender_core::logs::write_debug(
             &self.ctx,
             "INFO",
             "native-runtime",
@@ -286,14 +286,14 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                 .map_err(|error| error.to_string())?;
             *app_slot.lock().expect("app handle poisoned") = Some(app.handle().clone());
             let state = app.state::<AppState>();
-            let _ = clamui_core::logs::write_debug(
+            let _ = linux_defender_core::logs::write_debug(
                 &state.ctx,
                 "INFO",
                 "native-runtime",
                 "native runtime startup completed",
             );
             install_notification_actions(app.handle(), &state.ctx);
-            match clamui_core::platform::start_monitor(state.ctx.clone()) {
+            match linux_defender_core::platform::start_monitor(state.ctx.clone()) {
                 Ok(handle) => *state.monitor.lock().expect("monitor state poisoned") = Some(handle),
                 Err(error) => {
                     let _ = app.emit(
@@ -303,7 +303,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                             "data": { "component": "device-monitor", "message": error }
                         }),
                     );
-                    let _ = clamui_core::logs::write_debug(
+                    let _ = linux_defender_core::logs::write_debug(
                         &state.ctx,
                         "WARNING",
                         "native-runtime",

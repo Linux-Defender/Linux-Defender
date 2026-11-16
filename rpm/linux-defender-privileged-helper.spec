@@ -1,6 +1,6 @@
 Name:           linux-defender-privileged-helper
 Epoch:          0
-Version:        %{clamui_version}
+Version:        %{linux_defender_version}
 Release:        1
 Summary:        Root-owned Linux Defender privileged helper and PolicyKit policy
 License:        MIT

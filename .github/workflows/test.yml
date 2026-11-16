@@ -37,7 +37,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Run headless core tests
-        run: cargo test -p clamui-core --locked
+        run: cargo test -p linux-defender-core --locked
 
   desktop:
     name: Tauri desktop build

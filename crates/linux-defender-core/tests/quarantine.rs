@@ -1,5 +1,5 @@
-use clamui_core::common::{Context, Paths};
-use clamui_core::quarantine::dispatch;
+use linux_defender_core::common::{Context, Paths};
+use linux_defender_core::quarantine::dispatch;
 use rusqlite::{params, Connection};
 use serde_json::{json, Value};
 use sha2::{Digest, Sha256};

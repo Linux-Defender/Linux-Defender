@@ -1,4 +1,4 @@
-use clamui_core::privileged::{
+use linux_defender_core::privileged::{
     open_verified_staged_source, staging_root_for_uid, validate_destination, verify_staging_root,
     MAX_CONFIG_READ_BYTES, POLICY_ACTION, PROTOCOL_VERSION,
 };

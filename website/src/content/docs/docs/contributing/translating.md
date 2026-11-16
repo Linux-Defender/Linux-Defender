@@ -3,7 +3,7 @@ title: Translate Linux Defender
 description: Maintain Linux Defender's gettext catalogs for the Rust core and Tauri frontend.
 ---
 
-Linux Defender keeps GNU gettext catalogs in `po/`. `po/clamui.pot` is the source template, `po/LINGUAS` is the authoritative list of active catalogs, and each supported translation is `po/<LANG>.po`. The application ships **German (`de`)**, **English (`en`)**, **Spanish (`es`)**, **French (`fr`)**, **Hungarian (`hu`)**, **Italian (`it`)**, **Norwegian Bokmål (`nb`)**, **Brazilian Portuguese (`pt_BR`)**, **Vietnamese (`vi`)**, and **Simplified Chinese (`zh_CN`)**. Rust build tooling and packaging export every catalog listed in `LINGUAS` for the headless core and React UI; generated runtime files are not committed.
+Linux Defender keeps GNU gettext catalogs in `po/`. `po/linux-defender.pot` is the source template, `po/LINGUAS` is the authoritative list of active catalogs, and each supported translation is `po/<LANG>.po`. The application ships **German (`de`)**, **English (`en`)**, **Spanish (`es`)**, **French (`fr`)**, **Hungarian (`hu`)**, **Italian (`it`)**, **Norwegian Bokmål (`nb`)**, **Brazilian Portuguese (`pt_BR`)**, **Vietnamese (`vi`)**, and **Simplified Chinese (`zh_CN`)**. Rust build tooling and packaging export every catalog listed in `LINGUAS` for the headless core and React UI; generated runtime files are not committed.
 
 Localized historical scan-summary recognition is retained as bounded embedded Rust data, not as inactive full catalogs. It does not make a locale selectable, packaged, or synchronized to the current template. Catalog extraction, loading, and packaging have no Python runtime dependency.
 
@@ -20,7 +20,7 @@ sudo dnf install gettext
 # Arch Linux
 sudo pacman -S gettext
 
-msginit --input=po/clamui.pot --output-file=po/<LANG>.po --locale=<LANG>
+msginit --input=po/linux-defender.pot --output-file=po/<LANG>.po --locale=<LANG>
 ```
 
 Add `<LANG>` to `po/LINGUAS` only after explicitly deciding to ship and select the language, updating the runtime catalog policy, and translating every current entry including plural forms. Adding it to `LINGUAS` makes it a packaged application locale. Submit the complete `po/<LANG>.po` and `po/LINGUAS`; do **not** commit generated `.mo` files or build output.
@@ -49,7 +49,7 @@ Then merge and complete **every active catalog**, then run the canonical freshne
 
 ```bash
 for language in de en es fr hu it nb pt_BR vi zh_CN; do
-  msgmerge --update "po/${language}.po" po/clamui.pot
+  msgmerge --update "po/${language}.po" po/linux-defender.pot
 done
 ./scripts/update-pot.sh --check
 ./scripts/check-translations.sh

@@ -4,7 +4,7 @@ use std::{
     time::{SystemTime, UNIX_EPOCH},
 };
 
-use clamui_core::platform::{
+use linux_defender_core::platform::{
     device_job_id, install_integration_at, integration_status_at, remove_integration_at,
     DeviceScanPolicy, DeviceType, IntegrationPaths, MountInfo,
 };

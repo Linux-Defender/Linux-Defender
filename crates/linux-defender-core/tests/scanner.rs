@@ -1,4 +1,4 @@
-use clamui_core::{scanner, Context, Event, Paths};
+use linux_defender_core::{scanner, Context, Event, Paths};
 use serde_json::{json, Value};
 use std::collections::BTreeSet;
 use std::ffi::OsString;
@@ -315,7 +315,7 @@ fn scanner_status_aggregates_configured_database_directories_without_host_assump
 
 #[test]
 fn infection_wins_over_exit_two_and_preserves_warning_evidence() {
-    let result = clamui_core::scan_parser::interpret_clamscan(
+    let result = linux_defender_core::scan_parser::interpret_clamscan(
         "/scan",
         "/scan/eicar: Eicar-Test-Signature FOUND\n/root/locked: Failed to open file ERROR\nScanned files: 1\n",
         "",
@@ -331,8 +331,10 @@ fn infection_wins_over_exit_two_and_preserves_warning_evidence() {
 #[test]
 fn daemon_zero_precount_is_unknown_but_clamscan_zero_summary_is_all_failed() {
     let transcript = "WARNING: /scan/gone: Can't access file\nScanned files: 0\n";
-    let daemon = clamui_core::scan_parser::interpret_daemon("/scan", transcript, "", 2, 0, 0);
-    let standalone = clamui_core::scan_parser::interpret_clamscan("/scan", transcript, "", 2, 0);
+    let daemon =
+        linux_defender_core::scan_parser::interpret_daemon("/scan", transcript, "", 2, 0, 0);
+    let standalone =
+        linux_defender_core::scan_parser::interpret_clamscan("/scan", transcript, "", 2, 0);
     assert_eq!(daemon.status, scanner::ScanStatus::Clean);
     assert_eq!(standalone.status, scanner::ScanStatus::Error);
     assert_eq!(
@@ -343,7 +345,7 @@ fn daemon_zero_precount_is_unknown_but_clamscan_zero_summary_is_all_failed() {
 
 #[test]
 fn nonfatal_limit_warning_does_not_hide_a_real_error() {
-    let result = clamui_core::scan_parser::interpret_clamscan(
+    let result = linux_defender_core::scan_parser::interpret_clamscan(
         "/scan",
         "Scanned files: 4\n",
         "LibClamAV Warning: cli_scanxz: file size exceeds limits\nERROR: unable to initialize engine\n",
@@ -365,9 +367,12 @@ fn classifier_preserves_priority_and_all_user_visible_severity_levels() {
         ("Eicar-Test-Signature", "Test", "low"),
         ("Unknown.Signature", "Virus", "medium"),
     ] {
-        assert_eq!(clamui_core::threat::categorize(Some(name)), category);
         assert_eq!(
-            clamui_core::threat::classify_severity(Some(name)).as_str(),
+            linux_defender_core::threat::categorize(Some(name)),
+            category
+        );
+        assert_eq!(
+            linux_defender_core::threat::classify_severity(Some(name)).as_str(),
             severity
         );
     }
@@ -413,7 +418,7 @@ fn scanner_process_fixture_drains_stderr_and_keeps_found_output() {
 
 #[test]
 fn hard_warnings_keep_exit_two_scans_in_error() {
-    let result = clamui_core::scan_parser::interpret_clamscan(
+    let result = linux_defender_core::scan_parser::interpret_clamscan(
         "/scan",
         "WARNING: database metadata could not be read\nTotal errors: 1\nScanned files: 4\n",
         "",
@@ -429,7 +434,7 @@ fn hard_warnings_keep_exit_two_scans_in_error() {
 
 #[test]
 fn benign_exit_two_evidence_downgrades_to_clean() {
-    let result = clamui_core::scan_parser::interpret_clamscan(
+    let result = linux_defender_core::scan_parser::interpret_clamscan(
         "/scan",
         "WARNING: /scan/gone: Can't access file\nScanned files: 4\n",
         "",

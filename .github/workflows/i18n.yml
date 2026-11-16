@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "po/**"
-      - "crates/clamui-core/**"
+      - "crates/linux-defender-core/**"
       - "desktop/src/**"
       - "desktop/src-tauri/src/**"
       - "desktop/package.json"
@@ -20,7 +20,7 @@ on:
     branches: [main]
     paths:
       - "po/**"
-      - "crates/clamui-core/**"
+      - "crates/linux-defender-core/**"
       - "desktop/src/**"
       - "desktop/src-tauri/src/**"
       - "desktop/package.json"

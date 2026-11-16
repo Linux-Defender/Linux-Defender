@@ -1,4 +1,4 @@
-use clamui_core::updater::{force_update_script, interpret_result, UpdateStatus};
+use linux_defender_core::updater::{force_update_script, interpret_result, UpdateStatus};
 use std::fs;
 use std::process::Command;
 

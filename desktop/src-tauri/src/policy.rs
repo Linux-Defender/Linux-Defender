@@ -1,4 +1,4 @@
-use clamui_core::common::path_from_wire;
+use linux_defender_core::common::path_from_wire;
 use std::path::{Path, PathBuf};
 use url::Url;
 

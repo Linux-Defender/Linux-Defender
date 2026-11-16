@@ -1,5 +1,5 @@
 use base64::{engine::general_purpose::STANDARD as BASE64, Engine as _};
-use clamui_core::{logs, Context, Paths};
+use linux_defender_core::{logs, Context, Paths};
 use serde_json::{json, Value};
 use std::{
     fs,

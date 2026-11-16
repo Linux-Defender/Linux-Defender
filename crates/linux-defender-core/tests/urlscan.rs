@@ -1,5 +1,5 @@
-use clamui_core::credentials::{attributes, Account, URLSCAN_API_KEY};
-use clamui_core::urlscan::{
+use linux_defender_core::credentials::{attributes, Account, URLSCAN_API_KEY};
+use linux_defender_core::urlscan::{
     validate_url, HttpResponse, HttpTransport, UrlscanClient, Visibility, URLSCAN_API_URL,
 };
 use std::sync::{Arc, Mutex};
@@ -122,7 +122,7 @@ fn empty_api_keys_are_rejected_and_secret_settings_are_never_returned_to_the_ui(
         "urlscan_api_key": "never-return-this",
         "other_setting": true
     });
-    let frontend = clamui_core::settings::frontend_settings(settings);
+    let frontend = linux_defender_core::settings::frontend_settings(settings);
     assert!(frontend.get("urlscan_api_key").is_none());
     assert_eq!(frontend["other_setting"], true);
 }

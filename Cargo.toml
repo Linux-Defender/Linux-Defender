@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/clamui-core", "desktop/src-tauri"]
+members = ["crates/linux-defender-core", "desktop/src-tauri"]
 resolver = "2"
 
 [workspace.package]

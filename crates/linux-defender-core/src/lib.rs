@@ -78,7 +78,7 @@ fn instrument(
     let _ = logs::write_debug(
         ctx,
         "INFO",
-        "clamui-core.dispatch",
+        "linux-defender-core.dispatch",
         &format!("{domain} operation started"),
     );
     match operation() {
@@ -86,7 +86,7 @@ fn instrument(
             let _ = logs::write_debug(
                 ctx,
                 "INFO",
-                "clamui-core.dispatch",
+                "linux-defender-core.dispatch",
                 &format!("{domain} operation completed"),
             );
             Ok(result)
@@ -95,7 +95,7 @@ fn instrument(
             let _ = logs::write_debug(
                 ctx,
                 "ERROR",
-                "clamui-core.dispatch",
+                "linux-defender-core.dispatch",
                 &format!("{domain} operation failed"),
             );
             Err(error)

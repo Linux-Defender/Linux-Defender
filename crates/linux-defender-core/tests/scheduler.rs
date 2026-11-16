@@ -1,4 +1,4 @@
-use clamui_core::scheduler::{
+use linux_defender_core::scheduler::{
     cron_command, cron_expression, is_clamui_cron_command, normalize_schedule, on_calendar,
     remove_our_cron_lines, service_file, timer_file, validate_target_paths, ScheduleConfig,
     ScheduleFrequency, CRON_MARKER,

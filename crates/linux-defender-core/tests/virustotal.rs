@@ -1,7 +1,7 @@
-use clamui_core::credentials::{
+use linux_defender_core::credentials::{
     attributes, mask_api_key, validate_virustotal_api_key, Account, SERVICE_NAME,
 };
-use clamui_core::virustotal::{
+use linux_defender_core::virustotal::{
     preview_folder, HttpBody, HttpRequest, HttpResponse, HttpTransport, TransportError,
     VTScanStatus, VirusTotalClient, VT_FOLDER_MAX_FILES,
 };

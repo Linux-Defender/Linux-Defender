@@ -12,7 +12,7 @@ flowchart TB
   accTitle: Linux Defender Rust/Tauri architecture
   accDescr: A React frontend makes allowlisted requests to the Tauri native runtime, which calls the headless Rust core. Core events return over one event stream. The native runtime also owns in-process SNI and DBusMenu tray integration.
   UI[React / TypeScript frontend] -->|request operation + JSON args| Runtime[Tauri native runtime]
-  Runtime -->|allowlisted core dispatch| Core[clamui-core]
+  Runtime -->|allowlisted core dispatch| Core[linux-defender-core]
   Core -->|Event event + data| Runtime
   Runtime -->|clamui-event| UI
   Runtime --> Tray[Pure-Rust SNI + DBusMenu]
@@ -23,7 +23,7 @@ flowchart TB
 
 | Component | Responsibility |
 | --- | --- |
-| `crates/clamui-core` | Headless domain dispatch, XDG persistence, ClamAV host commands, scheduler, quarantine, i18n, and helper protocol |
+| `crates/linux-defender-core` | Headless domain dispatch, XDG persistence, ClamAV host commands, scheduler, quarantine, i18n, and helper protocol |
 | `desktop/src-tauri` | Tauri commands, event bridge, native dialogs, safe external/path opening, single instance, lifecycle, and SNI tray |
 | `desktop/src` | React pages, navigation, i18n rendering, notifications, and typed frontend API |
 | `/usr/bin/clamui-apply-preferences` | Native privileged helper implementing the authenticated protocol-v4 host-configuration boundary |

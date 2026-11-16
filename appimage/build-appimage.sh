@@ -111,7 +111,7 @@ build_tauri_bundle() {
     rm -rf "$BUILD_DIR"
     # These are first-class Rust command binaries, not Tauri sidecars.
     (cd "$PROJECT_ROOT" && \
-        cargo build --locked --release -p clamui-core \
+        cargo build --locked --release -p linux-defender-core \
             --bin clamui-scheduled-scan --bin clamui-apply-preferences)
     # Install the locked frontend toolchain so this builder works from a clean
     # checkout and `bun run tauri` resolves the project-local CLI.
@@ -148,7 +148,7 @@ extract_tauri_appdir() {
 }
 
 install_packaging_assets() {
-    local assets="$PROJECT_ROOT/crates/clamui-core/assets/integrations"
+    local assets="$PROJECT_ROOT/crates/linux-defender-core/assets/integrations"
     local destination="$APPDIR/usr/share/clamui/integrations"
 
     [ -d "$assets" ] || die "integration assets missing: $assets"

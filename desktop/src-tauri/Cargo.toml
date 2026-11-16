@@ -19,7 +19,7 @@ tauri-build = { version = "2", features = [] }
 
 [dependencies]
 base64 = "0.23"
-clamui-core = { path = "../../crates/clamui-core" }
+linux-defender-core = { path = "../../crates/linux-defender-core" }
 ksni = "0.3.6"
 open = "5"
 rfd = "0.17"

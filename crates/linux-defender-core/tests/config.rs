@@ -1,5 +1,5 @@
-use clamui_core::common::{Context, Paths};
-use clamui_core::config::dispatch;
+use linux_defender_core::common::{Context, Paths};
+use linux_defender_core::config::dispatch;
 use serde_json::json;
 use std::fs;
 use std::path::PathBuf;

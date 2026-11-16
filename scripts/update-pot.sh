@@ -27,7 +27,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 cd "$PROJECT_ROOT"
 
-OUTPUT="po/clamui.pot"
+OUTPUT="po/linux-defender.pot"
 MODE="${1:-}"
 
 case "$MODE" in
@@ -440,11 +440,11 @@ extract C "$TYPESCRIPT_COMPAT_FILES" "$TMPDIR/typescript.pot" \
 POT_INPUTS=()
 [ -f "$TMPDIR/rust.pot" ] && POT_INPUTS+=("$TMPDIR/rust.pot")
 [ -f "$TMPDIR/typescript.pot" ] && POT_INPUTS+=("$TMPDIR/typescript.pot")
-msgcat --use-first --output="$TMPDIR/clamui.pot" "${POT_INPUTS[@]}"
+msgcat --use-first --output="$TMPDIR/linux-defender.pot" "${POT_INPUTS[@]}"
 
 # xgettext's template placeholder is not valid once the POT contains plural
 # entries. Linux Defender's source language is English, so publish its closed rule.
-CANONICAL_POT="$TMPDIR/clamui-canonical.pot"
+CANONICAL_POT="$TMPDIR/linux-defender-canonical.pot"
 while IFS= read -r line || [ -n "$line" ]; do
     case "$line" in
         '"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"')
@@ -452,13 +452,13 @@ while IFS= read -r line || [ -n "$line" ]; do
             ;;
         *) printf '%s\n' "$line" >> "$CANONICAL_POT" ;;
     esac
-done < "$TMPDIR/clamui.pot"
-mv "$CANONICAL_POT" "$TMPDIR/clamui.pot"
+done < "$TMPDIR/linux-defender.pot"
+mv "$CANONICAL_POT" "$TMPDIR/linux-defender.pot"
 
 if [ "$MODE" = "--check" ]; then
     # xgettext refreshes this timestamp on every invocation. It does not change
     # translator-visible source strings, so exclude it from freshness comparison.
-    grep -v '^"POT-Creation-Date:' "$TMPDIR/clamui.pot" > "$TMPDIR/generated-normalized.pot"
+    grep -v '^"POT-Creation-Date:' "$TMPDIR/linux-defender.pot" > "$TMPDIR/generated-normalized.pot"
     grep -v '^"POT-Creation-Date:' "$OUTPUT" > "$TMPDIR/current-normalized.pot"
     if ! cmp -s "$TMPDIR/generated-normalized.pot" "$TMPDIR/current-normalized.pot"; then
         echo "::error file=$OUTPUT::Translation template is stale; run ./scripts/update-pot.sh" >&2
@@ -468,7 +468,7 @@ if [ "$MODE" = "--check" ]; then
     exit 0
 fi
 
-mv "$TMPDIR/clamui.pot" "$OUTPUT"
+mv "$TMPDIR/linux-defender.pot" "$OUTPUT"
 
 COUNT=$(grep -c '^msgid ' "$OUTPUT" 2>/dev/null || echo 0)
 COUNT=$((COUNT - 1))

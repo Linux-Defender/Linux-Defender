@@ -11,14 +11,14 @@ const checkoutManifest = fileURLToPath(
 const releaseUrl = "https://github.com/Linux-Defender/Linux-Defender.git";
 const releaseCommit = "0123456789abcdef0123456789abcdef01234567";
 
-type ClamuiModule = {
+type ManifestModule = {
   name: string;
   sources: Array<string | Record<string, unknown>>;
   buildsystem?: string;
 };
 
 type Manifest = {
-  modules: ClamuiModule[];
+  modules: ManifestModule[];
 };
 
 function render(manifest: string, commit = releaseCommit) {
@@ -42,11 +42,11 @@ function render(manifest: string, commit = releaseCommit) {
   };
 }
 
-function clamuiModule(manifest: string) {
+function applicationModule(manifest: string) {
   const parsed = Bun.YAML.parse(manifest) as Manifest;
-  const clamui = parsed.modules.find((module) => module.name === "clamui");
-  expect(clamui).toBeDefined();
-  return clamui!;
+  const application = parsed.modules.find((module) => module.name === "linux-defender");
+  expect(application).toBeDefined();
+  return application!;
 }
 
 describe("flatpak release source renderer", () => {
@@ -56,27 +56,27 @@ describe("flatpak release source renderer", () => {
 
     expect(result.exitCode).toBe(0);
 
-    const clamui = clamuiModule(result.stdout);
-    expect(clamui.sources[0]).toEqual({
+    const application = applicationModule(result.stdout);
+    expect(application.sources[0]).toEqual({
       type: "git",
       url: releaseUrl,
       commit: releaseCommit,
     });
-    expect(clamui.sources).toContain("cargo-sources.json");
-    expect(clamui.sources).toContain("bun-sources.json");
+    expect(application.sources).toContain("cargo-sources.json");
+    expect(application.sources).toContain("bun-sources.json");
   });
 
   test("emits all-numeric release commits as YAML strings", () => {
     const commit = "1234567890123456789012345678901234567890";
     const result = render(`modules:
-  - name: clamui
+  - name: linux-defender
     sources:
       - type: dir
         path: ..
 `, commit);
 
     expect(result.exitCode).toBe(0);
-    expect(clamuiModule(result.stdout).sources[0]).toEqual({
+    expect(applicationModule(result.stdout).sources[0]).toEqual({
       type: "git",
       url: releaseUrl,
       commit,
@@ -85,7 +85,7 @@ describe("flatpak release source renderer", () => {
 
   test("recognizes reordered local source keys and preserves unrelated sources", () => {
     const manifest = `modules:
-  - name: clamui
+  - name: linux-defender
     buildsystem: simple
     sources:
       - path: ..
@@ -105,9 +105,9 @@ describe("flatpak release source renderer", () => {
 `;
     const result = render(manifest);
     expect(result.exitCode).toBe(0);
-    const clamui = clamuiModule(result.stdout);
-    expect(clamui.buildsystem).toBe("simple");
-    expect(clamui.sources).toEqual([
+    const application = applicationModule(result.stdout);
+    expect(application.buildsystem).toBe("simple");
+    expect(application.sources).toEqual([
       { type: "git", url: releaseUrl, commit: releaseCommit },
       { type: "dir", path: "vendor", skip: ["cache"] },
       { type: "archive", url: "https://example.invalid/dependency.tar.gz" },
@@ -120,7 +120,7 @@ describe("flatpak release source renderer", () => {
     [
       "absent checkout source",
       `modules:
-  - name: clamui
+  - name: linux-defender
     sources:
       - type: dir
         path: vendor
@@ -130,7 +130,7 @@ describe("flatpak release source renderer", () => {
     [
       "ambiguous checkout sources",
       `modules:
-  - name: clamui
+  - name: linux-defender
     sources:
       - type: dir
         path: ..

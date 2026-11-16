@@ -882,7 +882,7 @@ impl<T: TransparentPtrType> PtrSlice<T> {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Shortens the slice by keeping the last `len` items.
+    /// Shortens the slice by keeping the first `len` items.
     ///
     /// If there are fewer than `len` items then this has no effect.
     #[inline]
@@ -895,11 +895,15 @@ impl<T: TransparentPtrType> PtrSlice<T> {
             while self.len > len {
                 self.len -= 1;
                 let p = self.ptr.as_ptr().add(self.len);
-                ptr::drop_in_place::<T>(p as *mut T);
+                // Move the item out, clear the slot, and only then run its destructor. Clearing
+                // first keeps the slot valid even if `T`'s destructor panics, which avoids
+                // dropping a value that the slice no longer owns.
+                let item = ptr::read(p as *mut T);
                 ptr::write(
                     p,
                     Ptr::from(ptr::null_mut::<<T as GlibPtrDefault>::GlibType>()),
                 );
+                drop(item);
             }
         }
     }
@@ -1310,6 +1314,30 @@ mod test {
                 b.kind::<crate::FileError>().unwrap()
             );
         }
+    }
+
+    #[test]
+    fn test_truncate_keeps_head() {
+        let items = [
+            crate::Error::new(crate::FileError::Failed, "Failed 1"),
+            crate::Error::new(crate::FileError::Failed, "Failed 2"),
+            crate::Error::new(crate::FileError::Failed, "Failed 3"),
+            crate::Error::new(crate::FileError::Failed, "Failed 4"),
+        ];
+
+        let mut slice = PtrSlice::from(&items[..]);
+        assert_eq!(slice.len(), 4);
+
+        slice.truncate(4);
+        assert_eq!(slice.len(), 4);
+
+        slice.truncate(2);
+        assert_eq!(slice.len(), 2);
+        assert_eq!(slice[0].message(), "Failed 1");
+        assert_eq!(slice[1].message(), "Failed 2");
+
+        slice.truncate(0);
+        assert_eq!(slice.len(), 0);
     }
 
     #[test]

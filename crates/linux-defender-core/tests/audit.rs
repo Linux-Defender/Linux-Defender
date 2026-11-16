@@ -1,10 +1,10 @@
 use std::time::{Duration, UNIX_EPOCH};
 
-use clamui_core::audit::{
+use linux_defender_core::audit::{
     overall_status, parse_cvd_age, parse_sshd_file, parse_sshd_output, portmaster_module_status,
     AuditCheck, AuditStatus,
 };
-use clamui_core::portmaster::{parse_authorization_response, parse_modules_status};
+use linux_defender_core::portmaster::{parse_authorization_response, parse_modules_status};
 
 fn audit_check(status: AuditStatus) -> AuditCheck {
     AuditCheck {

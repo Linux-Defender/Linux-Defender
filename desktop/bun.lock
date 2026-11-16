@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "clamui-desktop",
+      "name": "linux-defender-desktop",
       "dependencies": {
         "@tauri-apps/api": "^2.0.0",
         "react": "^19.0.0",

@@ -1,4 +1,4 @@
-use clamui_core::{
+use linux_defender_core::{
     common::Context,
     i18n::{translate, translate_plural},
 };

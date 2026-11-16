@@ -6,7 +6,7 @@ Linux Defender is a Linux desktop frontend for **host-installed ClamAV**. Its Ru
 
 | Area | Responsibility |
 | --- | --- |
-| `crates/clamui-core/` | Headless domain operations, XDG persistence, ClamAV host integration, scheduling, quarantine, i18n, and the privileged-helper protocol. It has no Tauri or widget dependency. |
+| `crates/linux-defender-core/` | Headless domain operations, XDG persistence, ClamAV host integration, scheduling, quarantine, i18n, and the privileged-helper protocol. It has no Tauri or widget dependency. |
 | `desktop/src-tauri/` | Tauri commands, event bridge, native dialogs, single-instance handling, lifecycle, safe opening/export helpers, and the Rust SNI/DBusMenu tray. |
 | `desktop/src/` | React pages, navigation, rendered translations, notifications, and the typed frontend API. |
 | `data/` | Application identity, AppStream metadata, desktop integration, and icons. |
@@ -33,13 +33,13 @@ bun run --cwd desktop check
 bun run --cwd desktop build
 cargo clippy --workspace --all-targets --locked -- -D warnings
 bun run --cwd desktop tauri dev
-cargo run -p clamui-core --bin clamui-cli -- help
+cargo run -p linux-defender-core --bin clamui-cli -- help
 
 ```
 
 `cargo clippy` compiles the production Tauri crate, whose `generate_context!` embeds `desktop/dist`; run the frozen frontend install and build first.
 
-Rust core tests live under `crates/clamui-core/tests/` alongside module-local tests. Add focused consumer-visible, data-compatibility, or security invariants beside the owning module; avoid implementation-text or mock-only tests.
+Rust core tests live under `crates/linux-defender-core/tests/` alongside module-local tests. Add focused consumer-visible, data-compatibility, or security invariants beside the owning module; avoid implementation-text or mock-only tests.
 
 For gettext changes, validate extraction and catalogs with:
 
@@ -70,7 +70,7 @@ Refresh only a deliberately selected upstream skill. `skills-lock.json` records 
 - Rust changes: use `rust-best-practices`.
 - React client changes: use `vercel-react-best-practices`; apply it to `desktop/src/`, not Next.js or server patterns.
 - Accessibility work: use `accessibility`, then validate the actual Tauri/WebKitGTK desktop rather than relying only on browser scores.
-- Gettext messages, catalogs, plural forms, translator notes, or extraction: use `clamui-gettext` and the translation guide it points to.
+- Gettext messages, catalogs, plural forms, translator notes, or extraction: use `linux-defender-gettext` and the translation guide it points to.
 - Globally managed IPC and release skills remain optional; contributors do not need them to work on Linux Defender.
 
 ## Runtime, data, and security rules

@@ -590,8 +590,8 @@ name = "clamui"
 version = "0.6.0"
 dependencies = [
  "base64 0.23.1",
- "clamui-core",
  "ksni",
+ "linux-defender-core",
  "open",
  "rfd",
  "serde",
@@ -602,36 +602,6 @@ dependencies = [
  "tauri-plugin-notification",
  "tauri-plugin-single-instance",
  "url",
-]
-
-[[package]]
-name = "clamui-core"
-version = "0.6.0"
-dependencies = [
- "base64 0.23.1",
- "chrono",
- "fs2",
- "gio",
- "glib 0.22.10",
- "hex",
- "icu_casemap",
- "icu_locale_core",
- "libc",
- "log",
- "percent-encoding",
- "regex",
- "reqwest 0.12.28",
- "rusqlite",
- "secret-service",
- "serde",
- "serde_json",
- "sha2 0.10.9",
- "signal-hook",
- "tempfile",
- "url",
- "uuid",
- "walkdir",
- "zip",
 ]
 
 [[package]]
@@ -2497,6 +2467,36 @@ dependencies = [
  "cc",
  "pkg-config",
  "vcpkg",
+]
+
+[[package]]
+name = "linux-defender-core"
+version = "0.6.0"
+dependencies = [
+ "base64 0.23.1",
+ "chrono",
+ "fs2",
+ "gio",
+ "glib 0.22.10",
+ "hex",
+ "icu_casemap",
+ "icu_locale_core",
+ "libc",
+ "log",
+ "percent-encoding",
+ "regex",
+ "reqwest 0.12.28",
+ "rusqlite",
+ "secret-service",
+ "serde",
+ "serde_json",
+ "sha2 0.10.9",
+ "signal-hook",
+ "tempfile",
+ "url",
+ "uuid",
+ "walkdir",
+ "zip",
 ]
 
 [[package]]

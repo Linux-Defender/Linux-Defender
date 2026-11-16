@@ -1,8 +1,8 @@
-use clamui_core::common::{expand_path, is_flatpak, path_to_wire};
 use ksni::{
     menu::{StandardItem, SubMenu},
     MenuItem, Status, Tray, TrayMethods,
 };
+use linux_defender_core::common::{expand_path, is_flatpak, path_to_wire};
 use serde_json::{json, Value};
 use std::{
     sync::{

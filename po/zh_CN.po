@@ -19,414 +19,414 @@ msgstr ""
 "X-Generator: Lokalize 23.08.5\n"
 
 
-#: crates/clamui-core/src/audit.rs:293
+#: crates/linux-defender-core/src/audit.rs:293
 msgid "ClamAV is not installed"
 msgstr "未安装 ClamAV"
 
 
-#: crates/clamui-core/src/audit.rs:295
+#: crates/linux-defender-core/src/audit.rs:295
 msgid "Install ClamAV to enable virus scanning"
 msgstr "安装 ClamAV 以启用病毒扫描"
 
 
-#: crates/clamui-core/src/audit.rs:312
+#: crates/linux-defender-core/src/audit.rs:312
 msgid "Installed: {version}"
 msgstr "已安装：{version}"
 
 
-#: crates/clamui-core/src/audit.rs:323
+#: crates/linux-defender-core/src/audit.rs:323
 msgid "Up to date ({days} day old, built {date})"
 msgid_plural "Up to date ({days} days old, built {date})"
 msgstr[0] "已是最新（构建于 {date}，距今 {days} 天）"
 
 
-#: crates/clamui-core/src/audit.rs:339 crates/clamui-core/src/audit.rs:357
+#: crates/linux-defender-core/src/audit.rs:339 crates/linux-defender-core/src/audit.rs:357
 msgid "Database is {days} day old (built {date})"
 msgid_plural "Database is {days} days old (built {date})"
 msgstr[0] "病毒库构建于 {date}（距今 {days} 天）"
 
 
-#: crates/clamui-core/src/audit.rs:347
+#: crates/linux-defender-core/src/audit.rs:347
 msgid "Update virus database to ensure protection"
 msgstr "更新病毒库以确保防护"
 
 
-#: crates/clamui-core/src/audit.rs:365
+#: crates/linux-defender-core/src/audit.rs:365
 msgid "Database is critically outdated. Update immediately."
 msgstr "病毒库已严重过期，请立即更新。"
 
 
-#: crates/clamui-core/src/audit.rs:384
+#: crates/linux-defender-core/src/audit.rs:384
 msgid "Database files exist but age could not be determined"
 msgstr "病毒库文件存在，但无法确定其生成时间"
 
 
-#: crates/clamui-core/src/audit.rs:386
+#: crates/linux-defender-core/src/audit.rs:386
 msgid "No virus database found"
 msgstr "未找到病毒库"
 
 
-#: crates/clamui-core/src/audit.rs:390
+#: crates/linux-defender-core/src/audit.rs:390
 msgid "Download virus database"
 msgstr "下载病毒库"
 
 
-#: crates/clamui-core/src/audit.rs:406
+#: crates/linux-defender-core/src/audit.rs:406
 msgid "Service {name} is running"
 msgstr "服务 {name} 正在运行"
 
 
-#: crates/clamui-core/src/audit.rs:417
+#: crates/linux-defender-core/src/audit.rs:417
 msgid "Daemon is responding"
 msgstr "守护进程响应正常"
 
 
-#: crates/clamui-core/src/audit.rs:424
+#: crates/linux-defender-core/src/audit.rs:424
 msgid "ClamAV daemon is not running"
 msgstr "ClamAV 守护进程未运行"
 
 
-#: crates/clamui-core/src/audit.rs:426
+#: crates/linux-defender-core/src/audit.rs:426
 msgid "Start the daemon for faster scanning"
 msgstr "启动守护进程以加快扫描速度"
 
 
-#: crates/clamui-core/src/audit.rs:447
+#: crates/linux-defender-core/src/audit.rs:447
 msgid "Freshclam service is active"
 msgstr "Freshclam 服务正在运行"
 
 
-#: crates/clamui-core/src/audit.rs:454
+#: crates/linux-defender-core/src/audit.rs:454
 msgid "Freshclam automatic update service is not running"
 msgstr "Freshclam 自动更新服务未运行"
 
 
-#: crates/clamui-core/src/audit.rs:456
+#: crates/linux-defender-core/src/audit.rs:456
 msgid "Enable automatic database updates"
 msgstr "启用病毒库自动更新"
 
 
-#: crates/clamui-core/src/audit.rs:658
+#: crates/linux-defender-core/src/audit.rs:658
 msgid "{count} port listening, risky ports: {ports}"
 msgid_plural "{count} ports listening, risky ports: {ports}"
 msgstr[0] "{count} 个端口正在监听，风险端口：{ports}"
 
 
-#: crates/clamui-core/src/audit.rs:669
+#: crates/linux-defender-core/src/audit.rs:669
 msgid "Review if these services need to be exposed"
 msgstr "确认这些服务是否需要对外开放"
 
 
-#: crates/clamui-core/src/audit.rs:676
+#: crates/linux-defender-core/src/audit.rs:676
 msgid "{count} port listening"
 msgid_plural "{count} ports listening"
 msgstr[0] "{count} 个端口正在监听"
 
 
-#: crates/clamui-core/src/audit.rs:684
+#: crates/linux-defender-core/src/audit.rs:684
 msgid "Review open ports and close unnecessary services"
 msgstr "检查开放端口并关闭不必要的服务"
 
 
-#: crates/clamui-core/src/audit.rs:691
+#: crates/linux-defender-core/src/audit.rs:691
 msgid "No open ports detected"
 msgstr "未检测到开放端口"
 
 
-#: crates/clamui-core/src/audit.rs:722
+#: crates/linux-defender-core/src/audit.rs:722
 msgid "AppArmor is enabled"
 msgstr "AppArmor 已启用"
 
 
-#: crates/clamui-core/src/audit.rs:729
+#: crates/linux-defender-core/src/audit.rs:729
 msgid "AppArmor module is loaded but not enabled"
 msgstr "AppArmor 模块已加载但未启用"
 
 
-#: crates/clamui-core/src/audit.rs:731
+#: crates/linux-defender-core/src/audit.rs:731
 msgid "Enable AppArmor for application sandboxing"
 msgstr "启用 AppArmor 以实现应用程序沙箱隔离"
 
 
-#: crates/clamui-core/src/audit.rs:746
+#: crates/linux-defender-core/src/audit.rs:746
 msgid "SELinux is enforcing"
 msgstr "SELinux 处于强制模式"
 
 
-#: crates/clamui-core/src/audit.rs:753
+#: crates/linux-defender-core/src/audit.rs:753
 msgid "SELinux is in permissive mode"
 msgstr "SELinux 处于宽容模式"
 
 
-#: crates/clamui-core/src/audit.rs:755
+#: crates/linux-defender-core/src/audit.rs:755
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr "建议切换到强制模式以增强防护"
 
 
-#: crates/clamui-core/src/audit.rs:766
+#: crates/linux-defender-core/src/audit.rs:766
 msgid "SELinux is disabled"
 msgstr "SELinux 已禁用"
 
 
-#: crates/clamui-core/src/audit.rs:768
+#: crates/linux-defender-core/src/audit.rs:768
 msgid "Enable SELinux for mandatory access control"
 msgstr "启用 SELinux 以实施强制访问控制"
 
 
-#: crates/clamui-core/src/audit.rs:782
+#: crates/linux-defender-core/src/audit.rs:782
 msgid "No mandatory access control framework detected"
 msgstr "未检测到强制访问控制框架"
 
 
-#: crates/clamui-core/src/audit.rs:784
+#: crates/linux-defender-core/src/audit.rs:784
 msgid "Consider enabling AppArmor or SELinux"
 msgstr "建议启用 AppArmor 或 SELinux"
 
 
-#: crates/clamui-core/src/audit.rs:809
+#: crates/linux-defender-core/src/audit.rs:809
 msgid "Automatic security updates are enabled"
 msgstr "已启用自动安全更新"
 
 
-#: crates/clamui-core/src/audit.rs:819
+#: crates/linux-defender-core/src/audit.rs:819
 msgid "Unattended upgrades is installed but disabled"
 msgstr "Unattended upgrades 已安装但已禁用"
 
 
-#: crates/clamui-core/src/audit.rs:821
+#: crates/linux-defender-core/src/audit.rs:821
 msgid "Enable automatic security updates"
 msgstr "启用自动安全更新"
 
 
-#: crates/clamui-core/src/audit.rs:834
+#: crates/linux-defender-core/src/audit.rs:834
 msgid "DNF automatic updates are enabled"
 msgstr "已启用 DNF 自动更新"
 
 
-#: crates/clamui-core/src/audit.rs:844
+#: crates/linux-defender-core/src/audit.rs:844
 msgid "DNF automatic is installed but timer is not active"
 msgstr "DNF automatic 已安装，但定时器未激活"
 
 
-#: crates/clamui-core/src/audit.rs:846
+#: crates/linux-defender-core/src/audit.rs:846
 msgid "Enable automatic updates"
 msgstr "启用自动更新"
 
 
-#: crates/clamui-core/src/audit.rs:859
+#: crates/linux-defender-core/src/audit.rs:859
 msgid "Could not determine automatic update status"
 msgstr "无法确定自动更新状态"
 
 
-#: crates/clamui-core/src/audit.rs:861
+#: crates/linux-defender-core/src/audit.rs:861
 msgid "Configure automatic security updates"
 msgstr "配置自动安全更新"
 
 
-#: crates/clamui-core/src/audit.rs:875
+#: crates/linux-defender-core/src/audit.rs:875
 msgid "System reboot required to apply updates"
 msgstr "需要重启系统以应用更新"
 
 
-#: crates/clamui-core/src/audit.rs:877
+#: crates/linux-defender-core/src/audit.rs:877
 msgid "Reboot the system to apply pending security updates"
 msgstr "重启系统以应用待处理的安全更新"
 
 
-#: crates/clamui-core/src/audit.rs:922
+#: crates/linux-defender-core/src/audit.rs:922
 msgid "{name} is installed but not running"
 msgstr "{name} 已安装但未运行"
 
 
-#: crates/clamui-core/src/audit.rs:940
+#: crates/linux-defender-core/src/audit.rs:940
 msgid "No intrusion detection system found"
 msgstr "未找到入侵检测系统"
 
 
-#: crates/clamui-core/src/audit.rs:942
+#: crates/linux-defender-core/src/audit.rs:942
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr "安装 fail2ban 或 CrowdSec 以抵御攻击"
 
 
-#: crates/clamui-core/src/audit.rs:968
+#: crates/linux-defender-core/src/audit.rs:968
 msgid "SSH server is not running (no remote attack surface)"
 msgstr "SSH 服务器未运行（无远程攻击面）"
 
 
-#: crates/clamui-core/src/audit.rs:978
+#: crates/linux-defender-core/src/audit.rs:978
 msgid "SSH server is running"
 msgstr "SSH 服务器正在运行"
 
 
-#: crates/clamui-core/src/audit.rs:987
+#: crates/linux-defender-core/src/audit.rs:987
 msgid "Could not read SSH configuration"
 msgstr "无法读取 SSH 配置"
 
 
-#: crates/clamui-core/src/audit.rs:1005
+#: crates/linux-defender-core/src/audit.rs:1005
 msgid "Root login: {value}"
 msgstr "root 登录：{value}"
 
 
-#: crates/clamui-core/src/audit.rs:1012
+#: crates/linux-defender-core/src/audit.rs:1012
 msgid "Root login is allowed ({value})"
 msgstr "允许 root 登录（{value}）"
 
 
-#: crates/clamui-core/src/audit.rs:1018
+#: crates/linux-defender-core/src/audit.rs:1018
 msgid "Disable root SSH login for security"
 msgstr "禁用 root 用户的 SSH 登录以提高安全性"
 
 
-#: crates/clamui-core/src/audit.rs:1032
+#: crates/linux-defender-core/src/audit.rs:1032
 msgid "Password authentication is disabled (key-only)"
 msgstr "已禁用密码认证（仅允许密钥认证）"
 
 
-#: crates/clamui-core/src/audit.rs:1039
+#: crates/linux-defender-core/src/audit.rs:1039
 msgid "Password authentication is enabled"
 msgstr "已启用密码认证"
 
 
-#: crates/clamui-core/src/audit.rs:1041
+#: crates/linux-defender-core/src/audit.rs:1041
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr "建议禁用密码认证，改用 SSH 密钥"
 
 
-#: crates/clamui-core/src/audit.rs:1058
+#: crates/linux-defender-core/src/audit.rs:1058
 msgid "X11 forwarding is disabled"
 msgstr "已禁用 X11 转发"
 
 
-#: crates/clamui-core/src/audit.rs:1065
+#: crates/linux-defender-core/src/audit.rs:1065
 msgid "X11 forwarding is enabled"
 msgstr "已启用 X11 转发"
 
 
-#: crates/clamui-core/src/audit.rs:1067
+#: crates/linux-defender-core/src/audit.rs:1067
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr "禁用 X11 转发以缩小攻击面"
 
 
-#: crates/clamui-core/src/audit.rs:1142
+#: crates/linux-defender-core/src/audit.rs:1142
 msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster 正在运行并保护网络连接"
 
 
-#: crates/clamui-core/src/audit.rs:1166
+#: crates/linux-defender-core/src/audit.rs:1166
 #
 msgid "Authorize Linux Defender in Portmaster for per-module health"
 msgstr "在 Portmaster 中授权 Linux Defender 查看各模块状态"
 
-#: crates/clamui-core/src/audit.rs:1172
+#: crates/linux-defender-core/src/audit.rs:1172
 msgid "Authorize"
 msgstr "授权"
 
 
-#: crates/clamui-core/src/audit.rs:1182
+#: crates/linux-defender-core/src/audit.rs:1182
 msgid "Portmaster is installed but not running"
 msgstr "Portmaster 已安装但未运行"
 
 
-#: crates/clamui-core/src/audit.rs:1184
+#: crates/linux-defender-core/src/audit.rs:1184
 msgid "Start the Portmaster service to enable network protection"
 msgstr "启动 Portmaster 服务以启用网络保护"
 
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/clamui-core/src/audit.rs:1197
+#: crates/linux-defender-core/src/audit.rs:1197
 msgid "Not detected — optional network monitor and application firewall"
 msgstr "未检测到 — 可选的网络监控工具和应用程序防火墙"
 
 
-#: crates/clamui-core/src/audit.rs:1211
+#: crates/linux-defender-core/src/audit.rs:1211
 msgid "Could not probe Portmaster: {error}"
 msgstr "无法探测 Portmaster：{error}"
 
 
-#: crates/clamui-core/src/audit.rs:1261
+#: crates/linux-defender-core/src/audit.rs:1261
 msgid "{name} is not installed"
 msgstr "未安装 {name}"
 
 
-#: crates/clamui-core/src/audit.rs:1267
+#: crates/linux-defender-core/src/audit.rs:1267
 msgid "Install {name} for comprehensive security auditing"
 msgstr "安装 {name} 以进行全面的安全审计"
 
 
-#: crates/clamui-core/src/audit.rs:1273
+#: crates/linux-defender-core/src/audit.rs:1273
 msgid "Install chkrootkit for rootkit detection"
 msgstr "安装 chkrootkit 以检测 rootkit"
 
 
-#: crates/clamui-core/src/audit.rs:1292
+#: crates/linux-defender-core/src/audit.rs:1292
 msgid "Authentication was cancelled"
 msgstr "身份验证已取消"
 
 
-#: crates/clamui-core/src/audit.rs:1300
+#: crates/linux-defender-core/src/audit.rs:1300
 msgid "Lynis audit timed out after 5 minutes"
 msgstr "Lynis 审计在 5 分钟后超时"
 
 
-#: crates/clamui-core/src/audit.rs:1302
+#: crates/linux-defender-core/src/audit.rs:1302
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr "rootkit 扫描在 5 分钟后超时"
 
 
-#: crates/clamui-core/src/audit.rs:1320 crates/clamui-core/src/audit.rs:1364
+#: crates/linux-defender-core/src/audit.rs:1320 crates/linux-defender-core/src/audit.rs:1364
 msgid "Failed to run Lynis: {error}"
 msgstr "运行 Lynis 失败：{error}"
 
 
-#: crates/clamui-core/src/audit.rs:1326
+#: crates/linux-defender-core/src/audit.rs:1326
 msgid "Failed to run chkrootkit: {error}"
 msgstr "运行 chkrootkit 失败：{error}"
 
 
-#: crates/clamui-core/src/audit.rs:1392
+#: crates/linux-defender-core/src/audit.rs:1392
 msgid "Score: {score}/100"
 msgstr "得分：{score}/100"
 
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/clamui-core/src/audit.rs:1395
+#: crates/linux-defender-core/src/audit.rs:1395
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr "运行 'sudo lynis audit system' 以获取详细建议"
 
 
-#: crates/clamui-core/src/audit.rs:1411
+#: crates/linux-defender-core/src/audit.rs:1411
 msgid "Audit completed (exit code {code})"
 msgstr "审计已完成（退出码 {code}）"
 
 
-#: crates/clamui-core/src/audit.rs:1449 crates/clamui-core/src/audit.rs:1463
+#: crates/linux-defender-core/src/audit.rs:1449 crates/linux-defender-core/src/audit.rs:1463
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr "无法完成 rootkit 扫描（退出码 {code}）"
 
 
-#: crates/clamui-core/src/audit.rs:1493
+#: crates/linux-defender-core/src/audit.rs:1493
 msgid "No rootkits detected"
 msgstr "未检测到 rootkit"
 
 
-#: crates/clamui-core/src/audit.rs:1504
+#: crates/linux-defender-core/src/audit.rs:1504
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] "检测到 {count} 个疑似 rootkit"
 
 
-#: crates/clamui-core/src/audit.rs:1512
+#: crates/linux-defender-core/src/audit.rs:1512
 msgid "Investigate the detected threats immediately"
 msgstr "请立即调查检测到的威胁"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:53
+#: crates/linux-defender-core/src/audit/firewall.rs:53
 msgid "Firewall manager overlap"
 msgstr "防火墙管理器并存"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:54
+#: crates/linux-defender-core/src/audit/firewall.rs:54
 msgid ""
 "UFW is active while Firewalld owns its D-Bus name; their rule interaction "
 "was not evaluated."
@@ -434,75 +434,75 @@ msgstr ""
 "UFW 已启用，同时 Firewalld 持有其 D-Bus 名称；未评估两者规则之间的相互影响。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:157
+#: crates/linux-defender-core/src/audit/firewall.rs:157
 msgid "UFW Firewall"
 msgstr "UFW 防火墙"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:162
+#: crates/linux-defender-core/src/audit/firewall.rs:162
 msgid ""
 "UFW is active; the default incoming policy is deny. Listed rules may allow "
 "exceptions."
 msgstr "UFW 已启用；默认入站策略为丢弃。列出的规则可能会例外放行部分流量。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:169
+#: crates/linux-defender-core/src/audit/firewall.rs:169
 msgid ""
 "UFW is active; the default incoming policy is reject. Listed rules may allow "
 "exceptions."
 msgstr "UFW 已启用；默认入站策略为拒绝。列出的规则可能会例外放行部分流量。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:176
+#: crates/linux-defender-core/src/audit/firewall.rs:176
 msgid "UFW is active; the default incoming policy is deny."
 msgstr "UFW 已启用；默认入站策略为丢弃。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:180
+#: crates/linux-defender-core/src/audit/firewall.rs:180
 msgid "UFW is active; the default incoming policy is reject."
 msgstr "UFW 已启用；默认入站策略为拒绝。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:184
+#: crates/linux-defender-core/src/audit/firewall.rs:184
 msgid "UFW is active, but the default incoming policy allows traffic."
 msgstr "UFW 已启用，但默认入站策略允许流量通过。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:191
+#: crates/linux-defender-core/src/audit/firewall.rs:191
 msgid "UFW is active, but its default incoming policy could not be verified."
 msgstr "UFW 已启用，但无法验证其默认入站策略。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:195
+#: crates/linux-defender-core/src/audit/firewall.rs:195
 msgid "UFW reports inactive."
 msgstr "UFW 报告状态为未启用。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:196
+#: crates/linux-defender-core/src/audit/firewall.rs:196
 msgid "UFW status could not be inspected safely."
 msgstr "无法安全地检查 UFW 状态。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:234
+#: crates/linux-defender-core/src/audit/firewall.rs:234
 msgid "Firewalld"
 msgstr "Firewalld"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:236
+#: crates/linux-defender-core/src/audit/firewall.rs:236
 msgid ""
 "Firewalld owns its D-Bus name; readiness and firewall policy were not "
 "queried."
 msgstr "Firewalld 持有其 D-Bus 名称；未查询其就绪状态和防火墙策略。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:240
+#: crates/linux-defender-core/src/audit/firewall.rs:240
 msgid ""
 "No Firewalld D-Bus owner was observed; this does not establish kernel "
 "firewall policy."
 msgstr "未检测到 Firewalld 的 D-Bus 名称所有者；不能据此判定内核的防火墙策略。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:244
+#: crates/linux-defender-core/src/audit/firewall.rs:244
 msgid ""
 "Firewalld ownership could not be verified; readiness and firewall policy "
 "were not queried."
@@ -510,27 +510,27 @@ msgstr ""
 "无法确认 Firewalld 是否持有其 D-Bus 名称；未查询其就绪状态和防火墙策略。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:259
+#: crates/linux-defender-core/src/audit/firewall.rs:259
 msgid "firewall-cmd"
 msgstr "firewall-cmd"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:264
+#: crates/linux-defender-core/src/audit/firewall.rs:264
 msgid "firewall-cmd is installed; it was not executed."
 msgstr "firewall-cmd 已安装；未执行该命令。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:270
+#: crates/linux-defender-core/src/audit/firewall.rs:270
 msgid "firewall-cmd could not be confirmed without executing it."
 msgstr "在不执行 firewall-cmd 的前提下，未能确认其是否已安装。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:408
+#: crates/linux-defender-core/src/audit/firewall.rs:408
 msgid "nftables (native rules)"
 msgstr "nftables（原生规则）"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:410
+#: crates/linux-defender-core/src/audit/firewall.rs:410
 msgid ""
 "nftables has restrictive default input policies for IPv4 and IPv6; "
 "individual rules may allow exceptions."
@@ -539,25 +539,25 @@ msgstr ""
 "分流量。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:414
+#: crates/linux-defender-core/src/audit/firewall.rs:414
 msgid ""
 "nftables reports a permissive default input policy; remaining coverage may "
 "be incomplete"
 msgstr "nftables 报告其默认入站策略为宽松策略；其余部分的策略覆盖可能不完整"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:418
+#: crates/linux-defender-core/src/audit/firewall.rs:418
 msgid ""
 "nftables input policy coverage could not be verified for both IPv4 and IPv6"
 msgstr "无法验证 nftables 的入站策略是否同时覆盖 IPv4 和 IPv6"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:478
+#: crates/linux-defender-core/src/audit/firewall.rs:478
 msgid "iptables (IPv4)"
 msgstr "iptables（IPv4）"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:480
+#: crates/linux-defender-core/src/audit/firewall.rs:480
 msgid ""
 "iptables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
@@ -565,22 +565,22 @@ msgstr ""
 "iptables 的 INPUT 默认策略为限制性策略；个别规则可能会例外放行部分流量。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:484
+#: crates/linux-defender-core/src/audit/firewall.rs:484
 msgid "iptables has a permissive INPUT default policy"
 msgstr "iptables 的 INPUT 默认策略为宽松策略"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:485
+#: crates/linux-defender-core/src/audit/firewall.rs:485
 msgid "iptables INPUT policy could not be verified"
 msgstr "无法验证 iptables 的 INPUT 策略"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:491
+#: crates/linux-defender-core/src/audit/firewall.rs:491
 msgid "iptables (IPv6)"
 msgstr "iptables（IPv6）"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:493
+#: crates/linux-defender-core/src/audit/firewall.rs:493
 msgid ""
 "ip6tables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
@@ -588,49 +588,49 @@ msgstr ""
 "ip6tables 的 INPUT 默认策略为限制性策略；个别规则可能会例外放行部分流量。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:497
+#: crates/linux-defender-core/src/audit/firewall.rs:497
 msgid "ip6tables has a permissive INPUT default policy"
 msgstr "ip6tables 的 INPUT 默认策略为宽松策略"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:498
+#: crates/linux-defender-core/src/audit/firewall.rs:498
 msgid "ip6tables INPUT policy could not be verified"
 msgstr "无法验证 ip6tables 的 INPUT 策略"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:508
+#: crates/linux-defender-core/src/audit/firewall.rs:508
 msgid "Gufw"
 msgstr "Gufw"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:510
+#: crates/linux-defender-core/src/audit/firewall.rs:510
 msgid "Gufw is available."
 msgstr "Gufw 可用。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:512
+#: crates/linux-defender-core/src/audit/firewall.rs:512
 msgid ""
 "Gufw was not confirmed; this optional inventory does not affect firewall "
 "policy analysis."
 msgstr "未能确认 Gufw 是否可用；此项可选的软件盘点不会影响防火墙策略分析。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:519
+#: crates/linux-defender-core/src/audit/firewall.rs:519
 msgid "Open Gufw"
 msgstr "打开 Gufw"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:525
+#: crates/linux-defender-core/src/audit/firewall.rs:525
 msgid "Firewall Config"
 msgstr "防火墙配置"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:530
+#: crates/linux-defender-core/src/audit/firewall.rs:530
 msgid "Firewall Config is available."
 msgstr "Firewall Config 可用。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:533
+#: crates/linux-defender-core/src/audit/firewall.rs:533
 msgid ""
 "Firewall Config was not confirmed; this optional inventory does not affect "
 "firewall policy analysis."
@@ -638,69 +638,69 @@ msgstr ""
 "未确认 Firewall Config 是否可用；此项可选的组件检查不影响防火墙策略分析。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:540
+#: crates/linux-defender-core/src/audit/firewall.rs:540
 msgid "Open Firewall Config"
 msgstr "打开 Firewall Config"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:578
+#: crates/linux-defender-core/src/audit/firewall.rs:578
 msgid "Plasma Firewall"
 msgstr "Plasma Firewall"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:583
+#: crates/linux-defender-core/src/audit/firewall.rs:583
 msgid "Plasma Firewall is installed; it manages an existing firewall backend."
 msgstr "已安装 Plasma Firewall；它用于管理现有的防火墙后端。"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:592
+#: crates/linux-defender-core/src/audit/firewall.rs:592
 msgid "Plasma Firewall was not confirmed; it is only a management module."
 msgstr "未确认 Plasma Firewall 是否可用；它只是一个管理模块。"
 
 
-#: crates/clamui-core/src/cli.rs:56 crates/clamui-core/src/cli.rs:250
-#: crates/clamui-core/src/cli.rs:418 crates/clamui-core/src/cli.rs:427
-#: crates/clamui-core/src/cli.rs:459 crates/clamui-core/src/cli.rs:499
-#: crates/clamui-core/src/cli.rs:1188 crates/clamui-core/src/cli.rs:1214
-#: crates/clamui-core/src/cli.rs:1745 crates/clamui-core/src/cli.rs:1750
+#: crates/linux-defender-core/src/cli.rs:56 crates/linux-defender-core/src/cli.rs:250
+#: crates/linux-defender-core/src/cli.rs:418 crates/linux-defender-core/src/cli.rs:427
+#: crates/linux-defender-core/src/cli.rs:459 crates/linux-defender-core/src/cli.rs:499
+#: crates/linux-defender-core/src/cli.rs:1188 crates/linux-defender-core/src/cli.rs:1214
+#: crates/linux-defender-core/src/cli.rs:1745 crates/linux-defender-core/src/cli.rs:1750
 msgid "error"
 msgstr "错误"
 
 
-#: crates/clamui-core/src/cli.rs:57
+#: crates/linux-defender-core/src/cli.rs:57
 msgid "Unknown command: {command}"
 msgstr "未知命令：{command}"
 
 
 #. Translators: The em dash separates the application name from its description.
-#: crates/clamui-core/src/cli.rs:140
+#: crates/linux-defender-core/src/cli.rs:140
 msgid "Linux Defender — ClamAV antivirus management\n"
 msgstr "Linux Defender — ClamAV antivirus management\n"
 
 
-#: crates/clamui-core/src/cli.rs:146
+#: crates/linux-defender-core/src/cli.rs:146
 msgid "Usage:"
 msgstr "用法："
 
 
 #. Translators: Keep `clamui` unchanged; it is the command name.
-#: crates/clamui-core/src/cli.rs:149
+#: crates/linux-defender-core/src/cli.rs:149
 msgid "  clamui                   Launch the graphical interface"
 msgstr "  clamui                   启动图形界面"
 
 
 #. Translators: Keep `clamui`, `<command>`, and `[args]` unchanged; they are command syntax.
-#: crates/clamui-core/src/cli.rs:157
+#: crates/linux-defender-core/src/cli.rs:157
 msgid "  clamui <command> [args]   Run a CLI command\n"
 msgstr "  clamui <command> [args]   运行 CLI 命令\n"
 
 
-#: crates/clamui-core/src/cli.rs:163
+#: crates/linux-defender-core/src/cli.rs:163
 msgid "Commands:"
 msgstr "命令："
 
 
-#: crates/clamui-core/src/cli.rs:167
+#: crates/linux-defender-core/src/cli.rs:167
 msgid ""
 "\n"
 "Global options:"
@@ -710,107 +710,107 @@ msgstr ""
 
 
 #. Translators: Keep `--json` and `JSON` unchanged; they are a CLI flag and data format.
-#: crates/clamui-core/src/cli.rs:170
+#: crates/linux-defender-core/src/cli.rs:170
 msgid "  --json                   Machine-readable JSON output"
 msgstr "  --json                   输出机器可读的 JSON"
 
 
 #. Translators: Keep `-v` and `--verbose` unchanged; they are CLI flags.
-#: crates/clamui-core/src/cli.rs:178
+#: crates/linux-defender-core/src/cli.rs:178
 msgid "  -v, --verbose            Verbose output"
 msgstr "  -v, --verbose            详细输出"
 
 
 #. Translators: Keep `-h` and `--help` unchanged; they are CLI flags.
-#: crates/clamui-core/src/cli.rs:186
+#: crates/linux-defender-core/src/cli.rs:186
 msgid "  -h, --help               Show help for any command\n"
 msgstr "  -h, --help               显示任意命令的帮助\n"
 
 
 #. Translators: Keep the quoted `clamui help <command>` command unchanged.
-#: crates/clamui-core/src/cli.rs:194
+#: crates/linux-defender-core/src/cli.rs:194
 msgid "Run 'clamui help <command>' for usage examples."
 msgstr "运行 'clamui help <command>' 查看用法示例。"
 
 
 #. Translators: Keep the quoted `clamui` command unchanged.
-#: crates/clamui-core/src/cli.rs:202
+#: crates/linux-defender-core/src/cli.rs:202
 msgid "Run 'clamui' without arguments to launch the GUI."
 msgstr "不带参数运行 'clamui' 即可启动图形界面。"
 
 
-#: crates/clamui-core/src/cli.rs:212
+#: crates/linux-defender-core/src/cli.rs:212
 msgid "Scan files or directories for threats"
 msgstr "扫描文件或目录以查找威胁"
 
 
-#: crates/clamui-core/src/cli.rs:213
+#: crates/linux-defender-core/src/cli.rs:213
 msgid "Manage quarantined files"
 msgstr "管理已隔离的文件"
 
 
-#: crates/clamui-core/src/cli.rs:214
+#: crates/linux-defender-core/src/cli.rs:214
 msgid "Manage scan profiles"
 msgstr "管理扫描配置文件"
 
 
-#: crates/clamui-core/src/cli.rs:215
+#: crates/linux-defender-core/src/cli.rs:215
 msgid "Show ClamAV and Linux Defender status"
 msgstr "Show ClamAV and Linux Defender status"
 
 
-#: crates/clamui-core/src/cli.rs:216
+#: crates/linux-defender-core/src/cli.rs:216
 msgid "View scan history"
 msgstr "查看扫描历史记录"
 
 
-#: crates/clamui-core/src/cli.rs:219
+#: crates/linux-defender-core/src/cli.rs:219
 msgid ""
 "Install the polkit helper for saving system ClamAV configs (native host only)"
 msgstr "安装 polkit 辅助程序，以保存系统 ClamAV 配置（仅限宿主机原生环境）"
 
 
-#: crates/clamui-core/src/cli.rs:221
+#: crates/linux-defender-core/src/cli.rs:221
 msgid "Show this help message"
 msgstr "显示此帮助信息"
 
 
 #. Translators: Keep `clamui` and `[COMMAND]` command syntax unchanged; translate the `Usage:` label.
-#: crates/clamui-core/src/cli.rs:232
+#: crates/linux-defender-core/src/cli.rs:232
 msgid "Usage: clamui help [COMMAND]"
 msgstr "用法：clamui help [COMMAND]"
 
 
-#: crates/clamui-core/src/cli.rs:240
+#: crates/linux-defender-core/src/cli.rs:240
 msgid ""
 "Display an overview of all commands or detailed help for a specific one."
 msgstr "显示所有命令的概览，或指定命令的详细帮助。"
 
 
 #. Translators: Keep `help` unchanged; it is the literal CLI subcommand.
-#: crates/clamui-core/src/cli.rs:251
+#: crates/linux-defender-core/src/cli.rs:251
 msgid "help accepts at most one command"
 msgstr "help 最多接受一个命令"
 
 
-#: crates/clamui-core/src/cli.rs:269
+#: crates/linux-defender-core/src/cli.rs:269
 msgid "Unknown command: {name}\n"
 msgstr "未知命令：{name}\n"
 
 
 #. Translators: Keep `{name}` as the command name and `{summary}` as its translated description; the em dash separates them.
-#: crates/clamui-core/src/cli.rs:281
+#: crates/linux-defender-core/src/cli.rs:281
 msgid "clamui {name} — {summary}\n"
 msgstr "clamui {name} — {summary}\n"
 
 
-#: crates/clamui-core/src/cli.rs:291
+#: crates/linux-defender-core/src/cli.rs:291
 msgid "Examples:"
 msgstr "示例："
 
 
 #. Translators: Keep the quoted `clamui {name} --help` command unchanged; preserve `{name}` as the command name.
-#: crates/clamui-core/src/cli.rs:297
+#: crates/linux-defender-core/src/cli.rs:297
 msgid ""
 "\n"
 "Run 'clamui {name} --help' for full option reference."
@@ -819,38 +819,38 @@ msgstr ""
 "运行 'clamui {name} --help' 查看完整选项说明。"
 
 
-#: crates/clamui-core/src/cli.rs:395 crates/clamui-core/src/cli.rs:1605
+#: crates/linux-defender-core/src/cli.rs:395 crates/linux-defender-core/src/cli.rs:1605
 msgid "unrecognized argument: {argument}"
 msgstr "无法识别的参数：{argument}"
 
 
-#: crates/clamui-core/src/cli.rs:419
+#: crates/linux-defender-core/src/cli.rs:419
 msgid "No valid paths to scan"
 msgstr "没有可扫描的有效路径"
 
 
-#: crates/clamui-core/src/cli.rs:435
+#: crates/linux-defender-core/src/cli.rs:435
 msgid "ClamAV not available: {error}"
 msgstr "ClamAV 不可用：{error}"
 
 
-#: crates/clamui-core/src/cli.rs:447
+#: crates/linux-defender-core/src/cli.rs:447
 msgid "ClamAV version: {version}"
 msgstr "ClamAV 版本：{version}"
 
 
-#: crates/clamui-core/src/cli.rs:470
+#: crates/linux-defender-core/src/cli.rs:470
 msgid "Using profile: {name}"
 msgstr "使用配置文件：{name}"
 
 
-#: crates/clamui-core/src/cli.rs:489
+#: crates/linux-defender-core/src/cli.rs:489
 msgid "Scanning: {path}"
 msgstr "正在扫描：{path}"
 
 
 #. Translators: Keep `clamui`, uppercase metavariables, brackets, and all `--` flags unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:572
+#: crates/linux-defender-core/src/cli.rs:572
 msgid ""
 "Usage: clamui scan PATH [PATH ...] [--no-recursive] [--profile NAME] [--"
 "quarantine] [--json] [--verbose]"
@@ -860,7 +860,7 @@ msgstr ""
 
 
 #. Translators: Preserve the numeric exit-code meanings.
-#: crates/clamui-core/src/cli.rs:580
+#: crates/linux-defender-core/src/cli.rs:580
 msgid ""
 "Scan one or more files or directories with ClamAV.\n"
 "Exit codes: 0 = clean, 1 = threats found, 2 = error."
@@ -869,23 +869,23 @@ msgstr ""
 "退出码：0 = 未发现威胁，1 = 发现威胁，2 = 出错。"
 
 
-#: crates/clamui-core/src/cli.rs:599
+#: crates/linux-defender-core/src/cli.rs:599
 msgid "Path not found: {path}"
 msgstr "未找到路径：{path}"
 
 
-#: crates/clamui-core/src/cli.rs:618
+#: crates/linux-defender-core/src/cli.rs:618
 msgid "Profile not found: {name}"
 msgstr "未找到配置文件：{name}"
 
 
-#: crates/clamui-core/src/cli.rs:717
+#: crates/linux-defender-core/src/cli.rs:717
 msgid "Scanned {count} file in {duration:.1f}s"
 msgid_plural "Scanned {count} files in {duration:.1f}s"
 msgstr[0] "已扫描 {count} 个文件，用时 {duration:.1f} 秒"
 
 
-#: crates/clamui-core/src/cli.rs:730
+#: crates/linux-defender-core/src/cli.rs:730
 msgid ""
 "\n"
 "Threat found: {count}"
@@ -897,7 +897,7 @@ msgstr[0] ""
 "发现威胁：{count} 个"
 
 
-#: crates/clamui-core/src/cli.rs:755
+#: crates/linux-defender-core/src/cli.rs:755
 msgid ""
 "\n"
 "Quarantined: {count} file"
@@ -909,7 +909,7 @@ msgstr[0] ""
 "已隔离：{count} 个文件"
 
 
-#: crates/clamui-core/src/cli.rs:765
+#: crates/linux-defender-core/src/cli.rs:765
 msgid ""
 "\n"
 "Failed to quarantine:"
@@ -918,12 +918,12 @@ msgstr ""
 "隔离失败："
 
 
-#: crates/clamui-core/src/cli.rs:777 crates/clamui-core/src/logs.rs:1406
+#: crates/linux-defender-core/src/cli.rs:777 crates/linux-defender-core/src/logs.rs:1406
 msgid "Threats Detected"
 msgstr "检测到威胁"
 
 
-#: crates/clamui-core/src/cli.rs:783
+#: crates/linux-defender-core/src/cli.rs:783
 msgid ""
 "\n"
 "Scan completed with errors:"
@@ -932,445 +932,445 @@ msgstr ""
 "扫描已完成，但出现错误："
 
 
-#: crates/clamui-core/src/cli.rs:788
+#: crates/linux-defender-core/src/cli.rs:788
 msgid "No threats found."
 msgstr "未发现威胁。"
 
 
 #. Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:797 crates/clamui-core/src/cli.rs:819
+#: crates/linux-defender-core/src/cli.rs:797 crates/linux-defender-core/src/cli.rs:819
 msgid "Usage: clamui quarantine <list|restore|delete> [args]"
 msgstr "用法：clamui quarantine <list|restore|delete> [args]"
 
 
 #. Translators: Keep `clamui`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:807
+#: crates/linux-defender-core/src/cli.rs:807
 msgid "Usage: clamui quarantine list [--json]"
 msgstr "用法：clamui quarantine list [--json]"
 
 
 #. Translators: Keep `clamui`, `restore`, and `ID` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:811
+#: crates/linux-defender-core/src/cli.rs:811
 msgid "Usage: clamui quarantine restore ID"
 msgstr "用法：clamui quarantine restore ID"
 
 
 #. Translators: Keep `clamui`, `delete`, and `ID` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:815
+#: crates/linux-defender-core/src/cli.rs:815
 msgid "Usage: clamui quarantine delete ID"
 msgstr "用法：clamui quarantine delete ID"
 
 
-#: crates/clamui-core/src/cli.rs:847
+#: crates/linux-defender-core/src/cli.rs:847
 msgid "No quarantined files."
 msgstr "没有已隔离的文件。"
 
 
-#: crates/clamui-core/src/cli.rs:864 crates/clamui-core/src/logs.rs:1108
+#: crates/linux-defender-core/src/cli.rs:864 crates/linux-defender-core/src/logs.rs:1108
 msgid "ID"
 msgstr "ID"
 
 
-#: crates/clamui-core/src/cli.rs:865
+#: crates/linux-defender-core/src/cli.rs:865
 msgid "File"
 msgstr "文件"
 
 
-#: crates/clamui-core/src/cli.rs:866
+#: crates/linux-defender-core/src/cli.rs:866
 msgid "Threat"
 msgstr "威胁"
 
 
-#: crates/clamui-core/src/cli.rs:867 crates/clamui-core/src/cli.rs:1661
+#: crates/linux-defender-core/src/cli.rs:867 crates/linux-defender-core/src/cli.rs:1661
 msgid "Date"
 msgstr "日期"
 
 
-#: crates/clamui-core/src/cli.rs:868
+#: crates/linux-defender-core/src/cli.rs:868
 msgid "Size"
 msgstr "大小"
 
 
-#: crates/clamui-core/src/cli.rs:883
+#: crates/linux-defender-core/src/cli.rs:883
 msgid "{count} entry ({size} total)"
 msgid_plural "{count} entries ({size} total)"
 msgstr[0] "{count} 个条目（共 {size}）"
 
 
 #. Translators: Keep `quarantine`, command-valued `{action}`, and `ID` unchanged.
-#: crates/clamui-core/src/cli.rs:901 crates/clamui-core/src/cli.rs:915
+#: crates/linux-defender-core/src/cli.rs:901 crates/linux-defender-core/src/cli.rs:915
 msgid "quarantine {action} requires ID"
 msgstr "quarantine {action} 需要指定 ID"
 
 
-#: crates/clamui-core/src/cli.rs:954
+#: crates/linux-defender-core/src/cli.rs:954
 msgid "Restored"
 msgstr "已还原"
 
 
-#: crates/clamui-core/src/cli.rs:956
+#: crates/linux-defender-core/src/cli.rs:956
 msgid "Deleted"
 msgstr "已删除"
 
 
-#: crates/clamui-core/src/cli.rs:961
+#: crates/linux-defender-core/src/cli.rs:961
 msgid "{verb}: {path}"
 msgstr "{verb}：{path}"
 
 
-#: crates/clamui-core/src/cli.rs:971
+#: crates/linux-defender-core/src/cli.rs:971
 msgid "Restore failed"
 msgstr "还原失败"
 
 
-#: crates/clamui-core/src/cli.rs:973
+#: crates/linux-defender-core/src/cli.rs:973
 msgid "Delete failed"
 msgstr "删除失败"
 
 
-#: crates/clamui-core/src/cli.rs:980
+#: crates/linux-defender-core/src/cli.rs:980
 msgid "{prefix}: {error}"
 msgstr "{prefix}：{error}"
 
 
-#: crates/clamui-core/src/cli.rs:1057 crates/clamui-core/src/quarantine.rs:443
-#: crates/clamui-core/src/quarantine.rs:480
+#: crates/linux-defender-core/src/cli.rs:1057 crates/linux-defender-core/src/quarantine.rs:443
+#: crates/linux-defender-core/src/quarantine.rs:480
 msgid "Quarantine entry not found: {id}"
 msgstr "未找到隔离条目：{id}"
 
 
 #. Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1070 crates/clamui-core/src/cli.rs:1096
+#: crates/linux-defender-core/src/cli.rs:1070 crates/linux-defender-core/src/cli.rs:1096
 msgid "Usage: clamui profile <list|show|export|import> [args]"
 msgstr "用法：clamui profile <list|show|export|import> [args]"
 
 
 #. Translators: Keep `clamui`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1080
+#: crates/linux-defender-core/src/cli.rs:1080
 msgid "Usage: clamui profile list [--json]"
 msgstr "用法：clamui profile list [--json]"
 
 
 #. Translators: Keep `clamui`, `show`, `NAME`, and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1084
+#: crates/linux-defender-core/src/cli.rs:1084
 msgid "Usage: clamui profile show NAME [--json]"
 msgstr "用法：clamui profile show NAME [--json]"
 
 
 #. Translators: Keep `clamui`, `export`, `NAME`, and `FILE` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1088
+#: crates/linux-defender-core/src/cli.rs:1088
 msgid "Usage: clamui profile export NAME FILE"
 msgstr "用法：clamui profile export NAME FILE"
 
 
 #. Translators: Keep `clamui`, `import`, and `FILE` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1092
+#: crates/linux-defender-core/src/cli.rs:1092
 msgid "Usage: clamui profile import FILE"
 msgstr "用法：clamui profile import FILE"
 
 
-#: crates/clamui-core/src/cli.rs:1123
+#: crates/linux-defender-core/src/cli.rs:1123
 msgid "No scan profiles configured."
 msgstr "尚无扫描配置文件。"
 
 
-#: crates/clamui-core/src/cli.rs:1139
+#: crates/linux-defender-core/src/cli.rs:1139
 msgid " (+{n} more)"
 msgstr " （另有 {n} 项）"
 
 
-#: crates/clamui-core/src/cli.rs:1144
+#: crates/linux-defender-core/src/cli.rs:1144
 msgid "(none)"
 msgstr "（无）"
 
 
-#: crates/clamui-core/src/cli.rs:1149 crates/clamui-core/src/cli.rs:1319
+#: crates/linux-defender-core/src/cli.rs:1149 crates/linux-defender-core/src/cli.rs:1319
 msgid "yes"
 msgstr "是"
 
 
-#: crates/clamui-core/src/cli.rs:1151 crates/clamui-core/src/cli.rs:1321
+#: crates/linux-defender-core/src/cli.rs:1151 crates/linux-defender-core/src/cli.rs:1321
 msgid "no"
 msgstr "否"
 
 
-#: crates/clamui-core/src/cli.rs:1159
+#: crates/linux-defender-core/src/cli.rs:1159
 msgid "Name"
 msgstr "名称"
 
 
-#: crates/clamui-core/src/cli.rs:1160
+#: crates/linux-defender-core/src/cli.rs:1160
 msgid "Targets"
 msgstr "目标"
 
 
-#: crates/clamui-core/src/cli.rs:1161
+#: crates/linux-defender-core/src/cli.rs:1161
 msgid "Default"
 msgstr "默认"
 
 
-#: crates/clamui-core/src/cli.rs:1162
+#: crates/linux-defender-core/src/cli.rs:1162
 msgid "Updated"
 msgstr "更新时间"
 
 
-#: crates/clamui-core/src/cli.rs:1170
+#: crates/linux-defender-core/src/cli.rs:1170
 msgid "{count} profile"
 msgid_plural "{count} profiles"
 msgstr[0] "{count} 个配置文件"
 
 
 #. Translators: Preserve `{name}` as the profile name and `{path}` as its destination; quotation marks may be localized.
-#: crates/clamui-core/src/cli.rs:1229
+#: crates/linux-defender-core/src/cli.rs:1229
 msgid "Exported '{name}' to {path}"
 msgstr "已将“{name}”导出到 {path}"
 
 
-#: crates/clamui-core/src/cli.rs:1258
+#: crates/linux-defender-core/src/cli.rs:1258
 msgid "Imported profile: {name}"
 msgstr "已导入配置文件：{name}"
 
 
 #. Translators: Preserve command-valued `{usage}`, `NAME`, and the `--json` CLI flag.
-#: crates/clamui-core/src/cli.rs:1278 crates/clamui-core/src/cli.rs:1291
+#: crates/linux-defender-core/src/cli.rs:1278 crates/linux-defender-core/src/cli.rs:1291
 msgid "{usage} requires NAME and optional --json"
 msgstr "{usage} 必须指定 NAME，--json 为可选参数"
 
 
-#: crates/clamui-core/src/cli.rs:1314
+#: crates/linux-defender-core/src/cli.rs:1314
 msgid "Name:        {name}"
 msgstr "名称：       {name}"
 
 
-#: crates/clamui-core/src/cli.rs:1317
+#: crates/linux-defender-core/src/cli.rs:1317
 msgid "ID:          {id}"
 msgstr "ID：         {id}"
 
 
-#: crates/clamui-core/src/cli.rs:1325
+#: crates/linux-defender-core/src/cli.rs:1325
 msgid "Default:     {value}"
 msgstr "默认：       {value}"
 
 
-#: crates/clamui-core/src/cli.rs:1334
+#: crates/linux-defender-core/src/cli.rs:1334
 msgid "Description: {description}"
 msgstr "描述：       {description}"
 
 
-#: crates/clamui-core/src/cli.rs:1344
+#: crates/linux-defender-core/src/cli.rs:1344
 msgid "Created:     {created}"
 msgstr "创建时间：   {created}"
 
 
-#: crates/clamui-core/src/cli.rs:1353
+#: crates/linux-defender-core/src/cli.rs:1353
 msgid "Updated:     {updated}"
 msgstr "更新时间：   {updated}"
 
 
-#: crates/clamui-core/src/cli.rs:1359
+#: crates/linux-defender-core/src/cli.rs:1359
 msgid "Targets:"
 msgstr "目标："
 
 
-#: crates/clamui-core/src/cli.rs:1368
+#: crates/linux-defender-core/src/cli.rs:1368
 msgid "  (none)"
 msgstr "  （无）"
 
 
-#: crates/clamui-core/src/cli.rs:1379
+#: crates/linux-defender-core/src/cli.rs:1379
 msgid "Exclusions:"
 msgstr "排除项："
 
 
-#: crates/clamui-core/src/cli.rs:1384
+#: crates/linux-defender-core/src/cli.rs:1384
 msgid "  path:    {path}"
 msgstr "  路径：    {path}"
 
 
-#: crates/clamui-core/src/cli.rs:1391
+#: crates/linux-defender-core/src/cli.rs:1391
 msgid "  pattern: {pattern}"
 msgstr "  匹配模式：{pattern}"
 
 
-#: crates/clamui-core/src/cli.rs:1403
+#: crates/linux-defender-core/src/cli.rs:1403
 msgid "Options:"
 msgstr "选项："
 
 
 #. Translators: Keep `clamui` and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1417
+#: crates/linux-defender-core/src/cli.rs:1417
 msgid "Usage: clamui status [--json]"
 msgstr "用法：clamui status [--json]"
 
 
-#: crates/clamui-core/src/cli.rs:1472
+#: crates/linux-defender-core/src/cli.rs:1472
 msgid "ClamAV"
 msgstr "ClamAV"
 
 
-#: crates/clamui-core/src/cli.rs:1477
+#: crates/linux-defender-core/src/cli.rs:1477
 msgid "  Version:  {version}"
 msgstr "  版本：    {version}"
 
 
-#: crates/clamui-core/src/cli.rs:1484
+#: crates/linux-defender-core/src/cli.rs:1484
 msgid "  Status:   not available"
 msgstr "  状态：    不可用"
 
 
-#: crates/clamui-core/src/cli.rs:1488
+#: crates/linux-defender-core/src/cli.rs:1488
 msgid "  Error:    {error}"
 msgstr "  错误：    {error}"
 
 
-#: crates/clamui-core/src/cli.rs:1494
+#: crates/linux-defender-core/src/cli.rs:1494
 msgid "  Backend:  {backend}"
 msgstr "  后端：    {backend}"
 
 
-#: crates/clamui-core/src/cli.rs:1503
+#: crates/linux-defender-core/src/cli.rs:1503
 msgid "  Daemon:   {daemon}"
 msgstr "  守护进程：{daemon}"
 
 
-#: crates/clamui-core/src/cli.rs:1505
+#: crates/linux-defender-core/src/cli.rs:1505
 msgid "Quarantine"
 msgstr "隔离区"
 
 
-#: crates/clamui-core/src/cli.rs:1509 crates/clamui-core/src/cli.rs:1528
+#: crates/linux-defender-core/src/cli.rs:1509 crates/linux-defender-core/src/cli.rs:1528
 msgid "  Entries:  {count}"
 msgstr "  条目数：  {count}"
 
 
-#: crates/clamui-core/src/cli.rs:1518
+#: crates/linux-defender-core/src/cli.rs:1518
 msgid "  Size:     {size}"
 msgstr "  大小：    {size}"
 
 
-#: crates/clamui-core/src/cli.rs:1520
+#: crates/linux-defender-core/src/cli.rs:1520
 msgid "Scan History"
 msgstr "扫描历史"
 
 
 #. Translators: Keep `clamui`, all `--` flags, `N`, and type choices unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1541
+#: crates/linux-defender-core/src/cli.rs:1541
 msgid ""
 "Usage: clamui history [--limit N] [--type scan|update|virustotal] [--json]"
 msgstr ""
 "用法：clamui history [--limit N] [--type scan|update|virustotal] [--json]"
 
 
-#: crates/clamui-core/src/cli.rs:1624
+#: crates/linux-defender-core/src/cli.rs:1624
 msgid "Failed to load history: {error}"
 msgstr "加载历史记录失败：{error}"
 
 
-#: crates/clamui-core/src/cli.rs:1639
+#: crates/linux-defender-core/src/cli.rs:1639
 msgid "No scan history found."
 msgstr "未找到扫描历史记录。"
 
 
-#: crates/clamui-core/src/cli.rs:1662 crates/clamui-core/src/logs.rs:1118
+#: crates/linux-defender-core/src/cli.rs:1662 crates/linux-defender-core/src/logs.rs:1118
 msgid "Type"
 msgstr "类型"
 
 
-#: crates/clamui-core/src/cli.rs:1663 crates/clamui-core/src/logs.rs:1123
+#: crates/linux-defender-core/src/cli.rs:1663 crates/linux-defender-core/src/logs.rs:1123
 msgid "Status"
 msgstr "状态"
 
 
-#: crates/clamui-core/src/cli.rs:1664 crates/clamui-core/src/logs.rs:1142
+#: crates/linux-defender-core/src/cli.rs:1664 crates/linux-defender-core/src/logs.rs:1142
 msgid "Summary"
 msgstr "摘要"
 
 
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
-#: crates/clamui-core/src/cli.rs:1678
+#: crates/linux-defender-core/src/cli.rs:1678
 msgid "Showing {shown} of {total} entry. Use --limit to see more."
 msgid_plural "Showing {shown} of {total} entries. Use --limit to see more."
 msgstr[0] "显示 {shown} 条记录，共 {total} 条。使用 --limit 查看更多。"
 
 
 #. Translators: Keep `clamui install-privileged-helper` unchanged; it is the CLI command.
-#: crates/clamui-core/src/cli.rs:1713
+#: crates/linux-defender-core/src/cli.rs:1713
 msgid "Usage: clamui install-privileged-helper"
 msgstr "用法：clamui install-privileged-helper"
 
 
-#: crates/clamui-core/src/config.rs:319 crates/clamui-core/src/config.rs:338
+#: crates/linux-defender-core/src/config.rs:319 crates/linux-defender-core/src/config.rs:338
 msgid "Configuration file not found"
 msgstr "未找到配置文件"
 
 
-#: crates/clamui-core/src/config.rs:403
+#: crates/linux-defender-core/src/config.rs:403
 msgid "Invalid scheduled scan configuration: {error}"
 msgstr "定时扫描配置无效：{error}"
 
 
-#: crates/clamui-core/src/config.rs:462 crates/clamui-core/src/config.rs:520
+#: crates/linux-defender-core/src/config.rs:462 crates/linux-defender-core/src/config.rs:520
 msgid "Not attempted because an earlier direct configuration write failed"
 msgstr "由于此前直接写入配置失败，未尝试执行"
 
 
-#: crates/clamui-core/src/config.rs:500
+#: crates/linux-defender-core/src/config.rs:500
 msgid "Protected configuration write failed"
 msgstr "写入受保护配置失败"
 
 
-#: crates/clamui-core/src/config.rs:575
+#: crates/linux-defender-core/src/config.rs:575
 msgid "Cannot save configuration paths: {error}"
 msgstr "无法保存配置路径：{error}"
 
 
-#: crates/clamui-core/src/config.rs:605 crates/clamui-core/src/config.rs:639
+#: crates/linux-defender-core/src/config.rs:605 crates/linux-defender-core/src/config.rs:639
 msgid "Cannot save scheduled scan preferences: {error}"
 msgstr "无法保存定时扫描首选项：{error}"
 
 
-#: crates/clamui-core/src/config.rs:618 crates/clamui-core/src/config.rs:627
+#: crates/linux-defender-core/src/config.rs:618 crates/linux-defender-core/src/config.rs:627
 msgid "Failed to apply scheduled scan configuration: {error}"
 msgstr "应用定时扫描配置失败：{error}"
 
 
-#: crates/clamui-core/src/config.rs:701
+#: crates/linux-defender-core/src/config.rs:701
 msgid "Configuration path appears more than once: {path}"
 msgstr "配置路径重复出现：{path}"
 
 
-#: crates/clamui-core/src/config.rs:709
+#: crates/linux-defender-core/src/config.rs:709
 msgid "Configuration kinds sharing {setting} must use the same path"
 msgstr "共享 {setting} 的配置类型必须使用相同的路径"
 
 
-#: crates/clamui-core/src/config.rs:720
+#: crates/linux-defender-core/src/config.rs:720
 msgid "Cannot prepare {path}: {error}"
 msgstr "无法准备 {path}：{error}"
 
 
-#: crates/clamui-core/src/config.rs:810
+#: crates/linux-defender-core/src/config.rs:810
 msgid "Cannot read {path}: {error}"
 msgstr "无法读取 {path}：{error}"
 
 
-#: crates/clamui-core/src/config.rs:820
+#: crates/linux-defender-core/src/config.rs:820
 msgid "Configuration is not a regular file: {path}"
 msgstr "配置文件不是普通文件：{path}"
 
 
-#: crates/clamui-core/src/config.rs:826
+#: crates/linux-defender-core/src/config.rs:826
 msgid "Cannot create {path}: {error}"
 msgstr "无法创建 {path}：{error}"
 
 
-#: crates/clamui-core/src/config.rs:835
+#: crates/linux-defender-core/src/config.rs:835
 msgid "Cannot write {path}: {error}"
 msgstr "无法写入 {path}：{error}"
 
 
-#: crates/clamui-core/src/config.rs:934
+#: crates/linux-defender-core/src/config.rs:934
 msgid ""
 "On-Access scanning requires at least one loop-prevention exclusion: Exclude "
 "Username, Exclude User ID, or Exclude Root User"
@@ -1379,290 +1379,290 @@ msgstr ""
 "户"
 
 
-#: crates/clamui-core/src/config.rs:959
+#: crates/linux-defender-core/src/config.rs:959
 msgid "{key}: invalid boolean value: {value}"
 msgstr "{key}：无效的布尔值：{value}"
 
 
-#: crates/clamui-core/src/config.rs:988
+#: crates/linux-defender-core/src/config.rs:988
 msgid "{key}: value {value} is below minimum {minimum}"
 msgstr "{key}：值 {value} 小于最小值 {minimum}"
 
 
-#: crates/clamui-core/src/config.rs:996
+#: crates/linux-defender-core/src/config.rs:996
 msgid "{key}: value {value} exceeds maximum {maximum}"
 msgstr "{key}：值 {value} 超过最大值 {maximum}"
 
 
-#: crates/clamui-core/src/config.rs:1005
+#: crates/linux-defender-core/src/config.rs:1005
 msgid "{key}: not a valid integer: {value}"
 msgstr "{key}：无效的整数：{value}"
 
 
-#: crates/clamui-core/src/config.rs:1014
+#: crates/linux-defender-core/src/config.rs:1014
 msgid "{key}: size must start with a number: {value}"
 msgstr "{key}：大小值必须以数字开头：{value}"
 
 
-#: crates/clamui-core/src/config.rs:1031
+#: crates/linux-defender-core/src/config.rs:1031
 msgid "{key}: path cannot be empty"
 msgstr "{key}：路径不能为空"
 
 
-#: crates/clamui-core/src/config.rs:1046
+#: crates/linux-defender-core/src/config.rs:1046
 msgid "{key}: string value cannot be empty"
 msgstr "{key}：字符串值不能为空"
 
 
-#: crates/clamui-core/src/config.rs:1057
+#: crates/linux-defender-core/src/config.rs:1057
 msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}：URL 必须以 http(s)://、ftp(s):// 或 file:// 开头"
 
 
 #. Translators: The em dash separates the fallback state from its security warning.
-#: crates/clamui-core/src/credentials.rs:163
+#: crates/linux-defender-core/src/credentials.rs:163
 msgid "Stored in settings file (keyring unavailable — less secure)"
 msgstr "存储在设置文件中（密钥环不可用 — 安全性较低）"
 
 
 #. Translators: replace with your name(s) and optionally <email> or a URL, one translator per line. Leave untranslated if you do not want to be credited.
-#: crates/clamui-core/src/credits.rs:15
+#: crates/linux-defender-core/src/credits.rs:15
 msgid "translator-credits"
 msgstr "Markson Hosben <marksonhosben@proton.me>"
 
 
-#: crates/clamui-core/src/host.rs:910
+#: crates/linux-defender-core/src/host.rs:910
 msgid "Daemon not responding: {error}"
 msgstr "守护进程未响应：{error}"
 
 
-#: crates/clamui-core/src/host.rs:913
+#: crates/linux-defender-core/src/host.rs:913
 msgid "{binary} found but returned error: {error}"
 msgstr "已找到 {binary}，但返回错误：{error}"
 
 
-#: crates/clamui-core/src/host.rs:918
+#: crates/linux-defender-core/src/host.rs:918
 msgid "{service} is active"
 msgstr "{service} 正在运行"
 
 
-#: crates/clamui-core/src/host.rs:921
+#: crates/linux-defender-core/src/host.rs:921
 msgid "No virus database files found in {path}"
 msgstr "未在 {path} 中找到病毒数据库文件"
 
 
-#: crates/clamui-core/src/host.rs:927
+#: crates/linux-defender-core/src/host.rs:927
 msgid "Error accessing database {path}: {error}"
 msgstr "访问数据库 {path} 时出错：{error}"
 
 
-#: crates/clamui-core/src/host.rs:933
+#: crates/linux-defender-core/src/host.rs:933
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "未安装 {binary}。请使用以下命令安装：{command}"
 
 
-#: crates/clamui-core/src/host.rs:943
+#: crates/linux-defender-core/src/host.rs:943
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
 msgstr "未安装 {binary}。请为您使用的发行版安装所需的 ClamAV 软件包。"
 
 
-#: crates/clamui-core/src/logs.rs:1101
+#: crates/linux-defender-core/src/logs.rs:1101
 msgid "SCAN LOG"
 msgstr "扫描日志"
 
 
-#: crates/clamui-core/src/logs.rs:1103
+#: crates/linux-defender-core/src/logs.rs:1103
 msgid "UPDATE LOG"
 msgstr "更新日志"
 
 
-#: crates/clamui-core/src/logs.rs:1113
+#: crates/linux-defender-core/src/logs.rs:1113
 msgid "Timestamp"
 msgstr "时间戳"
 
 
-#: crates/clamui-core/src/logs.rs:1128
+#: crates/linux-defender-core/src/logs.rs:1128
 msgid "Duration"
 msgstr "耗时"
 
 
-#: crates/clamui-core/src/logs.rs:1136
+#: crates/linux-defender-core/src/logs.rs:1136
 msgid "Full Output"
 msgstr "完整输出"
 
 
-#: crates/clamui-core/src/logs.rs:1167
+#: crates/linux-defender-core/src/logs.rs:1167
 msgid "{count} second"
 msgid_plural "{count} seconds"
 msgstr[0] "{count} 秒"
 
 
-#: crates/clamui-core/src/logs.rs:1393
+#: crates/linux-defender-core/src/logs.rs:1393
 #: desktop/src-tauri/src/notifications.rs:107
 msgid "Scan Complete"
 msgstr "扫描完成"
 
 
-#: crates/clamui-core/src/logs.rs:1396
+#: crates/linux-defender-core/src/logs.rs:1396
 msgid "Found {count} threat{suffix}"
 msgid_plural "Found {count} threats{suffix}"
 msgstr[0] "发现 {count} 个威胁{suffix}"
 
 
-#: crates/clamui-core/src/logs.rs:1411
+#: crates/linux-defender-core/src/logs.rs:1411
 #: desktop/src-tauri/src/notifications.rs:109
 msgid "Scan Cancelled"
 msgstr "扫描已取消"
 
 
-#: crates/clamui-core/src/logs.rs:1414
+#: crates/linux-defender-core/src/logs.rs:1414
 #: desktop/src-tauri/src/notifications.rs:111
 msgid "Scan Error"
 msgstr "扫描出错"
 
 
-#: crates/clamui-core/src/logs.rs:1425
+#: crates/linux-defender-core/src/logs.rs:1425
 msgid "Scanned: {count} file"
 msgid_plural "Scanned: {count} files"
 msgstr[0] "已扫描：{count} 个文件"
 
 
-#: crates/clamui-core/src/logs.rs:1432
+#: crates/linux-defender-core/src/logs.rs:1432
 msgid "{count} directory"
 msgid_plural "{count} directories"
 msgstr[0] "{count} 个目录"
 
 
-#: crates/clamui-core/src/logs.rs:1443
+#: crates/linux-defender-core/src/logs.rs:1443
 msgid "Threat found: {count}"
 msgid_plural "Threats found: {count}"
 msgstr[0] "发现威胁：{count} 个"
 
 
-#: crates/clamui-core/src/network.rs:86
+#: crates/linux-defender-core/src/network.rs:86
 msgid "Network action is not supported."
 msgstr "不支持网络操作。"
 
 
-#: crates/clamui-core/src/network.rs:90
+#: crates/linux-defender-core/src/network.rs:90
 msgid "Network snapshot accepts no arguments."
 msgstr "网络快照不接受任何参数。"
 
 
-#: crates/clamui-core/src/network.rs:118
+#: crates/linux-defender-core/src/network.rs:118
 msgid ""
 "Some network socket rows could not be read, and the list was limited to 4096 "
 "rows."
 msgstr "部分网络套接字记录无法读取，且列表已限制为 4096 行。"
 
 
-#: crates/clamui-core/src/network.rs:125
+#: crates/linux-defender-core/src/network.rs:125
 msgid "Some network socket rows could not be read."
 msgstr "部分网络套接字记录无法读取。"
 
 
-#: crates/clamui-core/src/network.rs:129
+#: crates/linux-defender-core/src/network.rs:129
 msgid "Network socket list was limited to 4096 rows."
 msgstr "网络套接字列表已限制为 4096 行。"
 
 
-#: crates/clamui-core/src/network.rs:152
+#: crates/linux-defender-core/src/network.rs:152
 msgid "Network socket listing timed out. Try again."
 msgstr "获取网络套接字列表超时。请重试。"
 
 
-#: crates/clamui-core/src/network.rs:156
+#: crates/linux-defender-core/src/network.rs:156
 msgid "Network socket listing could not be completed safely. Try again."
 msgstr "获取网络套接字列表的操作无法安全完成。请重试。"
 
 
-#: crates/clamui-core/src/network.rs:163
+#: crates/linux-defender-core/src/network.rs:163
 msgid ""
 "Network socket listing returned invalid text and could not be read safely."
 msgstr "获取网络套接字列表时返回了无效文本，无法安全读取。"
 
 
-#: crates/clamui-core/src/network.rs:170
+#: crates/linux-defender-core/src/network.rs:170
 msgid ""
 "Network socket listing is unavailable. Check that the system socket tool is "
 "installed and try again."
 msgstr "无法获取网络套接字列表。请检查系统套接字工具是否已安装，然后重试。"
 
 
-#: crates/clamui-core/src/platform.rs:491
+#: crates/linux-defender-core/src/platform.rs:491
 msgid "Not running as Flatpak"
 msgstr "未以 Flatpak 方式运行"
 
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/clamui-core/src/privileged.rs:1053
+#: crates/linux-defender-core/src/privileged.rs:1053
 msgid "Authorization was cancelled while {operation}."
 msgstr "{operation}时，授权被取消。"
 
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/clamui-core/src/privileged.rs:1059
+#: crates/linux-defender-core/src/privileged.rs:1059
 msgid "The privileged helper is unavailable while {operation}."
 msgstr "{operation}时，特权助手不可用。"
 
 
 #. Translators: PKEXEC_UID is a technical environment-variable name; keep it unchanged.
-#: crates/clamui-core/src/privileged.rs:1065
+#: crates/linux-defender-core/src/privileged.rs:1065
 msgid "The privileged helper rejected PKEXEC_UID while {operation}."
 msgstr "{operation}时，特权助手拒绝了 PKEXEC_UID。"
 
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/clamui-core/src/privileged.rs:1071
+#: crates/linux-defender-core/src/privileged.rs:1071
 msgid "The privileged helper reported a protocol mismatch while {operation}."
 msgstr "{operation}时，特权助手报告协议不匹配。"
 
 
 #. Translators: keep {operation}, numeric {code}, and sanitized diagnostic {detail}.
-#: crates/clamui-core/src/privileged.rs:1077
+#: crates/linux-defender-core/src/privileged.rs:1077
 msgid "The privileged helper failed while {operation} (exit {code}): {detail}."
 msgstr "{operation}时，特权助手执行失败（退出码 {code}）：{detail}。"
 
 
 #. Translators: keep the {operation} and numeric {code} placeholders.
-#: crates/clamui-core/src/privileged.rs:1085
+#: crates/linux-defender-core/src/privileged.rs:1085
 msgid "The privileged helper failed while {operation} (exit {code})."
 msgstr "{operation}时，特权助手执行失败（退出码 {code}）。"
 
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/clamui-core/src/privileged.rs:1092
+#: crates/linux-defender-core/src/privileged.rs:1092
 msgid "The privileged helper was terminated while {operation}."
 msgstr "{operation}时，特权助手被终止。"
 
 
-#: crates/clamui-core/src/privileged.rs:1151
+#: crates/linux-defender-core/src/privileged.rs:1151
 msgid "Applying configuration"
 msgstr "应用配置"
 
 
 #. Translators: keep {message}; it is the complete preceding helper error.
-#: crates/clamui-core/src/privileged.rs:1153
+#: crates/linux-defender-core/src/privileged.rs:1153
 msgid "{message} One or more earlier replacements may have succeeded."
 msgstr "{message} 此前可能已有替换操作成功。"
 
 
-#: crates/clamui-core/src/privileged.rs:1395
+#: crates/linux-defender-core/src/privileged.rs:1395
 msgid "Reading configuration"
 msgstr "读取配置"
 
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/clamui-core/src/privileged.rs:2966
+#: crates/linux-defender-core/src/privileged.rs:2966
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr "特权助手安装失败。请重试或手动安装。"
 
 
 #. Translators: keep "Flatpak" and "clamui-privileged-helper" unchanged.
-#: crates/clamui-core/src/privileged/cli_install.rs:26
+#: crates/linux-defender-core/src/privileged/cli_install.rs:26
 msgid ""
 "Linux Defender is running inside a Flatpak sandbox, which cannot install "
 "files on the host. Install the matching clamui-privileged-helper package on "
@@ -1674,7 +1674,7 @@ msgstr ""
 
 
 #. Translators: keep the paths and "sudo clamui install-privileged-helper" command unchanged.
-#: crates/clamui-core/src/privileged/cli_install.rs:33
+#: crates/linux-defender-core/src/privileged/cli_install.rs:33
 msgid ""
 "This command installs files under /usr and /usr/share and must be run as "
 "root. Try: sudo clamui install-privileged-helper"
@@ -1684,13 +1684,13 @@ msgstr ""
 
 
 #. Translators: keep the {error} placeholder; it is a sanitized installation error.
-#: crates/clamui-core/src/privileged/cli_install.rs:120
+#: crates/linux-defender-core/src/privileged/cli_install.rs:120
 msgid "Failed to install privileged helper: {error}"
 msgstr "安装特权辅助程序失败：{error}"
 
 
 #. Translators: keep the {bin} and {policy} placeholders; they are installed file paths.
-#: crates/clamui-core/src/privileged/cli_install.rs:130
+#: crates/linux-defender-core/src/privileged/cli_install.rs:130
 msgid ""
 "Installed privileged helper at {bin} and polkit policy at {policy}. Saving "
 "system ClamAV configuration from Linux Defender should now work."
@@ -1699,114 +1699,114 @@ msgstr ""
 "system ClamAV configuration from Linux Defender should now work."
 
 
-#: crates/clamui-core/src/profiles.rs:240
-#: crates/clamui-core/src/profiles.rs:311
+#: crates/linux-defender-core/src/profiles.rs:240
+#: crates/linux-defender-core/src/profiles.rs:311
 msgid "Profile name must be a string"
 msgstr "配置文件名称必须是字符串"
 
 
-#: crates/clamui-core/src/profiles.rs:244
+#: crates/linux-defender-core/src/profiles.rs:244
 msgid "Cannot rename a default profile"
 msgstr "无法重命名默认配置文件"
 
 
-#: crates/clamui-core/src/profiles.rs:248
+#: crates/linux-defender-core/src/profiles.rs:248
 msgid "Cannot change whether a profile is default"
 msgstr "无法更改配置文件的默认状态"
 
 
-#: crates/clamui-core/src/profiles.rs:296
+#: crates/linux-defender-core/src/profiles.rs:296
 msgid "Cannot delete default profile"
 msgstr "无法删除默认配置文件"
 
 
 #. Translators: Preserve `{path}` exactly as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/clamui-core/src/profiles.rs:336
+#: crates/linux-defender-core/src/profiles.rs:336
 msgid "Could not read import file '{path}': {error}"
 msgstr "无法读取导入文件“{path}”：{error}"
 
 
-#: crates/clamui-core/src/profiles.rs:390
+#: crates/linux-defender-core/src/profiles.rs:390
 msgid "Could not serialize profile export: {error}"
 msgstr "无法序列化配置文件的导出数据：{error}"
 
 
-#: crates/clamui-core/src/profiles.rs:403
+#: crates/linux-defender-core/src/profiles.rs:403
 msgid "Export path must be a non-empty string"
 msgstr "导出路径必须是非空字符串"
 
 
 #. Translators: Preserve `{id}` exactly; it is the profile's technical identifier.
-#: crates/clamui-core/src/profiles.rs:490
+#: crates/linux-defender-core/src/profiles.rs:490
 msgid "Profile with ID '{id}' not found"
 msgstr "未找到 ID 为“{id}”的配置文件"
 
 
-#: crates/clamui-core/src/profiles.rs:569
+#: crates/linux-defender-core/src/profiles.rs:569
 msgid "Profile name cannot be empty"
 msgstr "配置文件名称不能为空"
 
 
-#: crates/clamui-core/src/profiles.rs:572
+#: crates/linux-defender-core/src/profiles.rs:572
 msgid "Profile name cannot exceed {max} characters"
 msgstr "配置文件名称不能超过 {max} 个字符"
 
 
 #. Translators: Preserve `{name}` exactly; it is a user-provided profile name.
-#: crates/clamui-core/src/profiles.rs:582
+#: crates/linux-defender-core/src/profiles.rs:582
 msgid "Profile name '{name}' already exists"
 msgstr "配置文件名称“{name}”已存在"
 
 
 #. Translators: Keep `paths` unchanged; it is the configuration key.
-#: crates/clamui-core/src/profiles.rs:594
+#: crates/linux-defender-core/src/profiles.rs:594
 msgid "Exclusions 'paths' must be a list"
 msgstr "排除项中的“paths”必须是列表"
 
 
-#: crates/clamui-core/src/profiles.rs:603
+#: crates/linux-defender-core/src/profiles.rs:603
 msgid "Exclusion path must be a string"
 msgstr "排除路径必须是字符串"
 
 
 #. Translators: Keep `patterns` unchanged; it is the configuration key.
-#: crates/clamui-core/src/profiles.rs:609
+#: crates/linux-defender-core/src/profiles.rs:609
 msgid "Exclusions 'patterns' must be a list"
 msgstr "排除项中的“patterns”必须是列表"
 
 
-#: crates/clamui-core/src/profiles.rs:620
+#: crates/linux-defender-core/src/profiles.rs:620
 msgid "Exclusion pattern cannot be empty"
 msgstr "排除模式不能为空"
 
 
-#: crates/clamui-core/src/profiles.rs:629
+#: crates/linux-defender-core/src/profiles.rs:629
 msgid "{kind} cannot be empty"
 msgstr "{kind} 不能为空"
 
 
-#: crates/clamui-core/src/profiles.rs:632
+#: crates/linux-defender-core/src/profiles.rs:632
 msgid "Invalid {kind}: contains invalid characters"
 msgstr "无效的 {kind}：包含无效字符"
 
 
-#: crates/clamui-core/src/profiles.rs:641
+#: crates/linux-defender-core/src/profiles.rs:641
 msgid "Invalid {kind} path format: {path}"
 msgstr "{kind} 路径格式无效：{path}"
 
 
 #. Translators: Preserve `{name}` exactly; it is a user-provided profile name.
-#: crates/clamui-core/src/profiles.rs:663
+#: crates/linux-defender-core/src/profiles.rs:663
 msgid "Could not generate unique name for '{name}'"
 msgstr "无法为“{name}”生成唯一名称"
 
 
-#: crates/clamui-core/src/quarantine.rs:395
+#: crates/linux-defender-core/src/quarantine.rs:395
 msgid "Quarantine metadata was written but could not be read"
 msgstr "隔离区元数据已写入，但无法读取"
 
 
-#: crates/clamui-core/src/quarantine.rs:417
+#: crates/linux-defender-core/src/quarantine.rs:417
 msgid ""
 "Failed to record quarantine entry in database. File has been restored to "
 "original location."
@@ -1814,7 +1814,7 @@ msgstr "无法将隔离记录写入数据库。文件已还原至原始位置。
 
 
 #. Translators: Preserve `{error}` as a localized failure description and `{path}` as a user-provided file path.
-#: crates/clamui-core/src/quarantine.rs:420
+#: crates/linux-defender-core/src/quarantine.rs:420
 msgid ""
 "Failed to record quarantine entry in database. Rollback also failed: "
 "{error}. File may be orphaned at: {path}"
@@ -1823,7 +1823,7 @@ msgstr ""
 "记录：{path}"
 
 
-#: crates/clamui-core/src/quarantine.rs:468
+#: crates/linux-defender-core/src/quarantine.rs:468
 msgid ""
 "File restored successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1832,7 +1832,7 @@ msgstr ""
 "中。"
 
 
-#: crates/clamui-core/src/quarantine.rs:495
+#: crates/linux-defender-core/src/quarantine.rs:495
 msgid ""
 "File deleted successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1842,23 +1842,23 @@ msgstr ""
 
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/clamui-core/src/quarantine.rs:1411
+#: crates/linux-defender-core/src/quarantine.rs:1411
 msgid "Cannot quarantine {path}: {error}"
 msgstr "无法隔离 {path}：{error}"
 
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/clamui-core/src/quarantine.rs:1429
+#: crates/linux-defender-core/src/quarantine.rs:1429
 msgid "File hash mismatch — file may be corrupted"
 msgstr "文件哈希值不匹配 — 文件可能已损坏"
 
 
-#: crates/clamui-core/src/scanner.rs:441
+#: crates/linux-defender-core/src/scanner.rs:441
 msgid "No ClamAV database files were found in standard host locations"
 msgstr "未在宿主机的标准位置找到 ClamAV 数据库文件"
 
 
-#: crates/clamui-core/src/scanner.rs:512
+#: crates/linux-defender-core/src/scanner.rs:512
 msgid ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
@@ -1867,44 +1867,44 @@ msgstr ""
 "the scan backend preference to automatic or clamscan."
 
 
-#: crates/clamui-core/src/scanner.rs:2079
+#: crates/linux-defender-core/src/scanner.rs:2079
 msgid "Scan cancelled by user"
 msgstr "用户已取消扫描"
 
 
-#: crates/clamui-core/src/scanner.rs:2086
+#: crates/linux-defender-core/src/scanner.rs:2086
 msgid "No files could be scanned"
 msgstr "未能扫描任何文件"
 
 
-#: crates/clamui-core/src/scanner.rs:2092
+#: crates/linux-defender-core/src/scanner.rs:2092
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "扫描目标不存在或包含无效的 NUL 字节"
 
 
-#: crates/clamui-core/src/scanner.rs:2099
+#: crates/linux-defender-core/src/scanner.rs:2099
 msgid "Scan target is not a regular file or directory"
 msgstr "扫描目标不是普通文件或目录"
 
 
-#: crates/clamui-core/src/scanner.rs:2108
+#: crates/linux-defender-core/src/scanner.rs:2108
 msgid "Threats were detected, but details are unavailable."
 msgstr "检测到威胁，但无法提供详细信息。"
 
 
-#: crates/clamui-core/src/scanner.rs:2120
+#: crates/linux-defender-core/src/scanner.rs:2120
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "无法访问 {count} 个文件"
 
 
-#: crates/clamui-core/src/scanner.rs:2133
+#: crates/linux-defender-core/src/scanner.rs:2133
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "无法读取 {count} 个文件"
 
 
-#: crates/clamui-core/src/scanner.rs:2152
+#: crates/linux-defender-core/src/scanner.rs:2152
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -1914,13 +1914,13 @@ msgid_plural ""
 msgstr[0] "扫描期间出现 {count} 条非致命警告；部分文件可能未被完整扫描"
 
 
-#: crates/clamui-core/src/scheduler.rs:805
+#: crates/linux-defender-core/src/scheduler.rs:805
 msgid "Scheduled scan cancelled"
 msgstr "定时扫描已取消"
 
 
 #. Translators: Keep `clamui-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/clamui-core/src/scheduler.rs:824
+#: crates/linux-defender-core/src/scheduler.rs:824
 msgid ""
 "Usage: clamui-scheduled-scan [--skip-on-battery] [--auto-quarantine] [--"
 "target PATH] [--dry-run] [--verbose|-v]"
@@ -1930,152 +1930,152 @@ msgstr ""
 
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/clamui-core/src/scheduler.rs:865
+#: crates/linux-defender-core/src/scheduler.rs:865
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
 
-#: crates/clamui-core/src/scheduler.rs:874
+#: crates/linux-defender-core/src/scheduler.rs:874
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "已跳过定时扫描（使用电池供电）"
 
 
-#: crates/clamui-core/src/scheduler.rs:891
+#: crates/linux-defender-core/src/scheduler.rs:891
 msgid "Warning: Target does not exist: {target}"
 msgstr "警告：目标不存在：{target}"
 
 
-#: crates/clamui-core/src/scheduler.rs:903
+#: crates/linux-defender-core/src/scheduler.rs:903
 msgid "Error: No valid scan targets found"
 msgstr "错误：未找到有效的扫描目标"
 
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/clamui-core/src/scheduler.rs:907
+#: crates/linux-defender-core/src/scheduler.rs:907
 msgid "Dry run mode — scan not executed"
 msgstr "试运行模式 — 未执行扫描"
 
 
-#: crates/clamui-core/src/scheduler.rs:915
+#: crates/linux-defender-core/src/scheduler.rs:915
 msgid "  Skip on battery: {value}"
 msgstr "  电池供电时跳过扫描：{value}"
 
 
-#: crates/clamui-core/src/scheduler.rs:920
+#: crates/linux-defender-core/src/scheduler.rs:920
 msgid "  Auto quarantine: {value}"
 msgstr "  自动隔离：{value}"
 
 
-#: crates/clamui-core/src/scheduler.rs:928
+#: crates/linux-defender-core/src/scheduler.rs:928
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} 个目标：{targets:?}"
 
 
-#: crates/clamui-core/src/scheduler.rs:952
+#: crates/linux-defender-core/src/scheduler.rs:952
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "定时扫描失败：ClamAV 不可用"
 
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/clamui-core/src/scheduler.rs:962
+#: crates/linux-defender-core/src/scheduler.rs:962
 msgid "Error: ClamAV not available — {error}"
 msgstr "错误：ClamAV 不可用 — {error}"
 
 
-#: crates/clamui-core/src/scheduler.rs:971
+#: crates/linux-defender-core/src/scheduler.rs:971
 msgid "Scheduled Scan Failed"
 msgstr "定时扫描失败"
 
 
-#: crates/clamui-core/src/scheduler.rs:972
+#: crates/linux-defender-core/src/scheduler.rs:972
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "ClamAV 不可用。请安装 ClamAV。"
 
 
-#: crates/clamui-core/src/scheduler.rs:1035
+#: crates/linux-defender-core/src/scheduler.rs:1035
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
 msgstr[0] "定时扫描发现 {infected} 个威胁，已隔离 {quarantined} 个"
 
 
-#: crates/clamui-core/src/scheduler.rs:1046
+#: crates/linux-defender-core/src/scheduler.rs:1046
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "定时扫描发现 {count} 个威胁"
 
 
-#: crates/clamui-core/src/scheduler.rs:1055
+#: crates/linux-defender-core/src/scheduler.rs:1055
 msgid "Scheduled scan completed with errors"
 msgstr "定时扫描已完成，但有错误"
 
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/clamui-core/src/scheduler.rs:1058
+#: crates/linux-defender-core/src/scheduler.rs:1058
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] "计划扫描已完成 — 已扫描 {count} 个文件，未发现威胁"
 
 
-#: crates/clamui-core/src/scheduler.rs:1073
+#: crates/linux-defender-core/src/scheduler.rs:1073
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "扫描耗时：{duration:.1f} 秒"
 
 
-#: crates/clamui-core/src/scheduler.rs:1075
+#: crates/linux-defender-core/src/scheduler.rs:1075
 msgid "Files Scanned: {count}"
 msgstr "已扫描文件：{count} 个"
 
 
-#: crates/clamui-core/src/scheduler.rs:1076
+#: crates/linux-defender-core/src/scheduler.rs:1076
 msgid "Threats Found: {count}"
 msgstr "发现威胁：{count} 个"
 
 
-#: crates/clamui-core/src/scheduler.rs:1077
+#: crates/linux-defender-core/src/scheduler.rs:1077
 msgid "Targets: {targets}"
 msgstr "目标：{targets}"
 
 
-#: crates/clamui-core/src/scheduler.rs:1081
+#: crates/linux-defender-core/src/scheduler.rs:1081
 msgid "Quarantined: {count}"
 msgstr "已隔离：{count} 个"
 
 
-#: crates/clamui-core/src/scheduler.rs:1086
+#: crates/linux-defender-core/src/scheduler.rs:1086
 msgid "Quarantine Failed: {count}"
 msgstr "隔离失败：{count} 个"
 
 
-#: crates/clamui-core/src/scheduler.rs:1114
+#: crates/linux-defender-core/src/scheduler.rs:1114
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "定时扫描：检测到威胁！"
 
 
-#: crates/clamui-core/src/scheduler.rs:1120
+#: crates/linux-defender-core/src/scheduler.rs:1120
 msgid "Scheduled Scan Completed"
 msgstr "定时扫描已完成"
 
 
-#: crates/clamui-core/src/scheduler.rs:1121
+#: crates/linux-defender-core/src/scheduler.rs:1121
 msgid "Scan completed with some errors. Check logs for details."
 msgstr "扫描已完成，但出现了一些错误。详情请查看日志。"
 
 
-#: crates/clamui-core/src/scheduler.rs:1129
+#: crates/linux-defender-core/src/scheduler.rs:1129
 msgid "Scheduled Scan Complete"
 msgstr "定时扫描已完成"
 
 
-#: crates/clamui-core/src/scheduler.rs:1142
+#: crates/linux-defender-core/src/scheduler.rs:1142
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "隔离失败：{count} 个文件"
 
 
-#: crates/clamui-core/src/scheduler.rs:1168
+#: crates/linux-defender-core/src/scheduler.rs:1168
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -2084,27 +2084,27 @@ msgstr ""
 "已根据电池供电设置跳过扫描。"
 
 
-#: crates/clamui-core/src/scheduler.rs:1173
+#: crates/linux-defender-core/src/scheduler.rs:1173
 msgid "Scan skipped due to battery-aware settings."
 msgstr "已根据电池供电设置跳过扫描。"
 
 
-#: crates/clamui-core/src/scheduler.rs:1179
+#: crates/linux-defender-core/src/scheduler.rs:1179
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "跳过扫描：当前使用电池供电（电量 {percent:.0f}%）"
 
 
-#: crates/clamui-core/src/scheduler.rs:1184
+#: crates/linux-defender-core/src/scheduler.rs:1184
 msgid "Skipping scan: running on battery power"
 msgstr "跳过扫描：当前使用电池供电"
 
 
-#: crates/clamui-core/src/updater.rs:131
+#: crates/linux-defender-core/src/updater.rs:131
 msgid "Update cancelled by user"
 msgstr "用户已取消更新"
 
 
-#: crates/clamui-core/src/updater.rs:136
+#: crates/linux-defender-core/src/updater.rs:136
 msgid ""
 "Update process output did not close after cleanup; result cannot be "
 "classified."
@@ -2112,13 +2112,13 @@ msgstr "清理后，更新进程的输出流仍未关闭；无法判定结果类
 
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/clamui-core/src/updater.rs:503
+#: crates/linux-defender-core/src/updater.rs:503
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr "已向 freshclam 服务（PID {pid}）发送更新信号"
 
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/clamui-core/src/updater.rs:793
+#: crates/linux-defender-core/src/updater.rs:793
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2127,7 +2127,7 @@ msgstr ""
 "clamav-freshclam"
 
 
-#: crates/clamui-core/src/updater.rs:823
+#: crates/linux-defender-core/src/updater.rs:823
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] "Update timed out after {minutes} minutes without output"
@@ -2135,31 +2135,31 @@ msgstr[0] "Update timed out after {minutes} minutes without output"
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/clamui-core/src/updater.rs:962
+#: crates/linux-defender-core/src/updater.rs:962
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] "数据库更新已完成 — 已更新 {count} 个数据库"
 
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/clamui-core/src/updater.rs:972
+#: crates/linux-defender-core/src/updater.rs:972
 msgid "Database update completed — Already up to date"
 msgstr "数据库更新已完成 — 已是最新版本"
 
 
-#: crates/clamui-core/src/updater.rs:1039
+#: crates/linux-defender-core/src/updater.rs:1039
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "所选的 freshclam 配置文件不存在：{path}"
 
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/clamui-core/src/updater.rs:1071
+#: crates/linux-defender-core/src/updater.rs:1071
 msgid "Could not determine freshclam PID"
 msgstr "无法确定 freshclam 的 PID"
 
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/clamui-core/src/updater.rs:1081
+#: crates/linux-defender-core/src/updater.rs:1081
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
@@ -2168,88 +2168,88 @@ msgstr ""
 "freshclam ({error})"
 
 
-#: crates/clamui-core/src/virustotal.rs:1182
+#: crates/linux-defender-core/src/virustotal.rs:1182
 msgid "File too large ({size}MB). Maximum size is {max}MB"
 msgstr "文件过大（{size} MB），上限为 {max} MB"
 
 
-#: crates/clamui-core/src/virustotal.rs:1186
+#: crates/linux-defender-core/src/virustotal.rs:1186
 msgid "Invalid file path"
 msgstr "文件路径无效"
 
 
-#: crates/clamui-core/src/virustotal.rs:1188
+#: crates/linux-defender-core/src/virustotal.rs:1188
 msgid "Path is not a regular file"
 msgstr "路径指向的不是普通文件"
 
 
-#: crates/clamui-core/src/virustotal.rs:1190
+#: crates/linux-defender-core/src/virustotal.rs:1190
 msgid "File changed while hashing"
 msgstr "文件在计算哈希值时发生了变化"
 
 
-#: crates/clamui-core/src/virustotal.rs:1192
+#: crates/linux-defender-core/src/virustotal.rs:1192
 msgid "File changed before upload"
 msgstr "文件在上传前已被修改"
 
 
-#: crates/clamui-core/src/virustotal.rs:1194
+#: crates/linux-defender-core/src/virustotal.rs:1194
 msgid "File changed during upload"
 msgstr "文件在上传过程中被修改"
 
 
-#: crates/clamui-core/src/virustotal.rs:1203
+#: crates/linux-defender-core/src/virustotal.rs:1203
 msgid "VirusTotal: Clean scan"
 msgstr "VirusTotal：扫描未发现威胁"
 
 
-#: crates/clamui-core/src/virustotal.rs:1206
+#: crates/linux-defender-core/src/virustotal.rs:1206
 msgid "VirusTotal: {detections}/{total} engines detected threats"
 msgstr "VirusTotal：{detections}/{total} 个引擎检测到威胁"
 
 
-#: crates/clamui-core/src/virustotal.rs:1213
+#: crates/linux-defender-core/src/virustotal.rs:1213
 msgid "VirusTotal: Threats detected"
 msgstr "VirusTotal：检测到威胁"
 
 
-#: crates/clamui-core/src/virustotal.rs:1214
+#: crates/linux-defender-core/src/virustotal.rs:1214
 msgid "VirusTotal: Rate limit exceeded"
 msgstr "VirusTotal：已超出请求频率限制"
 
 
-#: crates/clamui-core/src/virustotal.rs:1215
+#: crates/linux-defender-core/src/virustotal.rs:1215
 msgid "VirusTotal: Analysis pending"
 msgstr "VirusTotal：等待分析"
 
 
-#: crates/clamui-core/src/virustotal.rs:1218
+#: crates/linux-defender-core/src/virustotal.rs:1218
 msgid "VirusTotal: File not previously analyzed"
 msgstr "VirusTotal：此前未分析过此文件"
 
 
-#: crates/clamui-core/src/virustotal.rs:1220
+#: crates/linux-defender-core/src/virustotal.rs:1220
 msgid "VirusTotal: File too large for upload"
 msgstr "VirusTotal：文件过大，无法上传"
 
 
-#: crates/clamui-core/src/virustotal.rs:1221
+#: crates/linux-defender-core/src/virustotal.rs:1221
 msgid "VirusTotal: Scan error"
 msgstr "VirusTotal：扫描出错"
 
 
-#: crates/clamui-core/src/virustotal.rs:1226
+#: crates/linux-defender-core/src/virustotal.rs:1226
 msgid "Detections: {detections}/{total}"
 msgstr "检出数：{detections}/{total}"
 
 
-#: crates/clamui-core/src/virustotal.rs:1240
+#: crates/linux-defender-core/src/virustotal.rs:1240
 msgid "Error: {error}"
 msgstr "错误：{error}"
 
 
 #. Translators: Keep `API` unchanged as the abbreviation for application programming interface.
-#: crates/clamui-core/src/virustotal.rs:1462
+#: crates/linux-defender-core/src/virustotal.rs:1462
 msgid "API key saved"
 msgstr "API 密钥已保存"
 

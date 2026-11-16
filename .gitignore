@@ -58,7 +58,7 @@ coverage.xml
 
 # Translations (compiled .mo files are build artifacts)
 *.mo
-# Note: po/clamui.pot is tracked (force-added) for translator reference
+# Note: po/linux-defender.pot is tracked (force-added) for translator reference
 
 # Editors
 .idea/

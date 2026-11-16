@@ -1,5 +1,5 @@
 [package]
-name = "clamui-core"
+name = "linux-defender-core"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -7,7 +7,7 @@ repository.workspace = true
 build = "build.rs"
 
 [lib]
-name = "clamui_core"
+name = "linux_defender_core"
 path = "src/lib.rs"
 
 [dependencies]

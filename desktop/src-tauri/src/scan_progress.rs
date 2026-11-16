@@ -1,4 +1,4 @@
-use clamui_core::common::Event;
+use linux_defender_core::common::Event;
 use serde_json::Value;
 use std::{
     collections::{hash_map::Entry, HashMap},

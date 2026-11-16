@@ -92,3 +92,7 @@ jobs:
       - name: Type-check frontend
         working-directory: desktop
         run: bun run check
+
+      - name: Run frontend tests
+        working-directory: desktop
+        run: bun test

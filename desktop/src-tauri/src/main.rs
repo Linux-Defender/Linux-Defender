@@ -5,7 +5,7 @@ mod runtime;
 mod scan_progress;
 mod tray;
 
-use clamui_core::common::path_to_wire;
+use linux_defender_core::common::path_to_wire;
 use std::{
     env,
     ffi::OsString,
@@ -25,10 +25,10 @@ fn main() {
 
     let exit_code = match name {
         "clamui-apply-preferences" => unicode_args(&raw_args)
-            .map(|args| clamui_core::privileged::run_helper(&args))
+            .map(|args| linux_defender_core::privileged::run_helper(&args))
             .unwrap_or_else(report_non_unicode_cli_argument),
         "clamui-scheduled-scan" => unicode_args(&raw_args)
-            .map(|args| clamui_core::scheduler::run_scheduled(&args))
+            .map(|args| linux_defender_core::scheduler::run_scheduled(&args))
             .unwrap_or_else(report_non_unicode_cli_argument),
         _ => route_main(&executable, &raw_args),
     };
@@ -43,10 +43,10 @@ fn route_main(executable: &Path, raw_args: &[OsString]) -> i32 {
             .first()
             .is_some_and(|argument| argument == "--scheduled-scan")
         {
-            return clamui_core::scheduler::run_scheduled(&args[1..]);
+            return linux_defender_core::scheduler::run_scheduled(&args[1..]);
         }
-        if clamui_core::cli::is_cli(&args) {
-            return clamui_core::cli::run(&args);
+        if linux_defender_core::cli::is_cli(&args) {
+            return linux_defender_core::cli::run(&args);
         }
         return run_gui(args);
     }
@@ -54,7 +54,7 @@ fn route_main(executable: &Path, raw_args: &[OsString]) -> i32 {
     let Some(first) = raw_args.first().and_then(|argument| argument.to_str()) else {
         return normalize_and_reexec_gui(executable, raw_args);
     };
-    if first == "--scheduled-scan" || clamui_core::cli::is_cli(&[first.to_owned()]) {
+    if first == "--scheduled-scan" || linux_defender_core::cli::is_cli(&[first.to_owned()]) {
         return report_non_unicode_cli_argument(());
     }
     normalize_and_reexec_gui(executable, raw_args)

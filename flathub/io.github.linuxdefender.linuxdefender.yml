@@ -40,7 +40,7 @@ finish-args:
   - --talk-name=org.freedesktop.Flatpak
 
 modules:
-  - name: clamui
+  - name: linux-defender
     buildsystem: simple
     build-options:
       append-path: /usr/lib/sdk/node24/bin:/usr/lib/sdk/rust-stable/bin
@@ -62,7 +62,7 @@ modules:
       - cd desktop && yarn install --offline --frozen-lockfile --ignore-scripts
       - cd desktop && yarn run check && ./node_modules/.bin/vite build
       - cargo build --offline --locked --release -p clamui --bin clamui
-      - cargo build --offline --locked --release -p clamui-core --bin clamui-scheduled-scan
+      - cargo build --offline --locked --release -p linux-defender-core --bin clamui-scheduled-scan
       - install -Dm755 target/release/clamui /app/bin/clamui
       - install -Dm755 target/release/clamui-scheduled-scan /app/bin/clamui-scheduled-scan
       - install -Dm644 data/io.github.linuxdefender.linuxdefender.desktop /app/share/applications/io.github.linuxdefender.linuxdefender.desktop
@@ -70,7 +70,7 @@ modules:
       - install -Dm644 icons/io.github.linuxdefender.linuxdefender.svg /app/share/icons/hicolor/scalable/apps/io.github.linuxdefender.linuxdefender.svg
       - install -Dm644 icons/io.github.linuxdefender.linuxdefender.png /app/share/icons/hicolor/128x128/apps/io.github.linuxdefender.linuxdefender.png
       - install -d /app/share/linux-defender
-      - cp -a crates/clamui-core/assets/integrations /app/share/linux-defender/integrations
+      - cp -a crates/linux-defender-core/assets/integrations /app/share/linux-defender/integrations
       - find /app/share/linux-defender/integrations -type f -name '*.sh' -exec chmod 0755 '{}' +
     sources:
       - type: dir

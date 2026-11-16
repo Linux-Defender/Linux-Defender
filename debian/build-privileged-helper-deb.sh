@@ -84,7 +84,7 @@ build_helper() {
         (
             cd "$PROJECT_ROOT"
             cargo build --manifest-path "$PROJECT_ROOT/Cargo.toml" --release --locked \
-                --package clamui-core --bin clamui-apply-preferences
+                --package linux-defender-core --bin clamui-apply-preferences
         )
         ARTIFACT_DIR="$(artifact_dir)"
     fi

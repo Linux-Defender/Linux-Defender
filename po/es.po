@@ -20,432 +20,432 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 
 
-#: crates/clamui-core/src/audit.rs:293
+#: crates/linux-defender-core/src/audit.rs:293
 msgid "ClamAV is not installed"
 msgstr "ClamAV no está instalado"
 
 
-#: crates/clamui-core/src/audit.rs:295
+#: crates/linux-defender-core/src/audit.rs:295
 msgid "Install ClamAV to enable virus scanning"
 msgstr "Instale ClamAV para activar el escaneo antivirus"
 
 
-#: crates/clamui-core/src/audit.rs:312
+#: crates/linux-defender-core/src/audit.rs:312
 msgid "Installed: {version}"
 msgstr "Instalado: {version}"
 
 
-#: crates/clamui-core/src/audit.rs:323
+#: crates/linux-defender-core/src/audit.rs:323
 msgid "Up to date ({days} day old, built {date})"
 msgid_plural "Up to date ({days} days old, built {date})"
 msgstr[0] "Actualizada (hace {days} día, creada el {date})"
 msgstr[1] "Actualizada (hace {days} días, creada el {date})"
 
 
-#: crates/clamui-core/src/audit.rs:339 crates/clamui-core/src/audit.rs:357
+#: crates/linux-defender-core/src/audit.rs:339 crates/linux-defender-core/src/audit.rs:357
 msgid "Database is {days} day old (built {date})"
 msgid_plural "Database is {days} days old (built {date})"
 msgstr[0] "La base de datos tiene {days} día de antigüedad (creada el {date})"
 msgstr[1] "La base de datos tiene {days} días de antigüedad (creada el {date})"
 
 
-#: crates/clamui-core/src/audit.rs:347
+#: crates/linux-defender-core/src/audit.rs:347
 msgid "Update virus database to ensure protection"
 msgstr "Actualice la base de datos de virus para garantizar la protección"
 
 
-#: crates/clamui-core/src/audit.rs:365
+#: crates/linux-defender-core/src/audit.rs:365
 msgid "Database is critically outdated. Update immediately."
 msgstr ""
 "La base de datos está críticamente desactualizada. Actualícela de inmediato."
 
 
-#: crates/clamui-core/src/audit.rs:384
+#: crates/linux-defender-core/src/audit.rs:384
 msgid "Database files exist but age could not be determined"
 msgstr ""
 "Los archivos de la base de datos existen, pero no se ha podido determinar su "
 "antigüedad"
 
 
-#: crates/clamui-core/src/audit.rs:386
+#: crates/linux-defender-core/src/audit.rs:386
 msgid "No virus database found"
 msgstr "No se ha encontrado ninguna base de datos de virus"
 
 
-#: crates/clamui-core/src/audit.rs:390
+#: crates/linux-defender-core/src/audit.rs:390
 msgid "Download virus database"
 msgstr "Descargar la base de datos de virus"
 
 
-#: crates/clamui-core/src/audit.rs:406
+#: crates/linux-defender-core/src/audit.rs:406
 msgid "Service {name} is running"
 msgstr "El servicio {name} se está ejecutando"
 
 
-#: crates/clamui-core/src/audit.rs:417
+#: crates/linux-defender-core/src/audit.rs:417
 msgid "Daemon is responding"
 msgstr "El daemon está respondiendo"
 
 
-#: crates/clamui-core/src/audit.rs:424
+#: crates/linux-defender-core/src/audit.rs:424
 msgid "ClamAV daemon is not running"
 msgstr "El servicio ClamAV no se está ejecutando"
 
 
-#: crates/clamui-core/src/audit.rs:426
+#: crates/linux-defender-core/src/audit.rs:426
 msgid "Start the daemon for faster scanning"
 msgstr "Inicie el daemon para acelerar el escaneo"
 
 
-#: crates/clamui-core/src/audit.rs:447
+#: crates/linux-defender-core/src/audit.rs:447
 msgid "Freshclam service is active"
 msgstr "El servicio Freshclam está activo"
 
 
-#: crates/clamui-core/src/audit.rs:454
+#: crates/linux-defender-core/src/audit.rs:454
 msgid "Freshclam automatic update service is not running"
 msgstr ""
 "El servicio de actualización automática de Freshclam no se está ejecutando"
 
 
-#: crates/clamui-core/src/audit.rs:456
+#: crates/linux-defender-core/src/audit.rs:456
 msgid "Enable automatic database updates"
 msgstr "Habilitar las actualizaciones automáticas de la base de datos"
 
 
-#: crates/clamui-core/src/audit.rs:658
+#: crates/linux-defender-core/src/audit.rs:658
 msgid "{count} port listening, risky ports: {ports}"
 msgid_plural "{count} ports listening, risky ports: {ports}"
 msgstr[0] "{count} puerto a la escucha; puertos de riesgo: {ports}"
 msgstr[1] "{count} puertos a la escucha; puertos de riesgo: {ports}"
 
 
-#: crates/clamui-core/src/audit.rs:669
+#: crates/linux-defender-core/src/audit.rs:669
 msgid "Review if these services need to be exposed"
 msgstr "Compruebe si es necesario dar acceso a estos servicios"
 
 
-#: crates/clamui-core/src/audit.rs:676
+#: crates/linux-defender-core/src/audit.rs:676
 msgid "{count} port listening"
 msgid_plural "{count} ports listening"
 msgstr[0] "{count} puerto a la escucha"
 msgstr[1] "{count} puertos a la escucha"
 
 
-#: crates/clamui-core/src/audit.rs:684
+#: crates/linux-defender-core/src/audit.rs:684
 msgid "Review open ports and close unnecessary services"
 msgstr "Revisar los puertos abiertos y cerrar los servicios innecesarios"
 
 
-#: crates/clamui-core/src/audit.rs:691
+#: crates/linux-defender-core/src/audit.rs:691
 msgid "No open ports detected"
 msgstr "No se han detectado puertos abiertos"
 
 
-#: crates/clamui-core/src/audit.rs:722
+#: crates/linux-defender-core/src/audit.rs:722
 msgid "AppArmor is enabled"
 msgstr "AppArmor está activado"
 
 
-#: crates/clamui-core/src/audit.rs:729
+#: crates/linux-defender-core/src/audit.rs:729
 msgid "AppArmor module is loaded but not enabled"
 msgstr "El módulo AppArmor está cargado, pero no está habilitado"
 
 
-#: crates/clamui-core/src/audit.rs:731
+#: crates/linux-defender-core/src/audit.rs:731
 msgid "Enable AppArmor for application sandboxing"
 msgstr "Habilitar AppArmor para el aislamiento de aplicaciones"
 
 
-#: crates/clamui-core/src/audit.rs:746
+#: crates/linux-defender-core/src/audit.rs:746
 msgid "SELinux is enforcing"
 msgstr "SELinux está en modo de aplicación estricta"
 
 
-#: crates/clamui-core/src/audit.rs:753
+#: crates/linux-defender-core/src/audit.rs:753
 msgid "SELinux is in permissive mode"
 msgstr "SELinux está en modo permisivo"
 
 
-#: crates/clamui-core/src/audit.rs:755
+#: crates/linux-defender-core/src/audit.rs:755
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr ""
 "Considere cambiar al modo de aplicación estricta para una protección más "
 "sólida"
 
 
-#: crates/clamui-core/src/audit.rs:766
+#: crates/linux-defender-core/src/audit.rs:766
 msgid "SELinux is disabled"
 msgstr "SELinux está desactivado"
 
 
-#: crates/clamui-core/src/audit.rs:768
+#: crates/linux-defender-core/src/audit.rs:768
 msgid "Enable SELinux for mandatory access control"
 msgstr "Habilitar SELinux para el control de acceso obligatorio"
 
 
-#: crates/clamui-core/src/audit.rs:782
+#: crates/linux-defender-core/src/audit.rs:782
 msgid "No mandatory access control framework detected"
 msgstr "No se ha detectado ningún framework de acceso obligatorio"
 
 
-#: crates/clamui-core/src/audit.rs:784
+#: crates/linux-defender-core/src/audit.rs:784
 msgid "Consider enabling AppArmor or SELinux"
 msgstr "Considere la posibilidad de habilitar AppArmor o SELinux"
 
 
-#: crates/clamui-core/src/audit.rs:809
+#: crates/linux-defender-core/src/audit.rs:809
 msgid "Automatic security updates are enabled"
 msgstr "Las actualizaciones de seguridad automáticas están activadas"
 
 
-#: crates/clamui-core/src/audit.rs:819
+#: crates/linux-defender-core/src/audit.rs:819
 msgid "Unattended upgrades is installed but disabled"
 msgstr "El servicio Unattended Upgrades está instalado, pero desactivado"
 
 
-#: crates/clamui-core/src/audit.rs:821
+#: crates/linux-defender-core/src/audit.rs:821
 msgid "Enable automatic security updates"
 msgstr "Habilitar las actualizaciones de seguridad automáticas"
 
 
-#: crates/clamui-core/src/audit.rs:834
+#: crates/linux-defender-core/src/audit.rs:834
 msgid "DNF automatic updates are enabled"
 msgstr "Las actualizaciones automáticas de DNF están activadas"
 
 
-#: crates/clamui-core/src/audit.rs:844
+#: crates/linux-defender-core/src/audit.rs:844
 msgid "DNF automatic is installed but timer is not active"
 msgstr ""
 "El servicio DNF Automatic está instalado, pero el temporizador no está activo"
 
 
-#: crates/clamui-core/src/audit.rs:846
+#: crates/linux-defender-core/src/audit.rs:846
 msgid "Enable automatic updates"
 msgstr "Habilitar las actualizaciones automáticas"
 
 
-#: crates/clamui-core/src/audit.rs:859
+#: crates/linux-defender-core/src/audit.rs:859
 msgid "Could not determine automatic update status"
 msgstr "No se ha podido determinar el estado de la actualización automática"
 
 
-#: crates/clamui-core/src/audit.rs:861
+#: crates/linux-defender-core/src/audit.rs:861
 msgid "Configure automatic security updates"
 msgstr "Configurar las actualizaciones de seguridad automáticas"
 
 
-#: crates/clamui-core/src/audit.rs:875
+#: crates/linux-defender-core/src/audit.rs:875
 msgid "System reboot required to apply updates"
 msgstr "Es necesario reiniciar el sistema para aplicar las actualizaciones"
 
 
-#: crates/clamui-core/src/audit.rs:877
+#: crates/linux-defender-core/src/audit.rs:877
 msgid "Reboot the system to apply pending security updates"
 msgstr ""
 "Reinicie el sistema para aplicar las actualizaciones de seguridad pendientes"
 
 
-#: crates/clamui-core/src/audit.rs:922
+#: crates/linux-defender-core/src/audit.rs:922
 msgid "{name} is installed but not running"
 msgstr "{name} está instalado, pero no se está ejecutando"
 
 
-#: crates/clamui-core/src/audit.rs:940
+#: crates/linux-defender-core/src/audit.rs:940
 msgid "No intrusion detection system found"
 msgstr "No se ha encontrado ningún sistema de detección de intrusiones"
 
 
-#: crates/clamui-core/src/audit.rs:942
+#: crates/linux-defender-core/src/audit.rs:942
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr "Instale fail2ban o CrowdSec para protegerse contra ataques"
 
 
-#: crates/clamui-core/src/audit.rs:968
+#: crates/linux-defender-core/src/audit.rs:968
 msgid "SSH server is not running (no remote attack surface)"
 msgstr ""
 "El servidor SSH no está en funcionamiento (no hay superficie de ataque "
 "remota)"
 
 
-#: crates/clamui-core/src/audit.rs:978
+#: crates/linux-defender-core/src/audit.rs:978
 msgid "SSH server is running"
 msgstr "El servidor SSH está en funcionamiento"
 
 
-#: crates/clamui-core/src/audit.rs:987
+#: crates/linux-defender-core/src/audit.rs:987
 msgid "Could not read SSH configuration"
 msgstr "No se ha podido leer la configuración de SSH"
 
 
-#: crates/clamui-core/src/audit.rs:1005
+#: crates/linux-defender-core/src/audit.rs:1005
 msgid "Root login: {value}"
 msgstr "Inicio de sesión de root: {value}"
 
 
-#: crates/clamui-core/src/audit.rs:1012
+#: crates/linux-defender-core/src/audit.rs:1012
 msgid "Root login is allowed ({value})"
 msgstr "Se permite el inicio de sesión como root ({value})"
 
 
-#: crates/clamui-core/src/audit.rs:1018
+#: crates/linux-defender-core/src/audit.rs:1018
 msgid "Disable root SSH login for security"
 msgstr ""
 "Desactive el inicio de sesión SSH como usuario root por motivos de seguridad"
 
 
-#: crates/clamui-core/src/audit.rs:1032
+#: crates/linux-defender-core/src/audit.rs:1032
 msgid "Password authentication is disabled (key-only)"
 msgstr "La autenticación mediante contraseña está desactivada (solo con clave)"
 
 
-#: crates/clamui-core/src/audit.rs:1039
+#: crates/linux-defender-core/src/audit.rs:1039
 msgid "Password authentication is enabled"
 msgstr "La autenticación mediante contraseña está activada"
 
 
-#: crates/clamui-core/src/audit.rs:1041
+#: crates/linux-defender-core/src/audit.rs:1041
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr ""
 "Considere deshabilitar la autenticación por contraseña en favor de claves SSH"
 
 
-#: crates/clamui-core/src/audit.rs:1058
+#: crates/linux-defender-core/src/audit.rs:1058
 msgid "X11 forwarding is disabled"
 msgstr "El reenvío de X11 está desactivado"
 
 
-#: crates/clamui-core/src/audit.rs:1065
+#: crates/linux-defender-core/src/audit.rs:1065
 msgid "X11 forwarding is enabled"
 msgstr "El reenvío de X11 está activado"
 
 
-#: crates/clamui-core/src/audit.rs:1067
+#: crates/linux-defender-core/src/audit.rs:1067
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr "Desactive el reenvío de X11 para reducir la superficie de ataque"
 
 
-#: crates/clamui-core/src/audit.rs:1142
+#: crates/linux-defender-core/src/audit.rs:1142
 msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster se está ejecutando y protege las conexiones"
 
 
-#: crates/clamui-core/src/audit.rs:1166
+#: crates/linux-defender-core/src/audit.rs:1166
 #
 msgid "Authorize Linux Defender in Portmaster for per-module health"
 msgstr "Autorizar a Linux Defender en Portmaster para consultar el estado de cada módulo"
 
-#: crates/clamui-core/src/audit.rs:1172
+#: crates/linux-defender-core/src/audit.rs:1172
 msgid "Authorize"
 msgstr "Autorizar"
 
 
-#: crates/clamui-core/src/audit.rs:1182
+#: crates/linux-defender-core/src/audit.rs:1182
 msgid "Portmaster is installed but not running"
 msgstr "Portmaster está instalado, pero no se está ejecutando"
 
 
-#: crates/clamui-core/src/audit.rs:1184
+#: crates/linux-defender-core/src/audit.rs:1184
 msgid "Start the Portmaster service to enable network protection"
 msgstr "Inicie el servicio Portmaster para activar la protección de red"
 
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/clamui-core/src/audit.rs:1197
+#: crates/linux-defender-core/src/audit.rs:1197
 msgid "Not detected — optional network monitor and application firewall"
 msgstr "No detectado — monitor de red y cortafuegos de aplicaciones opcional"
 
 
-#: crates/clamui-core/src/audit.rs:1211
+#: crates/linux-defender-core/src/audit.rs:1211
 msgid "Could not probe Portmaster: {error}"
 msgstr "No se pudo sondear Portmaster: {error}"
 
 
-#: crates/clamui-core/src/audit.rs:1261
+#: crates/linux-defender-core/src/audit.rs:1261
 msgid "{name} is not installed"
 msgstr "{name} no está instalado"
 
 
-#: crates/clamui-core/src/audit.rs:1267
+#: crates/linux-defender-core/src/audit.rs:1267
 msgid "Install {name} for comprehensive security auditing"
 msgstr "Instale {name} para una auditoría de seguridad exhaustiva"
 
 
-#: crates/clamui-core/src/audit.rs:1273
+#: crates/linux-defender-core/src/audit.rs:1273
 msgid "Install chkrootkit for rootkit detection"
 msgstr "Instale chkrootkit para detectar rootkits"
 
 
-#: crates/clamui-core/src/audit.rs:1292
+#: crates/linux-defender-core/src/audit.rs:1292
 msgid "Authentication was cancelled"
 msgstr "Se ha cancelado la autenticación"
 
 
-#: crates/clamui-core/src/audit.rs:1300
+#: crates/linux-defender-core/src/audit.rs:1300
 msgid "Lynis audit timed out after 5 minutes"
 msgstr "La auditoría de Lynis agotó el tiempo de espera tras 5 minutos"
 
 
-#: crates/clamui-core/src/audit.rs:1302
+#: crates/linux-defender-core/src/audit.rs:1302
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr "El análisis de rootkits agotó el tiempo de espera tras 5 minutos"
 
 
-#: crates/clamui-core/src/audit.rs:1320 crates/clamui-core/src/audit.rs:1364
+#: crates/linux-defender-core/src/audit.rs:1320 crates/linux-defender-core/src/audit.rs:1364
 msgid "Failed to run Lynis: {error}"
 msgstr "No se pudo ejecutar Lynis: {error}"
 
 
-#: crates/clamui-core/src/audit.rs:1326
+#: crates/linux-defender-core/src/audit.rs:1326
 msgid "Failed to run chkrootkit: {error}"
 msgstr "No se pudo ejecutar chkrootkit: {error}"
 
 
-#: crates/clamui-core/src/audit.rs:1392
+#: crates/linux-defender-core/src/audit.rs:1392
 msgid "Score: {score}/100"
 msgstr "Puntuación: {score}/100"
 
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/clamui-core/src/audit.rs:1395
+#: crates/linux-defender-core/src/audit.rs:1395
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr ""
 "Ejecute «sudo lynis audit system» para obtener recomendaciones detalladas"
 
 
-#: crates/clamui-core/src/audit.rs:1411
+#: crates/linux-defender-core/src/audit.rs:1411
 msgid "Audit completed (exit code {code})"
 msgstr "Auditoría completada (código de salida {code})"
 
 
-#: crates/clamui-core/src/audit.rs:1449 crates/clamui-core/src/audit.rs:1463
+#: crates/linux-defender-core/src/audit.rs:1449 crates/linux-defender-core/src/audit.rs:1463
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr "No se pudo completar el análisis de rootkits (código de salida {code})"
 
 
-#: crates/clamui-core/src/audit.rs:1493
+#: crates/linux-defender-core/src/audit.rs:1493
 msgid "No rootkits detected"
 msgstr "No se han detectado rootkits"
 
 
-#: crates/clamui-core/src/audit.rs:1504
+#: crates/linux-defender-core/src/audit.rs:1504
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] "Se detectó {count} posible rootkit"
 msgstr[1] "Se detectaron {count} posibles rootkits"
 
 
-#: crates/clamui-core/src/audit.rs:1512
+#: crates/linux-defender-core/src/audit.rs:1512
 msgid "Investigate the detected threats immediately"
 msgstr "Investigue inmediatamente las amenazas detectadas"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:53
+#: crates/linux-defender-core/src/audit/firewall.rs:53
 msgid "Firewall manager overlap"
 msgstr "Superposición de gestores de cortafuegos"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:54
+#: crates/linux-defender-core/src/audit/firewall.rs:54
 msgid ""
 "UFW is active while Firewalld owns its D-Bus name; their rule interaction "
 "was not evaluated."
@@ -454,12 +454,12 @@ msgstr ""
 "interacción entre sus reglas."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:157
+#: crates/linux-defender-core/src/audit/firewall.rs:157
 msgid "UFW Firewall"
 msgstr "Cortafuegos UFW"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:162
+#: crates/linux-defender-core/src/audit/firewall.rs:162
 msgid ""
 "UFW is active; the default incoming policy is deny. Listed rules may allow "
 "exceptions."
@@ -468,7 +468,7 @@ msgstr ""
 "reglas enumeradas pueden permitir excepciones."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:169
+#: crates/linux-defender-core/src/audit/firewall.rs:169
 msgid ""
 "UFW is active; the default incoming policy is reject. Listed rules may allow "
 "exceptions."
@@ -477,46 +477,46 @@ msgstr ""
 "reglas enumeradas pueden permitir excepciones."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:176
+#: crates/linux-defender-core/src/audit/firewall.rs:176
 msgid "UFW is active; the default incoming policy is deny."
 msgstr "UFW está activo; la política predeterminada de entrada es denegar."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:180
+#: crates/linux-defender-core/src/audit/firewall.rs:180
 msgid "UFW is active; the default incoming policy is reject."
 msgstr "UFW está activo; la política predeterminada de entrada es rechazar."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:184
+#: crates/linux-defender-core/src/audit/firewall.rs:184
 msgid "UFW is active, but the default incoming policy allows traffic."
 msgstr ""
 "UFW está activo, pero su política predeterminada de entrada permite el "
 "tráfico."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:191
+#: crates/linux-defender-core/src/audit/firewall.rs:191
 msgid "UFW is active, but its default incoming policy could not be verified."
 msgstr ""
 "UFW está activo, pero no se pudo verificar su política predeterminada de "
 "entrada."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:195
+#: crates/linux-defender-core/src/audit/firewall.rs:195
 msgid "UFW reports inactive."
 msgstr "UFW informa que está inactivo."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:196
+#: crates/linux-defender-core/src/audit/firewall.rs:196
 msgid "UFW status could not be inspected safely."
 msgstr "No se pudo inspeccionar de forma segura el estado de UFW."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:234
+#: crates/linux-defender-core/src/audit/firewall.rs:234
 msgid "Firewalld"
 msgstr "Firewalld"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:236
+#: crates/linux-defender-core/src/audit/firewall.rs:236
 msgid ""
 "Firewalld owns its D-Bus name; readiness and firewall policy were not "
 "queried."
@@ -525,7 +525,7 @@ msgstr ""
 "política del cortafuegos."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:240
+#: crates/linux-defender-core/src/audit/firewall.rs:240
 msgid ""
 "No Firewalld D-Bus owner was observed; this does not establish kernel "
 "firewall policy."
@@ -534,7 +534,7 @@ msgstr ""
 "política del cortafuegos del kernel."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:244
+#: crates/linux-defender-core/src/audit/firewall.rs:244
 msgid ""
 "Firewalld ownership could not be verified; readiness and firewall policy "
 "were not queried."
@@ -543,27 +543,27 @@ msgstr ""
 "disponibilidad ni la política del cortafuegos."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:259
+#: crates/linux-defender-core/src/audit/firewall.rs:259
 msgid "firewall-cmd"
 msgstr "firewall-cmd"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:264
+#: crates/linux-defender-core/src/audit/firewall.rs:264
 msgid "firewall-cmd is installed; it was not executed."
 msgstr "firewall-cmd está instalado; no se ejecutó."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:270
+#: crates/linux-defender-core/src/audit/firewall.rs:270
 msgid "firewall-cmd could not be confirmed without executing it."
 msgstr "No se pudo confirmar firewall-cmd sin ejecutarlo."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:408
+#: crates/linux-defender-core/src/audit/firewall.rs:408
 msgid "nftables (native rules)"
 msgstr "nftables (reglas nativas)"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:410
+#: crates/linux-defender-core/src/audit/firewall.rs:410
 msgid ""
 "nftables has restrictive default input policies for IPv4 and IPv6; "
 "individual rules may allow exceptions."
@@ -572,7 +572,7 @@ msgstr ""
 "IPv6; las reglas individuales pueden permitir excepciones."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:414
+#: crates/linux-defender-core/src/audit/firewall.rs:414
 msgid ""
 "nftables reports a permissive default input policy; remaining coverage may "
 "be incomplete"
@@ -581,7 +581,7 @@ msgstr ""
 "cobertura restante puede ser incompleta"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:418
+#: crates/linux-defender-core/src/audit/firewall.rs:418
 msgid ""
 "nftables input policy coverage could not be verified for both IPv4 and IPv6"
 msgstr ""
@@ -589,12 +589,12 @@ msgstr ""
 "IPv4 e IPv6"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:478
+#: crates/linux-defender-core/src/audit/firewall.rs:478
 msgid "iptables (IPv4)"
 msgstr "iptables (IPv4)"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:480
+#: crates/linux-defender-core/src/audit/firewall.rs:480
 msgid ""
 "iptables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
@@ -603,22 +603,22 @@ msgstr ""
 "individuales pueden permitir excepciones."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:484
+#: crates/linux-defender-core/src/audit/firewall.rs:484
 msgid "iptables has a permissive INPUT default policy"
 msgstr "iptables tiene una política predeterminada permisiva para INPUT"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:485
+#: crates/linux-defender-core/src/audit/firewall.rs:485
 msgid "iptables INPUT policy could not be verified"
 msgstr "No se pudo verificar la política INPUT de iptables"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:491
+#: crates/linux-defender-core/src/audit/firewall.rs:491
 msgid "iptables (IPv6)"
 msgstr "iptables (IPv6)"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:493
+#: crates/linux-defender-core/src/audit/firewall.rs:493
 msgid ""
 "ip6tables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
@@ -627,27 +627,27 @@ msgstr ""
 "reglas individuales pueden permitir excepciones."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:497
+#: crates/linux-defender-core/src/audit/firewall.rs:497
 msgid "ip6tables has a permissive INPUT default policy"
 msgstr "ip6tables tiene una política predeterminada permisiva para INPUT"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:498
+#: crates/linux-defender-core/src/audit/firewall.rs:498
 msgid "ip6tables INPUT policy could not be verified"
 msgstr "No se pudo verificar la política INPUT de ip6tables"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:508
+#: crates/linux-defender-core/src/audit/firewall.rs:508
 msgid "Gufw"
 msgstr "Gufw"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:510
+#: crates/linux-defender-core/src/audit/firewall.rs:510
 msgid "Gufw is available."
 msgstr "Gufw está disponible."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:512
+#: crates/linux-defender-core/src/audit/firewall.rs:512
 msgid ""
 "Gufw was not confirmed; this optional inventory does not affect firewall "
 "policy analysis."
@@ -656,22 +656,22 @@ msgstr ""
 "política del cortafuegos."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:519
+#: crates/linux-defender-core/src/audit/firewall.rs:519
 msgid "Open Gufw"
 msgstr "Abrir Gufw"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:525
+#: crates/linux-defender-core/src/audit/firewall.rs:525
 msgid "Firewall Config"
 msgstr "Configuración del cortafuegos"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:530
+#: crates/linux-defender-core/src/audit/firewall.rs:530
 msgid "Firewall Config is available."
 msgstr "Firewall Config está disponible."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:533
+#: crates/linux-defender-core/src/audit/firewall.rs:533
 msgid ""
 "Firewall Config was not confirmed; this optional inventory does not affect "
 "firewall policy analysis."
@@ -680,74 +680,74 @@ msgstr ""
 "análisis de la política del cortafuegos."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:540
+#: crates/linux-defender-core/src/audit/firewall.rs:540
 msgid "Open Firewall Config"
 msgstr "Abrir Firewall Config"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:578
+#: crates/linux-defender-core/src/audit/firewall.rs:578
 msgid "Plasma Firewall"
 msgstr "Cortafuegos de Plasma"
 
 
-#: crates/clamui-core/src/audit/firewall.rs:583
+#: crates/linux-defender-core/src/audit/firewall.rs:583
 msgid "Plasma Firewall is installed; it manages an existing firewall backend."
 msgstr ""
 "El cortafuegos de Plasma está instalado; administra una infraestructura de "
 "cortafuegos existente."
 
 
-#: crates/clamui-core/src/audit/firewall.rs:592
+#: crates/linux-defender-core/src/audit/firewall.rs:592
 msgid "Plasma Firewall was not confirmed; it is only a management module."
 msgstr ""
 "No se confirmó el cortafuegos de Plasma; solo es un módulo de administración."
 
 
-#: crates/clamui-core/src/cli.rs:56 crates/clamui-core/src/cli.rs:250
-#: crates/clamui-core/src/cli.rs:418 crates/clamui-core/src/cli.rs:427
-#: crates/clamui-core/src/cli.rs:459 crates/clamui-core/src/cli.rs:499
-#: crates/clamui-core/src/cli.rs:1188 crates/clamui-core/src/cli.rs:1214
-#: crates/clamui-core/src/cli.rs:1745 crates/clamui-core/src/cli.rs:1750
+#: crates/linux-defender-core/src/cli.rs:56 crates/linux-defender-core/src/cli.rs:250
+#: crates/linux-defender-core/src/cli.rs:418 crates/linux-defender-core/src/cli.rs:427
+#: crates/linux-defender-core/src/cli.rs:459 crates/linux-defender-core/src/cli.rs:499
+#: crates/linux-defender-core/src/cli.rs:1188 crates/linux-defender-core/src/cli.rs:1214
+#: crates/linux-defender-core/src/cli.rs:1745 crates/linux-defender-core/src/cli.rs:1750
 msgid "error"
 msgstr "Error"
 
 
-#: crates/clamui-core/src/cli.rs:57
+#: crates/linux-defender-core/src/cli.rs:57
 msgid "Unknown command: {command}"
 msgstr "Comando desconocido: {command}"
 
 
 #. Translators: The em dash separates the application name from its description.
-#: crates/clamui-core/src/cli.rs:140
+#: crates/linux-defender-core/src/cli.rs:140
 msgid "Linux Defender — ClamAV antivirus management\n"
 msgstr "Linux Defender — ClamAV antivirus management\n"
 
 
-#: crates/clamui-core/src/cli.rs:146
+#: crates/linux-defender-core/src/cli.rs:146
 msgid "Usage:"
 msgstr "Uso:"
 
 
 #. Translators: Keep `clamui` unchanged; it is the command name.
-#: crates/clamui-core/src/cli.rs:149
+#: crates/linux-defender-core/src/cli.rs:149
 msgid "  clamui                   Launch the graphical interface"
 msgstr "  clamui                   Iniciar la interfaz gráfica"
 
 
 #. Translators: Keep `clamui`, `<command>`, and `[args]` unchanged; they are command syntax.
-#: crates/clamui-core/src/cli.rs:157
+#: crates/linux-defender-core/src/cli.rs:157
 msgid "  clamui <command> [args]   Run a CLI command\n"
 msgstr ""
 "  clamui <command> [args]   Ejecutar un comando de la interfaz de línea de "
 "comandos\n"
 
 
-#: crates/clamui-core/src/cli.rs:163
+#: crates/linux-defender-core/src/cli.rs:163
 msgid "Commands:"
 msgstr "Comandos:"
 
 
-#: crates/clamui-core/src/cli.rs:167
+#: crates/linux-defender-core/src/cli.rs:167
 msgid ""
 "\n"
 "Global options:"
@@ -757,62 +757,62 @@ msgstr ""
 
 
 #. Translators: Keep `--json` and `JSON` unchanged; they are a CLI flag and data format.
-#: crates/clamui-core/src/cli.rs:170
+#: crates/linux-defender-core/src/cli.rs:170
 msgid "  --json                   Machine-readable JSON output"
 msgstr "  --json                   Salida JSON legible por máquinas"
 
 
 #. Translators: Keep `-v` and `--verbose` unchanged; they are CLI flags.
-#: crates/clamui-core/src/cli.rs:178
+#: crates/linux-defender-core/src/cli.rs:178
 msgid "  -v, --verbose            Verbose output"
 msgstr "  -v, --verbose            Salida detallada"
 
 
 #. Translators: Keep `-h` and `--help` unchanged; they are CLI flags.
-#: crates/clamui-core/src/cli.rs:186
+#: crates/linux-defender-core/src/cli.rs:186
 msgid "  -h, --help               Show help for any command\n"
 msgstr "  -h, --help               Mostrar ayuda de cualquier comando\n"
 
 
 #. Translators: Keep the quoted `clamui help <command>` command unchanged.
-#: crates/clamui-core/src/cli.rs:194
+#: crates/linux-defender-core/src/cli.rs:194
 msgid "Run 'clamui help <command>' for usage examples."
 msgstr "Ejecute 'clamui help <command>' para ver ejemplos de uso."
 
 
 #. Translators: Keep the quoted `clamui` command unchanged.
-#: crates/clamui-core/src/cli.rs:202
+#: crates/linux-defender-core/src/cli.rs:202
 msgid "Run 'clamui' without arguments to launch the GUI."
 msgstr ""
 "Ejecute 'clamui' sin argumentos para abrir la interfaz gráfica de usuario."
 
 
-#: crates/clamui-core/src/cli.rs:212
+#: crates/linux-defender-core/src/cli.rs:212
 msgid "Scan files or directories for threats"
 msgstr "Escanear archivos o directorios en busca de amenazas"
 
 
-#: crates/clamui-core/src/cli.rs:213
+#: crates/linux-defender-core/src/cli.rs:213
 msgid "Manage quarantined files"
 msgstr "Gestionar archivos en cuarentena"
 
 
-#: crates/clamui-core/src/cli.rs:214
+#: crates/linux-defender-core/src/cli.rs:214
 msgid "Manage scan profiles"
 msgstr "Gestionar perfiles de escaneo"
 
 
-#: crates/clamui-core/src/cli.rs:215
+#: crates/linux-defender-core/src/cli.rs:215
 msgid "Show ClamAV and Linux Defender status"
 msgstr "Show ClamAV and Linux Defender status"
 
 
-#: crates/clamui-core/src/cli.rs:216
+#: crates/linux-defender-core/src/cli.rs:216
 msgid "View scan history"
 msgstr "Ver historial de escaneos"
 
 
-#: crates/clamui-core/src/cli.rs:219
+#: crates/linux-defender-core/src/cli.rs:219
 msgid ""
 "Install the polkit helper for saving system ClamAV configs (native host only)"
 msgstr ""
@@ -820,18 +820,18 @@ msgstr ""
 "sistema (solo en el sistema anfitrión nativo)"
 
 
-#: crates/clamui-core/src/cli.rs:221
+#: crates/linux-defender-core/src/cli.rs:221
 msgid "Show this help message"
 msgstr "Mostrar este mensaje de ayuda"
 
 
 #. Translators: Keep `clamui` and `[COMMAND]` command syntax unchanged; translate the `Usage:` label.
-#: crates/clamui-core/src/cli.rs:232
+#: crates/linux-defender-core/src/cli.rs:232
 msgid "Usage: clamui help [COMMAND]"
 msgstr "Uso: clamui help [COMMAND]"
 
 
-#: crates/clamui-core/src/cli.rs:240
+#: crates/linux-defender-core/src/cli.rs:240
 msgid ""
 "Display an overview of all commands or detailed help for a specific one."
 msgstr ""
@@ -840,29 +840,29 @@ msgstr ""
 
 
 #. Translators: Keep `help` unchanged; it is the literal CLI subcommand.
-#: crates/clamui-core/src/cli.rs:251
+#: crates/linux-defender-core/src/cli.rs:251
 msgid "help accepts at most one command"
 msgstr "help acepta como máximo un comando"
 
 
-#: crates/clamui-core/src/cli.rs:269
+#: crates/linux-defender-core/src/cli.rs:269
 msgid "Unknown command: {name}\n"
 msgstr "Comando desconocido: {name}\n"
 
 
 #. Translators: Keep `{name}` as the command name and `{summary}` as its translated description; the em dash separates them.
-#: crates/clamui-core/src/cli.rs:281
+#: crates/linux-defender-core/src/cli.rs:281
 msgid "clamui {name} — {summary}\n"
 msgstr "clamui {name} — {summary}\n"
 
 
-#: crates/clamui-core/src/cli.rs:291
+#: crates/linux-defender-core/src/cli.rs:291
 msgid "Examples:"
 msgstr "Ejemplos:"
 
 
 #. Translators: Keep the quoted `clamui {name} --help` command unchanged; preserve `{name}` as the command name.
-#: crates/clamui-core/src/cli.rs:297
+#: crates/linux-defender-core/src/cli.rs:297
 msgid ""
 "\n"
 "Run 'clamui {name} --help' for full option reference."
@@ -871,38 +871,38 @@ msgstr ""
 "Ejecute 'clamui {name} --help' para ver la lista completa de opciones."
 
 
-#: crates/clamui-core/src/cli.rs:395 crates/clamui-core/src/cli.rs:1605
+#: crates/linux-defender-core/src/cli.rs:395 crates/linux-defender-core/src/cli.rs:1605
 msgid "unrecognized argument: {argument}"
 msgstr "argumento no reconocido: {argument}"
 
 
-#: crates/clamui-core/src/cli.rs:419
+#: crates/linux-defender-core/src/cli.rs:419
 msgid "No valid paths to scan"
 msgstr "No hay rutas válidas que escanear"
 
 
-#: crates/clamui-core/src/cli.rs:435
+#: crates/linux-defender-core/src/cli.rs:435
 msgid "ClamAV not available: {error}"
 msgstr "ClamAV no está disponible: {error}"
 
 
-#: crates/clamui-core/src/cli.rs:447
+#: crates/linux-defender-core/src/cli.rs:447
 msgid "ClamAV version: {version}"
 msgstr "Versión de ClamAV: {version}"
 
 
-#: crates/clamui-core/src/cli.rs:470
+#: crates/linux-defender-core/src/cli.rs:470
 msgid "Using profile: {name}"
 msgstr "Perfil utilizado: {name}"
 
 
-#: crates/clamui-core/src/cli.rs:489
+#: crates/linux-defender-core/src/cli.rs:489
 msgid "Scanning: {path}"
 msgstr "Escaneando: {path}"
 
 
 #. Translators: Keep `clamui`, uppercase metavariables, brackets, and all `--` flags unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:572
+#: crates/linux-defender-core/src/cli.rs:572
 msgid ""
 "Usage: clamui scan PATH [PATH ...] [--no-recursive] [--profile NAME] [--"
 "quarantine] [--json] [--verbose]"
@@ -912,7 +912,7 @@ msgstr ""
 
 
 #. Translators: Preserve the numeric exit-code meanings.
-#: crates/clamui-core/src/cli.rs:580
+#: crates/linux-defender-core/src/cli.rs:580
 msgid ""
 "Scan one or more files or directories with ClamAV.\n"
 "Exit codes: 0 = clean, 1 = threats found, 2 = error."
@@ -921,24 +921,24 @@ msgstr ""
 "Códigos de salida: 0 = limpio, 1 = amenazas detectadas, 2 = error."
 
 
-#: crates/clamui-core/src/cli.rs:599
+#: crates/linux-defender-core/src/cli.rs:599
 msgid "Path not found: {path}"
 msgstr "Ruta no encontrada: {path}"
 
 
-#: crates/clamui-core/src/cli.rs:618
+#: crates/linux-defender-core/src/cli.rs:618
 msgid "Profile not found: {name}"
 msgstr "No se ha encontrado el perfil: {name}"
 
 
-#: crates/clamui-core/src/cli.rs:717
+#: crates/linux-defender-core/src/cli.rs:717
 msgid "Scanned {count} file in {duration:.1f}s"
 msgid_plural "Scanned {count} files in {duration:.1f}s"
 msgstr[0] "Se analizó {count} archivo en {duration:.1f} s"
 msgstr[1] "Se analizaron {count} archivos en {duration:.1f} s"
 
 
-#: crates/clamui-core/src/cli.rs:730
+#: crates/linux-defender-core/src/cli.rs:730
 msgid ""
 "\n"
 "Threat found: {count}"
@@ -953,7 +953,7 @@ msgstr[1] ""
 "Amenazas detectadas: {count}"
 
 
-#: crates/clamui-core/src/cli.rs:755
+#: crates/linux-defender-core/src/cli.rs:755
 msgid ""
 "\n"
 "Quarantined: {count} file"
@@ -968,7 +968,7 @@ msgstr[1] ""
 "En cuarentena: {count} archivos"
 
 
-#: crates/clamui-core/src/cli.rs:765
+#: crates/linux-defender-core/src/cli.rs:765
 msgid ""
 "\n"
 "Failed to quarantine:"
@@ -977,12 +977,12 @@ msgstr ""
 "No se ha podido poner en cuarentena:"
 
 
-#: crates/clamui-core/src/cli.rs:777 crates/clamui-core/src/logs.rs:1406
+#: crates/linux-defender-core/src/cli.rs:777 crates/linux-defender-core/src/logs.rs:1406
 msgid "Threats Detected"
 msgstr "Amenazas detectadas"
 
 
-#: crates/clamui-core/src/cli.rs:783
+#: crates/linux-defender-core/src/cli.rs:783
 msgid ""
 "\n"
 "Scan completed with errors:"
@@ -991,66 +991,66 @@ msgstr ""
 "El escaneo se ha completado con errores:"
 
 
-#: crates/clamui-core/src/cli.rs:788
+#: crates/linux-defender-core/src/cli.rs:788
 msgid "No threats found."
 msgstr "No se han encontrado amenazas."
 
 
 #. Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:797 crates/clamui-core/src/cli.rs:819
+#: crates/linux-defender-core/src/cli.rs:797 crates/linux-defender-core/src/cli.rs:819
 msgid "Usage: clamui quarantine <list|restore|delete> [args]"
 msgstr "Uso: clamui quarantine <list|restore|delete> [args]"
 
 
 #. Translators: Keep `clamui`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:807
+#: crates/linux-defender-core/src/cli.rs:807
 msgid "Usage: clamui quarantine list [--json]"
 msgstr "Uso: clamui quarantine list [--json]"
 
 
 #. Translators: Keep `clamui`, `restore`, and `ID` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:811
+#: crates/linux-defender-core/src/cli.rs:811
 msgid "Usage: clamui quarantine restore ID"
 msgstr "Uso: clamui quarantine restore ID"
 
 
 #. Translators: Keep `clamui`, `delete`, and `ID` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:815
+#: crates/linux-defender-core/src/cli.rs:815
 msgid "Usage: clamui quarantine delete ID"
 msgstr "Uso: clamui quarantine delete ID"
 
 
-#: crates/clamui-core/src/cli.rs:847
+#: crates/linux-defender-core/src/cli.rs:847
 msgid "No quarantined files."
 msgstr "No hay archivos en cuarentena."
 
 
-#: crates/clamui-core/src/cli.rs:864 crates/clamui-core/src/logs.rs:1108
+#: crates/linux-defender-core/src/cli.rs:864 crates/linux-defender-core/src/logs.rs:1108
 msgid "ID"
 msgstr "ID"
 
 
-#: crates/clamui-core/src/cli.rs:865
+#: crates/linux-defender-core/src/cli.rs:865
 msgid "File"
 msgstr "Archivo"
 
 
-#: crates/clamui-core/src/cli.rs:866
+#: crates/linux-defender-core/src/cli.rs:866
 msgid "Threat"
 msgstr "Amenaza"
 
 
-#: crates/clamui-core/src/cli.rs:867 crates/clamui-core/src/cli.rs:1661
+#: crates/linux-defender-core/src/cli.rs:867 crates/linux-defender-core/src/cli.rs:1661
 msgid "Date"
 msgstr "Fecha"
 
 
-#: crates/clamui-core/src/cli.rs:868
+#: crates/linux-defender-core/src/cli.rs:868
 msgid "Size"
 msgstr "Tamaño"
 
 
-#: crates/clamui-core/src/cli.rs:883
+#: crates/linux-defender-core/src/cli.rs:883
 msgid "{count} entry ({size} total)"
 msgid_plural "{count} entries ({size} total)"
 msgstr[0] "{count} entrada ({size} en total)"
@@ -1058,123 +1058,123 @@ msgstr[1] "{count} entradas ({size} en total)"
 
 
 #. Translators: Keep `quarantine`, command-valued `{action}`, and `ID` unchanged.
-#: crates/clamui-core/src/cli.rs:901 crates/clamui-core/src/cli.rs:915
+#: crates/linux-defender-core/src/cli.rs:901 crates/linux-defender-core/src/cli.rs:915
 msgid "quarantine {action} requires ID"
 msgstr "quarantine {action} requiere ID"
 
 
-#: crates/clamui-core/src/cli.rs:954
+#: crates/linux-defender-core/src/cli.rs:954
 msgid "Restored"
 msgstr "Restaurado"
 
 
-#: crates/clamui-core/src/cli.rs:956
+#: crates/linux-defender-core/src/cli.rs:956
 msgid "Deleted"
 msgstr "Eliminado"
 
 
-#: crates/clamui-core/src/cli.rs:961
+#: crates/linux-defender-core/src/cli.rs:961
 msgid "{verb}: {path}"
 msgstr "{verb}: {path}"
 
 
-#: crates/clamui-core/src/cli.rs:971
+#: crates/linux-defender-core/src/cli.rs:971
 msgid "Restore failed"
 msgstr "La restauración falló"
 
 
-#: crates/clamui-core/src/cli.rs:973
+#: crates/linux-defender-core/src/cli.rs:973
 msgid "Delete failed"
 msgstr "La eliminación falló"
 
 
-#: crates/clamui-core/src/cli.rs:980
+#: crates/linux-defender-core/src/cli.rs:980
 msgid "{prefix}: {error}"
 msgstr "{prefix}: {error}"
 
 
-#: crates/clamui-core/src/cli.rs:1057 crates/clamui-core/src/quarantine.rs:443
-#: crates/clamui-core/src/quarantine.rs:480
+#: crates/linux-defender-core/src/cli.rs:1057 crates/linux-defender-core/src/quarantine.rs:443
+#: crates/linux-defender-core/src/quarantine.rs:480
 msgid "Quarantine entry not found: {id}"
 msgstr "No se ha encontrado la entrada de cuarentena: {id}"
 
 
 #. Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1070 crates/clamui-core/src/cli.rs:1096
+#: crates/linux-defender-core/src/cli.rs:1070 crates/linux-defender-core/src/cli.rs:1096
 msgid "Usage: clamui profile <list|show|export|import> [args]"
 msgstr "Uso: clamui profile <list|show|export|import> [args]"
 
 
 #. Translators: Keep `clamui`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1080
+#: crates/linux-defender-core/src/cli.rs:1080
 msgid "Usage: clamui profile list [--json]"
 msgstr "Uso: clamui profile list [--json]"
 
 
 #. Translators: Keep `clamui`, `show`, `NAME`, and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1084
+#: crates/linux-defender-core/src/cli.rs:1084
 msgid "Usage: clamui profile show NAME [--json]"
 msgstr "Uso: clamui profile show NAME [--json]"
 
 
 #. Translators: Keep `clamui`, `export`, `NAME`, and `FILE` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1088
+#: crates/linux-defender-core/src/cli.rs:1088
 msgid "Usage: clamui profile export NAME FILE"
 msgstr "Uso: clamui profile export NAME FILE"
 
 
 #. Translators: Keep `clamui`, `import`, and `FILE` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1092
+#: crates/linux-defender-core/src/cli.rs:1092
 msgid "Usage: clamui profile import FILE"
 msgstr "Uso: clamui profile import FILE"
 
 
-#: crates/clamui-core/src/cli.rs:1123
+#: crates/linux-defender-core/src/cli.rs:1123
 msgid "No scan profiles configured."
 msgstr "No hay perfiles de escaneo configurados."
 
 
-#: crates/clamui-core/src/cli.rs:1139
+#: crates/linux-defender-core/src/cli.rs:1139
 msgid " (+{n} more)"
 msgstr " (+{n} más)"
 
 
-#: crates/clamui-core/src/cli.rs:1144
+#: crates/linux-defender-core/src/cli.rs:1144
 msgid "(none)"
 msgstr "(ninguno)"
 
 
-#: crates/clamui-core/src/cli.rs:1149 crates/clamui-core/src/cli.rs:1319
+#: crates/linux-defender-core/src/cli.rs:1149 crates/linux-defender-core/src/cli.rs:1319
 msgid "yes"
 msgstr "sí"
 
 
-#: crates/clamui-core/src/cli.rs:1151 crates/clamui-core/src/cli.rs:1321
+#: crates/linux-defender-core/src/cli.rs:1151 crates/linux-defender-core/src/cli.rs:1321
 msgid "no"
 msgstr "no"
 
 
-#: crates/clamui-core/src/cli.rs:1159
+#: crates/linux-defender-core/src/cli.rs:1159
 msgid "Name"
 msgstr "Nombre"
 
 
-#: crates/clamui-core/src/cli.rs:1160
+#: crates/linux-defender-core/src/cli.rs:1160
 msgid "Targets"
 msgstr "Objetivos"
 
 
-#: crates/clamui-core/src/cli.rs:1161
+#: crates/linux-defender-core/src/cli.rs:1161
 msgid "Default"
 msgstr "Predeterminado"
 
 
-#: crates/clamui-core/src/cli.rs:1162
+#: crates/linux-defender-core/src/cli.rs:1162
 msgid "Updated"
 msgstr "Actualizado"
 
 
-#: crates/clamui-core/src/cli.rs:1170
+#: crates/linux-defender-core/src/cli.rs:1170
 msgid "{count} profile"
 msgid_plural "{count} profiles"
 msgstr[0] "{count} perfil"
@@ -1182,174 +1182,174 @@ msgstr[1] "{count} perfiles"
 
 
 #. Translators: Preserve `{name}` as the profile name and `{path}` as its destination; quotation marks may be localized.
-#: crates/clamui-core/src/cli.rs:1229
+#: crates/linux-defender-core/src/cli.rs:1229
 msgid "Exported '{name}' to {path}"
 msgstr "Se exportó '{name}' a {path}"
 
 
-#: crates/clamui-core/src/cli.rs:1258
+#: crates/linux-defender-core/src/cli.rs:1258
 msgid "Imported profile: {name}"
 msgstr "Perfil importado: {name}"
 
 
 #. Translators: Preserve command-valued `{usage}`, `NAME`, and the `--json` CLI flag.
-#: crates/clamui-core/src/cli.rs:1278 crates/clamui-core/src/cli.rs:1291
+#: crates/linux-defender-core/src/cli.rs:1278 crates/linux-defender-core/src/cli.rs:1291
 msgid "{usage} requires NAME and optional --json"
 msgstr "{usage} requiere NAME y --json opcional"
 
 
-#: crates/clamui-core/src/cli.rs:1314
+#: crates/linux-defender-core/src/cli.rs:1314
 msgid "Name:        {name}"
 msgstr "Nombre:        {name}"
 
 
-#: crates/clamui-core/src/cli.rs:1317
+#: crates/linux-defender-core/src/cli.rs:1317
 msgid "ID:          {id}"
 msgstr "ID:          {id}"
 
 
-#: crates/clamui-core/src/cli.rs:1325
+#: crates/linux-defender-core/src/cli.rs:1325
 msgid "Default:     {value}"
 msgstr "Predeterminado:     {value}"
 
 
-#: crates/clamui-core/src/cli.rs:1334
+#: crates/linux-defender-core/src/cli.rs:1334
 msgid "Description: {description}"
 msgstr "Descripción: {description}"
 
 
-#: crates/clamui-core/src/cli.rs:1344
+#: crates/linux-defender-core/src/cli.rs:1344
 msgid "Created:     {created}"
 msgstr "Creado:     {created}"
 
 
-#: crates/clamui-core/src/cli.rs:1353
+#: crates/linux-defender-core/src/cli.rs:1353
 msgid "Updated:     {updated}"
 msgstr "Actualizado:     {updated}"
 
 
-#: crates/clamui-core/src/cli.rs:1359
+#: crates/linux-defender-core/src/cli.rs:1359
 msgid "Targets:"
 msgstr "Objetivos:"
 
 
-#: crates/clamui-core/src/cli.rs:1368
+#: crates/linux-defender-core/src/cli.rs:1368
 msgid "  (none)"
 msgstr "  (ninguno)"
 
 
-#: crates/clamui-core/src/cli.rs:1379
+#: crates/linux-defender-core/src/cli.rs:1379
 msgid "Exclusions:"
 msgstr "Exclusiones:"
 
 
-#: crates/clamui-core/src/cli.rs:1384
+#: crates/linux-defender-core/src/cli.rs:1384
 msgid "  path:    {path}"
 msgstr "  ruta:    {path}"
 
 
-#: crates/clamui-core/src/cli.rs:1391
+#: crates/linux-defender-core/src/cli.rs:1391
 msgid "  pattern: {pattern}"
 msgstr "  patrón: {pattern}"
 
 
-#: crates/clamui-core/src/cli.rs:1403
+#: crates/linux-defender-core/src/cli.rs:1403
 msgid "Options:"
 msgstr "Opciones:"
 
 
 #. Translators: Keep `clamui` and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1417
+#: crates/linux-defender-core/src/cli.rs:1417
 msgid "Usage: clamui status [--json]"
 msgstr "Uso: clamui status [--json]"
 
 
-#: crates/clamui-core/src/cli.rs:1472
+#: crates/linux-defender-core/src/cli.rs:1472
 msgid "ClamAV"
 msgstr "ClamAV"
 
 
-#: crates/clamui-core/src/cli.rs:1477
+#: crates/linux-defender-core/src/cli.rs:1477
 msgid "  Version:  {version}"
 msgstr "  Versión:  {version}"
 
 
-#: crates/clamui-core/src/cli.rs:1484
+#: crates/linux-defender-core/src/cli.rs:1484
 msgid "  Status:   not available"
 msgstr "  Estado:   no disponible"
 
 
-#: crates/clamui-core/src/cli.rs:1488
+#: crates/linux-defender-core/src/cli.rs:1488
 msgid "  Error:    {error}"
 msgstr "  Error:    {error}"
 
 
-#: crates/clamui-core/src/cli.rs:1494
+#: crates/linux-defender-core/src/cli.rs:1494
 msgid "  Backend:  {backend}"
 msgstr "  Motor de escaneo:  {backend}"
 
 
-#: crates/clamui-core/src/cli.rs:1503
+#: crates/linux-defender-core/src/cli.rs:1503
 msgid "  Daemon:   {daemon}"
 msgstr "  Demonio:   {daemon}"
 
 
-#: crates/clamui-core/src/cli.rs:1505
+#: crates/linux-defender-core/src/cli.rs:1505
 msgid "Quarantine"
 msgstr "Cuarentena"
 
 
-#: crates/clamui-core/src/cli.rs:1509 crates/clamui-core/src/cli.rs:1528
+#: crates/linux-defender-core/src/cli.rs:1509 crates/linux-defender-core/src/cli.rs:1528
 msgid "  Entries:  {count}"
 msgstr "  Entradas:  {count}"
 
 
-#: crates/clamui-core/src/cli.rs:1518
+#: crates/linux-defender-core/src/cli.rs:1518
 msgid "  Size:     {size}"
 msgstr "  Tamaño:     {size}"
 
 
-#: crates/clamui-core/src/cli.rs:1520
+#: crates/linux-defender-core/src/cli.rs:1520
 msgid "Scan History"
 msgstr "Historial de análisis"
 
 
 #. Translators: Keep `clamui`, all `--` flags, `N`, and type choices unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1541
+#: crates/linux-defender-core/src/cli.rs:1541
 msgid ""
 "Usage: clamui history [--limit N] [--type scan|update|virustotal] [--json]"
 msgstr ""
 "Uso: clamui history [--limit N] [--type scan|update|virustotal] [--json]"
 
 
-#: crates/clamui-core/src/cli.rs:1624
+#: crates/linux-defender-core/src/cli.rs:1624
 msgid "Failed to load history: {error}"
 msgstr "No se ha podido cargar el historial: {error}"
 
 
-#: crates/clamui-core/src/cli.rs:1639
+#: crates/linux-defender-core/src/cli.rs:1639
 msgid "No scan history found."
 msgstr "No se ha encontrado ningún historial de escaneos."
 
 
-#: crates/clamui-core/src/cli.rs:1662 crates/clamui-core/src/logs.rs:1118
+#: crates/linux-defender-core/src/cli.rs:1662 crates/linux-defender-core/src/logs.rs:1118
 msgid "Type"
 msgstr "Tipo"
 
 
-#: crates/clamui-core/src/cli.rs:1663 crates/clamui-core/src/logs.rs:1123
+#: crates/linux-defender-core/src/cli.rs:1663 crates/linux-defender-core/src/logs.rs:1123
 msgid "Status"
 msgstr "Estado"
 
 
-#: crates/clamui-core/src/cli.rs:1664 crates/clamui-core/src/logs.rs:1142
+#: crates/linux-defender-core/src/cli.rs:1664 crates/linux-defender-core/src/logs.rs:1142
 msgid "Summary"
 msgstr "Resumen"
 
 
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
-#: crates/clamui-core/src/cli.rs:1678
+#: crates/linux-defender-core/src/cli.rs:1678
 msgid "Showing {shown} of {total} entry. Use --limit to see more."
 msgid_plural "Showing {shown} of {total} entries. Use --limit to see more."
 msgstr[0] "Se muestra {shown} de {total} entrada. Use --limit para ver más."
@@ -1357,84 +1357,84 @@ msgstr[1] "Se muestran {shown} de {total} entradas. Use --limit para ver más."
 
 
 #. Translators: Keep `clamui install-privileged-helper` unchanged; it is the CLI command.
-#: crates/clamui-core/src/cli.rs:1713
+#: crates/linux-defender-core/src/cli.rs:1713
 msgid "Usage: clamui install-privileged-helper"
 msgstr "Uso: clamui install-privileged-helper"
 
 
-#: crates/clamui-core/src/config.rs:319 crates/clamui-core/src/config.rs:338
+#: crates/linux-defender-core/src/config.rs:319 crates/linux-defender-core/src/config.rs:338
 msgid "Configuration file not found"
 msgstr "No se encontró el archivo de configuración"
 
 
-#: crates/clamui-core/src/config.rs:403
+#: crates/linux-defender-core/src/config.rs:403
 msgid "Invalid scheduled scan configuration: {error}"
 msgstr "Configuración de análisis programado no válida: {error}"
 
 
-#: crates/clamui-core/src/config.rs:462 crates/clamui-core/src/config.rs:520
+#: crates/linux-defender-core/src/config.rs:462 crates/linux-defender-core/src/config.rs:520
 msgid "Not attempted because an earlier direct configuration write failed"
 msgstr ""
 "No se intentó porque falló una escritura directa de configuración anterior"
 
 
-#: crates/clamui-core/src/config.rs:500
+#: crates/linux-defender-core/src/config.rs:500
 msgid "Protected configuration write failed"
 msgstr "Falló la escritura de la configuración protegida"
 
 
-#: crates/clamui-core/src/config.rs:575
+#: crates/linux-defender-core/src/config.rs:575
 msgid "Cannot save configuration paths: {error}"
 msgstr "No se pueden guardar las rutas de configuración: {error}"
 
 
-#: crates/clamui-core/src/config.rs:605 crates/clamui-core/src/config.rs:639
+#: crates/linux-defender-core/src/config.rs:605 crates/linux-defender-core/src/config.rs:639
 msgid "Cannot save scheduled scan preferences: {error}"
 msgstr "No se pueden guardar las preferencias de análisis programado: {error}"
 
 
-#: crates/clamui-core/src/config.rs:618 crates/clamui-core/src/config.rs:627
+#: crates/linux-defender-core/src/config.rs:618 crates/linux-defender-core/src/config.rs:627
 msgid "Failed to apply scheduled scan configuration: {error}"
 msgstr "No se pudo aplicar la configuración de análisis programado: {error}"
 
 
-#: crates/clamui-core/src/config.rs:701
+#: crates/linux-defender-core/src/config.rs:701
 msgid "Configuration path appears more than once: {path}"
 msgstr "La ruta de configuración aparece más de una vez: {path}"
 
 
-#: crates/clamui-core/src/config.rs:709
+#: crates/linux-defender-core/src/config.rs:709
 msgid "Configuration kinds sharing {setting} must use the same path"
 msgstr ""
 "Los tipos de configuración que comparten {setting} deben usar la misma ruta"
 
 
-#: crates/clamui-core/src/config.rs:720
+#: crates/linux-defender-core/src/config.rs:720
 msgid "Cannot prepare {path}: {error}"
 msgstr "No se puede preparar {path}: {error}"
 
 
-#: crates/clamui-core/src/config.rs:810
+#: crates/linux-defender-core/src/config.rs:810
 msgid "Cannot read {path}: {error}"
 msgstr "No se puede leer {path}: {error}"
 
 
-#: crates/clamui-core/src/config.rs:820
+#: crates/linux-defender-core/src/config.rs:820
 msgid "Configuration is not a regular file: {path}"
 msgstr "La configuración no es un archivo regular: {path}"
 
 
-#: crates/clamui-core/src/config.rs:826
+#: crates/linux-defender-core/src/config.rs:826
 msgid "Cannot create {path}: {error}"
 msgstr "No se puede crear {path}: {error}"
 
 
-#: crates/clamui-core/src/config.rs:835
+#: crates/linux-defender-core/src/config.rs:835
 msgid "Cannot write {path}: {error}"
 msgstr "No se puede escribir en {path}: {error}"
 
 
-#: crates/clamui-core/src/config.rs:934
+#: crates/linux-defender-core/src/config.rs:934
 msgid ""
 "On-Access scanning requires at least one loop-prevention exclusion: Exclude "
 "Username, Exclude User ID, or Exclude Root User"
@@ -1443,48 +1443,48 @@ msgstr ""
 "Excluir nombre de usuario, Excluir ID de usuario o Excluir usuario root"
 
 
-#: crates/clamui-core/src/config.rs:959
+#: crates/linux-defender-core/src/config.rs:959
 msgid "{key}: invalid boolean value: {value}"
 msgstr "{key}: valor booleano no válido: {value}"
 
 
-#: crates/clamui-core/src/config.rs:988
+#: crates/linux-defender-core/src/config.rs:988
 msgid "{key}: value {value} is below minimum {minimum}"
 msgstr "{key}: el valor {value} es inferior al mínimo {minimum}"
 
 
-#: crates/clamui-core/src/config.rs:996
+#: crates/linux-defender-core/src/config.rs:996
 msgid "{key}: value {value} exceeds maximum {maximum}"
 msgstr "{key}: el valor {value} supera el máximo {maximum}"
 
 
-#: crates/clamui-core/src/config.rs:1005
+#: crates/linux-defender-core/src/config.rs:1005
 msgid "{key}: not a valid integer: {value}"
 msgstr "{key}: no es un entero válido: {value}"
 
 
-#: crates/clamui-core/src/config.rs:1014
+#: crates/linux-defender-core/src/config.rs:1014
 msgid "{key}: size must start with a number: {value}"
 msgstr "{key}: el tamaño debe comenzar con un número: {value}"
 
 
-#: crates/clamui-core/src/config.rs:1031
+#: crates/linux-defender-core/src/config.rs:1031
 msgid "{key}: path cannot be empty"
 msgstr "{key}: la ruta no puede estar vacía"
 
 
-#: crates/clamui-core/src/config.rs:1046
+#: crates/linux-defender-core/src/config.rs:1046
 msgid "{key}: string value cannot be empty"
 msgstr "{key}: el valor de cadena no puede estar vacío"
 
 
-#: crates/clamui-core/src/config.rs:1057
+#: crates/linux-defender-core/src/config.rs:1057
 msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}: la URL debe comenzar con http(s)://, ftp(s):// o file://"
 
 
 #. Translators: The em dash separates the fallback state from its security warning.
-#: crates/clamui-core/src/credentials.rs:163
+#: crates/linux-defender-core/src/credentials.rs:163
 msgid "Stored in settings file (keyring unavailable — less secure)"
 msgstr ""
 "Almacenado en el archivo de configuración (llavero no disponible — menos "
@@ -1492,42 +1492,42 @@ msgstr ""
 
 
 #. Translators: replace with your name(s) and optionally <email> or a URL, one translator per line. Leave untranslated if you do not want to be credited.
-#: crates/clamui-core/src/credits.rs:15
+#: crates/linux-defender-core/src/credits.rs:15
 msgid "translator-credits"
 msgstr "translator-credits"
 
 
-#: crates/clamui-core/src/host.rs:910
+#: crates/linux-defender-core/src/host.rs:910
 msgid "Daemon not responding: {error}"
 msgstr "El demonio no responde: {error}"
 
 
-#: crates/clamui-core/src/host.rs:913
+#: crates/linux-defender-core/src/host.rs:913
 msgid "{binary} found but returned error: {error}"
 msgstr "Se encontró {binary}, pero devolvió un error: {error}"
 
 
-#: crates/clamui-core/src/host.rs:918
+#: crates/linux-defender-core/src/host.rs:918
 msgid "{service} is active"
 msgstr "{service} está activo"
 
 
-#: crates/clamui-core/src/host.rs:921
+#: crates/linux-defender-core/src/host.rs:921
 msgid "No virus database files found in {path}"
 msgstr "No se encontraron archivos de base de datos de virus en {path}"
 
 
-#: crates/clamui-core/src/host.rs:927
+#: crates/linux-defender-core/src/host.rs:927
 msgid "Error accessing database {path}: {error}"
 msgstr "Error al acceder a la base de datos {path}: {error}"
 
 
-#: crates/clamui-core/src/host.rs:933
+#: crates/linux-defender-core/src/host.rs:933
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "{binary} no está instalado. Instálelo con: {command}"
 
 
-#: crates/clamui-core/src/host.rs:943
+#: crates/linux-defender-core/src/host.rs:943
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
@@ -1536,95 +1536,95 @@ msgstr ""
 "distribución."
 
 
-#: crates/clamui-core/src/logs.rs:1101
+#: crates/linux-defender-core/src/logs.rs:1101
 msgid "SCAN LOG"
 msgstr "REGISTRO DE ESCANEOS"
 
 
-#: crates/clamui-core/src/logs.rs:1103
+#: crates/linux-defender-core/src/logs.rs:1103
 msgid "UPDATE LOG"
 msgstr "REGISTRO DE ACTUALIZACIONES"
 
 
-#: crates/clamui-core/src/logs.rs:1113
+#: crates/linux-defender-core/src/logs.rs:1113
 msgid "Timestamp"
 msgstr "Marca de tiempo"
 
 
-#: crates/clamui-core/src/logs.rs:1128
+#: crates/linux-defender-core/src/logs.rs:1128
 msgid "Duration"
 msgstr "Duración"
 
 
-#: crates/clamui-core/src/logs.rs:1136
+#: crates/linux-defender-core/src/logs.rs:1136
 msgid "Full Output"
 msgstr "Salida completa"
 
 
-#: crates/clamui-core/src/logs.rs:1167
+#: crates/linux-defender-core/src/logs.rs:1167
 msgid "{count} second"
 msgid_plural "{count} seconds"
 msgstr[0] "{count} segundo"
 msgstr[1] "{count} segundos"
 
 
-#: crates/clamui-core/src/logs.rs:1393
+#: crates/linux-defender-core/src/logs.rs:1393
 #: desktop/src-tauri/src/notifications.rs:107
 msgid "Scan Complete"
 msgstr "Análisis completado"
 
 
-#: crates/clamui-core/src/logs.rs:1396
+#: crates/linux-defender-core/src/logs.rs:1396
 msgid "Found {count} threat{suffix}"
 msgid_plural "Found {count} threats{suffix}"
 msgstr[0] "Se encontró {count} amenaza{suffix}"
 msgstr[1] "Se encontraron {count} amenazas{suffix}"
 
 
-#: crates/clamui-core/src/logs.rs:1411
+#: crates/linux-defender-core/src/logs.rs:1411
 #: desktop/src-tauri/src/notifications.rs:109
 msgid "Scan Cancelled"
 msgstr "Análisis cancelado"
 
 
-#: crates/clamui-core/src/logs.rs:1414
+#: crates/linux-defender-core/src/logs.rs:1414
 #: desktop/src-tauri/src/notifications.rs:111
 msgid "Scan Error"
 msgstr "Error de análisis"
 
 
-#: crates/clamui-core/src/logs.rs:1425
+#: crates/linux-defender-core/src/logs.rs:1425
 msgid "Scanned: {count} file"
 msgid_plural "Scanned: {count} files"
 msgstr[0] "Analizado: {count} archivo"
 msgstr[1] "Analizados: {count} archivos"
 
 
-#: crates/clamui-core/src/logs.rs:1432
+#: crates/linux-defender-core/src/logs.rs:1432
 msgid "{count} directory"
 msgid_plural "{count} directories"
 msgstr[0] "{count} directorio"
 msgstr[1] "{count} directorios"
 
 
-#: crates/clamui-core/src/logs.rs:1443
+#: crates/linux-defender-core/src/logs.rs:1443
 msgid "Threat found: {count}"
 msgid_plural "Threats found: {count}"
 msgstr[0] "Amenaza detectada: {count}"
 msgstr[1] "Amenazas detectadas: {count}"
 
 
-#: crates/clamui-core/src/network.rs:86
+#: crates/linux-defender-core/src/network.rs:86
 msgid "Network action is not supported."
 msgstr "La acción de red no es compatible."
 
 
-#: crates/clamui-core/src/network.rs:90
+#: crates/linux-defender-core/src/network.rs:90
 msgid "Network snapshot accepts no arguments."
 msgstr "La instantánea de red no acepta argumentos."
 
 
-#: crates/clamui-core/src/network.rs:118
+#: crates/linux-defender-core/src/network.rs:118
 msgid ""
 "Some network socket rows could not be read, and the list was limited to 4096 "
 "rows."
@@ -1633,30 +1633,30 @@ msgstr ""
 "4096 filas."
 
 
-#: crates/clamui-core/src/network.rs:125
+#: crates/linux-defender-core/src/network.rs:125
 msgid "Some network socket rows could not be read."
 msgstr "No se pudieron leer algunas filas de sockets de red."
 
 
-#: crates/clamui-core/src/network.rs:129
+#: crates/linux-defender-core/src/network.rs:129
 msgid "Network socket list was limited to 4096 rows."
 msgstr "La lista de sockets de red se limitó a 4096 filas."
 
 
-#: crates/clamui-core/src/network.rs:152
+#: crates/linux-defender-core/src/network.rs:152
 msgid "Network socket listing timed out. Try again."
 msgstr ""
 "Se agotó el tiempo de espera al enumerar sockets de red. Inténtelo de nuevo."
 
 
-#: crates/clamui-core/src/network.rs:156
+#: crates/linux-defender-core/src/network.rs:156
 msgid "Network socket listing could not be completed safely. Try again."
 msgstr ""
 "No se pudo completar de forma segura la enumeración de sockets de red. "
 "Inténtelo de nuevo."
 
 
-#: crates/clamui-core/src/network.rs:163
+#: crates/linux-defender-core/src/network.rs:163
 msgid ""
 "Network socket listing returned invalid text and could not be read safely."
 msgstr ""
@@ -1664,7 +1664,7 @@ msgstr ""
 "de forma segura."
 
 
-#: crates/clamui-core/src/network.rs:170
+#: crates/linux-defender-core/src/network.rs:170
 msgid ""
 "Network socket listing is unavailable. Check that the system socket tool is "
 "installed and try again."
@@ -1673,31 +1673,31 @@ msgstr ""
 "herramienta de sockets del sistema esté instalada e inténtelo de nuevo."
 
 
-#: crates/clamui-core/src/platform.rs:491
+#: crates/linux-defender-core/src/platform.rs:491
 msgid "Not running as Flatpak"
 msgstr "No se ejecuta como Flatpak"
 
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/clamui-core/src/privileged.rs:1053
+#: crates/linux-defender-core/src/privileged.rs:1053
 msgid "Authorization was cancelled while {operation}."
 msgstr "La autorización se canceló durante {operation}."
 
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/clamui-core/src/privileged.rs:1059
+#: crates/linux-defender-core/src/privileged.rs:1059
 msgid "The privileged helper is unavailable while {operation}."
 msgstr "El asistente con privilegios no está disponible durante {operation}."
 
 
 #. Translators: PKEXEC_UID is a technical environment-variable name; keep it unchanged.
-#: crates/clamui-core/src/privileged.rs:1065
+#: crates/linux-defender-core/src/privileged.rs:1065
 msgid "The privileged helper rejected PKEXEC_UID while {operation}."
 msgstr "El asistente con privilegios rechazó PKEXEC_UID durante {operation}."
 
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/clamui-core/src/privileged.rs:1071
+#: crates/linux-defender-core/src/privileged.rs:1071
 msgid "The privileged helper reported a protocol mismatch while {operation}."
 msgstr ""
 "El asistente con privilegios informó de una incompatibilidad de protocolo "
@@ -1705,7 +1705,7 @@ msgstr ""
 
 
 #. Translators: keep {operation}, numeric {code}, and sanitized diagnostic {detail}.
-#: crates/clamui-core/src/privileged.rs:1077
+#: crates/linux-defender-core/src/privileged.rs:1077
 msgid "The privileged helper failed while {operation} (exit {code}): {detail}."
 msgstr ""
 "El asistente con privilegios falló durante {operation} (código de salida "
@@ -1713,7 +1713,7 @@ msgstr ""
 
 
 #. Translators: keep the {operation} and numeric {code} placeholders.
-#: crates/clamui-core/src/privileged.rs:1085
+#: crates/linux-defender-core/src/privileged.rs:1085
 msgid "The privileged helper failed while {operation} (exit {code})."
 msgstr ""
 "El asistente con privilegios falló durante {operation} (código de salida "
@@ -1721,31 +1721,31 @@ msgstr ""
 
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/clamui-core/src/privileged.rs:1092
+#: crates/linux-defender-core/src/privileged.rs:1092
 msgid "The privileged helper was terminated while {operation}."
 msgstr "El asistente con privilegios fue terminado durante {operation}."
 
 
-#: crates/clamui-core/src/privileged.rs:1151
+#: crates/linux-defender-core/src/privileged.rs:1151
 msgid "Applying configuration"
 msgstr "Aplicando configuración"
 
 
 #. Translators: keep {message}; it is the complete preceding helper error.
-#: crates/clamui-core/src/privileged.rs:1153
+#: crates/linux-defender-core/src/privileged.rs:1153
 msgid "{message} One or more earlier replacements may have succeeded."
 msgstr ""
 "{message} Es posible que una o varias sustituciones anteriores hayan tenido "
 "éxito."
 
 
-#: crates/clamui-core/src/privileged.rs:1395
+#: crates/linux-defender-core/src/privileged.rs:1395
 msgid "Reading configuration"
 msgstr "Leyendo configuración"
 
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/clamui-core/src/privileged.rs:2966
+#: crates/linux-defender-core/src/privileged.rs:2966
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -1754,7 +1754,7 @@ msgstr ""
 
 
 #. Translators: keep "Flatpak" and "clamui-privileged-helper" unchanged.
-#: crates/clamui-core/src/privileged/cli_install.rs:26
+#: crates/linux-defender-core/src/privileged/cli_install.rs:26
 msgid ""
 "Linux Defender is running inside a Flatpak sandbox, which cannot install "
 "files on the host. Install the matching clamui-privileged-helper package on "
@@ -1766,7 +1766,7 @@ msgstr ""
 
 
 #. Translators: keep the paths and "sudo clamui install-privileged-helper" command unchanged.
-#: crates/clamui-core/src/privileged/cli_install.rs:33
+#: crates/linux-defender-core/src/privileged/cli_install.rs:33
 msgid ""
 "This command installs files under /usr and /usr/share and must be run as "
 "root. Try: sudo clamui install-privileged-helper"
@@ -1776,13 +1776,13 @@ msgstr ""
 
 
 #. Translators: keep the {error} placeholder; it is a sanitized installation error.
-#: crates/clamui-core/src/privileged/cli_install.rs:120
+#: crates/linux-defender-core/src/privileged/cli_install.rs:120
 msgid "Failed to install privileged helper: {error}"
 msgstr "No se pudo instalar el asistente privilegiado: {error}"
 
 
 #. Translators: keep the {bin} and {policy} placeholders; they are installed file paths.
-#: crates/clamui-core/src/privileged/cli_install.rs:130
+#: crates/linux-defender-core/src/privileged/cli_install.rs:130
 msgid ""
 "Installed privileged helper at {bin} and polkit policy at {policy}. Saving "
 "system ClamAV configuration from Linux Defender should now work."
@@ -1791,114 +1791,114 @@ msgstr ""
 "system ClamAV configuration from Linux Defender should now work."
 
 
-#: crates/clamui-core/src/profiles.rs:240
-#: crates/clamui-core/src/profiles.rs:311
+#: crates/linux-defender-core/src/profiles.rs:240
+#: crates/linux-defender-core/src/profiles.rs:311
 msgid "Profile name must be a string"
 msgstr "El nombre del perfil debe ser una cadena"
 
 
-#: crates/clamui-core/src/profiles.rs:244
+#: crates/linux-defender-core/src/profiles.rs:244
 msgid "Cannot rename a default profile"
 msgstr "No se puede cambiar el nombre de un perfil predeterminado"
 
 
-#: crates/clamui-core/src/profiles.rs:248
+#: crates/linux-defender-core/src/profiles.rs:248
 msgid "Cannot change whether a profile is default"
 msgstr "No se puede cambiar si un perfil es predeterminado"
 
 
-#: crates/clamui-core/src/profiles.rs:296
+#: crates/linux-defender-core/src/profiles.rs:296
 msgid "Cannot delete default profile"
 msgstr "No se puede eliminar un perfil predeterminado"
 
 
 #. Translators: Preserve `{path}` exactly as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/clamui-core/src/profiles.rs:336
+#: crates/linux-defender-core/src/profiles.rs:336
 msgid "Could not read import file '{path}': {error}"
 msgstr "No se pudo leer el archivo de importación '{path}': {error}"
 
 
-#: crates/clamui-core/src/profiles.rs:390
+#: crates/linux-defender-core/src/profiles.rs:390
 msgid "Could not serialize profile export: {error}"
 msgstr "No se pudo serializar la exportación del perfil: {error}"
 
 
-#: crates/clamui-core/src/profiles.rs:403
+#: crates/linux-defender-core/src/profiles.rs:403
 msgid "Export path must be a non-empty string"
 msgstr "La ruta de exportación debe ser una cadena no vacía"
 
 
 #. Translators: Preserve `{id}` exactly; it is the profile's technical identifier.
-#: crates/clamui-core/src/profiles.rs:490
+#: crates/linux-defender-core/src/profiles.rs:490
 msgid "Profile with ID '{id}' not found"
 msgstr "No se encontró el perfil con ID «{id}»"
 
 
-#: crates/clamui-core/src/profiles.rs:569
+#: crates/linux-defender-core/src/profiles.rs:569
 msgid "Profile name cannot be empty"
 msgstr "El nombre del perfil no puede estar vacío"
 
 
-#: crates/clamui-core/src/profiles.rs:572
+#: crates/linux-defender-core/src/profiles.rs:572
 msgid "Profile name cannot exceed {max} characters"
 msgstr "El nombre del perfil no puede superar {max} caracteres"
 
 
 #. Translators: Preserve `{name}` exactly; it is a user-provided profile name.
-#: crates/clamui-core/src/profiles.rs:582
+#: crates/linux-defender-core/src/profiles.rs:582
 msgid "Profile name '{name}' already exists"
 msgstr "El nombre de perfil «{name}» ya existe"
 
 
 #. Translators: Keep `paths` unchanged; it is the configuration key.
-#: crates/clamui-core/src/profiles.rs:594
+#: crates/linux-defender-core/src/profiles.rs:594
 msgid "Exclusions 'paths' must be a list"
 msgstr "«paths» de exclusiones debe ser una lista"
 
 
-#: crates/clamui-core/src/profiles.rs:603
+#: crates/linux-defender-core/src/profiles.rs:603
 msgid "Exclusion path must be a string"
 msgstr "La ruta de exclusión debe ser una cadena"
 
 
 #. Translators: Keep `patterns` unchanged; it is the configuration key.
-#: crates/clamui-core/src/profiles.rs:609
+#: crates/linux-defender-core/src/profiles.rs:609
 msgid "Exclusions 'patterns' must be a list"
 msgstr "«patterns» de exclusiones debe ser una lista"
 
 
-#: crates/clamui-core/src/profiles.rs:620
+#: crates/linux-defender-core/src/profiles.rs:620
 msgid "Exclusion pattern cannot be empty"
 msgstr "El patrón de exclusión no puede estar vacío"
 
 
-#: crates/clamui-core/src/profiles.rs:629
+#: crates/linux-defender-core/src/profiles.rs:629
 msgid "{kind} cannot be empty"
 msgstr "{kind} no puede estar vacío"
 
 
-#: crates/clamui-core/src/profiles.rs:632
+#: crates/linux-defender-core/src/profiles.rs:632
 msgid "Invalid {kind}: contains invalid characters"
 msgstr "{kind} no válido: contiene caracteres no válidos"
 
 
-#: crates/clamui-core/src/profiles.rs:641
+#: crates/linux-defender-core/src/profiles.rs:641
 msgid "Invalid {kind} path format: {path}"
 msgstr "Formato de ruta de {kind} no válido: {path}"
 
 
 #. Translators: Preserve `{name}` exactly; it is a user-provided profile name.
-#: crates/clamui-core/src/profiles.rs:663
+#: crates/linux-defender-core/src/profiles.rs:663
 msgid "Could not generate unique name for '{name}'"
 msgstr "No se pudo generar un nombre único para «{name}»"
 
 
-#: crates/clamui-core/src/quarantine.rs:395
+#: crates/linux-defender-core/src/quarantine.rs:395
 msgid "Quarantine metadata was written but could not be read"
 msgstr "Los metadatos de cuarentena se escribieron, pero no se pudieron leer"
 
 
-#: crates/clamui-core/src/quarantine.rs:417
+#: crates/linux-defender-core/src/quarantine.rs:417
 msgid ""
 "Failed to record quarantine entry in database. File has been restored to "
 "original location."
@@ -1908,7 +1908,7 @@ msgstr ""
 
 
 #. Translators: Preserve `{error}` as a localized failure description and `{path}` as a user-provided file path.
-#: crates/clamui-core/src/quarantine.rs:420
+#: crates/linux-defender-core/src/quarantine.rs:420
 msgid ""
 "Failed to record quarantine entry in database. Rollback also failed: "
 "{error}. File may be orphaned at: {path}"
@@ -1918,7 +1918,7 @@ msgstr ""
 "archivo huérfano en: {path}"
 
 
-#: crates/clamui-core/src/quarantine.rs:468
+#: crates/linux-defender-core/src/quarantine.rs:468
 msgid ""
 "File restored successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1927,7 +1927,7 @@ msgstr ""
 "la base de datos. Puede seguir apareciendo en la lista hasta que se limpie."
 
 
-#: crates/clamui-core/src/quarantine.rs:495
+#: crates/linux-defender-core/src/quarantine.rs:495
 msgid ""
 "File deleted successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1937,25 +1937,25 @@ msgstr ""
 
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/clamui-core/src/quarantine.rs:1411
+#: crates/linux-defender-core/src/quarantine.rs:1411
 msgid "Cannot quarantine {path}: {error}"
 msgstr "No se puede poner en cuarentena {path}: {error}"
 
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/clamui-core/src/quarantine.rs:1429
+#: crates/linux-defender-core/src/quarantine.rs:1429
 msgid "File hash mismatch — file may be corrupted"
 msgstr "La suma hash del archivo no coincide; el archivo puede estar dañado"
 
 
-#: crates/clamui-core/src/scanner.rs:441
+#: crates/linux-defender-core/src/scanner.rs:441
 msgid "No ClamAV database files were found in standard host locations"
 msgstr ""
 "No se encontraron archivos de base de datos de ClamAV en ubicaciones "
 "estándar del sistema anfitrión"
 
 
-#: crates/clamui-core/src/scanner.rs:512
+#: crates/linux-defender-core/src/scanner.rs:512
 msgid ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
@@ -1964,46 +1964,46 @@ msgstr ""
 "the scan backend preference to automatic or clamscan."
 
 
-#: crates/clamui-core/src/scanner.rs:2079
+#: crates/linux-defender-core/src/scanner.rs:2079
 msgid "Scan cancelled by user"
 msgstr "Escaneo cancelado por el usuario"
 
 
-#: crates/clamui-core/src/scanner.rs:2086
+#: crates/linux-defender-core/src/scanner.rs:2086
 msgid "No files could be scanned"
 msgstr "No se pudo analizar ningún archivo"
 
 
-#: crates/clamui-core/src/scanner.rs:2092
+#: crates/linux-defender-core/src/scanner.rs:2092
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "El destino del análisis no existe o contiene un byte NUL no válido"
 
 
-#: crates/clamui-core/src/scanner.rs:2099
+#: crates/linux-defender-core/src/scanner.rs:2099
 msgid "Scan target is not a regular file or directory"
 msgstr "El destino del análisis no es un archivo normal ni un directorio"
 
 
-#: crates/clamui-core/src/scanner.rs:2108
+#: crates/linux-defender-core/src/scanner.rs:2108
 msgid "Threats were detected, but details are unavailable."
 msgstr "Se detectaron amenazas, pero no hay detalles disponibles."
 
 
-#: crates/clamui-core/src/scanner.rs:2120
+#: crates/linux-defender-core/src/scanner.rs:2120
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "No se pudo acceder a {count} archivo"
 msgstr[1] "No se pudo acceder a {count} archivos"
 
 
-#: crates/clamui-core/src/scanner.rs:2133
+#: crates/linux-defender-core/src/scanner.rs:2133
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "No se pudo leer {count} archivo"
 msgstr[1] "No se pudo leer {count} archivos"
 
 
-#: crates/clamui-core/src/scanner.rs:2152
+#: crates/linux-defender-core/src/scanner.rs:2152
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -2018,13 +2018,13 @@ msgstr[1] ""
 "archivos se hayan analizado solo parcialmente"
 
 
-#: crates/clamui-core/src/scheduler.rs:805
+#: crates/linux-defender-core/src/scheduler.rs:805
 msgid "Scheduled scan cancelled"
 msgstr "Análisis programado cancelado"
 
 
 #. Translators: Keep `clamui-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/clamui-core/src/scheduler.rs:824
+#: crates/linux-defender-core/src/scheduler.rs:824
 msgid ""
 "Usage: clamui-scheduled-scan [--skip-on-battery] [--auto-quarantine] [--"
 "target PATH] [--dry-run] [--verbose|-v]"
@@ -2034,71 +2034,71 @@ msgstr ""
 
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/clamui-core/src/scheduler.rs:865
+#: crates/linux-defender-core/src/scheduler.rs:865
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
 
-#: crates/clamui-core/src/scheduler.rs:874
+#: crates/linux-defender-core/src/scheduler.rs:874
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "Escaneo programado omitido (con alimentación por batería)"
 
 
-#: crates/clamui-core/src/scheduler.rs:891
+#: crates/linux-defender-core/src/scheduler.rs:891
 msgid "Warning: Target does not exist: {target}"
 msgstr "Advertencia: El objetivo no existe: {target}"
 
 
-#: crates/clamui-core/src/scheduler.rs:903
+#: crates/linux-defender-core/src/scheduler.rs:903
 msgid "Error: No valid scan targets found"
 msgstr "Error: No se encontraron objetivos de escaneo válidos."
 
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/clamui-core/src/scheduler.rs:907
+#: crates/linux-defender-core/src/scheduler.rs:907
 msgid "Dry run mode — scan not executed"
 msgstr "Modo de simulación — análisis no ejecutado"
 
 
-#: crates/clamui-core/src/scheduler.rs:915
+#: crates/linux-defender-core/src/scheduler.rs:915
 msgid "  Skip on battery: {value}"
 msgstr "  Omitir en batería: {value}"
 
 
-#: crates/clamui-core/src/scheduler.rs:920
+#: crates/linux-defender-core/src/scheduler.rs:920
 msgid "  Auto quarantine: {value}"
 msgstr "  Cuarentena automática: {value}"
 
 
-#: crates/clamui-core/src/scheduler.rs:928
+#: crates/linux-defender-core/src/scheduler.rs:928
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} destino: {targets:?}"
 msgstr[1] "  {count} destinos: {targets:?}"
 
 
-#: crates/clamui-core/src/scheduler.rs:952
+#: crates/linux-defender-core/src/scheduler.rs:952
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "El análisis programado ha fallado: ClamAV no está disponible"
 
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/clamui-core/src/scheduler.rs:962
+#: crates/linux-defender-core/src/scheduler.rs:962
 msgid "Error: ClamAV not available — {error}"
 msgstr "Error: ClamAV no está disponible — {error}"
 
 
-#: crates/clamui-core/src/scheduler.rs:971
+#: crates/linux-defender-core/src/scheduler.rs:971
 msgid "Scheduled Scan Failed"
 msgstr "El análisis programado falló"
 
 
-#: crates/clamui-core/src/scheduler.rs:972
+#: crates/linux-defender-core/src/scheduler.rs:972
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "ClamAV no está disponible. Instale ClamAV."
 
 
-#: crates/clamui-core/src/scheduler.rs:1035
+#: crates/linux-defender-core/src/scheduler.rs:1035
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
@@ -2110,21 +2110,21 @@ msgstr[1] ""
 "cuarentena"
 
 
-#: crates/clamui-core/src/scheduler.rs:1046
+#: crates/linux-defender-core/src/scheduler.rs:1046
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "El análisis programado detectó {count} amenaza"
 msgstr[1] "El análisis programado detectó {count} amenazas"
 
 
-#: crates/clamui-core/src/scheduler.rs:1055
+#: crates/linux-defender-core/src/scheduler.rs:1055
 msgid "Scheduled scan completed with errors"
 msgstr "El análisis programado se ha completado con errores"
 
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/clamui-core/src/scheduler.rs:1058
+#: crates/linux-defender-core/src/scheduler.rs:1058
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] ""
@@ -2133,66 +2133,66 @@ msgstr[1] ""
 "Análisis programado completado — se analizaron {count} archivos, sin amenazas"
 
 
-#: crates/clamui-core/src/scheduler.rs:1073
+#: crates/linux-defender-core/src/scheduler.rs:1073
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "Duración del escaneo: {duration:.1f} segundos"
 
 
-#: crates/clamui-core/src/scheduler.rs:1075
+#: crates/linux-defender-core/src/scheduler.rs:1075
 msgid "Files Scanned: {count}"
 msgstr "Archivos escaneados: {count}"
 
 
-#: crates/clamui-core/src/scheduler.rs:1076
+#: crates/linux-defender-core/src/scheduler.rs:1076
 msgid "Threats Found: {count}"
 msgstr "Amenazas detectadas: {count}"
 
 
-#: crates/clamui-core/src/scheduler.rs:1077
+#: crates/linux-defender-core/src/scheduler.rs:1077
 msgid "Targets: {targets}"
 msgstr "Objetivos: {targets}"
 
 
-#: crates/clamui-core/src/scheduler.rs:1081
+#: crates/linux-defender-core/src/scheduler.rs:1081
 msgid "Quarantined: {count}"
 msgstr "En cuarentena: {count}"
 
 
-#: crates/clamui-core/src/scheduler.rs:1086
+#: crates/linux-defender-core/src/scheduler.rs:1086
 msgid "Quarantine Failed: {count}"
 msgstr "Error en la cuarentena: {count}"
 
 
-#: crates/clamui-core/src/scheduler.rs:1114
+#: crates/linux-defender-core/src/scheduler.rs:1114
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "Análisis programado: ¡Se han detectado amenazas!"
 
 
-#: crates/clamui-core/src/scheduler.rs:1120
+#: crates/linux-defender-core/src/scheduler.rs:1120
 msgid "Scheduled Scan Completed"
 msgstr "Escaneo programado completado"
 
 
-#: crates/clamui-core/src/scheduler.rs:1121
+#: crates/linux-defender-core/src/scheduler.rs:1121
 msgid "Scan completed with some errors. Check logs for details."
 msgstr ""
 "El escaneo se ha completado con algunos errores. Consulte los registros para "
 "obtener más detalles."
 
 
-#: crates/clamui-core/src/scheduler.rs:1129
+#: crates/linux-defender-core/src/scheduler.rs:1129
 msgid "Scheduled Scan Complete"
 msgstr "Escaneo programado completado"
 
 
-#: crates/clamui-core/src/scheduler.rs:1142
+#: crates/linux-defender-core/src/scheduler.rs:1142
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "No se pudo poner en cuarentena {count} archivo"
 msgstr[1] "No se pudieron poner en cuarentena {count} archivos"
 
 
-#: crates/clamui-core/src/scheduler.rs:1168
+#: crates/linux-defender-core/src/scheduler.rs:1168
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -2201,27 +2201,27 @@ msgstr ""
 "Análisis omitido debido a la configuración que tiene en cuenta la batería."
 
 
-#: crates/clamui-core/src/scheduler.rs:1173
+#: crates/linux-defender-core/src/scheduler.rs:1173
 msgid "Scan skipped due to battery-aware settings."
 msgstr "Análisis omitido debido a la configuración para uso con batería."
 
 
-#: crates/clamui-core/src/scheduler.rs:1179
+#: crates/linux-defender-core/src/scheduler.rs:1179
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "Omitiendo el escaneo: funcionando con batería ({percent:.0f} %)"
 
 
-#: crates/clamui-core/src/scheduler.rs:1184
+#: crates/linux-defender-core/src/scheduler.rs:1184
 msgid "Skipping scan: running on battery power"
 msgstr "Se omite el análisis: se está usando batería"
 
 
-#: crates/clamui-core/src/updater.rs:131
+#: crates/linux-defender-core/src/updater.rs:131
 msgid "Update cancelled by user"
 msgstr "Actualización cancelada por el usuario"
 
 
-#: crates/clamui-core/src/updater.rs:136
+#: crates/linux-defender-core/src/updater.rs:136
 msgid ""
 "Update process output did not close after cleanup; result cannot be "
 "classified."
@@ -2231,14 +2231,14 @@ msgstr ""
 
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/clamui-core/src/updater.rs:503
+#: crates/linux-defender-core/src/updater.rs:503
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr ""
 "Se ha enviado una señal de actualización al servicio freshclam (PID {pid})"
 
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/clamui-core/src/updater.rs:793
+#: crates/linux-defender-core/src/updater.rs:793
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2247,7 +2247,7 @@ msgstr ""
 "primero: sudo systemctl stop clamav-freshclam"
 
 
-#: crates/clamui-core/src/updater.rs:823
+#: crates/linux-defender-core/src/updater.rs:823
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] "Update timed out after {minutes} minutes without output"
@@ -2256,7 +2256,7 @@ msgstr[1] "Update timed out after {minutes} minutes without output"
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/clamui-core/src/updater.rs:962
+#: crates/linux-defender-core/src/updater.rs:962
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] ""
@@ -2268,24 +2268,24 @@ msgstr[1] ""
 
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/clamui-core/src/updater.rs:972
+#: crates/linux-defender-core/src/updater.rs:972
 msgid "Database update completed — Already up to date"
 msgstr "Actualización de la base de datos completada — Ya está actualizada"
 
 
-#: crates/clamui-core/src/updater.rs:1039
+#: crates/linux-defender-core/src/updater.rs:1039
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "La configuración de freshclam seleccionada no existe: {path}"
 
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/clamui-core/src/updater.rs:1071
+#: crates/linux-defender-core/src/updater.rs:1071
 msgid "Could not determine freshclam PID"
 msgstr "No se ha podido determinar el PID de freshclam"
 
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/clamui-core/src/updater.rs:1081
+#: crates/linux-defender-core/src/updater.rs:1081
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
@@ -2294,89 +2294,89 @@ msgstr ""
 "reiniciar el servicio: sudo systemctl restart clamav-freshclam ({error})"
 
 
-#: crates/clamui-core/src/virustotal.rs:1182
+#: crates/linux-defender-core/src/virustotal.rs:1182
 msgid "File too large ({size}MB). Maximum size is {max}MB"
 msgstr ""
 "El archivo es demasiado grande ({size} MB). El tamaño máximo es de {max} MB"
 
 
-#: crates/clamui-core/src/virustotal.rs:1186
+#: crates/linux-defender-core/src/virustotal.rs:1186
 msgid "Invalid file path"
 msgstr "Ruta de archivo no válida"
 
 
-#: crates/clamui-core/src/virustotal.rs:1188
+#: crates/linux-defender-core/src/virustotal.rs:1188
 msgid "Path is not a regular file"
 msgstr "La ruta no es un archivo regular"
 
 
-#: crates/clamui-core/src/virustotal.rs:1190
+#: crates/linux-defender-core/src/virustotal.rs:1190
 msgid "File changed while hashing"
 msgstr "El archivo cambió durante el cálculo del hash"
 
 
-#: crates/clamui-core/src/virustotal.rs:1192
+#: crates/linux-defender-core/src/virustotal.rs:1192
 msgid "File changed before upload"
 msgstr "El archivo cambió antes de la carga"
 
 
-#: crates/clamui-core/src/virustotal.rs:1194
+#: crates/linux-defender-core/src/virustotal.rs:1194
 msgid "File changed during upload"
 msgstr "El archivo cambió durante la carga"
 
 
-#: crates/clamui-core/src/virustotal.rs:1203
+#: crates/linux-defender-core/src/virustotal.rs:1203
 msgid "VirusTotal: Clean scan"
 msgstr "VirusTotal: análisis limpio"
 
 
-#: crates/clamui-core/src/virustotal.rs:1206
+#: crates/linux-defender-core/src/virustotal.rs:1206
 msgid "VirusTotal: {detections}/{total} engines detected threats"
 msgstr "VirusTotal: {detections}/{total} motores detectaron amenazas"
 
 
-#: crates/clamui-core/src/virustotal.rs:1213
+#: crates/linux-defender-core/src/virustotal.rs:1213
 msgid "VirusTotal: Threats detected"
 msgstr "VirusTotal: amenazas detectadas"
 
 
-#: crates/clamui-core/src/virustotal.rs:1214
+#: crates/linux-defender-core/src/virustotal.rs:1214
 msgid "VirusTotal: Rate limit exceeded"
 msgstr "VirusTotal: límite de solicitudes superado"
 
 
-#: crates/clamui-core/src/virustotal.rs:1215
+#: crates/linux-defender-core/src/virustotal.rs:1215
 msgid "VirusTotal: Analysis pending"
 msgstr "VirusTotal: análisis pendiente"
 
 
-#: crates/clamui-core/src/virustotal.rs:1218
+#: crates/linux-defender-core/src/virustotal.rs:1218
 msgid "VirusTotal: File not previously analyzed"
 msgstr "VirusTotal: archivo no analizado previamente"
 
 
-#: crates/clamui-core/src/virustotal.rs:1220
+#: crates/linux-defender-core/src/virustotal.rs:1220
 msgid "VirusTotal: File too large for upload"
 msgstr "VirusTotal: archivo demasiado grande para cargar"
 
 
-#: crates/clamui-core/src/virustotal.rs:1221
+#: crates/linux-defender-core/src/virustotal.rs:1221
 msgid "VirusTotal: Scan error"
 msgstr "VirusTotal: error de análisis"
 
 
-#: crates/clamui-core/src/virustotal.rs:1226
+#: crates/linux-defender-core/src/virustotal.rs:1226
 msgid "Detections: {detections}/{total}"
 msgstr "Detecciones: {detections}/{total}"
 
 
-#: crates/clamui-core/src/virustotal.rs:1240
+#: crates/linux-defender-core/src/virustotal.rs:1240
 msgid "Error: {error}"
 msgstr "Error: {error}"
 
 
 #. Translators: Keep `API` unchanged as the abbreviation for application programming interface.
-#: crates/clamui-core/src/virustotal.rs:1462
+#: crates/linux-defender-core/src/virustotal.rs:1462
 msgid "API key saved"
 msgstr "Clave API guardada"
 

@@ -20,7 +20,7 @@ Usage: ./rpm/build-privileged-helper-rpm.sh [OUTPUT_DIR]
 Builds an x86_64 or aarch64 linux-defender-privileged-helper RPM. OUTPUT_DIR defaults
 to the project root. Set CLAMUI_ARTIFACT_DIR to an existing directory containing
 clamui-apply-preferences to package a prebuilt native helper. Otherwise the
-script runs the locked clamui-core helper-only Cargo build.
+script runs the locked linux-defender-core helper-only Cargo build.
 
 CARGO_TARGET_DIR and CARGO_BUILD_TARGET select the normal Cargo artifact
 location. LINUX_DEFENDER_RPM_ARCH may be set to x86_64 or aarch64 to assert the
@@ -96,7 +96,7 @@ build_helper() {
         fi
         (
             cd "$PROJECT_ROOT"
-            cargo build --locked --release -p clamui-core --bin clamui-apply-preferences
+            cargo build --locked --release -p linux-defender-core --bin clamui-apply-preferences
         )
         ARTIFACT_DIR="$(artifact_dir)"
     fi
@@ -193,7 +193,7 @@ build_package() {
 
     rpmbuild --target "$RPM_ARCH" \
         --define "_topdir $RPMBUILD_TOPDIR" \
-        --define "clamui_version $VERSION" \
+        --define "linux_defender_version $VERSION" \
         --define "_build_id_links none" \
         -bb "$SCRIPT_DIR/linux-defender-privileged-helper.spec"
 

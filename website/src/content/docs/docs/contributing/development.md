@@ -5,7 +5,7 @@ description: Build and validate the Linux Defender Rust core, Tauri desktop, pac
 
 ## Prerequisites
 
-Linux Defender 0.6.0 is a development snapshot built on the upstream v0.6.0 source baseline. It has a headless Rust core (`crates/clamui-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency. Linux Defender packages are not yet published.
+Linux Defender 0.6.0 is a development snapshot built on the upstream v0.6.0 source baseline. It has a headless Rust core (`crates/linux-defender-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency. Linux Defender packages are not yet published.
 
 ### Debian or Ubuntu
 
@@ -58,9 +58,9 @@ Use the Tauri command for desktop development; do not substitute direct `cargo r
 The GUI runs through Tauri/WebKitGTK. For the headless core CLI, use the native binary directly; this route must not initialize a WebKit window:
 
 ```bash
-cargo run -p clamui-core --bin clamui-cli -- help
-cargo run -p clamui-core --bin clamui-cli -- scan --help
-cargo run -p clamui-core --bin clamui-scheduled-scan -- --dry-run
+cargo run -p linux-defender-core --bin clamui-cli -- help
+cargo run -p linux-defender-core --bin clamui-cli -- scan --help
+cargo run -p linux-defender-core --bin clamui-scheduled-scan -- --dry-run
 ```
 
 The `clamui` command preserves seven subcommands: `scan`, `quarantine`, `profile`, `status`, `history`, `help`, and `install-privileged-helper`. Keep their flags, JSON/text output, standard streams, and exit semantics compatible. `clamui-scheduled-scan` remains a separate executable.
@@ -85,7 +85,7 @@ clamui-scheduled-scan --dry-run
 For source-host development, build only the headless binaries, then use the non-privileged staging mode in a directory you own:
 
 ```bash
-cargo build --locked -p clamui-core --bins
+cargo build --locked -p linux-defender-core --bins
 stage_dir="$(mktemp -d)"
 ./target/debug/clamui-cli install-privileged-helper --prefix "$stage_dir"
 ```

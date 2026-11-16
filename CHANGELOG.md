@@ -9,6 +9,18 @@
 - Ported the upstream post-v0.6.0 updater fix for long-running FreshClam updates. Manual/forced updates now stop only after a configurable period without output (10-minute default; 1–1,440 minutes), rather than a fixed total runtime limit. Added settings UI, docs, regression tests, and translation catalog entries. Vietnamese strings are translated; other catalogs use English fallback pending human review.
 - Adopted upstream PR #298 website dependency updates. Deferred PR #299 TypeScript 7.0.2 because Astro 7.4.5's checker rejects TypeScript 7.
 
+### Changed
+
+- Renamed internal workspace names that have no installed contract: the headless crate is now `crates/linux-defender-core` (package `linux-defender-core`, library `linux_defender_core`), the gettext template is `po/linux-defender.pot`, the Flatpak module is `linux-defender`, the RPM version macro is `%{linux_defender_version}`, and the gettext contributor skill is `linux-defender-gettext`. The `clamui` command, helper binaries, event channel, keyring service, installed `clamui.mo` catalog domain, XDG data layouts, and legacy cron/desktop identifiers remain compatibility contracts.
+
+### Fixed
+
+- Fixed the vendored `glib 0.18.5` `PtrSlice::truncate` sequence that GitHub code scanning reported as `rust/access-invalid-pointer`. Each slot is now cleared with its null terminator before the moved value is dropped, matching `pop`/`remove`, with a regression test in the vendored crate.
+- Audit command timeouts now terminate the whole process group, so `pkexec` or scanner descendants cannot keep output pipes open and stall the audit.
+- The desktop shows a visible error and a Retry action if the React tree fails to render, instead of leaving a blank window.
+- Infected scans whose threat details exceed the retained output limit keep at least the summary infection count; the UI no longer reports an infected result with zero threats.
+- The release workflow now attaches the Debian and RPM filenames the build scripts actually produce (`linux-defender_*` and `linux-defender-privileged-helper_*`) instead of nonexistent `clamui_*` patterns.
+
 
 ## [0.6.0] - 2026-11-11
 

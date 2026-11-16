@@ -132,7 +132,7 @@ build_artifacts() {
         cargo build --manifest-path "$PROJECT_ROOT/Cargo.toml" --release --locked \
             --package clamui --bin clamui
         cargo build --manifest-path "$PROJECT_ROOT/Cargo.toml" --release --locked \
-            --package clamui-core --bin clamui-scheduled-scan --bin clamui-apply-preferences
+            --package linux-defender-core --bin clamui-scheduled-scan --bin clamui-apply-preferences
     )
 
     ARTIFACT_DIR="$(artifact_dir)"

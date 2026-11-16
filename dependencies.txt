@@ -70,7 +70,7 @@ Build and release tooling (not end-user interpreter requirements)
 
 Direct Rust dependencies — resolved Cargo.lock versions
 --------------------------------------------------------
-clamui-core runtime/direct (tempfile is also a dev dependency):
+linux-defender-core runtime/direct (tempfile is also a dev dependency):
   base64 0.23.1                  chrono 0.4.45
   clap 4.6.7                     csv 1.4.0
   fs2 0.4.3                      gio 0.18.4
@@ -86,7 +86,7 @@ clamui-core runtime/direct (tempfile is also a dev dependency):
   url 2.5.8                      uuid 1.29.1
   walkdir 2.5.0                  zip 9.4.1
 
-clamui desktop runtime/direct (in addition to local clamui-core 0.6.0):
+clamui desktop runtime/direct (in addition to local linux-defender-core 0.6.0):
   base64 0.23.1                  ksni 0.3.7
   open 5.4.5                     rfd 0.17.2
   serde 1.0.229                  serde_json 1.0.154
@@ -115,7 +115,7 @@ Build/development dependencies:
 
 Sources
 -------
-Cargo.toml; crates/clamui-core/Cargo.toml; desktop/src-tauri/Cargo.toml;
+Cargo.toml; crates/linux-defender-core/Cargo.toml; desktop/src-tauri/Cargo.toml;
 Cargo.lock; desktop/package.json; desktop/bun.lock; desktop/yarn.lock;
 debian/DEBIAN/control and control.helper; debian/build-deb.sh;
 rpm/clamui-privileged-helper.spec; appimage/build-appimage.sh;
