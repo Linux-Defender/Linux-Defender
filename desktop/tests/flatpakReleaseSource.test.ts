@@ -8,6 +8,9 @@ const renderer = fileURLToPath(
 const checkoutManifest = fileURLToPath(
   new URL("../../flathub/io.github.linuxdefender.linuxdefender.yml", import.meta.url),
 );
+const localBuildManifest = fileURLToPath(
+  new URL("../../flathub/io.github.linuxdefender.linuxdefender.local.yml", import.meta.url),
+);
 const releaseUrl = "https://github.com/Linux-Defender/Linux-Defender.git";
 const releaseCommit = "0123456789abcdef0123456789abcdef01234567";
 
@@ -146,4 +149,24 @@ describe("flatpak release source renderer", () => {
     expect(result.stdout).toBe("");
     expect(result.stderr).toContain(message);
   });
+});
+
+describe("flatpak manifests", () => {
+  test.each([checkoutManifest, localBuildManifest])(
+    "point every build path at the module that owns it (%s)",
+    (manifestPath) => {
+      const manifest = readFileSync(manifestPath, "utf8");
+      const parsed = Bun.YAML.parse(manifest) as {
+        modules?: Array<{ name: string; "build-commands"?: string[] }>;
+      };
+
+      for (const module of parsed.modules ?? []) {
+        for (const command of module["build-commands"] ?? []) {
+          for (const match of command.matchAll(/\/run\/build\/([^/\s"']+)\//g)) {
+            expect(`${manifestPath}: ${match[1]}`).toBe(`${manifestPath}: ${module.name}`);
+          }
+        }
+      }
+    },
+  );
 });

@@ -40,7 +40,7 @@ modules:
       - install -Dm644 cargo/config .cargo/config.toml
       - |
         cat > desktop/.yarnrc <<'EOF'
-        yarn-offline-mirror "/run/build/clamui/flatpak-node/yarn-mirror"
+        yarn-offline-mirror "/run/build/linux-defender/flatpak-node/yarn-mirror"
         yarn-offline-mirror-pruning false
         EOF
       - cd desktop && yarn install --offline --frozen-lockfile --ignore-scripts
