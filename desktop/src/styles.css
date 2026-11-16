@@ -1944,6 +1944,20 @@ dialog.modal-dialog.about-dialog { width: min(720px, calc(100vw - 32px)); }
 
 .startup-error { display: grid; place-items: center; min-height: 100%; padding: 16px; }
 .startup-error .card { width: min(560px, 100%); }
+.ui-error-details { margin: 12px 0; }
+.ui-error-details summary { cursor: pointer; color: var(--muted); }
+.ui-error-details pre {
+  max-height: 240px;
+  margin: 8px 0 0;
+  padding: 10px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--group-bg);
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
 
 .sr-only {
   position: absolute;

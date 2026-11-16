@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import App from "./App";
+import { UiErrorBoundary } from "./UiErrorBoundary";
 import { _, loadCatalog } from "./i18n";
 import "./styles.css";
 
@@ -15,7 +16,9 @@ void loadCatalog()
   .then(() => {
     root.render(
       <StrictMode>
-        <App />
+        <UiErrorBoundary>
+          <App />
+        </UiErrorBoundary>
       </StrictMode>,
     );
   })

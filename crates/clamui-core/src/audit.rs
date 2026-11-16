@@ -5,7 +5,7 @@ use std::collections::BTreeMap;
 use std::fs;
 use std::io::Read;
 use std::process::{Command, Stdio};
-use std::time::{Duration, SystemTime, UNIX_EPOCH};
+use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
 use crate::common::{host_command, is_flatpak, sanitize_line, sanitize_text, Context};
 use crate::portmaster::{self, PortmasterStatus};
@@ -195,6 +195,9 @@ fn run_command(program: &str, args: &[&str], timeout: Duration) -> CommandOutput
         .stdin(Stdio::null())
         .stdout(Stdio::piped())
         .stderr(Stdio::piped());
+    // Keep the whole audit command tree in one process group so a timeout can
+    // stop descendants that would otherwise keep the output pipes open.
+    isolate_process_group(&mut command);
     let Ok(mut child) = command.spawn() else {
         return CommandOutput {
             code: None,
@@ -216,11 +219,13 @@ fn run_command(program: &str, args: &[&str], timeout: Duration) -> CommandOutput
                 std::thread::sleep(Duration::from_millis(25));
             }
             Ok(None) => {
-                let _ = child.kill();
-                let _ = child.wait();
+                stop_command(&mut child);
                 break None;
             }
-            Err(_) => break None,
+            Err(_) => {
+                stop_command(&mut child);
+                break None;
+            }
         }
     };
     let stdout = stdout_reader.join().unwrap_or_default();
@@ -245,6 +250,48 @@ fn read_pipe(pipe: Option<impl Read>) -> Vec<u8> {
         let _ = pipe.read_to_end(&mut bytes);
     }
     bytes
+}
+
+#[cfg(unix)]
+fn isolate_process_group(command: &mut Command) {
+    use std::os::unix::process::CommandExt;
+    command.process_group(0);
+}
+
+#[cfg(not(unix))]
+fn isolate_process_group(_command: &mut Command) {}
+
+/// Stop a timed-out audit command and any descendants it started. Sending the
+/// signal to the process group is important: killing only the direct child can
+/// leave `pkexec` or a scanner wrapper holding the captured pipes open, which
+/// makes the reader joins below block indefinitely.
+fn stop_command(child: &mut std::process::Child) {
+    #[cfg(unix)]
+    {
+        let pid = child.id();
+        // The group can outlive its leader, so signal the group before and
+        // after the grace period rather than relying on `child.kill`.
+        unsafe {
+            libc::kill(-(pid as libc::pid_t), libc::SIGTERM);
+        }
+        let started = Instant::now();
+        while started.elapsed() < Duration::from_millis(500) {
+            match child.try_wait() {
+                Ok(Some(_)) => break,
+                Ok(None) => std::thread::sleep(Duration::from_millis(10)),
+                Err(_) => break,
+            }
+        }
+        unsafe {
+            libc::kill(-(pid as libc::pid_t), libc::SIGKILL);
+        }
+        let _ = child.wait();
+    }
+    #[cfg(not(unix))]
+    {
+        let _ = child.kill();
+        let _ = child.wait();
+    }
 }
 
 fn command_ok(program: &str, args: &[&str]) -> bool {
@@ -1613,6 +1660,24 @@ mod tests {
         );
         assert_eq!(output.code, Some(7));
         assert!(started.elapsed() < Duration::from_secs(5));
+    }
+
+    #[test]
+    fn audit_timeout_stops_descendants_that_hold_the_output_pipes() {
+        // The shell starts a grandchild and waits for it. Killing only the
+        // shell would leave the grandchild alive with stdout/stderr open.
+        let started = Instant::now();
+        let output = run_command(
+            "/bin/sh",
+            &["-c", "sleep 30 & wait"],
+            Duration::from_millis(250),
+        );
+        assert_eq!(output.code, None);
+        assert_eq!(output.stderr, "command timed out");
+        assert!(
+            started.elapsed() < Duration::from_secs(5),
+            "timed-out audit command did not stop its process group"
+        );
     }
 
     #[test]
