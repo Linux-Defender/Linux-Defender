@@ -86,3 +86,24 @@ The ClamTk reference launcher still reads only the first argument despite compan
 The primary working checkout is `/home/kiras/Linux-Defender`. It contains the ClamUI app foundation, the YARA port, and the ClamTk revival source under `reference/clamtk/`; this remains a migration reference and is not packaged as a second UI. Kira removed the duplicate `/home/kiras/Documents/Codex/Linux-Defender`, `/home/kiras/Documents/Codex/ClamUI-REBORN`, `/home/kiras/ClamTk`, and `/home/kiras/ClamTk-REBORN` folders after consolidation. The ClamUI revival's only unique source commit is the YARA port, integrated into this checkout.
 
 A weekly upstream-review automation is active for ClamAV, ClamTk, ClamUI, and the linked file-manager integrations. It reports changes for review; it does not merge or push updates.
+
+## Unified runtime parity notes (2026-11-16)
+
+These map ClamTk reports to the Rust/Tauri implementation. They do not close the upstream ClamTk reports.
+
+| ClamTk issue | Unified runtime behavior | Status |
+|---|---|---|
+| [#164](https://github.com/dave-theunsub/clamtk/issues/164) missed cron scan after downtime | The preferred scheduler backend writes a systemd timer with `Persistent=true`, so a missed run starts after the next boot/login. The cron fallback has no anacron catch-up. | Covered on systemd; cron fallback open |
+| [#159](https://github.com/dave-theunsub/clamtk/issues/159) / [#125](https://github.com/dave-theunsub/clamtk/issues/125) not responding during a scan | Scans run off the UI thread with cancellable child processes, streamed output, and progress coalescing; daemon mode is available when host `clamd` is configured. | Covered in code; desktop timing validation open |
+| [#158](https://github.com/dave-theunsub/clamtk/issues/158) verbose all-file scan log | Live progress and per-scan logs exist, but no opt-in persistent log of every clean file. | Open product decision |
+| [#147](https://github.com/dave-theunsub/clamtk/issues/147) automatic database update toggle | The Update Assistant reports and controls the host FreshClam service/timer, including Arch’s `clamav-freshclam-once.timer`, using nonblocking systemd requests. | Covered; authorization validation open |
+| [#142](https://github.com/dave-theunsub/clamtk/issues/142) tray icon | Rust SNI tray publishes an icon pixmap, toggles the window on primary click, and offers Show, Quick/Full Scan, Update, profiles, and Quit on secondary click. | Covered; KDE/GNOME click validation open |
+| [#140](https://github.com/dave-theunsub/clamtk/issues/140) scheduled scan status time | Scheduler status returns the backend, active state, and next run when systemd reports it; the Schedules page renders the configured frequency/time. | Covered |
+| [#138](https://github.com/dave-theunsub/clamtk/issues/138) update UI glitches | Failed updates keep their error text and retry path instead of reporting success; the interactive layout still needs a real desktop check. | Covered in code; GUI validation open |
+| [#127](https://github.com/dave-theunsub/clamtk/issues/127) / [#91](https://github.com/dave-theunsub/clamtk/issues/91) update confusion | The Database/Assistant text distinguishes the shared host database from a per-user store and reports service/timer ownership. | Covered |
+| [#68](https://github.com/dave-theunsub/clamtk/issues/68) high CPU during a scan | Scanner detail updates are throttled and output is coalesced; arguments are passed directly rather than through a shell. | Covered in code; CPU validation open |
+| [#53](https://github.com/dave-theunsub/clamtk/issues/53) duplicate quarantine names | Quarantine storage names are content-specific and collision-safe, restore records are preserved, and payload operations are no-follow and integrity-checked. | Covered; 17 quarantine tests |
+| [#124](https://github.com/dave-theunsub/clamtk/issues/124) VirusTotal integration | API v3 hash lookup and streaming upload with separate consent steps and keyring-backed keys. | Covered; live API validation open |
+| [#39](https://github.com/dave-theunsub/clamtk/issues/39) scan report in tray | Desktop notifications are emitted for scan/update completion. | Covered in code |
+| [#36](https://github.com/dave-theunsub/clamtk/issues/36) bulk result actions | Deliberately not implemented: quarantine/threat actions stay per-item and reviewed to avoid destructive bulk false-positive handling. | Intentional |
+
