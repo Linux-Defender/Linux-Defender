@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-11 20:37-0500\n"
+"POT-Creation-Date: 2026-11-15 19:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,331 +19,331 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: crates/clamui-core/src/audit.rs:293
+#: crates/clamui-core/src/audit.rs:299
 msgid "ClamAV is not installed"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:295
+#: crates/clamui-core/src/audit.rs:301
 msgid "Install ClamAV to enable virus scanning"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:312
+#: crates/clamui-core/src/audit.rs:318
 msgid "Installed: {version}"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:323
+#: crates/clamui-core/src/audit.rs:329
 msgid "Up to date ({days} day old, built {date})"
 msgid_plural "Up to date ({days} days old, built {date})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/clamui-core/src/audit.rs:339 crates/clamui-core/src/audit.rs:357
+#: crates/clamui-core/src/audit.rs:345 crates/clamui-core/src/audit.rs:363
 msgid "Database is {days} day old (built {date})"
 msgid_plural "Database is {days} days old (built {date})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/clamui-core/src/audit.rs:347
+#: crates/clamui-core/src/audit.rs:353
 msgid "Update virus database to ensure protection"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:365
+#: crates/clamui-core/src/audit.rs:371
 msgid "Database is critically outdated. Update immediately."
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:384
+#: crates/clamui-core/src/audit.rs:390
 msgid "Database files exist but age could not be determined"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:386
+#: crates/clamui-core/src/audit.rs:392
 msgid "No virus database found"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:390
+#: crates/clamui-core/src/audit.rs:396
 msgid "Download virus database"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:406
+#: crates/clamui-core/src/audit.rs:412
 msgid "Service {name} is running"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:417
+#: crates/clamui-core/src/audit.rs:423
 msgid "Daemon is responding"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:424
+#: crates/clamui-core/src/audit.rs:430
 msgid "ClamAV daemon is not running"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:426
+#: crates/clamui-core/src/audit.rs:432
 msgid "Start the daemon for faster scanning"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:447
+#: crates/clamui-core/src/audit.rs:453
 msgid "Freshclam service is active"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:454
+#: crates/clamui-core/src/audit.rs:460
 msgid "Freshclam automatic update service is not running"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:456
+#: crates/clamui-core/src/audit.rs:462
 msgid "Enable automatic database updates"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:658
+#: crates/clamui-core/src/audit.rs:664
 msgid "{count} port listening, risky ports: {ports}"
 msgid_plural "{count} ports listening, risky ports: {ports}"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/clamui-core/src/audit.rs:669
+#: crates/clamui-core/src/audit.rs:675
 msgid "Review if these services need to be exposed"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:676
+#: crates/clamui-core/src/audit.rs:682
 msgid "{count} port listening"
 msgid_plural "{count} ports listening"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/clamui-core/src/audit.rs:684
+#: crates/clamui-core/src/audit.rs:690
 msgid "Review open ports and close unnecessary services"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:691
+#: crates/clamui-core/src/audit.rs:697
 msgid "No open ports detected"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:722
+#: crates/clamui-core/src/audit.rs:728
 msgid "AppArmor is enabled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:729
+#: crates/clamui-core/src/audit.rs:735
 msgid "AppArmor module is loaded but not enabled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:731
+#: crates/clamui-core/src/audit.rs:737
 msgid "Enable AppArmor for application sandboxing"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:746
+#: crates/clamui-core/src/audit.rs:752
 msgid "SELinux is enforcing"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:753
+#: crates/clamui-core/src/audit.rs:759
 msgid "SELinux is in permissive mode"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:755
+#: crates/clamui-core/src/audit.rs:761
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:766
+#: crates/clamui-core/src/audit.rs:772
 msgid "SELinux is disabled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:768
+#: crates/clamui-core/src/audit.rs:774
 msgid "Enable SELinux for mandatory access control"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:782
+#: crates/clamui-core/src/audit.rs:788
 msgid "No mandatory access control framework detected"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:784
+#: crates/clamui-core/src/audit.rs:790
 msgid "Consider enabling AppArmor or SELinux"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:809
+#: crates/clamui-core/src/audit.rs:815
 msgid "Automatic security updates are enabled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:819
+#: crates/clamui-core/src/audit.rs:825
 msgid "Unattended upgrades is installed but disabled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:821
+#: crates/clamui-core/src/audit.rs:827
 msgid "Enable automatic security updates"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:834
+#: crates/clamui-core/src/audit.rs:840
 msgid "DNF automatic updates are enabled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:844
+#: crates/clamui-core/src/audit.rs:850
 msgid "DNF automatic is installed but timer is not active"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:846
+#: crates/clamui-core/src/audit.rs:852
 msgid "Enable automatic updates"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:859
+#: crates/clamui-core/src/audit.rs:865
 msgid "Could not determine automatic update status"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:861
+#: crates/clamui-core/src/audit.rs:867
 msgid "Configure automatic security updates"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:875
+#: crates/clamui-core/src/audit.rs:881
 msgid "System reboot required to apply updates"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:877
+#: crates/clamui-core/src/audit.rs:883
 msgid "Reboot the system to apply pending security updates"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:922
+#: crates/clamui-core/src/audit.rs:928
 msgid "{name} is installed but not running"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:940
+#: crates/clamui-core/src/audit.rs:946
 msgid "No intrusion detection system found"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:942
+#: crates/clamui-core/src/audit.rs:948
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:968
+#: crates/clamui-core/src/audit.rs:974
 msgid "SSH server is not running (no remote attack surface)"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:978
+#: crates/clamui-core/src/audit.rs:984
 msgid "SSH server is running"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:987
+#: crates/clamui-core/src/audit.rs:993
 msgid "Could not read SSH configuration"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1005
+#: crates/clamui-core/src/audit.rs:1011
 msgid "Root login: {value}"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1012
+#: crates/clamui-core/src/audit.rs:1018
 msgid "Root login is allowed ({value})"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1018
+#: crates/clamui-core/src/audit.rs:1024
 msgid "Disable root SSH login for security"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1032
+#: crates/clamui-core/src/audit.rs:1038
 msgid "Password authentication is disabled (key-only)"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1039
+#: crates/clamui-core/src/audit.rs:1045
 msgid "Password authentication is enabled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1041
+#: crates/clamui-core/src/audit.rs:1047
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1058
+#: crates/clamui-core/src/audit.rs:1064
 msgid "X11 forwarding is disabled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1065
+#: crates/clamui-core/src/audit.rs:1071
 msgid "X11 forwarding is enabled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1067
+#: crates/clamui-core/src/audit.rs:1073
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1142
+#: crates/clamui-core/src/audit.rs:1148
 msgid "Portmaster is running and protecting connections"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1166
+#: crates/clamui-core/src/audit.rs:1172
 msgid "Authorize Linux Defender in Portmaster for per-module health"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1172
+#: crates/clamui-core/src/audit.rs:1178
 msgid "Authorize"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1182
+#: crates/clamui-core/src/audit.rs:1188
 msgid "Portmaster is installed but not running"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1184
+#: crates/clamui-core/src/audit.rs:1190
 msgid "Start the Portmaster service to enable network protection"
 msgstr ""
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/clamui-core/src/audit.rs:1197
+#: crates/clamui-core/src/audit.rs:1203
 msgid "Not detected — optional network monitor and application firewall"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1211
+#: crates/clamui-core/src/audit.rs:1217
 msgid "Could not probe Portmaster: {error}"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1261
+#: crates/clamui-core/src/audit.rs:1267
 msgid "{name} is not installed"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1267
+#: crates/clamui-core/src/audit.rs:1273
 msgid "Install {name} for comprehensive security auditing"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1273
+#: crates/clamui-core/src/audit.rs:1279
 msgid "Install chkrootkit for rootkit detection"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1292
+#: crates/clamui-core/src/audit.rs:1298
 msgid "Authentication was cancelled"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1300
+#: crates/clamui-core/src/audit.rs:1306
 msgid "Lynis audit timed out after 5 minutes"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1302
+#: crates/clamui-core/src/audit.rs:1308
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1320 crates/clamui-core/src/audit.rs:1364
+#: crates/clamui-core/src/audit.rs:1326 crates/clamui-core/src/audit.rs:1370
 msgid "Failed to run Lynis: {error}"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1326
+#: crates/clamui-core/src/audit.rs:1332
 msgid "Failed to run chkrootkit: {error}"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1392
+#: crates/clamui-core/src/audit.rs:1398
 msgid "Score: {score}/100"
 msgstr ""
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/clamui-core/src/audit.rs:1395
+#: crates/clamui-core/src/audit.rs:1401
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1411
+#: crates/clamui-core/src/audit.rs:1417
 msgid "Audit completed (exit code {code})"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1449 crates/clamui-core/src/audit.rs:1463
+#: crates/clamui-core/src/audit.rs:1455 crates/clamui-core/src/audit.rs:1469
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1493
+#: crates/clamui-core/src/audit.rs:1499
 msgid "No rootkits detected"
 msgstr ""
 
-#: crates/clamui-core/src/audit.rs:1504
+#: crates/clamui-core/src/audit.rs:1510
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/clamui-core/src/audit.rs:1512
+#: crates/clamui-core/src/audit.rs:1518
 msgid "Investigate the detected threats immediately"
 msgstr ""
 
@@ -539,8 +539,8 @@ msgstr ""
 #: crates/clamui-core/src/cli.rs:56 crates/clamui-core/src/cli.rs:250
 #: crates/clamui-core/src/cli.rs:418 crates/clamui-core/src/cli.rs:427
 #: crates/clamui-core/src/cli.rs:459 crates/clamui-core/src/cli.rs:499
-#: crates/clamui-core/src/cli.rs:1188 crates/clamui-core/src/cli.rs:1214
-#: crates/clamui-core/src/cli.rs:1745 crates/clamui-core/src/cli.rs:1750
+#: crates/clamui-core/src/cli.rs:1195 crates/clamui-core/src/cli.rs:1221
+#: crates/clamui-core/src/cli.rs:1752 crates/clamui-core/src/cli.rs:1757
 msgid "error"
 msgstr ""
 
@@ -666,7 +666,7 @@ msgid ""
 "Run 'clamui {name} --help' for full option reference."
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:395 crates/clamui-core/src/cli.rs:1605
+#: crates/clamui-core/src/cli.rs:395 crates/clamui-core/src/cli.rs:1612
 msgid "unrecognized argument: {argument}"
 msgstr ""
 
@@ -704,21 +704,21 @@ msgid ""
 "Exit codes: 0 = clean, 1 = threats found, 2 = error."
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:599
+#: crates/clamui-core/src/cli.rs:597
 msgid "Path not found: {path}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:618
+#: crates/clamui-core/src/cli.rs:625
 msgid "Profile not found: {name}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:717
+#: crates/clamui-core/src/cli.rs:724
 msgid "Scanned {count} file in {duration:.1f}s"
 msgid_plural "Scanned {count} files in {duration:.1f}s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/clamui-core/src/cli.rs:730
+#: crates/clamui-core/src/cli.rs:737
 msgid ""
 "\n"
 "Threat found: {count}"
@@ -728,7 +728,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/clamui-core/src/cli.rs:755
+#: crates/clamui-core/src/cli.rs:762
 msgid ""
 "\n"
 "Quarantined: {count} file"
@@ -738,320 +738,320 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/clamui-core/src/cli.rs:765
+#: crates/clamui-core/src/cli.rs:772
 msgid ""
 "\n"
 "Failed to quarantine:"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:777 crates/clamui-core/src/logs.rs:1406
+#: crates/clamui-core/src/cli.rs:784 crates/clamui-core/src/logs.rs:1406
 msgid "Threats Detected"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:783
+#: crates/clamui-core/src/cli.rs:790
 msgid ""
 "\n"
 "Scan completed with errors:"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:788
+#: crates/clamui-core/src/cli.rs:795
 msgid "No threats found."
 msgstr ""
 
 #. Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:797 crates/clamui-core/src/cli.rs:819
+#: crates/clamui-core/src/cli.rs:804 crates/clamui-core/src/cli.rs:826
 msgid "Usage: clamui quarantine <list|restore|delete> [args]"
 msgstr ""
 
 #. Translators: Keep `clamui`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:807
+#: crates/clamui-core/src/cli.rs:814
 msgid "Usage: clamui quarantine list [--json]"
 msgstr ""
 
 #. Translators: Keep `clamui`, `restore`, and `ID` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:811
+#: crates/clamui-core/src/cli.rs:818
 msgid "Usage: clamui quarantine restore ID"
 msgstr ""
 
 #. Translators: Keep `clamui`, `delete`, and `ID` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:815
+#: crates/clamui-core/src/cli.rs:822
 msgid "Usage: clamui quarantine delete ID"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:847
+#: crates/clamui-core/src/cli.rs:854
 msgid "No quarantined files."
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:864 crates/clamui-core/src/logs.rs:1108
+#: crates/clamui-core/src/cli.rs:871 crates/clamui-core/src/logs.rs:1108
 msgid "ID"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:865
+#: crates/clamui-core/src/cli.rs:872
 msgid "File"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:866
+#: crates/clamui-core/src/cli.rs:873
 msgid "Threat"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:867 crates/clamui-core/src/cli.rs:1661
+#: crates/clamui-core/src/cli.rs:874 crates/clamui-core/src/cli.rs:1668
 msgid "Date"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:868
+#: crates/clamui-core/src/cli.rs:875
 msgid "Size"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:883
+#: crates/clamui-core/src/cli.rs:890
 msgid "{count} entry ({size} total)"
 msgid_plural "{count} entries ({size} total)"
 msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: Keep `quarantine`, command-valued `{action}`, and `ID` unchanged.
-#: crates/clamui-core/src/cli.rs:901 crates/clamui-core/src/cli.rs:915
+#: crates/clamui-core/src/cli.rs:908 crates/clamui-core/src/cli.rs:922
 msgid "quarantine {action} requires ID"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:954
+#: crates/clamui-core/src/cli.rs:961
 msgid "Restored"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:956
+#: crates/clamui-core/src/cli.rs:963
 msgid "Deleted"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:961
+#: crates/clamui-core/src/cli.rs:968
 msgid "{verb}: {path}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:971
+#: crates/clamui-core/src/cli.rs:978
 msgid "Restore failed"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:973
+#: crates/clamui-core/src/cli.rs:980
 msgid "Delete failed"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:980
+#: crates/clamui-core/src/cli.rs:987
 msgid "{prefix}: {error}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1057 crates/clamui-core/src/quarantine.rs:443
+#: crates/clamui-core/src/cli.rs:1064 crates/clamui-core/src/quarantine.rs:443
 #: crates/clamui-core/src/quarantine.rs:480
 msgid "Quarantine entry not found: {id}"
 msgstr ""
 
 #. Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1070 crates/clamui-core/src/cli.rs:1096
+#: crates/clamui-core/src/cli.rs:1077 crates/clamui-core/src/cli.rs:1103
 msgid "Usage: clamui profile <list|show|export|import> [args]"
 msgstr ""
 
 #. Translators: Keep `clamui`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1080
+#: crates/clamui-core/src/cli.rs:1087
 msgid "Usage: clamui profile list [--json]"
 msgstr ""
 
 #. Translators: Keep `clamui`, `show`, `NAME`, and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1084
+#: crates/clamui-core/src/cli.rs:1091
 msgid "Usage: clamui profile show NAME [--json]"
 msgstr ""
 
 #. Translators: Keep `clamui`, `export`, `NAME`, and `FILE` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1088
+#: crates/clamui-core/src/cli.rs:1095
 msgid "Usage: clamui profile export NAME FILE"
 msgstr ""
 
 #. Translators: Keep `clamui`, `import`, and `FILE` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1092
+#: crates/clamui-core/src/cli.rs:1099
 msgid "Usage: clamui profile import FILE"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1123
+#: crates/clamui-core/src/cli.rs:1130
 msgid "No scan profiles configured."
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1139
+#: crates/clamui-core/src/cli.rs:1146
 msgid " (+{n} more)"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1144
+#: crates/clamui-core/src/cli.rs:1151
 msgid "(none)"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1149 crates/clamui-core/src/cli.rs:1319
+#: crates/clamui-core/src/cli.rs:1156 crates/clamui-core/src/cli.rs:1326
 msgid "yes"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1151 crates/clamui-core/src/cli.rs:1321
+#: crates/clamui-core/src/cli.rs:1158 crates/clamui-core/src/cli.rs:1328
 msgid "no"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1159
+#: crates/clamui-core/src/cli.rs:1166
 msgid "Name"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1160
+#: crates/clamui-core/src/cli.rs:1167
 msgid "Targets"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1161
+#: crates/clamui-core/src/cli.rs:1168
 msgid "Default"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1162
+#: crates/clamui-core/src/cli.rs:1169
 msgid "Updated"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1170
+#: crates/clamui-core/src/cli.rs:1177
 msgid "{count} profile"
 msgid_plural "{count} profiles"
 msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: Preserve `{name}` as the profile name and `{path}` as its destination; quotation marks may be localized.
-#: crates/clamui-core/src/cli.rs:1229
+#: crates/clamui-core/src/cli.rs:1236
 msgid "Exported '{name}' to {path}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1258
+#: crates/clamui-core/src/cli.rs:1265
 msgid "Imported profile: {name}"
 msgstr ""
 
 #. Translators: Preserve command-valued `{usage}`, `NAME`, and the `--json` CLI flag.
-#: crates/clamui-core/src/cli.rs:1278 crates/clamui-core/src/cli.rs:1291
+#: crates/clamui-core/src/cli.rs:1285 crates/clamui-core/src/cli.rs:1298
 msgid "{usage} requires NAME and optional --json"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1314
+#: crates/clamui-core/src/cli.rs:1321
 msgid "Name:        {name}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1317
+#: crates/clamui-core/src/cli.rs:1324
 msgid "ID:          {id}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1325
+#: crates/clamui-core/src/cli.rs:1332
 msgid "Default:     {value}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1334
+#: crates/clamui-core/src/cli.rs:1341
 msgid "Description: {description}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1344
+#: crates/clamui-core/src/cli.rs:1351
 msgid "Created:     {created}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1353
+#: crates/clamui-core/src/cli.rs:1360
 msgid "Updated:     {updated}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1359
+#: crates/clamui-core/src/cli.rs:1366
 msgid "Targets:"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1368
+#: crates/clamui-core/src/cli.rs:1375
 msgid "  (none)"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1379
+#: crates/clamui-core/src/cli.rs:1386
 msgid "Exclusions:"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1384
+#: crates/clamui-core/src/cli.rs:1391
 msgid "  path:    {path}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1391
+#: crates/clamui-core/src/cli.rs:1398
 msgid "  pattern: {pattern}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1403
+#: crates/clamui-core/src/cli.rs:1410
 msgid "Options:"
 msgstr ""
 
 #. Translators: Keep `clamui` and `--json` unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1417
+#: crates/clamui-core/src/cli.rs:1424
 msgid "Usage: clamui status [--json]"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1472
+#: crates/clamui-core/src/cli.rs:1479
 msgid "ClamAV"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1477
+#: crates/clamui-core/src/cli.rs:1484
 msgid "  Version:  {version}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1484
+#: crates/clamui-core/src/cli.rs:1491
 msgid "  Status:   not available"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1488
+#: crates/clamui-core/src/cli.rs:1495
 msgid "  Error:    {error}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1494
+#: crates/clamui-core/src/cli.rs:1501
 msgid "  Backend:  {backend}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1503
+#: crates/clamui-core/src/cli.rs:1510
 msgid "  Daemon:   {daemon}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1505
+#: crates/clamui-core/src/cli.rs:1512
 msgid "Quarantine"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1509 crates/clamui-core/src/cli.rs:1528
+#: crates/clamui-core/src/cli.rs:1516 crates/clamui-core/src/cli.rs:1535
 msgid "  Entries:  {count}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1518
+#: crates/clamui-core/src/cli.rs:1525
 msgid "  Size:     {size}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1520
+#: crates/clamui-core/src/cli.rs:1527
 msgid "Scan History"
 msgstr ""
 
 #. Translators: Keep `clamui`, all `--` flags, `N`, and type choices unchanged; they are CLI syntax.
-#: crates/clamui-core/src/cli.rs:1541
+#: crates/clamui-core/src/cli.rs:1548
 msgid ""
 "Usage: clamui history [--limit N] [--type scan|update|virustotal] [--json]"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1624
+#: crates/clamui-core/src/cli.rs:1631
 msgid "Failed to load history: {error}"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1639
+#: crates/clamui-core/src/cli.rs:1646
 msgid "No scan history found."
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1662 crates/clamui-core/src/logs.rs:1118
+#: crates/clamui-core/src/cli.rs:1669 crates/clamui-core/src/logs.rs:1118
 msgid "Type"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1663 crates/clamui-core/src/logs.rs:1123
+#: crates/clamui-core/src/cli.rs:1670 crates/clamui-core/src/logs.rs:1123
 msgid "Status"
 msgstr ""
 
-#: crates/clamui-core/src/cli.rs:1664 crates/clamui-core/src/logs.rs:1142
+#: crates/clamui-core/src/cli.rs:1671 crates/clamui-core/src/logs.rs:1142
 msgid "Summary"
 msgstr ""
 
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
-#: crates/clamui-core/src/cli.rs:1678
+#: crates/clamui-core/src/cli.rs:1685
 msgid "Showing {shown} of {total} entry. Use --limit to see more."
 msgid_plural "Showing {shown} of {total} entries. Use --limit to see more."
 msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: Keep `clamui install-privileged-helper` unchanged; it is the CLI command.
-#: crates/clamui-core/src/cli.rs:1713
+#: crates/clamui-core/src/cli.rs:1720
 msgid "Usage: clamui install-privileged-helper"
 msgstr ""
 
