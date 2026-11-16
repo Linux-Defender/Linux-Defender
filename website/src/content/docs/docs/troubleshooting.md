@@ -16,6 +16,10 @@ Use the distro's FreshClam service or timer to update signatures. On Kira's Cach
 
 If a manual or forced update stops for inactivity, check host `freshclam` output and connectivity. **Preferences → Behavior → Database Updates** controls the allowed time without stdout or stderr output (10 minutes by default). Active updates have no total time limit; signaling an existing update service is not subject to this setting.
 
+## A custom signature source fails and later sources are skipped
+
+FreshClam processes `DatabaseCustomURL` entries in the order written. Some freshclam versions stop the custom-URL phase after one source fails, for example when a provider returns HTTP 410 Gone, so later custom sources are not attempted. Remove or replace the failing URL under **Preferences → Database → Custom Signature Databases**, then run the update again. The failure of a third-party source does not invalidate the official ClamAV database update, but do not assume later custom sources were refreshed until a successful update run lists them.
+
 ## The desktop does not start on Wayland
 
 The native app uses Tauri with WebKitGTK 4.1 and GTK 3. On some Wayland and NVIDIA combinations, WebKitGTK's DMA-BUF renderer can fail during startup with `Error 71` or leave a blank window. When the NVIDIA proprietary driver is present, the native runtime now sets `WEBKIT_DISABLE_DMABUF_RENDERER=1` before creating the webview. To force the workaround on another driver, or to opt out, set the variable yourself:
