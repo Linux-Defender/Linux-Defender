@@ -1518,6 +1518,12 @@ button.log-row:hover:not(:disabled),
   justify-content: flex-end;
 }
 
+.scan-page .scan-targets {
+  max-height: min(40vh, 420px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
 .scan-page .scan-actions { justify-content: flex-end; }
 
 .scan-page .scan-targets .target-row > .icon-button {

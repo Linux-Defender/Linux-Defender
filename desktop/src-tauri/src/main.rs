@@ -64,6 +64,7 @@ fn run_gui(args: Vec<String>) -> i32 {
     // Core reports this optional metadata in platform.system_info without
     // importing Tauri into the headless library.
     env::set_var("CLAMUI_TAURI_VERSION", "2");
+    apply_webkit_renderer_workaround();
     match runtime::run(args) {
         Ok(()) => 0,
         Err(error) => {
@@ -71,6 +72,25 @@ fn run_gui(args: Vec<String>) -> i32 {
             1
         }
     }
+}
+
+/// WebKitGTK's DMA-BUF renderer can leave a blank or non-rendering window with
+/// the NVIDIA proprietary driver. Fall back to the software renderer before the
+/// webview is created, matching the Flatpak runtime's existing workaround. An
+/// explicit user choice in the environment always wins.
+fn apply_webkit_renderer_workaround() {
+    if env::var_os("WEBKIT_DISABLE_DMABUF_RENDERER").is_some() {
+        return;
+    }
+    if nvidia_proprietary_driver_present() {
+        env::set_var("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
+    }
+}
+
+fn nvidia_proprietary_driver_present() -> bool {
+    Path::new("/proc/driver/nvidia/version").exists()
+        || std::fs::read_to_string("/proc/modules")
+            .is_ok_and(|modules| modules.lines().any(|line| line.starts_with("nvidia ")))
 }
 
 fn unicode_args(raw_args: &[OsString]) -> Result<Vec<String>, ()> {

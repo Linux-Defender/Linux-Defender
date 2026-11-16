@@ -188,7 +188,13 @@ fn run_command(program: &str, args: &[&str], timeout: Duration) -> CommandOutput
         .map(|value| (*value).to_owned())
         .collect::<Vec<_>>();
     let mut command: Command = host_command(program, &arguments);
-    command.stdout(Stdio::piped()).stderr(Stdio::piped());
+    // Audit tools such as Lynis can prompt for input (for example when a
+    // Homebrew install leaves its directory ownership unexpected). Close stdin
+    // so a prompt receives EOF instead of blocking until the timeout fires.
+    command
+        .stdin(Stdio::null())
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped());
     let Ok(mut child) = command.spawn() else {
         return CommandOutput {
             code: None,
@@ -1593,7 +1599,21 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
 
 #[cfg(test)]
 mod tests {
-    use super::first_active_service;
+    use super::{first_active_service, run_command};
+    use std::time::{Duration, Instant};
+
+    #[test]
+    fn audit_commands_receive_closed_stdin() {
+        // `read` blocks forever if the child inherits an interactive stdin.
+        let started = Instant::now();
+        let output = run_command(
+            "/bin/sh",
+            &["-c", "read line; exit 7"],
+            Duration::from_secs(5),
+        );
+        assert_eq!(output.code, Some(7));
+        assert!(started.elapsed() < Duration::from_secs(5));
+    }
 
     #[test]
     fn freshclam_once_timer_is_recognized_by_the_audit_service_probe() {

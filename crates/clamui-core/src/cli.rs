@@ -589,20 +589,27 @@ fn print_scan_help(ctx: &Context) -> i32 {
 fn validate_scan_paths(ctx: &Context, paths: &[String]) -> Vec<String> {
     paths
         .iter()
-        .filter_map(|path| {
-            let expanded = expand_path(path);
-            match fs::canonicalize(&expanded) {
-                Ok(resolved) => Some(resolved.display().to_string()),
-                Err(_) => {
-                    eprintln!(
-                        "error: {}",
-                        trf(Some(ctx), "Path not found: {path}", &[("{path}", path)])
-                    );
-                    None
-                }
+        .filter_map(|path| match resolve_scan_path(path) {
+            Some(resolved) => Some(resolved),
+            None => {
+                eprintln!(
+                    "error: {}",
+                    trf(Some(ctx), "Path not found: {path}", &[("{path}", path)])
+                );
+                None
             }
         })
         .collect()
+}
+
+/// Canonicalize one CLI target and keep it byte-preserving. A UTF-8 argument
+/// can resolve through a symlink to a path that is not valid UTF-8; converting
+/// that with `Path::display` would scan a corrupted replacement-character path.
+fn resolve_scan_path(path: &str) -> Option<String> {
+    let expanded = expand_path(path);
+    fs::canonicalize(&expanded)
+        .ok()
+        .map(|resolved| crate::common::path_to_wire(&resolved))
 }
 
 fn find_profile(ctx: &Context, name: &str) -> Result<Value, String> {
@@ -1821,4 +1828,26 @@ fn print_table(headers: &[String], rows: &[Vec<String>]) {
 
 fn round_hundredths(value: f64) -> f64 {
     (value * 100.0).round() / 100.0
+}
+
+#[cfg(test)]
+mod tests {
+    use super::resolve_scan_path;
+    use crate::common::path_to_wire;
+    use std::os::unix::ffi::OsStringExt;
+
+    #[test]
+    fn utf8_cli_target_keeps_non_utf8_resolved_bytes() {
+        let root = tempfile::tempdir().expect("tempdir");
+        let raw = root
+            .path()
+            .join(std::ffi::OsString::from_vec(b"raw-\xff".to_vec()));
+        std::fs::write(&raw, b"test").expect("write target");
+        let link = root.path().join("utf8-link");
+        std::os::unix::fs::symlink(&raw, &link).expect("symlink");
+
+        let resolved = resolve_scan_path(link.to_str().expect("utf8 link")).expect("resolved");
+        assert_eq!(resolved, path_to_wire(&raw));
+        assert!(resolved.starts_with("file:"));
+    }
 }
