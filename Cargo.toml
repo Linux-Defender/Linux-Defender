@@ -38,3 +38,10 @@ url = "2"
 uuid = { version = "1", features = ["v4", "serde"] }
 walkdir = "2"
 zip = { version = "9.0.0", default-features = false, features = ["deflate"] }
+
+[patch.crates-io]
+# RUSTSEC-2024-0429 / GHSA-wrw7-89jp-8q8g: backport the soundness fix for
+# glib::VariantStrIter to the GTK3 0.18 line used transitively by Tauri/wry.
+# gtk-rs 0.18 is EOL and no official 0.18.6 was released; this vendored copy is
+# crates.io glib 0.18.5 with the upstream fix (gtk-rs/gtk-rs-core#1343).
+glib = { path = "vendor/glib-0.18.5" }

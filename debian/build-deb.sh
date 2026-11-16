@@ -151,10 +151,10 @@ create_package_structure() {
         "$BUILD_DIR/usr/share/icons/hicolor/128x128/apps" \
         "$BUILD_DIR/usr/share/metainfo" \
         "$BUILD_DIR/usr/share/nemo/actions" \
-        "$BUILD_DIR/usr/share/clamui/integrations" \
-        "$BUILD_DIR/usr/share/clamui" \
         "$BUILD_DIR/usr/share/kio/servicemenus" \
-        "$BUILD_DIR/usr/share/kservices5/ServiceMenus"
+        "$BUILD_DIR/usr/share/kservices5/ServiceMenus" \
+        "$BUILD_DIR/usr/share/linux-defender/integrations" \
+        "$BUILD_DIR/usr/share/linux-defender"
 }
 
 cleanup() {
