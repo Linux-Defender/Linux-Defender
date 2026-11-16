@@ -18,19 +18,19 @@ If a manual or forced update stops for inactivity, check host `freshclam` output
 
 ## The desktop does not start on Wayland
 
-The native app uses Tauri with WebKitGTK 4.1 and GTK 3. On some Wayland and NVIDIA combinations, WebKitGTK's DMA-BUF renderer can fail during startup with `Error 71`. For a source-development launch, try:
+The native app uses Tauri with WebKitGTK 4.1 and GTK 3. On some Wayland and NVIDIA combinations, WebKitGTK's DMA-BUF renderer can fail during startup with `Error 71` or leave a blank window. When the NVIDIA proprietary driver is present, the native runtime now sets `WEBKIT_DISABLE_DMABUF_RENDERER=1` before creating the webview. To force the workaround on another driver, or to opt out, set the variable yourself:
 
 ```bash
 WEBKIT_DISABLE_DMABUF_RENDERER=1 bun run --cwd desktop tauri dev
 ```
 
-If the workaround fixes startup, report the desktop session, GPU driver, and exact error. It may reduce hardware acceleration. This workaround has only been verified in an upstream Flatpak; Linux Defender has no released Flatpak yet.
+An explicit `WEBKIT_DISABLE_DMABUF_RENDERER` value in the environment is never overridden. The workaround may reduce hardware acceleration. If it fixes startup, report the desktop session, GPU driver, and exact error.
 
 ## Daemon backend is unavailable
 
 The daemon backend needs host `clamd` and `clamdscan`, a running daemon, and a socket accessible to the current user. Select **Auto** or **Clamscan** if you do not need the daemon. Check the service name and socket from your distribution; Fedora commonly uses `clamd@scan` and `/etc/clamd.d/scan.conf`. See the [backend guide](/Linux-Defender/docs/reference/scan-backends/).
 
-Daemon scans use a protected transport for long paths. ClamAV's file-list protocol cannot represent names containing newline, carriage return, or NUL characters; Linux Defender refuses those daemon targets rather than scanning a different name. Use standalone `clamscan` for that target.
+Daemon scans use a protected transport for long paths. A name containing a newline or carriage return is sent through `clamdscan` stdin instead of the newline-delimited file list, so one unusual name does not abort the rest of the scan. Unix file names cannot contain NUL bytes.
 
 ## A scan says no virus database was found
 

@@ -2,6 +2,16 @@
 
 Audit date: 2026-11-11. This consolidates Kira's requests in the Linux Defender revival chat with the current local checkout. Research counts and upstream state refer to the dated snapshots in the linked ledgers, not live GitHub status.
 
+## 2026-11-16 finish pass
+
+- Pushed `e91c862` (Debian package staging directory, Astro 7.4.7, vendored patched `glib 0.18.5`), `42cc70a` (audit doc), and `c7c5e61` (audit stdin, byte-preserving CLI targets, NVIDIA WebKit renderer fallback, bounded scan target list, unused dependency removal) to `origin/main`.
+- GitHub Dependabot now reports both default-branch alerts as `fixed`: `astro` (GHSA-r3h5-4585-7x3w) and `glib` (RUSTSEC-2024-0429). The `glib` resolution uses the vendored 0.18.5 backport because the Tauri GTK3 stack cannot move to `>=0.20.0`.
+- The previously failing **Build Debian Package** workflow is green on both `build-deb (amd64, ubuntu-22.04)` and `build-deb (arm64, ubuntu-22.04-arm)` for `e91c862`/`42cc70a`, and Test, AppImage, RPM, Lint, Dependency Audit, and Deploy website passed for those commits. Flatpak and CodeQL were still running at this writing.
+- A normal-host (CachyOS, Wayland/KDE, Rust 1.100.0) unfiltered `cargo test --workspace --locked` passes with exit 0: 121 core library tests (1 ignored) plus the desktop, CLI, and integration suites; no CLI subprocess stalls occurred. `cargo fmt --check --all` and `cargo clippy --workspace --all-targets --locked -- -D warnings` are clean, including the manifest warning cleanup.
+- New regression coverage: audit host commands receive closed stdin; a UTF-8 CLI symlink target resolving to a non-UTF-8 path round-trips through the byte-preserving wire form.
+- ClamUI report dispositions rechecked in [RELATED-PROJECT-REVIEW.md](RELATED-PROJECT-REVIEW.md). Covered items include #317, #264, #263, #246, #221/#197, #217, #205, #201/#200, #199, #196, #194, #184, #153, #150, #142, and #95; #225 multiscan, #216 auto-shutdown, #195 arm64 AppImage, and several environment/desktop items remain open.
+- Still not proven here: interactive CachyOS desktop behavior (tray left/right click, file-manager multi-select, notifications, keyring UX, close/minimize), installed-package helper authorization, Flatpak/CodeQL completion for the new commits, live VirusTotal/urlscan requests, and human translation review.
+
 ## 0.6.0 update pass (2026-11-11)
 
 - Verified the ClamUI v0.6.0 release page, release notes, site, and source tag. The installed CachyOS packages previously reported in this chat are ClamAV `1.5.4-2`, ClamTk `6.18-1`, and the ClamUI Flatpak `0.6.0`; the Flatpak uses upstream ClamUI identity and data. This Linux Defender checkout is a separate development snapshot based on that ClamUI source baseline, with local scanner, URL/reputation, YARA, audit, and UI changes layered on it.

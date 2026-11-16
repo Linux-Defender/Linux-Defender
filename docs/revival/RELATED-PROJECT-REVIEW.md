@@ -152,6 +152,39 @@ The post-release updater fix from upstream commit `30a72f0` (#307) is ported loc
 - [#299 TypeScript 5.9.3 → 7.0.2](https://github.com/linx-systems/clamui/pull/299): website-only. Deferred: Astro 7.4.5 `astro check` fails with TypeScript 7.0.2 and reports that TypeScript 6 is required.
 - [#298 website dependency group update](https://github.com/linx-systems/clamui/pull/298): website manifest/lockfile only; adopted and validated in Linux Defender website check/build. This does not alter ClamTk parity.
 
+### ClamUI issue dispositions verified against this runtime (2026-11-16)
+
+Rechecked the current open ClamUI reports against the Rust/Tauri implementation after commit `c7c5e61`. “Covered” means the owning code path and regression test exist in this repository; it does not mean the upstream report is closed or that the behavior was exercised interactively.
+
+| ClamUI issue | Linux Defender implementation | Status |
+|---|---|---|
+| [#317](https://github.com/linx-systems/clamui/issues/317) Lynis hangs on a prompt | Deep audits already run `lynis audit system --cronjob --quiet` through pkexec, and audit host commands now receive closed stdin so an unexpected prompt gets EOF instead of blocking (regression test asserts a stdin-reading child exits). | Covered locally |
+| [#315](https://github.com/linx-systems/clamui/issues/315) blank screen on launch | Native startup now sets `WEBKIT_DISABLE_DMABUF_RENDERER=1` before webview creation when the NVIDIA proprietary driver is present, matching the Flatpak runtime. Other blank-screen causes still need the user’s log output. | Mitigation added; root cause unconfirmed |
+| [#305](https://github.com/linx-systems/clamui/issues/305) / [#282](https://github.com/linx-systems/clamui/issues/282) Wayland/NVIDIA startup failure | Flatpak manifest carries the WebKit workaround; the native runtime now applies it automatically for NVIDIA drivers. | Mitigation available; needs CachyOS/KDE validation |
+| [#264](https://github.com/linx-systems/clamui/issues/264) daemon scan aborts on CR/LF/NUL paths | Daemon scans route paths containing LF/CR (or over the clamdscan line limit) through stdin and keep the file list free of them. | Covered; unit tests |
+| [#263](https://github.com/linx-systems/clamui/issues/263) directory containing `~` | Only a leading `~` or `~/` is expanded; a `~` later in the path is left literal. | Covered |
+| [#246](https://github.com/linx-systems/clamui/issues/246) Plasma Firewall detection | Audit probes `plasma-firewall`/`plasma5-firewall`/`plasma6-firewall` package ownership and reports it as a backend manager, not as policy evidence. | Covered |
+| [#245](https://github.com/linx-systems/clamui/issues/245) no textual Polkit agent | Packaging/runtime environment issue: a graphical Polkit agent must be running for pkexec. Not replaced with password prompts inside the app. | Open; environment |
+| [#241](https://github.com/linx-systems/clamui/issues/241) OpenSnitch detection | Audit inventories OpenSnitch as an optional network/application firewall monitor; it does not claim policy verification. | Partial inventory |
+| [#225](https://github.com/linx-systems/clamui/issues/225) daemon scans use few threads | Daemon scans currently expand targets into file lists, so `clamdscan --multiscan` parallelism is not exposed. | Open feature |
+| [#221](https://github.com/linx-systems/clamui/issues/221) / [#197](https://github.com/linx-systems/clamui/issues/197) start minimized to tray | `start_minimized` preference, tray availability check, and close-to-tray policy are implemented with tests. | Covered; desktop UX unverified |
+| [#217](https://github.com/linx-systems/clamui/issues/217) ClamAV warnings stop a full scan | Known nonfatal LibClamAV warnings (limits, truncation, unrar, bytecode timeout) are classified as warnings/skips rather than scan failure; hard errors still fail. | Covered |
+| [#216](https://github.com/linx-systems/clamui/issues/216) shut down after scan | Not implemented; needs a scoped shutdown action and explicit consent. | Open feature |
+| [#205](https://github.com/linx-systems/clamui/issues/205) GNOME tray placeholder with IconName | the SNI tray publishes `IconPixmap` data from the app icon rather than relying on `IconName`. | Covered |
+| [#201](https://github.com/linx-systems/clamui/issues/201) / [#200](https://github.com/linx-systems/clamui/issues/200) packaged helper cannot find its Polkit policy | Helper/CLI installer resolves the packaged policy path, stages with fixed modes, and rejects mutable prefixes; tests cover staging and symlink destinations. | Covered; needs installed-package validation |
+| [#199](https://github.com/linx-systems/clamui/issues/199) Debian package creates a broken Python scheduled-scan service | This runtime has no Python service; the Rust scheduler writes quoted systemd units and cron entries with regression tests for specifier/`$`/adversarial target escaping. | Covered |
+| [#196](https://github.com/linx-systems/clamui/issues/196) scan target list pushes controls out of view | The Scan page target list is bounded to `min(40vh, 420px)` with its own scroll area. | Covered |
+| [#195](https://github.com/linx-systems/clamui/issues/195) arm64 AppImage | AppImage packaging remains x86_64-only per the current release matrix. | Open |
+| [#194](https://github.com/linx-systems/clamui/issues/194) `gio-launch-desktop` missing | External URLs and paths go through the `open` crate’s platform fallbacks rather than a hard-coded `gio-launch-desktop` call. | Covered by implementation |
+| [#184](https://github.com/linx-systems/clamui/issues/184) recommends `apt` on non-apt distros | Audit/component install commands are selected from `/etc/os-release` for Debian, Fedora, Fedora Atomic, and Arch families. | Covered |
+| [#183](https://github.com/linx-systems/clamui/issues/183) `--virustotal` CLI crashes | This CLI has no `--virustotal` route; VirusTotal is an explicit UI/API workflow with consent. | Not applicable |
+| [#170](https://github.com/linx-systems/clamui/issues/170) / [#169](https://github.com/linx-systems/clamui/issues/169) Flatpak helper/database missing | Host database discovery and the versioned pkexec helper exist; Flatpak reaches host tools through `flatpak-spawn --host`. | Covered; Flatpak desktop validation open |
+| [#153](https://github.com/linx-systems/clamui/issues/153) multiple CLI/file-manager items | `clamui scan` accepts multiple paths, preserves each target’s identity, and reports per-target results. | Covered |
+| [#150](https://github.com/linx-systems/clamui/issues/150) malformed Flatpak ExecStart | The Rust scheduler builds the Flatpak launcher as separate, quoted arguments; tests cover escaping. | Covered |
+| [#142](https://github.com/linx-systems/clamui/issues/142) enable/disable FreshClam service | Update Assistant reports and controls the supported host FreshClam service/timer, including Arch’s `clamav-freshclam-once.timer`, using nonblocking systemd requests. | Covered; authorization/desktop validation open |
+| [#95](https://github.com/linx-systems/clamui/issues/95) non-UTF-8 paths fail | Paths cross the native/headless boundary in a byte-preserving wire form, and CLI targets now resolve through the same encoding so a UTF-8 symlink to a non-UTF-8 file is not corrupted (regression test). | Covered |
+| [#20](https://github.com/linx-systems/clamui/issues/20) / [#102](https://github.com/linx-systems/clamui/issues/102) window too tall | Main content uses a page scroll container, dialogs are viewport-bounded, and the scan target list is now height-bounded. | Mitigated; small-screen validation open |
+
 ## ClamTk desktop integration repositories
 
 ### Tray and desktop action comparison
