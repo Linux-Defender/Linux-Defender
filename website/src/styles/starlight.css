@@ -2,15 +2,33 @@
 :root {
   --sl-font: Cantarell, Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --sl-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --sl-color-accent-low: #1d3826;
-  --sl-color-accent: #79dfd0;
-  --sl-color-accent-high: #dcfff8;
+  --sl-color-accent-low: #14261b;
+  --sl-color-accent: #7ce38b;
+  --sl-color-accent-high: #d9f7de;
+
+  /* Guardian ink surfaces */
+  --sl-color-bg: #0a0c0b;
+  --sl-color-bg-nav: #0d1210;
+  --sl-color-bg-sidebar: #0a0d0c;
+  --sl-color-text: #e6ede9;
+  --sl-color-text-accent: #7ce38b;
+  --sl-color-hairline: #1f2a25;
+  --sl-color-hairline-shade: #1f2a25;
 }
 
 :root[data-theme="light"] {
-  --sl-color-accent-low: #dcfff8;
-  --sl-color-accent: #178b84;
-  --sl-color-accent-high: #146b70;
+  --sl-color-accent-low: #e4f3e8;
+  --sl-color-accent: #157f3d;
+  --sl-color-accent-high: #116932;
+
+  /* Guardian paper surfaces */
+  --sl-color-bg: #f5f8f5;
+  --sl-color-bg-nav: #edf2ed;
+  --sl-color-bg-sidebar: #ffffff;
+  --sl-color-text: #14201a;
+  --sl-color-text-accent: #157f3d;
+  --sl-color-hairline: #dbe3dc;
+  --sl-color-hairline-shade: #dbe3dc;
 }
 
 .mermaid-diagram > svg {

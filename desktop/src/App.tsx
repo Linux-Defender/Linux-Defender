@@ -864,7 +864,7 @@ export default function App(): ReactNode {
   return (
     <div className={`app-shell${preferencesOpen ? " preferences-shell" : ""}`}>
       <header className="headerbar">
-        {!preferencesOpen ? <div className="brand" aria-label={_("Linux Defender")}> <span className="brand-mark" aria-hidden="true">LD</span><span>Linux Defender</span></div> : null}
+        {!preferencesOpen ? <div className="brand" aria-label={_("Linux Defender")}> <span className="brand-mark" aria-hidden="true"><Icon name="shield" /></span><span>Linux Defender</span></div> : null}
         {preferencesOpen ? (
           <div className="header-title">
             <button className="button back-button" type="button" onClick={() => selectPage(previousPage)}>

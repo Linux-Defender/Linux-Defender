@@ -99,4 +99,8 @@ Published documentation lives in `website/src/content/docs/docs/`. Start with:
 - [Configuration](website/src/content/docs/docs/reference/configuration.md) for persistent data and privileged host settings.
 - [Troubleshooting](website/src/content/docs/docs/troubleshooting.md) for user-facing recovery guidance.
 
+The visual identity is documented in [`docs/DESIGN.md`](docs/DESIGN.md): Guardian color
+tokens, typography, component rules, and the brand-asset regeneration steps shared by
+the app and the website.
+
 Use root-relative `/docs/.../` links in website content. Keep root discoverability files concise, release content sourced from `CHANGELOG.md` and `RELEASE_NOTES.md`, and generated `website/public/` assets untouched.

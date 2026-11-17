@@ -1,9 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-  <rect x="8" y="8" width="112" height="112" rx="24" ry="24" fill="#2c3e50"/>
-  <path fill="#fff" d="M30 30h68c4 0 10 20 7 40-5 25-41 45-41 45S28 95 23 70c-3-20 3-40 7-40Z"/>
-  <g transform="translate(27 35) scale(.7)">
-    <path fill="#3498db" d="M10 20C0 45 0 45 10 70c5 15 20 25 40 25 25 0 45-20 50-40 5-20-10-40-30-50C50-5 25 0 10 20Z"/>
-    <g fill="none" stroke="#2980b9" stroke-width="4" stroke-linecap="round"><path d="M25 15C40 5 70 10 85 30"/><path d="M18 45c12-5 42-5 72 10"/><path d="M20 75c15 10 45 10 65-5"/></g>
-    <path fill="none" stroke="#2c3e50" stroke-width="3" stroke-linecap="round" d="M12 24C8 45 8 55 12 70"/>
-  </g>
+  <defs>
+    <linearGradient id="bg" x1="10" y1="4" x2="118" y2="124" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#161e1a"/>
+      <stop offset="1" stop-color="#070a08"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="42" y1="20" x2="90" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#a9f6b5"/>
+      <stop offset=".52" stop-color="#7ce38b"/>
+      <stop offset="1" stop-color="#2f9a55"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#bg)"/>
+  <rect x="4.75" y="4.75" width="118.5" height="118.5" rx="27.25" fill="none" stroke="#7ce38b" stroke-opacity=".22"/>
+  <path d="M64 19 101 32.6v27.2c0 24.8-15.1 41-37 50.8-21.9-9.8-37-26-37-50.8V32.6z" fill="url(#shield)"/>
+  <path d="m46.4 63 12.4 12.4 23.2-25.6" fill="none" stroke="#06110a" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
