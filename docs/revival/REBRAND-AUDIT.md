@@ -1,6 +1,6 @@
 # Linux Defender identity and upstream audit
 
-Reviewed 2026-11-12 against the local `rebrand/linux-defender-identity` worktree and current public GitHub APIs.
+Reviewed 2026-11-12 against the local `rebrand/linux-defender-identity` worktree (that branch has since been retired; `main` is the only branch) and current public GitHub APIs.
 
 ## Product identity
 

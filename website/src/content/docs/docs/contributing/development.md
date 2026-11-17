@@ -34,12 +34,12 @@ flatpak install --user --arch="$(flatpak --default-arch)" flathub \
   org.freedesktop.Sdk.Extension.rust-stable//26.08
 ```
 
-Clone the Linux-Defender repository and switch to the Linux Defender development branch:
+Clone the Linux-Defender repository and switch to `main`, the single development and release branch:
 
 ```bash
 git clone https://github.com/Linux-Defender/Linux-Defender.git
 cd Linux-Defender
-git switch revival/unified-app
+git switch main
 ```
 
 The inherited native package workflows use an Ubuntu 22.04-compatible baseline to retain the intended glibc floor. Linux Defender's modified packages still need clean builds and installation tests before any distribution claim; a local build on a newer distribution does **not** establish compatibility with Ubuntu 22.04 or older hosts.

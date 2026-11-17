@@ -52,7 +52,7 @@ From the Linux Defender checkout:
 
 ```bash
 cd /home/kiras/Linux-Defender
-git switch revival/unified-app
+git switch main
 cargo test --workspace --locked
 cd desktop
 bun install --frozen-lockfile

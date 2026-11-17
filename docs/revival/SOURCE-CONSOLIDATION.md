@@ -6,10 +6,10 @@ This directory is the sole development checkout: `/home/kiras/Linux-Defender`. T
 
 | Source | Snapshot included here | Integration status |
 | --- | --- | --- |
-| `Linux-Defender/Linux-Defender` | Public repository; `main` contains merged PR #1 and the latest local topic branch is based on current `main` | The current local branding/update pass is not yet pushed; no Linux Defender release is published. The main branch also has competing GitHub Pages workflows that need a maintainer choice. |
+| `Linux-Defender/Linux-Defender` | Public repository; `main` is the single branch and is fully pushed, containing the merged PR #1–#3 brand/revival work | No Linux Defender release is published yet; the Astro website deploys from the single `deploy-website.yml` workflow on `main`. |
 | `linx-systems/clamui` | Its Rust, Tauri, React, packaging, docs, and translations form the app at the repository root. Upstream base `32270d5`. | Selected as the single UI foundation. Product identity still says ClamUI in many assets. |
 | Local `ClamUI-REBORN` | Its only source commit beyond ClamUI upstream, YARA rules commit `f648f9d`, is integrated here as `ec133dc`. | Its redundant checkout has no unique app source after that port. |
-| `dave-theunsub/clamtk` | Base `694833d` is the parent of the active revival branch. | Its source is represented by the more complete ClamTk revival tree below. |
+| `dave-theunsub/clamtk` | Base `694833d` is the parent of the retired revival branch. | Source is no longer in-repo; behavior parity is recorded in this directory. |
 | `Linux-Defender/clamtk-REBORN` (formerly SAFETY-CHAT) | Branch snapshot `4c55d73` was the retired `reference/clamtk/` tree. The unique research log is preserved as [CLAMTK-RESEARCH.md](CLAMTK-RESEARCH.md); the repository itself is not published. | Reference snapshot retired after parity capture; behavior and remaining gaps stay documented here. |
 | ClamTk KDE/GNOME/Nemo/Thunar integrations, ClamUI forks/issues/PRs, and MidnightBSD packaging references | Findings are recorded in `RELATED-PROJECT-REVIEW.md` and `CLAMTK-ISSUE-PR-TRACKER.md`. | Reviewed as references; not all are merged or implemented. |
 

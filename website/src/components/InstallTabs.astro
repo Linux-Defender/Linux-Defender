@@ -2,7 +2,7 @@
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const testCommands = `sudo pacman -S --needed rust bun webkit2gtk-4.1 base-devel curl wget file openssl appmenu-gtk-module libappindicator-gtk3 librsvg xdotool
 cd "$HOME/Linux-Defender"
-git switch revival/unified-app
+git switch main
 cargo test --workspace --locked
 cd desktop
 bun install --frozen-lockfile
