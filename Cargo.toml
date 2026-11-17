@@ -6,7 +6,7 @@ resolver = "2"
 version = "0.6.0"
 edition = "2021"
 license = "MIT"
-authors = ["Kira (SAFETY-CHAT)"]
+authors = ["Kira (Linux-Defender)"]
 repository = "https://github.com/Linux-Defender/Linux-Defender"
 
 [workspace.dependencies]
