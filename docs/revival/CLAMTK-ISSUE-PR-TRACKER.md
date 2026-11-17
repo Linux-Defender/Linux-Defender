@@ -1,6 +1,6 @@
 # ClamTk revival issue and PR ledger
 
-Review snapshot: 2026-11-11. Upstream: [dave-theunsub/clamtk](https://github.com/dave-theunsub/clamtk). The ClamTk history and active revival branch are preserved under `reference/clamtk`; the single-app development branch is `revival/unified-app` in this repository. GitHub has not been updated.
+Review snapshot: 2026-11-11. Upstream: [dave-theunsub/clamtk](https://github.com/dave-theunsub/clamtk). The ClamTk Perl reference tree was retired on 2026-11-16 after its behavior parity was captured here; this tracker keeps the findings. The single-app branch is `main` in this repository.
 
 ## Open issues (23)
 
@@ -83,7 +83,7 @@ ClamUI's changelog records fixes for #264, #285, and #286 although the issues re
 
 The ClamTk reference launcher still reads only the first argument despite companion launchers using `%F`. Linux Defender's managed Thunar Send To actions now pass `%F` to its own multi-target startup parser; focused tests verify the action definitions and install/remove behavior. Validate selection of multiple files in a real Thunar session before release. The upstream plugins themselves are not bundled.
 
-The primary working checkout is `/home/kiras/Linux-Defender`. It contains the ClamUI app foundation, the YARA port, and the ClamTk revival source under `reference/clamtk/`; this remains a migration reference and is not packaged as a second UI. Kira removed the duplicate `/home/kiras/Documents/Codex/Linux-Defender`, `/home/kiras/Documents/Codex/ClamUI-REBORN`, `/home/kiras/ClamTk`, and `/home/kiras/ClamTk-REBORN` folders after consolidation. The ClamUI revival's only unique source commit is the YARA port, integrated into this checkout.
+The primary working checkout is `/home/kiras/Linux-Defender`. It contains the ClamUI app foundation, the YARA port, and the behavior-parity record in `docs/revival/`; the ClamTk Perl reference tree was retired on 2026-11-16 and is no longer in-repo. Kira removed the duplicate `/home/kiras/Documents/Codex/Linux-Defender`, `/home/kiras/Documents/Codex/ClamUI-REBORN`, `/home/kiras/ClamTk`, and `/home/kiras/ClamTk-REBORN` folders after consolidation. The ClamUI revival's only unique source commit is the YARA port, integrated into this checkout.
 
 A weekly upstream-review automation is active for ClamAV, ClamTk, ClamUI, and the linked file-manager integrations. It reports changes for review; it does not merge or push updates.
 

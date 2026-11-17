@@ -10,7 +10,7 @@ Lenspect's issues, all 25 PRs, remaining VirusTotal parity gaps, license boundar
 
 Kira wants one installable Linux security-scanning product that keeps ClamTk behavior, gains ClamUI behavior and a modern UI, and can be maintained by reviewing both projects continuously. A literal code merge is not a small patch: ClamTk is Perl/GTK3; ClamUI is a Rust core + Tauri + React/TypeScript desktop app. ClamUI is MIT-licensed; ClamTk retains its GPL/Artistic licensing. MIT code can be incorporated with notices, but the combined product needs license/attribution review before distribution.
 
-The selected local target is one installable product with one primary modern UI and one runtime. ClamUI's Rust/Tauri/React application is the base in this repository; ClamTk is kept under `reference/clamtk` only for feature/data/CLI parity work, not as a second packaged UI. The final product should not run both language stacks or show two apps. Use host ClamAV and the system FreshClam database. Do not bundle a second engine or signature database. Review, test, then port upstream updates; do not auto-merge.
+The selected local target is one installable product with one primary modern UI and one runtime. ClamUI's Rust/Tauri/React application is the base in this repository; ClamTk behavior parity is recorded in this directory, and its Perl reference tree was retired on 2026-11-16. The final product should not run both language stacks or show two apps. Use host ClamAV and the system FreshClam database. Do not bundle a second engine or signature database. Review, test, then port upstream updates; do not auto-merge.
 
 ClamUI already includes scan profiles, standalone and daemon scanning, scheduling, scan history/logs, quarantine, database/update controls, VirusTotal, file-manager integrations, tray support, and a wider host-security audit. ClamTk brings its GTK workflow, per-user signatures, quarantine/restore behavior, local YARA rules, consent-based VirusTotal/urlscan controls, and distro plugins. The parity inventory is a migration checklist: preserve useful features from both in the one product, then validate each before removing the reference subtree.
 
@@ -32,7 +32,7 @@ ClamTk and ClamUI should not become a mixed Perl/Rust runtime. Keep the existing
 
 ### ClamTk screen-by-screen parity check
 
-Checked the actual `reference/clamtk/lib/GUI.pm`, `Shortcuts.pm`, `Prefs.pm`, and feature modules against the current React navigation and Rust operation surface. “Present” means a corresponding Linux Defender workflow exists; it does not claim pixel or behavior parity.
+Checked ClamTk's `lib/GUI.pm`, `Shortcuts.pm`, `Prefs.pm`, and feature modules (before the Perl reference tree was retired) against the current React navigation and Rust operation surface. “Present” means a corresponding Linux Defender workflow exists; it does not claim pixel or behavior parity.
 
 | ClamTk screen / behavior | Linux Defender counterpart | Result and follow-up |
 |---|---|---|
@@ -225,7 +225,7 @@ ClamUI already provides file-manager actions for Dolphin, Nautilus, and Nemo. Li
 
 ## Local integration progress
 
-The public [Linux-Defender/Linux-Defender](https://github.com/Linux-Defender/Linux-Defender) repository now contains the revival branch; PR #1 was merged into `main`. The local `revival/unified-app` branch includes the ClamUI history and the ClamTk revival history as a non-packaged `reference/clamtk` subtree. The former ClamUI revival checkout is preserved as local branch `archive/clamui-reborn`; its YARA work is ported in commit `ec133dc`. Several app/package/data identifiers still say ClamUI as compatibility identifiers; visible branding is Linux Defender. No Linux Defender release is published yet.
+The public [Linux-Defender/Linux-Defender](https://github.com/Linux-Defender/Linux-Defender) repository contains the merged revival history on `main`. ClamTk behavior parity is documented in this directory; its Perl `reference/clamtk` subtree was retired on 2026-11-16. The former ClamUI revival's YARA work is ported. Several app/package/data identifiers still say ClamUI as compatibility identifiers; visible branding is Linux Defender. No Linux Defender release is published yet.
 
 The upstream ClamUI `main` head `6836eea` is an ancestor of the selected `master` head, not a newer release. It diverges from master due later commits; the default master branch restores scanner handling/tests and current dependencies, so main was not merged separately. Continue comparing branches when upstream history changes.
 

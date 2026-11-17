@@ -1,6 +1,6 @@
 # Source consolidation
 
-This directory is the sole development checkout: `/home/kiras/Linux-Defender`. The app at the repository root is the one product UI. `reference/clamtk/` is the full ClamTk revival tree used to check behavior while features move into the Rust/Tauri/React app; it is not built or packaged as another application.
+This directory is the sole development checkout: `/home/kiras/Linux-Defender`. The app at the repository root is the one product UI. The ClamTk Perl reference tree (`reference/clamtk/`) was retired on 2026-11-16 after its behavior parity was captured in this directory; ClamTk behavior and remaining gaps are documented in [CLAMTK-ISSUE-PR-TRACKER.md](CLAMTK-ISSUE-PR-TRACKER.md) and [RELATED-PROJECT-REVIEW.md](RELATED-PROJECT-REVIEW.md).
 
 ## Downloaded repositories accounted for
 
@@ -10,7 +10,7 @@ This directory is the sole development checkout: `/home/kiras/Linux-Defender`. T
 | `linx-systems/clamui` | Its Rust, Tauri, React, packaging, docs, and translations form the app at the repository root. Upstream base `32270d5`. | Selected as the single UI foundation. Product identity still says ClamUI in many assets. |
 | Local `ClamUI-REBORN` | Its only source commit beyond ClamUI upstream, YARA rules commit `f648f9d`, is integrated here as `ec133dc`. | Its redundant checkout has no unique app source after that port. |
 | `dave-theunsub/clamtk` | Base `694833d` is the parent of the active revival branch. | Its source is represented by the more complete ClamTk revival tree below. |
-| `Linux-Defender/clamtk-REBORN` (formerly SAFETY-CHAT) | Active branch snapshot `4c55d73` under `reference/clamtk/`. Includes the local issue/PR code changes and integration modules. | Reference copy preserved; most features have not yet been ported to the Linux Defender UI. |
+| `Linux-Defender/clamtk-REBORN` (formerly SAFETY-CHAT) | Branch snapshot `4c55d73` was the retired `reference/clamtk/` tree. The unique research log is preserved as [CLAMTK-RESEARCH.md](CLAMTK-RESEARCH.md); the repository itself is not published. | Reference snapshot retired after parity capture; behavior and remaining gaps stay documented here. |
 | ClamTk KDE/GNOME/Nemo/Thunar integrations, ClamUI forks/issues/PRs, and MidnightBSD packaging references | Findings are recorded in `RELATED-PROJECT-REVIEW.md` and `CLAMTK-ISSUE-PR-TRACKER.md`. | Reviewed as references; not all are merged or implemented. |
 
 ClamTk issue/PR details and the exact reviewed snapshots are in the linked ledgers. The ClamTk branch includes fixes and integrations for scanner argument handling, path discovery, FreshClam controls, YARA, VirusTotal API v3, and urlscan. Linux Defender has ported local YARA rule loading and now offers VirusTotal URL analysis plus urlscan in the Website URL mode beside file scanning. ClamUI's VirusTotal file scanning remains available with keyring-backed credentials. The system's ClamAV/FreshClam database remains the local engine's signature set; third-party feeds are not managed, and urlscan/VirusTotal are remote services. URL scanning requires real desktop/keyring validation; many other ClamTk features still need parity work. Do not describe the product as feature-complete.

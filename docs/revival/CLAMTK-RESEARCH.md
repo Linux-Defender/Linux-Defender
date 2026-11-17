@@ -1,6 +1,6 @@
 # Historical ClamTk first-pass research (2026-11-10)
 
-This file preserves the unique research log from the original upstream checkout during folder consolidation on 2026-11-11. It is a historical snapshot, not the current status. For updated issue/PR findings and current ClamUI/desktop integration research, use [REVIVAL-TRACKER.md](REVIVAL-TRACKER.md) and [RELATED-PROJECT-REVIEW.md](RELATED-PROJECT-REVIEW.md). In particular, the old signature-age note was superseded by Kira's later FreshClam update log.
+This file preserves the unique research log from the original upstream ClamTk checkout during folder consolidation on 2026-11-11. The Perl reference tree it describes (`reference/clamtk/`) was retired after its behavior parity was captured in this directory. It is a historical snapshot, not the current status. For updated issue/PR findings and current ClamUI/desktop integration research, use [CLAMTK-ISSUE-PR-TRACKER.md](CLAMTK-ISSUE-PR-TRACKER.md) and [RELATED-PROJECT-REVIEW.md](RELATED-PROJECT-REVIEW.md). In particular, the old signature-age note was superseded by Kira's later FreshClam update log.
 
 ---
 
