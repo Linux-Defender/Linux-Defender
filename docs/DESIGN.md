@@ -68,6 +68,12 @@ on a mid-tone; use `--accent` in light as `--accent` (#157f3d) already is.
   `--group-bg` track.
 - **Banners:** `.notice` / `.warning` / `.error` / `.success` use the tinted tokens
   rather than fixed hex values.
+- **Overview hero:** the only surface that tints a whole band. Protected uses an
+  `--accent-soft` wash, at-risk/unprotected/error use `--error-bg`, and
+  no-data/unknown/checking stay on plain `--surface`; the mark tile follows the
+  same level.
+- **Metric cards:** `--surface` cards in a two-up grid. Only the threat card takes
+  the danger tint, and only while its count is above zero.
 
 ## Brand assets
 
