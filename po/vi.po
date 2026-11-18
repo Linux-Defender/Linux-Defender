@@ -7315,10 +7315,6 @@ msgid "Quick Actions"
 msgstr "Thao tác nhanh"
 
 
-#: desktop/src/pages/Statistics.tsx:265
-msgid "Scan your home directory"
-msgstr "Quét thư mục cá nhân"
-
 
 #: desktop/src/pages/Statistics.tsx:265
 msgid "View Scan Logs"
@@ -7642,6 +7638,31 @@ msgstr "Quét toàn diện toàn hệ thống, bao gồm mọi thư mục có th
 #: desktop/src/profilePresentation.ts:38
 msgid "Scan of the user's home directory and personal files"
 msgstr "Quét thư mục cá nhân và các tệp riêng của người dùng"
+
+
+#: desktop/src/App.tsx:122 desktop/src/pages/Overview.tsx:108
+msgid "Overview"
+msgstr "Tổng quan"
+
+
+#: desktop/src/pages/Overview.tsx:108
+msgid "Your protection at a glance."
+msgstr "Bảo vệ của bạn trong nháy mắt."
+
+
+#: desktop/src/pages/Overview.tsx:159
+msgid "Protection checks"
+msgstr "Kiểm tra bảo vệ"
+
+
+#: desktop/src/pages/Overview.tsx:165
+msgid "Scanner engine"
+msgstr "Công cụ quét"
+
+
+#: desktop/src/pages/Overview.tsx:209
+msgid "Keep virus definitions current"
+msgstr "Giữ cơ sở dữ liệu virus luôn cập nhật"
 
 
 #~ msgid "Free malware URL blocklist; no registration required."

@@ -7448,10 +7448,6 @@ msgid "Quick Actions"
 msgstr "Schnellaktionen"
 
 
-#: desktop/src/pages/Statistics.tsx:265
-msgid "Scan your home directory"
-msgstr "Home-Verzeichnis scannen"
-
 
 #: desktop/src/pages/Statistics.tsx:265
 msgid "View Scan Logs"
@@ -7775,6 +7771,31 @@ msgstr "Umfassender systemweiter Scan aller zugänglichen Verzeichnisse"
 #: desktop/src/profilePresentation.ts:38
 msgid "Scan of the user's home directory and personal files"
 msgstr "Scan des Home-Verzeichnisses und persönlicher Dateien"
+
+
+#: desktop/src/App.tsx:122 desktop/src/pages/Overview.tsx:108
+msgid "Overview"
+msgstr "Übersicht"
+
+
+#: desktop/src/pages/Overview.tsx:108
+msgid "Your protection at a glance."
+msgstr "Ihr Schutz auf einen Blick."
+
+
+#: desktop/src/pages/Overview.tsx:159
+msgid "Protection checks"
+msgstr "Schutzprüfungen"
+
+
+#: desktop/src/pages/Overview.tsx:165
+msgid "Scanner engine"
+msgstr "Scanner-Engine"
+
+
+#: desktop/src/pages/Overview.tsx:209
+msgid "Keep virus definitions current"
+msgstr "Virendefinitionen aktuell halten"
 
 
 #~ msgid "Free malware URL blocklist; no registration required."

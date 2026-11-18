@@ -27,6 +27,7 @@ import Components from "./pages/Components";
 import Database from "./pages/Database";
 import Logs from "./pages/Logs";
 import Network from "./pages/Network";
+import Overview from "./pages/Overview";
 import Preferences from "./pages/Preferences";
 import Profiles from "./pages/Profiles";
 import Quarantine from "./pages/Quarantine";
@@ -35,6 +36,7 @@ import Scan from "./pages/Scan";
 import Statistics from "./pages/Statistics";
 
 type PageId =
+  | "overview"
   | "scan"
   | "database"
   | "logs"
@@ -59,6 +61,7 @@ type HelperStatus = {
 };
 
 const pageComponents: Record<Exclude<PageId, "database">, ComponentType<{ active: boolean }>> = {
+  overview: Overview,
   scan: Scan,
   logs: Logs,
   components: Components,
@@ -76,6 +79,7 @@ const destinations: Array<{
   shortcut: string;
   icon: IconName;
 }> = [
+  { id: "overview", shortcut: "Ctrl+0", icon: "home" },
   { id: "scan", shortcut: "Ctrl+1", icon: "folder" },
   { id: "database", shortcut: "Ctrl+2", icon: "database" },
   { id: "logs", shortcut: "Ctrl+3", icon: "logs" },
@@ -114,6 +118,8 @@ function contributorCredit(line: string): { name: string; url: string | null } {
 
 function pageLabel(page: PageId): string {
   switch (page) {
+    case "overview":
+      return _("Overview");
     case "scan":
       return _("Scan");
     case "database":
@@ -140,6 +146,7 @@ function pageLabel(page: PageId): string {
 }
 function isPageId(value: unknown): value is PageId {
   switch (value) {
+    case "overview":
     case "scan":
     case "database":
     case "logs":
@@ -223,10 +230,10 @@ function helperStatusFrom(value: unknown): HelperStatus | null {
 }
 
 export default function App(): ReactNode {
-  const [activePage, setActivePage] = useState<PageId>("scan");
-  const activePageRef = useRef<PageId>("scan");
-  const [previousPage, setPreviousPage] = useState<Exclude<PageId, "preferences">>("scan");
-  const [mountedPages, setMountedPages] = useState<Set<PageId>>(() => new Set(["scan"]));
+  const [activePage, setActivePage] = useState<PageId>("overview");
+  const activePageRef = useRef<PageId>("overview");
+  const [previousPage, setPreviousPage] = useState<Exclude<PageId, "preferences">>("overview");
+  const [mountedPages, setMountedPages] = useState<Set<PageId>>(() => new Set(["overview"]));
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [helperTrustError, setHelperTrustError] = useState<string | null>(null);
   const [recoveryConfigurations, setRecoveryConfigurations] = useState<readonly ManualConfiguration[] | null>(null);

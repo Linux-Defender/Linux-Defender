@@ -7403,10 +7403,6 @@ msgid "Quick Actions"
 msgstr "Hurtighandlinger"
 
 
-#: desktop/src/pages/Statistics.tsx:265
-msgid "Scan your home directory"
-msgstr "Skann hjemmemappen din"
-
 
 #: desktop/src/pages/Statistics.tsx:265
 msgid "View Scan Logs"
@@ -7730,6 +7726,31 @@ msgstr "Omfattende systemomfattende skanning av alle tilgjengelige mapper"
 #: desktop/src/profilePresentation.ts:38
 msgid "Scan of the user's home directory and personal files"
 msgstr "Skanning av brukerens hjemmemappe og personlige filer"
+
+
+#: desktop/src/App.tsx:122 desktop/src/pages/Overview.tsx:108
+msgid "Overview"
+msgstr "Oversikt"
+
+
+#: desktop/src/pages/Overview.tsx:108
+msgid "Your protection at a glance."
+msgstr "Beskyttelsen din i et øyeblikk."
+
+
+#: desktop/src/pages/Overview.tsx:159
+msgid "Protection checks"
+msgstr "Beskyttelseskontroller"
+
+
+#: desktop/src/pages/Overview.tsx:165
+msgid "Scanner engine"
+msgstr "Skannemotor"
+
+
+#: desktop/src/pages/Overview.tsx:209
+msgid "Keep virus definitions current"
+msgstr "Hold virusdefinisjonene oppdatert"
 
 
 #~ msgid "Free malware URL blocklist; no registration required."

@@ -3,7 +3,7 @@ title: Read statistics
 description: Use protection status, trends, and quick actions without over-reading them.
 ---
 
-Open **Statistics** to see scan activity, detections, totals, duration, and a chart for Day, Week, Month, or All Time. Use **Refresh** after scans, updates, or quarantine actions; the view does not continuously refresh itself.
+Open **Overview** for protection status, all-time totals, quick actions, and the definition/engine checks. Open **Statistics** to see scan activity, detections, totals, duration, and a chart for Day, Week, Month, or All Time. Use **Refresh** after scans, updates, or quarantine actions; the views do not continuously refresh themselves.
 
 ## Protection status
 
@@ -18,6 +18,6 @@ Keeping definitions current matters, but a definition update alone does not chan
 
 ## Interpret trends
 
-A rise in files scanned normally reflects larger targets. A rise in detections deserves investigation, but a count does not distinguish severity; open Logs for the affected paths and detection names. Gaps in blue scan bars may indicate skipped scheduled scans. Individual scan details live in [Logs](/Linux-Defender/docs/guides/history/).
+A rise in files scanned normally reflects larger targets. A rise in detections deserves investigation, but a count does not distinguish severity; open Logs for the affected paths and detection names. Gaps in green scan bars may indicate skipped scheduled scans. Individual scan details live in [Logs](/Linux-Defender/docs/guides/history/).
 
-Quick actions navigate to the relevant view (quick scan, logs, database update); they do not make a hidden change in the dashboard.
+Quick actions on Overview and Statistics navigate to the relevant view (quick scan, logs, database update, quarantine); they do not make a hidden change.

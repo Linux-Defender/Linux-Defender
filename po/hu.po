@@ -7406,10 +7406,6 @@ msgid "Quick Actions"
 msgstr "Gyorsműveletek"
 
 
-#: desktop/src/pages/Statistics.tsx:265
-msgid "Scan your home directory"
-msgstr "Saját mappa vizsgálata"
-
 
 #: desktop/src/pages/Statistics.tsx:265
 msgid "View Scan Logs"
@@ -7734,6 +7730,31 @@ msgstr "Az összes elérhető könyvtár átfogó, rendszerszintű vizsgálata"
 #: desktop/src/profilePresentation.ts:38
 msgid "Scan of the user's home directory and personal files"
 msgstr "A felhasználó saját könyvtárának és személyes fájljainak vizsgálata"
+
+
+#: desktop/src/App.tsx:122 desktop/src/pages/Overview.tsx:108
+msgid "Overview"
+msgstr "Áttekintés"
+
+
+#: desktop/src/pages/Overview.tsx:108
+msgid "Your protection at a glance."
+msgstr "Védelem egy pillantásra."
+
+
+#: desktop/src/pages/Overview.tsx:159
+msgid "Protection checks"
+msgstr "Védelmi ellenőrzések"
+
+
+#: desktop/src/pages/Overview.tsx:165
+msgid "Scanner engine"
+msgstr "Vizsgálómotor"
+
+
+#: desktop/src/pages/Overview.tsx:209
+msgid "Keep virus definitions current"
+msgstr "Tartsa naprakészen a vírusdefiníciókat"
 
 
 #~ msgid "Free malware URL blocklist; no registration required."

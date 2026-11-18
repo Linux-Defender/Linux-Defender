@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-15 20:30-0500\n"
+"POT-Creation-Date: 2026-11-17 20:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1954,189 +1954,194 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
-#: desktop/src/App.tsx:118 desktop/src/pages/Scan.tsx:688
+#: desktop/src/App.tsx:122 desktop/src/pages/Overview.tsx:108
+msgid "Overview"
+msgstr ""
+
+#: desktop/src/App.tsx:124 desktop/src/pages/Scan.tsx:688
 #: desktop/src/pages/Scan.tsx:690
 msgid "Scan"
 msgstr ""
 
-#: desktop/src/App.tsx:120 desktop/src/pages/Database.tsx:265
+#: desktop/src/App.tsx:126 desktop/src/pages/Database.tsx:265
 #: desktop/src/pages/Preferences.tsx:15
 msgid "Database"
 msgstr ""
 
-#: desktop/src/App.tsx:122 desktop/src/pages/Logs.tsx:358
+#: desktop/src/App.tsx:128 desktop/src/pages/Logs.tsx:358
 msgid "Logs"
 msgstr ""
 
-#: desktop/src/App.tsx:124
+#: desktop/src/App.tsx:130
 msgid "Components"
 msgstr ""
 
-#: desktop/src/App.tsx:128 desktop/src/pages/Statistics.tsx:233
+#: desktop/src/App.tsx:134 desktop/src/pages/Overview.tsx:135
+#: desktop/src/pages/Statistics.tsx:102
 msgid "Statistics"
 msgstr ""
 
-#: desktop/src/App.tsx:130
+#: desktop/src/App.tsx:136
 msgid "Audit"
 msgstr ""
 
-#: desktop/src/App.tsx:132
+#: desktop/src/App.tsx:138
 msgid "Network"
 msgstr ""
 
-#: desktop/src/App.tsx:134 desktop/src/App.tsx:874 desktop/src/App.tsx:962
+#: desktop/src/App.tsx:140 desktop/src/App.tsx:881 desktop/src/App.tsx:969
 #: desktop/src/pages/Preferences.tsx:118
 msgid "Preferences"
 msgstr ""
 
-#: desktop/src/App.tsx:136
+#: desktop/src/App.tsx:142
 msgid "Profiles"
 msgstr ""
 
-#: desktop/src/App.tsx:138 desktop/src/pages/Results.tsx:281
+#: desktop/src/App.tsx:144 desktop/src/pages/Results.tsx:281
 #: desktop/src/pages/Results.tsx:282
 msgid "Results"
 msgstr ""
 
-#: desktop/src/App.tsx:309 desktop/src/pages/ConfigPreferences.tsx:534
+#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:534
 msgid "Could not open link"
 msgstr ""
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/App.tsx:389 desktop/src/App.tsx:404 desktop/src/App.tsx:422
+#: desktop/src/App.tsx:396 desktop/src/App.tsx:411 desktop/src/App.tsx:429
 #: desktop/src/pages/Scan.tsx:467
 msgid "Scan in progress — wait for it to finish before changing targets"
 msgstr ""
 
-#: desktop/src/App.tsx:468
+#: desktop/src/App.tsx:475
 msgid "The privileged-helper installation returned an invalid status."
 msgstr ""
 
-#: desktop/src/App.tsx:475
+#: desktop/src/App.tsx:482
 msgid "The privileged helper was installed successfully."
 msgstr ""
 
-#: desktop/src/App.tsx:477
+#: desktop/src/App.tsx:484
 msgid ""
 "The privileged helper is still unavailable. Try again or install it manually."
 msgstr ""
 
-#: desktop/src/App.tsx:766
+#: desktop/src/App.tsx:773
 msgid "The privileged-helper status returned an invalid response."
 msgstr ""
 
-#: desktop/src/App.tsx:867
+#: desktop/src/App.tsx:874
 msgid "Linux Defender"
 msgstr ""
 
-#: desktop/src/App.tsx:872
+#: desktop/src/App.tsx:879
 msgid "Back"
 msgstr ""
 
-#: desktop/src/App.tsx:897
+#: desktop/src/App.tsx:904
 msgid "Scan File or Folder"
 msgstr ""
 
-#: desktop/src/App.tsx:904
+#: desktop/src/App.tsx:911
 msgid "Choose scan targets"
 msgstr ""
 
-#: desktop/src/App.tsx:914
+#: desktop/src/App.tsx:921
 msgid "Scan Files"
 msgstr ""
 
-#: desktop/src/App.tsx:918
+#: desktop/src/App.tsx:925
 msgid "Scan Folders"
 msgstr ""
 
-#: desktop/src/App.tsx:925
+#: desktop/src/App.tsx:932
 msgid "Scan System (Quick Scan)"
 msgstr ""
 
-#: desktop/src/App.tsx:932 desktop/src/App.tsx:933
+#: desktop/src/App.tsx:939 desktop/src/App.tsx:940
 msgid "Menu"
 msgstr ""
 
-#: desktop/src/App.tsx:952
+#: desktop/src/App.tsx:959
 msgid "Application menu"
 msgstr ""
 
-#: desktop/src/App.tsx:965
+#: desktop/src/App.tsx:972
 msgid "About"
 msgstr ""
 
-#: desktop/src/App.tsx:978
+#: desktop/src/App.tsx:985
 msgid "Main navigation"
 msgstr ""
 
-#: desktop/src/App.tsx:979
+#: desktop/src/App.tsx:986
 msgid "Views"
 msgstr ""
 
-#: desktop/src/App.tsx:999 desktop/src/pages/Quarantine.tsx:282
+#: desktop/src/App.tsx:1006 desktop/src/pages/Quarantine.tsx:282
 msgid "Dismiss"
 msgstr ""
 
-#: desktop/src/App.tsx:1021
+#: desktop/src/App.tsx:1028
 msgid "About Linux Defender"
 msgstr ""
 
-#: desktop/src/App.tsx:1022
+#: desktop/src/App.tsx:1029
 msgid "An on-demand Linux security scanner using your system's ClamAV tools."
 msgstr ""
 
-#: desktop/src/App.tsx:1024
+#: desktop/src/App.tsx:1031
 msgid "Version"
 msgstr ""
 
-#: desktop/src/App.tsx:1025 desktop/src/pages/SettingsPreferences.tsx:269
+#: desktop/src/App.tsx:1032 desktop/src/pages/SettingsPreferences.tsx:269
 #: desktop/src/pages/SettingsPreferences.tsx:270
 msgid "Language"
 msgstr ""
 
-#: desktop/src/App.tsx:1026
+#: desktop/src/App.tsx:1033
 msgid "License"
 msgstr ""
 
-#: desktop/src/App.tsx:1029
+#: desktop/src/App.tsx:1036
 msgid "Project website"
 msgstr ""
 
-#: desktop/src/App.tsx:1030
+#: desktop/src/App.tsx:1037
 msgid "Issue tracker"
 msgstr ""
 
-#: desktop/src/App.tsx:1032
+#: desktop/src/App.tsx:1039
 msgid "Could not load contributor credits: {error}"
 msgstr ""
 
-#: desktop/src/App.tsx:1037
+#: desktop/src/App.tsx:1044
 msgid "Contributors"
 msgstr ""
 
-#: desktop/src/App.tsx:1046
+#: desktop/src/App.tsx:1053
 msgid "Translator credits"
 msgstr ""
 
-#: desktop/src/App.tsx:1049
+#: desktop/src/App.tsx:1056
 msgid "Loading contributor credits…"
 msgstr ""
 
-#: desktop/src/App.tsx:1051
+#: desktop/src/App.tsx:1058
 msgid "Close Linux Defender?"
 msgstr ""
 
-#: desktop/src/App.tsx:1052
+#: desktop/src/App.tsx:1059
 msgid ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 msgstr ""
 
-#: desktop/src/App.tsx:1053 desktop/src/pages/Scan.tsx:228
+#: desktop/src/App.tsx:1060 desktop/src/pages/Scan.tsx:228
 msgid "Remember my choice"
 msgstr ""
 
-#: desktop/src/App.tsx:1054 desktop/src/App.tsx:1058
+#: desktop/src/App.tsx:1061 desktop/src/App.tsx:1065
 #: desktop/src/pages/Database.tsx:326 desktop/src/pages/Database.tsx:352
 #: desktop/src/pages/Logs.tsx:412 desktop/src/pages/Network.tsx:441
 #: desktop/src/pages/Profiles.tsx:245 desktop/src/pages/Profiles.tsx:246
@@ -2148,75 +2153,75 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: desktop/src/App.tsx:1054
+#: desktop/src/App.tsx:1061
 msgid "Minimize to tray"
 msgstr ""
 
-#: desktop/src/App.tsx:1056
+#: desktop/src/App.tsx:1063
 msgid "Scan in Progress"
 msgstr ""
 
-#: desktop/src/App.tsx:1057
+#: desktop/src/App.tsx:1064
 msgid "A scan is still running. Cancelling it may leave partial results."
 msgstr ""
 
-#: desktop/src/App.tsx:1058
+#: desktop/src/App.tsx:1065
 msgid "Keep Scanning"
 msgstr ""
 
-#: desktop/src/App.tsx:1058
+#: desktop/src/App.tsx:1065
 msgid "Cancel Scan and Close"
 msgstr ""
 
-#: desktop/src/App.tsx:1058 desktop/src/ConfigurationRecovery.tsx:94
+#: desktop/src/App.tsx:1065 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:85 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:312 desktop/src/pages/Scan.tsx:318
 #: desktop/src/pages/Scan.tsx:330 desktop/src/pages/SettingsPreferences.tsx:313
 msgid "Close"
 msgstr ""
 
-#: desktop/src/App.tsx:1060
+#: desktop/src/App.tsx:1067
 msgid "Install Privileged Helper"
 msgstr ""
 
-#: desktop/src/App.tsx:1061
+#: desktop/src/App.tsx:1068
 msgid ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
 msgstr ""
 
-#: desktop/src/App.tsx:1063 desktop/src/HelperTrustErrorDialog.tsx:52
+#: desktop/src/App.tsx:1070 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr ""
 
 #. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1064
+#: desktop/src/App.tsx:1071
 msgid ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
 msgstr ""
 
-#: desktop/src/App.tsx:1069 desktop/src/HelperTrustErrorDialog.tsx:76
+#: desktop/src/App.tsx:1076 desktop/src/HelperTrustErrorDialog.tsx:76
 msgid "Installing privileged helper…"
 msgstr ""
 
-#: desktop/src/App.tsx:1071
+#: desktop/src/App.tsx:1078
 msgid "Not now"
 msgstr ""
 
-#: desktop/src/App.tsx:1071 desktop/src/HelperTrustErrorDialog.tsx:84
+#: desktop/src/App.tsx:1078 desktop/src/HelperTrustErrorDialog.tsx:84
 msgid "Installing…"
 msgstr ""
 
-#: desktop/src/App.tsx:1071 desktop/src/HelperTrustErrorDialog.tsx:84
+#: desktop/src/App.tsx:1078 desktop/src/HelperTrustErrorDialog.tsx:84
 msgid "Try Again"
 msgstr ""
 
-#: desktop/src/App.tsx:1071 desktop/src/HelperTrustErrorDialog.tsx:84
+#: desktop/src/App.tsx:1078 desktop/src/HelperTrustErrorDialog.tsx:84
 msgid "Install Helper"
 msgstr ""
 
-#: desktop/src/App.tsx:1071
+#: desktop/src/App.tsx:1078
 msgid "Open Preferences"
 msgstr ""
 
@@ -2348,7 +2353,7 @@ msgid "See Configuration"
 msgstr ""
 
 #: desktop/src/UiErrorBoundary.tsx:33 desktop/src/i18n.ts:94
-#: desktop/src/pages/Results.tsx:64 desktop/src/pages/Statistics.tsx:141
+#: desktop/src/pages/Results.tsx:64 desktop/src/protection.ts:130
 msgid "Error"
 msgstr ""
 
@@ -2387,11 +2392,11 @@ msgstr ""
 
 #: desktop/src/i18n.ts:96 desktop/src/pages/Audit.tsx:64
 #: desktop/src/pages/Components.tsx:146 desktop/src/pages/Logs.tsx:104
-#: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Results.tsx:55
+#: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
+#: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
 #: desktop/src/pages/SettingsPreferences.tsx:487
-#: desktop/src/pages/SettingsPreferences.tsx:511
-#: desktop/src/pages/Statistics.tsx:142
+#: desktop/src/pages/SettingsPreferences.tsx:511 desktop/src/protection.ts:131
 msgid "Unknown"
 msgstr ""
 
@@ -3455,7 +3460,7 @@ msgstr ""
 msgid "Could not read updater status: {error}"
 msgstr ""
 
-#: desktop/src/pages/Database.tsx:278
+#: desktop/src/pages/Database.tsx:278 desktop/src/pages/Overview.tsx:173
 msgid "Virus definitions"
 msgstr ""
 
@@ -3467,11 +3472,11 @@ msgstr ""
 msgid "No freshclam status returned"
 msgstr ""
 
-#: desktop/src/pages/Database.tsx:287
+#: desktop/src/pages/Database.tsx:287 desktop/src/pages/Overview.tsx:37
 msgid "Available"
 msgstr ""
 
-#: desktop/src/pages/Database.tsx:287
+#: desktop/src/pages/Database.tsx:287 desktop/src/pages/Overview.tsx:37
 msgid "Unavailable"
 msgstr ""
 
@@ -3688,10 +3693,11 @@ msgid "Previous scan and update operations"
 msgstr ""
 
 #: desktop/src/pages/Logs.tsx:367 desktop/src/pages/Logs.tsx:400
-#: desktop/src/pages/Network.tsx:397 desktop/src/pages/Quarantine.tsx:296
+#: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
+#: desktop/src/pages/Quarantine.tsx:296
 #: desktop/src/pages/SettingsPreferences.tsx:424
 #: desktop/src/pages/SettingsPreferences.tsx:506
-#: desktop/src/pages/Statistics.tsx:234 desktop/src/pages/Urlscan.tsx:171
+#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:171
 msgid "Refresh"
 msgstr ""
 
@@ -3877,7 +3883,8 @@ msgstr ""
 msgid "Refreshing…"
 msgstr ""
 
-#: desktop/src/pages/Network.tsx:397
+#: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
+#: desktop/src/pages/Overview.tsx:153
 #: desktop/src/pages/SettingsPreferences.tsx:503
 #: desktop/src/pages/SettingsPreferences.tsx:506
 msgid "Loading…"
@@ -3968,6 +3975,108 @@ msgstr ""
 
 #: desktop/src/pages/Network.tsx:441
 msgid "Opening…"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:65 desktop/src/pages/Statistics.tsx:56
+msgid "Linux Defender received invalid statistics data."
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:86 desktop/src/pages/Statistics.tsx:84
+msgid "Statistics updates are unavailable: {error}"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:96 desktop/src/pages/Overview.tsx:114
+#: desktop/src/pages/Statistics.tsx:105
+msgid "Unable to load statistics"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:97 desktop/src/pages/Statistics.tsx:91
+msgid "Checking protection status"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:100 desktop/src/pages/Statistics.tsx:93
+msgid "Total Scans"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:100 desktop/src/pages/Statistics.tsx:93
+msgid "Number of scans performed"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:101 desktop/src/pages/Statistics.tsx:94
+msgid "Files Scanned"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:101 desktop/src/pages/Statistics.tsx:94
+msgid "Total files checked"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:102 desktop/src/pages/Statistics.tsx:95
+msgid "Malware and suspicious files found"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:103 desktop/src/pages/Statistics.tsx:96
+msgid "Clean Scans"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:103 desktop/src/pages/Statistics.tsx:96
+msgid "Scans with no threats found"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:108
+msgid "Your protection at a glance."
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:119 desktop/src/pages/Statistics.tsx:108
+msgid "Protection Status"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:122 desktop/src/pages/Overview.tsx:181
+#: desktop/src/pages/Statistics.tsx:113
+msgid "Last Scan"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:718
+msgid "Start Scan"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:143 desktop/src/pages/Statistics.tsx:121
+msgid "Scan Statistics"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:159
+msgid "Protection checks"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:165
+msgid "Scanner engine"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:192
+#: desktop/src/pages/SettingsPreferences.tsx:432
+msgid "{count} file"
+msgid_plural "{count} files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desktop/src/pages/Overview.tsx:202 desktop/src/pages/Statistics.tsx:133
+msgid "Quick Actions"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:206 desktop/src/pages/Statistics.tsx:134
+#: desktop/src/profilePresentation.ts:30
+msgid "Fast scan of the Downloads folder for quick threat detection"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:209
+msgid "Keep virus definitions current"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:212 desktop/src/pages/Statistics.tsx:134
+msgid "View Scan Logs"
+msgstr ""
+
+#: desktop/src/pages/Overview.tsx:212 desktop/src/pages/Statistics.tsx:134
+msgid "See detailed scan history"
 msgstr ""
 
 #: desktop/src/pages/Preferences.tsx:13
@@ -4921,7 +5030,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: desktop/src/pages/Scan.tsx:716 desktop/src/pages/Scan.tsx:720
-#: desktop/src/pages/Statistics.tsx:161
+#: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
 msgstr[0] ""
@@ -4938,10 +5047,6 @@ msgstr ""
 
 #: desktop/src/pages/Scan.tsx:716
 msgid "Cancel All"
-msgstr ""
-
-#: desktop/src/pages/Scan.tsx:718
-msgid "Start Scan"
 msgstr ""
 
 #: desktop/src/pages/Scan.tsx:718
@@ -5396,12 +5501,6 @@ msgid ""
 "use VirusTotal scanning."
 msgstr ""
 
-#: desktop/src/pages/SettingsPreferences.tsx:432
-msgid "{count} file"
-msgid_plural "{count} files"
-msgstr[0] ""
-msgstr[1] ""
-
 #: desktop/src/pages/SettingsPreferences.tsx:439
 msgid "Unable to read debug logs: {error}"
 msgstr ""
@@ -5591,239 +5690,101 @@ msgstr[1] ""
 msgid "Delete Logs"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:120
-msgid "No scans recorded"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:123
-msgid "less than an hour ago"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:126
-msgid "{count} hour ago"
-msgid_plural "{count} hours ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: desktop/src/pages/Statistics.tsx:130
-msgid "{count} day ago"
-msgid_plural "{count} days ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: desktop/src/pages/Statistics.tsx:133
-msgid "{count} week ago"
-msgid_plural "{count} weeks ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: desktop/src/pages/Statistics.tsx:137
-msgid "Protected"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:138
-msgid "At Risk"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:139
-msgid "Unprotected"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:140
-msgid "No Data"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:146
-msgid "No scans performed yet"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:147
-msgid "Last scan was over 30 days ago"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:148
-msgid "Last scan was over a week ago"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:149
-msgid "Virus definitions are over 7 days old"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:150
-msgid "Virus definitions are over 1 day old"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:151
-msgid "System is protected"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:156
+#: desktop/src/pages/Statistics.tsx:25
 msgid "No scan activity in this timeframe."
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:158
+#: desktop/src/pages/Statistics.tsx:27
 msgid "Scan activity trend"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:160
+#: desktop/src/pages/Statistics.tsx:29
 msgid "{count} scan"
 msgid_plural "{count} scans"
 msgstr[0] ""
 msgstr[1] ""
 
-#: desktop/src/pages/Statistics.tsx:170
+#: desktop/src/pages/Statistics.tsx:39
 msgid "Scans"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:170
+#: desktop/src/pages/Statistics.tsx:39
 msgid "Threats"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:187
-msgid "Linux Defender received invalid statistics data."
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:192
+#: desktop/src/pages/Statistics.tsx:61
 msgid "Failed to load statistics: {error}"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:215
-msgid "Statistics updates are unavailable: {error}"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:222
-msgid "Checking protection status"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:224
-msgid "Total Scans"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:224
-msgid "Number of scans performed"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:225
-msgid "Files Scanned"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:225
-msgid "Total files checked"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:226
-msgid "Malware and suspicious files found"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:227
-msgid "Clean Scans"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:227
-msgid "Scans with no threats found"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:228
+#: desktop/src/pages/Statistics.tsx:97
 msgid "Average Scan Duration"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:228
+#: desktop/src/pages/Statistics.tsx:97
 msgid "Mean time per scan"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:233
+#: desktop/src/pages/Statistics.tsx:102
 msgid "Scan history and current protection posture."
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:236
-msgid "Unable to load statistics"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:239
-msgid "Protection Status"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:239
+#: desktop/src/pages/Statistics.tsx:108
 msgid "Current system security posture"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:243
+#: desktop/src/pages/Statistics.tsx:112
 msgid "System Status"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:244
-msgid "Last Scan"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:248
+#: desktop/src/pages/Statistics.tsx:117
 msgid "Timeframe"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:249
+#: desktop/src/pages/Statistics.tsx:118
 msgid "Statistics timeframe"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:249
+#: desktop/src/pages/Statistics.tsx:118
 msgid "Day"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:249
+#: desktop/src/pages/Statistics.tsx:118
 msgid "Week"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:249
+#: desktop/src/pages/Statistics.tsx:118
 msgid "Month"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:249
+#: desktop/src/pages/Statistics.tsx:118
 msgid "All Time"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:252
-msgid "Scan Statistics"
-msgstr ""
-
 #. Translators: Preserve the {range} placeholder; it contains a localized start–end date range.
-#: desktop/src/pages/Statistics.tsx:252
+#: desktop/src/pages/Statistics.tsx:121
 msgid "Statistics for: {range}"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:256
+#: desktop/src/pages/Statistics.tsx:125
 msgid "Aggregated metrics for the selected timeframe"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:257
+#: desktop/src/pages/Statistics.tsx:126
 msgid "Loading statistics…"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:257
+#: desktop/src/pages/Statistics.tsx:126
 msgid ""
 "No scan history yet. Run your first scan to see statistics and protection "
 "status."
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:260
+#: desktop/src/pages/Statistics.tsx:129
 msgid "Scan Activity"
 msgstr ""
 
-#: desktop/src/pages/Statistics.tsx:260
+#: desktop/src/pages/Statistics.tsx:129
 msgid "Scan trends over the selected timeframe"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:264
-msgid "Quick Actions"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:265
-msgid "Scan your home directory"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:265
-msgid "View Scan Logs"
-msgstr ""
-
-#: desktop/src/pages/Statistics.tsx:265
-msgid "See detailed scan history"
 msgstr ""
 
 #: desktop/src/pages/Urlscan.tsx:29
@@ -6052,14 +6013,76 @@ msgstr ""
 msgid "Submit URL"
 msgstr ""
 
-#: desktop/src/profilePresentation.ts:30
-msgid "Fast scan of the Downloads folder for quick threat detection"
-msgstr ""
-
 #: desktop/src/profilePresentation.ts:34
 msgid "Comprehensive system-wide scan of all accessible directories"
 msgstr ""
 
 #: desktop/src/profilePresentation.ts:38
 msgid "Scan of the user's home directory and personal files"
+msgstr ""
+
+#: desktop/src/protection.ts:109
+msgid "No scans recorded"
+msgstr ""
+
+#: desktop/src/protection.ts:112
+msgid "less than an hour ago"
+msgstr ""
+
+#: desktop/src/protection.ts:115
+msgid "{count} hour ago"
+msgid_plural "{count} hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desktop/src/protection.ts:119
+msgid "{count} day ago"
+msgid_plural "{count} days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desktop/src/protection.ts:122
+msgid "{count} week ago"
+msgid_plural "{count} weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desktop/src/protection.ts:126
+msgid "Protected"
+msgstr ""
+
+#: desktop/src/protection.ts:127
+msgid "At Risk"
+msgstr ""
+
+#: desktop/src/protection.ts:128
+msgid "Unprotected"
+msgstr ""
+
+#: desktop/src/protection.ts:129
+msgid "No Data"
+msgstr ""
+
+#: desktop/src/protection.ts:135
+msgid "No scans performed yet"
+msgstr ""
+
+#: desktop/src/protection.ts:136
+msgid "Last scan was over 30 days ago"
+msgstr ""
+
+#: desktop/src/protection.ts:137
+msgid "Last scan was over a week ago"
+msgstr ""
+
+#: desktop/src/protection.ts:138
+msgid "Virus definitions are over 7 days old"
+msgstr ""
+
+#: desktop/src/protection.ts:139
+msgid "Virus definitions are over 1 day old"
+msgstr ""
+
+#: desktop/src/protection.ts:140
+msgid "System is protected"
 msgstr ""

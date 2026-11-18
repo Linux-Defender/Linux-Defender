@@ -1523,6 +1523,167 @@ button.log-row:hover:not(:disabled),
 .quick-actions > button { display: grid; gap: 2px; }
 .quick-actions span { color: var(--muted); font-weight: 400; }
 
+.overview-hero {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  min-width: 0;
+  margin: 0 0 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-group);
+  background:
+    radial-gradient(120% 160% at 100% 0%, var(--accent-soft), transparent 62%),
+    var(--surface);
+  color: var(--fg);
+}
+
+.overview-hero.at_risk,
+.overview-hero.unprotected,
+.overview-hero.error {
+  background:
+    radial-gradient(120% 160% at 100% 0%, var(--error-bg), transparent 62%),
+    var(--surface);
+}
+
+.overview-hero-mark {
+  display: grid;
+  place-items: center;
+  inline-size: 46px;
+  block-size: 46px;
+  flex: 0 0 46px;
+  border: 1px solid var(--accent-line);
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.overview-hero-mark .ui-icon {
+  inline-size: 24px;
+  block-size: 24px;
+}
+
+.overview-hero.at_risk .overview-hero-mark,
+.overview-hero.unprotected .overview-hero-mark,
+.overview-hero.error .overview-hero-mark {
+  border-color: var(--error-line);
+  background: var(--error-bg);
+  color: var(--danger);
+}
+
+.overview-hero.no_data .overview-hero-mark,
+.overview-hero.unknown .overview-hero-mark,
+.overview-hero.checking .overview-hero-mark {
+  border-color: var(--border);
+  background: var(--group-bg);
+  color: var(--muted);
+}
+
+.overview-hero.no_data,
+.overview-hero.unknown,
+.overview-hero.checking {
+  background: var(--surface);
+}
+
+.overview-hero-copy {
+  display: grid;
+  flex: 1 1 260px;
+  gap: 2px;
+  min-width: 0;
+}
+
+.overview-hero-copy h2 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.overview-hero-message {
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.overview-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.overview-hero-meta > span:first-child { font-weight: 600; }
+
+.overview-hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-inline-start: auto;
+}
+
+.overview-hero .status-badge {
+  min-height: 26px;
+  padding: 3px 10px;
+  font-size: 12.5px;
+}
+
+.overview-hero .status-badge.protected {
+  background: var(--ok-bg);
+}
+
+.overview-hero .status-badge.at_risk,
+.overview-hero .status-badge.unprotected,
+.overview-hero .status-badge.error {
+  background: var(--error-bg);
+}
+
+.overview-hero .status-badge.no_data,
+.overview-hero .status-badge.unknown,
+.overview-hero .status-badge.checking {
+  background: var(--group-bg);
+}
+
+.overview-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.overview-columns > section { min-width: 0; }
+.overview-columns .overview-checks,
+.overview-columns .quick-actions { margin-bottom: 0; }
+
+.overview-check-mark {
+  display: grid;
+  place-items: center;
+  inline-size: 30px;
+  block-size: 30px;
+  flex: 0 0 30px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--group-bg);
+  color: var(--muted);
+}
+
+.overview-check-mark .ui-icon {
+  inline-size: 16px;
+  block-size: 16px;
+}
+
+@media (max-width: 720px) {
+  .overview-hero-actions { margin-inline-start: 0; }
+  .overview-columns { grid-template-columns: minmax(0, 1fr); }
+}
+
 .timeframe-control { margin-bottom: 12px; }
 
 .trend-chart {
