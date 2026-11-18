@@ -10,32 +10,36 @@
     </div>
     <div class="grid min-h-[330px] grid-cols-[116px_1fr]">
       <aside class="border-r border-white/10 p-3 text-xs text-white/55" aria-label="Illustrative navigation">
-        <div class="rounded-lg bg-white/[0.08] px-3 py-2.5 text-white">Scan</div>
+        <div class="rounded-lg bg-guard-sage/10 px-3 py-2.5 font-medium text-guard-sage">Overview</div>
+        <div class="px-3 py-2.5">Scan</div>
         <div class="px-3 py-2.5">Database</div>
-        <div class="px-3 py-2.5">History</div>
+        <div class="px-3 py-2.5">Logs</div>
         <div class="px-3 py-2.5">Quarantine</div>
-        <div class="px-3 py-2.5">Audit</div>
       </aside>
       <div class="p-5 sm:p-6">
-        <p class="text-[10px] font-mono uppercase tracking-[.18em] text-white/45">Local scan</p>
+        <p class="text-[10px] font-mono uppercase tracking-[.18em] text-white/45">Protection status</p>
         <div class="mt-2 flex flex-wrap items-center justify-between gap-3">
-          <h2 class="text-xl font-semibold text-white">Home folder</h2>
-          <span class="rounded-full bg-guard-sage/10 px-2.5 py-1 text-[11px] text-guard-sage">ClamAV · local</span>
+          <h2 class="text-xl font-semibold text-white">System protected</h2>
+          <span class="rounded-full bg-guard-sage/10 px-2.5 py-1 text-[11px] text-guard-sage">ClamAV · host</span>
         </div>
-        <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10"><div class="h-full w-3/4 rounded-full bg-gradient-to-r from-guard-sage to-guard-sky"></div></div>
-        <p class="mt-2 text-xs text-white/50">Illustrative scan progress and result layout</p>
-        <div class="mt-5 rounded-xl border border-guard-sage/20 bg-guard-forest/10 p-4">
+        <p class="mt-1 text-xs text-white/50">Illustrative totals from previous scans</p>
+        <div class="mt-5 grid grid-cols-3 gap-3 text-xs">
+          <div class="rounded-lg border border-white/10 p-3"><span class="text-white/45">Scans</span><p class="mt-1 text-base font-semibold text-white">42</p></div>
+          <div class="rounded-lg border border-white/10 p-3"><span class="text-white/45">Files</span><p class="mt-1 text-base font-semibold text-white">12,034</p></div>
+          <div class="rounded-lg border border-white/10 p-3"><span class="text-white/45">Threats</span><p class="mt-1 text-base font-semibold text-white">0</p></div>
+        </div>
+        <div class="mt-4 rounded-xl border border-guard-sage/20 bg-guard-forest/10 p-4">
           <div class="flex items-center gap-3">
             <span class="grid h-8 w-8 place-items-center rounded-full bg-guard-sage/15 text-guard-sage" aria-hidden="true">✓</span>
             <div>
-              <p class="text-sm font-semibold text-white">Local result</p>
-              <p class="mt-0.5 text-xs text-white/55">Online checks are separate and optional</p>
+              <p class="text-sm font-semibold text-white">Engine and definitions ready</p>
+              <p class="mt-0.5 text-xs text-white/55">Online checks stay separate and optional</p>
             </div>
           </div>
         </div>
         <div class="mt-4 grid grid-cols-2 gap-3 text-xs">
           <div class="rounded-lg border border-white/10 p-3"><span class="text-white/45">Local rules</span><p class="mt-1 text-white">YARA · optional</p></div>
-          <div class="rounded-lg border border-white/10 p-3"><span class="text-white/45">Reputation</span><p class="mt-1 text-white">Confirm before sending</p></div>
+          <div class="rounded-lg border border-white/10 p-3"><span class="text-white/45">Quarantine</span><p class="mt-1 text-white">No files held</p></div>
         </div>
       </div>
     </div>
