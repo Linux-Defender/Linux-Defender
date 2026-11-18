@@ -31,4 +31,4 @@ Quarantine an unfamiliar or high-severity file first. Linux Defender verifies it
 
 The sidebar contains Overview, Scan, Database, Logs, Components, Quarantine, Statistics, Audit, Network, and Preferences. `Ctrl+0` opens Overview, `Ctrl+1` Scan, `Ctrl+2` Database, `Ctrl+3` Logs, `Ctrl+4` Components, `Ctrl+5` Quarantine, `Ctrl+6` Statistics, `Ctrl+7` Audit, `Ctrl+8` Network, and `Ctrl+,` Preferences. Choose scan profiles in the Scan view.
 
-Next: [scan targets and results](/Linux-Defender/docs/guides/scanning/), [scan profiles](/Linux-Defender/docs/guides/profiles/), or [scheduled scans](/Linux-Defender/docs/guides/scheduling/).
+Next: [the overview](/Linux-Defender/docs/guides/overview/), [scan targets and results](/Linux-Defender/docs/guides/scanning/), [scan profiles](/Linux-Defender/docs/guides/profiles/), or [scheduled scans](/Linux-Defender/docs/guides/scheduling/).

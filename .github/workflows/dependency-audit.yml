@@ -53,5 +53,6 @@ jobs:
         working-directory: desktop
         # picomatch has no patched release for GHSA-fc5q-39xc-vjpf, and it reaches
         # only Vite's build-time glob handling, never the shipped webview bundle.
-        # Remove this ignore as soon as a fixed version is published.
+        # Remove this ignore as soon as a fixed version is published; issue #4
+        # tracks the removal.
         run: bun audit --ignore=GHSA-fc5q-39xc-vjpf

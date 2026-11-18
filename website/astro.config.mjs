@@ -43,6 +43,7 @@ export default defineConfig({
         {
           label: "Guides",
           items: [
+            "docs/guides/overview",
             "docs/guides/scanning",
             "docs/guides/profiles",
             "docs/guides/quarantine",

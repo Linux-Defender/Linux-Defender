@@ -3,18 +3,18 @@ title: Read statistics
 description: Use protection status, trends, and quick actions without over-reading them.
 ---
 
-Open **Overview** for protection status, all-time totals, quick actions, and the definition/engine checks. Open **Statistics** to see scan activity, detections, totals, duration, and a chart for Day, Week, Month, or All Time. Use **Refresh** after scans, updates, or quarantine actions; the views do not continuously refresh themselves.
+Open the [overview](/Linux-Defender/docs/guides/overview/) for protection status, all-time totals, quick actions, and the definition/engine checks. Open **Statistics** to see scan activity, detections, totals, duration, and a chart for Day, Week, Month, or All Time. Use **Refresh** after scans, updates, or quarantine actions; the views do not continuously refresh themselves.
 
 ## Protection status
 
-Protection status is based on scan recency, not real-time antivirus coverage:
+Protection status combines scan recency with the age of the virus definitions Linux Defender knows about:
 
-- **Protected:** a recent scan (within seven days).
-- **At risk:** the last scan is more than seven days ago but no more than 30 days ago.
+- **Protected:** the last scan is within seven days and the known definitions are at most one day old.
+- **At risk:** the last scan is more than seven days ago, or the known definitions are more than one day old. A definition age above seven days keeps the same badge with a more urgent message.
 - **Unprotected:** no recorded scan, or the last scan is more than 30 days ago.
-- **Unknown:** Linux Defender cannot determine status or ClamAV is unavailable.
+- **Unknown:** Linux Defender cannot determine status, or ClamAV is unavailable.
 
-Keeping definitions current matters, but a definition update alone does not change this scan-recency status. ClamAV is not a complete real-time endpoint-protection guarantee.
+When no definition timestamp is available, status falls back to scan recency alone. Neither case is a real-time endpoint-protection guarantee; ClamAV is not watching every file operation.
 
 ## Interpret trends
 
