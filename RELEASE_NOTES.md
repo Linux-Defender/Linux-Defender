@@ -19,6 +19,6 @@ This branch builds on the upstream v0.6.0 Rust/Tauri/React source baseline, then
 - Finish ClamTk feature and data migration, especially legacy preferences, history, scheduled scans, quarantine records, and restore behavior. Reviewed issue/PR lists are not all fixed; keep the linked ledgers current. The Perl reference tree was retired after its parity capture, so the remaining behavior notes live in `docs/revival/`.
 - Complete the app-ID, executable, desktop-file, and data-directory migration without overwriting existing user data. These compatibility identifiers are intentionally retained for now.
 - Complete CachyOS desktop validation, package builds, and the full test suite. Prior focused checks passed, but prior runs still reported privileged-helper test failures and CLI integration hangs in this environment.
-- Finish licensing and attribution review, replace the inherited package maintainer contact with an owner-controlled address, enable private vulnerability reporting, and verify release signing/update feeds.
+- Finish licensing and attribution review, replace the inherited package maintainer contact with an owner-controlled address, and verify release signing/update feeds.
 
 Do not treat this snapshot as a guarantee of complete ClamTk parity, support for every distribution, or comprehensive malware protection. No file or URL was submitted to VirusTotal or urlscan during development checks.
