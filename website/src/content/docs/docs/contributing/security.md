@@ -21,6 +21,8 @@ Linux Defender sanitizes untrusted log text, validates paths before file operati
 
 Flatpak helper operations select host tools from fixed system paths. Metadata checks follow system-provided tool symlinks; executable targets must be regular files, root-owned, owner-executable, and not group- or other-writable. The canonical privileged-helper path has separate, unchanged checks.
 
+Dependency auditing covers the locked Rust crates and the locked desktop packages. One dev-only advisory is knowingly excluded: `picomatch` (GHSA-fc5q-39xc-vjpf) has no patched release, and it is reached only through Vite's build-time glob handling rather than the shipped webview bundle. The audit step names the advisory, so the exclusion is visible; remove it once a fixed release exists.
+
 ## Disclosure and safe use
 
 The project investigates, develops, tests, releases, and coordinates disclosure of validated reports. Do not disclose details before a fix and coordinated announcement. Keep Linux Defender and ClamAV definitions current, inspect unexpected detections before restoring them, and verify release artifacts before installation.

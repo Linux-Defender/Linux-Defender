@@ -51,4 +51,7 @@ jobs:
 
       - name: Audit frontend dependencies
         working-directory: desktop
-        run: bun audit
+        # picomatch has no patched release for GHSA-fc5q-39xc-vjpf, and it reaches
+        # only Vite's build-time glob handling, never the shipped webview bundle.
+        # Remove this ignore as soon as a fixed version is published.
+        run: bun audit --ignore=GHSA-fc5q-39xc-vjpf
