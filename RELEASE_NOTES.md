@@ -10,11 +10,13 @@ This branch builds on the upstream v0.6.0 Rust/Tauri/React source baseline, then
 - Explicit VirusTotal file, folder, and URL analysis with progress and confirmation, plus urlscan URL checks with visibility selection. These services receive data only after the user confirms; their findings are reputation results, separate from a local ClamAV verdict.
 - A supported-database inventory and FreshClam status integration. The host package and service own the shared ClamAV definitions; Linux Defender does not yet install or maintain every third-party signature feed.
 - The Linux Defender website and documentation source, rebranded for the Linux-Defender repository, with validated upstream website dependency updates.
+- The Guardian visual identity across the app, brand marks, and website: ink and paper surfaces with a single safety-green accent, documented in `docs/DESIGN.md`.
+- An Overview dashboard that opens on launch and stays reachable with `Ctrl+0`: protection posture, all-time totals, engine and definition checks, the quarantine count, and quick actions into the existing views.
 - The upstream updater inactivity fix, including a configurable timeout, UI, regression coverage, and updated docs/catalogs.
 
 ## Before a public release
 
-- Finish ClamTk feature and data migration, especially legacy preferences, history, scheduled scans, quarantine records, and restore behavior. Reviewed issue/PR lists are not all fixed; keep the linked ledgers current. The ClamTk reference implementation remains in the repository.
+- Finish ClamTk feature and data migration, especially legacy preferences, history, scheduled scans, quarantine records, and restore behavior. Reviewed issue/PR lists are not all fixed; keep the linked ledgers current. The Perl reference tree was retired after its parity capture, so the remaining behavior notes live in `docs/revival/`.
 - Complete the app-ID, executable, desktop-file, and data-directory migration without overwriting existing user data. These compatibility identifiers are intentionally retained for now.
 - Complete CachyOS desktop validation, package builds, and the full test suite. Prior focused checks passed, but prior runs still reported privileged-helper test failures and CLI integration hangs in this environment.
 - Finish licensing and attribution review, replace the inherited package maintainer contact with an owner-controlled address, enable private vulnerability reporting, verify release signing/update feeds, and provide real Linux Defender screenshots.
