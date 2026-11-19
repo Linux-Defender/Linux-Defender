@@ -7,7 +7,7 @@
 # The selected files are passed via NAUTILUS_SCRIPT_SELECTED_FILE_PATHS environment variable.
 
 # Enable logging for debugging
-LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/clamui/scan-nautilus.log"
+LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/linux-defender/scan-nautilus.log"
 mkdir -p "$(dirname "$LOG_FILE")"
 
 log() {

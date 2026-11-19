@@ -6,7 +6,7 @@ import { Icon } from "./Icon";
 import { _ } from "./i18n";
 import { Modal } from "./Modal";
 
-const HELPER_PATH = "/usr/bin/clamui-apply-preferences";
+const HELPER_PATH = "/usr/bin/linux-defender-apply-preferences";
 const REPAIR_GUIDE_URL = "https://linux-defender.github.io/Linux-Defender/docs/troubleshooting/#a-privileged-settings-change-is-blocked";
 
 type HelperTrustErrorDialogProps = {

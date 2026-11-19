@@ -643,9 +643,9 @@ mod tests {
 
     fn test_context() -> Context {
         Context::with_paths(crate::common::Paths {
-            home: "/tmp/clamui-network-test-home".into(),
-            config_dir: "/tmp/clamui-network-test-config".into(),
-            data_dir: "/tmp/clamui-network-test-data".into(),
+            home: "/tmp/linux-defender-network-test-home".into(),
+            config_dir: "/tmp/linux-defender-network-test-config".into(),
+            data_dir: "/tmp/linux-defender-network-test-data".into(),
         })
         .expect("test context")
     }

@@ -9,15 +9,15 @@ use std::{
 };
 
 fn cli() -> Command {
-    Command::new(env!("CARGO_BIN_EXE_clamui-cli"))
+    Command::new(env!("CARGO_BIN_EXE_linux-defender-cli"))
 }
 
 fn scheduled() -> Command {
-    Command::new(env!("CARGO_BIN_EXE_clamui-scheduled-scan"))
+    Command::new(env!("CARGO_BIN_EXE_linux-defender-scheduled-scan"))
 }
 
 fn preferences_helper() -> Command {
-    Command::new(env!("CARGO_BIN_EXE_clamui-apply-preferences"))
+    Command::new(env!("CARGO_BIN_EXE_linux-defender-apply-preferences"))
 }
 
 fn stdout(output: &Output) -> String {
@@ -30,7 +30,7 @@ fn stderr(output: &Output) -> String {
 
 fn isolated_xdg(command: &mut Command) -> PathBuf {
     let root = std::env::temp_dir().join(format!(
-        "clamui-cli-test-{}-{}",
+        "linux-defender-cli-test-{}-{}",
         std::process::id(),
         SystemTime::now()
             .duration_since(UNIX_EPOCH)
@@ -59,7 +59,7 @@ fn root_help_is_headless_and_lists_all_documented_commands() {
     let output = command
         .arg("--help")
         .output()
-        .expect("run clamui-cli --help");
+        .expect("run linux-defender-cli --help");
     assert!(output.status.success(), "{}", stderr(&output));
     let output = stdout(&output);
     for command in [
@@ -86,7 +86,7 @@ fn version_is_a_headless_success() {
     let output = command
         .arg("--version")
         .output()
-        .expect("run clamui-cli --version");
+        .expect("run linux-defender-cli --version");
     assert!(output.status.success(), "{}", stderr(&output));
     assert!(stdout(&output).contains(env!("CARGO_PKG_VERSION")));
     let _ = std::fs::remove_dir_all(root);
@@ -99,7 +99,7 @@ fn unknown_headless_command_is_a_parse_error() {
     let output = command
         .arg("not-a-command")
         .output()
-        .expect("run unknown clamui-cli command");
+        .expect("run unknown linux-defender-cli command");
     assert_eq!(output.status.code(), Some(2));
     assert!(stderr(&output).contains("Unknown command"));
     let _ = std::fs::remove_dir_all(root);
@@ -110,21 +110,21 @@ fn each_cli_topic_has_a_subprocess_help_path() {
     for (args, required) in [
         (
             &["scan", "--help"][..],
-            &["Usage: clamui scan", "--no-recursive"][..],
+            &["Usage: linux-defender scan", "--no-recursive"][..],
         ),
         (&["quarantine", "--help"][..], &["list|restore|delete"][..]),
         (&["profile", "--help"][..], &["list|show|export|import"][..]),
         (
             &["status", "--help"][..],
-            &["Usage: clamui status", "--json"][..],
+            &["Usage: linux-defender status", "--json"][..],
         ),
         (
             &["history", "--help"][..],
-            &["Usage: clamui history", "--limit"][..],
+            &["Usage: linux-defender history", "--limit"][..],
         ),
         (
             &["install-privileged-helper", "--help"][..],
-            &["Usage: clamui install-privileged-helper"][..],
+            &["Usage: linux-defender install-privileged-helper"][..],
         ),
     ] {
         let mut command = cli();
@@ -509,7 +509,7 @@ fn privileged_helper_wrapper_keeps_protocol_mismatch_exit_code() {
     let output = preferences_helper()
         .env("PKEXEC_UID", "1000")
         .output()
-        .expect("run clamui-apply-preferences without protocol");
+        .expect("run linux-defender-apply-preferences without protocol");
     assert_eq!(output.status.code(), Some(4));
 }
 
@@ -518,19 +518,19 @@ fn nested_command_help_exposes_its_action_operands() {
     for (args, required) in [
         (
             &["quarantine", "list", "--help"][..],
-            "Usage: clamui quarantine list [--json]",
+            "Usage: linux-defender quarantine list [--json]",
         ),
         (
             &["quarantine", "restore", "--help"][..],
-            "Usage: clamui quarantine restore ID",
+            "Usage: linux-defender quarantine restore ID",
         ),
         (
             &["profile", "show", "--help"][..],
-            "Usage: clamui profile show NAME [--json]",
+            "Usage: linux-defender profile show NAME [--json]",
         ),
         (
             &["profile", "export", "--help"][..],
-            "Usage: clamui profile export NAME FILE",
+            "Usage: linux-defender profile export NAME FILE",
         ),
     ] {
         let mut command = cli();

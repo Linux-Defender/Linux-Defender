@@ -94,9 +94,15 @@ remove_file() {
 
 remove_binaries() {
     log_info "Removing native Linux Defender executables from ${BIN_DIR}"
+    remove_file "${BIN_DIR}/linux-defender"
+    remove_file "${BIN_DIR}/linux-defender-cli"
+    remove_file "${BIN_DIR}/linux-defender-scheduled-scan"
+    remove_file "${BIN_DIR}/linux-defender-apply-preferences"
+    # Pre-rename executables left by an earlier install.
     remove_file "${BIN_DIR}/clamui"
     remove_file "${BIN_DIR}/clamui-cli"
     remove_file "${BIN_DIR}/clamui-scheduled-scan"
+    remove_file "${BIN_DIR}/clamui-apply-preferences"
 }
 
 remove_desktop_integration() {

@@ -24,7 +24,7 @@ Host runtime and optional integrations
   configured daemon. Scheduling uses a systemd user timer where available,
   otherwise cron. The network-socket audit uses host ss (iproute2).
 - Applying protected host ClamAV settings requires the trusted host
-  clamui-apply-preferences helper, its polkit policy and pkexec/Polkit
+  linux-defender-apply-preferences helper, its polkit policy and pkexec/Polkit
   authorization. The helper protocol is v4. Debian application and helper
   packages must match in version and architecture; the Fedora RPM is a helper
   package, not an application package.
@@ -86,7 +86,7 @@ linux-defender-core runtime/direct (tempfile is also a dev dependency):
   url 2.5.8                      uuid 1.29.1
   walkdir 2.5.0                  zip 9.4.1
 
-clamui desktop runtime/direct (in addition to local linux-defender-core 0.6.0):
+linux-defender desktop runtime/direct (in addition to local linux-defender-core 0.6.0):
   base64 0.23.1                  ksni 0.3.7
   open 5.4.5                     rfd 0.17.2
   serde 1.0.229                  serde_json 1.0.154
@@ -118,7 +118,7 @@ Sources
 Cargo.toml; crates/linux-defender-core/Cargo.toml; desktop/src-tauri/Cargo.toml;
 Cargo.lock; desktop/package.json; desktop/bun.lock; desktop/yarn.lock;
 debian/DEBIAN/control and control.helper; debian/build-deb.sh;
-rpm/clamui-privileged-helper.spec; appimage/build-appimage.sh;
+rpm/linux-defender-privileged-helper.spec; appimage/build-appimage.sh;
 flathub/io.github.linuxdefender.linuxdefender.yml; .github/workflows/build-deb.yml,
 build-rpm.yml, build-appimage.yml and build-flatpak.yml; and the installation,
 scheduling, settings and security-audit guides under website/src/content/docs.

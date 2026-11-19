@@ -31,7 +31,7 @@ fn temporary_share(name: &str) -> PathBuf {
         .expect("clock before unix epoch")
         .as_nanos();
     let root = std::env::temp_dir().join(format!(
-        "clamui-platform-{name}-{}-{nonce}",
+        "linux-defender-platform-{name}-{}-{nonce}",
         std::process::id()
     ));
     fs::create_dir_all(&root).expect("create temporary integration root");

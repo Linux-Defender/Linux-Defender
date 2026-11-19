@@ -24,13 +24,13 @@ Scheduled scans are recursive. On laptops, battery skipping avoids unexpected po
 ## Check or test a schedule
 
 ```bash
-clamui-scheduled-scan --dry-run
+linux-defender-scheduled-scan --dry-run
 systemctl --user list-timers
 crontab -l
 ```
 
 A missing systemd user instance and missing cron leave no available scheduler. Use Logs to confirm scan results and update notifications. The scheduler is per-user and does not need administrator access.
 
-On Debian package installations, Linux Defender invokes `/usr/bin/clamui-scheduled-scan`; re-save a schedule after upgrading rather than manually repairing generated timer or cron commands.
+On Debian package installations, Linux Defender invokes `/usr/bin/linux-defender-scheduled-scan`; re-save a schedule after upgrading rather than manually repairing generated timer or cron commands.
 
 For exact JSON keys and examples, see [Configuration](/Linux-Defender/docs/reference/configuration/).

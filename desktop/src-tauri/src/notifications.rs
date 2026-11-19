@@ -55,7 +55,7 @@ impl Notifications {
         };
         let native_id = self.next_native_id.fetch_add(1, Ordering::Relaxed);
         let identity = notification_identity(event, data);
-        let _ = app.emit("clamui-event", json!({
+        let _ = app.emit("linux-defender-event", json!({
             "event": "native-notification",
             "data": {"id": id, "serial": serial, "title": title.clone(), "body": body.clone(), "action": action, "identity": identity.clone()}
         }));
@@ -66,8 +66,8 @@ impl Notifications {
             .title(title)
             .body(body)
             .action_type_id(action)
-            .extra("clamui-action", action)
-            .extra("clamui-identity", identity)
+            .extra("linux-defender-action", action)
+            .extra("linux-defender-identity", identity)
             .show();
     }
 }

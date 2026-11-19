@@ -38,8 +38,8 @@ For Flatpak they are under:
 ## CLI
 
 ```bash
-clamui quarantine --help
-clamui quarantine list --json
+linux-defender quarantine --help
+linux-defender quarantine list --json
 ```
 
 The numeric item ID from `list` identifies restores and deletions. See the [FAQ](/Linux-Defender/docs/guides/faq/) for a false-positive workflow.

@@ -316,8 +316,8 @@ mod tests {
     fn paths(temp: &TempDir) -> Paths {
         Paths {
             home: temp.path().join("home"),
-            config_dir: temp.path().join("config/clamui"),
-            data_dir: temp.path().join("data/clamui"),
+            config_dir: temp.path().join("config/linux-defender"),
+            data_dir: temp.path().join("data/linux-defender"),
         }
     }
 

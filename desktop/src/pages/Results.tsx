@@ -239,8 +239,8 @@ function FullscreenOutput({ title, chunks, onCopyOrExport, onClose }: { title: s
 }
 
 export default function Results() {
-  const [scan, setScan] = useState<ScanResult | null>(() => storedResult("clamui-last-scan-result", isScanResult));
-  const [virusTotal, setVirusTotal] = useState<VTResult | null>(() => storedResult("clamui-last-vt-result", isVTResult));
+  const [scan, setScan] = useState<ScanResult | null>(() => storedResult("linux-defender-last-scan-result", isScanResult));
+  const [virusTotal, setVirusTotal] = useState<VTResult | null>(() => storedResult("linux-defender-last-vt-result", isVTResult));
 
   useEffect(() => {
     const onScan = (event: Event) => {
@@ -258,13 +258,13 @@ export default function Results() {
       if (args && isScanResult(args.result)) setScan(args.result);
       if (args && isVTResult(args.virusTotal)) setVirusTotal(args.virusTotal);
     };
-    window.addEventListener("clamui-scan-result", onScan);
-    window.addEventListener("clamui-vt-result", onVT);
-    window.addEventListener("clamui-navigate", onNavigate);
+    window.addEventListener("linux-defender-scan-result", onScan);
+    window.addEventListener("linux-defender-vt-result", onVT);
+    window.addEventListener("linux-defender-navigate", onNavigate);
     return () => {
-      window.removeEventListener("clamui-scan-result", onScan);
-      window.removeEventListener("clamui-vt-result", onVT);
-      window.removeEventListener("clamui-navigate", onNavigate);
+      window.removeEventListener("linux-defender-scan-result", onScan);
+      window.removeEventListener("linux-defender-vt-result", onVT);
+      window.removeEventListener("linux-defender-navigate", onNavigate);
     };
   }, []);
   useEffect(() => {

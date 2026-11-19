@@ -1,5 +1,5 @@
 use linux_defender_core::scheduler::{
-    cron_command, cron_expression, is_clamui_cron_command, normalize_schedule, on_calendar,
+    cron_command, cron_expression, is_scheduled_scan_command, normalize_schedule, on_calendar,
     remove_our_cron_lines, service_file, timer_file, validate_target_paths, ScheduleConfig,
     ScheduleFrequency, CRON_MARKER,
 };
@@ -62,10 +62,10 @@ fn service_escapes_systemd_specifiers_and_only_argument_dollars() {
     let mut schedule = schedule();
     schedule.targets = vec!["/scan/$HOME/%h/quote'file".to_owned()];
     let unit = service_file(
-        &["/opt/$launcher/clamui-scheduled-scan".to_owned()],
+        &["/opt/$launcher/linux-defender-scheduled-scan".to_owned()],
         &schedule,
     );
-    assert!(unit.contains("/opt/$launcher/clamui-scheduled-scan"));
+    assert!(unit.contains("/opt/$launcher/linux-defender-scheduled-scan"));
     assert!(unit.contains("/scan/$$HOME/%%h/"));
     assert!(unit.contains("--skip-on-battery --auto-quarantine"));
     assert!(unit.contains("Nice=19\nIOSchedulingClass=idle"));
@@ -100,7 +100,7 @@ fn cron_preserves_an_adversarial_target_as_one_shell_argument() {
     let sentinel = directory.path().join("must-not-exist");
     fs::write(
         &recorder,
-        "#!/bin/sh\nprintf '%s\\n' \"$@\" > \"$CLAMUI_ARGV_FILE\"\n",
+        "#!/bin/sh\nprintf '%s\\n' \"$@\" > \"$LINUX_DEFENDER_ARGV_FILE\"\n",
     )
     .unwrap();
 
@@ -114,7 +114,7 @@ fn cron_preserves_an_adversarial_target_as_one_shell_argument() {
     let status = Command::new("sh")
         .arg("-c")
         .arg(cron_command_for_shell(&command))
-        .env("CLAMUI_ARGV_FILE", &recorded)
+        .env("LINUX_DEFENDER_ARGV_FILE", &recorded)
         .status()
         .unwrap();
 
@@ -145,24 +145,24 @@ fn validation_rejects_only_cron_and_path_injection_controls() {
 }
 
 #[test]
-fn cron_cleanup_removes_only_a_marker_with_a_recognized_clamui_command() {
+fn cron_cleanup_removes_only_a_marker_with_a_recognized_scan_command() {
     let cron = format!(
-        "0 1 * * * /usr/bin/backup\n{CRON_MARKER}\n0 2 * * * /usr/bin/clamui-scheduled-scan --target /home\n{CRON_MARKER}\n0 3 * * * /usr/bin/user-task\n# {CRON_MARKER}\n"
+        "0 1 * * * /usr/bin/backup\n{CRON_MARKER}\n0 2 * * * /usr/bin/linux-defender-scheduled-scan --target /home\n{CRON_MARKER}\n0 3 * * * /usr/bin/user-task\n# {CRON_MARKER}\n"
     );
-    assert!(is_clamui_cron_command(
-        "0 2 * * * /usr/bin/clamui-scheduled-scan --target /home"
+    assert!(is_scheduled_scan_command(
+        "0 2 * * * /usr/bin/linux-defender-scheduled-scan --target /home"
     ));
-    assert!(is_clamui_cron_command(
-        "0 2 * * * flatpak run --command=clamui-scheduled-scan io.github.linuxdefender.linuxdefender"
+    assert!(is_scheduled_scan_command(
+        "0 2 * * * flatpak run --command=linux-defender-scheduled-scan io.github.linuxdefender.linuxdefender"
     ));
-    assert!(is_clamui_cron_command(
+    assert!(is_scheduled_scan_command(
         "0 2 * * * python3 -m src.cli.scheduled_scan"
     ));
-    assert!(is_clamui_cron_command(
+    assert!(is_scheduled_scan_command(
         "0 2 * * * /home/alice/ClamUI.AppImage --scheduled-scan --target /home"
     ));
-    assert!(!is_clamui_cron_command(
-        "0 2 * * * /usr/bin/user-task clamui-scheduled-scan"
+    assert!(!is_scheduled_scan_command(
+        "0 2 * * * /usr/bin/user-task linux-defender-scheduled-scan"
     ));
     assert_eq!(
         remove_our_cron_lines(&cron),
@@ -171,6 +171,24 @@ fn cron_cleanup_removes_only_a_marker_with_a_recognized_clamui_command() {
             "0 3 * * * /usr/bin/user-task".to_owned(),
             format!("# {CRON_MARKER}"),
         ]
+    );
+}
+
+#[test]
+fn cron_cleanup_still_removes_a_pre_rename_entry() {
+    // An upgrade must replace the old entry, not schedule a second scan.
+    for line in [
+        "0 2 * * * /usr/bin/clamui-scheduled-scan --target /home",
+        "0 2 * * * flatpak run --command=clamui-scheduled-scan io.github.linuxdefender.linuxdefender",
+        "0 2 * * * /home/alice/ClamUI.AppImage --scheduled-scan --target /home",
+    ] {
+        assert!(is_scheduled_scan_command(line), "{line}");
+    }
+    assert_eq!(
+        remove_our_cron_lines(&format!(
+            "{CRON_MARKER}\n0 2 * * * /usr/bin/clamui-scheduled-scan\n"
+        )),
+        Vec::<String>::new()
     );
 }
 

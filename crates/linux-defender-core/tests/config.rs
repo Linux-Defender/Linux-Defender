@@ -12,11 +12,11 @@ struct TestContext {
 
 impl TestContext {
     fn new() -> Self {
-        let root = std::env::temp_dir().join(format!("clamui-config-{}", Uuid::new_v4()));
+        let root = std::env::temp_dir().join(format!("linux-defender-config-{}", Uuid::new_v4()));
         let paths = Paths {
             home: root.join("home"),
-            config_dir: root.join("config/clamui"),
-            data_dir: root.join("data/clamui"),
+            config_dir: root.join("config/linux-defender"),
+            data_dir: root.join("data/linux-defender"),
         };
         Self {
             context: Context::with_paths(paths).expect("context"),

@@ -21,7 +21,7 @@ const INDEX_FILE: &str = "log_index.json";
 const LOG_PRIVACY_MARKER: &str = ".log-privacy-version";
 const DEBUG_PRIVACY_MARKER: &str = ".debug-log-privacy-version";
 const PRIVACY_VERSION: &str = "1";
-const DEBUG_FILE: &str = "clamui.log";
+const DEBUG_FILE: &str = "linux-defender.log";
 const MAX_HISTORY: usize = 10_000;
 const DEBUG_MAX_BYTES: u64 = 5 * 1024 * 1024;
 const DEBUG_BACKUPS: u64 = 3;
@@ -605,7 +605,7 @@ fn debug_export(ctx: &Context) -> AppResult<Value> {
         .map_err(|error| error.to_string())?
         .into_inner();
     Ok(
-        json!({"content_base64": BASE64.encode(bytes), "filename": format!("clamui-logs-{}.zip", Local::now().format("%Y-%m-%d-%H%M%S"))}),
+        json!({"content_base64": BASE64.encode(bytes), "filename": format!("linux-defender-logs-{}.zip", Local::now().format("%Y-%m-%d-%H%M%S"))}),
     )
 }
 
@@ -1470,6 +1470,7 @@ fn build_scan_fields(ctx: &Context, raw: &Map<String, Value>, status: &str) -> (
 }
 
 fn debug_files(dir: &Path) -> AppResult<Vec<PathBuf>> {
+    migrate_legacy_debug_files(dir);
     if !dir.exists() {
         return Ok(Vec::new());
     }
@@ -1485,6 +1486,34 @@ fn debug_files(dir: &Path) -> AppResult<Vec<PathBuf>> {
         .collect::<Vec<_>>();
     files.sort();
     Ok(files)
+}
+
+/// Rename debug logs written before the identity migration. The privacy marker
+/// and rotation logic only understand the canonical names, so an upgraded
+/// install must adopt its existing `clamui.log*` files rather than hide them.
+fn migrate_legacy_debug_files(dir: &Path) {
+    let Ok(entries) = fs::read_dir(dir) else {
+        return;
+    };
+    for entry in entries.filter_map(Result::ok) {
+        let path = entry.path();
+        let Some(name) = path.file_name().and_then(|name| name.to_str()) else {
+            continue;
+        };
+        let Some(suffix) = name.strip_prefix("clamui.log") else {
+            continue;
+        };
+        let rotation_number = suffix
+            .strip_prefix('.')
+            .is_some_and(|number| !number.is_empty() && number.bytes().all(|b| b.is_ascii_digit()));
+        if !suffix.is_empty() && !rotation_number {
+            continue;
+        }
+        let target = dir.join(format!("{DEBUG_FILE}{suffix}"));
+        if !target.exists() {
+            let _ = fs::rename(&path, &target);
+        }
+    }
 }
 
 fn migrate_debug(dir: &Path) -> AppResult<()> {

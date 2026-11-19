@@ -28,7 +28,11 @@ pub(crate) fn install_cli_helper(ctx: &Context, prefix: &Path) -> AppResult<Stri
 
 pub const PROTOCOL_VERSION: u8 = 4;
 pub const MAX_CONFIG_READ_BYTES: usize = 1024 * 1024;
-pub const HELPER_PATH: &str = "/usr/bin/clamui-apply-preferences";
+pub const HELPER_PATH: &str = "/usr/bin/linux-defender-apply-preferences";
+/// Pre-rename helper. An upgrade can leave this installed, and it speaks the
+/// same protocol-v4 contract, so it stays usable under the identical trust
+/// checks until the new helper package replaces it.
+pub const LEGACY_HELPER_PATH: &str = "/usr/bin/clamui-apply-preferences";
 pub const POLICY_PATH: &str =
     "/usr/share/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy";
 pub const POLICY_ACTION: &str = "io.github.linux_defender.linuxdefender.apply-preferences";
@@ -71,7 +75,7 @@ mode=$(/usr/bin/stat -c %a -- "$src")
 case "$mode" in ???) writable=${mode#?};; ????) writable=${mode#??};; *) exit 3;; esac
 case "$writable" in *[2367]*) exit 3;; esac
 [ "$(/usr/bin/stat -c %s -- "$src")" = "$size" ] || exit 3
-stage=$(/usr/bin/mktemp -d /var/tmp/clamui-helper.XXXXXX) || exit 4
+stage=$(/usr/bin/mktemp -d /var/tmp/linux-defender-helper.XXXXXX) || exit 4
 trap '/usr/bin/rm -rf -- "$stage"' EXIT HUP INT TERM
 /usr/bin/chmod 700 -- "$stage"
 target=$stage/helper.deb
@@ -114,7 +118,7 @@ for source in "$src" "$signature"; do
 done
 [ "$(/usr/bin/stat -c %s -- "$src")" = "$size" ] || exit 3
 [ "$(/usr/bin/stat -c %s -- "$signature")" = "$signature_size" ] || exit 3
-stage=$(/usr/bin/mktemp -d /var/tmp/clamui-helper.XXXXXX) || exit 4
+stage=$(/usr/bin/mktemp -d /var/tmp/linux-defender-helper.XXXXXX) || exit 4
 trap '/usr/bin/rm -rf -- "$stage"' EXIT HUP INT TERM
 /usr/bin/chmod 700 -- "$stage"
 target=$stage/helper.rpm
@@ -134,12 +138,12 @@ $version
 $arch" ] || exit 5
 gnupg=$stage/gnupg
 /usr/bin/mkdir -m 700 -- "$gnupg"
-key=$stage/clamui-signing-key.asc
-/usr/bin/cat > "$key" <<'CLAMUI_PINNED_KEY'
+key=$stage/linux-defender-signing-key.asc
+/usr/bin/cat > "$key" <<'LINUX_DEFENDER_PINNED_KEY'
 "#,
     include_str!("../../../signing-key.asc"),
     r#"
-CLAMUI_PINNED_KEY
+LINUX_DEFENDER_PINNED_KEY
 gpg=
 for candidate in /usr/bin/gpg2 /usr/bin/gpg; do
   if [ -f "$candidate" ] && [ ! -L "$candidate" ] && [ -x "$candidate" ] && [ "$(/usr/bin/stat -c %u -- "$candidate")" = 0 ]; then
@@ -156,9 +160,9 @@ while IFS=: read -r kind _ _ _ _ _ _ _ _ fingerprint _; do
     pub) key_count=$((key_count + 1));;
     fpr) [ -n "$primary_fingerprint" ] || primary_fingerprint=$fingerprint;;
   esac
-done <<CLAMUI_KEY_LISTING
+done <<LINUX_DEFENDER_KEY_LISTING
 $key_listing
-CLAMUI_KEY_LISTING
+LINUX_DEFENDER_KEY_LISTING
 [ "$key_count" -eq 1 ] && [ "$primary_fingerprint" = 28CA212A766A6D51273EBBD277B8EC8622C91282 ] || exit 6
 "$gpg" --batch --no-options --homedir "$gnupg" --import "$key" || exit 6
 status=$("$gpg" --batch --no-options --homedir "$gnupg" --status-fd=1 --verify "$target_signature" "$target" 2>/dev/null) || exit 6
@@ -385,12 +389,18 @@ fn passwd_home(uid: u32) -> AppResult<PathBuf> {
 
 /// The only staging root accepted by both caller and helper. It never reads
 /// HOME, XDG_CACHE_HOME, or a Flatpak-specific environment variable.
+///
+/// This path is part of the protocol-v4 wire contract: a trusted helper
+/// installed before the identity rename validates staged sources against the
+/// `clamui` location, and an older caller does the same against the new
+/// helper. Keep the shared staging path stable so upgrades in either direction
+/// can still apply protected configuration.
 pub fn staging_root_for_uid(uid: u32) -> AppResult<PathBuf> {
     Ok(passwd_home(uid)?.join(".cache/clamui/privileged-staging"))
 }
 
 fn helper_download_root_for_uid(uid: u32) -> AppResult<PathBuf> {
-    Ok(passwd_home(uid)?.join(".cache/clamui/privileged-helper"))
+    Ok(passwd_home(uid)?.join(".cache/linux-defender/privileged-helper"))
 }
 
 fn canonical_parent(path: &Path) -> AppResult<PathBuf> {
@@ -510,52 +520,66 @@ fn has_elf_magic(path: &Path) -> bool {
 /// On Flatpak, probe the exact host path that will be passed to pkexec.
 ///
 /// PATH is deliberately not consulted: a pyenv, conda, or venv executable
-/// earlier in the host PATH must not change whether the canonical helper is
-/// available.
-fn canonical_host_helper_exists() -> bool {
-    host_command(
-        "/usr/bin/test",
-        &["-f", HELPER_PATH, "-a", "-x", HELPER_PATH],
-    )
-    .is_ok_and(|output| output.status.success())
+/// earlier in the host PATH must not change whether a helper is available.
+fn canonical_host_helper_exists(path: &str) -> bool {
+    host_command("/usr/bin/test", &["-f", path, "-a", "-x", path])
+        .is_ok_and(|output| output.status.success())
 }
 
-/// Return the only executable that may be handed to pkexec. New native helpers
-/// are trusted directly; legacy v4 Python wrappers remain accepted only when
-/// every imported module is immutable and root-owned.
-pub fn trusted_helper_path() -> AppResult<PathBuf> {
-    let canonical = PathBuf::from(HELPER_PATH);
+/// Canonical helper first, then the pre-rename path left by an upgrade.
+fn helper_candidates() -> [&'static str; 2] {
+    [HELPER_PATH, LEGACY_HELPER_PATH]
+}
+
+/// Accept one candidate only when it is the exact executable pkexec may run.
+/// New native helpers are trusted directly; legacy v4 Python wrappers remain
+/// accepted only when every imported module is immutable and root-owned.
+fn trust_helper_candidate(path: &str) -> AppResult<()> {
     if flatpak() {
-        if canonical_host_helper_exists() {
-            return Ok(canonical);
-        }
-        return Err("the canonical host privileged helper is unavailable".to_owned());
+        return if canonical_host_helper_exists(path) {
+            Ok(())
+        } else {
+            Err(format!("the host privileged helper {path} is unavailable"))
+        };
     }
-    match root_owned_regular_trust(&canonical, true) {
+    match root_owned_regular_trust(Path::new(path), true) {
         Ok(()) => {}
         Err(RootOwnedRegularError::Missing) => {
-            return Err("the canonical privileged helper is missing".to_owned());
+            return Err(format!("the privileged helper {path} is missing"));
         }
         Err(RootOwnedRegularError::Untrusted) => {
-            return Err(
-                "the canonical privileged helper is not a root-owned immutable executable"
-                    .to_owned(),
-            );
+            return Err(format!(
+                "the privileged helper {path} is not a root-owned immutable executable"
+            ));
         }
     }
-    if has_elf_magic(&canonical) {
-        return Ok(canonical);
+    if has_elf_magic(Path::new(path)) {
+        return Ok(());
     }
     if !root_owned_directory(Path::new(LEGACY_HELPER_LIB_DIR))
         || !LEGACY_HELPER_MODULES
             .iter()
-            .all(|path| root_owned_regular(Path::new(path), false))
+            .all(|module| root_owned_regular(Path::new(module), false))
     {
         return Err(
             "legacy privileged helper libraries are not root-owned and immutable".to_owned(),
         );
     }
-    Ok(canonical)
+    Ok(())
+}
+
+/// Return the only executable that may be handed to pkexec.
+pub fn trusted_helper_path() -> AppResult<PathBuf> {
+    let mut first_error = None;
+    for path in helper_candidates() {
+        match trust_helper_candidate(path) {
+            Ok(()) => return Ok(PathBuf::from(path)),
+            Err(error) => {
+                first_error.get_or_insert(error);
+            }
+        }
+    }
+    Err(first_error.unwrap_or_else(|| "the privileged helper is unavailable".to_owned()))
 }
 
 #[cfg(test)]
@@ -681,7 +705,7 @@ mod helper_trust_tests {
     #[test]
     fn root_owned_regular_trust_distinguishes_missing_path() {
         let root = TempDir::new().expect("create helper trust root");
-        let helper = root.path().join("clamui-apply-preferences");
+        let helper = root.path().join("linux-defender-apply-preferences");
 
         assert_eq!(
             root_owned_regular_trust(&helper, true),
@@ -693,7 +717,7 @@ mod helper_trust_tests {
     #[test]
     fn root_owned_regular_trust_rejects_dangling_symlink() {
         let root = TempDir::new().expect("create helper trust root");
-        let helper = root.path().join("clamui-apply-preferences");
+        let helper = root.path().join("linux-defender-apply-preferences");
         std::os::unix::fs::symlink(root.path().join("missing-target"), &helper)
             .expect("create dangling helper link");
 
@@ -707,7 +731,7 @@ mod helper_trust_tests {
     #[test]
     fn root_owned_regular_trust_rejects_group_writable_file() {
         let root = TempDir::new().expect("create helper trust root");
-        let helper = root.path().join("clamui-apply-preferences");
+        let helper = root.path().join("linux-defender-apply-preferences");
         std::fs::write(&helper, b"helper").expect("create helper fixture");
         std::fs::set_permissions(
             &helper,
@@ -725,7 +749,7 @@ mod helper_trust_tests {
     #[test]
     fn root_owned_regular_trust_rejects_non_executable_file() {
         let root = TempDir::new().expect("create helper trust root");
-        let helper = root.path().join("clamui-apply-preferences");
+        let helper = root.path().join("linux-defender-apply-preferences");
         std::fs::write(&helper, b"helper").expect("create helper fixture");
         std::fs::set_permissions(
             &helper,
@@ -1482,7 +1506,7 @@ fn atomic_replace(mut source: File, destination: &Path) -> AppResult<()> {
         destination
             .file_name()
             .and_then(|name| name.to_str())
-            .unwrap_or("clamui"),
+            .unwrap_or("linux-defender"),
     )?;
     let outcome = (|| -> AppResult<()> {
         let mut target = OpenOptions::new()
@@ -1543,7 +1567,7 @@ fn unique_file(parent: &Path, name: &str) -> AppResult<PathBuf> {
         let nonce = SystemTime::now()
             .duration_since(UNIX_EPOCH)
             .map_or(0, |time| time.as_nanos());
-        let candidate = parent.join(format!(".{name}.clamui-{nonce:x}-{counter:x}.tmp"));
+        let candidate = parent.join(format!(".{name}.linux-defender-{nonce:x}-{counter:x}.tmp"));
         match OpenOptions::new()
             .write(true)
             .create_new(true)
@@ -2017,9 +2041,9 @@ fn verify_deb_signature(path: &Path) -> AppResult<()> {
     let temporary_root = path
         .parent()
         .ok_or_else(|| "helper package has no parent directory".to_owned())?;
-    let home = unique_directory(temporary_root, "clamui-gpg")?;
+    let home = unique_directory(temporary_root, "linux-defender-gpg")?;
     let signature_path = home.join("builder.asc");
-    let key_path = home.join("clamui-signing-key.asc");
+    let key_path = home.join("linux-defender-signing-key.asc");
     let outcome = (|| -> AppResult<()> {
         let mut file = OpenOptions::new()
             .write(true)
@@ -2171,8 +2195,8 @@ fn verify_rpm_detached_signature(package: &Path, signature: &Path) -> AppResult<
     let temporary_root = package
         .parent()
         .ok_or_else(|| "helper RPM has no parent directory".to_owned())?;
-    let home = unique_directory(temporary_root, "clamui-rpm-gpg")?;
-    let key_path = home.join("clamui-signing-key.asc");
+    let home = unique_directory(temporary_root, "linux-defender-rpm-gpg")?;
+    let key_path = home.join("linux-defender-signing-key.asc");
     let outcome = (|| -> AppResult<()> {
         write_pinned_signing_key(&key_path)?;
         verify_pinned_key_material(gpg, &key_path, flatpak)?;
@@ -2229,8 +2253,8 @@ fn verify_rpm_embedded_signature(package: &Path) -> AppResult<()> {
     let temporary_root = package
         .parent()
         .ok_or_else(|| "helper RPM has no parent directory".to_owned())?;
-    let database = unique_directory(temporary_root, "clamui-rpmdb")?;
-    let key_path = database.join("clamui-signing-key.asc");
+    let database = unique_directory(temporary_root, "linux-defender-rpmdb")?;
+    let key_path = database.join("linux-defender-signing-key.asc");
     let outcome = (|| -> AppResult<()> {
         write_pinned_signing_key(&key_path)?;
         let database_text = database.to_string_lossy().into_owned();
@@ -2274,7 +2298,7 @@ fn verify_rpm_embedded_signature(package: &Path) -> AppResult<()> {
     outcome
 }
 
-/// Core binary entry point for `/usr/bin/clamui-apply-preferences`.
+/// Core binary entry point for `/usr/bin/linux-defender-apply-preferences`, with the pre-rename path accepted for upgrades.
 /// Exit values preserve the installed Python helper's v4 contract.
 pub fn run_helper(args: &[String]) -> i32 {
     let uid = match parse_pkexec_uid() {
@@ -2450,9 +2474,17 @@ enum CanonicalHelperState {
 }
 
 fn missing_native_helper_state() -> CanonicalHelperState {
-    match root_owned_regular_trust(Path::new(HELPER_PATH), true) {
-        Err(RootOwnedRegularError::Missing) => CanonicalHelperState::Missing,
-        Ok(()) | Err(RootOwnedRegularError::Untrusted) => CanonicalHelperState::Untrusted,
+    let mut all_missing = true;
+    for path in helper_candidates() {
+        match root_owned_regular_trust(Path::new(path), true) {
+            Err(RootOwnedRegularError::Missing) => {}
+            Ok(()) | Err(RootOwnedRegularError::Untrusted) => all_missing = false,
+        }
+    }
+    if all_missing {
+        CanonicalHelperState::Missing
+    } else {
+        CanonicalHelperState::Untrusted
     }
 }
 
@@ -2826,7 +2858,7 @@ fn release_asset(backend: HelperBackend) -> AppResult<HelperAsset> {
     let release = format!(
         "https://api.github.com/repos/Linux-Defender/Linux-Defender/releases/tags/v{version}"
     );
-    let directory = unique_directory(&env::temp_dir(), "clamui-release")?;
+    let directory = unique_directory(&env::temp_dir(), "linux-defender-release")?;
     let temp = directory.join("release.json");
     let result = (|| -> AppResult<HelperAsset> {
         download_bounded(&release, &temp, MAX_HELPER_METADATA_BYTES)?;
@@ -2853,7 +2885,7 @@ fn first_install_command(backend: HelperBackend) -> Command {
         HelperBackend::Debian => FIRST_INSTALL_SCRIPT,
         HelperBackend::FedoraDnf | HelperBackend::FedoraAtomic => FIRST_RPM_INSTALL_SCRIPT,
     };
-    command.args(["/bin/sh", "-c", script, "clamui-first-install"]);
+    command.args(["/bin/sh", "-c", script, "linux-defender-first-install"]);
     command
 }
 
@@ -2989,8 +3021,8 @@ mod rpm_bootstrap_tests {
     fn rpm_bootstrap_rejects_invalid_signature() {
         let uid = current_uid();
         assert_ne!(uid, 0, "RPM bootstrap rejection test must run unprivileged");
-        let built_rpm = env::var_os("CLAMUI_TEST_HELPER_RPM")
-            .expect("CLAMUI_TEST_HELPER_RPM must identify the built helper RPM");
+        let built_rpm = env::var_os("LINUX_DEFENDER_TEST_HELPER_RPM")
+            .expect("LINUX_DEFENDER_TEST_HELPER_RPM must identify the built helper RPM");
         let root = TempDir::new().expect("create private RPM bootstrap test directory");
         fs::set_permissions(root.path(), fs::Permissions::from_mode(0o700))
             .expect("secure RPM bootstrap test directory");
@@ -3038,7 +3070,11 @@ mod rpm_bootstrap_tests {
         let package_digest = sha256_file(&package).expect("hash staged helper RPM");
         let signature_digest = sha256_file(&signature).expect("hash invalid signature");
         let status = Command::new("/bin/sh")
-            .args(["-c", FIRST_RPM_INSTALL_SCRIPT, "clamui-rpm-bootstrap-test"])
+            .args([
+                "-c",
+                FIRST_RPM_INSTALL_SCRIPT,
+                "linux-defender-rpm-bootstrap-test",
+            ])
             .arg(&package)
             .arg(package_size.to_string())
             .arg(&package_digest)
@@ -3492,8 +3528,8 @@ mod helper_failure_tests {
         let root = TempDir::new().expect("create formatter root");
         let context = Context::with_paths(Paths {
             home: root.path().join("home"),
-            config_dir: root.path().join("config/clamui"),
-            data_dir: root.path().join("data/clamui"),
+            config_dir: root.path().join("config/linux-defender"),
+            data_dir: root.path().join("data/linux-defender"),
         })
         .expect("create formatter context");
         TestContext {

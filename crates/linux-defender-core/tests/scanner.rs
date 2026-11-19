@@ -116,19 +116,19 @@ if [ -n "$file_list" ]; then
             scan_file "$file"
         fi
     done < "$file_list"
-    if [ -n "${CLAMUI_FIXTURE_REPLACE_PATH:-}" ]; then
-        rm -f -- "$CLAMUI_FIXTURE_REPLACE_PATH"
-        mkfifo -- "$CLAMUI_FIXTURE_REPLACE_PATH"
+    if [ -n "${LINUX_DEFENDER_FIXTURE_REPLACE_PATH:-}" ]; then
+        rm -f -- "$LINUX_DEFENDER_FIXTURE_REPLACE_PATH"
+        mkfifo -- "$LINUX_DEFENDER_FIXTURE_REPLACE_PATH"
     fi
 else
-    if [ -n "${CLAMUI_FIXTURE_REQUIRE_STREAM:-}" ] && [ "$stream" -ne 1 ]; then
+    if [ -n "${LINUX_DEFENDER_FIXTURE_REQUIRE_STREAM:-}" ] && [ "$stream" -ne 1 ]; then
         printf 'fixture requires stream mode\n' >&2
         exit 2
     fi
-    if [ -n "${CLAMUI_FIXTURE_READY:-}" ]; then
-        printf 'started\n' >> "$CLAMUI_FIXTURE_READY"
+    if [ -n "${LINUX_DEFENDER_FIXTURE_READY:-}" ]; then
+        printf 'started\n' >> "$LINUX_DEFENDER_FIXTURE_READY"
     fi
-    if [ -n "${CLAMUI_FIXTURE_BLOCK:-}" ]; then
+    if [ -n "${LINUX_DEFENDER_FIXTURE_BLOCK:-}" ]; then
         while :; do sleep 1; done
     fi
     if grep -q INFECTED; then
@@ -192,8 +192,8 @@ fn fixture_context() -> (TempDir, Context) {
     let temp = tempfile::tempdir().expect("temporary workspace");
     let paths = Paths {
         home: temp.path().join("home"),
-        config_dir: temp.path().join("config/clamui"),
-        data_dir: temp.path().join("data/clamui"),
+        config_dir: temp.path().join("config/linux-defender"),
+        data_dir: temp.path().join("data/linux-defender"),
     };
     fs::create_dir_all(&paths.home).expect("home");
     let context = Context::with_paths(paths).expect("context");
@@ -606,7 +606,7 @@ fn daemon_all_long_paths_honor_force_stream_and_keep_original_identities() {
         }))
         .expect("settings");
     let mut environment = install_daemon_fixture(&temp);
-    environment.set("CLAMUI_FIXTURE_REQUIRE_STREAM", "1");
+    environment.set("LINUX_DEFENDER_FIXTURE_REQUIRE_STREAM", "1");
 
     let result = scanner::dispatch(
         &context,
@@ -678,7 +678,7 @@ fn daemon_long_path_open_failure_keeps_other_results_and_exact_skip() {
         .expect("settings");
     let mut environment = install_daemon_fixture(&temp);
     environment.set(
-        "CLAMUI_FIXTURE_REPLACE_PATH",
+        "LINUX_DEFENDER_FIXTURE_REPLACE_PATH",
         failed.as_os_str().to_os_string(),
     );
 
@@ -845,7 +845,7 @@ fn daemon_crlf_all_unsafe_stream_paths_keep_original_progress_identity() {
         }))
         .expect("settings");
     let mut environment = install_daemon_fixture(&temp);
-    environment.set("CLAMUI_FIXTURE_REQUIRE_STREAM", "1");
+    environment.set("LINUX_DEFENDER_FIXTURE_REQUIRE_STREAM", "1");
 
     let result = scanner::dispatch(
         &context,
@@ -909,7 +909,7 @@ fn daemon_crlf_open_failure_retains_partial_results_and_original_path() {
         .expect("settings");
     let mut environment = install_daemon_fixture(&temp);
     environment.set(
-        "CLAMUI_FIXTURE_REPLACE_PATH",
+        "LINUX_DEFENDER_FIXTURE_REPLACE_PATH",
         failed.as_os_str().to_os_string(),
     );
 
@@ -961,8 +961,11 @@ fn daemon_crlf_stdin_scan_cancels_before_later_unsafe_files() {
         .expect("settings");
     let mut environment = install_daemon_fixture(&temp);
     let ready = temp.path().join("fixture-ready");
-    environment.set("CLAMUI_FIXTURE_READY", ready.as_os_str().to_os_string());
-    environment.set("CLAMUI_FIXTURE_BLOCK", "1");
+    environment.set(
+        "LINUX_DEFENDER_FIXTURE_READY",
+        ready.as_os_str().to_os_string(),
+    );
+    environment.set("LINUX_DEFENDER_FIXTURE_BLOCK", "1");
 
     let scan_context = context.clone();
     let scan = thread::spawn(move || {

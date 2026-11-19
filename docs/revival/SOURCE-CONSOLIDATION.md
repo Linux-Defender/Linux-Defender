@@ -7,7 +7,7 @@ This directory is the sole development checkout: `/home/kiras/Linux-Defender`. T
 | Source | Snapshot included here | Integration status |
 | --- | --- | --- |
 | `Linux-Defender/Linux-Defender` | Public repository; `main` is the single branch and is fully pushed, containing the merged PR #1–#3 brand/revival work | No Linux Defender release is published yet; the Astro website deploys from the single `deploy-website.yml` workflow on `main`. |
-| `linx-systems/clamui` | Its Rust, Tauri, React, packaging, docs, and translations form the app at the repository root. Upstream base `32270d5`. | Selected as the single UI foundation. Product identity still says ClamUI in many assets. |
+| `linx-systems/clamui` | Its Rust, Tauri, React, packaging, docs, and translations form the app at the repository root. Upstream base `32270d5`. | Selected as the single UI foundation. The product identity was later migrated to Linux Defender; see `REBRAND-AUDIT.md`. |
 | Local `ClamUI-REBORN` | Its only source commit beyond ClamUI upstream, YARA rules commit `f648f9d`, is integrated here as `ec133dc`. | Its redundant checkout has no unique app source after that port. |
 | `dave-theunsub/clamtk` | Base `694833d` is the parent of the retired revival branch. | Source is no longer in-repo; behavior parity is recorded in this directory. |
 | `Linux-Defender/clamtk-REBORN` (formerly SAFETY-CHAT) | Branch snapshot `4c55d73` was the retired `reference/clamtk/` tree. The unique research log is preserved as [CLAMTK-RESEARCH.md](CLAMTK-RESEARCH.md); the repository itself is not published. | Reference snapshot retired after parity capture; behavior and remaining gaps stay documented here. |

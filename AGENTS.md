@@ -13,7 +13,7 @@ Linux Defender is a Linux desktop frontend for **host-installed ClamAV**. Its Ru
 | `debian/`, `flathub/`, `appimage/` | Distribution-specific packaging; keep the same app identity and host-ClamAV boundary in every format. |
 | `website/` | The published Astro/Starlight documentation site. |
 
-The frontend has one request path to the native runtime; the runtime forwards only allowlisted operations to the core. Core events currently use `{ event, data }` on the compatibility channel `clamui-event`. Do not add arbitrary frontend filesystem, shell, process, remote-navigation, or generic IPC access. Keep slow work off the UI thread and scope cancellation to its operation ID.
+The frontend has one request path to the native runtime; the runtime forwards only allowlisted operations to the core. Core events currently use `{ event, data }` on the channel `linux-defender-event` (the old `clamui-event` name is retired). Do not add arbitrary frontend filesystem, shell, process, remote-navigation, or generic IPC access. Keep slow work off the UI thread and scope cancellation to its operation ID.
 
 The Rust core and desktop are the only application implementation. Make behavior changes in their owned source boundaries and preserve the established core-to-runtime-to-frontend contract.
 
@@ -33,7 +33,7 @@ bun run --cwd desktop check
 bun run --cwd desktop build
 cargo clippy --workspace --all-targets --locked -- -D warnings
 bun run --cwd desktop tauri dev
-cargo run -p linux-defender-core --bin clamui-cli -- help
+cargo run -p linux-defender-core --bin linux-defender-cli -- help
 
 ```
 
@@ -77,13 +77,13 @@ Refresh only a deliberately selected upstream skill. `skills-lock.json` records 
 
 - **Host ClamAV:** every package format uses the host `clamscan` and `freshclam`; daemon scanning additionally needs host `clamd` and `clamdscan`. Flatpak reaches host tools through `flatpak-spawn --host`. Never bundle or substitute the engine or its definition database.
 - **Durable data:** retain the existing XDG JSON and SQLite layouts, including settings, profiles, logs, quarantine records/payloads, debug logs, and scheduler-owned system state. Writes must be atomic where the existing contract requires it; preserve unknown settings and existing migration behavior.
-- **Privileges:** protected host configuration goes only through `/usr/bin/clamui-apply-preferences`, its polkit policy, destination allowlists, and `PKEXEC_UID` checks. Maintain protocol-v4 compatibility with a trusted installed helper during upgrades. Do not weaken the boundary or bootstrap trust.
+- **Privileges:** protected host configuration goes only through `/usr/bin/linux-defender-apply-preferences`, its polkit policy, destination allowlists, and `PKEXEC_UID` checks. A pre-rename `/usr/bin/clamui-apply-preferences` stays accepted under the identical root-owned, immutable-import trust checks until the helper package replaces it. Maintain protocol-v4 compatibility with a trusted installed helper during upgrades. Do not weaken the boundary or bootstrap trust.
 - **Secrets and untrusted input:** keep VirusTotal keys out of settings payloads, errors, events, and logs; use the established keyring contract. Sanitize external process text before persistence or presentation. Keep quarantine file operations no-follow, integrity-checked, and rollback-safe.
 - **Tauri:** preserve the strict CSP, reject untrusted webview/window navigation, and use native helpers only for explicit user-requested paths, exports, clipboard actions, and approved external URLs.
 
 ## User-facing compatibility
 
-Preserve all seven `clamui` CLI subcommands, their flags, output schemas, stream destinations, and exit behavior. `clamui --help` and every CLI route must stay headless; `clamui-scheduled-scan` and `clamui-apply-preferences` are native entry points with their established contracts.
+Preserve all seven `linux-defender` CLI subcommands, their flags, output schemas, stream destinations, and exit behavior. `linux-defender --help` and every CLI route must stay headless; `linux-defender-scheduled-scan` and `linux-defender-apply-preferences` are native entry points with their established contracts. The pre-rename `clamui*` executable names remain accepted as compatibility aliases, and existing `~/.config/clamui`/`~/.local/share/clamui` data stays readable through its migration path.
 
 Reuse existing gettext message IDs and plural behavior from `po/`/`po/LINGUAS`; active locales are `de`, `en`, `es`, `fr`, `hu`, `it`, `nb`, `pt_BR`, `vi`, and `zh_CN`. All user-facing gettext calls need static literal arguments: choose conditional translated branches outside helpers, then interpolate after translation or plural selection. Use the existing plural API, never new `file(s)`-style pseudo-plurals. Write `—` (prose break), `–` (range), and `…` directly; do not use ASCII ` - ` or `--` as prose separators. For a literal containing a dash, range, quotation, markup, or quoted UI label/command/key/package/file literal, put a `// Translators:` comment immediately above that literal argument—not above a lone call opener. State whether a quoted UI label must match its label translation or whether a protected literal stays unchanged. See the [translation guide](website/src/content/docs/docs/contributing/translating.md) for translator conventions. Do not add a Python runtime requirement to build or load catalogs.
 

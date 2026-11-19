@@ -15,7 +15,7 @@ const POLICY_BYTES: &[u8] = include_bytes!(concat!(
     env!("CARGO_MANIFEST_DIR"),
     "/../../data/io.github.linuxdefender.linuxdefender.policy"
 ));
-const HELPER_NAME: &str = "clamui-apply-preferences";
+const HELPER_NAME: &str = "linux-defender-apply-preferences";
 const DIRECTORY_MODE: u32 = 0o755;
 static TEMPORARY_COUNTER: AtomicU64 = AtomicU64::new(0);
 
@@ -25,15 +25,15 @@ pub(super) fn install_cli_helper(ctx: &Context, prefix: &Path) -> AppResult<Stri
         if flatpak() {
             return Err(crate::i18n::translate(
                 ctx,
-                // Translators: keep "Flatpak" and "clamui-privileged-helper" unchanged.
-                "Linux Defender is running inside a Flatpak sandbox, which cannot install files on the host. Install the matching clamui-privileged-helper package on the host system instead.",
+                // Translators: keep "Flatpak" and "linux-defender-privileged-helper" unchanged.
+                "Linux Defender is running inside a Flatpak sandbox, which cannot install files on the host. Install the matching linux-defender-privileged-helper package on the host system instead.",
             ));
         }
         if unsafe { libc::geteuid() } != 0 {
             return Err(crate::i18n::translate(
                 ctx,
-                // Translators: keep the paths and "sudo clamui install-privileged-helper" command unchanged.
-                "This command installs files under /usr and /usr/share and must be run as root. Try: sudo clamui install-privileged-helper",
+                // Translators: keep the paths and "sudo linux-defender install-privileged-helper" command unchanged.
+                "This command installs files under /usr and /usr/share and must be run as root. Try: sudo linux-defender install-privileged-helper",
             ));
         }
     }
@@ -550,9 +550,12 @@ mod tests {
     }
 
     fn source(root: &Path) -> PathBuf {
-        let source = root.join("clamui-apply-preferences");
-        fs::write(&source, b"\x7fELF clamui native helper test payload")
-            .expect("write test helper source");
+        let source = root.join("linux-defender-apply-preferences");
+        fs::write(
+            &source,
+            b"\x7fELF linux-defender native helper test payload",
+        )
+        .expect("write test helper source");
         fs::set_permissions(&source, fs::Permissions::from_mode(0o755))
             .expect("mark test helper executable");
         source
@@ -576,7 +579,7 @@ mod tests {
 
         let detail = install_test_source(&context(root.path()), &prefix, &source)
             .expect("stage helper and policy");
-        let helper = prefix.join("usr/bin/clamui-apply-preferences");
+        let helper = prefix.join("usr/bin/linux-defender-apply-preferences");
         let policy =
             prefix.join("usr/share/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy");
 
@@ -595,7 +598,7 @@ mod tests {
         assert!(String::from_utf8(fs::read(&policy).expect("read policy"))
             .expect("policy is UTF-8")
             .contains("io.github.linux_defender.linuxdefender.apply-preferences"));
-        assert!(detail.contains("clamui-apply-preferences"));
+        assert!(detail.contains("linux-defender-apply-preferences"));
     }
 
     #[test]
@@ -619,7 +622,7 @@ mod tests {
         let prefix = root.path().join("stage");
         let external = root.path().join("external");
         fs::create_dir_all(external.join("bin")).expect("create external directory");
-        let sentinel = external.join("bin/clamui-apply-preferences");
+        let sentinel = external.join("bin/linux-defender-apply-preferences");
         fs::write(&sentinel, b"external sentinel").expect("write external sentinel");
         fs::create_dir_all(&prefix).expect("create mutable staging prefix");
         fs::set_permissions(&prefix, fs::Permissions::from_mode(0o777))
@@ -642,7 +645,7 @@ mod tests {
         let prefix = root.path().join("stage");
         let external = root.path().join("external");
         fs::create_dir_all(external.join("bin")).expect("create external directory");
-        let sentinel = external.join("bin/clamui-apply-preferences");
+        let sentinel = external.join("bin/linux-defender-apply-preferences");
         fs::write(&sentinel, b"external sentinel").expect("write external sentinel");
         fs::create_dir_all(&prefix).expect("create staging prefix");
         fs::set_permissions(&prefix, fs::Permissions::from_mode(0o755))
@@ -672,13 +675,13 @@ mod tests {
         }
         let sentinel = root.path().join("external-sentinel");
         fs::write(&sentinel, b"external sentinel").expect("write external sentinel");
-        symlink(&sentinel, bin.join("clamui-apply-preferences"))
+        symlink(&sentinel, bin.join("linux-defender-apply-preferences"))
             .expect("create hostile destination symlink");
 
         install_test_source(&context(root.path()), &prefix, &source)
             .expect("replace destination symlink safely");
 
-        let helper = bin.join("clamui-apply-preferences");
+        let helper = bin.join("linux-defender-apply-preferences");
         assert!(!fs::symlink_metadata(&helper)
             .expect("inspect staged helper")
             .file_type()

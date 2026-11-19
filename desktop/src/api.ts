@@ -86,20 +86,20 @@ export async function onEvent(
       handler(event.detail);
     }
   };
-  window.addEventListener("clamui-event", localListener);
+  window.addEventListener("linux-defender-event", localListener);
 
   try {
-    const unlistenNative = await listen<unknown>("clamui-event", ({ payload }) => {
+    const unlistenNative = await listen<unknown>("linux-defender-event", ({ payload }) => {
       if (isNativeEvent(payload)) {
         handler(payload);
       }
     });
     return () => {
       unlistenNative();
-      window.removeEventListener("clamui-event", localListener);
+      window.removeEventListener("linux-defender-event", localListener);
     };
   } catch (error) {
-    window.removeEventListener("clamui-event", localListener);
+    window.removeEventListener("linux-defender-event", localListener);
     throw error;
   }
 }
@@ -109,13 +109,13 @@ export function notify(message: string, type: NotificationType = "info"): void {
   if (!message.trim()) {
     return;
   }
-  window.dispatchEvent(new CustomEvent("clamui-notify", { detail: { message, type } }));
+  window.dispatchEvent(new CustomEvent("linux-defender-notify", { detail: { message, type } }));
 }
 
 
 /** Ask the shell to switch pages without coupling pages to App. */
 export function navigate(page: string, args: Record<string, unknown> = {}): void {
-  window.dispatchEvent(new CustomEvent("clamui-navigate", { detail: { page, args } }));
+  window.dispatchEvent(new CustomEvent("linux-defender-navigate", { detail: { page, args } }));
 }
 
 export async function openPaths(

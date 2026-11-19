@@ -70,7 +70,7 @@ impl TrayController {
         });
         let (sender, receiver) = mpsc::channel();
         let Ok(join) = thread::Builder::new()
-            .name("clamui-tray-updates".into())
+            .name("linux-defender-tray-updates".into())
             .spawn(move || {
                 let Ok(TrayUpdate::Start(handle)) = receiver.recv() else {
                     return;
@@ -289,7 +289,7 @@ fn sni_icon(image: &tauri::image::Image<'_>) -> ksni::Icon {
 
 impl Tray for NativeTray {
     fn id(&self) -> String {
-        "clamui".into()
+        "linux-defender".into()
     }
 
     fn title(&self) -> String {

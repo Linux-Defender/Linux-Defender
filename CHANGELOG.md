@@ -9,11 +9,13 @@
 - Ported the upstream post-v0.6.0 updater fix for long-running FreshClam updates. Manual/forced updates now stop only after a configurable period without output (10-minute default; 1–1,440 minutes), rather than a fixed total runtime limit. Added settings UI, docs, regression tests, and translation catalog entries. Vietnamese strings are translated; other catalogs use English fallback pending human review.
 - Adopted upstream PR #298 website dependency updates. Deferred PR #299 TypeScript 7.0.2 because Astro 7.4.5's checker rejects TypeScript 7.
 - Added an Overview dashboard as the default view: protection posture, all-time totals, engine and definition checks, the quarantine count, and quick actions, with `Ctrl+0` as its shortcut. The existing `Ctrl+1`…`Ctrl+8` shortcuts are unchanged.
+- Added urlscan.io API key management to Preferences alongside VirusTotal, including keyring-backed storage, status, replacement, and deletion.
 
 ### Changed
 
 - Replaced the inherited visual identity with the Guardian design system: ink and paper surfaces, one safety-green accent for both themes, a shield brand mark, and tonal destructive actions. `docs/DESIGN.md` documents the tokens, component rules, and asset regeneration.
-- Renamed internal workspace names that have no installed contract: the headless crate is now `crates/linux-defender-core` (package `linux-defender-core`, library `linux_defender_core`), the gettext template is `po/linux-defender.pot`, the Flatpak module is `linux-defender`, the RPM version macro is `%{linux_defender_version}`, and the gettext contributor skill is `linux-defender-gettext`. The `clamui` command, helper binaries, event channel, keyring service, installed `clamui.mo` catalog domain, XDG data layouts, and legacy cron/desktop identifiers remain compatibility contracts.
+- Renamed internal workspace names that have no installed contract: the headless crate is now `crates/linux-defender-core` (package `linux-defender-core`, library `linux_defender_core`), the gettext template is `po/linux-defender.pot`, the Flatpak module is `linux-defender`, the RPM version macro is `%{linux_defender_version}`, and the gettext contributor skill is `linux-defender-gettext`.
+- Completed the application-identity migration to `linux-defender`: the GUI/CLI command, `linux-defender-cli`, `linux-defender-scheduled-scan`, and `/usr/bin/linux-defender-apply-preferences` are now canonical, along with the `linux-defender-event` channel, `linux-defender` keyring service, `linux-defender.mo` catalog domain, systemd units, debug logs, and scheduler cache paths. Pre-rename executables, systemd units, cron lines, keyring entries, and `~/.config/clamui`/`~/.local/share/clamui` data remain readable as compatibility aliases so upgrades do not lose settings, schedules, or secrets.
 
 ### Fixed
 

@@ -7,7 +7,7 @@
 # The selected files are passed via NAUTILUS_SCRIPT_SELECTED_FILE_PATHS environment variable.
 
 # Enable logging for debugging
-LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/clamui/scan-nautilus.log"
+LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/linux-defender/scan-nautilus.log"
 mkdir -p "$(dirname "$LOG_FILE")"
 
 log() {
@@ -38,11 +38,11 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
 
 	log "Found ${#files[@]} files from NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 
-	# Launch clamui with all selected files
+	# Launch Linux Defender with all selected files
 	if [[ ${#files[@]} -gt 0 ]]; then
 		log "Launching: flatpak run io.github.linuxdefender.linuxdefender ${files[*]}"
 		flatpak run io.github.linuxdefender.linuxdefender "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
-		log "clamui exited with code: $?"
+		log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files in array"
 	fi
@@ -52,7 +52,7 @@ else
 		log "Using positional arguments: $*"
 		log "Launching: flatpak run io.github.linuxdefender.linuxdefender $*"
 		flatpak run io.github.linuxdefender.linuxdefender "$@" 2>&1 | tee -a "$LOG_FILE"
-		log "clamui exited with code: $?"
+		log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files provided (neither env var nor arguments)"
 		if command -v notify-send &>/dev/null; then

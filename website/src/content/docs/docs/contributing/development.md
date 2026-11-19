@@ -58,26 +58,26 @@ Use the Tauri command for desktop development; do not substitute direct `cargo r
 The GUI runs through Tauri/WebKitGTK. For the headless core CLI, use the native binary directly; this route must not initialize a WebKit window:
 
 ```bash
-cargo run -p linux-defender-core --bin clamui-cli -- help
-cargo run -p linux-defender-core --bin clamui-cli -- scan --help
-cargo run -p linux-defender-core --bin clamui-scheduled-scan -- --dry-run
+cargo run -p linux-defender-core --bin linux-defender-cli -- help
+cargo run -p linux-defender-core --bin linux-defender-cli -- scan --help
+cargo run -p linux-defender-core --bin linux-defender-scheduled-scan -- --dry-run
 ```
 
-The `clamui` command preserves seven subcommands: `scan`, `quarantine`, `profile`, `status`, `history`, `help`, and `install-privileged-helper`. Keep their flags, JSON/text output, standard streams, and exit semantics compatible. `clamui-scheduled-scan` remains a separate executable.
+The `linux-defender` command preserves seven subcommands: `scan`, `quarantine`, `profile`, `status`, `history`, `help`, and `install-privileged-helper`. Keep their flags, JSON/text output, standard streams, and exit semantics compatible. `linux-defender-scheduled-scan` remains a separate executable.
 
-The CLI accepts conventional bundled scan flags and compatible attached `history` arguments. Use `--` before a target whose name looks like an option, for example `clamui scan -- --virustotal`; this keeps it a scan target rather than treating it as a flag.
+The CLI accepts conventional bundled scan flags and compatible attached `history` arguments. Use `--` before a target whose name looks like an option, for example `linux-defender scan -- --virustotal`; this keeps it a scan target rather than treating it as a flag.
 
 The installed command surface is:
 
 ```bash
-clamui scan /path/to/target
-clamui quarantine list --json
-clamui profile list --json
-clamui status --json
-clamui history --limit 20 --json
-clamui help scan
-sudo clamui install-privileged-helper
-clamui-scheduled-scan --dry-run
+linux-defender scan /path/to/target
+linux-defender quarantine list --json
+linux-defender profile list --json
+linux-defender status --json
+linux-defender history --limit 20 --json
+linux-defender help scan
+sudo linux-defender install-privileged-helper
+linux-defender-scheduled-scan --dry-run
 ```
 
 `install-privileged-helper` is the inherited manual native/source-host path. Its real installation requires root and stages a compiled helper with its polkit policy; retain it only for **mutable** source hosts. Linux Defender has not published signed helper packages, so its release-driven helper installer is not ready for use. Fedora Atomic contributors must use verified RPM layering and reboot for manual repair, never this source installer against immutable `/usr`. The Flatpak rejects this host command, so do not use `sudo flatpak`.
@@ -87,13 +87,13 @@ For source-host development, build only the headless binaries, then use the non-
 ```bash
 cargo build --locked -p linux-defender-core --bins
 stage_dir="$(mktemp -d)"
-./target/debug/clamui-cli install-privileged-helper --prefix "$stage_dir"
+./target/debug/linux-defender-cli install-privileged-helper --prefix "$stage_dir"
 ```
 
 On a mutable native host, the actual installation is a separate, privileged action; do not run Cargo as root:
 
 ```bash
-sudo ./target/debug/clamui-cli install-privileged-helper
+sudo ./target/debug/linux-defender-cli install-privileged-helper
 ```
 
 ### Debugging
@@ -101,10 +101,10 @@ sudo ./target/debug/clamui-cli install-privileged-helper
 Use structured Rust logging while starting the desktop:
 
 ```bash
-RUST_LOG=clamui=debug bun run --cwd desktop tauri dev
+RUST_LOG=linux_defender_core=debug,linux_defender=debug bun run --cwd desktop tauri dev
 ```
 
-Use the Tauri/WebKit developer tools for frontend state and the terminal for Rust/core diagnostics. Never replace native IPC with a browser filesystem, shell, or process permission. The only frontend request boundary is Tauri's allowlisted `request` command and `clamui-event` event stream.
+Use the Tauri/WebKit developer tools for frontend state and the terminal for Rust/core diagnostics. Never replace native IPC with a browser filesystem, shell, or process permission. The only frontend request boundary is Tauri's allowlisted `request` command and `linux-defender-event` event stream.
 
 ### Optional coding-agent skills
 
@@ -141,7 +141,7 @@ The Flatpak equivalents live beneath `~/.var/app/io.github.linuxdefender.linuxde
 
 Linux Defender uses host `clamscan` and `freshclam`; daemon mode also uses host `clamd` and `clamdscan`. Under Flatpak, calls cross the explicit `flatpak-spawn --host` boundary. Do not bundle or emulate ClamAV.
 
-Protected configuration changes use the inherited authenticated protocol-v4 helper at `/usr/bin/clamui-apply-preferences` and `io.github.linuxdefender.linuxdefender.policy`. Preserve its allowlists, `PKEXEC_UID` validation, exit codes, and compatibility with an already-installed trusted helper. The helper is native Rust, not a Python wrapper. Linux Defender has not published its own signed helper package, so the in-app release installer cannot complete from this project yet. Keep the trust boundary fail-closed; never bypass a missing or invalid signature.
+Protected configuration changes use the inherited authenticated protocol-v4 helper at `/usr/bin/linux-defender-apply-preferences` and `io.github.linuxdefender.linuxdefender.policy`. Preserve its allowlists, `PKEXEC_UID` validation, exit codes, and compatibility with an already-installed trusted helper. The helper is native Rust, not a Python wrapper. Linux Defender has not published its own signed helper package, so the in-app release installer cannot complete from this project yet. Keep the trust boundary fail-closed; never bypass a missing or invalid signature.
 
 ## Test before a pull request
 
@@ -174,7 +174,7 @@ Build with the maintained native packaging entry points:
 ```bash
 ./debian/build-deb.sh
 # Package the three binaries built on the Ubuntu 22.04-compatible baseline.
-CLAMUI_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release ./debian/build-deb.sh dist
+LINUX_DEFENDER_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release ./debian/build-deb.sh dist
 UPDATE_INFORMATION='gh-releases-zsync|Linux-Defender|Linux-Defender|latest|Linux-Defender-*-x86_64.AppImage.zsync' ./appimage/build-appimage.sh
 ```
 
@@ -182,12 +182,12 @@ UPDATE_INFORMATION='gh-releases-zsync|Linux-Defender|Linux-Defender|latest|Linux
 
 ```bash
 ./rpm/build-privileged-helper-rpm.sh dist
-CLAMUI_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release LINUX_DEFENDER_RPM_ARCH=x86_64 ./rpm/build-privileged-helper-rpm.sh dist
+LINUX_DEFENDER_ARTIFACT_DIR=/absolute/path/to/ubuntu22/target/release LINUX_DEFENDER_RPM_ARCH=x86_64 ./rpm/build-privileged-helper-rpm.sh dist
 ```
 
-The scripts can produce local `x86_64` or `aarch64` helper artifacts when built for the matching target; they contain the Rust helper and canonical policy, not the GUI or ClamAV. A local RPM is unsigned and is not an eligible installer asset. Only a matching signed RPM published with its detached signature can be used by the in-app Fedora installer. The RPM builder requires Cargo, `readelf` from `binutils`, and the `rpm`/`rpmbuild` package tools; a local source compilation also needs the usual Rust C toolchain, `pkg-config`, and GLib development files. It builds only the helper, so it needs neither Python nor the Bun/Tauri GUI toolchain. `CLAMUI_ARTIFACT_DIR`, `CARGO_TARGET_DIR`, and `CARGO_BUILD_TARGET` select a prebuilt or nondefault Cargo artifact; `LINUX_DEFENDER_RPM_ARCH` asserts `x86_64` or `aarch64` against the helper ELF.
+The scripts can produce local `x86_64` or `aarch64` helper artifacts when built for the matching target; they contain the Rust helper and canonical policy, not the GUI or ClamAV. A local RPM is unsigned and is not an eligible installer asset. Only a matching signed RPM published with its detached signature can be used by the in-app Fedora installer. The RPM builder requires Cargo, `readelf` from `binutils`, and the `rpm`/`rpmbuild` package tools; a local source compilation also needs the usual Rust C toolchain, `pkg-config`, and GLib development files. It builds only the helper, so it needs neither Python nor the Bun/Tauri GUI toolchain. `LINUX_DEFENDER_ARTIFACT_DIR`, `CARGO_TARGET_DIR`, and `CARGO_BUILD_TARGET` select a prebuilt or nondefault Cargo artifact; `LINUX_DEFENDER_RPM_ARCH` asserts `x86_64` or `aarch64` against the helper ELF.
 
-`debian/build-deb.sh` is the authoritative Debian entry point: it produces the application/helper pair and stages the policy and scheduled-scan payload. `CLAMUI_ARTIFACT_DIR` must contain executable `clamui`, `clamui-scheduled-scan`, and `clamui-apply-preferences` binaries from the baseline build. The AppImage build produces `Linux-Defender-<VERSION>-x86_64.AppImage`; when `UPDATE_INFORMATION` points to a published Linux Defender release feed, it also produces `.zsync` metadata. Until a signed Linux Defender release includes those assets, the AppImage update feed cannot update users.
+`debian/build-deb.sh` is the authoritative Debian entry point: it produces the application/helper pair and stages the policy and scheduled-scan payload. `LINUX_DEFENDER_ARTIFACT_DIR` must contain executable `linux-defender`, `linux-defender-scheduled-scan`, and `linux-defender-apply-preferences` binaries from the baseline build. The AppImage build produces `Linux-Defender-<VERSION>-x86_64.AppImage`; when `UPDATE_INFORMATION` points to a published Linux Defender release feed, it also produces `.zsync` metadata. Until a signed Linux Defender release includes those assets, the AppImage update feed cannot update users.
 
 ### Dependabot and Flatpak sources
 

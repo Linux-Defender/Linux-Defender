@@ -369,7 +369,7 @@ fn system_info() -> Value {
         "is_flatpak": flatpak,
         "app_version": env!("CARGO_PKG_VERSION"),
         "rust_runtime": rust_runtime(),
-        "tauri_runtime": std::env::var("CLAMUI_TAURI_VERSION").ok(),
+        "tauri_runtime": std::env::var("LINUX_DEFENDER_TAURI_VERSION").ok(),
     })
 }
 
@@ -1415,7 +1415,7 @@ pub fn start_monitor(ctx: Context) -> AppResult<MonitorHandle> {
     let handle_loop = main_loop.clone();
     let shared_thread = Arc::clone(&shared);
     let thread = thread::Builder::new()
-        .name("clamui-device-monitor".to_owned())
+        .name("linux-defender-device-monitor".to_owned())
         .spawn(move || {
             let _ = main_context.with_thread_default(|| {
                 let monitor = gio::VolumeMonitor::get();
@@ -1449,8 +1449,8 @@ mod monitor_lifecycle_tests {
         let temporary = tempfile::tempdir().expect("temporary monitor root");
         let paths = crate::Paths {
             home: temporary.path().join("home"),
-            config_dir: temporary.path().join("config/clamui"),
-            data_dir: temporary.path().join("data/clamui"),
+            config_dir: temporary.path().join("config/linux-defender"),
+            data_dir: temporary.path().join("data/linux-defender"),
         };
         let shared = Arc::new(MonitorShared {
             ctx: Context::with_paths(paths).expect("test context"),

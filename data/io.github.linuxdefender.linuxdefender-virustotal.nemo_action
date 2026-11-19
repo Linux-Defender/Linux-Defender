@@ -1,7 +1,7 @@
 [Nemo Action]
 Name=Scan with VirusTotal
 Comment=Scan selected file with VirusTotal online service
-Exec=clamui --virustotal %F
+Exec=linux-defender --virustotal %F
 Icon-Name=io.github.linuxdefender.linuxdefender
 Selection=s
 Extensions=any;

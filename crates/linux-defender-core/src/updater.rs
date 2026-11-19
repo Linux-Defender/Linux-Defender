@@ -558,7 +558,7 @@ trap 'exit 130' INT TERM HUP QUIT
 mode=$(stat -c '%a' "$d")
 owner=$(stat -c '%u' "$d")
 group=$(stat -c '%g' "$d")
-staging=$(mktemp -d "$d/.clamui-force-update.XXXXXX")
+staging=$(mktemp -d "$d/.linux-defender-force-update.XXXXXX")
 chmod "$mode" "$staging"
 chown "$owner:$group" "$staging"
 if [ -n "$config" ]; then "$freshclam" "$config" --datadir="$staging" --verbose & else "$freshclam" --datadir="$staging" --verbose & fi
@@ -590,7 +590,7 @@ fn update_command(force: bool, config_path: Option<&str>) -> AppResult<Command> 
         let mut args = vec![
             "-c".to_owned(),
             force_update_script().to_owned(),
-            "clamui-force-update".to_owned(),
+            "linux-defender-force-update".to_owned(),
             database_dir,
             freshclam,
         ];

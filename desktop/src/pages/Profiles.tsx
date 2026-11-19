@@ -148,7 +148,7 @@ export default function Profiles() {
       const exists = current.some((candidate) => candidate.id === profile.id);
       return exists ? current.map((candidate) => candidate.id === profile.id ? profile : candidate) : [...current, profile];
     });
-    window.dispatchEvent(new CustomEvent("clamui-profiles-updated"));
+    window.dispatchEvent(new CustomEvent("linux-defender-profiles-updated"));
     notify(_("Profile saved"), "success");
   };
   const duplicate = async (profile: Profile) => {
@@ -157,7 +157,7 @@ export default function Profiles() {
     try {
       const copy = await request<Profile>("profiles.duplicate", { id: profile.id });
       setProfiles((current) => [...current, copy]);
-      window.dispatchEvent(new CustomEvent("clamui-profiles-updated"));
+      window.dispatchEvent(new CustomEvent("linux-defender-profiles-updated"));
       notify(_("Profile duplicated"), "success");
     } catch (reason) {
       setError(String(reason));
@@ -173,7 +173,7 @@ export default function Profiles() {
       await request("profiles.delete", { id: deleting.id });
       setProfiles((current) => current.filter((profile) => profile.id !== deleting.id));
       setDeleting(null);
-      window.dispatchEvent(new CustomEvent("clamui-profiles-updated"));
+      window.dispatchEvent(new CustomEvent("linux-defender-profiles-updated"));
       notify(_("Profile deleted"), "success");
     } catch (reason) {
       setError(String(reason));
@@ -187,7 +187,7 @@ export default function Profiles() {
       if (!paths[0]) return;
       const profile = await request<Profile>("profiles.import", { path: paths[0] });
       setProfiles((current) => [...current.filter((candidate) => candidate.id !== profile.id), profile]);
-      window.dispatchEvent(new CustomEvent("clamui-profiles-updated"));
+      window.dispatchEvent(new CustomEvent("linux-defender-profiles-updated"));
       notify(_("Profile imported"), "success");
     } catch (reason) {
       setError(String(reason));
@@ -213,7 +213,7 @@ export default function Profiles() {
     try {
       const response = await request<{ profiles: Profile[] }>("profiles.restore_defaults");
       setProfiles(response.profiles);
-      window.dispatchEvent(new CustomEvent("clamui-profiles-updated"));
+      window.dispatchEvent(new CustomEvent("linux-defender-profiles-updated"));
       notify(_("Default profiles restored"), "success");
     } catch (reason) {
       setError(String(reason));

@@ -53,7 +53,7 @@ fn force_transaction_rolls_back_live_database_when_promotion_fails() {
     let freshclam = bin.join("freshclam");
     executable(&freshclam, "#!/bin/sh\nset -eu\ndatadir=\nfor arg in \"$@\"; do case \"$arg\" in --datadir=*) datadir=${arg#--datadir=};; esac; done\n[ -n \"$datadir\" ]\nprintf staged > \"$datadir/main.cvd\"\n");
     let mv = bin.join("mv");
-    executable(&mv, "#!/bin/sh\nset -eu\nif [ ! -e \"$FAIL_MARKER\" ] && printf '%s\\n' \"$@\" | grep -q '.clamui-force-update'; then : > \"$FAIL_MARKER\"; exit 1; fi\nexec /bin/mv \"$@\"\n");
+    executable(&mv, "#!/bin/sh\nset -eu\nif [ ! -e \"$FAIL_MARKER\" ] && printf '%s\\n' \"$@\" | grep -q '.linux-defender-force-update'; then : > \"$FAIL_MARKER\"; exit 1; fi\nexec /bin/mv \"$@\"\n");
 
     let marker = temp.path().join("promotion-failed");
     let path = format!(
@@ -64,7 +64,7 @@ fn force_transaction_rolls_back_live_database_when_promotion_fails() {
     let status = Command::new("sh")
         .arg("-c")
         .arg(force_update_script())
-        .arg("clamui-force-update")
+        .arg("linux-defender-force-update")
         .arg(&database_dir)
         .arg(&freshclam)
         .arg("")

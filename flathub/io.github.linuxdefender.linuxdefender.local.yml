@@ -9,7 +9,7 @@ add-build-extensions:
   org.freedesktop.Sdk.Extension.rust-stable:
     version: "26.08"
     directory: lib/sdk/rust-stable
-command: clamui
+command: linux-defender
 # Local developer recipe: builds the checked-out Rust/Tauri source tree.
 finish-args:
   - --socket=fallback-x11
@@ -45,10 +45,10 @@ modules:
         EOF
       - cd desktop && yarn install --offline --frozen-lockfile --ignore-scripts
       - cd desktop && yarn run check && ./node_modules/.bin/vite build
-      - cargo build --offline --locked --release -p clamui --bin clamui
-      - cargo build --offline --locked --release -p linux-defender-core --bin clamui-scheduled-scan
-      - install -Dm755 target/release/clamui /app/bin/clamui
-      - install -Dm755 target/release/clamui-scheduled-scan /app/bin/clamui-scheduled-scan
+      - cargo build --offline --locked --release -p linux-defender --bin linux-defender
+      - cargo build --offline --locked --release -p linux-defender-core --bin linux-defender-scheduled-scan
+      - install -Dm755 target/release/linux-defender /app/bin/linux-defender
+      - install -Dm755 target/release/linux-defender-scheduled-scan /app/bin/linux-defender-scheduled-scan
       - install -Dm644 data/io.github.linuxdefender.linuxdefender.desktop /app/share/applications/io.github.linuxdefender.linuxdefender.desktop
       - install -Dm644 data/io.github.linuxdefender.linuxdefender.metainfo.xml /app/share/metainfo/io.github.linuxdefender.linuxdefender.metainfo.xml
       - install -Dm644 icons/io.github.linuxdefender.linuxdefender.svg /app/share/icons/hicolor/scalable/apps/io.github.linuxdefender.linuxdefender.svg

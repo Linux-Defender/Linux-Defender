@@ -18,8 +18,8 @@ show_help() {
 Usage: ./rpm/build-privileged-helper-rpm.sh [OUTPUT_DIR]
 
 Builds an x86_64 or aarch64 linux-defender-privileged-helper RPM. OUTPUT_DIR defaults
-to the project root. Set CLAMUI_ARTIFACT_DIR to an existing directory containing
-clamui-apply-preferences to package a prebuilt native helper. Otherwise the
+to the project root. Set LINUX_DEFENDER_ARTIFACT_DIR to an existing directory containing
+linux-defender-apply-preferences to package a prebuilt native helper. Otherwise the
 script runs the locked linux-defender-core helper-only Cargo build.
 
 CARGO_TARGET_DIR and CARGO_BUILD_TARGET select the normal Cargo artifact
@@ -86,8 +86,8 @@ artifact_dir() {
 }
 
 build_helper() {
-    if [ -n "${CLAMUI_ARTIFACT_DIR:-}" ]; then
-        ARTIFACT_DIR="${CLAMUI_ARTIFACT_DIR%/}"
+    if [ -n "${LINUX_DEFENDER_ARTIFACT_DIR:-}" ]; then
+        ARTIFACT_DIR="${LINUX_DEFENDER_ARTIFACT_DIR%/}"
         log_info "Using prebuilt native helper from $ARTIFACT_DIR"
     else
         if ! command -v cargo >/dev/null 2>&1; then
@@ -96,12 +96,12 @@ build_helper() {
         fi
         (
             cd "$PROJECT_ROOT"
-            cargo build --locked --release -p linux-defender-core --bin clamui-apply-preferences
+            cargo build --locked --release -p linux-defender-core --bin linux-defender-apply-preferences
         )
         ARTIFACT_DIR="$(artifact_dir)"
     fi
 
-    HELPER="$ARTIFACT_DIR/clamui-apply-preferences"
+    HELPER="$ARTIFACT_DIR/linux-defender-apply-preferences"
     if [ ! -x "$HELPER" ]; then
         log_error "Expected compiled helper is missing or not executable: $HELPER"
         return 1
@@ -161,7 +161,7 @@ stage_sources() {
     SOURCES_DIR="$RPMBUILD_TOPDIR/SOURCES"
     trap cleanup EXIT
     install -d -m 0755 "$SOURCES_DIR"
-    install -m 0755 "$HELPER" "$SOURCES_DIR/clamui-apply-preferences"
+    install -m 0755 "$HELPER" "$SOURCES_DIR/linux-defender-apply-preferences"
 
     local policy="$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.policy"
     if [ ! -f "$policy" ]; then

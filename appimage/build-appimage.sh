@@ -112,7 +112,7 @@ build_tauri_bundle() {
     # These are first-class Rust command binaries, not Tauri sidecars.
     (cd "$PROJECT_ROOT" && \
         cargo build --locked --release -p linux-defender-core \
-            --bin clamui-scheduled-scan --bin clamui-apply-preferences)
+            --bin linux-defender-scheduled-scan --bin linux-defender-apply-preferences)
     # Install the locked frontend toolchain so this builder works from a clean
     # checkout and `bun run tauri` resolves the project-local CLI.
     log "Installing locked Bun dependencies"
@@ -122,9 +122,9 @@ build_tauri_bundle() {
     # an unactionable generic error.
     (cd "$PROJECT_ROOT/desktop" && \
         bun run tauri build --verbose --config "$TAURI_CONFIG" --bundles appimage)
-    [ -x "$RELEASE_DIR/clamui" ] || die "Tauri did not produce target/release/clamui"
-    [ -x "$RELEASE_DIR/clamui-scheduled-scan" ] || die "scheduled scan helper was not built"
-    [ -x "$RELEASE_DIR/clamui-apply-preferences" ] || die "privileged helper was not built"
+    [ -x "$RELEASE_DIR/linux-defender" ] || die "Tauri did not produce target/release/linux-defender"
+    [ -x "$RELEASE_DIR/linux-defender-scheduled-scan" ] || die "scheduled scan helper was not built"
+    [ -x "$RELEASE_DIR/linux-defender-apply-preferences" ] || die "privileged helper was not built"
 }
 
 find_tauri_appimage() {
@@ -144,35 +144,40 @@ extract_tauri_appdir() {
         "$image" --appimage-extract >/dev/null
         mv squashfs-root "$(basename "$APPDIR")"
     )
-    [ -x "$APPDIR/usr/bin/clamui" ] || die "Tauri AppImage lacks /usr/bin/clamui"
+    [ -x "$APPDIR/usr/bin/linux-defender" ] || die "Tauri AppImage lacks /usr/bin/linux-defender"
 }
 
 install_packaging_assets() {
     local assets="$PROJECT_ROOT/crates/linux-defender-core/assets/integrations"
-    local destination="$APPDIR/usr/share/clamui/integrations"
+    local destination="$APPDIR/usr/share/linux-defender/integrations"
 
     [ -d "$assets" ] || die "integration assets missing: $assets"
     # First-class helpers are explicitly staged rather than Tauri externalBin
     # sidecars, preserving their canonical command names and trust boundary.
-    install -Dm755 "$RELEASE_DIR/clamui-scheduled-scan" "$APPDIR/usr/bin/clamui-scheduled-scan"
-    install -Dm755 "$RELEASE_DIR/clamui-apply-preferences" "$APPDIR/usr/bin/clamui-apply-preferences"
+    install -Dm755 "$RELEASE_DIR/linux-defender-scheduled-scan" "$APPDIR/usr/bin/linux-defender-scheduled-scan"
+    install -Dm755 "$RELEASE_DIR/linux-defender-apply-preferences" "$APPDIR/usr/bin/linux-defender-apply-preferences"
 
     mkdir -p "$destination"
     cp -a "$assets/." "$destination/"
-    # Tauri's product-name desktop files use the temporary bundle identity.
-    # Replace only those generated copies with the canonical legacy ID in
-    # both locations expected by AppImage desktop integration.
-    rm -f "$APPDIR/ClamUI.desktop" "$APPDIR/usr/share/applications/ClamUI.desktop"
+    # Tauri names its generated desktop file and icons after the product name,
+    # so remove whatever it wrote before installing the canonical ID in both
+    # locations expected by AppImage desktop integration.
+    find "$APPDIR" -maxdepth 1 -type f -name '*.desktop' -delete
+    find "$APPDIR/usr/share/applications" -maxdepth 1 -type f \
+        -name '*.desktop' ! -name "$APP_ID.desktop" -delete
+    find "$APPDIR/usr/share/icons" -type f \
+        \( -name '*.png' -o -name '*.svg' \) ! -name "$APP_ID.png" ! -name "$APP_ID.svg" -delete
     install -Dm644 "$PROJECT_ROOT/data/$APP_ID.desktop" "$APPDIR/$APP_ID.desktop"
     install -Dm644 "$PROJECT_ROOT/data/$APP_ID.desktop" "$APPDIR/usr/share/applications/$APP_ID.desktop"
     # appimagetool associates root desktop files with an .appdata.xml file;
     # the same canonical AppStream metadata is installed system-wide below.
     install -Dm644 "$PROJECT_ROOT/data/$APP_ID.metainfo.xml" "$APPDIR/$APP_ID.appdata.xml"
     install -Dm644 "$PROJECT_ROOT/data/$APP_ID.metainfo.xml" "$APPDIR/usr/share/metainfo/$APP_ID.metainfo.xml"
-    # Replace only root Tauri icon artifacts that belonged to its temporary
-    # desktop identity; appimagetool resolves the canonical desktop Icon from
-    # the AppDir root and uses .DirIcon for file-manager integration.
-    rm -f "$APPDIR/.DirIcon" "$APPDIR/ClamUI.png" "$APPDIR/clamui.png"
+    # Replace Tauri's generated root icon artifacts; appimagetool resolves the
+    # canonical desktop Icon from the AppDir root and uses .DirIcon for
+    # file-manager integration.
+    rm -f "$APPDIR/.DirIcon"
+    find "$APPDIR" -maxdepth 1 -type f \( -name '*.png' -o -name '*.svg' \) -delete
     install -Dm644 "$PROJECT_ROOT/icons/$APP_ID.png" "$APPDIR/$APP_ID.png"
     ln -s "$APP_ID.png" "$APPDIR/.DirIcon"
     install -Dm644 "$PROJECT_ROOT/icons/$APP_ID.svg" "$APPDIR/usr/share/icons/hicolor/scalable/apps/$APP_ID.svg"

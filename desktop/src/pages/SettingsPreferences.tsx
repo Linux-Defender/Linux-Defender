@@ -167,6 +167,7 @@ export default function SettingsPreferences({
   if (selectedPage === "device_scan") return <DeviceScanPage settings={settings} saveSetting={saveSetting} />;
   if (selectedPage === "yara") return <YaraPage settings={settings} saveSetting={saveSetting} />;
   if (selectedPage === "virustotal") return <VirusTotalPage settings={settings} saveSetting={saveSetting} />;
+  if (selectedPage === "urlscan") return <UrlscanPage />;
   if (selectedPage === "debug") return <DebugPage settings={settings} saveSetting={saveSetting} />;
   return <BehaviorPage settings={settings} saveSetting={saveSetting} trayAvailable={trayAvailable} isFlatpak={isFlatpak} />;
 }
@@ -422,6 +423,29 @@ function VirusTotalPage({ settings, saveSetting }: { settings: Settings; saveSet
   };
   const noKeyAction = valueString(settings, "virustotal_remember_no_key_action", "none");
   return <div className="settings-preferences"><Section title={_("API Key")} description={_("Keys are stored in the operating system keyring or the explicitly enabled compatibility fallback; they are never returned to the interface.")}><Field label={_("Status")} detail={status?.present ? _("Configured ({masked}) using {backend}", { masked: status.masked ?? _("masked"), backend: status.backend.replaceAll("_", " ") }) : status?.status === "locked" ? _("Keyring is locked") : status?.status === "unavailable" ? _("Keyring unavailable") : _("Not configured")}><button type="button" onClick={() => void refresh()}>{_("Refresh")}</button></Field><Field label={_("API Key")} detail={_("Exactly 64 hexadecimal characters.")}><input type="password" autoComplete="off" value={key} onChange={(event) => setKey(event.target.value)} /></Field><div className="button-row"><button type="button" disabled={saving || !/^[a-fA-F0-9]{64}$/.test(key)} onClick={() => void saveKey()}>{_("Save Key")}</button><button type="button" onClick={() => void openExternal("https://www.virustotal.com/gui/my-apikey")}>{_("Get a free API key")}</button><button type="button" className="destructive" disabled={saving || !status?.present} onClick={() => setDeleteOpen(true)}>{_("Delete Key")}</button></div></Section><Section title={_("Behavior")}><Field label={_("When API key is missing")}><select value={noKeyAction} onChange={(event) => void saveSetting("virustotal_remember_no_key_action", event.target.value)}><option value="none">{_("Always ask")}</option><option value="open_website">{_("Open VirusTotal website")}</option><option value="prompt">{_("Show notification only")}</option></select></Field></Section><Section title={_("Information")}><p>{_("Free tier: 4 requests per minute, 500 per day. Files up to 650 MB can be scanned.")}</p></Section>{deleteOpen && <Modal title={_("Delete VirusTotal API key")} onClose={() => setDeleteOpen(false)}><p>{_("This removes the key from secure storage. You will need to enter it again to use VirusTotal scanning.")}</p><footer><button type="button" onClick={() => setDeleteOpen(false)}>{_("Cancel")}</button><button type="button" className="destructive" disabled={saving} onClick={() => void deleteKey()}>{_("Delete")}</button></footer></Modal>}</div>;
+}
+
+function UrlscanPage() {
+  const [status, setStatus] = useState<KeyStatus | null>(null);
+  const [key, setKey] = useState("");
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const refresh = useCallback(async () => {
+    try { setStatus(await request<KeyStatus>("urlscan.key_status")); } catch { setStatus({ present: false, backend: "none", status: "unavailable" }); }
+  }, []);
+  useEffect(() => { void refresh(); }, [refresh]);
+  const canSave = key.trim().length > 0 && !/\s/.test(key.trim());
+  const saveKey = async () => {
+    if (key.trim().length === 0) { notify(_("Enter your urlscan API key."), "error"); return; }
+    if (/\s/.test(key.trim())) { notify(_("The urlscan API key cannot contain spaces."), "error"); return; }
+    setSaving(true);
+    try { const saved = await request<KeyStatus>("urlscan.key_save", { key: key.trim() }); setStatus(saved); setKey(""); notify(saved.message ?? _("API key saved"), "success"); } catch { notify(_("Unable to save the API key"), "error"); } finally { setSaving(false); }
+  };
+  const deleteKey = async () => {
+    setSaving(true);
+    try { const deleted = await request<KeyStatus>("urlscan.key_delete"); setStatus(deleted); setDeleteOpen(false); notify(deleted.message ?? _("API key deleted"), "success"); } catch { notify(_("Unable to delete the API key"), "error"); } finally { setSaving(false); }
+  };
+  return <div className="settings-preferences"><Section title={_("API Key")} description={_("Keys are stored in the operating system keyring or the explicitly enabled compatibility fallback; they are never returned to the interface.")}><Field label={_("Status")} detail={status?.present ? _("Configured ({masked}) using {backend}", { masked: status.masked ?? _("masked"), backend: status.backend.replaceAll("_", " ") }) : status?.status === "locked" ? _("Keyring is locked") : status?.status === "unavailable" ? _("Keyring unavailable") : _("Not configured")}><button type="button" onClick={() => void refresh()}>{_("Refresh")}</button></Field><Field label={_("API Key")} detail={_("Paste the API key from your urlscan.io account settings.")}><input type="password" autoComplete="off" value={key} onChange={(event) => setKey(event.target.value)} /></Field><div className="button-row"><button type="button" disabled={saving || !canSave} onClick={() => void saveKey()}>{_("Save Key")}</button><button type="button" onClick={() => void openExternal("https://urlscan.io/user/signup")}>{_("Get an API key")}</button><button type="button" className="destructive" disabled={saving || !status?.present} onClick={() => setDeleteOpen(true)}>{_("Delete Key")}</button></div></Section><Section title={_("Information")}><p>{_("urlscan.io visits websites in a remote browser and records page activity. It is not a local file scan or an antivirus verdict.")}</p><p>{_("Submitting a URL shares it with urlscan.io, including its query string, and can expose private or internal addresses. Never submit login links, session tokens, or confidential information.")}</p></Section>{deleteOpen && <Modal title={_("Delete urlscan.io API key")} onClose={() => setDeleteOpen(false)}><p>{_("This removes the key from secure storage. You will need to enter it again to submit URLs to urlscan.io.")}</p><footer><button type="button" onClick={() => setDeleteOpen(false)}>{_("Cancel")}</button><button type="button" className="destructive" disabled={saving} onClick={() => void deleteKey()}>{_("Delete")}</button></footer></Modal>}</div>;
 }
 
 function DebugPage({ settings, saveSetting }: { settings: Settings; saveSetting: SaveSetting }) {

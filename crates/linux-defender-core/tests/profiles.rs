@@ -12,7 +12,7 @@ struct TestContext {
 
 impl TestContext {
     fn new() -> Self {
-        let root = std::env::temp_dir().join(format!("clamui-profiles-{}", Uuid::new_v4()));
+        let root = std::env::temp_dir().join(format!("linux-defender-profiles-{}", Uuid::new_v4()));
         let paths = Paths {
             home: root.join("home"),
             config_dir: root.join("config"),
@@ -229,7 +229,8 @@ fn profile_transfer_paths_keep_a_literal_tilde() {
         json!({"name": "Literal path", "targets": ["/tmp"]}),
     )
     .unwrap();
-    let literal_directory = PathBuf::from("~").join(format!("clamui-profile-{}", Uuid::new_v4()));
+    let literal_directory =
+        PathBuf::from("~").join(format!("linux-defender-profile-{}", Uuid::new_v4()));
     let literal_path = literal_directory.join("profile.json");
     let literal_path_string = literal_path.to_string_lossy().into_owned();
 

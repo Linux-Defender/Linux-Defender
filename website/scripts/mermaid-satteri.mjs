@@ -47,7 +47,7 @@ export function mermaidSatteriPlugin({ source }) {
   const render = createMermaidRenderer();
 
   return defineHastPlugin({
-    name: "clamui-build-time-mermaid",
+    name: "linux-defender-build-time-mermaid",
     element: {
       filter: ["pre"],
       visit(node, ctx) {

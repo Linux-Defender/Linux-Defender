@@ -15,7 +15,7 @@ fn uid() -> u32 {
 
 fn temporary_directory(label: &str) -> std::path::PathBuf {
     let directory = std::env::temp_dir().join(format!(
-        "clamui-privileged-test-{label}-{}-{}",
+        "linux-defender-privileged-test-{label}-{}-{}",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)
@@ -72,7 +72,7 @@ fn destination_allowlist_rejects_non_config_system_files() {
 
 #[test]
 fn staging_root_comes_from_passwd_not_environment() {
-    const CHILD: &str = "CLAMUI_FORGED_STAGING_ENV_CHILD";
+    const CHILD: &str = "LINUX_DEFENDER_FORGED_STAGING_ENV_CHILD";
     if let Some(forged_home) = std::env::var_os(CHILD) {
         let forged_home = std::path::PathBuf::from(forged_home);
         let root = staging_root_for_uid(uid()).expect("derive passwd home staging root");
@@ -83,7 +83,7 @@ fn staging_root_comes_from_passwd_not_environment() {
     }
 
     let forged_home = std::env::temp_dir().join(format!(
-        "clamui-forged-home-{}-{}",
+        "linux-defender-forged-home-{}-{}",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)

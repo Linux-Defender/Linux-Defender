@@ -366,8 +366,8 @@ mod tests {
         let root = temp.path();
         let context = Context::with_paths(Paths {
             home: root.join("home"),
-            config_dir: root.join("config/clamui"),
-            data_dir: root.join("data/clamui"),
+            config_dir: root.join("config/linux-defender"),
+            data_dir: root.join("data/linux-defender"),
         })
         .expect("catalog context");
 

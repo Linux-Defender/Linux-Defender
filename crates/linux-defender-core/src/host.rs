@@ -442,7 +442,7 @@ fn database_in_dir(dir: &str, require_readable: bool) -> AppResult<bool> {
             &[
                 "-c".to_owned(),
                 script.to_owned(),
-                "clamui-db-probe".to_owned(),
+                "linux-defender-db-probe".to_owned(),
                 dir.to_owned(),
                 if require_readable { "1" } else { "0" }.to_owned(),
             ],
@@ -653,7 +653,7 @@ pub fn database_status(config_path: Option<&str>) -> Value {
             &[
                 "-c".to_owned(),
                 script.to_owned(),
-                "clamui-db-stat".to_owned(),
+                "linux-defender-db-stat".to_owned(),
                 dir.clone(),
             ],
             Some(5),

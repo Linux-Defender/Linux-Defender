@@ -14,7 +14,7 @@ flowchart TB
   UI[React / TypeScript frontend] -->|request operation + JSON args| Runtime[Tauri native runtime]
   Runtime -->|allowlisted core dispatch| Core[linux-defender-core]
   Core -->|Event event + data| Runtime
-  Runtime -->|clamui-event| UI
+  Runtime -->|linux-defender-event| UI
   Runtime --> Tray[Pure-Rust SNI + DBusMenu]
   Tray -->|quick scan / update / profile / quit| Runtime
 ```
@@ -26,7 +26,7 @@ flowchart TB
 | `crates/linux-defender-core` | Headless domain dispatch, XDG persistence, ClamAV host commands, scheduler, quarantine, i18n, and helper protocol |
 | `desktop/src-tauri` | Tauri commands, event bridge, native dialogs, safe external/path opening, single instance, lifecycle, and SNI tray |
 | `desktop/src` | React pages, navigation, i18n rendering, notifications, and typed frontend API |
-| `/usr/bin/clamui-apply-preferences` | Native privileged helper implementing the authenticated protocol-v4 host-configuration boundary |
+| `/usr/bin/linux-defender-apply-preferences` | Native privileged helper implementing the authenticated protocol-v4 host-configuration boundary |
 
 ## Localization and credits
 
@@ -47,8 +47,8 @@ The native `request` command routes only allowlisted core operations. There is n
 All runtime notifications share one event shape and one channel:
 
 ```ts
-type Linux DefenderEvent = { event: string; data: unknown }
-// Tauri event channel: "clamui-event"
+type LinuxDefenderEvent = { event: string; data: unknown }
+// Tauri event channel: "linux-defender-event"
 ```
 
 Important scan and update events include `scan-progress`, `scan-complete`, `update-progress`, and `update-complete`. The frontend must unsubscribe listeners when unmounted. Long-running requests execute off the Tauri UI thread; cancellation is scoped to the operation ID and never cancels an unrelated scan.
@@ -63,7 +63,7 @@ GNOME normally needs [AppIndicator Support](https://extensions.gnome.org/extensi
 
 ## Desktop lifecycle
 
-The native runtime processes CLI arguments before GUI initialization. The seven `clamui` subcommands and `clamui --help` remain headless. For GUI launches, the single-instance handler forwards the working directory, decoded `file://` paths, and multiple selected files. Normal file launches scan every path; `--virustotal` uses only the first file and makes ignored extras visible to the user.
+The native runtime processes CLI arguments before GUI initialization. The seven `linux-defender` subcommands and `linux-defender --help` remain headless. For GUI launches, the single-instance handler forwards the working directory, decoded `file://` paths, and multiple selected files. Normal file launches scan every path; `--virustotal` uses only the first file and makes ignored extras visible to the user.
 
 The desktop exposes only native helper commands for choosing paths, saving exports, copying text, opening an explicitly requested existing path, opening approved external URLs, closing the app, and reading startup state. It enforces a strict content-security policy and rejects webview/new-window navigation.
 

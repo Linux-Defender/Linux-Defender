@@ -34,7 +34,7 @@
     <url type="vcs-browser">https://github.com/Linux-Defender/Linux-Defender</url>
 
     <provides>
-        <binary>clamui</binary>
+        <binary>linux-defender</binary>
     </provides>
 
     <requires>

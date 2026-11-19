@@ -557,7 +557,7 @@ fn eicar(ctx: &Context, args: Value) -> AppResult<Value> {
     fs::create_dir_all(&ctx.paths.data_dir)
         .map_err(|error| format!("Unable to create EICAR temporary directory: {error}"))?;
     let filename = ctx.paths.data_dir.join(format!(
-        ".clamui-eicar-{}",
+        ".linux-defender-eicar-{}",
         REQUEST_SEQUENCE.fetch_add(1, Ordering::Relaxed)
     ));
     let mut file = OpenOptions::new()
@@ -1201,7 +1201,7 @@ fn write_private_file_list<'a>(
         .map_err(|error| format!("Unable to create private scan-list directory: {error}"))?;
     let sequence = REQUEST_SEQUENCE.fetch_add(1, Ordering::Relaxed);
     let path = ctx.paths.data_dir.join(format!(
-        ".clamui-clamdscan-{}-{sequence}.list",
+        ".linux-defender-clamdscan-{}-{sequence}.list",
         std::process::id()
     ));
     let result = (|| -> AppResult<()> {
@@ -2668,8 +2668,8 @@ mod tests {
         let temp = tempfile::tempdir().expect("temporary workspace");
         let context = Context::with_paths(crate::common::Paths {
             home: temp.path().join("home"),
-            config_dir: temp.path().join("config/clamui"),
-            data_dir: temp.path().join("data/clamui"),
+            config_dir: temp.path().join("config/linux-defender"),
+            data_dir: temp.path().join("data/linux-defender"),
         })
         .expect("context");
         context
@@ -2993,8 +2993,8 @@ mod tests {
         let temp = tempfile::tempdir().expect("temporary workspace");
         let context = Context::with_paths(crate::common::Paths {
             home: temp.path().join("home"),
-            config_dir: temp.path().join("config/clamui"),
-            data_dir: temp.path().join("data/clamui"),
+            config_dir: temp.path().join("config/linux-defender"),
+            data_dir: temp.path().join("data/linux-defender"),
         })
         .expect("context");
         context

@@ -10,8 +10,12 @@ use std::path::{Path, PathBuf};
 use std::process::Stdio;
 use std::time::{Duration, Instant};
 
-pub const SERVICE_NAME: &str = "clamui-scheduled-scan";
-pub const TIMER_NAME: &str = "clamui-scheduled-scan";
+pub const SERVICE_NAME: &str = "linux-defender-scheduled-scan";
+pub const TIMER_NAME: &str = "linux-defender-scheduled-scan";
+/// Units written before the rename. Applying or disabling a schedule must
+/// clear them, otherwise an upgraded install could run two timers.
+pub const LEGACY_SERVICE_NAME: &str = "clamui-scheduled-scan";
+pub const LEGACY_TIMER_NAME: &str = "clamui-scheduled-scan";
 pub const CRON_MARKER: &str = "# Linux Defender Scheduled Scan";
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Serialize)]
@@ -184,7 +188,7 @@ pub fn preview(_ctx: &Context, schedule: &ScheduleConfig) -> AppResult<Value> {
     validate_schedule(schedule)?;
     let backend = detect_backend();
     let command = launcher_command()
-        .ok_or_else(|| "Could not find clamui-scheduled-scan command".to_string())?;
+        .ok_or_else(|| "Could not find linux-defender-scheduled-scan command".to_string())?;
     let calendar = on_calendar(
         schedule.frequency,
         &schedule.time,
@@ -311,8 +315,20 @@ fn run_host(program: &str, args: &[&str]) -> AppResult<std::process::Output> {
 
 fn enable_systemd(ctx: &Context, schedule: &ScheduleConfig) -> AppResult<()> {
     let command = launcher_command()
-        .ok_or_else(|| "Could not find clamui-scheduled-scan command".to_string())?;
+        .ok_or_else(|| "Could not find linux-defender-scheduled-scan command".to_string())?;
     let dir = systemd_dir(ctx);
+    // An upgrade can leave the pre-rename units active. Stop and remove them
+    // first so only one timer schedules the same scan.
+    let _ = run_host(
+        "systemctl",
+        &[
+            "--user",
+            "disable",
+            "--now",
+            &format!("{LEGACY_TIMER_NAME}.timer"),
+        ],
+    );
+    let _ = remove_systemd_units(&dir, LEGACY_SERVICE_NAME, LEGACY_TIMER_NAME);
     fs::create_dir_all(&dir).map_err(|error| format!("Error creating systemd files: {error}"))?;
     fs::write(
         dir.join(format!("{SERVICE_NAME}.service")),
@@ -343,32 +359,51 @@ fn enable_systemd(ctx: &Context, schedule: &ScheduleConfig) -> AppResult<()> {
 }
 
 fn disable_systemd(ctx: &Context) -> AppResult<()> {
-    let timer = format!("{TIMER_NAME}.timer");
-    let _ = run_host("systemctl", &["--user", "disable", "--now", &timer]);
     let dir = systemd_dir(ctx);
-    for name in [
-        format!("{SERVICE_NAME}.service"),
-        format!("{TIMER_NAME}.timer"),
+    for (service, timer) in [
+        (SERVICE_NAME, TIMER_NAME),
+        (LEGACY_SERVICE_NAME, LEGACY_TIMER_NAME),
     ] {
+        let _ = run_host(
+            "systemctl",
+            &["--user", "disable", "--now", &format!("{timer}.timer")],
+        );
+        remove_systemd_units(&dir, service, timer)?;
+    }
+    let _ = run_host("systemctl", &["--user", "daemon-reload"])?;
+    Ok(())
+}
+
+/// Remove one service/timer pair, ignoring files that were never installed.
+fn remove_systemd_units(dir: &Path, service: &str, timer: &str) -> AppResult<()> {
+    for name in [format!("{service}.service"), format!("{timer}.timer")] {
         let path = dir.join(name);
         if path.exists() {
             fs::remove_file(&path)
                 .map_err(|error| format!("Error removing systemd files: {error}"))?;
         }
     }
-    let _ = run_host("systemctl", &["--user", "daemon-reload"])?;
     Ok(())
 }
 
+fn active_systemd_timer() -> Option<&'static str> {
+    // Prefer the canonical unit; fall back to one left by an upgrade.
+    [TIMER_NAME, LEGACY_TIMER_NAME].into_iter().find(|timer| {
+        run_host(
+            "systemctl",
+            &["--user", "is-active", &format!("{timer}.timer")],
+        )
+        .is_ok_and(|output| output.status.success())
+    })
+}
+
 fn systemd_status() -> AppResult<Value> {
-    let timer = format!("{TIMER_NAME}.timer");
-    let active = run_host("systemctl", &["--user", "is-active", &timer])
-        .is_ok_and(|output| output.status.success());
-    if !active {
+    let Some(timer) = active_systemd_timer() else {
         return Ok(
             json!({"backend":"systemd", "available":true, "active":false, "next_run":Value::Null}),
         );
-    }
+    };
+    let timer = format!("{timer}.timer");
     let next = run_host(
         "systemctl",
         &[
@@ -402,7 +437,7 @@ fn cron_status() -> AppResult<Value> {
 
 fn enable_cron(schedule: &ScheduleConfig) -> AppResult<()> {
     let command = launcher_command()
-        .ok_or_else(|| "Could not find clamui-scheduled-scan command".to_string())?;
+        .ok_or_else(|| "Could not find linux-defender-scheduled-scan command".to_string())?;
     let existing = run_host("crontab", &["-l"])
         .ok()
         .filter(|output| output.status.success())
@@ -614,7 +649,7 @@ pub fn remove_our_cron_lines(existing: &str) -> Vec<String> {
     for line in existing.lines() {
         if next_is_paired {
             next_is_paired = false;
-            if !is_clamui_cron_command(line) {
+            if !is_scheduled_scan_command(line) {
                 lines.push(line.to_owned());
             }
             continue;
@@ -628,7 +663,7 @@ pub fn remove_our_cron_lines(existing: &str) -> Vec<String> {
     lines
 }
 
-pub fn is_clamui_cron_command(line: &str) -> bool {
+pub fn is_scheduled_scan_command(line: &str) -> bool {
     let words = shell_words(line);
     if words.len() <= 5 {
         return false;
@@ -643,13 +678,19 @@ pub fn is_clamui_cron_command(line: &str) -> bool {
     {
         return true;
     }
-    if Path::new(&command[0]).file_name() == Some(OsStr::new("clamui-scheduled-scan")) {
+    let program = Path::new(&command[0]).file_name();
+    if SCHEDULER_PROGRAMS
+        .iter()
+        .any(|known| program == Some(OsStr::new(known)))
+    {
         return true;
     }
     if command[0] == "flatpak"
-        && command[1..]
-            .iter()
-            .any(|word| word == "--command=clamui-scheduled-scan")
+        && command[1..].iter().any(|word| {
+            SCHEDULER_PROGRAMS
+                .iter()
+                .any(|known| word.strip_prefix("--command=") == Some(*known))
+        })
     {
         return true;
     }
@@ -713,14 +754,20 @@ fn shell_words(input: &str) -> Vec<String> {
     words
 }
 
+/// Helper names in preference order. A pre-rename install keeps scheduling
+/// until the new binary is on PATH.
+const SCHEDULER_PROGRAMS: [&str; 2] = ["linux-defender-scheduled-scan", "clamui-scheduled-scan"];
+
 fn launcher_command() -> Option<Vec<String>> {
     if is_flatpak() {
+        // The manifest in this repository is the source of truth for what the
+        // sandbox exposes, and it installs the canonical command name.
         let app_id = env::var("FLATPAK_ID")
             .unwrap_or_else(|_| "io.github.linuxdefender.linuxdefender".to_owned());
         return Some(vec![
             "flatpak".to_owned(),
             "run".to_owned(),
-            "--command=clamui-scheduled-scan".to_owned(),
+            format!("--command={}", SCHEDULER_PROGRAMS[0]),
             app_id,
         ]);
     }
@@ -735,26 +782,34 @@ fn launcher_command() -> Option<Vec<String>> {
             "--scheduled-scan".to_owned(),
         ]);
     }
-    if let Some(path) = find_on_path("clamui-scheduled-scan") {
+    if let Some(path) = SCHEDULER_PROGRAMS.into_iter().find_map(find_on_path) {
         return Some(vec![path.display().to_string()]);
     }
     if let Ok(current) = env::current_exe() {
         if let Some(parent) = current.parent() {
-            let sibling = parent.join("clamui-scheduled-scan");
-            if sibling.is_file() {
+            if let Some(sibling) = SCHEDULER_PROGRAMS
+                .into_iter()
+                .map(|program| parent.join(program))
+                .find(|path| path.is_file())
+            {
                 return Some(vec![sibling.display().to_string()]);
             }
         }
     }
     let home = env::var_os("HOME").map(PathBuf::from);
     let candidates = [
-        home.map(|home| home.join(".local/bin/clamui-scheduled-scan")),
-        Some(PathBuf::from("/usr/local/bin/clamui-scheduled-scan")),
-        Some(PathBuf::from("/usr/bin/clamui-scheduled-scan")),
+        home.map(|home| home.join(".local/bin")),
+        Some(PathBuf::from("/usr/local/bin")),
+        Some(PathBuf::from("/usr/bin")),
     ];
-    candidates
+    SCHEDULER_PROGRAMS
         .into_iter()
-        .flatten()
+        .flat_map(|program| {
+            candidates
+                .iter()
+                .flatten()
+                .map(move |directory| directory.join(program))
+        })
         .find(|path| path.is_file())
         .map(|path| vec![path.display().to_string()])
 }
@@ -790,7 +845,7 @@ fn trnf(
     rendered
 }
 
-/// Standalone `clamui-scheduled-scan` implementation. Arguments omit argv0.
+/// Standalone `linux-defender-scheduled-scan` implementation. Arguments omit argv0.
 pub fn run_scheduled(args: &[String]) -> i32 {
     let headless = match crate::headless::HeadlessContext::new() {
         Ok(headless) => headless,
@@ -823,8 +878,8 @@ fn run_scheduled_inner(args: &[String], ctx: Context) -> AppResult<i32> {
             "{}",
             i18n::translate(
                 &ctx,
-                // Translators: Keep `clamui-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-                "Usage: clamui-scheduled-scan [--skip-on-battery] [--auto-quarantine] [--target PATH] [--dry-run] [--verbose|-v]",
+                // Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
+                "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] [--target PATH] [--dry-run] [--verbose|-v]",
             )
         );
         return Ok(0);
@@ -1350,14 +1405,14 @@ mod tests {
             .expect("system clock")
             .as_nanos();
         let root = std::env::temp_dir().join(format!(
-            "clamui-scheduler-battery-detail-{}-{nonce}",
+            "linux-defender-scheduler-battery-detail-{}-{nonce}",
             std::process::id()
         ));
         fs::create_dir_all(&root).expect("temporary root");
         let context = Context::with_paths(Paths {
             home: root.join("home"),
-            config_dir: root.join("config/clamui"),
-            data_dir: root.join("data/clamui"),
+            config_dir: root.join("config/linux-defender"),
+            data_dir: root.join("data/linux-defender"),
         })
         .expect("context");
         let observed_details = battery_skip_details(&context, Some(57.0));

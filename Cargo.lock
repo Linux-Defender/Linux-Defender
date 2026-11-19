@@ -586,25 +586,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "clamui"
-version = "0.6.0"
-dependencies = [
- "base64 0.23.1",
- "ksni",
- "linux-defender-core",
- "open",
- "rfd",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-clipboard-manager",
- "tauri-plugin-notification",
- "tauri-plugin-single-instance",
- "url",
-]
-
-[[package]]
 name = "clipboard-win"
 version = "5.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2467,6 +2448,25 @@ dependencies = [
  "cc",
  "pkg-config",
  "vcpkg",
+]
+
+[[package]]
+name = "linux-defender"
+version = "0.6.0"
+dependencies = [
+ "base64 0.23.1",
+ "ksni",
+ "linux-defender-core",
+ "open",
+ "rfd",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-clipboard-manager",
+ "tauri-plugin-notification",
+ "tauri-plugin-single-instance",
+ "url",
 ]
 
 [[package]]

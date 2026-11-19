@@ -38,7 +38,7 @@ pub fn run(args: &[String]) -> i32 {
     match args.first().map(String::as_str) {
         None | Some("--help") | Some("-h") => root_help(),
         Some("--version") | Some("-V") => {
-            println!("clamui {}", env!("CARGO_PKG_VERSION"));
+            println!("linux-defender {}", env!("CARGO_PKG_VERSION"));
             0
         }
         Some("help") => run_help(&args[1..]),
@@ -148,16 +148,16 @@ fn print_root_help(ctx: Option<&Context>) {
         "{}",
         tr(
             ctx,
-            // Translators: Keep `clamui` unchanged; it is the command name.
-            "  clamui                   Launch the graphical interface"
+            // Translators: Keep `linux-defender` unchanged; it is the command name.
+            "  linux-defender                   Launch the graphical interface"
         )
     );
     println!(
         "{}",
         tr(
             ctx,
-            // Translators: Keep `clamui`, `<command>`, and `[args]` unchanged; they are command syntax.
-            "  clamui <command> [args]   Run a CLI command\n"
+            // Translators: Keep `linux-defender`, `<command>`, and `[args]` unchanged; they are command syntax.
+            "  linux-defender <command> [args]   Run a CLI command\n"
         )
     );
     println!("{}", tr(ctx, "Commands:"));
@@ -193,16 +193,16 @@ fn print_root_help(ctx: Option<&Context>) {
         "{}",
         tr(
             ctx,
-            // Translators: Keep the quoted `clamui help <command>` command unchanged.
-            "Run 'clamui help <command>' for usage examples.",
+            // Translators: Keep the quoted `linux-defender help <command>` command unchanged.
+            "Run 'linux-defender help <command>' for usage examples.",
         )
     );
     println!(
         "{}",
         tr(
             ctx,
-            // Translators: Keep the quoted `clamui` command unchanged.
-            "Run 'clamui' without arguments to launch the GUI.",
+            // Translators: Keep the quoted `linux-defender` command unchanged.
+            "Run 'linux-defender' without arguments to launch the GUI.",
         )
     );
 }
@@ -231,8 +231,8 @@ fn run_help(args: &[String]) -> i32 {
             "{}",
             tr(
                 Some(&ctx),
-                // Translators: Keep `clamui` and `[COMMAND]` command syntax unchanged; translate the `Usage:` label.
-                "Usage: clamui help [COMMAND]",
+                // Translators: Keep `linux-defender` and `[COMMAND]` command syntax unchanged; translate the `Usage:` label.
+                "Usage: linux-defender help [COMMAND]",
             )
         );
         println!(
@@ -281,7 +281,7 @@ fn run_help(args: &[String]) -> i32 {
         trf(
             Some(&ctx),
             // Translators: Keep `{name}` as the command name and `{summary}` as its translated description; the em dash separates them.
-            "clamui {name} — {summary}\n",
+            "linux-defender {name} — {summary}\n",
             &[
                 ("{name}", topic.as_str()),
                 ("{summary}", translated_summary.as_str()),
@@ -296,8 +296,8 @@ fn run_help(args: &[String]) -> i32 {
         "{}",
         trf(
             Some(&ctx),
-            // Translators: Keep the quoted `clamui {name} --help` command unchanged; preserve `{name}` as the command name.
-            "\nRun 'clamui {name} --help' for full option reference.",
+            // Translators: Keep the quoted `linux-defender {name} --help` command unchanged; preserve `{name}` as the command name.
+            "\nRun 'linux-defender {name} --help' for full option reference.",
             &[("{name}", topic.as_str())]
         )
     );
@@ -307,31 +307,31 @@ fn run_help(args: &[String]) -> i32 {
 fn command_examples(topic: &str) -> &'static [&'static str] {
     match topic {
         "scan" => &[
-            "clamui scan /home/user/Downloads",
-            "clamui scan /tmp --quarantine --json",
-            "clamui scan . --profile \"Quick Scan\" -v",
-            "clamui scan file1.txt dir/ --no-recursive",
+            "linux-defender scan /home/user/Downloads",
+            "linux-defender scan /tmp --quarantine --json",
+            "linux-defender scan . --profile \"Quick Scan\" -v",
+            "linux-defender scan file1.txt dir/ --no-recursive",
         ],
         "quarantine" => &[
-            "clamui quarantine list",
-            "clamui quarantine list --json",
-            "clamui quarantine restore 42",
-            "clamui quarantine delete 42",
+            "linux-defender quarantine list",
+            "linux-defender quarantine list --json",
+            "linux-defender quarantine restore 42",
+            "linux-defender quarantine delete 42",
         ],
         "profile" => &[
-            "clamui profile list",
-            "clamui profile show \"Full Scan\"",
-            "clamui profile export \"Quick Scan\" backup.json",
-            "clamui profile import backup.json",
+            "linux-defender profile list",
+            "linux-defender profile show \"Full Scan\"",
+            "linux-defender profile export \"Quick Scan\" backup.json",
+            "linux-defender profile import backup.json",
         ],
-        "status" => &["clamui status", "clamui status --json"],
+        "status" => &["linux-defender status", "linux-defender status --json"],
         "history" => &[
-            "clamui history",
-            "clamui history --limit 50",
-            "clamui history --type scan --json",
+            "linux-defender history",
+            "linux-defender history --limit 50",
+            "linux-defender history --type scan --json",
         ],
-        "install-privileged-helper" => &["sudo clamui install-privileged-helper"],
-        "help" => &["clamui help", "clamui help scan"],
+        "install-privileged-helper" => &["sudo linux-defender install-privileged-helper"],
+        "help" => &["linux-defender help", "linux-defender help scan"],
         _ => &[],
     }
 }
@@ -571,8 +571,8 @@ fn print_scan_help(ctx: &Context) -> i32 {
         "{}",
         tr(
             Some(ctx),
-            // Translators: Keep `clamui`, uppercase metavariables, brackets, and all `--` flags unchanged; they are CLI syntax.
-            "Usage: clamui scan PATH [PATH ...] [--no-recursive] [--profile NAME] [--quarantine] [--json] [--verbose]"
+            // Translators: Keep `linux-defender`, uppercase metavariables, brackets, and all `--` flags unchanged; they are CLI syntax.
+            "Usage: linux-defender scan PATH [PATH ...] [--no-recursive] [--profile NAME] [--quarantine] [--json] [--verbose]"
         )
     );
     println!(
@@ -803,8 +803,8 @@ fn run_quarantine(ctx: &Context, args: &[String]) -> i32 {
             "{}",
             tr(
                 Some(ctx),
-                // Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-                "Usage: clamui quarantine <list|restore|delete> [args]"
+                // Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
+                "Usage: linux-defender quarantine <list|restore|delete> [args]"
             )
         );
         return 0;
@@ -812,20 +812,20 @@ fn run_quarantine(ctx: &Context, args: &[String]) -> i32 {
     if has_help(args) {
         let usage = match args[0].as_str() {
             "list" => tr!(
-                // Translators: Keep `clamui`, `list`, and `--json` unchanged; they are CLI syntax.
-                "Usage: clamui quarantine list [--json]"
+                // Translators: Keep `linux-defender`, `list`, and `--json` unchanged; they are CLI syntax.
+                "Usage: linux-defender quarantine list [--json]"
             ),
             "restore" => tr!(
-                // Translators: Keep `clamui`, `restore`, and `ID` unchanged; they are CLI syntax.
-                "Usage: clamui quarantine restore ID"
+                // Translators: Keep `linux-defender`, `restore`, and `ID` unchanged; they are CLI syntax.
+                "Usage: linux-defender quarantine restore ID"
             ),
             "delete" => tr!(
-                // Translators: Keep `clamui`, `delete`, and `ID` unchanged; they are CLI syntax.
-                "Usage: clamui quarantine delete ID"
+                // Translators: Keep `linux-defender`, `delete`, and `ID` unchanged; they are CLI syntax.
+                "Usage: linux-defender quarantine delete ID"
             ),
             _ => tr!(
-                // Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-                "Usage: clamui quarantine <list|restore|delete> [args]"
+                // Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
+                "Usage: linux-defender quarantine <list|restore|delete> [args]"
             ),
         };
         println!("{}", tr(Some(ctx), usage));
@@ -1076,8 +1076,8 @@ fn run_profile(ctx: &Context, args: &[String]) -> i32 {
             "{}",
             tr(
                 Some(ctx),
-                // Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-                "Usage: clamui profile <list|show|export|import> [args]"
+                // Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
+                "Usage: linux-defender profile <list|show|export|import> [args]"
             )
         );
         return 0;
@@ -1085,24 +1085,24 @@ fn run_profile(ctx: &Context, args: &[String]) -> i32 {
     if has_help(args) {
         let usage = match args[0].as_str() {
             "list" => tr!(
-                // Translators: Keep `clamui`, `list`, and `--json` unchanged; they are CLI syntax.
-                "Usage: clamui profile list [--json]"
+                // Translators: Keep `linux-defender`, `list`, and `--json` unchanged; they are CLI syntax.
+                "Usage: linux-defender profile list [--json]"
             ),
             "show" => tr!(
-                // Translators: Keep `clamui`, `show`, `NAME`, and `--json` unchanged; they are CLI syntax.
-                "Usage: clamui profile show NAME [--json]"
+                // Translators: Keep `linux-defender`, `show`, `NAME`, and `--json` unchanged; they are CLI syntax.
+                "Usage: linux-defender profile show NAME [--json]"
             ),
             "export" => tr!(
-                // Translators: Keep `clamui`, `export`, `NAME`, and `FILE` unchanged; they are CLI syntax.
-                "Usage: clamui profile export NAME FILE"
+                // Translators: Keep `linux-defender`, `export`, `NAME`, and `FILE` unchanged; they are CLI syntax.
+                "Usage: linux-defender profile export NAME FILE"
             ),
             "import" => tr!(
-                // Translators: Keep `clamui`, `import`, and `FILE` unchanged; they are CLI syntax.
-                "Usage: clamui profile import FILE"
+                // Translators: Keep `linux-defender`, `import`, and `FILE` unchanged; they are CLI syntax.
+                "Usage: linux-defender profile import FILE"
             ),
             _ => tr!(
-                // Translators: Keep `clamui`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-                "Usage: clamui profile <list|show|export|import> [args]"
+                // Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
+                "Usage: linux-defender profile <list|show|export|import> [args]"
             ),
         };
         println!("{}", tr(Some(ctx), usage));
@@ -1423,8 +1423,8 @@ fn run_status(ctx: &Context, args: &[String]) -> i32 {
             "{}",
             tr(
                 Some(ctx),
-                // Translators: Keep `clamui` and `--json` unchanged; they are CLI syntax.
-                "Usage: clamui status [--json]",
+                // Translators: Keep `linux-defender` and `--json` unchanged; they are CLI syntax.
+                "Usage: linux-defender status [--json]",
             )
         );
         return 0;
@@ -1547,8 +1547,8 @@ fn run_history(ctx: &Context, args: &[String]) -> i32 {
             "{}",
             tr(
                 Some(ctx),
-                // Translators: Keep `clamui`, all `--` flags, `N`, and type choices unchanged; they are CLI syntax.
-                "Usage: clamui history [--limit N] [--type scan|update|virustotal] [--json]"
+                // Translators: Keep `linux-defender`, all `--` flags, `N`, and type choices unchanged; they are CLI syntax.
+                "Usage: linux-defender history [--limit N] [--type scan|update|virustotal] [--json]"
             )
         );
         return 0;
@@ -1719,8 +1719,8 @@ fn run_install_privileged_helper(ctx: &Context, args: &[String]) -> i32 {
             "{}",
             tr(
                 Some(ctx),
-                // Translators: Keep `clamui install-privileged-helper` unchanged; it is the CLI command.
-                "Usage: clamui install-privileged-helper",
+                // Translators: Keep `linux-defender install-privileged-helper` unchanged; it is the CLI command.
+                "Usage: linux-defender install-privileged-helper",
             )
         );
         return 0;

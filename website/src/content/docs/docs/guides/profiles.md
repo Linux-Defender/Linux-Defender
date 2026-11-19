@@ -48,8 +48,8 @@ Export profiles as JSON to back them up or share them. Exports can reveal user n
 Use the CLI for automation:
 
 ```bash
-clamui profile export "Quick Scan" "$HOME/quick-scan.json"
-clamui profile import "$HOME/quick-scan.json"
+linux-defender profile export "Quick Scan" "$HOME/quick-scan.json"
+linux-defender profile import "$HOME/quick-scan.json"
 ```
 
 The CLI uses the supplied profile `FILE` path literally: a quoted `~` is not expanded. Let the shell expand `~`, or use `$HOME` as in the examples. This differs from scan targets, where `~` remains supported.

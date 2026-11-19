@@ -39,7 +39,7 @@ Keep the backups until the app opens and your history and settings look right.
 
 ## The data directory is unexpectedly large
 
-A killed or crashed daemon scan can leave a private `.clamui-clamdscan-<pid>-<sequence>.list` file in the data directory (`~/.local/share/linux-defender`). Normal scans remove it; after a crash, delete it once no scan is running. It only contains target paths that scan was about to read.
+A killed or crashed daemon scan can leave a private `.linux-defender-clamdscan-<pid>-<sequence>.list` file in the data directory (`~/.local/share/linux-defender`). Normal scans remove it; after a crash, delete it once no scan is running. It only contains target paths that scan was about to read.
 
 ## The desktop does not start on Wayland
 
@@ -92,12 +92,12 @@ Linux Defender's integration actions are managed by the development build and de
 A restore refusal can mean the destination exists or the saved file's integrity check failed; do not bypass that check. Export important logs before **Clear All** because clearing is permanent. Scheduled scans need an enabled user systemd timer or cron job and a powered-on machine at run time. Check a schedule without changing data:
 
 ```bash
-clamui-scheduled-scan --dry-run
+linux-defender-scheduled-scan --dry-run
 systemctl --user list-timers
 crontab -l
 ```
 
-The CLI command name is still `clamui-scheduled-scan` during the application-identity migration.
+The canonical CLI command is `linux-defender-scheduled-scan`; the pre-rename `clamui-scheduled-scan` name remains accepted for existing schedules.
 
 ## Still stuck?
 

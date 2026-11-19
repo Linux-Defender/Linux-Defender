@@ -189,7 +189,7 @@ function navigationDetail(value: unknown): NavigationDetail | null {
 }
 
 function localEvent(event: string, data: unknown = {}): void {
-  window.dispatchEvent(new CustomEvent("clamui-event", { detail: { event, data } }));
+  window.dispatchEvent(new CustomEvent("linux-defender-event", { detail: { event, data } }));
 }
 
 function toastClass(type: Toast["type"]): string {
@@ -331,9 +331,9 @@ export default function App(): ReactNode {
       return next;
     });
     setActivePage(page);
-    window.dispatchEvent(new CustomEvent("clamui-page-selected", { detail: { page, args } }));
+    window.dispatchEvent(new CustomEvent("linux-defender-page-selected", { detail: { page, args } }));
     if (page === "scan" && args.quickScan === true) {
-      window.dispatchEvent(new CustomEvent("clamui-quick-scan"));
+      window.dispatchEvent(new CustomEvent("linux-defender-quick-scan"));
     }
   }, []);
 
@@ -605,13 +605,13 @@ export default function App(): ReactNode {
       setScanJobId(nextScanJobId);
     };
 
-    window.addEventListener("clamui-navigate", onNavigate);
-    window.addEventListener("clamui-notify", onToast);
-    window.addEventListener("clamui-scan-state", onScanState);
+    window.addEventListener("linux-defender-navigate", onNavigate);
+    window.addEventListener("linux-defender-notify", onToast);
+    window.addEventListener("linux-defender-scan-state", onScanState);
     return () => {
-      window.removeEventListener("clamui-navigate", onNavigate);
-      window.removeEventListener("clamui-notify", onToast);
-      window.removeEventListener("clamui-scan-state", onScanState);
+      window.removeEventListener("linux-defender-navigate", onNavigate);
+      window.removeEventListener("linux-defender-notify", onToast);
+      window.removeEventListener("linux-defender-scan-state", onScanState);
     };
   }, [selectPage, showToast]);
 
@@ -620,7 +620,7 @@ export default function App(): ReactNode {
     let stopEvents: (() => void) | undefined;
 
     const receiveEvent = (event: NativeEvent): void => {
-      window.dispatchEvent(new CustomEvent("clamui-native-event", { detail: event }));
+      window.dispatchEvent(new CustomEvent("linux-defender-native-event", { detail: event }));
       if (event.event === "open-targets" || event.event === "dropped-targets") {
         selectPage("scan");
         return;
@@ -640,7 +640,7 @@ export default function App(): ReactNode {
         "action" in event.data &&
         typeof event.data.action === "string"
       ) {
-        window.dispatchEvent(new CustomEvent("clamui-notification-activated", { detail: event.data }));
+        window.dispatchEvent(new CustomEvent("linux-defender-notification-activated", { detail: event.data }));
         if (event.data.action === "show-scan") {
           selectPage("scan");
         } else if (event.data.action === "show-update") {

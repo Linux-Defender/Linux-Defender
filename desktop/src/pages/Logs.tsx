@@ -219,8 +219,8 @@ export default function Logs({ active }: { active: boolean }) {
       if (!(event instanceof CustomEvent) || !event.detail || typeof event.detail !== "object" || !("page" in event.detail)) return;
       if (event.detail.page !== "logs") setLive(false);
     };
-    window.addEventListener("clamui-page-selected", stopLiveUpdatesElsewhere);
-    return () => window.removeEventListener("clamui-page-selected", stopLiveUpdatesElsewhere);
+    window.addEventListener("linux-defender-page-selected", stopLiveUpdatesElsewhere);
+    return () => window.removeEventListener("linux-defender-page-selected", stopLiveUpdatesElsewhere);
   }, []);
 
   const refreshDaemon = useCallback(async () => {

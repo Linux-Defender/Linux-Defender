@@ -93,11 +93,11 @@ jobs:
           test "${#appimage[@]}" -eq 1
           chmod +x "${appimage[0]}"
           "./${appimage[0]}" --appimage-extract
-          test -x squashfs-root/usr/bin/clamui
-          test -x squashfs-root/usr/bin/clamui-scheduled-scan
-          test -x squashfs-root/usr/bin/clamui-apply-preferences
-          squashfs-root/usr/bin/clamui --help
-          squashfs-root/usr/bin/clamui-scheduled-scan --help
+          test -x squashfs-root/usr/bin/linux-defender
+          test -x squashfs-root/usr/bin/linux-defender-scheduled-scan
+          test -x squashfs-root/usr/bin/linux-defender-apply-preferences
+          squashfs-root/usr/bin/linux-defender --help
+          squashfs-root/usr/bin/linux-defender-scheduled-scan --help
           rm -rf squashfs-root
 
       - name: Import GPG key

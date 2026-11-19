@@ -1,6 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Linux Defender",
+  "mainBinaryName": "linux-defender",
   "version": "0.6.0",
   "identifier": "io.github.linuxdefender.linuxdefender",
   "build": {

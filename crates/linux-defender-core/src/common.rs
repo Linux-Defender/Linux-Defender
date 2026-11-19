@@ -321,7 +321,7 @@ pub fn atomic_write(path: &Path, bytes: &[u8], mode: u32) -> AppResult<()> {
             ".{}.{}.tmp",
             path.file_name()
                 .and_then(|name| name.to_str())
-                .unwrap_or("clamui"),
+                .unwrap_or("linux-defender"),
             Uuid::new_v4()
         ));
         let file = OpenOptions::new()
@@ -632,8 +632,8 @@ mod tests {
     fn jobs_are_isolated_and_unregistered_on_drop() {
         let paths = Paths {
             home: PathBuf::from("/tmp"),
-            config_dir: PathBuf::from("/tmp/clamui-test"),
-            data_dir: PathBuf::from("/tmp/clamui-data"),
+            config_dir: PathBuf::from("/tmp/linux-defender-test"),
+            data_dir: PathBuf::from("/tmp/linux-defender-data"),
         };
         let context = Context::with_paths(paths).expect("context");
         let scan = context.job("scan-a").expect("scan job");
@@ -650,8 +650,8 @@ mod tests {
         let latch = Arc::new(AtomicBool::new(true));
         let context = Context::with_paths(Paths {
             home: PathBuf::from("/tmp"),
-            config_dir: PathBuf::from("/tmp/clamui-interrupt-test"),
-            data_dir: PathBuf::from("/tmp/clamui-interrupt-data"),
+            config_dir: PathBuf::from("/tmp/linux-defender-interrupt-test"),
+            data_dir: PathBuf::from("/tmp/linux-defender-interrupt-data"),
         })
         .expect("context")
         .with_interrupt_latch(Arc::clone(&latch));

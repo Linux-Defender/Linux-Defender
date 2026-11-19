@@ -93,7 +93,7 @@ build-deb-temp/
 
 squashfs-root/
 .opencodeignore
-clamui.zip
+linux-defender.zip
 *.AppImage
 
 # Environment files (prevent accidental credential commits)

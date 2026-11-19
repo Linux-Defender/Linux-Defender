@@ -7,7 +7,7 @@
 # The selected files are passed via NAUTILUS_SCRIPT_SELECTED_FILE_PATHS environment variable.
 
 # Enable logging for debugging
-LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/clamui/virustotal-nautilus.log"
+LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/linux-defender/virustotal-nautilus.log"
 mkdir -p "$(dirname "$LOG_FILE")"
 
 log() {
@@ -18,9 +18,14 @@ log "Script started"
 log "NAUTILUS_SCRIPT_SELECTED_FILE_PATHS: $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 log "Arguments: $*"
 
-# Keep the historical executable as a compatibility entry point.
-if ! command -v clamui &> /dev/null; then
-    log "ERROR: Linux Defender is not installed (compatibility command 'clamui' was not found)"
+# Prefer the canonical command. The pre-rename name is still accepted so this
+# script keeps working on an install that has not been upgraded yet.
+if command -v linux-defender &> /dev/null; then
+    LAUNCHER=linux-defender
+elif command -v clamui &> /dev/null; then
+    LAUNCHER=clamui
+else
+    log "ERROR: Linux Defender is not installed (no linux-defender command was found)"
     log "PATH: $PATH"
     # Try to notify user
     if command -v notify-send &> /dev/null; then
@@ -29,7 +34,7 @@ if ! command -v clamui &> /dev/null; then
     exit 1
 fi
 
-log "Linux Defender launcher found at: $(command -v clamui)"
+log "Linux Defender launcher found at: $(command -v "$LAUNCHER")"
 
 # Get selected files from Nautilus
 # NAUTILUS_SCRIPT_SELECTED_FILE_PATHS contains newline-separated paths
@@ -43,7 +48,7 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
     # (VirusTotal only supports single file scanning)
     if [[ ${#files[@]} -gt 0 ]]; then
         log "Launching Linux Defender's VirusTotal check for the selected file"
-        clamui --virustotal "${files[0]}" 2>&1 | tee -a "$LOG_FILE"
+        "$LAUNCHER" --virustotal "${files[0]}" 2>&1 | tee -a "$LOG_FILE"
         log "Linux Defender exited with code: $?"
     else
         log "ERROR: No files in array"
@@ -53,7 +58,7 @@ else
     if [[ $# -gt 0 ]]; then
         log "Using positional argument: $1"
         log "Launching Linux Defender's VirusTotal check for the selected file"
-        clamui --virustotal "$1" 2>&1 | tee -a "$LOG_FILE"
+        "$LAUNCHER" --virustotal "$1" 2>&1 | tee -a "$LOG_FILE"
         log "Linux Defender exited with code: $?"
     else
         log "ERROR: No files provided (neither env var nor arguments)"

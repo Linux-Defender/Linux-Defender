@@ -4,7 +4,10 @@ use serde::Serialize;
 use serde_json::{json, Value};
 use std::collections::HashMap;
 
-pub const SERVICE_NAME: &str = "clamui";
+pub const SERVICE_NAME: &str = "linux-defender";
+/// Secret-service attribute written by pre-rename releases. It is read once
+/// and migrated to [`SERVICE_NAME`] so existing keys survive the upgrade.
+pub const LEGACY_SERVICE_NAME: &str = "clamui";
 pub const VIRUSTOTAL_API_KEY: &str = "virustotal_api_key";
 pub const URLSCAN_API_KEY: &str = "urlscan_api_key";
 pub const PORTMASTER_API_TOKEN: &str = "portmaster_api_token";
@@ -80,7 +83,11 @@ enum KeyringFailure {
 
 /// Uses the existing Python-keyring compatible Secret Service attribute set.
 pub fn attributes(account: Account) -> HashMap<&'static str, &'static str> {
-    HashMap::from([("service", SERVICE_NAME), ("username", account.username())])
+    attributes_for(SERVICE_NAME, account)
+}
+
+fn attributes_for(service: &'static str, account: Account) -> HashMap<&'static str, &'static str> {
+    HashMap::from([("service", service), ("username", account.username())])
 }
 
 pub fn validate_virustotal_api_key(key: &str) -> AppResult<()> {
@@ -236,10 +243,30 @@ impl CredentialStore {
 }
 
 fn keyring_get(account: Account) -> Result<Option<String>, KeyringFailure> {
+    match keyring_get_for(SERVICE_NAME, account) {
+        // A key written before the rename is copied to the canonical service
+        // and removed from the legacy one, so this fallback runs only once.
+        Ok(None) => match keyring_get_for(LEGACY_SERVICE_NAME, account) {
+            Ok(Some(secret)) => {
+                if keyring_set(account, &secret).is_ok() {
+                    let _ = keyring_delete_for(LEGACY_SERVICE_NAME, account);
+                }
+                Ok(Some(secret))
+            }
+            other => other,
+        },
+        other => other,
+    }
+}
+
+fn keyring_get_for(
+    service_name: &'static str,
+    account: Account,
+) -> Result<Option<String>, KeyringFailure> {
     let service =
         SecretService::connect(EncryptionType::Dh).map_err(|_| KeyringFailure::Unavailable)?;
     let items = service
-        .search_items(attributes(account))
+        .search_items(attributes_for(service_name, account))
         .map_err(|_| KeyringFailure::Unavailable)?;
     if let Some(item) = items.unlocked.first() {
         let secret = item.get_secret().map_err(|_| KeyringFailure::Unavailable)?;
@@ -278,10 +305,21 @@ fn keyring_set(account: Account, secret: &str) -> Result<(), KeyringFailure> {
 }
 
 fn keyring_delete(account: Account) -> Result<bool, KeyringFailure> {
+    let deleted = keyring_delete_for(SERVICE_NAME, account)?;
+    // Best effort: a pre-rename copy must not keep the app from reporting a
+    // successful delete of the canonical entry.
+    let legacy = keyring_delete_for(LEGACY_SERVICE_NAME, account).unwrap_or(false);
+    Ok(deleted || legacy)
+}
+
+fn keyring_delete_for(
+    service_name: &'static str,
+    account: Account,
+) -> Result<bool, KeyringFailure> {
     let service =
         SecretService::connect(EncryptionType::Dh).map_err(|_| KeyringFailure::Unavailable)?;
     let items = service
-        .search_items(attributes(account))
+        .search_items(attributes_for(service_name, account))
         .map_err(|_| KeyringFailure::Unavailable)?;
     if !items.locked.is_empty() {
         return Err(KeyringFailure::Locked);

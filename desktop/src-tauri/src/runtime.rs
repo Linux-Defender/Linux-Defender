@@ -161,7 +161,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                 .lock()
                 .expect("scan progress state poisoned")
                 .forward(event, Instant::now(), |event| {
-                    let _ = app.emit("clamui-event", event);
+                    let _ = app.emit("linux-defender-event", event);
                 });
         }
     });
@@ -184,7 +184,10 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                             }
                         }
                     }
-                    let _ = app.emit("clamui-event", json!({ "event": event, "data": data }));
+                    let _ = app.emit(
+                        "linux-defender-event",
+                        json!({ "event": event, "data": data }),
+                    );
                     if event != "tray-availability" {
                         let _ = show_window(app);
                     }
@@ -237,7 +240,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
             if let Ok(targets) = parse_startup_targets(&args, &cwd) {
                 if !targets.paths.is_empty() {
                     let _ = app.emit(
-                        "clamui-event",
+                        "linux-defender-event",
                         json!({
                             "event": "open-targets",
                             "data": { "paths": targets.paths, "virustotal": targets.virustotal, "start": true }
@@ -268,7 +271,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
             WindowEvent::DragDrop(DragDropEvent::Drop { paths, .. }) => {
                 let paths = paths.iter().map(|path| path_to_wire(path)).collect::<Vec<_>>();
                 let _ = window.emit(
-                    "clamui-event",
+                    "linux-defender-event",
                     json!({ "event": "dropped-targets", "data": { "paths": paths, "start": false } }),
                 );
             }
@@ -297,7 +300,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                 Ok(handle) => *state.monitor.lock().expect("monitor state poisoned") = Some(handle),
                 Err(error) => {
                     let _ = app.emit(
-                        "clamui-event",
+                        "linux-defender-event",
                         json!({
                             "event": "runtime-error",
                             "data": { "component": "device-monitor", "message": error }
@@ -375,7 +378,7 @@ async fn request(
             .lock()
             .expect("scan progress state poisoned")
             .finish(&operation_id, registration, |event| {
-                let _ = app.emit("clamui-event", event);
+                let _ = app.emit("linux-defender-event", event);
             });
     }
     let value = result??;
@@ -558,7 +561,7 @@ fn request_close(
             })
         }
         CloseAction::Prompt => {
-            app.emit("clamui-event", json!({ "event": "close-requested", "data": { "scan_active": state.scan_active(), "tray_available": state.tray.available() } })).map_err(|error| error.to_string())?;
+            app.emit("linux-defender-event", json!({ "event": "close-requested", "data": { "scan_active": state.scan_active(), "tray_available": state.tray.available() } })).map_err(|error| error.to_string())?;
             Ok(CloseResult {
                 action: "prompt".into(),
             })
@@ -595,7 +598,7 @@ fn install_notification_actions(app: &AppHandle, ctx: &Context) {
             "show-scan" | "show-update" | "show-audit" => Some(performed.action_id().to_owned()),
             "tap" => performed
                 .notification()
-                .and_then(|notification| notification.extra().get("clamui-action"))
+                .and_then(|notification| notification.extra().get("linux-defender-action"))
                 .and_then(Value::as_str)
                 .filter(|action| matches!(*action, "show-scan" | "show-update" | "show-audit"))
                 .map(ToOwned::to_owned),
@@ -606,12 +609,12 @@ fn install_notification_actions(app: &AppHandle, ctx: &Context) {
         };
         let identity = performed
             .notification()
-            .and_then(|notification| notification.extra().get("clamui-identity"))
+            .and_then(|notification| notification.extra().get("linux-defender-identity"))
             .cloned()
             .unwrap_or_else(|| json!({}));
         let _ = show_window(&handle);
         let _ = handle.emit(
-            "clamui-event",
+            "linux-defender-event",
             json!({ "event": "notification-activated", "data": { "action": action, "identity": identity } }),
         );
     });

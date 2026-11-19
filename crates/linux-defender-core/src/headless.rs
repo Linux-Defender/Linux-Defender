@@ -39,7 +39,7 @@ impl HeadlessContext {
         let signal_handle = signals.handle();
         let signal_context = context.clone();
         let signal_worker = thread::Builder::new()
-            .name("clamui-headless-sigint".to_owned())
+            .name("linux-defender-headless-sigint".to_owned())
             .spawn(move || {
                 for _ in signals.forever() {
                     latch.store(true, Ordering::Release);

@@ -71,7 +71,7 @@ jobs:
           shopt -s nullglob
           rpms=( "dist/linux-defender-privileged-helper-"*-1."$RPM_ARCH".rpm )
           test "${#rpms[@]}" -eq 1
-          export CLAMUI_TEST_HELPER_RPM="$(realpath "${rpms[0]}")"
+          export LINUX_DEFENDER_TEST_HELPER_RPM="$(realpath "${rpms[0]}")"
           cargo test --release -p linux-defender-core rpm_bootstrap_rejects_invalid_signature -- --ignored
 
       - name: Import GPG key

@@ -14,8 +14,8 @@ fn context() -> (TempDir, Context) {
     let root = temp.path();
     let context = Context::with_paths(Paths {
         home: root.join("home"),
-        config_dir: root.join("config/clamui"),
-        data_dir: root.join("data/clamui"),
+        config_dir: root.join("config/linux-defender"),
+        data_dir: root.join("data/linux-defender"),
     })
     .expect("context");
     (temp, context)
@@ -78,9 +78,10 @@ fn backup_names(dir: &Path) -> Vec<String> {
         .filter_map(Result::ok)
         .filter_map(|entry| entry.file_name().into_string().ok())
         .filter(|name| {
-            name.strip_prefix("clamui.log.").is_some_and(|suffix| {
-                !suffix.is_empty() && suffix.bytes().all(|byte| byte.is_ascii_digit())
-            })
+            name.strip_prefix("linux-defender.log.")
+                .is_some_and(|suffix| {
+                    !suffix.is_empty() && suffix.bytes().all(|byte| byte.is_ascii_digit())
+                })
         })
         .collect::<Vec<_>>();
     names.sort();
@@ -695,14 +696,14 @@ fn debug_rotation_honors_persisted_size_and_retention() {
     logs::write_debug(&context, "DEBUG", "test", "initial migration").expect("initial debug write");
 
     let debug_dir = context.paths.data_dir.join("debug");
-    let current = debug_dir.join("clamui.log");
+    let current = debug_dir.join("linux-defender.log");
     fill_debug_log(&current, "first retained generation\n", 2 * 1024 * 1024);
 
     logs::write_debug(&context, "DEBUG", "test", "second generation")
         .expect("rotating debug write");
 
-    let backup = debug_dir.join("clamui.log.1");
-    assert_eq!(backup_names(&debug_dir), vec!["clamui.log.1"]);
+    let backup = debug_dir.join("linux-defender.log.1");
+    assert_eq!(backup_names(&debug_dir), vec!["linux-defender.log.1"]);
     assert!(fs::read_to_string(&backup)
         .expect("retained debug backup")
         .starts_with("first retained generation\n"));
@@ -728,6 +729,50 @@ fn debug_rotation_honors_persisted_size_and_retention() {
 }
 
 #[test]
+fn debug_listing_adopts_pre_rename_log_files() {
+    let (_temp, context) = context();
+    let debug_dir = context.paths.data_dir.join("debug");
+    fs::create_dir_all(&debug_dir).expect("debug directory");
+    fs::write(debug_dir.join("clamui.log"), "current generation\n").expect("legacy debug log");
+    fs::write(debug_dir.join("clamui.log.1"), "older generation\n").expect("legacy debug backup");
+
+    let listed = logs::dispatch(&context, "debug_list", json!({})).expect("list debug logs");
+
+    assert!(!debug_dir.join("clamui.log").exists());
+    assert!(!debug_dir.join("clamui.log.1").exists());
+    assert!(debug_dir.join("linux-defender.log").exists());
+    assert!(debug_dir.join("linux-defender.log.1").exists());
+    let names = listed
+        .as_array()
+        .expect("debug list array")
+        .iter()
+        .filter_map(|entry| entry.get("name").and_then(Value::as_str))
+        .collect::<Vec<_>>();
+    assert_eq!(names, vec!["linux-defender.log", "linux-defender.log.1"]);
+}
+
+#[test]
+fn debug_listing_keeps_a_legacy_log_when_the_canonical_name_exists() {
+    let (_temp, context) = context();
+    let debug_dir = context.paths.data_dir.join("debug");
+    fs::create_dir_all(&debug_dir).expect("debug directory");
+    fs::write(
+        debug_dir.join("linux-defender.log"),
+        "canonical generation\n",
+    )
+    .expect("canonical debug log");
+    fs::write(debug_dir.join("clamui.log"), "legacy generation\n").expect("legacy debug log");
+
+    logs::dispatch(&context, "debug_list", json!({})).expect("list debug logs");
+
+    assert!(debug_dir.join("linux-defender.log").exists());
+    assert_eq!(
+        fs::read_to_string(debug_dir.join("linux-defender.log")).expect("canonical content"),
+        "canonical generation\n"
+    );
+}
+
+#[test]
 fn debug_rotation_applies_changed_settings_and_discards_excess_backups() {
     let (_temp, context) = context();
     context
@@ -740,11 +785,18 @@ fn debug_rotation_applies_changed_settings_and_discards_excess_backups() {
     logs::write_debug(&context, "DEBUG", "test", "initial migration").expect("initial debug write");
 
     let debug_dir = context.paths.data_dir.join("debug");
-    let current = debug_dir.join("clamui.log");
+    let current = debug_dir.join("linux-defender.log");
     fill_debug_log(&current, "before settings change\n", 2 * 1024 * 1024);
-    fs::write(debug_dir.join("clamui.log.1"), "stale first backup\n").expect("first stale backup");
-    fs::write(debug_dir.join("clamui.log.2"), "stale second backup\n")
-        .expect("second stale backup");
+    fs::write(
+        debug_dir.join("linux-defender.log.1"),
+        "stale first backup\n",
+    )
+    .expect("first stale backup");
+    fs::write(
+        debug_dir.join("linux-defender.log.2"),
+        "stale second backup\n",
+    )
+    .expect("second stale backup");
 
     context
         .update_settings(json!({
@@ -755,8 +807,8 @@ fn debug_rotation_applies_changed_settings_and_discards_excess_backups() {
     logs::write_debug(&context, "DEBUG", "test", "after settings change")
         .expect("rotating debug write");
 
-    let backup = debug_dir.join("clamui.log.1");
-    assert_eq!(backup_names(&debug_dir), vec!["clamui.log.1"]);
+    let backup = debug_dir.join("linux-defender.log.1");
+    assert_eq!(backup_names(&debug_dir), vec!["linux-defender.log.1"]);
     assert!(fs::read_to_string(&backup)
         .expect("retained debug backup")
         .starts_with("before settings change\n"));
@@ -778,24 +830,34 @@ fn debug_rotation_uses_safe_defaults_for_unusable_values() {
     logs::write_debug(&context, "DEBUG", "test", "initial migration").expect("initial debug write");
 
     let debug_dir = context.paths.data_dir.join("debug");
-    let current = debug_dir.join("clamui.log");
+    let current = debug_dir.join("linux-defender.log");
     fill_debug_log(&current, "default-size generation\n", 5 * 1024 * 1024);
-    fs::write(debug_dir.join("clamui.log.1"), "existing first backup\n")
-        .expect("first existing backup");
-    fs::write(debug_dir.join("clamui.log.2"), "existing second backup\n")
-        .expect("second existing backup");
+    fs::write(
+        debug_dir.join("linux-defender.log.1"),
+        "existing first backup\n",
+    )
+    .expect("first existing backup");
+    fs::write(
+        debug_dir.join("linux-defender.log.2"),
+        "existing second backup\n",
+    )
+    .expect("second existing backup");
 
     logs::write_debug(&context, "DEBUG", "test", "after invalid settings")
         .expect("safe fallback debug write");
 
     assert_eq!(
         backup_names(&debug_dir),
-        vec!["clamui.log.1", "clamui.log.2", "clamui.log.3"]
+        vec![
+            "linux-defender.log.1",
+            "linux-defender.log.2",
+            "linux-defender.log.3"
+        ]
     );
-    assert!(fs::read_to_string(debug_dir.join("clamui.log.1"))
+    assert!(fs::read_to_string(debug_dir.join("linux-defender.log.1"))
         .expect("latest debug backup")
         .starts_with("default-size generation\n"));
-    assert!(fs::read_to_string(debug_dir.join("clamui.log.3"))
+    assert!(fs::read_to_string(debug_dir.join("linux-defender.log.3"))
         .expect("oldest debug backup")
         .starts_with("existing second backup\n"));
 }
@@ -813,18 +875,28 @@ fn debug_rotation_handles_enormous_retention_without_extra_work() {
     logs::write_debug(&context, "DEBUG", "test", "initial migration").expect("initial debug write");
 
     let debug_dir = context.paths.data_dir.join("debug");
-    let current = debug_dir.join("clamui.log");
+    let current = debug_dir.join("linux-defender.log");
     fill_debug_log(&current, "default-size generation\n", 5 * 1024 * 1024);
-    fs::write(debug_dir.join("clamui.log.1"), "existing first backup\n")
-        .expect("first existing backup");
-    fs::write(debug_dir.join("clamui.log.2"), "existing second backup\n")
-        .expect("second existing backup");
+    fs::write(
+        debug_dir.join("linux-defender.log.1"),
+        "existing first backup\n",
+    )
+    .expect("first existing backup");
+    fs::write(
+        debug_dir.join("linux-defender.log.2"),
+        "existing second backup\n",
+    )
+    .expect("second existing backup");
 
     logs::write_debug(&context, "DEBUG", "test", "after invalid settings")
         .expect("safe fallback debug write");
     assert_eq!(
         backup_names(&debug_dir),
-        vec!["clamui.log.1", "clamui.log.2", "clamui.log.3"]
+        vec![
+            "linux-defender.log.1",
+            "linux-defender.log.2",
+            "linux-defender.log.3"
+        ]
     );
 
     context
@@ -837,16 +909,16 @@ fn debug_rotation_handles_enormous_retention_without_extra_work() {
     assert_eq!(
         backup_names(&debug_dir),
         vec![
-            "clamui.log.1",
-            "clamui.log.2",
-            "clamui.log.3",
-            "clamui.log.4"
+            "linux-defender.log.1",
+            "linux-defender.log.2",
+            "linux-defender.log.3",
+            "linux-defender.log.4"
         ]
     );
-    assert!(fs::read_to_string(debug_dir.join("clamui.log.1"))
+    assert!(fs::read_to_string(debug_dir.join("linux-defender.log.1"))
         .expect("latest enormous-retention backup")
         .starts_with("enormous-retention generation\n"));
-    assert!(fs::read_to_string(debug_dir.join("clamui.log.4"))
+    assert!(fs::read_to_string(debug_dir.join("linux-defender.log.4"))
         .expect("oldest enormous-retention backup")
         .starts_with("existing second backup\n"));
 }
@@ -865,14 +937,14 @@ fn debug_archive_contains_only_redacted_rotating_log_content() {
     assert!(exported["filename"]
         .as_str()
         .expect("name")
-        .starts_with("clamui-logs-"));
+        .starts_with("linux-defender-logs-"));
     let bytes = BASE64
         .decode(exported["content_base64"].as_str().expect("base64"))
         .expect("archive bytes");
     let mut archive = zip::ZipArchive::new(Cursor::new(bytes)).expect("ZIP archive");
     let mut content = String::new();
     archive
-        .by_name("clamui.log")
+        .by_name("linux-defender.log")
         .expect("current debug log")
         .read_to_string(&mut content)
         .expect("debug content");

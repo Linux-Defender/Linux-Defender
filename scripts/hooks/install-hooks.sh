@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install git hooks for ClamUI development.
+# Install git hooks for Linux Defender development.
 #
 # Usage: ./scripts/hooks/install-hooks.sh
 

@@ -20,9 +20,9 @@ Usage: ./debian/build-deb.sh [OUTPUT_DIR]
 Builds matching architecture-specific Linux Defender and privileged-helper Debian
 packages. OUTPUT_DIR defaults to the project root.
 
-Set CLAMUI_ARTIFACT_DIR to an existing release-artifact directory containing
-clamui, clamui-scheduled-scan, and clamui-apply-preferences to package
-prebuilt native binaries without invoking Bun or Cargo.
+Set LINUX_DEFENDER_ARTIFACT_DIR to an existing release-artifact directory containing
+linux-defender, linux-defender-scheduled-scan, and linux-defender-apply-preferences to
+package prebuilt native binaries without invoking Bun or Cargo.
 EOF
 }
 
@@ -71,7 +71,7 @@ check_prerequisites() {
         fi
     done
 
-    if [ -z "${CLAMUI_ARTIFACT_DIR:-}" ]; then
+    if [ -z "${LINUX_DEFENDER_ARTIFACT_DIR:-}" ]; then
         for command in bun cargo; do
             if ! command -v "$command" >/dev/null 2>&1; then
                 log_error "Required command not found: $command"
@@ -101,7 +101,7 @@ artifact_dir() {
 
 verify_artifacts() {
     local artifact
-    for artifact in clamui clamui-scheduled-scan clamui-apply-preferences; do
+    for artifact in linux-defender linux-defender-scheduled-scan linux-defender-apply-preferences; do
         if [ ! -x "$ARTIFACT_DIR/$artifact" ]; then
             log_error "Expected compiled artifact is missing or not executable: $ARTIFACT_DIR/$artifact"
             return 1
@@ -110,8 +110,8 @@ verify_artifacts() {
 }
 
 build_artifacts() {
-    if [ -n "${CLAMUI_ARTIFACT_DIR:-}" ]; then
-        ARTIFACT_DIR="${CLAMUI_ARTIFACT_DIR%/}"
+    if [ -n "${LINUX_DEFENDER_ARTIFACT_DIR:-}" ]; then
+        ARTIFACT_DIR="${LINUX_DEFENDER_ARTIFACT_DIR%/}"
         log_info "Using prebuilt native artifacts from $ARTIFACT_DIR"
         verify_artifacts
         return
@@ -130,9 +130,9 @@ build_artifacts() {
     (
         cd "$PROJECT_ROOT"
         cargo build --manifest-path "$PROJECT_ROOT/Cargo.toml" --release --locked \
-            --package clamui --bin clamui
+            --package linux-defender --bin linux-defender
         cargo build --manifest-path "$PROJECT_ROOT/Cargo.toml" --release --locked \
-            --package linux-defender-core --bin clamui-scheduled-scan --bin clamui-apply-preferences
+            --package linux-defender-core --bin linux-defender-scheduled-scan --bin linux-defender-apply-preferences
     )
 
     ARTIFACT_DIR="$(artifact_dir)"
@@ -140,7 +140,7 @@ build_artifacts() {
 }
 
 create_package_structure() {
-    BUILD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/clamui-deb.XXXXXX")"
+    BUILD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/linux-defender-deb.XXXXXX")"
     chmod 0755 "$BUILD_DIR"
     trap cleanup EXIT
     install -d -m 0755 \
@@ -164,9 +164,9 @@ cleanup() {
 }
 
 stage_native_binaries() {
-    install -m 0755 "$ARTIFACT_DIR/clamui" "$BUILD_DIR/usr/bin/clamui"
-    install -m 0755 "$ARTIFACT_DIR/clamui-scheduled-scan" \
-        "$BUILD_DIR/usr/bin/clamui-scheduled-scan"
+    install -m 0755 "$ARTIFACT_DIR/linux-defender" "$BUILD_DIR/usr/bin/linux-defender"
+    install -m 0755 "$ARTIFACT_DIR/linux-defender-scheduled-scan" \
+        "$BUILD_DIR/usr/bin/linux-defender-scheduled-scan"
 }
 
 stage_locales() {
@@ -190,8 +190,8 @@ stage_locales() {
             return 1
         fi
         install -d -m 0755 "$destination"
-        msgfmt --output-file="$destination/clamui.mo" "$source"
-        chmod 0644 "$destination/clamui.mo"
+        msgfmt --output-file="$destination/linux-defender.mo" "$source"
+        chmod 0644 "$destination/linux-defender.mo"
     done < "$linguas"
 }
 
@@ -270,7 +270,7 @@ main() {
     build_package
 
     log_info "Building matching privileged helper package"
-    CLAMUI_ARTIFACT_DIR="$ARTIFACT_DIR" "$SCRIPT_DIR/build-privileged-helper-deb.sh" "$OUTPUT_DIR"
+    LINUX_DEFENDER_ARTIFACT_DIR="$ARTIFACT_DIR" "$SCRIPT_DIR/build-privileged-helper-deb.sh" "$OUTPUT_DIR"
 }
 
 main

@@ -18,8 +18,8 @@ impl TestContext {
     fn new() -> Self {
         let root = tempfile::tempdir().unwrap();
         let home = root.path().join("home");
-        let config_dir = root.path().join("config/clamui");
-        let data_dir = root.path().join("data/clamui");
+        let config_dir = root.path().join("config/linux-defender");
+        let data_dir = root.path().join("data/linux-defender");
         fs::create_dir_all(&home).unwrap();
         Self {
             context: Context::with_paths(Paths {
@@ -33,7 +33,7 @@ impl TestContext {
     }
 
     fn data_dir(&self) -> PathBuf {
-        self.root.path().join("data/clamui")
+        self.root.path().join("data/linux-defender")
     }
 
     fn quarantine_dir(&self) -> PathBuf {
@@ -411,7 +411,7 @@ fn cleanup_preserves_metadata_when_the_payload_root_is_unavailable() {
     let connection = Connection::open(test.data_dir().join("quarantine.db")).unwrap();
     connection.execute(
         "UPDATE quarantine SET quarantine_path = ?1, detection_date = '2000-01-01T00:00:00' WHERE id = ?2",
-        params![b"/proc/clamui-unavailable-payload".as_slice(), id],
+        params![b"/proc/linux-defender-unavailable-payload".as_slice(), id],
     ).unwrap();
     drop(connection);
 

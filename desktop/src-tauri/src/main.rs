@@ -12,25 +12,38 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const NORMALIZED_GUI_ARGS: &str = "CLAMUI_NORMALIZED_GUI_ARGS";
+const NORMALIZED_GUI_ARGS: &str = "LINUX_DEFENDER_NORMALIZED_GUI_ARGS";
+
+/// Helper entry points this executable answers to. The pre-rename names stay
+/// accepted so a symlink installed by an earlier release keeps working.
+const HELPER_NAMES: [&str; 2] = [
+    "linux-defender-apply-preferences",
+    "clamui-apply-preferences",
+];
+const SCHEDULER_NAMES: [&str; 2] = ["linux-defender-scheduled-scan", "clamui-scheduled-scan"];
 
 fn main() {
     let mut raw = env::args_os();
-    let executable = PathBuf::from(raw.next().unwrap_or_else(|| OsString::from("clamui")));
+    let executable = PathBuf::from(
+        raw.next()
+            .unwrap_or_else(|| OsString::from("linux-defender")),
+    );
     let raw_args: Vec<OsString> = raw.collect();
     let name = executable
         .file_name()
         .and_then(|name| name.to_str())
-        .unwrap_or("clamui");
+        .unwrap_or("linux-defender");
 
-    let exit_code = match name {
-        "clamui-apply-preferences" => unicode_args(&raw_args)
+    let exit_code = if HELPER_NAMES.contains(&name) {
+        unicode_args(&raw_args)
             .map(|args| linux_defender_core::privileged::run_helper(&args))
-            .unwrap_or_else(report_non_unicode_cli_argument),
-        "clamui-scheduled-scan" => unicode_args(&raw_args)
+            .unwrap_or_else(report_non_unicode_cli_argument)
+    } else if SCHEDULER_NAMES.contains(&name) {
+        unicode_args(&raw_args)
             .map(|args| linux_defender_core::scheduler::run_scheduled(&args))
-            .unwrap_or_else(report_non_unicode_cli_argument),
-        _ => route_main(&executable, &raw_args),
+            .unwrap_or_else(report_non_unicode_cli_argument)
+    } else {
+        route_main(&executable, &raw_args)
     };
     if exit_code != 0 {
         std::process::exit(exit_code);
@@ -63,7 +76,7 @@ fn route_main(executable: &Path, raw_args: &[OsString]) -> i32 {
 fn run_gui(args: Vec<String>) -> i32 {
     // Core reports this optional metadata in platform.system_info without
     // importing Tauri into the headless library.
-    env::set_var("CLAMUI_TAURI_VERSION", "2");
+    env::set_var("LINUX_DEFENDER_TAURI_VERSION", "2");
     apply_webkit_renderer_workaround();
     match runtime::run(args) {
         Ok(()) => 0,

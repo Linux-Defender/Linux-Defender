@@ -15,8 +15,8 @@ Select an entry to copy it or export it as text, CSV, or JSON. **Copy** and all 
 Use the CLI for scripts:
 
 ```bash
-clamui history --help
-clamui history --json
+linux-defender history --help
+linux-defender history --json
 ```
 
 Native logs are JSON files under `~/.local/share/linux-defender/logs/`; Flatpak logs are under `~/.var/app/io.github.linuxdefender.linuxdefender/data/linux-defender/logs/`.

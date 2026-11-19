@@ -74,8 +74,8 @@ artifact_dir() {
 }
 
 build_helper() {
-    if [ -n "${CLAMUI_ARTIFACT_DIR:-}" ]; then
-        ARTIFACT_DIR="$CLAMUI_ARTIFACT_DIR"
+    if [ -n "${LINUX_DEFENDER_ARTIFACT_DIR:-}" ]; then
+        ARTIFACT_DIR="$LINUX_DEFENDER_ARTIFACT_DIR"
     else
         if ! command -v cargo >/dev/null 2>&1; then
             log_error "Required command not found: cargo"
@@ -84,13 +84,13 @@ build_helper() {
         (
             cd "$PROJECT_ROOT"
             cargo build --manifest-path "$PROJECT_ROOT/Cargo.toml" --release --locked \
-                --package linux-defender-core --bin clamui-apply-preferences
+                --package linux-defender-core --bin linux-defender-apply-preferences
         )
         ARTIFACT_DIR="$(artifact_dir)"
     fi
 
-    if [ ! -x "$ARTIFACT_DIR/clamui-apply-preferences" ]; then
-        log_error "Expected compiled helper is missing or not executable: $ARTIFACT_DIR/clamui-apply-preferences"
+    if [ ! -x "$ARTIFACT_DIR/linux-defender-apply-preferences" ]; then
+        log_error "Expected compiled helper is missing or not executable: $ARTIFACT_DIR/linux-defender-apply-preferences"
         return 1
     fi
 }
@@ -123,8 +123,8 @@ stage_package() {
 
     # Both files are root-owned by dpkg-deb --root-owner-group. The policy
     # names the same canonical helper path and action ID as the native binary.
-    install -m 0755 "$ARTIFACT_DIR/clamui-apply-preferences" \
-        "$BUILD_DIR/usr/bin/clamui-apply-preferences"
+    install -m 0755 "$ARTIFACT_DIR/linux-defender-apply-preferences" \
+        "$BUILD_DIR/usr/bin/linux-defender-apply-preferences"
     stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.policy" \
         "$BUILD_DIR/usr/share/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy" 0644
 

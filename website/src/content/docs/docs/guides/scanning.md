@@ -10,10 +10,10 @@ In **Scan**, choose **File** or **Folder** in the header to add a target, select
 For one-off integrations, launch with paths:
 
 ```bash
-clamui /path/to/file /path/to/folder
+linux-defender /path/to/file /path/to/folder
 ```
 
-The source build still uses the compatibility command name `clamui`; a Linux Defender Flatpak is not published yet. Headless use is available through `clamui scan`; run `clamui scan --help` for the current options. Its standard ClamAV exit codes are `0` clean, `1` infected, and `2` error. Most Linux Defender subcommands accept `--json` for scripts.
+The source build now ships the canonical `linux-defender` command, and the pre-rename `clamui` name remains accepted as a compatibility alias. A Linux Defender Flatpak is not published yet. Headless use is available through `linux-defender scan`; run `linux-defender scan --help` for the current options. Its standard ClamAV exit codes are `0` clean, `1` infected, and `2` error. Most Linux Defender subcommands accept `--json` for scripts.
 
 ## Select the right scan
 

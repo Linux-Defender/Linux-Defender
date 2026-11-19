@@ -162,11 +162,11 @@ function VirusTotalDialog({ path, onClose }: { path: string; onClose: () => void
       operationId.current = id;
       const result = await request<Record<string, unknown>>("virustotal.scan", { id, path });
       try {
-        sessionStorage.setItem("clamui-last-vt-result", JSON.stringify(result));
+        sessionStorage.setItem("linux-defender-last-vt-result", JSON.stringify(result));
       } catch {
         // Result remains available through navigation.
       }
-      window.dispatchEvent(new CustomEvent("clamui-vt-result", { detail: result }));
+      window.dispatchEvent(new CustomEvent("linux-defender-vt-result", { detail: result }));
       onClose();
     } catch (reason) {
       setError(String(reason));
@@ -380,12 +380,12 @@ export default function Scan() {
     activeIdRef.current = null;
     setProgress({});
     try {
-      sessionStorage.setItem("clamui-last-scan-result", JSON.stringify(scanResult));
+      sessionStorage.setItem("linux-defender-last-scan-result", JSON.stringify(scanResult));
     } catch {
       // Result remains available in the mounted page.
     }
-    if (completedId) window.dispatchEvent(new CustomEvent("clamui-scan-state", { detail: { id: completedId, active: false } }));
-    window.dispatchEvent(new CustomEvent("clamui-scan-result", { detail: scanResult }));
+    if (completedId) window.dispatchEvent(new CustomEvent("linux-defender-scan-state", { detail: { id: completedId, active: false } }));
+    window.dispatchEvent(new CustomEvent("linux-defender-scan-result", { detail: scanResult }));
   }, []);
 
   const [showLiveProgress, setShowLiveProgress] = useState(true);
@@ -411,7 +411,7 @@ export default function Scan() {
     const id = `scan-${crypto.randomUUID()}`;
     activeIdRef.current = id;
     setActiveId(id);
-    window.dispatchEvent(new CustomEvent("clamui-scan-state", { detail: { id, active: true } }));
+    window.dispatchEvent(new CustomEvent("linux-defender-scan-state", { detail: { id, active: true } }));
     setProgress({});
     setLiveThreats([]);
     setResult(null);
@@ -550,7 +550,7 @@ export default function Scan() {
         if (!stopped) openTargets(state, true);
       }).catch(() => undefined);
     }
-    window.addEventListener("clamui-page-selected", pageSelected);
+    window.addEventListener("linux-defender-page-selected", pageSelected);
     const unlisten = onEvent((event) => {
       if (event.event === "scan-progress") {
         const data = progressEvent(event.data);
@@ -575,7 +575,7 @@ export default function Scan() {
     });
     return () => {
       stopped = true;
-      window.removeEventListener("clamui-page-selected", pageSelected);
+      window.removeEventListener("linux-defender-page-selected", pageSelected);
       void unlisten.then((dispose) => dispose());
     };
   }, [addPaths, applyProfile, finish, replacePaths]);
@@ -585,11 +585,11 @@ export default function Scan() {
       void loadProfiles();
     };
     const quickScan = () => applyProfile({ name: "Quick Scan", start: true });
-    window.addEventListener("clamui-profiles-updated", reloadProfiles);
-    window.addEventListener("clamui-quick-scan", quickScan);
+    window.addEventListener("linux-defender-profiles-updated", reloadProfiles);
+    window.addEventListener("linux-defender-quick-scan", quickScan);
     return () => {
-      window.removeEventListener("clamui-profiles-updated", reloadProfiles);
-      window.removeEventListener("clamui-quick-scan", quickScan);
+      window.removeEventListener("linux-defender-profiles-updated", reloadProfiles);
+      window.removeEventListener("linux-defender-quick-scan", quickScan);
     };
   }, [applyProfile, loadProfiles]);
 
@@ -638,7 +638,7 @@ export default function Scan() {
     const id = `eicar-${crypto.randomUUID()}`;
     activeIdRef.current = id;
     setActiveId(id);
-    window.dispatchEvent(new CustomEvent("clamui-scan-state", { detail: { id, active: true } }));
+    window.dispatchEvent(new CustomEvent("linux-defender-scan-state", { detail: { id, active: true } }));
     setProgress({});
     setLiveThreats([]);
     setResult(null);
