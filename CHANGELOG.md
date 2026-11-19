@@ -19,7 +19,7 @@
 
 ### Fixed
 
-- The dependency audit no longer fails on a dev-only `picomatch` ReDoS advisory (GHSA-fc5q-39xc-vjpf) that has no patched release. The package reaches only Vite's build-time glob handling, not the bundled webview code; the workflow names the excluded advisory, the security policy documents removing it once a fix ships, and issue #4 tracks that removal.
+- The dependency audit runs without advisory exceptions again after GHSA-fc5q-39xc-vjpf was withdrawn; `bun audit` reports no frontend vulnerabilities.
 - Statistics no longer reports invalid data for a profile with no scans. Zero is a valid total, so a fresh install shows zeros and "No scans performed yet" instead of an error, with the parsing covered by a regression test.
 - Fixed the vendored `glib 0.18.5` `PtrSlice::truncate` sequence that GitHub code scanning reported as `rust/access-invalid-pointer`. Each slot is now cleared with its null terminator before the moved value is dropped, matching `pop`/`remove`, with a regression test in the vendored crate.
 - Audit command timeouts now terminate the whole process group, so `pkexec` or scanner descendants cannot keep output pipes open and stall the audit.
