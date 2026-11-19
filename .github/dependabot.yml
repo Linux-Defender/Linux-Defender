@@ -36,6 +36,14 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      # `astro check` still rejects TypeScript 7. Astro documents TypeScript 6
+      # as the supported compiler and experimental support for 7.1+ behind
+      # @astrojs/ts-content-mapper. Allow TypeScript 6 updates and drop this
+      # rule once the site checker supports 7 by default.
+      - dependency-name: "typescript"
+        versions:
+          - "7.x"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
