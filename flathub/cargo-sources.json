@@ -2095,6 +2095,19 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/gio/gio-0.22.11.crate",
+        "sha256": "536990682bab3b8bf68a78d298ccae69702a114290b096edf2bec6eb2e4013b3",
+        "dest": "cargo/vendor/gio-0.22.11"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"536990682bab3b8bf68a78d298ccae69702a114290b096edf2bec6eb2e4013b3\", \"files\": {}}",
+        "dest": "cargo/vendor/gio-0.22.11",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/gio-sys/gio-sys-0.18.1.crate",
         "sha256": "37566df850baf5e4cb0dfb78af2e4b9898d817ed9263d1090a2df958c64737d2",
         "dest": "cargo/vendor/gio-sys-0.18.1"
