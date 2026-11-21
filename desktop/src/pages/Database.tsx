@@ -16,6 +16,12 @@ type ServiceStatus = {
   pid?: string | null;
 };
 
+type BaseDatabases = {
+  main?: boolean;
+  daily?: boolean;
+  bytecode?: boolean;
+};
+
 type DatabaseStatus = {
   available: boolean;
   detail?: string | null;
@@ -24,7 +30,15 @@ type DatabaseStatus = {
   updated_at?: string | null;
   files_detected?: number;
   file_names?: string[];
+  base_databases?: BaseDatabases;
+  custom_signatures?: number;
 };
+
+const BASE_DATABASES = [
+  { key: "main", label: "main" },
+  { key: "daily", label: "daily" },
+  { key: "bytecode", label: "bytecode" },
+] as const;
 
 type UpdaterStatus = {
   freshclam: FreshclamStatus;
@@ -296,6 +310,16 @@ export default function Database({ startRequest }: DatabaseProps): JSX.Element {
               {status?.database?.path && <p className="row-description monospace">{status.database.path}</p>}
             </div>
             <span className={`status-badge ${status?.database?.available ? "success" : "warning"}`}>{databaseDescription(status?.database)}</span>
+          </div>
+          <div className="group-row">
+            <div className="row-copy">
+              <strong className="row-title">{_("Base databases")}</strong>
+              <p className="row-description">{_("Official ClamAV databases found in the configured database directory. A missing entry is downloaded by the next successful freshclam update.")}</p>
+              {status?.database?.base_databases && <p className="row-description">
+                {BASE_DATABASES.map(({ key, label }) => <span className={`status-badge ${status.database?.base_databases?.[key] ? "success" : "warning"}`} key={key}>{label}</span>)}
+                <span className="status-badge">{ngettext("{count} custom signature file", "{count} custom signature files", status.database.custom_signatures || 0, { count: status.database.custom_signatures || 0 })}</span>
+              </p>}
+            </div>
           </div>
           <div className="group-row">
             <div className="row-copy">

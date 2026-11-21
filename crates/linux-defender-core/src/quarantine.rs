@@ -521,6 +521,81 @@ impl QuarantineManager {
             .map_err(|error| error.to_string())
     }
 
+    /// Re-scans quarantined payloads against the current signature set without
+    /// moving or copying them. A payload that is no longer detected is likely a
+    /// false positive and can be restored by the user.
+    fn rescan(&self, ids: Option<&[i64]>) -> AppResult<Value> {
+        let binary = crate::host::host_binary("clamscan")
+            .ok_or_else(|| "clamscan executable not found".to_owned())?;
+        let mut results = Vec::new();
+        let (mut detected, mut clean, mut errors) = (0_u64, 0_u64, 0_u64);
+        for entry in self.list()? {
+            if ids.is_some_and(|ids| !ids.contains(&entry.id)) {
+                continue;
+            }
+            let payload = entry.quarantine_path.as_path();
+            let (status, detail) = match verify_hash(&payload, &entry.file_hash) {
+                Err(_) => {
+                    errors += 1;
+                    (
+                        "integrity_failed",
+                        "Quarantined payload does not match its recorded hash".to_owned(),
+                    )
+                }
+                Ok(()) => {
+                    let args = vec![
+                        OsString::from("--no-summary"),
+                        OsString::from("--stdout"),
+                        payload.as_os_str().to_owned(),
+                    ];
+                    match crate::host::run_host_os(&binary, &args, Some(300)) {
+                        Ok(output) => {
+                            let stdout = String::from_utf8_lossy(&output.stdout);
+                            if output.status.code() == Some(1) {
+                                detected += 1;
+                                (
+                                    "detected",
+                                    stdout
+                                        .lines()
+                                        .find(|line| line.contains("FOUND"))
+                                        .map(str::trim)
+                                        .unwrap_or("Threat still detected")
+                                        .to_owned(),
+                                )
+                            } else if output.status.success() {
+                                clean += 1;
+                                ("clean", String::new())
+                            } else {
+                                errors += 1;
+                                (
+                                    "error",
+                                    String::from_utf8_lossy(&output.stderr).trim().to_owned(),
+                                )
+                            }
+                        }
+                        Err(error) => {
+                            errors += 1;
+                            ("error", error)
+                        }
+                    }
+                }
+            };
+            results.push(json!({
+                "id": entry.id,
+                "threat_name": entry.threat_name,
+                "file_hash": entry.file_hash,
+                "status": status,
+                "detail": detail,
+            }));
+        }
+        Ok(json!({
+            "results": results,
+            "detected": detected,
+            "clean": clean,
+            "errors": errors,
+        }))
+    }
+
     fn list_ui(&self, request: UiListRequest) -> AppResult<Value> {
         self.maybe_cleanup_orphans();
         let mut connection = self.connection()?;
@@ -980,6 +1055,23 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 "total_size": total_size,
                 "entry_count": entry_count,
             }))
+        }
+        "rescan" => {
+            let ids = match args.get("ids") {
+                None | Some(Value::Null) => None,
+                Some(Value::Array(values)) => Some(
+                    values
+                        .iter()
+                        .map(|value| {
+                            value
+                                .as_i64()
+                                .ok_or_else(|| "quarantine.rescan ids must be integers".to_owned())
+                        })
+                        .collect::<AppResult<Vec<_>>>()?,
+                ),
+                Some(_) => return Err("quarantine.rescan ids must be an array".into()),
+            };
+            manager.rescan(ids.as_deref())
         }
         "statistics" => {
             let (entry_count, total_size) = manager.statistics()?;

@@ -4,6 +4,9 @@
 
 ### Added
 
+- Security Audit now reports the three official ClamAV base databases (`main`, `daily`, `bytecode`) separately from custom signature files. The updater status payload exposes the same split, so a missing base database is visible instead of being folded into a generic freshness result.
+- Quarantine entries can be re-scanned against the current signatures. Each payload is integrity-checked first, then classified as still detected, no longer detected (a probable false positive that can be restored), integrity failure, or scan error. Scanning happens in place; no payload is copied out of the vault.
+- Suggested custom feeds now add RFXN (`rfxn.hdb` and `rfxn.ndb`) and the three InterServer files over HTTPS, replacing the removed URLhaus source. The suggestion still only fills the preferences draft.
 - Updated the repository and contribution guidance for the `Linux-Defender/Linux-Defender` organization, corrected CI branch filters to `main`, and aligned public website/release links with the renamed repository.
 - Branded AppImage artifacts as Linux Defender and routed their signed zsync update metadata to this repository. The release workflow now attaches the AppImage and zsync sidecar; no signed release/feed exists yet, and this does not add a universal in-app updater.
 - Ported the upstream post-v0.6.0 updater fix for long-running FreshClam updates. Manual/forced updates now stop only after a configurable period without output (10-minute default; 1–1,440 minutes), rather than a fixed total runtime limit. Added settings UI, docs, regression tests, and translation catalog entries. Vietnamese strings are translated; other catalogs use English fallback pending human review.

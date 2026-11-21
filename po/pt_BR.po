@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-18 21:36-0500\n"
+"POT-Creation-Date: 2026-11-20 19:42-0500\n"
 "PO-Revision-Date: 2026-08-09 00:00-0300\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -65,292 +65,314 @@ msgstr "Nenhum banco de dados de vírus encontrado"
 msgid "Download virus database"
 msgstr "Baixar banco de dados de vírus"
 
-#: crates/linux-defender-core/src/audit.rs:459
+#: crates/linux-defender-core/src/audit.rs:458
+msgid "All official base databases are present"
+msgstr "Todos os bancos de dados oficiais estão presentes"
+
+#: crates/linux-defender-core/src/audit.rs:469
+msgid "Missing base databases: {databases}"
+msgstr "Bancos de dados ausentes: {databases}"
+
+#: crates/linux-defender-core/src/audit.rs:475
+msgid "Download the missing databases with freshclam"
+msgstr "Baixe os bancos de dados ausentes com o freshclam"
+
+#: crates/linux-defender-core/src/audit.rs:487
+msgid "No custom signature files are loaded"
+msgstr "Nenhum arquivo de assinaturas personalizadas está carregado"
+
+#: crates/linux-defender-core/src/audit.rs:489
+msgid "{count} custom signature file is loaded"
+msgid_plural "{count} custom signature files are loaded"
+msgstr[0] "{count} arquivo de assinaturas personalizadas está carregado"
+msgstr[1] "{count} arquivos de assinaturas personalizadas estão carregados"
+
+#: crates/linux-defender-core/src/audit.rs:509
 msgid "Service {name} is running"
 msgstr "O serviço {name} está em execução"
 
-#: crates/linux-defender-core/src/audit.rs:470
+#: crates/linux-defender-core/src/audit.rs:520
 msgid "Daemon is responding"
 msgstr "Daemon está respondendo"
 
-#: crates/linux-defender-core/src/audit.rs:477
+#: crates/linux-defender-core/src/audit.rs:527
 msgid "ClamAV daemon is not running"
 msgstr "O daemon ClamAV não está em execução"
 
-#: crates/linux-defender-core/src/audit.rs:479
+#: crates/linux-defender-core/src/audit.rs:529
 msgid "Start the daemon for faster scanning"
 msgstr "Inicie o daemon para uma verificação mais rápida"
 
-#: crates/linux-defender-core/src/audit.rs:500
+#: crates/linux-defender-core/src/audit.rs:550
 msgid "Freshclam service is active"
 msgstr "O serviço Freshclam está ativo"
 
-#: crates/linux-defender-core/src/audit.rs:507
+#: crates/linux-defender-core/src/audit.rs:557
 msgid "Freshclam automatic update service is not running"
 msgstr "O serviço de atualização automática Freshclam não está em execução"
 
-#: crates/linux-defender-core/src/audit.rs:509
+#: crates/linux-defender-core/src/audit.rs:559
 msgid "Enable automatic database updates"
 msgstr "Habilite atualizações automáticas do banco de dados"
 
-#: crates/linux-defender-core/src/audit.rs:711
+#: crates/linux-defender-core/src/audit.rs:771
 msgid "{count} port listening, risky ports: {ports}"
 msgid_plural "{count} ports listening, risky ports: {ports}"
 msgstr[0] "{count} porta em escuta, portas de risco: {ports}"
 msgstr[1] "{count} portas em escuta, portas de risco: {ports}"
 
-#: crates/linux-defender-core/src/audit.rs:722
+#: crates/linux-defender-core/src/audit.rs:782
 msgid "Review if these services need to be exposed"
 msgstr "Revise se esses serviços precisam ser expostos"
 
-#: crates/linux-defender-core/src/audit.rs:729
+#: crates/linux-defender-core/src/audit.rs:789
 msgid "{count} port listening"
 msgid_plural "{count} ports listening"
 msgstr[0] "{count} porta em escuta"
 msgstr[1] "{count} portas em escuta"
 
-#: crates/linux-defender-core/src/audit.rs:737
+#: crates/linux-defender-core/src/audit.rs:797
 msgid "Review open ports and close unnecessary services"
 msgstr "Revise as portas abertas e feche serviços desnecessários"
 
-#: crates/linux-defender-core/src/audit.rs:744
+#: crates/linux-defender-core/src/audit.rs:804
 msgid "No open ports detected"
 msgstr "Nenhuma porta aberta detectada"
 
-#: crates/linux-defender-core/src/audit.rs:775
+#: crates/linux-defender-core/src/audit.rs:835
 msgid "AppArmor is enabled"
 msgstr "AppArmor está ativado"
 
-#: crates/linux-defender-core/src/audit.rs:782
+#: crates/linux-defender-core/src/audit.rs:842
 msgid "AppArmor module is loaded but not enabled"
 msgstr "O módulo AppArmor está carregado, mas não ativado"
 
-#: crates/linux-defender-core/src/audit.rs:784
+#: crates/linux-defender-core/src/audit.rs:844
 msgid "Enable AppArmor for application sandboxing"
 msgstr "Habilite o AppArmor para sandbox de aplicativos"
 
-#: crates/linux-defender-core/src/audit.rs:799
+#: crates/linux-defender-core/src/audit.rs:859
 msgid "SELinux is enforcing"
 msgstr "SELinux está aplicando"
 
-#: crates/linux-defender-core/src/audit.rs:806
+#: crates/linux-defender-core/src/audit.rs:866
 msgid "SELinux is in permissive mode"
 msgstr "SELinux está em modo permissivo"
 
-#: crates/linux-defender-core/src/audit.rs:808
+#: crates/linux-defender-core/src/audit.rs:868
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr "Considere mudar para o modo de imposição para uma proteção mais forte"
 
-#: crates/linux-defender-core/src/audit.rs:819
+#: crates/linux-defender-core/src/audit.rs:879
 msgid "SELinux is disabled"
 msgstr "SELinux está desabilitado"
 
-#: crates/linux-defender-core/src/audit.rs:821
+#: crates/linux-defender-core/src/audit.rs:881
 msgid "Enable SELinux for mandatory access control"
 msgstr "Habilite o SELinux para controle de acesso obrigatório"
 
-#: crates/linux-defender-core/src/audit.rs:835
+#: crates/linux-defender-core/src/audit.rs:895
 msgid "No mandatory access control framework detected"
 msgstr "Nenhuma estrutura de controle de acesso obrigatória detectada"
 
-#: crates/linux-defender-core/src/audit.rs:837
+#: crates/linux-defender-core/src/audit.rs:897
 msgid "Consider enabling AppArmor or SELinux"
 msgstr "Considere ativar o AppArmor ou SELinux"
 
-#: crates/linux-defender-core/src/audit.rs:862
+#: crates/linux-defender-core/src/audit.rs:922
 msgid "Automatic security updates are enabled"
 msgstr "As atualizações automáticas de segurança estão habilitadas"
 
-#: crates/linux-defender-core/src/audit.rs:872
+#: crates/linux-defender-core/src/audit.rs:932
 msgid "Unattended upgrades is installed but disabled"
 msgstr "As atualizações autônomas estão instaladas, mas desabilitadas"
 
-#: crates/linux-defender-core/src/audit.rs:874
+#: crates/linux-defender-core/src/audit.rs:934
 msgid "Enable automatic security updates"
 msgstr "Habilite atualizações automáticas de segurança"
 
-#: crates/linux-defender-core/src/audit.rs:887
+#: crates/linux-defender-core/src/audit.rs:947
 msgid "DNF automatic updates are enabled"
 msgstr "As atualizações automáticas DNF estão ativadas"
 
-#: crates/linux-defender-core/src/audit.rs:897
+#: crates/linux-defender-core/src/audit.rs:957
 msgid "DNF automatic is installed but timer is not active"
 msgstr "O DNF automático está instalado, mas o temporizador não está ativo"
 
-#: crates/linux-defender-core/src/audit.rs:899
+#: crates/linux-defender-core/src/audit.rs:959
 msgid "Enable automatic updates"
 msgstr "Habilite atualizações automáticas"
 
-#: crates/linux-defender-core/src/audit.rs:912
+#: crates/linux-defender-core/src/audit.rs:972
 msgid "Could not determine automatic update status"
 msgstr "Não foi possível determinar o status da atualização automática"
 
-#: crates/linux-defender-core/src/audit.rs:914
+#: crates/linux-defender-core/src/audit.rs:974
 msgid "Configure automatic security updates"
 msgstr "Configurar atualizações automáticas de segurança"
 
-#: crates/linux-defender-core/src/audit.rs:928
+#: crates/linux-defender-core/src/audit.rs:988
 msgid "System reboot required to apply updates"
 msgstr "Reinicialização do sistema necessária para aplicar atualizações"
 
-#: crates/linux-defender-core/src/audit.rs:930
+#: crates/linux-defender-core/src/audit.rs:990
 msgid "Reboot the system to apply pending security updates"
 msgstr "Reinicie o sistema para aplicar as atualizações de segurança pendentes"
 
-#: crates/linux-defender-core/src/audit.rs:975
+#: crates/linux-defender-core/src/audit.rs:1035
 msgid "{name} is installed but not running"
 msgstr "{name} está instalado, mas não está em execução"
 
-#: crates/linux-defender-core/src/audit.rs:993
+#: crates/linux-defender-core/src/audit.rs:1053
 msgid "No intrusion detection system found"
 msgstr "Nenhum sistema de detecção de intrusão encontrado"
 
-#: crates/linux-defender-core/src/audit.rs:995
+#: crates/linux-defender-core/src/audit.rs:1055
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr "Instale o fail2ban ou o CrowdSec para proteger contra ataques"
 
-#: crates/linux-defender-core/src/audit.rs:1021
+#: crates/linux-defender-core/src/audit.rs:1081
 msgid "SSH server is not running (no remote attack surface)"
 msgstr "O servidor SSH não está em execução (sem superfície de ataque remoto)"
 
-#: crates/linux-defender-core/src/audit.rs:1031
+#: crates/linux-defender-core/src/audit.rs:1091
 msgid "SSH server is running"
 msgstr "O servidor SSH está em execução"
 
-#: crates/linux-defender-core/src/audit.rs:1040
+#: crates/linux-defender-core/src/audit.rs:1100
 msgid "Could not read SSH configuration"
 msgstr "Não foi possível ler a configuração SSH"
 
-#: crates/linux-defender-core/src/audit.rs:1058
+#: crates/linux-defender-core/src/audit.rs:1118
 msgid "Root login: {value}"
 msgstr "Login raiz: {value}"
 
-#: crates/linux-defender-core/src/audit.rs:1065
+#: crates/linux-defender-core/src/audit.rs:1125
 msgid "Root login is allowed ({value})"
 msgstr "O login de root é permitido ({value})"
 
-#: crates/linux-defender-core/src/audit.rs:1071
+#: crates/linux-defender-core/src/audit.rs:1131
 msgid "Disable root SSH login for security"
 msgstr "Desative o login SSH root para segurança"
 
-#: crates/linux-defender-core/src/audit.rs:1085
+#: crates/linux-defender-core/src/audit.rs:1145
 msgid "Password authentication is disabled (key-only)"
 msgstr "A autenticação por senha está desativada (somente chave)"
 
-#: crates/linux-defender-core/src/audit.rs:1092
+#: crates/linux-defender-core/src/audit.rs:1152
 msgid "Password authentication is enabled"
 msgstr "A autenticação por senha está habilitada"
 
-#: crates/linux-defender-core/src/audit.rs:1094
+#: crates/linux-defender-core/src/audit.rs:1154
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr "Considere desativar a autenticação por senha em favor de chaves SSH"
 
-#: crates/linux-defender-core/src/audit.rs:1111
+#: crates/linux-defender-core/src/audit.rs:1171
 msgid "X11 forwarding is disabled"
 msgstr "O encaminhamento X11 está desabilitado"
 
-#: crates/linux-defender-core/src/audit.rs:1118
+#: crates/linux-defender-core/src/audit.rs:1178
 msgid "X11 forwarding is enabled"
 msgstr "O encaminhamento X11 está ativado"
 
-#: crates/linux-defender-core/src/audit.rs:1120
+#: crates/linux-defender-core/src/audit.rs:1180
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr "Desative o encaminhamento X11 para reduzir a superfície de ataque"
 
-#: crates/linux-defender-core/src/audit.rs:1195
+#: crates/linux-defender-core/src/audit.rs:1255
 msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster está executando e protegendo conexões"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1219
+#: crates/linux-defender-core/src/audit.rs:1279
 msgid "Authorize Linux Defender in Portmaster for per-module health"
 msgstr ""
 "Autorize o Linux Defender no Portmaster para consultar o estado de cada "
 "módulo"
 
-#: crates/linux-defender-core/src/audit.rs:1225
+#: crates/linux-defender-core/src/audit.rs:1285
 msgid "Authorize"
 msgstr "Autorizar"
 
-#: crates/linux-defender-core/src/audit.rs:1235
+#: crates/linux-defender-core/src/audit.rs:1295
 msgid "Portmaster is installed but not running"
 msgstr "Portmaster está instalado, mas não está funcionando"
 
-#: crates/linux-defender-core/src/audit.rs:1237
+#: crates/linux-defender-core/src/audit.rs:1297
 msgid "Start the Portmaster service to enable network protection"
 msgstr "Inicie o serviço Portmaster para habilitar a proteção de rede"
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/linux-defender-core/src/audit.rs:1250
+#: crates/linux-defender-core/src/audit.rs:1310
 msgid "Not detected — optional network monitor and application firewall"
 msgstr "Não detectado — monitor de rede e firewall de aplicativos opcionais"
 
-#: crates/linux-defender-core/src/audit.rs:1264
+#: crates/linux-defender-core/src/audit.rs:1324
 msgid "Could not probe Portmaster: {error}"
 msgstr "Não foi possível verificar o Portmaster: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1314
+#: crates/linux-defender-core/src/audit.rs:1374
 msgid "{name} is not installed"
 msgstr "{name} não está instalado"
 
-#: crates/linux-defender-core/src/audit.rs:1320
+#: crates/linux-defender-core/src/audit.rs:1380
 msgid "Install {name} for comprehensive security auditing"
 msgstr "Instale {name} para uma auditoria de segurança abrangente"
 
-#: crates/linux-defender-core/src/audit.rs:1326
+#: crates/linux-defender-core/src/audit.rs:1386
 msgid "Install chkrootkit for rootkit detection"
 msgstr "Instale o chkrootkit para detecção de rootkit"
 
-#: crates/linux-defender-core/src/audit.rs:1345
+#: crates/linux-defender-core/src/audit.rs:1405
 msgid "Authentication was cancelled"
 msgstr "A autenticação foi cancelada"
 
-#: crates/linux-defender-core/src/audit.rs:1353
+#: crates/linux-defender-core/src/audit.rs:1413
 msgid "Lynis audit timed out after 5 minutes"
 msgstr "A auditoria do Lynis excedeu o tempo limite de 5 minutos"
 
-#: crates/linux-defender-core/src/audit.rs:1355
+#: crates/linux-defender-core/src/audit.rs:1415
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr "A verificação de rootkits excedeu o tempo limite de 5 minutos"
 
-#: crates/linux-defender-core/src/audit.rs:1373
-#: crates/linux-defender-core/src/audit.rs:1417
+#: crates/linux-defender-core/src/audit.rs:1433
+#: crates/linux-defender-core/src/audit.rs:1477
 msgid "Failed to run Lynis: {error}"
 msgstr "Falha ao executar o Lynis: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1379
+#: crates/linux-defender-core/src/audit.rs:1439
 msgid "Failed to run chkrootkit: {error}"
 msgstr "Falha ao executar o chkrootkit: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1445
+#: crates/linux-defender-core/src/audit.rs:1505
 msgid "Score: {score}/100"
 msgstr "Pontuação: {score}/100"
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/linux-defender-core/src/audit.rs:1448
+#: crates/linux-defender-core/src/audit.rs:1508
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr "Execute 'sudo lynis audit system' para obter recomendações detalhadas"
 
-#: crates/linux-defender-core/src/audit.rs:1464
+#: crates/linux-defender-core/src/audit.rs:1524
 msgid "Audit completed (exit code {code})"
 msgstr "Auditoria concluída (código de saída {code})"
 
-#: crates/linux-defender-core/src/audit.rs:1502
-#: crates/linux-defender-core/src/audit.rs:1516
+#: crates/linux-defender-core/src/audit.rs:1562
+#: crates/linux-defender-core/src/audit.rs:1576
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr "Não foi possível concluir a verificação de rootkits (saída {code})"
 
-#: crates/linux-defender-core/src/audit.rs:1546
+#: crates/linux-defender-core/src/audit.rs:1606
 msgid "No rootkits detected"
 msgstr "Nenhum rootkit detectado"
 
-#: crates/linux-defender-core/src/audit.rs:1557
+#: crates/linux-defender-core/src/audit.rs:1617
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] "{count} possível rootkit detectado"
 msgstr[1] "{count} possíveis rootkits detectados"
 
-#: crates/linux-defender-core/src/audit.rs:1565
+#: crates/linux-defender-core/src/audit.rs:1625
 msgid "Investigate the detected threats immediately"
 msgstr "Investigue as ameaças detectadas imediatamente"
 
@@ -1255,31 +1277,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr "translator-credits"
 
-#: crates/linux-defender-core/src/host.rs:910
+#: crates/linux-defender-core/src/host.rs:996
 msgid "Daemon not responding: {error}"
 msgstr "Daemon não responde: {error}"
 
-#: crates/linux-defender-core/src/host.rs:913
+#: crates/linux-defender-core/src/host.rs:999
 msgid "{binary} found but returned error: {error}"
 msgstr "{binary} encontrado, mas retornou erro: {error}"
 
-#: crates/linux-defender-core/src/host.rs:918
+#: crates/linux-defender-core/src/host.rs:1004
 msgid "{service} is active"
 msgstr "{service} está ativo"
 
-#: crates/linux-defender-core/src/host.rs:921
+#: crates/linux-defender-core/src/host.rs:1007
 msgid "No virus database files found in {path}"
 msgstr "Nenhum arquivo de banco de dados de vírus encontrado em {path}"
 
-#: crates/linux-defender-core/src/host.rs:927
+#: crates/linux-defender-core/src/host.rs:1013
 msgid "Error accessing database {path}: {error}"
 msgstr "Erro ao acessar o banco de dados {path}: {error}"
 
-#: crates/linux-defender-core/src/host.rs:933
+#: crates/linux-defender-core/src/host.rs:1019
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "{binary} não está instalado. Instale-o com: {command}"
 
-#: crates/linux-defender-core/src/host.rs:943
+#: crates/linux-defender-core/src/host.rs:1029
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
@@ -1622,12 +1644,12 @@ msgstr ""
 "de dados. Ele ainda pode aparecer na lista até ser limpo."
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/linux-defender-core/src/quarantine.rs:1411
+#: crates/linux-defender-core/src/quarantine.rs:1503
 msgid "Cannot quarantine {path}: {error}"
 msgstr "Não foi possível colocar {path} em quarentena: {error}"
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/linux-defender-core/src/quarantine.rs:1429
+#: crates/linux-defender-core/src/quarantine.rs:1521
 msgid "File hash mismatch — file may be corrupted"
 msgstr "Hash do arquivo não corresponde — o arquivo pode estar corrompido"
 
@@ -2095,7 +2117,7 @@ msgstr "Visão geral"
 msgid "Scan"
 msgstr "Verificação"
 
-#: desktop/src/App.tsx:126 desktop/src/pages/Database.tsx:265
+#: desktop/src/App.tsx:126 desktop/src/pages/Database.tsx:279
 #: desktop/src/pages/Preferences.tsx:15
 msgid "Database"
 msgstr "Banco de dados"
@@ -2135,7 +2157,7 @@ msgstr "Perfis"
 msgid "Results"
 msgstr "Resultados"
 
-#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:534
+#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:536
 msgid "Could not open link"
 msgstr "Não foi possível abrir o link"
 
@@ -2213,7 +2235,7 @@ msgstr "Navegação principal"
 msgid "Views"
 msgstr "Visualizações"
 
-#: desktop/src/App.tsx:1006 desktop/src/pages/Quarantine.tsx:282
+#: desktop/src/App.tsx:1006 desktop/src/pages/Quarantine.tsx:339
 msgid "Dismiss"
 msgstr "Dispensar"
 
@@ -2279,10 +2301,10 @@ msgid "Remember my choice"
 msgstr "Lembre-se da minha escolha"
 
 #: desktop/src/App.tsx:1061 desktop/src/App.tsx:1065
-#: desktop/src/pages/Database.tsx:326 desktop/src/pages/Database.tsx:352
+#: desktop/src/pages/Database.tsx:350 desktop/src/pages/Database.tsx:376
 #: desktop/src/pages/Logs.tsx:412 desktop/src/pages/Network.tsx:441
 #: desktop/src/pages/Profiles.tsx:245 desktop/src/pages/Profiles.tsx:246
-#: desktop/src/pages/Quarantine.tsx:319 desktop/src/pages/Results.tsx:206
+#: desktop/src/pages/Quarantine.tsx:377 desktop/src/pages/Results.tsx:206
 #: desktop/src/pages/Scan.tsx:716 desktop/src/pages/Scan.tsx:722
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:448
@@ -2501,7 +2523,7 @@ msgstr ""
 "verificação."
 
 #: desktop/src/HelperTrustErrorDialog.tsx:72 desktop/src/UiErrorBoundary.tsx:36
-#: desktop/src/pages/ConfigPreferences.tsx:874
+#: desktop/src/pages/ConfigPreferences.tsx:877
 msgid "Technical details"
 msgstr "Detalhes técnicos"
 
@@ -2511,7 +2533,7 @@ msgstr "Abrir instruções de reparo"
 
 #. Translators: This button opens the failed native configuration snapshot.
 #: desktop/src/HelperTrustErrorDialog.tsx:80
-#: desktop/src/pages/ConfigPreferences.tsx:878
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "See Configuration"
 msgstr "Ver configuração"
 
@@ -2860,11 +2882,11 @@ msgstr ""
 "configuração específicos da distribuição."
 
 #: desktop/src/pages/Components.tsx:204 desktop/src/pages/Components.tsx:228
-#: desktop/src/pages/Database.tsx:269 desktop/src/pages/Database.tsx:291
+#: desktop/src/pages/Database.tsx:283 desktop/src/pages/Database.tsx:305
 msgid "Checking…"
 msgstr "Verificando…"
 
-#: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:269
+#: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:283
 #: desktop/src/pages/Scan.tsx:691
 msgid "Refresh status"
 msgstr "Atualizar status"
@@ -2957,28 +2979,28 @@ msgstr "Semanalmente"
 msgid "Monthly"
 msgstr "Mensalmente"
 
-#: desktop/src/pages/ConfigPreferences.tsx:200
+#: desktop/src/pages/ConfigPreferences.tsx:202
 msgid "No configuration file selected"
 msgstr "Nenhum arquivo de configuração selecionado"
 
-#: desktop/src/pages/ConfigPreferences.tsx:207
+#: desktop/src/pages/ConfigPreferences.tsx:209
 msgid "The file is not currently readable."
 msgstr "No momento, não é possível ler o arquivo."
 
-#: desktop/src/pages/ConfigPreferences.tsx:210
+#: desktop/src/pages/ConfigPreferences.tsx:212
 msgid "Detect"
 msgstr "Detectar"
 
-#: desktop/src/pages/ConfigPreferences.tsx:211
+#: desktop/src/pages/ConfigPreferences.tsx:213
 msgid "Browse"
 msgstr "Navegar"
 
-#: desktop/src/pages/ConfigPreferences.tsx:212
+#: desktop/src/pages/ConfigPreferences.tsx:214
 msgid "Authorize read"
 msgstr "Autorizar leitura"
 
 #. Translators: Save & Apply and Authorize read are button labels; use their translations.
-#: desktop/src/pages/ConfigPreferences.tsx:215
+#: desktop/src/pages/ConfigPreferences.tsx:217
 msgid ""
 "Selecting a file keeps the path in this pending proposal. Save & Apply "
 "persists it only after the complete proposal is valid. Authorization is "
@@ -2989,14 +3011,14 @@ msgstr ""
 "autorização é solicitada somente quando você escolhe explicitamente "
 "Autorizar leitura."
 
-#: desktop/src/pages/ConfigPreferences.tsx:293
-#: desktop/src/pages/ConfigPreferences.tsx:340
+#: desktop/src/pages/ConfigPreferences.tsx:295
+#: desktop/src/pages/ConfigPreferences.tsx:342
 #: desktop/src/pages/SettingsPreferences.tsx:381
 msgid "Add"
 msgstr "Adicionar"
 
-#: desktop/src/pages/ConfigPreferences.tsx:298
-#: desktop/src/pages/ConfigPreferences.tsx:344
+#: desktop/src/pages/ConfigPreferences.tsx:300
+#: desktop/src/pages/ConfigPreferences.tsx:346
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
 #: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:713
 #: desktop/src/pages/SettingsPreferences.tsx:311
@@ -3004,40 +3026,40 @@ msgid "Remove"
 msgstr "Remover"
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:326
+#: desktop/src/pages/ConfigPreferences.tsx:328
 msgid "Enter an http, https, ftp, ftps, or file URL."
 msgstr "Informe uma URL http, https, ftp, ftps ou file."
 
-#: desktop/src/pages/ConfigPreferences.tsx:338
+#: desktop/src/pages/ConfigPreferences.tsx:340
 msgid "Add URLs"
 msgstr "Adicionar URLs"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:445
+#: desktop/src/pages/ConfigPreferences.tsx:447
 msgid "Configuration file selection is pending Save & Apply."
 msgstr "A seleção do arquivo de configuração aguarda Salvar e aplicar."
 
-#: desktop/src/pages/ConfigPreferences.tsx:457
+#: desktop/src/pages/ConfigPreferences.tsx:459
 msgid "No configuration file was found."
 msgstr "Nenhum arquivo de configuração foi encontrado."
 
-#: desktop/src/pages/ConfigPreferences.tsx:471
+#: desktop/src/pages/ConfigPreferences.tsx:473
 msgid "Select a .conf configuration file."
 msgstr "Selecione um arquivo de configuração .conf."
 
-#: desktop/src/pages/ConfigPreferences.tsx:507
+#: desktop/src/pages/ConfigPreferences.tsx:509
 msgid "Configuration loaded with administrator authorization."
 msgstr "Configuração carregada com autorização de administrador."
 
-#: desktop/src/pages/ConfigPreferences.tsx:544
+#: desktop/src/pages/ConfigPreferences.tsx:546
 msgid "Scan backend saved."
 msgstr "Mecanismo de verificação salvo."
 
-#: desktop/src/pages/ConfigPreferences.tsx:577
+#: desktop/src/pages/ConfigPreferences.tsx:579
 msgid "Choose a configuration file before applying its changes."
 msgstr "Escolha um arquivo de configuração antes de aplicar suas alterações."
 
-#: desktop/src/pages/ConfigPreferences.tsx:589
+#: desktop/src/pages/ConfigPreferences.tsx:591
 msgid ""
 "On-Access scanning requires an excluded username, UID, or root user to "
 "prevent scan loops."
@@ -3045,146 +3067,143 @@ msgstr ""
 "A verificação em acesso requer um nome de usuário, UID ou usuário root "
 "excluído para evitar loops de verificação."
 
-#: desktop/src/pages/ConfigPreferences.tsx:597
-#: desktop/src/pages/ConfigPreferences.tsx:687
+#: desktop/src/pages/ConfigPreferences.tsx:599
+#: desktop/src/pages/ConfigPreferences.tsx:689
 msgid "No changes to apply."
 msgstr "Nenhuma alteração a aplicar."
 
-#: desktop/src/pages/ConfigPreferences.tsx:612
+#: desktop/src/pages/ConfigPreferences.tsx:614
 msgid "Configuration validation failed."
 msgstr "A validação da configuração falhou."
 
-#: desktop/src/pages/ConfigPreferences.tsx:687
+#: desktop/src/pages/ConfigPreferences.tsx:689
 msgid "Configuration saved and applied."
 msgstr "Configuração salva e aplicada."
 
-#: desktop/src/pages/ConfigPreferences.tsx:687
-#: desktop/src/pages/ConfigPreferences.tsx:704
+#: desktop/src/pages/ConfigPreferences.tsx:689
+#: desktop/src/pages/ConfigPreferences.tsx:706
 msgid "Some changes could not be applied."
 msgstr "Algumas alterações não puderam ser aplicadas."
 
-#: desktop/src/pages/ConfigPreferences.tsx:688
+#: desktop/src/pages/ConfigPreferences.tsx:690
 msgid "Saved groups"
 msgstr "Grupos salvos"
 
-#: desktop/src/pages/ConfigPreferences.tsx:713
+#: desktop/src/pages/ConfigPreferences.tsx:715
 msgid "Checking scanner status…"
 msgstr "Verificando o status do scanner…"
 
-#: desktop/src/pages/ConfigPreferences.tsx:715
+#: desktop/src/pages/ConfigPreferences.tsx:717
 msgid "Daemon connected"
 msgstr "Daemon conectado"
 
-#: desktop/src/pages/ConfigPreferences.tsx:716
+#: desktop/src/pages/ConfigPreferences.tsx:718
 msgid "Scanner available"
 msgstr "Scanner disponível"
 
-#: desktop/src/pages/ConfigPreferences.tsx:716
+#: desktop/src/pages/ConfigPreferences.tsx:718
 msgid "Scanner unavailable"
 msgstr "Scanner indisponível"
 
-#: desktop/src/pages/ConfigPreferences.tsx:726
+#: desktop/src/pages/ConfigPreferences.tsx:728
 msgid "Scan PE Files"
 msgstr "Verificar arquivos PE"
 
-#: desktop/src/pages/ConfigPreferences.tsx:727
+#: desktop/src/pages/ConfigPreferences.tsx:729
 msgid "Scan ELF Files"
 msgstr "Verificar arquivos ELF"
 
-#: desktop/src/pages/ConfigPreferences.tsx:728
+#: desktop/src/pages/ConfigPreferences.tsx:730
 msgid "Scan OLE2 Files"
 msgstr "Verificar arquivos OLE2"
 
-#: desktop/src/pages/ConfigPreferences.tsx:729
+#: desktop/src/pages/ConfigPreferences.tsx:731
 msgid "Scan PDF Files"
 msgstr "Verificar arquivos PDF"
 
-#: desktop/src/pages/ConfigPreferences.tsx:730
+#: desktop/src/pages/ConfigPreferences.tsx:732
 msgid "Scan HTML Files"
 msgstr "Verificar arquivos HTML"
 
-#: desktop/src/pages/ConfigPreferences.tsx:731
+#: desktop/src/pages/ConfigPreferences.tsx:733
 msgid "Scan Archive Files"
 msgstr "Verificar arquivos compactados"
 
-#: desktop/src/pages/ConfigPreferences.tsx:737
+#: desktop/src/pages/ConfigPreferences.tsx:739
 #: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Database Updates"
 msgstr "Atualizações do banco de dados"
 
 #. Translators: Keep freshclam.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:738
+#: desktop/src/pages/ConfigPreferences.tsx:740
 msgid "freshclam.conf"
 msgstr "freshclam.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:742
+#: desktop/src/pages/ConfigPreferences.tsx:744
 msgid "Paths"
 msgstr "Caminhos"
 
-#: desktop/src/pages/ConfigPreferences.tsx:743
+#: desktop/src/pages/ConfigPreferences.tsx:745
 msgid "Database Directory"
 msgstr "Diretório do banco de dados"
 
-#: desktop/src/pages/ConfigPreferences.tsx:744
+#: desktop/src/pages/ConfigPreferences.tsx:746
 msgid "Update Log File"
 msgstr "Arquivo de registro de atualização"
 
-#: desktop/src/pages/ConfigPreferences.tsx:745
+#: desktop/src/pages/ConfigPreferences.tsx:747
 msgid "PID File"
 msgstr "Arquivo PID"
 
-#: desktop/src/pages/ConfigPreferences.tsx:746
+#: desktop/src/pages/ConfigPreferences.tsx:748
 msgid "Notify ClamD Config"
 msgstr "Notificar configuração do ClamD"
 
-#: desktop/src/pages/ConfigPreferences.tsx:747
+#: desktop/src/pages/ConfigPreferences.tsx:749
 msgid "Log timestamps"
 msgstr "Carimbos de data e hora nos registros"
 
-#: desktop/src/pages/ConfigPreferences.tsx:748
+#: desktop/src/pages/ConfigPreferences.tsx:750
 msgid "Verbose logging"
 msgstr "Registro detalhado"
 
-#: desktop/src/pages/ConfigPreferences.tsx:749
+#: desktop/src/pages/ConfigPreferences.tsx:751
 msgid "Syslog logging"
 msgstr "Registro no Syslog"
 
-#: desktop/src/pages/ConfigPreferences.tsx:751
+#: desktop/src/pages/ConfigPreferences.tsx:753
 msgid "Update Behavior"
 msgstr "Comportamento de atualização"
 
-#: desktop/src/pages/ConfigPreferences.tsx:752
+#: desktop/src/pages/ConfigPreferences.tsx:754
 msgid "Checks per day"
 msgstr "Verificações por dia"
 
-#: desktop/src/pages/ConfigPreferences.tsx:752
+#: desktop/src/pages/ConfigPreferences.tsx:754
 msgid "0 disables automatic checks."
 msgstr "0 desativa as verificações automáticas."
 
-#: desktop/src/pages/ConfigPreferences.tsx:753
+#: desktop/src/pages/ConfigPreferences.tsx:755
 msgid "Database Mirror"
 msgstr "Espelho do banco de dados"
 
-#: desktop/src/pages/ConfigPreferences.tsx:755
+#: desktop/src/pages/ConfigPreferences.tsx:757
 msgid "Custom Signature Databases"
 msgstr "Bancos de dados de assinaturas personalizados"
 
-#: desktop/src/pages/ConfigPreferences.tsx:757
+#: desktop/src/pages/ConfigPreferences.tsx:759
 msgid "Suggested"
 msgstr "Sugerido"
 
-#
-#. Translators: Suggested and Save & Apply are button labels; use their translations. Keep InterServer unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:758
+#. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
+#: desktop/src/pages/ConfigPreferences.tsx:760
 msgid ""
-"Suggested adds three InterServer databases to this draft. Save & Apply is "
-"still required."
-msgstr ""
-"Sugerido adiciona três bancos de dados do InterServer a este rascunho. "
-"Salvar e aplicar ainda é necessário."
+"Suggested adds the RFXN signatures and three InterServer databases to this "
+"draft. Save & Apply is still required."
+msgstr "Sugerido adiciona as assinaturas RFXN e três bancos de dados do InterServer a este rascunho. Salvar e aplicar ainda é necessário."
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:762
+#: desktop/src/pages/ConfigPreferences.tsx:764
 msgid ""
 "Supported URL schemes: http, https, ftp, ftps, and file. Paste each provider "
 "URL as a separate entry."
@@ -3192,22 +3211,23 @@ msgstr ""
 "Esquemas de URL compatíveis: http, https, ftp, ftps e file. Cole a URL de "
 "cada provedor como uma entrada separada."
 
-#: desktop/src/pages/ConfigPreferences.tsx:767
+#: desktop/src/pages/ConfigPreferences.tsx:769
 msgid "Signature Providers"
 msgstr "Provedores de assinaturas"
 
-#: desktop/src/pages/ConfigPreferences.tsx:768
+#: desktop/src/pages/ConfigPreferences.tsx:770
 msgid "Registration is required; URLs include your personal API key."
 msgstr "É necessário cadastro; as URLs incluem sua chave de API pessoal."
 
-#: desktop/src/pages/ConfigPreferences.tsx:768
-#: desktop/src/pages/ConfigPreferences.tsx:772
-#: desktop/src/pages/ConfigPreferences.tsx:773
+#: desktop/src/pages/ConfigPreferences.tsx:770
+#: desktop/src/pages/ConfigPreferences.tsx:774
+#: desktop/src/pages/ConfigPreferences.tsx:775
+#: desktop/src/pages/ConfigPreferences.tsx:776
 msgid "Open provider"
 msgstr "Abrir provedor"
 
 #. Translators: Keep fangfrisch and clamav-unofficial-sigs unchanged; they are tool names.
-#: desktop/src/pages/ConfigPreferences.tsx:769
+#: desktop/src/pages/ConfigPreferences.tsx:771
 msgid ""
 "Use fangfrisch or clamav-unofficial-sigs; it is not a direct custom URL "
 "provider."
@@ -3215,185 +3235,191 @@ msgstr ""
 "Use fangfrisch ou clamav-unofficial-sigs; não é um provedor direto de URLs "
 "personalizadas."
 
-#: desktop/src/pages/ConfigPreferences.tsx:773
+#: desktop/src/pages/ConfigPreferences.tsx:775
+msgid ""
+"Free Linux malware and web-shell hash and heuristic signatures from Linux "
+"Malware Detect."
+msgstr "Assinaturas de hash e heurísticas gratuitas para malware Linux e web shells do Linux Malware Detect."
+
+#: desktop/src/pages/ConfigPreferences.tsx:776
 msgid "Community hash, web-shell, and general malware signature databases."
 msgstr ""
 "Bancos de dados comunitários de assinaturas de hash, web shell e malware em "
 "geral."
 
-#: desktop/src/pages/ConfigPreferences.tsx:775
+#: desktop/src/pages/ConfigPreferences.tsx:778
 msgid "Proxy Settings"
 msgstr "Configurações de proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:776
+#: desktop/src/pages/ConfigPreferences.tsx:779
 msgid "Proxy Server"
 msgstr "Servidor proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:777
+#: desktop/src/pages/ConfigPreferences.tsx:780
 msgid "Proxy Port"
 msgstr "Porta do proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:777
+#: desktop/src/pages/ConfigPreferences.tsx:780
 msgid "0 disables the proxy port."
 msgstr "0 desativa a porta do proxy."
 
-#: desktop/src/pages/ConfigPreferences.tsx:778
+#: desktop/src/pages/ConfigPreferences.tsx:781
 msgid "Proxy Username"
 msgstr "Nome de usuário do proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:779
+#: desktop/src/pages/ConfigPreferences.tsx:782
 msgid "Proxy Password"
 msgstr "Senha do proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:784
+#: desktop/src/pages/ConfigPreferences.tsx:787
 msgid "Scanner Settings"
 msgstr "Configurações do scanner"
 
-#: desktop/src/pages/ConfigPreferences.tsx:786
+#: desktop/src/pages/ConfigPreferences.tsx:789
 msgid "Scan Backend"
 msgstr "Mecanismo de verificação"
 
-#: desktop/src/pages/ConfigPreferences.tsx:786
+#: desktop/src/pages/ConfigPreferences.tsx:789
 msgid "Auto (prefer daemon)"
 msgstr "Automático (preferir daemon)"
 
 #. Translators: Keep clamd unchanged; it is the daemon command and service name.
-#: desktop/src/pages/ConfigPreferences.tsx:786
+#: desktop/src/pages/ConfigPreferences.tsx:789
 msgid "ClamAV Daemon (clamd)"
 msgstr "Daemon do ClamAV (clamd)"
 
 #. Translators: Keep clamscan unchanged; it is the scanner command name.
-#: desktop/src/pages/ConfigPreferences.tsx:789
+#: desktop/src/pages/ConfigPreferences.tsx:792
 msgid "Standalone Scanner (clamscan)"
 msgstr "Scanner independente (clamscan)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:793
+#: desktop/src/pages/ConfigPreferences.tsx:796
 msgid "Daemon Status"
 msgstr "Status do daemon"
 
-#: desktop/src/pages/ConfigPreferences.tsx:793
+#: desktop/src/pages/ConfigPreferences.tsx:796
 msgid "Refresh Status"
 msgstr "Atualizar status"
 
-#: desktop/src/pages/ConfigPreferences.tsx:794
+#: desktop/src/pages/ConfigPreferences.tsx:797
 msgid "Documentation"
 msgstr "Documentação"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:796
-#: desktop/src/pages/ConfigPreferences.tsx:817
+#: desktop/src/pages/ConfigPreferences.tsx:799
+#: desktop/src/pages/ConfigPreferences.tsx:820
 msgid "clamd.conf"
 msgstr "clamd.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:800
+#: desktop/src/pages/ConfigPreferences.tsx:803
 msgid "File Type Scanning"
 msgstr "Verificação por tipo de arquivo"
 
-#: desktop/src/pages/ConfigPreferences.tsx:803
+#: desktop/src/pages/ConfigPreferences.tsx:806
 msgid "Performance and Limits"
 msgstr "Desempenho e limites"
 
-#: desktop/src/pages/ConfigPreferences.tsx:804
-#: desktop/src/pages/ConfigPreferences.tsx:830
+#: desktop/src/pages/ConfigPreferences.tsx:807
+#: desktop/src/pages/ConfigPreferences.tsx:833
 msgid "Max File Size (MB)"
 msgstr "Tamanho máximo de arquivo (MB)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:804
-#: desktop/src/pages/ConfigPreferences.tsx:805
 #: desktop/src/pages/ConfigPreferences.tsx:807
-#: desktop/src/pages/ConfigPreferences.tsx:830
+#: desktop/src/pages/ConfigPreferences.tsx:808
+#: desktop/src/pages/ConfigPreferences.tsx:810
+#: desktop/src/pages/ConfigPreferences.tsx:833
 msgid "0 means unlimited."
 msgstr "0 significa ilimitado."
 
-#: desktop/src/pages/ConfigPreferences.tsx:805
+#: desktop/src/pages/ConfigPreferences.tsx:808
 msgid "Max Scan Size (MB)"
 msgstr "Tamanho máximo de verificação (MB)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:806
+#: desktop/src/pages/ConfigPreferences.tsx:809
 msgid "Max Archive Recursion"
 msgstr "Recursão máxima em arquivos compactados"
 
-#: desktop/src/pages/ConfigPreferences.tsx:807
+#: desktop/src/pages/ConfigPreferences.tsx:810
 msgid "Max Files in Archive"
 msgstr "Máximo de arquivos no arquivo compactado"
 
-#: desktop/src/pages/ConfigPreferences.tsx:809
+#: desktop/src/pages/ConfigPreferences.tsx:812
 msgid "Logging"
 msgstr "Registro"
 
-#: desktop/src/pages/ConfigPreferences.tsx:810
+#: desktop/src/pages/ConfigPreferences.tsx:813
 msgid "Log File Path"
 msgstr "Caminho do arquivo de registro"
 
-#: desktop/src/pages/ConfigPreferences.tsx:811
+#: desktop/src/pages/ConfigPreferences.tsx:814
 msgid "Verbose Logging"
 msgstr "Registro detalhado"
 
-#: desktop/src/pages/ConfigPreferences.tsx:811
+#: desktop/src/pages/ConfigPreferences.tsx:814
 msgid "Syslog Logging"
 msgstr "Registro no Syslog"
 
-#: desktop/src/pages/ConfigPreferences.tsx:816
+#: desktop/src/pages/ConfigPreferences.tsx:819
 msgid "On-Access Scanning"
 msgstr "Verificação em acesso"
 
-#: desktop/src/pages/ConfigPreferences.tsx:821
+#: desktop/src/pages/ConfigPreferences.tsx:824
 msgid "Monitored Paths"
 msgstr "Caminhos monitorados"
 
-#: desktop/src/pages/ConfigPreferences.tsx:822
+#: desktop/src/pages/ConfigPreferences.tsx:825
 msgid "Include Paths"
 msgstr "Incluir caminhos"
 
-#: desktop/src/pages/ConfigPreferences.tsx:823
+#: desktop/src/pages/ConfigPreferences.tsx:826
 msgid "Exclude Paths"
 msgstr "Excluir caminhos"
 
-#: desktop/src/pages/ConfigPreferences.tsx:825
+#: desktop/src/pages/ConfigPreferences.tsx:828
 msgid "Behavior Settings"
 msgstr "Configurações de comportamento"
 
-#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:829
 msgid "Prevention Mode"
 msgstr "Modo de prevenção"
 
-#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:829
 msgid "Extra Scanning"
 msgstr "Verificação extra"
 
-#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:829
 msgid "Deny on Error"
 msgstr "Negar em caso de erro"
 
-#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:829
 msgid "Disable DDD"
 msgstr "Desativar DDD"
 
-#: desktop/src/pages/ConfigPreferences.tsx:828
+#: desktop/src/pages/ConfigPreferences.tsx:831
 msgid "Performance Settings"
 msgstr "Configurações de desempenho"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:832
 msgid "Max Threads"
 msgstr "Máximo de threads"
 
-#: desktop/src/pages/ConfigPreferences.tsx:831
+#: desktop/src/pages/ConfigPreferences.tsx:834
 msgid "Curl Timeout (seconds)"
 msgstr "Tempo limite do Curl (segundos)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:831
+#: desktop/src/pages/ConfigPreferences.tsx:834
 msgid "0 disables the timeout."
 msgstr "0 desativa o tempo limite."
 
-#: desktop/src/pages/ConfigPreferences.tsx:832
+#: desktop/src/pages/ConfigPreferences.tsx:835
 msgid "Retry Attempts"
 msgstr "Tentativas de nova execução"
 
-#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:837
 msgid "Scan Loop Prevention"
 msgstr "Prevenção de loops de verificação"
 
-#: desktop/src/pages/ConfigPreferences.tsx:835
+#: desktop/src/pages/ConfigPreferences.tsx:838
 msgid ""
 "At least one loop-prevention exclusion is required. Exclude the clamav "
 "service account, its UID, or root to prevent recursive scans."
@@ -3401,60 +3427,60 @@ msgstr ""
 "É necessária pelo menos uma exclusão para prevenir loops. Exclua a conta de "
 "serviço clamav, seu UID ou root para evitar verificações recursivas."
 
-#: desktop/src/pages/ConfigPreferences.tsx:836
+#: desktop/src/pages/ConfigPreferences.tsx:839
 msgid "Exclude Username"
 msgstr "Excluir nome de usuário"
 
-#: desktop/src/pages/ConfigPreferences.tsx:837
+#: desktop/src/pages/ConfigPreferences.tsx:840
 msgid "Exclude User ID"
 msgstr "Excluir ID de usuário"
 
-#: desktop/src/pages/ConfigPreferences.tsx:838
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "Exclude Root User"
 msgstr "Excluir usuário root"
 
-#: desktop/src/pages/ConfigPreferences.tsx:843
+#: desktop/src/pages/ConfigPreferences.tsx:846
 msgid "Scheduled Scans"
 msgstr "Verificações agendadas"
 
-#: desktop/src/pages/ConfigPreferences.tsx:844
+#: desktop/src/pages/ConfigPreferences.tsx:847
 msgid "Schedule"
 msgstr "Agendamento"
 
-#: desktop/src/pages/ConfigPreferences.tsx:845
+#: desktop/src/pages/ConfigPreferences.tsx:848
 msgid "Enable Scheduled Scans"
 msgstr "Ativar verificações agendadas"
 
-#: desktop/src/pages/ConfigPreferences.tsx:846
+#: desktop/src/pages/ConfigPreferences.tsx:849
 msgid "Scan Frequency"
 msgstr "Frequência da verificação"
 
-#: desktop/src/pages/ConfigPreferences.tsx:847
+#: desktop/src/pages/ConfigPreferences.tsx:850
 msgid "Scan Time (24-hour)"
 msgstr "Horário da verificação (24 horas)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:848
+#: desktop/src/pages/ConfigPreferences.tsx:851
 msgid "Day of Week"
 msgstr "Dia da semana"
 
-#: desktop/src/pages/ConfigPreferences.tsx:848
+#: desktop/src/pages/ConfigPreferences.tsx:851
 msgid "Used for weekly scans."
 msgstr "Usado para verificações semanais."
 
-#: desktop/src/pages/ConfigPreferences.tsx:849
+#: desktop/src/pages/ConfigPreferences.tsx:852
 msgid "Day of Month"
 msgstr "Dia do mês"
 
-#: desktop/src/pages/ConfigPreferences.tsx:849
+#: desktop/src/pages/ConfigPreferences.tsx:852
 msgid "Used for monthly scans."
 msgstr "Usado para verificações mensais."
 
-#: desktop/src/pages/ConfigPreferences.tsx:850
+#: desktop/src/pages/ConfigPreferences.tsx:853
 #: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:712
 msgid "Scan Targets"
 msgstr "Alvos de varredura"
 
-#: desktop/src/pages/ConfigPreferences.tsx:851
+#: desktop/src/pages/ConfigPreferences.tsx:854
 msgid ""
 "No targets are configured. The scheduled scan will use your home directory "
 "without saving it as an explicit target."
@@ -3462,36 +3488,36 @@ msgstr ""
 "Nenhum alvo está configurado. A verificação agendada usará seu diretório "
 "pessoal sem salvá-lo como alvo explícito."
 
-#: desktop/src/pages/ConfigPreferences.tsx:852
+#: desktop/src/pages/ConfigPreferences.tsx:855
 #: desktop/src/pages/SettingsPreferences.tsx:403
 msgid "Skip on Battery"
 msgstr "Pular na bateria"
 
-#: desktop/src/pages/ConfigPreferences.tsx:852
+#: desktop/src/pages/ConfigPreferences.tsx:855
 msgid "Do not start scheduled scans while on battery power."
 msgstr "Não iniciar verificações agendadas quando estiver usando a bateria."
 
-#: desktop/src/pages/ConfigPreferences.tsx:853
+#: desktop/src/pages/ConfigPreferences.tsx:856
 msgid "Auto-Quarantine"
 msgstr "Quarentena automática"
 
-#: desktop/src/pages/ConfigPreferences.tsx:853
+#: desktop/src/pages/ConfigPreferences.tsx:856
 msgid "Automatically quarantine threats found by scheduled scans."
 msgstr ""
 "Colocar automaticamente em quarentena as ameaças encontradas por "
 "verificações agendadas."
 
-#: desktop/src/pages/ConfigPreferences.tsx:858
-#: desktop/src/pages/ConfigPreferences.tsx:868
+#: desktop/src/pages/ConfigPreferences.tsx:861
+#: desktop/src/pages/ConfigPreferences.tsx:871
 msgid "Save & Apply"
 msgstr "Salvar e aplicar"
 
-#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:862
 msgid "Apply Configuration"
 msgstr "Aplicar configuração"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:860
+#: desktop/src/pages/ConfigPreferences.tsx:863
 msgid ""
 "All edited forms are captured at the moment you click Save & Apply. Every "
 "configured file is validated before any write or authorization request."
@@ -3501,7 +3527,7 @@ msgstr ""
 "autorização."
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:864
+#: desktop/src/pages/ConfigPreferences.tsx:867
 msgid ""
 "Scanner and On-Access changes share one clamd.conf proposal; neither form "
 "can overwrite the other's detached changes."
@@ -3510,103 +3536,103 @@ msgstr ""
 "clamd.conf; nenhum formulário pode sobrescrever as alterações separadas do "
 "outro."
 
-#: desktop/src/pages/ConfigPreferences.tsx:868
+#: desktop/src/pages/ConfigPreferences.tsx:871
 #: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:227
 msgid "Saving…"
 msgstr "Salvando…"
 
-#: desktop/src/pages/Database.tsx:60
+#: desktop/src/pages/Database.tsx:74
 msgid "Active (PID {pid})"
 msgstr "Ativo (PID {pid})"
 
-#: desktop/src/pages/Database.tsx:60
+#: desktop/src/pages/Database.tsx:74
 msgid "Active"
 msgstr "Ativo"
 
-#: desktop/src/pages/Database.tsx:62
+#: desktop/src/pages/Database.tsx:76
 msgid "Installed but stopped"
 msgstr "Instalado, mas parado"
 
-#: desktop/src/pages/Database.tsx:64
+#: desktop/src/pages/Database.tsx:78
 msgid "No freshclam service detected; updates run manually"
 msgstr ""
 "Nenhum serviço freshclam detectado; as atualizações são executadas "
 "manualmente"
 
-#: desktop/src/pages/Database.tsx:66
+#: desktop/src/pages/Database.tsx:80
 msgid "Service state could not be determined"
 msgstr "Não foi possível determinar o estado do serviço"
 
-#: desktop/src/pages/Database.tsx:71
+#: desktop/src/pages/Database.tsx:85
 msgid "Database freshness information is unavailable"
 msgstr ""
 "As informações sobre a atualidade do banco de dados não estão disponíveis"
 
-#: desktop/src/pages/Database.tsx:72
+#: desktop/src/pages/Database.tsx:86
 msgid "No readable virus database was found"
 msgstr "Nenhum banco de dados de vírus legível foi encontrado"
 
-#: desktop/src/pages/Database.tsx:74
+#: desktop/src/pages/Database.tsx:88
 msgid "{count} day old"
 msgid_plural "{count} days old"
 msgstr[0] "{count} dia de idade"
 msgstr[1] "{count} dias de idade"
 
-#: desktop/src/pages/Database.tsx:76
+#: desktop/src/pages/Database.tsx:90
 msgid "last updated {timestamp}"
 msgstr "última atualização: {timestamp}"
 
-#: desktop/src/pages/Database.tsx:77
+#: desktop/src/pages/Database.tsx:91
 msgid "freshness could not be determined"
 msgstr "não foi possível determinar a atualidade"
 
-#: desktop/src/pages/Database.tsx:78
+#: desktop/src/pages/Database.tsx:92
 msgid "Virus database available"
 msgstr "Banco de dados de vírus disponível"
 
-#: desktop/src/pages/Database.tsx:83
+#: desktop/src/pages/Database.tsx:97
 msgid "Status: {status}"
 msgstr "Status: {status}"
 
-#: desktop/src/pages/Database.tsx:84
+#: desktop/src/pages/Database.tsx:98
 msgid "Method: {method}"
 msgstr "Método: {method}"
 
-#: desktop/src/pages/Database.tsx:84
+#: desktop/src/pages/Database.tsx:98
 msgid "freshclam service signal accepted"
 msgstr "Sinal aceito pelo serviço freshclam"
 
-#: desktop/src/pages/Database.tsx:84
+#: desktop/src/pages/Database.tsx:98
 msgid "manual freshclam"
 msgstr "freshclam manual"
 
-#: desktop/src/pages/Database.tsx:85
+#: desktop/src/pages/Database.tsx:99
 msgid "Exit code: {code}"
 msgstr "Código de saída: {code}"
 
-#: desktop/src/pages/Database.tsx:87
+#: desktop/src/pages/Database.tsx:101
 msgid "Database updated: {count}"
 msgid_plural "Databases updated: {count}"
 msgstr[0] "Banco de dados atualizado: {count}"
 msgstr[1] "Bancos de dados atualizados: {count}"
 
-#: desktop/src/pages/Database.tsx:88
+#: desktop/src/pages/Database.tsx:102
 msgid "Updated: {databases}"
 msgstr "Atualizado: {databases}"
 
-#: desktop/src/pages/Database.tsx:89
+#: desktop/src/pages/Database.tsx:103
 msgid "Already current: {databases}"
 msgstr "Já atual: {databases}"
 
-#: desktop/src/pages/Database.tsx:91
+#: desktop/src/pages/Database.tsx:105
 msgid "Rate limited: {database}{cooldown}"
 msgstr "Limite de taxa atingido: {database}{cooldown}"
 
-#: desktop/src/pages/Database.tsx:91
+#: desktop/src/pages/Database.tsx:105
 msgid "until"
 msgstr "até"
 
-#: desktop/src/pages/Database.tsx:94
+#: desktop/src/pages/Database.tsx:108
 msgid ""
 "The service accepted the signal; it performs the update asynchronously. "
 "Check its logs for completion."
@@ -3614,19 +3640,19 @@ msgstr ""
 "O serviço aceitou o sinal; ele executa a atualização de forma assíncrona. "
 "Verifique os logs para confirmar a conclusão."
 
-#: desktop/src/pages/Database.tsx:102
+#: desktop/src/pages/Database.tsx:116
 msgid "freshclam output:"
 msgstr "Saída do freshclam:"
 
-#: desktop/src/pages/Database.tsx:105
+#: desktop/src/pages/Database.tsx:119
 msgid "Error output:"
 msgstr "Saída de erro:"
 
-#: desktop/src/pages/Database.tsx:201
+#: desktop/src/pages/Database.tsx:215
 msgid "Could not listen for update progress: {error}"
 msgstr "Não foi possível monitorar o progresso da atualização: {error}"
 
-#: desktop/src/pages/Database.tsx:215
+#: desktop/src/pages/Database.tsx:229
 msgid ""
 "Force update requested: preserving existing databases until replacement "
 "succeeds."
@@ -3634,80 +3660,96 @@ msgstr ""
 "Atualização forçada solicitada: os bancos de dados existentes serão "
 "preservados até que a substituição seja concluída."
 
-#: desktop/src/pages/Database.tsx:215
+#: desktop/src/pages/Database.tsx:229
 msgid "Update requested."
 msgstr "Atualização solicitada."
 
-#: desktop/src/pages/Database.tsx:222
+#: desktop/src/pages/Database.tsx:236
 msgid "Database update failed"
 msgstr "Falha na atualização do banco de dados"
 
-#: desktop/src/pages/Database.tsx:223
+#: desktop/src/pages/Database.tsx:237
 msgid "Database update cancelled"
 msgstr "Atualização do banco de dados cancelada"
 
-#: desktop/src/pages/Database.tsx:224
+#: desktop/src/pages/Database.tsx:238
 msgid "Update signal accepted by the freshclam service"
 msgstr "Sinal de atualização aceito pelo serviço freshclam"
 
-#: desktop/src/pages/Database.tsx:225
+#: desktop/src/pages/Database.tsx:239
 msgid "Database update completed"
 msgstr "Atualização do banco de dados concluída"
 
-#: desktop/src/pages/Database.tsx:225
+#: desktop/src/pages/Database.tsx:239
 msgid "Database is already up to date"
 msgstr "Banco de dados já está atualizado"
 
-#: desktop/src/pages/Database.tsx:252
+#: desktop/src/pages/Database.tsx:266
 msgid "No matching update operation could be cancelled."
 msgstr "Nenhuma operação de atualização correspondente pôde ser cancelada."
 
-#: desktop/src/pages/Database.tsx:253
+#: desktop/src/pages/Database.tsx:267
 msgid "Cancellation requested; waiting for freshclam to stop."
 msgstr "Cancelamento solicitado; aguardando a interrupção do freshclam."
 
-#: desktop/src/pages/Database.tsx:266
+#: desktop/src/pages/Database.tsx:280
 msgid "Update ClamAV virus definitions and inspect their current state."
 msgstr ""
 "Atualize as definições de vírus do ClamAV e inspecione o estado atual delas."
 
-#: desktop/src/pages/Database.tsx:273
+#: desktop/src/pages/Database.tsx:287
 msgid "Could not read updater status: {error}"
 msgstr "Não foi possível ler o status do atualizador: {error}"
 
-#: desktop/src/pages/Database.tsx:278 desktop/src/pages/Overview.tsx:173
+#: desktop/src/pages/Database.tsx:292 desktop/src/pages/Overview.tsx:173
 msgid "Virus definitions"
 msgstr "Definições de vírus"
 
-#: desktop/src/pages/Database.tsx:284
+#: desktop/src/pages/Database.tsx:298
 msgid "Checking freshclam…"
 msgstr "Verificando freshclam…"
 
-#: desktop/src/pages/Database.tsx:284
+#: desktop/src/pages/Database.tsx:298
 msgid "No freshclam status returned"
 msgstr "Nenhum status do freshclam foi retornado"
 
-#: desktop/src/pages/Database.tsx:287 desktop/src/pages/Overview.tsx:37
+#: desktop/src/pages/Database.tsx:301 desktop/src/pages/Overview.tsx:37
 msgid "Available"
 msgstr "Disponível"
 
-#: desktop/src/pages/Database.tsx:287 desktop/src/pages/Overview.tsx:37
+#: desktop/src/pages/Database.tsx:301 desktop/src/pages/Overview.tsx:37
 msgid "Unavailable"
 msgstr "Indisponível"
 
-#: desktop/src/pages/Database.tsx:290
+#: desktop/src/pages/Database.tsx:304
 msgid "Update service"
 msgstr "Serviço de atualização"
 
-#: desktop/src/pages/Database.tsx:295
+#: desktop/src/pages/Database.tsx:309
 msgid "Database freshness"
 msgstr "Atualidade do banco de dados"
 
-#: desktop/src/pages/Database.tsx:302
+#: desktop/src/pages/Database.tsx:316
+msgid "Base databases"
+msgstr "Bancos de dados"
+
+#: desktop/src/pages/Database.tsx:317
+msgid ""
+"Official ClamAV databases found in the configured database directory. A "
+"missing entry is downloaded by the next successful freshclam update."
+msgstr "Bancos de dados oficiais do ClamAV encontrados no diretório configurado. Uma entrada ausente será baixada na próxima atualização bem-sucedida do freshclam."
+
+#: desktop/src/pages/Database.tsx:320
+msgid "{count} custom signature file"
+msgid_plural "{count} custom signature files"
+msgstr[0] "{count} arquivo de assinaturas personalizadas"
+msgstr[1] "{count} arquivos de assinaturas personalizadas"
+
+#: desktop/src/pages/Database.tsx:326
 msgid "Recognized database and signature files"
 msgstr "Recognized database and signature files"
 
-#: desktop/src/pages/Database.tsx:303
+#: desktop/src/pages/Database.tsx:327
 msgid ""
 "Files detected in the configured ClamAV database directory. This list does "
 "not confirm which files the active scanner loaded."
@@ -3715,23 +3757,23 @@ msgstr ""
 "Files detected in the configured ClamAV database directory. This list does "
 "not confirm which files the active scanner loaded."
 
-#: desktop/src/pages/Database.tsx:305
+#: desktop/src/pages/Database.tsx:329
 msgid "Show {count} recognized file"
 msgid_plural "Show {count} recognized files"
 msgstr[0] "Show {count} recognized file"
 msgstr[1] "Show {count} recognized files"
 
-#: desktop/src/pages/Database.tsx:309
+#: desktop/src/pages/Database.tsx:333
 msgid "{count} detected"
 msgid_plural "{count} detected"
 msgstr[0] "{count} detected"
 msgstr[1] "{count} detected"
 
-#: desktop/src/pages/Database.tsx:317 desktop/src/pages/Database.tsx:324
+#: desktop/src/pages/Database.tsx:341 desktop/src/pages/Database.tsx:348
 msgid "Update database"
 msgstr "Atualizar banco de dados"
 
-#: desktop/src/pages/Database.tsx:318
+#: desktop/src/pages/Database.tsx:342
 msgid ""
 "A normal update asks an active freshclam service to update when possible. A "
 "force update bypasses the service and stages replacements before promoting "
@@ -3742,35 +3784,35 @@ msgstr ""
 "substituições antes de promovê-las, restaurando bancos de dados anteriores "
 "caso falhem."
 
-#: desktop/src/pages/Database.tsx:324
+#: desktop/src/pages/Database.tsx:348
 msgid "Updating…"
 msgstr "Atualizando…"
 
-#: desktop/src/pages/Database.tsx:325 desktop/src/pages/Database.tsx:353
+#: desktop/src/pages/Database.tsx:349 desktop/src/pages/Database.tsx:377
 msgid "Force update"
 msgstr "Forçar atualização"
 
-#: desktop/src/pages/Database.tsx:329
+#: desktop/src/pages/Database.tsx:353
 msgid "Install freshclam before requesting database updates."
 msgstr "Instale o freshclam antes de solicitar atualizações do banco de dados."
 
-#: desktop/src/pages/Database.tsx:330
+#: desktop/src/pages/Database.tsx:354
 msgid "Preparing the update progress listener…"
 msgstr "Preparando o ouvinte de progresso da atualização…"
 
-#: desktop/src/pages/Database.tsx:336
+#: desktop/src/pages/Database.tsx:360
 msgid "Update log"
 msgstr "Registro de atualização"
 
-#: desktop/src/pages/Database.tsx:344
+#: desktop/src/pages/Database.tsx:368
 msgid "No update has been requested in this session."
 msgstr "Nenhuma atualização foi solicitada nesta sessão."
 
-#: desktop/src/pages/Database.tsx:349
+#: desktop/src/pages/Database.tsx:373
 msgid "Force database update?"
 msgstr "Forçar atualização do banco de dados?"
 
-#: desktop/src/pages/Database.tsx:350
+#: desktop/src/pages/Database.tsx:374
 msgid ""
 "This bypasses the freshclam service and stages replacement databases. "
 "Existing definitions remain available until a replacement succeeds; they are "
@@ -3787,7 +3829,7 @@ msgstr[0] "{seconds} segundo"
 msgstr[1] "{seconds} segundos"
 
 #: desktop/src/pages/Logs.tsx:89 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Quarantine.tsx:304
+#: desktop/src/pages/Quarantine.tsx:362
 msgid "Path"
 msgstr "Caminho"
 
@@ -3920,7 +3962,7 @@ msgstr "Operações anteriores de verificação e atualização"
 
 #: desktop/src/pages/Logs.tsx:367 desktop/src/pages/Logs.tsx:400
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
-#: desktop/src/pages/Quarantine.tsx:296
+#: desktop/src/pages/Quarantine.tsx:354
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:448
 #: desktop/src/pages/SettingsPreferences.tsx:530
@@ -4532,7 +4574,7 @@ msgid "Duplicate"
 msgstr "Duplicar"
 
 #: desktop/src/pages/Profiles.tsx:237 desktop/src/pages/Profiles.tsx:245
-#: desktop/src/pages/Quarantine.tsx:307 desktop/src/pages/Quarantine.tsx:319
+#: desktop/src/pages/Quarantine.tsx:365 desktop/src/pages/Quarantine.tsx:377
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:448
 msgid "Delete"
@@ -4567,187 +4609,241 @@ msgstr ""
 msgid "Restoring…"
 msgstr "Restaurando…"
 
-#: desktop/src/pages/Quarantine.tsx:127 desktop/src/pages/Quarantine.tsx:165
+#: desktop/src/pages/Quarantine.tsx:99
+msgid "Still detected"
+msgstr "Ainda detectado"
+
+#: desktop/src/pages/Quarantine.tsx:101
+msgid "No longer detected"
+msgstr "Não detectado mais"
+
+#: desktop/src/pages/Quarantine.tsx:103
+msgid "Integrity check failed"
+msgstr "Falha na verificação de integridade"
+
+#: desktop/src/pages/Quarantine.tsx:105
+msgid "Rescan failed"
+msgstr "Falha na nova verificação"
+
+#: desktop/src/pages/Quarantine.tsx:163 desktop/src/pages/Quarantine.tsx:201
 msgid "Linux Defender returned invalid quarantine data."
 msgstr "Linux Defender returned invalid quarantine data."
 
-#: desktop/src/pages/Quarantine.tsx:135 desktop/src/pages/Quarantine.tsx:172
+#: desktop/src/pages/Quarantine.tsx:171 desktop/src/pages/Quarantine.tsx:208
 msgid "Failed to load quarantine: {error}"
 msgstr "Falha ao carregar a quarentena: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:201
+#: desktop/src/pages/Quarantine.tsx:237
 msgid "Quarantine updates are unavailable: {error}"
 msgstr "As atualizações da quarentena não estão disponíveis: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:223
+#: desktop/src/pages/Quarantine.tsx:259
 msgid "Linux Defender returned an invalid cleanup result."
 msgstr "Linux Defender returned an invalid cleanup result."
 
-#: desktop/src/pages/Quarantine.tsx:228
+#: desktop/src/pages/Quarantine.tsx:264
 msgid "Removed {count} old quarantine entry."
 msgid_plural "Removed {count} old quarantine entries."
 msgstr[0] "Removida {count} entrada antiga da quarentena."
 msgstr[1] "Removidas {count} entradas antigas da quarentena."
 
-#: desktop/src/pages/Quarantine.tsx:234
+#: desktop/src/pages/Quarantine.tsx:270
 msgid "No old entries found to remove."
 msgstr "Nenhuma entrada antiga encontrada para remover."
 
-#: desktop/src/pages/Quarantine.tsx:240
+#: desktop/src/pages/Quarantine.tsx:276
 msgid "Failed to clear old items: {error}"
 msgstr "Falha ao limpar itens antigos: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:241
+#: desktop/src/pages/Quarantine.tsx:277
 msgid "Failed to clear old quarantine items: {error}"
 msgstr "Falha ao limpar itens antigos da quarentena: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:251
+#: desktop/src/pages/Quarantine.tsx:286
+msgid "Linux Defender returned an invalid rescan result."
+msgstr "O Linux Defender retornou um resultado inválido da nova verificação."
+
+#: desktop/src/pages/Quarantine.tsx:289
+msgid "{count} item is still detected."
+msgid_plural "{count} items are still detected."
+msgstr[0] "{count} item ainda é detectado."
+msgstr[1] "{count} itens ainda são detectados."
+
+#: desktop/src/pages/Quarantine.tsx:290
+msgid "{count} item is no longer detected."
+msgid_plural "{count} items are no longer detected."
+msgstr[0] "{count} item não é mais detectado."
+msgstr[1] "{count} itens não são mais detectados."
+
+#: desktop/src/pages/Quarantine.tsx:290
+msgid "Consider restoring it."
+msgstr "Considere restaurá-lo."
+
+#: desktop/src/pages/Quarantine.tsx:291
+msgid "{count} item could not be rescanned."
+msgid_plural "{count} items could not be rescanned."
+msgstr[0] "{count} item não pôde ser verificado novamente."
+msgstr[1] "{count} itens não puderam ser verificados novamente."
+
+#: desktop/src/pages/Quarantine.tsx:295 desktop/src/pages/Quarantine.tsx:296
+msgid "Failed to rescan quarantined files: {error}"
+msgstr "Falha ao verificar novamente os arquivos em quarentena: {error}"
+
+#: desktop/src/pages/Quarantine.tsx:308
 msgid "Linux Defender returned an invalid quarantine result."
 msgstr "Linux Defender returned an invalid quarantine result."
 
-#: desktop/src/pages/Quarantine.tsx:254
+#: desktop/src/pages/Quarantine.tsx:311
 msgid "File restored successfully."
 msgstr "Arquivo restaurado com sucesso."
 
-#: desktop/src/pages/Quarantine.tsx:254
+#: desktop/src/pages/Quarantine.tsx:311
 msgid "File deleted successfully."
 msgstr "Arquivo excluído com sucesso."
 
-#: desktop/src/pages/Quarantine.tsx:259
+#: desktop/src/pages/Quarantine.tsx:316
 msgid "File restored, but the database entry could not be removed."
 msgstr ""
 "Arquivo restaurado, mas não foi possível remover a entrada do banco de dados."
 
-#: desktop/src/pages/Quarantine.tsx:259
+#: desktop/src/pages/Quarantine.tsx:316
 msgid "File deleted, but the database entry could not be removed."
 msgstr ""
 "Arquivo excluído, mas não foi possível remover a entrada do banco de dados."
 
-#: desktop/src/pages/Quarantine.tsx:263
+#: desktop/src/pages/Quarantine.tsx:320
 msgid "Failed to restore quarantined file ({status})."
 msgstr "Falha ao restaurar o arquivo em quarentena ({status})."
 
-#: desktop/src/pages/Quarantine.tsx:263
+#: desktop/src/pages/Quarantine.tsx:320
 msgid "Failed to delete quarantined file ({status})."
 msgstr "Falha ao excluir o arquivo em quarentena ({status})."
 
-#: desktop/src/pages/Quarantine.tsx:267
+#: desktop/src/pages/Quarantine.tsx:324
 msgid "Failed to restore quarantined file: {error}"
 msgstr "Falha ao restaurar o arquivo em quarentena: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:268
+#: desktop/src/pages/Quarantine.tsx:325
 msgid "Failed to delete quarantined file: {error}"
 msgstr "Falha ao excluir o arquivo em quarentena: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:279
+#: desktop/src/pages/Quarantine.tsx:336
 msgid "Secure storage for isolated threats."
 msgstr "Armazenamento seguro para ameaças isoladas."
 
-#: desktop/src/pages/Quarantine.tsx:284
+#: desktop/src/pages/Quarantine.tsx:341
 msgid "Quarantine Storage"
 msgstr "Armazenamento da quarentena"
 
-#: desktop/src/pages/Quarantine.tsx:286
+#: desktop/src/pages/Quarantine.tsx:343
 msgid "Total Size"
 msgstr "Tamanho total"
 
-#: desktop/src/pages/Quarantine.tsx:286
+#: desktop/src/pages/Quarantine.tsx:343
 msgid "Calculating…"
 msgstr "Calculando…"
 
-#: desktop/src/pages/Quarantine.tsx:287
+#: desktop/src/pages/Quarantine.tsx:344
 msgid "Items"
 msgstr "Itens"
 
-#: desktop/src/pages/Quarantine.tsx:288
+#: desktop/src/pages/Quarantine.tsx:345
 msgid "{filtered} of {total} item"
 msgid_plural "{filtered} of {total} items"
 msgstr[0] "{filtered} de {total} item"
 msgstr[1] "{filtered} de {total} itens"
 
-#: desktop/src/pages/Quarantine.tsx:289
+#: desktop/src/pages/Quarantine.tsx:346
 msgid "{count} item"
 msgid_plural "{count} items"
 msgstr[0] "{count} item"
 msgstr[1] "{count} itens"
 
-#: desktop/src/pages/Quarantine.tsx:294
+#: desktop/src/pages/Quarantine.tsx:351
 msgid "Quarantined Files"
 msgstr "Arquivos em quarentena"
 
-#: desktop/src/pages/Quarantine.tsx:294
+#: desktop/src/pages/Quarantine.tsx:351
 msgid "Detected threats isolated from your system."
 msgstr "Ameaças detectadas isoladas do seu sistema."
 
-#: desktop/src/pages/Quarantine.tsx:297
+#: desktop/src/pages/Quarantine.tsx:353
+msgid "Rescanning…"
+msgstr "Verificando novamente…"
+
+#: desktop/src/pages/Quarantine.tsx:353
+msgid "Rescan"
+msgstr "Verificar novamente"
+
+#: desktop/src/pages/Quarantine.tsx:355
 msgid "Clear Old Items"
 msgstr "Limpar itens antigos"
 
-#: desktop/src/pages/Quarantine.tsx:300
+#: desktop/src/pages/Quarantine.tsx:358
 msgid "Search by threat name or path"
 msgstr "Pesquisar por nome ou caminho da ameaça"
 
-#: desktop/src/pages/Quarantine.tsx:300
+#: desktop/src/pages/Quarantine.tsx:358
 msgid "Search by threat name or path…"
 msgstr "Pesquisar por nome ou caminho da ameaça…"
 
-#: desktop/src/pages/Quarantine.tsx:301
+#: desktop/src/pages/Quarantine.tsx:359
 msgid "Loading quarantine entries…"
 msgstr "Carregando itens em quarentena…"
 
-#: desktop/src/pages/Quarantine.tsx:301
+#: desktop/src/pages/Quarantine.tsx:359
 msgid ""
 "No Quarantined Files. Detected threats will be isolated here for review."
 msgstr ""
 "Nenhum arquivo em quarentena. As ameaças detectadas serão isoladas aqui para "
 "análise."
 
-#: desktop/src/pages/Quarantine.tsx:301
+#: desktop/src/pages/Quarantine.tsx:359
 msgid "No matching entries. Try a different search term."
 msgstr "Nenhum item correspondente. Tente outro termo de pesquisa."
 
-#: desktop/src/pages/Quarantine.tsx:301
+#: desktop/src/pages/Quarantine.tsx:359
 msgid "No entries on this page."
 msgstr "Nenhuma entrada nesta página."
 
-#: desktop/src/pages/Quarantine.tsx:303 desktop/src/pages/Quarantine.tsx:314
-#: desktop/src/pages/Quarantine.tsx:318
+#: desktop/src/pages/Quarantine.tsx:361 desktop/src/pages/Quarantine.tsx:372
+#: desktop/src/pages/Quarantine.tsx:376
 msgid "Unknown Threat"
 msgstr "Ameaça desconhecida"
 
-#: desktop/src/pages/Quarantine.tsx:303 desktop/src/pages/Quarantine.tsx:305
+#: desktop/src/pages/Quarantine.tsx:361 desktop/src/pages/Quarantine.tsx:363
 #: desktop/src/pages/Results.tsx:196
 msgid "Quarantined"
 msgstr "Em quarentena"
 
-#: desktop/src/pages/Quarantine.tsx:307
+#: desktop/src/pages/Quarantine.tsx:365
 msgid "Restore"
 msgstr "Restaurar"
 
-#: desktop/src/pages/Quarantine.tsx:309
+#: desktop/src/pages/Quarantine.tsx:367
 msgid "Previous"
 msgstr "Anterior"
 
-#: desktop/src/pages/Quarantine.tsx:309
+#: desktop/src/pages/Quarantine.tsx:367
 msgid "Next"
 msgstr "Próximo"
 
-#: desktop/src/pages/Quarantine.tsx:311
+#: desktop/src/pages/Quarantine.tsx:369
 msgid "Restore Quarantined File?"
 msgstr "Restaurar arquivo em quarentena?"
 
-#: desktop/src/pages/Quarantine.tsx:311
+#: desktop/src/pages/Quarantine.tsx:369
 msgid "Permanently Delete File?"
 msgstr "Excluir arquivo permanentemente?"
 
 #. Translators: Preserve the {threat} and {path} placeholders; they are runtime threat and file-path values. Use quotation marks appropriate for your language.
-#: desktop/src/pages/Quarantine.tsx:311
+#: desktop/src/pages/Quarantine.tsx:369
 msgid "This file was detected as '{threat}'. It will be restored to {path}."
 msgstr ""
 "Este arquivo foi detectado como '{threat}'. Ele será restaurado em {path}."
 
 #. Translators: Preserve the {path} and {threat} placeholders; they are runtime file-path and threat values. Use quotation marks appropriate for your language.
-#: desktop/src/pages/Quarantine.tsx:315
+#: desktop/src/pages/Quarantine.tsx:373
 msgid ""
 "The quarantined file from {path} ('{threat}') will be permanently deleted. "
 "This action cannot be undone."
@@ -4755,7 +4851,7 @@ msgstr ""
 "O arquivo em quarentena de {path} ('{threat}') será excluído "
 "permanentemente. Esta ação não pode ser desfeita."
 
-#: desktop/src/pages/Quarantine.tsx:319
+#: desktop/src/pages/Quarantine.tsx:377
 msgid "Restore Anyway"
 msgstr "Restaurar mesmo assim"
 

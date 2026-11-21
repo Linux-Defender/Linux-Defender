@@ -24,6 +24,8 @@ type QuarantineList = {
   nextCursor: string | null;
 };
 type QuarantineResult = { status: string; errorMessage?: string };
+type RescanEntry = { status: string; detail: string };
+type RescanReport = { results: { id: number; status: string; detail: string }[]; detected: number; clean: number; errors: number };
 
 const PAGE_SIZE = 20;
 
@@ -72,6 +74,38 @@ function parseResult(value: unknown): QuarantineResult | null {
   return { status, ...(typeof errorMessage === "string" ? { errorMessage } : {}) };
 }
 
+function parseRescanReport(value: unknown): RescanReport | null {
+  if (!value || typeof value !== "object") return null;
+  const rawResults = fieldValue(value, "results", "results");
+  const detected = fieldValue(value, "detected", "detected");
+  const clean = fieldValue(value, "clean", "clean");
+  const errors = fieldValue(value, "errors", "errors");
+  if (!Array.isArray(rawResults) || typeof detected !== "number" || typeof clean !== "number" || typeof errors !== "number") return null;
+  const results = rawResults.flatMap((entry) => {
+    if (!entry || typeof entry !== "object") return [];
+    const id = fieldValue(entry, "id", "id");
+    const status = fieldValue(entry, "status", "status");
+    const detail = fieldValue(entry, "detail", "detail");
+    if (typeof id !== "number" || typeof status !== "string") return [];
+    return [{ id, status, detail: typeof detail === "string" ? detail : "" }];
+  });
+  if (results.length !== rawResults.length) return null;
+  return { results, detected, clean, errors };
+}
+
+function rescanLabel(status: string): string {
+  switch (status) {
+    case "detected":
+      return _("Still detected");
+    case "clean":
+      return _("No longer detected");
+    case "integrity_failed":
+      return _("Integrity check failed");
+    default:
+      return _("Rescan failed");
+  }
+}
+
 function readableError(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
@@ -96,6 +130,8 @@ export default function Quarantine({ active }: { active: boolean }) {
   const [loading, setLoading] = useState(true);
   const [banner, setBanner] = useState<{ message: string; type: "success" | "warning" | "error" } | null>(null);
   const [confirmation, setConfirmation] = useState<{ action: "restore" | "delete"; entry: QuarantineEntry } | null>(null);
+  const [rescan, setRescan] = useState<Record<number, RescanEntry>>({});
+  const [rescanning, setRescanning] = useState(false);
   const activeRef = useRef(active);
   const queryRef = useRef({ search: "", locale: Intl.DateTimeFormat().resolvedOptions().locale });
   const responseGeneration = useRef(0);
@@ -242,6 +278,27 @@ export default function Quarantine({ active }: { active: boolean }) {
     }
   };
 
+  const rescanAll = async () => {
+    setRescanning(true);
+    try {
+      const response = await request<unknown>("quarantine.rescan", {});
+      const report = parseRescanReport(response);
+      if (!report) throw new Error(_("Linux Defender returned an invalid rescan result."));
+      setRescan(Object.fromEntries(report.results.map((result) => [result.id, { status: result.status, detail: result.detail }])));
+      const parts: string[] = [];
+      if (report.detected > 0) parts.push(ngettext("{count} item is still detected.", "{count} items are still detected.", report.detected, { count: report.detected }));
+      if (report.clean > 0) parts.push(`${ngettext("{count} item is no longer detected.", "{count} items are no longer detected.", report.clean, { count: report.clean })} ${_("Consider restoring it.")}`);
+      if (report.errors > 0) parts.push(ngettext("{count} item could not be rescanned.", "{count} items could not be rescanned.", report.errors, { count: report.errors }));
+      setBanner({ message: parts.join(" "), type: report.errors > 0 ? "error" : report.clean > 0 ? "warning" : "success" });
+    } catch (error) {
+      const message = readableError(error);
+      setBanner({ message: _("Failed to rescan quarantined files: {error}", { error: message }), type: "error" });
+      notify(_("Failed to rescan quarantined files: {error}", { error: message }), "error");
+    } finally {
+      setRescanning(false);
+    }
+  };
+
   const actOnEntry = async () => {
     if (!confirmation) return;
     const { action, entry } = confirmation;
@@ -293,6 +350,7 @@ export default function Quarantine({ active }: { active: boolean }) {
       <header className="section-header">
         <div><h2 id="files-heading">{_("Quarantined Files")}</h2><p>{_("Detected threats isolated from your system.")}</p></div>
         <div className="actions">
+          <button className="button" type="button" onClick={() => void rescanAll()} disabled={!data?.entryCount || rescanning}>{rescanning ? _("Rescanning…") : _("Rescan")}</button>
           <button className="button" type="button" onClick={() => void refreshEntries(true)} disabled={loading}><Icon name="refresh" />{_("Refresh")}</button>
           <button className="button" type="button" onClick={() => void cleanupOld()} disabled={!data?.entryCount}>{_("Clear Old Items")}</button>
         </div>
@@ -300,7 +358,7 @@ export default function Quarantine({ active }: { active: boolean }) {
       <label className="search-field">{_("Search by threat name or path")}<input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={_("Search by threat name or path…")} /></label>
       {loading ? <p className="muted">{_("Loading quarantine entries…")}</p> : !data || data.entryCount === 0 ? <p className="empty-state">{_("No Quarantined Files. Detected threats will be isolated here for review.")}</p> : appliedSearch && data.matchedCount === 0 ? <p className="empty-state">{_("No matching entries. Try a different search term.")}</p> : data.entries.length === 0 ? <p className="empty-state">{_("No entries on this page.")}</p> : <div className="grouped-list quarantine-list" role="list">{data.entries.map((entry) => <article className="group-row quarantine-entry" role="listitem" key={entry.id}>
         <div className="quarantine-entry-content row-copy">
-          <header><h3 className="row-title">{entry.threatName || _("Unknown Threat")}</h3><span className="status-badge warning">{_("Quarantined")}</span></header>
+          <header><h3 className="row-title">{entry.threatName || _("Unknown Threat")}</h3><span className="status-badge warning">{_("Quarantined")}</span>{rescan[entry.id] && <span className={`status-badge ${rescan[entry.id].status === "detected" ? "error" : "warning"}`} title={rescan[entry.id].detail || undefined}>{rescanLabel(rescan[entry.id].status)}</span>}</header>
           <p className="path-value">{_("Path")}: {entry.originalPath}</p>
           <dl className="metadata"><div><dt>{_("Quarantined")}</dt><dd>{formatDate(entry.detectionDate)}</dd></div><div><dt>{_("Size")}</dt><dd>{formatFileSize(entry.fileSize)}</dd></div></dl>
         </div>

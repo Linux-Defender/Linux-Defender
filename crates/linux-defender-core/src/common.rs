@@ -6,6 +6,7 @@ use std::{
     any::{Any, TypeId},
     collections::HashMap,
     env,
+    ffi::{OsStr, OsString},
     fs::{self, File, OpenOptions},
     io::Write,
     os::unix::{
@@ -372,11 +373,21 @@ pub fn host_command(program: &str, args: &[String]) -> Command {
     build_host_command(program, args, false)
 }
 
+/// Builds a host command whose arguments may contain non-UTF-8 paths, such as
+/// quarantined payload names derived from arbitrary filenames.
+pub fn host_command_os(program: &str, args: &[OsString]) -> Command {
+    build_host_command(program, args, false)
+}
+
 pub(crate) fn watched_host_command(program: &str, args: &[String]) -> Command {
     build_host_command(program, args, true)
 }
 
-fn build_host_command(program: &str, args: &[String], watch_bus: bool) -> Command {
+fn build_host_command<I, S>(program: &str, args: I, watch_bus: bool) -> Command
+where
+    I: IntoIterator<Item = S>,
+    S: AsRef<OsStr>,
+{
     let mut command = if is_flatpak() {
         let mut command = Command::new("flatpak-spawn");
         command.arg("--host");

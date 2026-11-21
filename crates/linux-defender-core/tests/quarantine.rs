@@ -689,3 +689,13 @@ fn ui_list_applies_locale_lowercasing_to_literals_and_lossy_paths_without_foldin
     );
     assert_eq!(listed_ids(&sharp_s), vec![sharp_s_id]);
 }
+
+#[test]
+fn rescan_rejects_non_integer_ids() {
+    let test = TestContext::new();
+    let error = dispatch(&test.context, "rescan", json!({"ids": ["1"]})).unwrap_err();
+    assert!(error.contains("quarantine.rescan ids must be integers"));
+
+    let error = dispatch(&test.context, "rescan", json!({"ids": 1})).unwrap_err();
+    assert!(error.contains("quarantine.rescan ids must be an array"));
+}

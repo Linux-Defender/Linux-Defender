@@ -1,9 +1,10 @@
-use crate::common::{host_command, is_flatpak};
+use crate::common::{host_command, host_command_os, is_flatpak};
 use crate::host_probe::run_limited_command;
 use crate::AppResult;
 use serde::Serialize;
 use serde_json::{json, Value};
 use std::collections::BTreeMap;
+use std::ffi::OsString;
 use std::fs;
 use std::path::Path;
 use std::process::Stdio;
@@ -67,7 +68,23 @@ pub fn run_host(
     args: &[String],
     timeout: Option<u64>,
 ) -> AppResult<std::process::Output> {
-    let mut command = host_command(program, args);
+    run_host_command(host_command(program, args), program, timeout)
+}
+
+/// Runs a host command whose arguments may contain non-UTF-8 paths.
+pub fn run_host_os(
+    program: &str,
+    args: &[OsString],
+    timeout: Option<u64>,
+) -> AppResult<std::process::Output> {
+    run_host_command(host_command_os(program, args), program, timeout)
+}
+
+fn run_host_command(
+    mut command: std::process::Command,
+    program: &str,
+    timeout: Option<u64>,
+) -> AppResult<std::process::Output> {
     command.stdout(Stdio::piped()).stderr(Stdio::piped());
     let mut child = command
         .spawn()
@@ -640,11 +657,23 @@ pub fn database_status(config_path: Option<&str>) -> Value {
         .as_deref()
         .and_then(|path| database_directory_inventory(path).ok())
         .unwrap_or_default();
+    let signatures = classify_signature_files(&inventory.names);
+    let mut status = json!({
+        "available": probe.available,
+        "detail": probe.detail,
+        "path": probe.path,
+        "age_days": Value::Null,
+        "updated_at": Value::Null,
+        "files_detected": inventory.files,
+        "file_names": inventory.names,
+        "base_databases": signatures.base_databases_json(),
+        "custom_signatures": signatures.custom,
+    });
     if !probe.available {
-        return json!({"available": false, "detail": probe.detail, "path": probe.path, "age_days": Value::Null, "updated_at": Value::Null, "files_detected": inventory.files, "file_names": inventory.names});
+        return status;
     }
     let Some(dir) = probe.path.clone() else {
-        return json!({"available": true, "detail": probe.detail, "path": Value::Null, "age_days": Value::Null, "updated_at": Value::Null, "files_detected": inventory.files, "file_names": inventory.names});
+        return status;
     };
     let newest = if is_flatpak() {
         let script = "find \"$1\" -maxdepth 1 -type f \\( -iname '*.cvd' -o -iname '*.cld' -o -iname '*.cud' \\) -printf '%T@ %p\\n' | sort -nr | head -n 1";
@@ -700,12 +729,69 @@ pub fn database_status(config_path: Option<&str>) -> Value {
             let age_days = ((now - timestamp).max(0) as f64 / 86_400.0).floor() as u64;
             let updated_at = chrono::DateTime::<chrono::Utc>::from_timestamp(timestamp, 0)
                 .map(|time| time.to_rfc3339());
-            json!({"available": true, "detail": probe.detail, "path": path, "age_days": age_days, "updated_at": updated_at, "files_detected": inventory.files, "file_names": inventory.names})
+            status["path"] = json!(path);
+            status["age_days"] = json!(age_days);
+            status["updated_at"] = json!(updated_at);
         }
         None => {
-            json!({"available": true, "detail": probe.detail, "path": dir, "age_days": Value::Null, "updated_at": Value::Null, "files_detected": inventory.files, "file_names": inventory.names})
+            status["path"] = json!(dir);
         }
     }
+    status
+}
+
+/// Presence of the official ClamAV base databases and a count of the custom
+/// signature families ClamAV can load alongside them.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub(crate) struct SignatureInventory {
+    pub(crate) main: bool,
+    pub(crate) daily: bool,
+    pub(crate) bytecode: bool,
+    pub(crate) custom: usize,
+}
+
+impl SignatureInventory {
+    pub(crate) fn base_databases_json(self) -> Value {
+        json!({"main": self.main, "daily": self.daily, "bytecode": self.bytecode})
+    }
+
+    pub(crate) fn missing(self) -> Vec<&'static str> {
+        let mut missing = Vec::new();
+        if !self.main {
+            missing.push("main");
+        }
+        if !self.daily {
+            missing.push("daily");
+        }
+        if !self.bytecode {
+            missing.push("bytecode");
+        }
+        missing
+    }
+}
+
+/// Classify the database directory inventory into the three official ClamAV
+/// base databases and the custom signature families ClamAV can load. A missing
+/// base database is a real installation gap, while custom signatures are
+/// optional and only counted.
+pub(crate) fn classify_signature_files(names: &[String]) -> SignatureInventory {
+    let mut inventory = SignatureInventory::default();
+    for name in names {
+        let lower = name.to_ascii_lowercase();
+        let (stem, extension) = lower.rsplit_once('.').unwrap_or((&lower, ""));
+        match (stem, extension) {
+            ("main", "cvd" | "cld") => inventory.main = true,
+            ("daily", "cvd" | "cld") => inventory.daily = true,
+            ("bytecode", "cvd" | "cld") => inventory.bytecode = true,
+            (
+                _,
+                "hdb" | "hsb" | "ndb" | "ldb" | "cdb" | "sdb" | "yar" | "yara" | "idb" | "pdb"
+                | "gdb" | "wdb" | "mdb" | "msb" | "cbc" | "ftm",
+            ) => inventory.custom += 1,
+            _ => {}
+        }
+    }
+    inventory
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -1013,6 +1099,31 @@ mod tests {
     use std::fs;
     use std::os::unix::fs::symlink;
     use std::time::{Duration, UNIX_EPOCH};
+
+    #[test]
+    fn classifies_official_and_custom_signature_files() {
+        let names = vec![
+            "main.cvd".to_owned(),
+            "daily.CLD".to_owned(),
+            "custom.ndb".to_owned(),
+            "local.yar".to_owned(),
+            "freshclam.dat".to_owned(),
+            "main-63.cvd.sign".to_owned(),
+        ];
+        let base = classify_signature_files(&names);
+        assert!(base.main);
+        assert!(base.daily);
+        assert!(!base.bytecode);
+        assert_eq!(base.custom, 2);
+        assert_eq!(base.missing(), vec!["bytecode"]);
+
+        let empty = classify_signature_files(&[]);
+        assert!(!empty.main);
+        assert!(!empty.daily);
+        assert!(!empty.bytecode);
+        assert_eq!(empty.custom, 0);
+        assert_eq!(empty.missing(), vec!["main", "daily", "bytecode"]);
+    }
 
     #[test]
     fn database_inventory_preserves_file_metadata_through_directory_symlinks() {

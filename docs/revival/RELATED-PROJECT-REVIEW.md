@@ -230,3 +230,44 @@ The public [Linux-Defender/Linux-Defender](https://github.com/Linux-Defender/Lin
 The upstream ClamUI `main` head `6836eea` is an ancestor of the selected `master` head, not a newer release. It diverges from master due later commits; the default master branch restores scanner handling/tests and current dependencies, so main was not merged separately. Continue comparing branches when upstream history changes.
 
 ClamTk's 23 open issues and four open PR dispositions above are still the ledger; review does not equal a fix. Local verification in the unified checkout: `cargo fmt --check --all` passed; the focused platform integration suite passed (7/7), including Thunar install/remove and `%F`/VirusTotal action checks. The frontend TypeScript/Vite build passed after the Thunar UI type update. A full workspace test run found 4 existing helper tests blocked by sandbox filesystem/tool assumptions; rerunning while skipping only those passed 103 core tests and all 17 desktop unit tests, then stalled in CLI subprocess tests (8 reported running beyond 60 seconds) and was stopped. Previously, mocked VirusTotal tests passed (8), and translation checks passed (10 locales, 1,275 messages). The actual window, tray clicks, themes, Thunar/XFCE actions, auto-update services, and CachyOS package still require desktop validation. Nothing has been pushed.
+
+## Nine-repository merger review (2026-11-20)
+
+A second sweep reviewed nine same-name or same-category GitHub repositories, plus the upstream ClamUI default branch, against this single Rust/Tauri/React runtime. None of the repositories contained a four-entry official base-database list: every scanner that enumerated ClamAV databases used `main`, `daily`, and `bytecode` (each `.cvd` or `.cld`). The earlier local 4→3 change was in the suggested third-party feed list, not in the official database set. URLhaus was the removed fourth suggestion; it now returns HTTP 410 Gone. The suggestion list therefore uses RFXN (`rfxn.hdb`, `rfxn.ndb`) plus the three InterServer files, all verified reachable over HTTPS.
+
+License boundary: only Herodium is MIT. Linux Defender reimplemented behaviour from the GPL and custom-licensed projects and copied no code, strings, rules, or data from them. Behaviour adoption must stay independently written and tested at the owning boundary.
+
+| Repository | Reviewed revision | License | Disposition |
+|---|---|---|---|
+| [`ramnezer/herodium`](https://github.com/ramnezer/herodium) | `main` @ `5f3b8ec` | MIT | Adopt behaviour: identity-bound remediation, bounded live-scan queues, recovery walks, health model, trust-checked tool execution. No code copied yet. |
+| [`demosthenesk/Linux-Defender`](https://github.com/demosthenesk/Linux-Defender) | `main` @ `9c7dac7` (v1.8.5) | GPL-2.0-or-later | Reimplement select behaviour: quarantine rescan after signature change, pause/resume updates, write-ahead scan records. Do not copy code or bundle ClamAV. |
+| [`asafelobotomy/xanadOS-Search_Destroy`](https://github.com/asafelobotomy/xanadOS-Search_Destroy) | `2b91c1a4` (2026-03-23) | GPL-3.0-only | Reimplement select behaviour: three-database inventory, cache invalidation keyed on signature version, read-only firewall status. Ignore the broken watcher, placeholder web protection, and cached-root model. |
+| [`seanpm2001/Linux_Defender`](https://github.com/seanpm2001/Linux_Defender) | `f5ab300b` (2025-05-26) | GPL-3.0 plus non-free extra terms | Nothing to adopt; documentation-only stub with no executable scanner. |
+| [`Ellath3may0/linux-defender`](https://github.com/Ellath3may0/linux-defender) | shallow `main` snapshot | MIT declared, no LICENSE file | Reimplement read-only anti-persistence heuristics, config-integrity hashing, and `/etc/passwd`-derived account model. No destructive remediation. |
+| [`VisAwesme/Linux-Defender`](https://github.com/VisAwesme/Linux-Defender) | `cd1cddc` (2025-04-13) | Custom LDPL 1 (non-free) | Ignore; dummy signature list, credential leak, destructive uninstaller. |
+| [`NetKnightsClub/Linux-Defender`](https://github.com/NetKnightsClub/Linux-Defender) | `df0435d` (2025-05-12) | Custom LDPL 1 | Ignore; byte-identical mirror of the above except the README warning. |
+| [`jkniazi1232/Linux-Guard`](https://github.com/jkniazi1232/Linux-Guard) | `f158825` (2024-11-28) | None | Ignore; unlicensed 50-line MD5 matcher with incorrect hashes and false positives. |
+| [`TraderOutfit/Maxsecure-Antivirus-2026`](https://github.com/TraderOutfit/Maxsecure-Antivirus-2026) | repository snapshot | None | Ignore and treat as a malware-distribution lure; no code was downloaded or executed. |
+
+### Implemented in this pass
+
+- Official base-database inventory now reports `main`, `daily`, and `bytecode` separately from the count of custom signature families, in both the audit section and the updater database status. A missing base database is a warning/failure instead of being folded into the generic freshness check.
+- Quarantine entries can be re-scanned against the current signatures from the Quarantine page. Payloads are integrity-checked first; results distinguish still detected, no longer detected (probable false positive), integrity failure, and scan error. Scanning happens in place and never copies a payload out of the vault.
+- The suggested feed list adds RFXN and uses HTTPS for InterServer.
+- `clamscan` can now be invoked with non-UTF-8 quarantine payload names through an `OsString` command path.
+
+### Deferred, with reasons
+
+- A real-time filesystem watcher needs a bounded queue, dirty coalescing, recovery walk, ClamAV temporary-directory exclusion, and honest failed/unsupported state. That is a separate module with its own tests; shipping a watcher that cannot start would repeat xanADOS's failure.
+- Scan-result caching requires an identity captured from one open descriptor plus signature and engine versions; it must never act as an extension-based skip list.
+- Config-integrity hashing and anti-persistence audit rows are new capability, not part of the ClamAV database fix, and need their own target set and false-positive tests before they appear as findings.
+- Update pause/resume affects our own `freshclam` child only; a frozen download holds the database lock, so it needs explicit UI states and tests.
+- The shared Google Doc link was not publicly readable during this review, so no content from it is reflected here.
+
+### Rejected outright
+
+- Root services, `/etc/clamav` rewriting, firewall/ipset enforcement, process killing, kernel/eBPF monitors, and AppArmor level switching from Herodium.
+- Bundling ClamAV or its database, as demosthenesk's AppImage does.
+- XOR "encryption" for quarantine payloads and restore paths that do not re-verify identity or hash.
+- `--database` directories that shadow the official set, world-writable/symlink refusal as a scanning gate, and silent success on partial database updates.
+- Placeholder web protection, cached root sessions, API keys in query strings or stdout, and default-on detection uploads.

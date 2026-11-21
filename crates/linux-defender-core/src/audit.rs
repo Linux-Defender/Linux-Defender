@@ -448,6 +448,56 @@ fn check_clamav_health(ctx: &Context) -> AuditSection {
         }
     }
 
+    let signatures = signature_inventory(ctx);
+    let missing = signatures.missing();
+    let mut bases = if missing.is_empty() {
+        check(
+            ctx,
+            "Base Databases",
+            AuditStatus::Pass,
+            tr(ctx, "All official base databases are present"),
+        )
+    } else {
+        let mut check = check(
+            ctx,
+            "Base Databases",
+            if signatures.daily {
+                AuditStatus::Warning
+            } else {
+                AuditStatus::Fail
+            },
+            text(
+                ctx,
+                "Missing base databases: {databases}",
+                &[("{databases}", missing.join(", "))],
+            ),
+        );
+        check.recommendation = Some(tr(ctx, "Download the missing databases with freshclam"));
+        check.install_command = Some("sudo freshclam".to_owned());
+        check
+    };
+    bases.info_url = Some(URL_FRESHCLAM.to_owned());
+    section.push(bases);
+
+    let mut custom = check(
+        ctx,
+        "Custom Signatures",
+        AuditStatus::Pass,
+        if signatures.custom == 0 {
+            tr(ctx, "No custom signature files are loaded")
+        } else {
+            trnf(
+                ctx,
+                "{count} custom signature file is loaded",
+                "{count} custom signature files are loaded",
+                signatures.custom as u64,
+                &[("{count}", signatures.custom.to_string())],
+            )
+        },
+    );
+    custom.info_url = Some(URL_FRESHCLAM.to_owned());
+    section.push(custom);
+
     let daemon_active = ["clamav-daemon", "clamd@scan", "clamd"]
         .iter()
         .find_map(|service| service_active(service).0.then_some(*service));
@@ -591,6 +641,16 @@ fn database_dirs(ctx: &Context) -> Vec<String> {
     let mut seen = std::collections::BTreeSet::new();
     directories.retain(|directory| seen.insert(directory.clone()));
     directories
+}
+
+fn signature_inventory(ctx: &Context) -> crate::host::SignatureInventory {
+    let mut names = Vec::new();
+    for directory in database_dirs(ctx) {
+        if let Ok(inventory) = crate::host::database_directory_inventory(&directory) {
+            names.extend(inventory.names);
+        }
+    }
+    crate::host::classify_signature_files(&names)
 }
 
 fn find_daily_cvd(ctx: &Context) -> Option<String> {

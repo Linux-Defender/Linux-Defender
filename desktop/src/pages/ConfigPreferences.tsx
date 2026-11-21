@@ -99,9 +99,11 @@ const ONACCESS_BOOLEAN_FIELDS = [
 ] as const;
 
 const SUGGESTED_SIGNATURE_URLS = [
-  "http://sigs.interserver.net/interserver256.hdb",
-  "http://sigs.interserver.net/interservertopline.db",
-  "http://sigs.interserver.net/shell.ldb",
+  "https://www.rfxn.com/downloads/rfxn.hdb",
+  "https://www.rfxn.com/downloads/rfxn.ndb",
+  "https://sigs.interserver.net/interserver256.hdb",
+  "https://sigs.interserver.net/interservertopline.db",
+  "https://sigs.interserver.net/shell.ldb",
 ] as const;
 
 const defaultSchedule = (): Schedule => ({
@@ -756,8 +758,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
         <CustomUrlListField values={freshclamValues.DatabaseCustomURL ?? []} onChange={(next) => updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", next))} />
         <div className="toolbar actions"><button className="button" type="button" onClick={addSuggestedUrls}>{_("Suggested")}</button></div>
         <p className="muted">{_(
-          // Translators: Suggested and Save & Apply are button labels; use their translations. Keep InterServer unchanged.
-          "Suggested adds three InterServer databases to this draft. Save & Apply is still required.",
+          // Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
+          "Suggested adds the RFXN signatures and three InterServer databases to this draft. Save & Apply is still required.",
         )}</p>
         <p className="muted">{_(
           // Translators: Keep the URI schemes unchanged.
@@ -770,7 +772,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
           // Translators: Keep fangfrisch and clamav-unofficial-sigs unchanged; they are tool names.
           "Use fangfrisch or clamav-unofficial-sigs; it is not a direct custom URL provider.",
         )}</small></span><button className="button" type="button" onClick={() => void openReference("https://sanesecurity.com/")}>{_("Open provider")}</button></div>
-        <div className="setting-row"><span className="row-copy"><strong>InterServer</strong><small className="muted">{_("Community hash, web-shell, and general malware signature databases.")}</small></span><button className="button" type="button" onClick={() => void openReference("http://sigs.interserver.net/")}>{_("Open provider")}</button></div>
+        <div className="setting-row"><span className="row-copy"><strong>RFXN</strong><small className="muted">{_("Free Linux malware and web-shell hash and heuristic signatures from Linux Malware Detect.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://www.rfxn.com/projects/linux-malware-detect/")}>{_("Open provider")}</button></div>
+        <div className="setting-row"><span className="row-copy"><strong>InterServer</strong><small className="muted">{_("Community hash, web-shell, and general malware signature databases.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://sigs.interserver.net/")}>{_("Open provider")}</button></div>
       </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("Proxy Settings")}</h3>
         <TextField label={_("Proxy Server")} field="HTTPProxyServer" value={value(freshclamValues, "HTTPProxyServer")} onChange={(next) => setFreshclamField("HTTPProxyServer", next)} />
