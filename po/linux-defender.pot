@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-22 02:41-0500\n"
+"POT-Creation-Date: 2026-11-22 03:17-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3064,6 +3064,7 @@ msgstr ""
 #: desktop/src/pages/ConfigPreferences.tsx:913
 #: desktop/src/pages/ConfigPreferences.tsx:914
 #: desktop/src/pages/ConfigPreferences.tsx:915
+#: desktop/src/pages/ConfigPreferences.tsx:916
 msgid "Open provider"
 msgstr ""
 
@@ -3085,11 +3086,7 @@ msgid "Community hash, web-shell, and general malware signature databases."
 msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:916
-msgid "Free malware URL signatures; requires a free abuse.ch Auth-Key."
-msgstr ""
-
-#: desktop/src/pages/ConfigPreferences.tsx:916
-msgid "Create Auth-Key"
+msgid "Free malware URL blocklist; requires a free abuse.ch Auth-Key."
 msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:918

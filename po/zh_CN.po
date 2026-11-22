@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-22 02:29-0500\n"
+"POT-Creation-Date: 2026-11-22 03:17-0500\n"
 "PO-Revision-Date: 2026-07-22 21:29+0800\n"
 "Last-Translator: Markson Hosben <marksonhosben@proton.me>\n"
 "Language-Team: Chinese <>\n"
@@ -1215,7 +1215,7 @@ msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}：URL 必须以 http(s)://、ftp(s):// 或 file:// 开头"
 
 #. Translators: The em dash separates the fallback state from its security warning.
-#: crates/linux-defender-core/src/credentials.rs:201
+#: crates/linux-defender-core/src/credentials.rs:203
 msgid "Stored in settings file (keyring unavailable — less secure)"
 msgstr "存储在设置文件中（密钥环不可用 — 安全性较低）"
 
@@ -2048,7 +2048,7 @@ msgstr "配置方案"
 msgid "Results"
 msgstr "结果"
 
-#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:675
+#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:671
 msgid "Could not open link"
 msgstr "无法打开链接"
 
@@ -2402,7 +2402,7 @@ msgid ""
 msgstr "请勿更改未知可执行文件的权限以绕过此检查。"
 
 #: desktop/src/HelperTrustErrorDialog.tsx:72 desktop/src/UiErrorBoundary.tsx:36
-#: desktop/src/pages/ConfigPreferences.tsx:1038
+#: desktop/src/pages/ConfigPreferences.tsx:1034
 msgid "Technical details"
 msgstr "技术详情"
 
@@ -2412,7 +2412,7 @@ msgstr "打开修复说明"
 
 #. Translators: This button opens the failed native configuration snapshot.
 #: desktop/src/HelperTrustErrorDialog.tsx:80
-#: desktop/src/pages/ConfigPreferences.tsx:1042
+#: desktop/src/pages/ConfigPreferences.tsx:1038
 msgid "See Configuration"
 msgstr "查看配置"
 
@@ -2921,7 +2921,7 @@ msgstr "已通过管理员授权加载配置。"
 #. Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
 #: desktop/src/pages/ConfigPreferences.tsx:567
 #: desktop/src/pages/ConfigPreferences.tsx:578
-#: desktop/src/pages/ConfigPreferences.tsx:635
+#: desktop/src/pages/ConfigPreferences.tsx:629
 msgid ""
 "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, "
 "underscore, or hyphen)."
@@ -2933,164 +2933,164 @@ msgstr ""
 msgid "URLhaus feed added. Save & Apply is still required."
 msgstr "URLhaus feed 已添加。仍需点击“保存并应用”。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:610
+#: desktop/src/pages/ConfigPreferences.tsx:622
 msgid "URLhaus feed added to the draft. Save & Apply is still required."
 msgstr "URLhaus feed 已添加到草稿。仍需点击“保存并应用”。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:649
+#: desktop/src/pages/ConfigPreferences.tsx:645
 msgid ""
 "The URLhaus Auth-Key is saved; the feed is added to the draft by default."
 msgstr "URLhaus Auth-Key 已保存；feed 默认会添加到草稿中。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:663
+#: desktop/src/pages/ConfigPreferences.tsx:659
 msgid "URLhaus Auth-Key deleted"
 msgstr "URLhaus Auth-Key 已删除"
 
-#: desktop/src/pages/ConfigPreferences.tsx:685
+#: desktop/src/pages/ConfigPreferences.tsx:681
 msgid "Scan backend saved."
 msgstr "扫描后端设置已保存。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:718
+#: desktop/src/pages/ConfigPreferences.tsx:714
 msgid "Choose a configuration file before applying its changes."
 msgstr "请先选择配置文件，再应用更改。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:730
+#: desktop/src/pages/ConfigPreferences.tsx:726
 msgid ""
 "On-Access scanning requires an excluded username, UID, or root user to "
 "prevent scan loops."
 msgstr ""
 "访问时扫描需要指定要排除的用户名、UID 或 root 用户，以防止扫描陷入循环。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:738
-#: desktop/src/pages/ConfigPreferences.tsx:828
+#: desktop/src/pages/ConfigPreferences.tsx:734
+#: desktop/src/pages/ConfigPreferences.tsx:824
 msgid "No changes to apply."
 msgstr "没有需要应用的更改。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:753
+#: desktop/src/pages/ConfigPreferences.tsx:749
 msgid "Configuration validation failed."
 msgstr "配置验证失败。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:828
+#: desktop/src/pages/ConfigPreferences.tsx:824
 msgid "Configuration saved and applied."
 msgstr "配置已保存并应用。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:828
-#: desktop/src/pages/ConfigPreferences.tsx:845
+#: desktop/src/pages/ConfigPreferences.tsx:824
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "Some changes could not be applied."
 msgstr "部分更改未能应用。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:825
 msgid "Saved groups"
 msgstr "已保存的组"
 
-#: desktop/src/pages/ConfigPreferences.tsx:854
+#: desktop/src/pages/ConfigPreferences.tsx:850
 msgid "Checking scanner status…"
 msgstr "正在检查扫描器状态…"
 
-#: desktop/src/pages/ConfigPreferences.tsx:856
+#: desktop/src/pages/ConfigPreferences.tsx:852
 msgid "Daemon connected"
 msgstr "已连接到守护进程"
 
-#: desktop/src/pages/ConfigPreferences.tsx:857
+#: desktop/src/pages/ConfigPreferences.tsx:853
 msgid "Scanner available"
 msgstr "扫描器可用"
 
-#: desktop/src/pages/ConfigPreferences.tsx:857
+#: desktop/src/pages/ConfigPreferences.tsx:853
 msgid "Scanner unavailable"
 msgstr "扫描器不可用"
 
-#: desktop/src/pages/ConfigPreferences.tsx:871
+#: desktop/src/pages/ConfigPreferences.tsx:867
 msgid "Scan PE Files"
 msgstr "扫描 PE 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:872
+#: desktop/src/pages/ConfigPreferences.tsx:868
 msgid "Scan ELF Files"
 msgstr "扫描 ELF 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:873
+#: desktop/src/pages/ConfigPreferences.tsx:869
 msgid "Scan OLE2 Files"
 msgstr "扫描 OLE2 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:874
+#: desktop/src/pages/ConfigPreferences.tsx:870
 msgid "Scan PDF Files"
 msgstr "扫描 PDF 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:875
+#: desktop/src/pages/ConfigPreferences.tsx:871
 msgid "Scan HTML Files"
 msgstr "扫描 HTML 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:876
+#: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "Scan Archive Files"
 msgstr "扫描归档文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:882
+#: desktop/src/pages/ConfigPreferences.tsx:878
 #: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Database Updates"
 msgstr "病毒库更新"
 
 #. Translators: Keep freshclam.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:883
+#: desktop/src/pages/ConfigPreferences.tsx:879
 msgid "freshclam.conf"
 msgstr "freshclam.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:887
+#: desktop/src/pages/ConfigPreferences.tsx:883
 msgid "Paths"
 msgstr "路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:888
+#: desktop/src/pages/ConfigPreferences.tsx:884
 msgid "Database Directory"
 msgstr "病毒库目录"
 
-#: desktop/src/pages/ConfigPreferences.tsx:889
+#: desktop/src/pages/ConfigPreferences.tsx:885
 msgid "Update Log File"
 msgstr "更新日志文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:890
+#: desktop/src/pages/ConfigPreferences.tsx:886
 msgid "PID File"
 msgstr "PID 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:891
+#: desktop/src/pages/ConfigPreferences.tsx:887
 msgid "Notify ClamD Config"
 msgstr "通知 ClamD 时使用的配置文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:892
+#: desktop/src/pages/ConfigPreferences.tsx:888
 msgid "Log timestamps"
 msgstr "记录日志时间戳"
 
-#: desktop/src/pages/ConfigPreferences.tsx:893
+#: desktop/src/pages/ConfigPreferences.tsx:889
 msgid "Verbose logging"
 msgstr "记录详细日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:894
+#: desktop/src/pages/ConfigPreferences.tsx:890
 msgid "Syslog logging"
 msgstr "记录到系统日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:896
+#: desktop/src/pages/ConfigPreferences.tsx:892
 msgid "Update Behavior"
 msgstr "更新行为"
 
-#: desktop/src/pages/ConfigPreferences.tsx:897
+#: desktop/src/pages/ConfigPreferences.tsx:893
 msgid "Checks per day"
 msgstr "每日检查次数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:897
+#: desktop/src/pages/ConfigPreferences.tsx:893
 msgid "0 disables automatic checks."
 msgstr "设为 0 可禁用自动检查。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:898
+#: desktop/src/pages/ConfigPreferences.tsx:894
 msgid "Database Mirror"
 msgstr "病毒库镜像服务器"
 
-#: desktop/src/pages/ConfigPreferences.tsx:900
+#: desktop/src/pages/ConfigPreferences.tsx:896
 msgid "Custom Signature Databases"
 msgstr "自定义特征库"
 
-#: desktop/src/pages/ConfigPreferences.tsx:902
+#: desktop/src/pages/ConfigPreferences.tsx:898
 msgid "Suggested"
 msgstr "推荐"
 
 #. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged. URLhaus is a provider name.
-#: desktop/src/pages/ConfigPreferences.tsx:903
+#: desktop/src/pages/ConfigPreferences.tsx:899
 msgid ""
 "Suggested adds the RFXN signatures and three InterServer databases to this "
 "draft. Add URLhaus below with a free abuse.ch Auth-Key. Save & Apply is "
@@ -3100,7 +3100,7 @@ msgstr ""
 "abuse.ch Auth-Key 的 URLhaus。仍需点击“保存并应用”。"
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:907
+#: desktop/src/pages/ConfigPreferences.tsx:903
 msgid ""
 "Supported URL schemes: http, https, ftp, ftps, and file. Paste each provider "
 "URL as a separate entry."
@@ -3108,23 +3108,24 @@ msgstr ""
 "支持的网址协议：http、https、ftp、ftps 和 file。请将提供商的每个网址粘贴为单"
 "独的条目。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:912
+#: desktop/src/pages/ConfigPreferences.tsx:908
 msgid "Signature Providers"
 msgstr "特征库提供商"
 
-#: desktop/src/pages/ConfigPreferences.tsx:913
+#: desktop/src/pages/ConfigPreferences.tsx:909
 msgid "Registration is required; URLs include your personal API key."
 msgstr "需要注册；网址中包含您的个人 API 密钥。"
 
+#: desktop/src/pages/ConfigPreferences.tsx:909
 #: desktop/src/pages/ConfigPreferences.tsx:913
-#: desktop/src/pages/ConfigPreferences.tsx:917
-#: desktop/src/pages/ConfigPreferences.tsx:918
-#: desktop/src/pages/ConfigPreferences.tsx:919
+#: desktop/src/pages/ConfigPreferences.tsx:914
+#: desktop/src/pages/ConfigPreferences.tsx:915
+#: desktop/src/pages/ConfigPreferences.tsx:916
 msgid "Open provider"
 msgstr "访问提供商网站"
 
 #. Translators: Keep fangfrisch and clamav-unofficial-sigs unchanged; they are tool names.
-#: desktop/src/pages/ConfigPreferences.tsx:914
+#: desktop/src/pages/ConfigPreferences.tsx:910
 msgid ""
 "Use fangfrisch or clamav-unofficial-sigs; it is not a direct custom URL "
 "provider."
@@ -3132,7 +3133,7 @@ msgstr ""
 "请使用 fangfrisch 或 clamav-unofficial-sigs；此提供商不提供可直接添加的自定义"
 "网址。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:918
+#: desktop/src/pages/ConfigPreferences.tsx:914
 msgid ""
 "Free Linux malware and web-shell hash and heuristic signatures from Linux "
 "Malware Detect."
@@ -3140,41 +3141,37 @@ msgstr ""
 "来自 Linux Malware Detect 的免费 Linux 恶意软件和 Web Shell 哈希及启发式特"
 "征。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:919
+#: desktop/src/pages/ConfigPreferences.tsx:915
 msgid "Community hash, web-shell, and general malware signature databases."
 msgstr "社区提供的哈希、网页后门和通用恶意软件特征库。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:920
-msgid "Free malware URL signatures; requires a free abuse.ch Auth-Key."
-msgstr "免费提供恶意 URL 特征；需要一个免费的 abuse.ch Auth-Key。"
+#: desktop/src/pages/ConfigPreferences.tsx:916
+msgid "Free malware URL blocklist; requires a free abuse.ch Auth-Key."
+msgstr "免费恶意 URL 屏蔽列表；需要一个免费的 abuse.ch Auth-Key。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:920
-msgid "Create Auth-Key"
-msgstr "创建 Auth-Key"
-
-#: desktop/src/pages/ConfigPreferences.tsx:922
+#: desktop/src/pages/ConfigPreferences.tsx:918
 msgid "URLhaus Feed"
 msgstr "URLhaus feed"
 
-#: desktop/src/pages/ConfigPreferences.tsx:923
+#: desktop/src/pages/ConfigPreferences.tsx:919
 msgid "Auth-Key"
 msgstr "Auth-Key"
 
-#: desktop/src/pages/ConfigPreferences.tsx:925
+#: desktop/src/pages/ConfigPreferences.tsx:921
 msgid "Paste your Auth-Key"
 msgstr "粘贴 Auth-Key"
 
-#: desktop/src/pages/ConfigPreferences.tsx:926
+#: desktop/src/pages/ConfigPreferences.tsx:922
 msgid "Add URLhaus"
 msgstr "添加 URLhaus"
 
-#: desktop/src/pages/ConfigPreferences.tsx:927
+#: desktop/src/pages/ConfigPreferences.tsx:923
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Save Key"
 msgstr "保存密钥"
 
-#: desktop/src/pages/ConfigPreferences.tsx:928
+#: desktop/src/pages/ConfigPreferences.tsx:924
 #: desktop/src/pages/Profiles.tsx:237 desktop/src/pages/Profiles.tsx:245
 #: desktop/src/pages/Quarantine.tsx:365 desktop/src/pages/Quarantine.tsx:377
 #: desktop/src/pages/SettingsPreferences.tsx:425
@@ -3182,17 +3179,17 @@ msgstr "保存密钥"
 msgid "Delete"
 msgstr "删除"
 
-#: desktop/src/pages/ConfigPreferences.tsx:932
+#: desktop/src/pages/ConfigPreferences.tsx:928
 msgid ""
 "The URLhaus feed is added to the draft by default when a URLhaus Auth-Key is "
 "saved."
 msgstr "当保存了 URLhaus Auth-Key 时，URLhaus feed 默认会添加到草稿中。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:934
+#: desktop/src/pages/ConfigPreferences.tsx:930
 msgid "No URLhaus Auth-Key is saved yet."
 msgstr "尚未保存 URLhaus Auth-Key。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:936
+#: desktop/src/pages/ConfigPreferences.tsx:932
 msgid ""
 "Linux Defender writes the key into freshclam.conf as part of the feed URL. "
 "Create one at auth.abuse.ch."
@@ -3200,183 +3197,183 @@ msgstr ""
 "Linux Defender 把密钥写入 freshclam.conf，作为 feed URL 的一部分。请在 "
 "abuse.ch 上创建。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:937
+#: desktop/src/pages/ConfigPreferences.tsx:933
 msgid "A URLhaus feed is already in this draft."
 msgstr "此草稿中已存在 URLhaus feed。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:939
+#: desktop/src/pages/ConfigPreferences.tsx:935
 msgid "Proxy Settings"
 msgstr "代理设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:940
+#: desktop/src/pages/ConfigPreferences.tsx:936
 msgid "Proxy Server"
 msgstr "代理服务器"
 
-#: desktop/src/pages/ConfigPreferences.tsx:941
+#: desktop/src/pages/ConfigPreferences.tsx:937
 msgid "Proxy Port"
 msgstr "代理端口"
 
-#: desktop/src/pages/ConfigPreferences.tsx:941
+#: desktop/src/pages/ConfigPreferences.tsx:937
 msgid "0 disables the proxy port."
 msgstr "设为 0 可禁用代理端口。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:942
+#: desktop/src/pages/ConfigPreferences.tsx:938
 msgid "Proxy Username"
 msgstr "代理用户名"
 
-#: desktop/src/pages/ConfigPreferences.tsx:943
+#: desktop/src/pages/ConfigPreferences.tsx:939
 msgid "Proxy Password"
 msgstr "代理密码"
 
-#: desktop/src/pages/ConfigPreferences.tsx:948
+#: desktop/src/pages/ConfigPreferences.tsx:944
 msgid "Scanner Settings"
 msgstr "扫描器设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:950
+#: desktop/src/pages/ConfigPreferences.tsx:946
 msgid "Scan Backend"
 msgstr "扫描后端"
 
-#: desktop/src/pages/ConfigPreferences.tsx:950
+#: desktop/src/pages/ConfigPreferences.tsx:946
 msgid "Auto (prefer daemon)"
 msgstr "自动（优先使用守护进程）"
 
 #. Translators: Keep clamd unchanged; it is the daemon command and service name.
-#: desktop/src/pages/ConfigPreferences.tsx:950
+#: desktop/src/pages/ConfigPreferences.tsx:946
 msgid "ClamAV Daemon (clamd)"
 msgstr "ClamAV 守护进程（clamd）"
 
 #. Translators: Keep clamscan unchanged; it is the scanner command name.
-#: desktop/src/pages/ConfigPreferences.tsx:953
+#: desktop/src/pages/ConfigPreferences.tsx:949
 msgid "Standalone Scanner (clamscan)"
 msgstr "独立扫描器（clamscan）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:957
+#: desktop/src/pages/ConfigPreferences.tsx:953
 msgid "Daemon Status"
 msgstr "守护进程状态"
 
-#: desktop/src/pages/ConfigPreferences.tsx:957
+#: desktop/src/pages/ConfigPreferences.tsx:953
 msgid "Refresh Status"
 msgstr "刷新状态"
 
-#: desktop/src/pages/ConfigPreferences.tsx:958
+#: desktop/src/pages/ConfigPreferences.tsx:954
 msgid "Documentation"
 msgstr "文档"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:960
-#: desktop/src/pages/ConfigPreferences.tsx:981
+#: desktop/src/pages/ConfigPreferences.tsx:956
+#: desktop/src/pages/ConfigPreferences.tsx:977
 msgid "clamd.conf"
 msgstr "clamd.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:964
+#: desktop/src/pages/ConfigPreferences.tsx:960
 msgid "File Type Scanning"
 msgstr "文件类型扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:967
+#: desktop/src/pages/ConfigPreferences.tsx:963
 msgid "Performance and Limits"
 msgstr "性能与限制"
 
-#: desktop/src/pages/ConfigPreferences.tsx:968
-#: desktop/src/pages/ConfigPreferences.tsx:994
+#: desktop/src/pages/ConfigPreferences.tsx:964
+#: desktop/src/pages/ConfigPreferences.tsx:990
 msgid "Max File Size (MB)"
 msgstr "最大文件大小（兆字节）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:968
-#: desktop/src/pages/ConfigPreferences.tsx:969
-#: desktop/src/pages/ConfigPreferences.tsx:971
-#: desktop/src/pages/ConfigPreferences.tsx:994
+#: desktop/src/pages/ConfigPreferences.tsx:964
+#: desktop/src/pages/ConfigPreferences.tsx:965
+#: desktop/src/pages/ConfigPreferences.tsx:967
+#: desktop/src/pages/ConfigPreferences.tsx:990
 msgid "0 means unlimited."
 msgstr "0 表示无限制。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:969
+#: desktop/src/pages/ConfigPreferences.tsx:965
 msgid "Max Scan Size (MB)"
 msgstr "最大扫描大小（兆字节）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:970
+#: desktop/src/pages/ConfigPreferences.tsx:966
 msgid "Max Archive Recursion"
 msgstr "压缩包最大递归深度"
 
-#: desktop/src/pages/ConfigPreferences.tsx:971
+#: desktop/src/pages/ConfigPreferences.tsx:967
 msgid "Max Files in Archive"
 msgstr "压缩包内最大文件数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:973
+#: desktop/src/pages/ConfigPreferences.tsx:969
 msgid "Logging"
 msgstr "日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:974
+#: desktop/src/pages/ConfigPreferences.tsx:970
 msgid "Log File Path"
 msgstr "日志文件路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:975
+#: desktop/src/pages/ConfigPreferences.tsx:971
 msgid "Verbose Logging"
 msgstr "详细日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:975
+#: desktop/src/pages/ConfigPreferences.tsx:971
 msgid "Syslog Logging"
 msgstr "系统日志记录"
 
-#: desktop/src/pages/ConfigPreferences.tsx:980
+#: desktop/src/pages/ConfigPreferences.tsx:976
 msgid "On-Access Scanning"
 msgstr "访问时扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:985
+#: desktop/src/pages/ConfigPreferences.tsx:981
 msgid "Monitored Paths"
 msgstr "监控路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:986
+#: desktop/src/pages/ConfigPreferences.tsx:982
 msgid "Include Paths"
 msgstr "包含路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:987
+#: desktop/src/pages/ConfigPreferences.tsx:983
 msgid "Exclude Paths"
 msgstr "排除路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:989
+#: desktop/src/pages/ConfigPreferences.tsx:985
 msgid "Behavior Settings"
 msgstr "行为设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:990
+#: desktop/src/pages/ConfigPreferences.tsx:986
 msgid "Prevention Mode"
 msgstr "防护模式"
 
-#: desktop/src/pages/ConfigPreferences.tsx:990
+#: desktop/src/pages/ConfigPreferences.tsx:986
 msgid "Extra Scanning"
 msgstr "附加扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:990
+#: desktop/src/pages/ConfigPreferences.tsx:986
 msgid "Deny on Error"
 msgstr "出错时拒绝访问"
 
-#: desktop/src/pages/ConfigPreferences.tsx:990
+#: desktop/src/pages/ConfigPreferences.tsx:986
 msgid "Disable DDD"
 msgstr "禁用 DDD"
 
-#: desktop/src/pages/ConfigPreferences.tsx:992
+#: desktop/src/pages/ConfigPreferences.tsx:988
 msgid "Performance Settings"
 msgstr "性能设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:993
+#: desktop/src/pages/ConfigPreferences.tsx:989
 msgid "Max Threads"
 msgstr "最大线程数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:995
+#: desktop/src/pages/ConfigPreferences.tsx:991
 msgid "Curl Timeout (seconds)"
 msgstr "Curl 超时（秒）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:995
+#: desktop/src/pages/ConfigPreferences.tsx:991
 msgid "0 disables the timeout."
 msgstr "设为 0 可禁用超时。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:996
+#: desktop/src/pages/ConfigPreferences.tsx:992
 msgid "Retry Attempts"
 msgstr "重试次数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:998
+#: desktop/src/pages/ConfigPreferences.tsx:994
 msgid "Scan Loop Prevention"
 msgstr "防止循环扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:999
+#: desktop/src/pages/ConfigPreferences.tsx:995
 msgid ""
 "At least one loop-prevention exclusion is required. Exclude the clamav "
 "service account, its UID, or root to prevent recursive scans."
@@ -3384,94 +3381,94 @@ msgstr ""
 "必须至少设置一项用于防止循环扫描的排除规则。请排除 clamav 服务账户、其 UID "
 "或 root 用户，以防止递归扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1000
+#: desktop/src/pages/ConfigPreferences.tsx:996
 msgid "Exclude Username"
 msgstr "排除的用户名"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1001
+#: desktop/src/pages/ConfigPreferences.tsx:997
 msgid "Exclude User ID"
 msgstr "排除的用户编号"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1002
+#: desktop/src/pages/ConfigPreferences.tsx:998
 msgid "Exclude Root User"
 msgstr "排除超级用户"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1007
+#: desktop/src/pages/ConfigPreferences.tsx:1003
 msgid "Scheduled Scans"
 msgstr "计划扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1008
+#: desktop/src/pages/ConfigPreferences.tsx:1004
 msgid "Schedule"
 msgstr "计划"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1009
+#: desktop/src/pages/ConfigPreferences.tsx:1005
 msgid "Enable Scheduled Scans"
 msgstr "启用计划扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1010
+#: desktop/src/pages/ConfigPreferences.tsx:1006
 msgid "Scan Frequency"
 msgstr "扫描频率"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1011
+#: desktop/src/pages/ConfigPreferences.tsx:1007
 msgid "Scan Time (24-hour)"
 msgstr "扫描时间（24 小时制）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1012
+#: desktop/src/pages/ConfigPreferences.tsx:1008
 msgid "Day of Week"
 msgstr "每周扫描日"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1012
+#: desktop/src/pages/ConfigPreferences.tsx:1008
 msgid "Used for weekly scans."
 msgstr "用于每周扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1013
+#: desktop/src/pages/ConfigPreferences.tsx:1009
 msgid "Day of Month"
 msgstr "每月扫描日"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1013
+#: desktop/src/pages/ConfigPreferences.tsx:1009
 msgid "Used for monthly scans."
 msgstr "用于每月扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1014
+#: desktop/src/pages/ConfigPreferences.tsx:1010
 #: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:748
 msgid "Scan Targets"
 msgstr "扫描目标"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1015
+#: desktop/src/pages/ConfigPreferences.tsx:1011
 msgid ""
 "No targets are configured. The scheduled scan will use your home directory "
 "without saving it as an explicit target."
 msgstr ""
 "尚未配置扫描目标。计划扫描将使用您的主目录，但不会将其保存为显式指定的目标。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1016
+#: desktop/src/pages/ConfigPreferences.tsx:1012
 #: desktop/src/pages/SettingsPreferences.tsx:403
 msgid "Skip on Battery"
 msgstr "使用电池时跳过"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1016
+#: desktop/src/pages/ConfigPreferences.tsx:1012
 msgid "Do not start scheduled scans while on battery power."
 msgstr "使用电池供电时，不启动计划扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1017
+#: desktop/src/pages/ConfigPreferences.tsx:1013
 msgid "Auto-Quarantine"
 msgstr "自动隔离"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1017
+#: desktop/src/pages/ConfigPreferences.tsx:1013
 msgid "Automatically quarantine threats found by scheduled scans."
 msgstr "自动隔离计划扫描发现的威胁。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1022
-#: desktop/src/pages/ConfigPreferences.tsx:1032
+#: desktop/src/pages/ConfigPreferences.tsx:1018
+#: desktop/src/pages/ConfigPreferences.tsx:1028
 msgid "Save & Apply"
 msgstr "保存并应用"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1023
+#: desktop/src/pages/ConfigPreferences.tsx:1019
 msgid "Apply Configuration"
 msgstr "应用配置"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:1024
+#: desktop/src/pages/ConfigPreferences.tsx:1020
 msgid ""
 "All edited forms are captured at the moment you click Save & Apply. Every "
 "configured file is validated before any write or authorization request."
@@ -3480,7 +3477,7 @@ msgstr ""
 "之前，会先验证所有已配置的文件。"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:1028
+#: desktop/src/pages/ConfigPreferences.tsx:1024
 msgid ""
 "Scanner and On-Access changes share one clamd.conf proposal; neither form "
 "can overwrite the other's detached changes."
@@ -3488,7 +3485,7 @@ msgstr ""
 "扫描器和访问时扫描的更改会合并为同一份 clamd.conf 修改方案；两个表单都无法覆"
 "盖对方单独保留的更改。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:1032
+#: desktop/src/pages/ConfigPreferences.tsx:1028
 #: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:263
 msgid "Saving…"
 msgstr "正在保存…"
