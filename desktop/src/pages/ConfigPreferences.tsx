@@ -560,39 +560,40 @@ export default function ConfigPreferences({ section }: { section: string }) {
     ));
   };
 
-  const addUrlhausFeed = () => {
-    const typed = urlhausKeyDraft.trim();
-    if (typed && !URLHAUS_AUTH_KEY.test(typed)) {
-      notify(
-        _(
-          // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
-          "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
-        ),
-        "warning",
-      );
-      return;
-    }
-    const feedUrl = typed ? buildUrlhausFeedUrl(typed) : urlhausFeedUrl;
-    if (!feedUrl) {
-      notify(
-        _(
-          // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
-          "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
-        ),
-        "warning",
-      );
-      return;
-    }
+  const addUrlhausFeedToDraft = (feedUrl: string) => {
     updateConfig("freshclam", (values) => {
       const existing = values.DatabaseCustomURL ?? [];
-      const next = [...existing.filter((url) => !isUrlhausFeed(url)), feedUrl];
-      return valuesForMany(values, "DatabaseCustomURL", next);
+      return valuesForMany(values, "DatabaseCustomURL", [...existing.filter((url) => !isUrlhausFeed(url)), feedUrl]);
     });
+  };
+
+  const addUrlhausFeed = () => {
+    const typed = urlhausKeyDraft.trim();
     if (typed) {
-      void saveUrlhausKey(typed);
+      void saveUrlhausKey(typed, { addFeed: true });
+      return;
     }
-    setUrlhausKeyDraft("");
-    notify(_("URLhaus feed added. Save & Apply is still required."), "success");
+    if (!urlhausFeedUrl) {
+      notify(
+        _(
+          // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
+          "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
+        ),
+        "warning",
+      );
+      return;
+    }
+    addUrlhausFeedToDraft(urlhausFeedUrl);
+  };
+
+  const handleUrlhausKeyChange = (value: string) => {
+    setUrlhausKeyDraft(value);
+    // Saving as soon as the key is pasted keeps "Add URLhaus" out of the flow:
+    // the feed is added to the draft without any further click.
+    const key = value.trim();
+    if (key && key.length >= 8 && !urlhausKeyBusy) {
+      void saveUrlhausKey(key, { addFeed: true });
+    }
   };
 
   const refreshUrlhausFeed = useCallback(async () => {
@@ -622,27 +623,30 @@ export default function ConfigPreferences({ section }: { section: string }) {
     notify(_("URLhaus feed added to the draft. Save & Apply is still required."), "success");
   }, [freshclam?.path, urlhausFeedUrl, updateConfig]);
 
-  const saveUrlhausKey = async (typed: string) => {
+  const saveUrlhausKey = async (typed: string, options: { addFeed: boolean; notify?: boolean }) => {
     const key = typed.trim();
     if (!key || !URLHAUS_AUTH_KEY.test(key)) {
-      notify(
-        _(
-          // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
-          "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
-        ),
-        "warning",
-      );
+      if (options.notify !== false) {
+        notify(
+          _(
+            // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
+            "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
+          ),
+          "warning",
+        );
+      }
       return;
     }
     setUrlhausKeyBusy(true);
     try {
       await request("urlhaus.key_save", { key });
-      setUrlhausKeyDraft("");
-      if (freshclam && !(freshclam.values.DatabaseCustomURL ?? []).some(isUrlhausFeed)) {
-        updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", [...(values.DatabaseCustomURL ?? []), buildUrlhausFeedUrl(key)]));
+      if (options.addFeed) {
+        addUrlhausFeedToDraft(buildUrlhausFeedUrl(key));
       }
       await refreshUrlhausFeed();
-      notify(_("The URLhaus Auth-Key is saved; the feed is added to the draft by default."), "success");
+      if (options.notify !== false) {
+        notify(_("The URLhaus Auth-Key is saved; the feed is added to the draft by default."), "success");
+      }
     } catch (error) {
       notify(String(error), "error");
     } finally {
@@ -918,9 +922,9 @@ export default function ConfigPreferences({ section }: { section: string }) {
       <section className="preference-section form-section"><h3 className="section-heading">{_("URLhaus Feed")}</h3>
         <label className="field field-control" htmlFor="urlhaus-auth-key"><span>{_("Auth-Key")}</span>
           <div className="inline-form">
-            <input id="urlhaus-auth-key" type="password" autoComplete="off" spellCheck={false} value={urlhausKeyDraft} placeholder={_("Paste your Auth-Key")} onChange={(event) => setUrlhausKeyDraft(event.target.value)} />
+            <input id="urlhaus-auth-key" type="password" autoComplete="off" spellCheck={false} value={urlhausKeyDraft} placeholder={_("Paste your Auth-Key")} onChange={(event) => handleUrlhausKeyChange(event.target.value)} />
             <button className="button" type="button" onClick={addUrlhausFeed}>{_("Add URLhaus")}</button>
-            <button className="button" type="button" disabled={urlhausKeyBusy || !urlhausKeyDraft.trim()} onClick={() => void saveUrlhausKey(urlhausKeyDraft)}>{_("Save Key")}</button>
+            <button className="button" type="button" disabled={urlhausKeyBusy || !urlhausKeyDraft.trim()} onClick={() => void saveUrlhausKey(urlhausKeyDraft, { addFeed: true })}>{_("Save Key")}</button>
             <button className="button danger" type="button" disabled={urlhausKeyBusy || !urlhausKeyStatus?.present} onClick={() => void deleteUrlhausKey()}>{_("Delete")}</button>
           </div>
         </label>
