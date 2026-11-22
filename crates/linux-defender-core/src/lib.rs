@@ -24,6 +24,7 @@ pub mod scheduler;
 pub mod settings;
 pub mod threat;
 pub mod updater;
+pub mod urlhaus;
 pub mod urlscan;
 pub mod virustotal;
 
@@ -55,6 +56,7 @@ pub fn dispatch(ctx: &Context, operation: &str, args: Value) -> AppResult<Value>
             virustotal::dispatch(ctx, action, args)
         }),
         "urlscan" => instrument(ctx, "urlscan", || urlscan::dispatch(ctx, action, args)),
+        "urlhaus" => instrument(ctx, "urlhaus", || urlhaus::dispatch(ctx, action, args)),
         "audit" => instrument(ctx, "audit", || audit::dispatch(ctx, action, args)),
         "network" => instrument(ctx, "network", || network::dispatch(ctx, action, args)),
         "config" => instrument(ctx, "config", || config::dispatch(ctx, action, args)),

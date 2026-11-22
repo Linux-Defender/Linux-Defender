@@ -10,6 +10,7 @@ pub const SERVICE_NAME: &str = "linux-defender";
 pub const LEGACY_SERVICE_NAME: &str = "clamui";
 pub const VIRUSTOTAL_API_KEY: &str = "virustotal_api_key";
 pub const URLSCAN_API_KEY: &str = "urlscan_api_key";
+pub const URLHAUS_AUTH_KEY: &str = "urlhaus_auth_key";
 pub const PORTMASTER_API_TOKEN: &str = "portmaster_api_token";
 const PLAINTEXT_FALLBACK_SETTING: &str = "allow_plaintext_api_key_fallback";
 
@@ -19,6 +20,7 @@ const PLAINTEXT_FALLBACK_SETTING: &str = "allow_plaintext_api_key_fallback";
 pub enum Account {
     VirusTotalApiKey,
     UrlscanApiKey,
+    UrlhausAuthKey,
     PortmasterApiToken,
 }
 
@@ -27,6 +29,7 @@ impl Account {
         match self {
             Self::VirusTotalApiKey => VIRUSTOTAL_API_KEY,
             Self::UrlscanApiKey => URLSCAN_API_KEY,
+            Self::UrlhausAuthKey => URLHAUS_AUTH_KEY,
             Self::PortmasterApiToken => PORTMASTER_API_TOKEN,
         }
     }
@@ -39,6 +42,7 @@ impl Account {
         match self {
             Self::VirusTotalApiKey => "Linux Defender VirusTotal API key",
             Self::UrlscanApiKey => "Linux Defender urlscan API key",
+            Self::UrlhausAuthKey => "Linux Defender URLhaus Auth-Key",
             Self::PortmasterApiToken => "Linux Defender Portmaster API token",
         }
     }
@@ -102,6 +106,30 @@ pub fn validate_virustotal_api_key(key: &str) -> AppResult<()> {
     }
     Ok(())
 }
+
+/// URLhaus Auth-Keys are abuse.ch export path segments: letters, digits,
+/// underscore, or hyphen only, so the value cannot escape the export path.
+pub fn validate_urlhaus_auth_key(key: &str) -> AppResult<()> {
+    let key = key.trim();
+    if key.is_empty() {
+        return Err("Auth-Key cannot be empty".into());
+    }
+    if key.contains(char::is_whitespace) {
+        return Err("Auth-Key must not contain whitespace".into());
+    }
+    if !(4..=128).contains(&key.chars().count())
+        || !key
+            .bytes()
+            .all(|byte| byte.is_ascii_alphanumeric() || byte == b'_' || byte == b'-')
+    {
+        return Err(
+            "Auth-Key must contain 4 to 128 letters, digits, underscore, or hyphen characters"
+                .into(),
+        );
+    }
+    Ok(())
+}
+
 pub fn mask_api_key(key: Option<&str>) -> String {
     match key {
         None | Some("") => "Not set".into(),
@@ -132,8 +160,11 @@ impl CredentialStore {
                 present: true,
                 backend: CredentialBackend::Keyring,
                 status: CredentialStatus::Configured,
-                masked: matches!(account, Account::VirusTotalApiKey | Account::UrlscanApiKey)
-                    .then(|| mask_api_key(Some(&secret))),
+                masked: matches!(
+                    account,
+                    Account::VirusTotalApiKey | Account::UrlscanApiKey | Account::UrlhausAuthKey
+                )
+                .then(|| mask_api_key(Some(&secret))),
             }),
             Ok(None) => self.fallback_status(account, None),
             Err(KeyringFailure::Locked) => {
@@ -147,14 +178,16 @@ impl CredentialStore {
 
     pub fn set(&self, account: Account, secret: &str) -> AppResult<CredentialWrite> {
         if secret.is_empty() {
-            return Err(if account == Account::VirusTotalApiKey {
-                "API key cannot be empty".into()
-            } else {
-                "Token cannot be empty".into()
+            return Err(match account {
+                Account::VirusTotalApiKey => "API key cannot be empty".into(),
+                Account::UrlhausAuthKey => "Auth-Key cannot be empty".into(),
+                _ => "Token cannot be empty".into(),
             });
         }
         if account == Account::VirusTotalApiKey {
             validate_virustotal_api_key(secret)?;
+        } else if account == Account::UrlhausAuthKey {
+            validate_urlhaus_auth_key(secret)?;
         }
 
         match keyring_set(account, secret) {
@@ -215,8 +248,10 @@ impl CredentialStore {
             } else {
                 unavailable_status.unwrap_or(CredentialStatus::NotConfigured)
             },
-            masked: (matches!(account, Account::VirusTotalApiKey | Account::UrlscanApiKey)
-                && present)
+            masked: (matches!(
+                account,
+                Account::VirusTotalApiKey | Account::UrlscanApiKey | Account::UrlhausAuthKey
+            ) && present)
                 .then(|| mask_api_key(secret.as_deref())),
         })
     }

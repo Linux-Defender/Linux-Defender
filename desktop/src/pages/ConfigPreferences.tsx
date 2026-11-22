@@ -7,6 +7,7 @@ import { _ } from "../i18n";
 
 type ConfigKind = "freshclam" | "clamd";
 type ConfigValues = Record<string, string[]>;
+type UrlhausKeyStatus = { present: boolean; backend?: string; status: string; masked?: string };
 
 type ConfigDocument = {
   kind: ConfigKind;
@@ -124,7 +125,7 @@ function urlhausAuthKeyFromUrl(url: string): string | null {
   return url.slice(URLHAUS_EXPORT_PREFIX.length, url.length - URLHAUS_EXPORT_SUFFIX.length);
 }
 
-function urlhausFeedUrl(authKey: string): string {
+function buildUrlhausFeedUrl(authKey: string): string {
   return `${URLHAUS_EXPORT_PREFIX}${authKey}${URLHAUS_EXPORT_SUFFIX}`;
 }
 
@@ -387,7 +388,10 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const [manualConfigurations, setManualConfigurations] = useState<readonly ManualConfiguration[]>([]);
   const [configLoadCount, setConfigLoadCount] = useState(0);
   const [busy, setBusy] = useState(false);
-  const [urlhausKey, setUrlhausKey] = useState("");
+  const [urlhausKeyDraft, setUrlhausKeyDraft] = useState("");
+  const [urlhausKeyStatus, setUrlhausKeyStatus] = useState<UrlhausKeyStatus | null>(null);
+  const [urlhausFeedUrl, setUrlhausFeedUrl] = useState<string | null>(null);
+  const [urlhausKeyBusy, setUrlhausKeyBusy] = useState(false);
   const loadRequests = useRef<Record<ConfigKind, number>>({ freshclam: 0, clamd: 0 });
   const persistedConfigPaths = useRef<Record<ConfigKind, string>>({ freshclam: "", clamd: "" });
   const contextVersion = useRef(0);
@@ -552,12 +556,12 @@ export default function ConfigPreferences({ section }: { section: string }) {
     updateConfig("freshclam", (values) => valuesForMany(
       values,
       "DatabaseCustomURL",
-      [...(values.DatabaseCustomURL ?? []), ...SUGGESTED_SIGNATURE_URLS.filter((url) => !values.DatabaseCustomURL?.includes(url))],
+      [...(values.DatabaseCustomURL ?? []), ...SUGGESTED_SIGNATURE_URLS, ...(urlhausFeedUrl ? [urlhausFeedUrl] : [])].filter((url) => !values.DatabaseCustomURL?.includes(url)),
     ));
   };
 
   const addUrlhausFeed = () => {
-    const typed = urlhausKey.trim();
+    const typed = urlhausKeyDraft.trim();
     if (typed && !URLHAUS_AUTH_KEY.test(typed)) {
       notify(
         _(
@@ -568,8 +572,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
       );
       return;
     }
-    const authKey = typed || existingUrlhausKey;
-    if (!authKey) {
+    const feedUrl = typed ? buildUrlhausFeedUrl(typed) : urlhausFeedUrl;
+    if (!feedUrl) {
       notify(
         _(
           // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
@@ -581,11 +585,83 @@ export default function ConfigPreferences({ section }: { section: string }) {
     }
     updateConfig("freshclam", (values) => {
       const existing = values.DatabaseCustomURL ?? [];
-      const next = [...existing.filter((url) => !isUrlhausFeed(url)), urlhausFeedUrl(authKey)];
+      const next = [...existing.filter((url) => !isUrlhausFeed(url)), feedUrl];
       return valuesForMany(values, "DatabaseCustomURL", next);
     });
-    setUrlhausKey("");
+    if (typed) {
+      void saveUrlhausKey(typed);
+    }
+    setUrlhausKeyDraft("");
     notify(_("URLhaus feed added. Save & Apply is still required."), "success");
+  };
+
+  const refreshUrlhausFeed = useCallback(async () => {
+    try {
+      setUrlhausKeyStatus(await request<UrlhausKeyStatus>("urlhaus.key_status", {}));
+    } catch {
+      setUrlhausKeyStatus({ present: false, status: "error" });
+    }
+    try {
+      const result = await request<{ url: string | null }>("urlhaus.feed_url", {});
+      setUrlhausFeedUrl(result.url ?? null);
+    } catch {
+      setUrlhausFeedUrl(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    void refreshUrlhausFeed();
+  }, [refreshUrlhausFeed]);
+
+  const autoAddedPaths = useRef(new Set<string>());
+  useEffect(() => {
+    if (!freshclam || !urlhausFeedUrl || autoAddedPaths.current.has(freshclam.path)) return;
+    if ((freshclam.values.DatabaseCustomURL ?? []).some(isUrlhausFeed)) return;
+    autoAddedPaths.current.add(freshclam.path);
+    updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", [...(values.DatabaseCustomURL ?? []), urlhausFeedUrl]));
+    notify(_("URLhaus feed added to the draft. Save & Apply is still required."), "success");
+  }, [freshclam?.path, urlhausFeedUrl, updateConfig]);
+
+  const saveUrlhausKey = async (typed: string) => {
+    const key = typed.trim();
+    if (!key || !URLHAUS_AUTH_KEY.test(key)) {
+      notify(
+        _(
+          // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
+          "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
+        ),
+        "warning",
+      );
+      return;
+    }
+    setUrlhausKeyBusy(true);
+    try {
+      await request("urlhaus.key_save", { key });
+      setUrlhausKeyDraft("");
+      if (freshclam && !(freshclam.values.DatabaseCustomURL ?? []).some(isUrlhausFeed)) {
+        updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", [...(values.DatabaseCustomURL ?? []), buildUrlhausFeedUrl(key)]));
+      }
+      await refreshUrlhausFeed();
+      notify(_("The URLhaus Auth-Key is saved; the feed is added to the draft by default."), "success");
+    } catch (error) {
+      notify(String(error), "error");
+    } finally {
+      setUrlhausKeyBusy(false);
+    }
+  };
+
+  const deleteUrlhausKey = async () => {
+    setUrlhausKeyBusy(true);
+    try {
+      await request("urlhaus.key_delete", {});
+      await refreshUrlhausFeed();
+      setUrlhausKeyDraft("");
+      notify(_("URLhaus Auth-Key deleted"), "success");
+    } catch (error) {
+      notify(String(error), "error");
+    } finally {
+      setUrlhausKeyBusy(false);
+    }
   };
 
   const openReference = async (url: string) => {
@@ -842,10 +918,17 @@ export default function ConfigPreferences({ section }: { section: string }) {
       <section className="preference-section form-section"><h3 className="section-heading">{_("URLhaus Feed")}</h3>
         <label className="field field-control" htmlFor="urlhaus-auth-key"><span>{_("Auth-Key")}</span>
           <div className="inline-form">
-            <input id="urlhaus-auth-key" type="password" autoComplete="off" spellCheck={false} value={urlhausKey} placeholder={_("Paste your Auth-Key")} onChange={(event) => setUrlhausKey(event.target.value)} />
+            <input id="urlhaus-auth-key" type="password" autoComplete="off" spellCheck={false} value={urlhausKeyDraft} placeholder={_("Paste your Auth-Key")} onChange={(event) => setUrlhausKeyDraft(event.target.value)} />
             <button className="button" type="button" onClick={addUrlhausFeed}>{_("Add URLhaus")}</button>
+            <button className="button" type="button" disabled={urlhausKeyBusy || !urlhausKeyDraft.trim()} onClick={() => void saveUrlhausKey(urlhausKeyDraft)}>{_("Save Key")}</button>
+            <button className="button danger" type="button" disabled={urlhausKeyBusy || !urlhausKeyStatus?.present} onClick={() => void deleteUrlhausKey()}>{_("Delete")}</button>
           </div>
         </label>
+        {urlhausKeyStatus?.present ? (
+          <p className="muted">{_("The URLhaus feed is added to the draft by default when a URLhaus Auth-Key is saved.")}</p>
+        ) : (
+          <p className="muted">{_("No URLhaus Auth-Key is saved yet.")}</p>
+        )}
         <p className="muted">{_("Linux Defender writes the key into freshclam.conf as part of the feed URL. Create one at auth.abuse.ch.")}</p>
         {existingUrlhausKey && <p className="muted">{_("A URLhaus feed is already in this draft.")}</p>}
       </section>

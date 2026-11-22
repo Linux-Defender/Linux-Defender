@@ -17,6 +17,7 @@ const SETTINGS_LOCK_FILE: &str = ".settings.lock";
 const SECRET_SETTING_KEYS: &[&str] = &[
     "virustotal_api_key",
     "urlscan_api_key",
+    "urlhaus_auth_key",
     "portmaster_api_token",
 ];
 const DEFAULT_UPDATE_INACTIVITY_TIMEOUT_MINUTES: u64 = 10;
