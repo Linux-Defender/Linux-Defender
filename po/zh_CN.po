@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-20 19:42-0500\n"
+"POT-Creation-Date: 2026-11-21 21:43-0500\n"
 "PO-Revision-Date: 2026-07-22 21:29+0800\n"
 "Last-Translator: Markson Hosben <marksonhosben@proton.me>\n"
 "Language-Team: Chinese <>\n"
@@ -2003,8 +2003,8 @@ msgstr "打开"
 msgid "Overview"
 msgstr "概览"
 
-#: desktop/src/App.tsx:124 desktop/src/pages/Scan.tsx:688
-#: desktop/src/pages/Scan.tsx:690
+#: desktop/src/App.tsx:124 desktop/src/pages/Scan.tsx:724
+#: desktop/src/pages/Scan.tsx:726
 msgid "Scan"
 msgstr "扫描"
 
@@ -2048,13 +2048,13 @@ msgstr "配置方案"
 msgid "Results"
 msgstr "结果"
 
-#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:536
+#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:578
 msgid "Could not open link"
 msgstr "无法打开链接"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
 #: desktop/src/App.tsx:396 desktop/src/App.tsx:411 desktop/src/App.tsx:429
-#: desktop/src/pages/Scan.tsx:467
+#: desktop/src/pages/Scan.tsx:503
 msgid "Scan in progress — wait for it to finish before changing targets"
 msgstr "正在扫描——请等待扫描完成后再更改扫描目标"
 
@@ -2184,7 +2184,7 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1060 desktop/src/pages/Scan.tsx:228
+#: desktop/src/App.tsx:1060 desktop/src/pages/Scan.tsx:264
 msgid "Remember my choice"
 msgstr "记住我的选择"
 
@@ -2193,11 +2193,11 @@ msgstr "记住我的选择"
 #: desktop/src/pages/Logs.tsx:412 desktop/src/pages/Network.tsx:441
 #: desktop/src/pages/Profiles.tsx:245 desktop/src/pages/Profiles.tsx:246
 #: desktop/src/pages/Quarantine.tsx:377 desktop/src/pages/Results.tsx:206
-#: desktop/src/pages/Scan.tsx:716 desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:752 desktop/src/pages/Scan.tsx:758
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/SettingsPreferences.tsx:537
-#: desktop/src/pages/Urlscan.tsx:200
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/Urlscan.tsx:244
 msgid "Cancel"
 msgstr "取消"
 
@@ -2223,8 +2223,8 @@ msgstr "取消扫描并关闭"
 
 #: desktop/src/App.tsx:1065 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:85 desktop/src/Modal.tsx:110
-#: desktop/src/pages/Scan.tsx:312 desktop/src/pages/Scan.tsx:318
-#: desktop/src/pages/Scan.tsx:330 desktop/src/pages/SettingsPreferences.tsx:314
+#: desktop/src/pages/Scan.tsx:348 desktop/src/pages/Scan.tsx:354
+#: desktop/src/pages/Scan.tsx:366 desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Close"
 msgstr "关闭"
 
@@ -2402,7 +2402,7 @@ msgid ""
 msgstr "请勿更改未知可执行文件的权限以绕过此检查。"
 
 #: desktop/src/HelperTrustErrorDialog.tsx:72 desktop/src/UiErrorBoundary.tsx:36
-#: desktop/src/pages/ConfigPreferences.tsx:877
+#: desktop/src/pages/ConfigPreferences.tsx:929
 msgid "Technical details"
 msgstr "技术详情"
 
@@ -2412,7 +2412,7 @@ msgstr "打开修复说明"
 
 #. Translators: This button opens the failed native configuration snapshot.
 #: desktop/src/HelperTrustErrorDialog.tsx:80
-#: desktop/src/pages/ConfigPreferences.tsx:881
+#: desktop/src/pages/ConfigPreferences.tsx:933
 msgid "See Configuration"
 msgstr "查看配置"
 
@@ -2459,8 +2459,8 @@ msgstr "已取消"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
-#: desktop/src/pages/SettingsPreferences.tsx:511
-#: desktop/src/pages/SettingsPreferences.tsx:535 desktop/src/protection.ts:131
+#: desktop/src/pages/SettingsPreferences.tsx:512
+#: desktop/src/pages/SettingsPreferences.tsx:536 desktop/src/protection.ts:131
 msgid "Unknown"
 msgstr "未知"
 
@@ -2638,8 +2638,8 @@ msgstr "无法复制命令：{error}"
 
 #: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
 #: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:413
-#: desktop/src/pages/Scan.tsx:720 desktop/src/pages/Scan.tsx:725
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/Scan.tsx:756 desktop/src/pages/Scan.tsx:761
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Copy"
 msgstr "复制"
 
@@ -2756,7 +2756,7 @@ msgid "Checking…"
 msgstr "正在检查…"
 
 #: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:283
-#: desktop/src/pages/Scan.tsx:691
+#: desktop/src/pages/Scan.tsx:727
 msgid "Refresh status"
 msgstr "刷新状态"
 
@@ -2848,28 +2848,28 @@ msgstr "每周"
 msgid "Monthly"
 msgstr "每月"
 
-#: desktop/src/pages/ConfigPreferences.tsx:202
+#: desktop/src/pages/ConfigPreferences.tsx:222
 msgid "No configuration file selected"
 msgstr "未选择配置文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:209
+#: desktop/src/pages/ConfigPreferences.tsx:229
 msgid "The file is not currently readable."
 msgstr "目前无法读取此文件。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:212
+#: desktop/src/pages/ConfigPreferences.tsx:232
 msgid "Detect"
 msgstr "检测"
 
-#: desktop/src/pages/ConfigPreferences.tsx:213
+#: desktop/src/pages/ConfigPreferences.tsx:233
 msgid "Browse"
 msgstr "浏览"
 
-#: desktop/src/pages/ConfigPreferences.tsx:214
+#: desktop/src/pages/ConfigPreferences.tsx:234
 msgid "Authorize read"
 msgstr "授权读取"
 
 #. Translators: Save & Apply and Authorize read are button labels; use their translations.
-#: desktop/src/pages/ConfigPreferences.tsx:217
+#: desktop/src/pages/ConfigPreferences.tsx:237
 msgid ""
 "Selecting a file keeps the path in this pending proposal. Save & Apply "
 "persists it only after the complete proposal is valid. Authorization is "
@@ -2878,198 +2878,211 @@ msgstr ""
 "选择文件后，路径会暂存于当前待应用的配置方案中。只有整个方案通过验证后，“保存"
 "并应用”才会保存该路径。仅当您主动选择“授权读取”时，才会请求授权。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:295
-#: desktop/src/pages/ConfigPreferences.tsx:342
+#: desktop/src/pages/ConfigPreferences.tsx:315
+#: desktop/src/pages/ConfigPreferences.tsx:362
 #: desktop/src/pages/SettingsPreferences.tsx:381
 msgid "Add"
 msgstr "添加"
 
-#: desktop/src/pages/ConfigPreferences.tsx:300
-#: desktop/src/pages/ConfigPreferences.tsx:346
+#: desktop/src/pages/ConfigPreferences.tsx:320
+#: desktop/src/pages/ConfigPreferences.tsx:366
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:713
+#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:749
 #: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Remove"
 msgstr "移除"
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:328
+#: desktop/src/pages/ConfigPreferences.tsx:348
 msgid "Enter an http, https, ftp, ftps, or file URL."
 msgstr "请输入 http、https、ftp、ftps 或 file 协议的链接。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:340
+#: desktop/src/pages/ConfigPreferences.tsx:360
 msgid "Add URLs"
 msgstr "添加链接"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:447
+#: desktop/src/pages/ConfigPreferences.tsx:468
 msgid "Configuration file selection is pending Save & Apply."
 msgstr "所选配置文件将在点击“保存并应用”后生效。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:459
+#: desktop/src/pages/ConfigPreferences.tsx:480
 msgid "No configuration file was found."
 msgstr "未找到配置文件。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:473
+#: desktop/src/pages/ConfigPreferences.tsx:494
 msgid "Select a .conf configuration file."
 msgstr "请选择一个 .conf 配置文件。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:509
+#: desktop/src/pages/ConfigPreferences.tsx:530
 msgid "Configuration loaded with administrator authorization."
 msgstr "已通过管理员授权加载配置。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:546
+#. Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
+#: desktop/src/pages/ConfigPreferences.tsx:557
+msgid ""
+"Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, "
+"underscore, or hyphen)."
+msgstr "请输入你的 abuse.ch 账户中的 Auth-Key（4 到 128 个字母、数字、下划线或连字符）。"
+
+#: desktop/src/pages/ConfigPreferences.tsx:571
+msgid "URLhaus feed added. Save & Apply is still required."
+msgstr "URLhaus feed 已添加。仍需点击“保存并应用”。"
+
+#: desktop/src/pages/ConfigPreferences.tsx:588
 msgid "Scan backend saved."
 msgstr "扫描后端设置已保存。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:579
+#: desktop/src/pages/ConfigPreferences.tsx:621
 msgid "Choose a configuration file before applying its changes."
 msgstr "请先选择配置文件，再应用更改。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:591
+#: desktop/src/pages/ConfigPreferences.tsx:633
 msgid ""
 "On-Access scanning requires an excluded username, UID, or root user to "
 "prevent scan loops."
 msgstr ""
 "访问时扫描需要指定要排除的用户名、UID 或 root 用户，以防止扫描陷入循环。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:599
-#: desktop/src/pages/ConfigPreferences.tsx:689
+#: desktop/src/pages/ConfigPreferences.tsx:641
+#: desktop/src/pages/ConfigPreferences.tsx:731
 msgid "No changes to apply."
 msgstr "没有需要应用的更改。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:614
+#: desktop/src/pages/ConfigPreferences.tsx:656
 msgid "Configuration validation failed."
 msgstr "配置验证失败。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:689
+#: desktop/src/pages/ConfigPreferences.tsx:731
 msgid "Configuration saved and applied."
 msgstr "配置已保存并应用。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:689
-#: desktop/src/pages/ConfigPreferences.tsx:706
+#: desktop/src/pages/ConfigPreferences.tsx:731
+#: desktop/src/pages/ConfigPreferences.tsx:748
 msgid "Some changes could not be applied."
 msgstr "部分更改未能应用。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:690
+#: desktop/src/pages/ConfigPreferences.tsx:732
 msgid "Saved groups"
 msgstr "已保存的组"
 
-#: desktop/src/pages/ConfigPreferences.tsx:715
+#: desktop/src/pages/ConfigPreferences.tsx:757
 msgid "Checking scanner status…"
 msgstr "正在检查扫描器状态…"
 
-#: desktop/src/pages/ConfigPreferences.tsx:717
+#: desktop/src/pages/ConfigPreferences.tsx:759
 msgid "Daemon connected"
 msgstr "已连接到守护进程"
 
-#: desktop/src/pages/ConfigPreferences.tsx:718
+#: desktop/src/pages/ConfigPreferences.tsx:760
 msgid "Scanner available"
 msgstr "扫描器可用"
 
-#: desktop/src/pages/ConfigPreferences.tsx:718
+#: desktop/src/pages/ConfigPreferences.tsx:760
 msgid "Scanner unavailable"
 msgstr "扫描器不可用"
 
-#: desktop/src/pages/ConfigPreferences.tsx:728
+#: desktop/src/pages/ConfigPreferences.tsx:770
 msgid "Scan PE Files"
 msgstr "扫描 PE 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:729
+#: desktop/src/pages/ConfigPreferences.tsx:771
 msgid "Scan ELF Files"
 msgstr "扫描 ELF 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:730
+#: desktop/src/pages/ConfigPreferences.tsx:772
 msgid "Scan OLE2 Files"
 msgstr "扫描 OLE2 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:731
+#: desktop/src/pages/ConfigPreferences.tsx:773
 msgid "Scan PDF Files"
 msgstr "扫描 PDF 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:732
+#: desktop/src/pages/ConfigPreferences.tsx:774
 msgid "Scan HTML Files"
 msgstr "扫描 HTML 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:733
+#: desktop/src/pages/ConfigPreferences.tsx:775
 msgid "Scan Archive Files"
 msgstr "扫描归档文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:739
+#: desktop/src/pages/ConfigPreferences.tsx:781
 #: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Database Updates"
 msgstr "病毒库更新"
 
 #. Translators: Keep freshclam.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:740
+#: desktop/src/pages/ConfigPreferences.tsx:782
 msgid "freshclam.conf"
 msgstr "freshclam.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:744
+#: desktop/src/pages/ConfigPreferences.tsx:786
 msgid "Paths"
 msgstr "路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:745
+#: desktop/src/pages/ConfigPreferences.tsx:787
 msgid "Database Directory"
 msgstr "病毒库目录"
 
-#: desktop/src/pages/ConfigPreferences.tsx:746
+#: desktop/src/pages/ConfigPreferences.tsx:788
 msgid "Update Log File"
 msgstr "更新日志文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:747
+#: desktop/src/pages/ConfigPreferences.tsx:789
 msgid "PID File"
 msgstr "PID 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:748
+#: desktop/src/pages/ConfigPreferences.tsx:790
 msgid "Notify ClamD Config"
 msgstr "通知 ClamD 时使用的配置文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:749
+#: desktop/src/pages/ConfigPreferences.tsx:791
 msgid "Log timestamps"
 msgstr "记录日志时间戳"
 
-#: desktop/src/pages/ConfigPreferences.tsx:750
+#: desktop/src/pages/ConfigPreferences.tsx:792
 msgid "Verbose logging"
 msgstr "记录详细日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:751
+#: desktop/src/pages/ConfigPreferences.tsx:793
 msgid "Syslog logging"
 msgstr "记录到系统日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:753
+#: desktop/src/pages/ConfigPreferences.tsx:795
 msgid "Update Behavior"
 msgstr "更新行为"
 
-#: desktop/src/pages/ConfigPreferences.tsx:754
+#: desktop/src/pages/ConfigPreferences.tsx:796
 msgid "Checks per day"
 msgstr "每日检查次数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:754
+#: desktop/src/pages/ConfigPreferences.tsx:796
 msgid "0 disables automatic checks."
 msgstr "设为 0 可禁用自动检查。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:755
+#: desktop/src/pages/ConfigPreferences.tsx:797
 msgid "Database Mirror"
 msgstr "病毒库镜像服务器"
 
-#: desktop/src/pages/ConfigPreferences.tsx:757
+#: desktop/src/pages/ConfigPreferences.tsx:799
 msgid "Custom Signature Databases"
 msgstr "自定义特征库"
 
-#: desktop/src/pages/ConfigPreferences.tsx:759
+#: desktop/src/pages/ConfigPreferences.tsx:801
 msgid "Suggested"
 msgstr "推荐"
 
-#. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:760
+#. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged. URLhaus is a provider name.
+#: desktop/src/pages/ConfigPreferences.tsx:802
 msgid ""
 "Suggested adds the RFXN signatures and three InterServer databases to this "
-"draft. Save & Apply is still required."
-msgstr "点击“推荐”会将 RFXN 特征和三个 InterServer 特征库添加到当前草稿中。之后仍需点击“保存并应用”。"
+"draft. Add URLhaus below with a free abuse.ch Auth-Key. Save & Apply is "
+"still required."
+msgstr "建议：将 RFXN 签名和三个 InterServer 数据库加入此草稿。在下方加入带有免费 abuse.ch Auth-Key 的 "
+  "URLhaus。仍需点击“保存并应用”。"
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:764
+#: desktop/src/pages/ConfigPreferences.tsx:806
 msgid ""
 "Supported URL schemes: http, https, ftp, ftps, and file. Paste each provider "
 "URL as a separate entry."
@@ -3077,23 +3090,23 @@ msgstr ""
 "支持的网址协议：http、https、ftp、ftps 和 file。请将提供商的每个网址粘贴为单"
 "独的条目。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:769
+#: desktop/src/pages/ConfigPreferences.tsx:811
 msgid "Signature Providers"
 msgstr "特征库提供商"
 
-#: desktop/src/pages/ConfigPreferences.tsx:770
+#: desktop/src/pages/ConfigPreferences.tsx:812
 msgid "Registration is required; URLs include your personal API key."
 msgstr "需要注册；网址中包含您的个人 API 密钥。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:770
-#: desktop/src/pages/ConfigPreferences.tsx:774
-#: desktop/src/pages/ConfigPreferences.tsx:775
-#: desktop/src/pages/ConfigPreferences.tsx:776
+#: desktop/src/pages/ConfigPreferences.tsx:812
+#: desktop/src/pages/ConfigPreferences.tsx:816
+#: desktop/src/pages/ConfigPreferences.tsx:817
+#: desktop/src/pages/ConfigPreferences.tsx:818
 msgid "Open provider"
 msgstr "访问提供商网站"
 
 #. Translators: Keep fangfrisch and clamav-unofficial-sigs unchanged; they are tool names.
-#: desktop/src/pages/ConfigPreferences.tsx:771
+#: desktop/src/pages/ConfigPreferences.tsx:813
 msgid ""
 "Use fangfrisch or clamav-unofficial-sigs; it is not a direct custom URL "
 "provider."
@@ -3101,189 +3114,221 @@ msgstr ""
 "请使用 fangfrisch 或 clamav-unofficial-sigs；此提供商不提供可直接添加的自定义"
 "网址。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:775
+#: desktop/src/pages/ConfigPreferences.tsx:817
 msgid ""
 "Free Linux malware and web-shell hash and heuristic signatures from Linux "
 "Malware Detect."
-msgstr "来自 Linux Malware Detect 的免费 Linux 恶意软件和 Web Shell 哈希及启发式特征。"
+msgstr ""
+"来自 Linux Malware Detect 的免费 Linux 恶意软件和 Web Shell 哈希及启发式特"
+"征。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:776
+#: desktop/src/pages/ConfigPreferences.tsx:818
 msgid "Community hash, web-shell, and general malware signature databases."
 msgstr "社区提供的哈希、网页后门和通用恶意软件特征库。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:778
+#: desktop/src/pages/ConfigPreferences.tsx:819
+msgid "Free malware URL signatures; requires a free abuse.ch Auth-Key."
+msgstr "免费提供恶意 URL 特征；需要一个免费的 abuse.ch Auth-Key。"
+
+#: desktop/src/pages/ConfigPreferences.tsx:819
+msgid "Create Auth-Key"
+msgstr "创建 Auth-Key"
+
+#: desktop/src/pages/ConfigPreferences.tsx:821
+msgid "URLhaus Feed"
+msgstr "URLhaus feed"
+
+#: desktop/src/pages/ConfigPreferences.tsx:822
+msgid "Auth-Key"
+msgstr "Auth-Key"
+
+#: desktop/src/pages/ConfigPreferences.tsx:824
+msgid "Paste your Auth-Key"
+msgstr "粘贴 Auth-Key"
+
+#: desktop/src/pages/ConfigPreferences.tsx:825
+msgid "Add URLhaus"
+msgstr "添加 URLhaus"
+
+#: desktop/src/pages/ConfigPreferences.tsx:828
+msgid ""
+"Linux Defender writes the key into freshclam.conf as part of the feed URL. "
+"Create one at auth.abuse.ch."
+msgstr "Linux Defender 把密钥写入 freshclam.conf，作为 feed URL 的一部分。请在 abuse.ch 上创建。"
+
+#: desktop/src/pages/ConfigPreferences.tsx:830
 msgid "Proxy Settings"
 msgstr "代理设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:779
+#: desktop/src/pages/ConfigPreferences.tsx:831
 msgid "Proxy Server"
 msgstr "代理服务器"
 
-#: desktop/src/pages/ConfigPreferences.tsx:780
+#: desktop/src/pages/ConfigPreferences.tsx:832
 msgid "Proxy Port"
 msgstr "代理端口"
 
-#: desktop/src/pages/ConfigPreferences.tsx:780
+#: desktop/src/pages/ConfigPreferences.tsx:832
 msgid "0 disables the proxy port."
 msgstr "设为 0 可禁用代理端口。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:781
+#: desktop/src/pages/ConfigPreferences.tsx:833
 msgid "Proxy Username"
 msgstr "代理用户名"
 
-#: desktop/src/pages/ConfigPreferences.tsx:782
+#: desktop/src/pages/ConfigPreferences.tsx:834
 msgid "Proxy Password"
 msgstr "代理密码"
 
-#: desktop/src/pages/ConfigPreferences.tsx:787
+#: desktop/src/pages/ConfigPreferences.tsx:839
 msgid "Scanner Settings"
 msgstr "扫描器设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:789
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "Scan Backend"
 msgstr "扫描后端"
 
-#: desktop/src/pages/ConfigPreferences.tsx:789
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "Auto (prefer daemon)"
 msgstr "自动（优先使用守护进程）"
 
 #. Translators: Keep clamd unchanged; it is the daemon command and service name.
-#: desktop/src/pages/ConfigPreferences.tsx:789
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "ClamAV Daemon (clamd)"
 msgstr "ClamAV 守护进程（clamd）"
 
 #. Translators: Keep clamscan unchanged; it is the scanner command name.
-#: desktop/src/pages/ConfigPreferences.tsx:792
+#: desktop/src/pages/ConfigPreferences.tsx:844
 msgid "Standalone Scanner (clamscan)"
 msgstr "独立扫描器（clamscan）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:796
+#: desktop/src/pages/ConfigPreferences.tsx:848
 msgid "Daemon Status"
 msgstr "守护进程状态"
 
-#: desktop/src/pages/ConfigPreferences.tsx:796
+#: desktop/src/pages/ConfigPreferences.tsx:848
 msgid "Refresh Status"
 msgstr "刷新状态"
 
-#: desktop/src/pages/ConfigPreferences.tsx:797
+#: desktop/src/pages/ConfigPreferences.tsx:849
 msgid "Documentation"
 msgstr "文档"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:799
-#: desktop/src/pages/ConfigPreferences.tsx:820
+#: desktop/src/pages/ConfigPreferences.tsx:851
+#: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "clamd.conf"
 msgstr "clamd.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:803
+#: desktop/src/pages/ConfigPreferences.tsx:855
 msgid "File Type Scanning"
 msgstr "文件类型扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:806
+#: desktop/src/pages/ConfigPreferences.tsx:858
 msgid "Performance and Limits"
 msgstr "性能与限制"
 
-#: desktop/src/pages/ConfigPreferences.tsx:807
-#: desktop/src/pages/ConfigPreferences.tsx:833
+#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:885
 msgid "Max File Size (MB)"
 msgstr "最大文件大小（兆字节）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:807
-#: desktop/src/pages/ConfigPreferences.tsx:808
-#: desktop/src/pages/ConfigPreferences.tsx:810
-#: desktop/src/pages/ConfigPreferences.tsx:833
+#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:860
+#: desktop/src/pages/ConfigPreferences.tsx:862
+#: desktop/src/pages/ConfigPreferences.tsx:885
 msgid "0 means unlimited."
 msgstr "0 表示无限制。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:808
+#: desktop/src/pages/ConfigPreferences.tsx:860
 msgid "Max Scan Size (MB)"
 msgstr "最大扫描大小（兆字节）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:809
+#: desktop/src/pages/ConfigPreferences.tsx:861
 msgid "Max Archive Recursion"
 msgstr "压缩包最大递归深度"
 
-#: desktop/src/pages/ConfigPreferences.tsx:810
+#: desktop/src/pages/ConfigPreferences.tsx:862
 msgid "Max Files in Archive"
 msgstr "压缩包内最大文件数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:812
+#: desktop/src/pages/ConfigPreferences.tsx:864
 msgid "Logging"
 msgstr "日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:813
+#: desktop/src/pages/ConfigPreferences.tsx:865
 msgid "Log File Path"
 msgstr "日志文件路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:814
+#: desktop/src/pages/ConfigPreferences.tsx:866
 msgid "Verbose Logging"
 msgstr "详细日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:814
+#: desktop/src/pages/ConfigPreferences.tsx:866
 msgid "Syslog Logging"
 msgstr "系统日志记录"
 
-#: desktop/src/pages/ConfigPreferences.tsx:819
+#: desktop/src/pages/ConfigPreferences.tsx:871
 msgid "On-Access Scanning"
 msgstr "访问时扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:824
+#: desktop/src/pages/ConfigPreferences.tsx:876
 msgid "Monitored Paths"
 msgstr "监控路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:825
+#: desktop/src/pages/ConfigPreferences.tsx:877
 msgid "Include Paths"
 msgstr "包含路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:878
 msgid "Exclude Paths"
 msgstr "排除路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:828
+#: desktop/src/pages/ConfigPreferences.tsx:880
 msgid "Behavior Settings"
 msgstr "行为设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Prevention Mode"
 msgstr "防护模式"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Extra Scanning"
 msgstr "附加扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Deny on Error"
 msgstr "出错时拒绝访问"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Disable DDD"
 msgstr "禁用 DDD"
 
-#: desktop/src/pages/ConfigPreferences.tsx:831
+#: desktop/src/pages/ConfigPreferences.tsx:883
 msgid "Performance Settings"
 msgstr "性能设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:832
+#: desktop/src/pages/ConfigPreferences.tsx:884
 msgid "Max Threads"
 msgstr "最大线程数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:886
 msgid "Curl Timeout (seconds)"
 msgstr "Curl 超时（秒）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:886
 msgid "0 disables the timeout."
 msgstr "设为 0 可禁用超时。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:835
+#: desktop/src/pages/ConfigPreferences.tsx:887
 msgid "Retry Attempts"
 msgstr "重试次数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:837
+#: desktop/src/pages/ConfigPreferences.tsx:889
 msgid "Scan Loop Prevention"
 msgstr "防止循环扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:838
+#: desktop/src/pages/ConfigPreferences.tsx:890
 msgid ""
 "At least one loop-prevention exclusion is required. Exclude the clamav "
 "service account, its UID, or root to prevent recursive scans."
@@ -3291,94 +3336,94 @@ msgstr ""
 "必须至少设置一项用于防止循环扫描的排除规则。请排除 clamav 服务账户、其 UID "
 "或 root 用户，以防止递归扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:839
+#: desktop/src/pages/ConfigPreferences.tsx:891
 msgid "Exclude Username"
 msgstr "排除的用户名"
 
-#: desktop/src/pages/ConfigPreferences.tsx:840
+#: desktop/src/pages/ConfigPreferences.tsx:892
 msgid "Exclude User ID"
 msgstr "排除的用户编号"
 
-#: desktop/src/pages/ConfigPreferences.tsx:841
+#: desktop/src/pages/ConfigPreferences.tsx:893
 msgid "Exclude Root User"
 msgstr "排除超级用户"
 
-#: desktop/src/pages/ConfigPreferences.tsx:846
+#: desktop/src/pages/ConfigPreferences.tsx:898
 msgid "Scheduled Scans"
 msgstr "计划扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:847
+#: desktop/src/pages/ConfigPreferences.tsx:899
 msgid "Schedule"
 msgstr "计划"
 
-#: desktop/src/pages/ConfigPreferences.tsx:848
+#: desktop/src/pages/ConfigPreferences.tsx:900
 msgid "Enable Scheduled Scans"
 msgstr "启用计划扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:849
+#: desktop/src/pages/ConfigPreferences.tsx:901
 msgid "Scan Frequency"
 msgstr "扫描频率"
 
-#: desktop/src/pages/ConfigPreferences.tsx:850
+#: desktop/src/pages/ConfigPreferences.tsx:902
 msgid "Scan Time (24-hour)"
 msgstr "扫描时间（24 小时制）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:851
+#: desktop/src/pages/ConfigPreferences.tsx:903
 msgid "Day of Week"
 msgstr "每周扫描日"
 
-#: desktop/src/pages/ConfigPreferences.tsx:851
+#: desktop/src/pages/ConfigPreferences.tsx:903
 msgid "Used for weekly scans."
 msgstr "用于每周扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:852
+#: desktop/src/pages/ConfigPreferences.tsx:904
 msgid "Day of Month"
 msgstr "每月扫描日"
 
-#: desktop/src/pages/ConfigPreferences.tsx:852
+#: desktop/src/pages/ConfigPreferences.tsx:904
 msgid "Used for monthly scans."
 msgstr "用于每月扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:853
-#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:712
+#: desktop/src/pages/ConfigPreferences.tsx:905
+#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:748
 msgid "Scan Targets"
 msgstr "扫描目标"
 
-#: desktop/src/pages/ConfigPreferences.tsx:854
+#: desktop/src/pages/ConfigPreferences.tsx:906
 msgid ""
 "No targets are configured. The scheduled scan will use your home directory "
 "without saving it as an explicit target."
 msgstr ""
 "尚未配置扫描目标。计划扫描将使用您的主目录，但不会将其保存为显式指定的目标。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:855
+#: desktop/src/pages/ConfigPreferences.tsx:907
 #: desktop/src/pages/SettingsPreferences.tsx:403
 msgid "Skip on Battery"
 msgstr "使用电池时跳过"
 
-#: desktop/src/pages/ConfigPreferences.tsx:855
+#: desktop/src/pages/ConfigPreferences.tsx:907
 msgid "Do not start scheduled scans while on battery power."
 msgstr "使用电池供电时，不启动计划扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:856
+#: desktop/src/pages/ConfigPreferences.tsx:908
 msgid "Auto-Quarantine"
 msgstr "自动隔离"
 
-#: desktop/src/pages/ConfigPreferences.tsx:856
+#: desktop/src/pages/ConfigPreferences.tsx:908
 msgid "Automatically quarantine threats found by scheduled scans."
 msgstr "自动隔离计划扫描发现的威胁。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:861
-#: desktop/src/pages/ConfigPreferences.tsx:871
+#: desktop/src/pages/ConfigPreferences.tsx:913
+#: desktop/src/pages/ConfigPreferences.tsx:923
 msgid "Save & Apply"
 msgstr "保存并应用"
 
-#: desktop/src/pages/ConfigPreferences.tsx:862
+#: desktop/src/pages/ConfigPreferences.tsx:914
 msgid "Apply Configuration"
 msgstr "应用配置"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:863
+#: desktop/src/pages/ConfigPreferences.tsx:915
 msgid ""
 "All edited forms are captured at the moment you click Save & Apply. Every "
 "configured file is validated before any write or authorization request."
@@ -3387,7 +3432,7 @@ msgstr ""
 "之前，会先验证所有已配置的文件。"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:867
+#: desktop/src/pages/ConfigPreferences.tsx:919
 msgid ""
 "Scanner and On-Access changes share one clamd.conf proposal; neither form "
 "can overwrite the other's detached changes."
@@ -3395,8 +3440,8 @@ msgstr ""
 "扫描器和访问时扫描的更改会合并为同一份 clamd.conf 修改方案；两个表单都无法覆"
 "盖对方单独保留的更改。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:871
-#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:227
+#: desktop/src/pages/ConfigPreferences.tsx:923
+#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:263
 msgid "Saving…"
 msgstr "正在保存…"
 
@@ -3586,7 +3631,9 @@ msgstr "基础数据库"
 msgid ""
 "Official ClamAV databases found in the configured database directory. A "
 "missing entry is downloaded by the next successful freshclam update."
-msgstr "在配置的数据库目录中找到的官方 ClamAV 数据库。缺少的条目会在下次成功运行 freshclam 更新时下载。"
+msgstr ""
+"在配置的数据库目录中找到的官方 ClamAV 数据库。缺少的条目会在下次成功运行 "
+"freshclam 更新时下载。"
 
 #: desktop/src/pages/Database.tsx:320
 msgid "{count} custom signature file"
@@ -3803,9 +3850,9 @@ msgstr "以往的扫描和更新操作"
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
 #: desktop/src/pages/Quarantine.tsx:354
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/SettingsPreferences.tsx:530
-#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:171
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:215
 msgid "Refresh"
 msgstr "刷新"
 
@@ -3819,7 +3866,7 @@ msgid "Export JSON"
 msgstr "导出 JSON"
 
 #: desktop/src/pages/Logs.tsx:370 desktop/src/pages/Logs.tsx:412
-#: desktop/src/pages/Scan.tsx:712
+#: desktop/src/pages/Scan.tsx:748
 msgid "Clear All"
 msgstr "全部清除"
 
@@ -3853,7 +3900,7 @@ msgid "Export Text"
 msgstr "导出文本"
 
 #: desktop/src/pages/Logs.tsx:392 desktop/src/pages/Logs.tsx:402
-#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:756
 msgid "Fullscreen"
 msgstr "全屏"
 
@@ -3993,8 +4040,8 @@ msgstr "正在刷新…"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
 #: desktop/src/pages/Overview.tsx:153
-#: desktop/src/pages/SettingsPreferences.tsx:527
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:528
+#: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "Loading…"
 msgstr "正在加载…"
 
@@ -4146,7 +4193,7 @@ msgstr "防护状态"
 msgid "Last Scan"
 msgstr "上次扫描"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:754
 msgid "Start Scan"
 msgstr "开始扫描"
 
@@ -4163,7 +4210,7 @@ msgid "Scanner engine"
 msgstr "扫描引擎"
 
 #: desktop/src/pages/Overview.tsx:192
-#: desktop/src/pages/SettingsPreferences.tsx:456
+#: desktop/src/pages/SettingsPreferences.tsx:457
 msgid "{count} file"
 msgid_plural "{count} files"
 msgstr[0] "{count} 个文件"
@@ -4191,6 +4238,7 @@ msgstr "查看详细的扫描历史记录"
 
 #: desktop/src/pages/Preferences.tsx:13
 #: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Behavior"
 msgstr "行为"
 
@@ -4219,11 +4267,11 @@ msgstr "访问时扫描"
 msgid "YARA Rules"
 msgstr "YARA 规则"
 
-#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:165
+#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:209
 msgid "VirusTotal"
 msgstr "VirusTotal"
 
-#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:164
+#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:208
 msgid "urlscan.io"
 msgstr "urlscan.io"
 
@@ -4281,7 +4329,7 @@ msgstr "默认配置文件的名称受保护"
 msgid "Description"
 msgstr "描述"
 
-#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:713
+#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:749
 msgid "No targets added"
 msgstr "未添加目标"
 
@@ -4399,7 +4447,7 @@ msgstr "复制"
 #: desktop/src/pages/Profiles.tsx:237 desktop/src/pages/Profiles.tsx:245
 #: desktop/src/pages/Quarantine.tsx:365 desktop/src/pages/Quarantine.tsx:377
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Delete"
 msgstr "删除"
 
@@ -4765,7 +4813,7 @@ msgstr "恶意"
 msgid "Suspicious"
 msgstr "可疑"
 
-#: desktop/src/pages/Results.tsx:110 desktop/src/pages/Scan.tsx:676
+#: desktop/src/pages/Results.tsx:110 desktop/src/pages/Scan.tsx:712
 msgid "Scan target"
 msgstr "扫描目标"
 
@@ -4834,7 +4882,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "其他无法访问的文件未在此视图中显示。"
 
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Results.tsx:201
-#: desktop/src/pages/Scan.tsx:720 desktop/src/pages/Scan.tsx:725
+#: desktop/src/pages/Scan.tsx:756 desktop/src/pages/Scan.tsx:761
 msgid "Scan details"
 msgstr "扫描详情"
 
@@ -4884,7 +4932,7 @@ msgstr "复制 JSON"
 msgid "Copy Hash"
 msgstr "复制哈希值"
 
-#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:329
+#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:365
 msgid "View on VirusTotal"
 msgstr "在 VirusTotal 上查看"
 
@@ -4936,7 +4984,7 @@ msgstr[0] "扫描完成——检测到 {count} 个威胁"
 msgid "Scan cancelled — partial results are available"
 msgstr "扫描已取消——可查看部分结果"
 
-#: desktop/src/pages/Scan.tsx:116 desktop/src/pages/Scan.tsx:678
+#: desktop/src/pages/Scan.tsx:116 desktop/src/pages/Scan.tsx:714
 msgid "Scan error"
 msgstr "扫描出错"
 
@@ -4944,75 +4992,86 @@ msgstr "扫描出错"
 msgid "Unknown error"
 msgstr "未知错误"
 
-#: desktop/src/pages/Scan.tsx:180
+#: desktop/src/pages/Scan.tsx:178 desktop/src/pages/Urlscan.tsx:190
+msgid "Opened the VirusTotal upload page in your browser"
+msgstr "已在浏览器中打开 VirusTotal 上传页面"
+
+#: desktop/src/pages/Scan.tsx:185 desktop/src/pages/Scan.tsx:353
+#: desktop/src/pages/Urlscan.tsx:197
+msgid ""
+"Configure a VirusTotal API key in Preferences before starting this scan."
+msgstr ""
+"Configure a VirusTotal API key in Preferences before starting this scan."
+
+#: desktop/src/pages/Scan.tsx:216
 msgid "API key must contain exactly 64 hexadecimal characters"
 msgstr "API 密钥必须由 64 个十六进制字符组成"
 
-#: desktop/src/pages/Scan.tsx:212
+#: desktop/src/pages/Scan.tsx:248
 msgid "VirusTotal Scan"
 msgstr "VirusTotal 扫描"
 
-#: desktop/src/pages/Scan.tsx:213
+#: desktop/src/pages/Scan.tsx:249
 msgid ""
 "VirusTotal uploads one file at a time. Only send files you are authorized to "
 "share."
 msgstr "VirusTotal 每次只能上传一个文件。请仅上传您有权共享的文件。"
 
-#: desktop/src/pages/Scan.tsx:216
+#: desktop/src/pages/Scan.tsx:252
 msgid "Calculating file hash…"
 msgstr "Calculating file hash…"
 
-#: desktop/src/pages/Scan.tsx:216
+#: desktop/src/pages/Scan.tsx:252
 msgid "Checking the VirusTotal file report…"
 msgstr "Checking the VirusTotal file report…"
 
-#: desktop/src/pages/Scan.tsx:216
+#: desktop/src/pages/Scan.tsx:252
 msgid "Uploading file to VirusTotal…"
 msgstr "Uploading file to VirusTotal…"
 
-#: desktop/src/pages/Scan.tsx:216
+#: desktop/src/pages/Scan.tsx:252
 msgid "VirusTotal is analyzing the file…"
 msgstr "VirusTotal is analyzing the file…"
 
-#: desktop/src/pages/Scan.tsx:218 desktop/src/pages/Scan.tsx:324
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Scan.tsx:254 desktop/src/pages/Scan.tsx:360
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "Open VirusTotal analysis"
 msgstr "Open VirusTotal analysis"
 
-#: desktop/src/pages/Scan.tsx:219 desktop/src/pages/Scan.tsx:325
+#: desktop/src/pages/Scan.tsx:255 desktop/src/pages/Scan.tsx:361
 msgid "Cancel scan"
 msgstr "Cancel scan"
 
-#: desktop/src/pages/Scan.tsx:223
+#: desktop/src/pages/Scan.tsx:259
 msgid "API key available"
 msgstr "API 密钥可用"
 
-#: desktop/src/pages/Scan.tsx:224 desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:260 desktop/src/pages/Scan.tsx:754
 msgid "Scanning…"
 msgstr "正在扫描…"
 
-#: desktop/src/pages/Scan.tsx:224 desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:260 desktop/src/pages/Scan.tsx:754
 msgid "Scan with VirusTotal"
 msgstr "使用 VirusTotal 扫描"
 
-#: desktop/src/pages/Scan.tsx:226 desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "API Key"
 msgstr "API 密钥"
 
-#: desktop/src/pages/Scan.tsx:227
+#: desktop/src/pages/Scan.tsx:263
 msgid "Save & Scan"
 msgstr "保存并扫描"
 
-#: desktop/src/pages/Scan.tsx:229
+#: desktop/src/pages/Scan.tsx:265
 msgid "Upload file manually"
 msgstr "手动上传文件"
 
-#: desktop/src/pages/Scan.tsx:306
+#: desktop/src/pages/Scan.tsx:342
 msgid "VirusTotal Folder Scan"
 msgstr "VirusTotal Folder Scan"
 
-#: desktop/src/pages/Scan.tsx:307
+#: desktop/src/pages/Scan.tsx:343
 msgid ""
 "Review the folder contents before any files are sent. VirusTotal receives "
 "each file hash and filename; files without an existing report may be "
@@ -5022,7 +5081,7 @@ msgstr ""
 "each file hash and filename; files without an existing report may be "
 "uploaded and shared with its security partners."
 
-#: desktop/src/pages/Scan.tsx:308
+#: desktop/src/pages/Scan.tsx:344
 msgid ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
@@ -5030,221 +5089,215 @@ msgstr ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
 
-#: desktop/src/pages/Scan.tsx:311
+#: desktop/src/pages/Scan.tsx:347
 msgid "Preparing folder preview…"
 msgstr "Preparing folder preview…"
 
-#: desktop/src/pages/Scan.tsx:314
+#: desktop/src/pages/Scan.tsx:350
 msgid "{count} file, {size} MiB total"
 msgid_plural "{count} files, {size} MiB total"
 msgstr[0] "{count} file, {size} MiB total"
 
-#: desktop/src/pages/Scan.tsx:315
+#: desktop/src/pages/Scan.tsx:351
 msgid "{count} unreadable entry will be skipped."
 msgid_plural "{count} unreadable entries will be skipped."
 msgstr[0] "{count} unreadable entry will be skipped."
 
-#: desktop/src/pages/Scan.tsx:316
+#: desktop/src/pages/Scan.tsx:352
 msgid "No readable files were found in this folder."
 msgstr "No readable files were found in this folder."
 
-#: desktop/src/pages/Scan.tsx:317
-msgid ""
-"Configure a VirusTotal API key in Preferences before starting this scan."
-msgstr ""
-"Configure a VirusTotal API key in Preferences before starting this scan."
-
-#: desktop/src/pages/Scan.tsx:318
+#: desktop/src/pages/Scan.tsx:354
 msgid "Upload and scan folder"
 msgstr "Upload and scan folder"
 
-#: desktop/src/pages/Scan.tsx:321
+#: desktop/src/pages/Scan.tsx:357
 msgid "File {current} of {total}: {stage}"
 msgstr "File {current} of {total}: {stage}"
 
-#: desktop/src/pages/Scan.tsx:321
+#: desktop/src/pages/Scan.tsx:357
 msgid "hashing"
 msgstr "hashing"
 
-#: desktop/src/pages/Scan.tsx:321
+#: desktop/src/pages/Scan.tsx:357
 msgid "uploading"
 msgstr "uploading"
 
-#: desktop/src/pages/Scan.tsx:321
+#: desktop/src/pages/Scan.tsx:357
 msgid "analyzing"
 msgstr "analyzing"
 
-#: desktop/src/pages/Scan.tsx:328
+#: desktop/src/pages/Scan.tsx:364
 msgid "{count} of {total} file scanned"
 msgid_plural "{count} of {total} files scanned"
 msgstr[0] "{count} of {total} file scanned"
 
-#: desktop/src/pages/Scan.tsx:328
+#: desktop/src/pages/Scan.tsx:364
 msgid "{count} detection reported"
 msgid_plural "{count} detections reported"
 msgstr[0] "{count} detection reported"
 
-#: desktop/src/pages/Scan.tsx:328
+#: desktop/src/pages/Scan.tsx:364
 msgid "cancelled"
 msgstr "cancelled"
 
-#: desktop/src/pages/Scan.tsx:363
+#: desktop/src/pages/Scan.tsx:399
 msgid "Unable to load scan profiles"
 msgstr "无法加载扫描配置文件"
 
-#: desktop/src/pages/Scan.tsx:370
+#: desktop/src/pages/Scan.tsx:406
 msgid "Unable to check scanner status"
 msgstr "无法检查扫描器状态"
 
-#: desktop/src/pages/Scan.tsx:404 desktop/src/pages/Scan.tsx:485
+#: desktop/src/pages/Scan.tsx:440 desktop/src/pages/Scan.tsx:521
 msgid "Please select a file or folder to scan"
 msgstr "请选择要扫描的文件或文件夹"
 
-#: desktop/src/pages/Scan.tsx:418
+#: desktop/src/pages/Scan.tsx:454
 msgid "Starting scan…"
 msgstr "正在启动扫描…"
 
-#: desktop/src/pages/Scan.tsx:485
+#: desktop/src/pages/Scan.tsx:521
 msgid "Quick Scan profile has no valid targets"
 msgstr "“快速扫描”配置文件中没有有效的扫描目标"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:499 desktop/src/pages/Scan.tsx:602
-#: desktop/src/pages/Scan.tsx:662
+#: desktop/src/pages/Scan.tsx:535 desktop/src/pages/Scan.tsx:638
+#: desktop/src/pages/Scan.tsx:698
 msgid "Scan in progress — wait for it to finish before adding targets"
 msgstr "正在扫描——请等待扫描完成后再添加目标"
 
-#: desktop/src/pages/Scan.tsx:519
+#: desktop/src/pages/Scan.tsx:555
 msgid "VirusTotal scans one file at a time; {count} selection was ignored."
 msgid_plural ""
 "VirusTotal scans one file at a time; {count} selections were ignored."
 msgstr[0] "VirusTotal 每次只能扫描一个文件；已忽略 {count} 个选中项。"
 
-#: desktop/src/pages/Scan.tsx:534 desktop/src/pages/Scan.tsx:671
+#: desktop/src/pages/Scan.tsx:570 desktop/src/pages/Scan.tsx:707
 msgid "Only local files and folders can be scanned"
 msgstr "只能扫描本地文件和文件夹"
 
-#: desktop/src/pages/Scan.tsx:611
+#: desktop/src/pages/Scan.tsx:647
 msgid "Unable to choose scan targets"
 msgstr "无法选择扫描目标"
 
-#: desktop/src/pages/Scan.tsx:620
+#: desktop/src/pages/Scan.tsx:656
 msgid "Unable to open the folder picker"
 msgstr "Unable to open the folder picker"
 
-#: desktop/src/pages/Scan.tsx:627
+#: desktop/src/pages/Scan.tsx:663
 msgid "Cancelling scan…"
 msgstr "正在取消扫描…"
 
-#: desktop/src/pages/Scan.tsx:629
+#: desktop/src/pages/Scan.tsx:665
 msgid "Unable to cancel scan"
 msgstr "无法取消扫描"
 
-#: desktop/src/pages/Scan.tsx:645
+#: desktop/src/pages/Scan.tsx:681
 msgid "Running EICAR test…"
 msgstr "正在运行 EICAR 测试…"
 
-#: desktop/src/pages/Scan.tsx:690
+#: desktop/src/pages/Scan.tsx:726
 msgid "Backend"
 msgstr "后端"
 
-#: desktop/src/pages/Scan.tsx:691
+#: desktop/src/pages/Scan.tsx:727
 msgid "Manage Profiles"
 msgstr "管理配置文件"
 
-#: desktop/src/pages/Scan.tsx:693
+#: desktop/src/pages/Scan.tsx:729
 msgid "Scan type"
 msgstr "Scan type"
 
-#: desktop/src/pages/Scan.tsx:694
+#: desktop/src/pages/Scan.tsx:730
 msgid "Files & Folders"
 msgstr "Files & Folders"
 
-#: desktop/src/pages/Scan.tsx:695 desktop/src/pages/Urlscan.tsx:184
+#: desktop/src/pages/Scan.tsx:731 desktop/src/pages/Urlscan.tsx:228
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:698 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:734 desktop/src/pages/Scan.tsx:756
 msgid "Details"
 msgstr "详情"
 
-#: desktop/src/pages/Scan.tsx:702
+#: desktop/src/pages/Scan.tsx:738
 msgid "Profile"
 msgstr "配置文件"
 
-#: desktop/src/pages/Scan.tsx:708
+#: desktop/src/pages/Scan.tsx:744
 msgid "No Profile (Manual)"
 msgstr "无配置文件（手动）"
 
-#: desktop/src/pages/Scan.tsx:712
+#: desktop/src/pages/Scan.tsx:748
 msgid "Drop local files or folders here, or add them below."
 msgstr "将本地文件或文件夹拖放到此处，或在下方添加。"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Scanning"
 msgstr "正在扫描"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Waiting for scan data…"
 msgstr "正在等待扫描数据…"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Scan progress"
 msgstr "扫描进度"
 
-#: desktop/src/pages/Scan.tsx:716 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:752 desktop/src/pages/Scan.tsx:756
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "已扫描 {count} 个文件"
 
-#: desktop/src/pages/Scan.tsx:716 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:752 desktop/src/pages/Scan.tsx:756
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
 msgstr[0] "{count} 个威胁"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Estimated file count exceeded"
 msgstr "已超出预估文件数"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid ""
 "Live progress is disabled. The completed scan result will remain available."
 msgstr "实时进度已禁用。扫描完成后仍可查看结果。"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Cancel All"
 msgstr "全部取消"
 
-#: desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:754
 msgid "Run EICAR Test"
 msgstr "运行 EICAR 测试"
 
-#: desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:754
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:754
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:756
 msgid "Latest scan"
 msgstr "最近一次扫描"
 
-#: desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:756
 msgid "View Results"
 msgstr "查看结果"
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:758
 msgid "Virus database is not available"
 msgstr "病毒库不可用"
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:758
 msgid "Update the database before starting a scan."
 msgstr "开始扫描前请先更新病毒库。"
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:758
 msgid "Open Database Updates"
 msgstr "打开病毒库更新页面"
 
@@ -5589,7 +5642,7 @@ msgstr "无法保存 API 密钥"
 
 #: desktop/src/pages/SettingsPreferences.tsx:422
 #: desktop/src/pages/SettingsPreferences.tsx:446
-#: desktop/src/pages/Urlscan.tsx:120
+#: desktop/src/pages/Urlscan.tsx:132
 msgid "API key deleted"
 msgstr "API 密钥已删除"
 
@@ -5599,7 +5652,7 @@ msgid "Unable to delete the API key"
 msgstr "无法删除 API 密钥"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid ""
 "Keys are stored in the operating system keyring or the explicitly enabled "
 "compatibility fallback; they are never returned to the interface."
@@ -5607,30 +5660,30 @@ msgstr ""
 "密钥存储在操作系统密钥环或显式启用的兼容性备用存储中，绝不会返回给界面。"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/Urlscan.tsx:47
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Urlscan.tsx:50
 msgid "Configured ({masked}) using {backend}"
 msgstr "已配置（{masked}），使用 {backend}"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/Urlscan.tsx:48
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Urlscan.tsx:51
 msgid "masked"
 msgstr "已隐藏"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Keyring is locked"
 msgstr "密钥环已锁定"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Keyring unavailable"
 msgstr "密钥环不可用"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/Urlscan.tsx:54
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Urlscan.tsx:57
 msgid "Not configured"
 msgstr "未配置"
 
@@ -5639,7 +5692,7 @@ msgid "Exactly 64 hexadecimal characters."
 msgstr "必须恰好为 64 个十六进制字符。"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Save Key"
 msgstr "保存密钥"
 
@@ -5648,15 +5701,17 @@ msgid "Get a free API key"
 msgstr "获取免费的 API 密钥"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Delete Key"
 msgstr "删除密钥"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "When API key is missing"
 msgstr "缺少 API 密钥时"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Always ask"
 msgstr "始终询问"
 
@@ -5665,11 +5720,12 @@ msgid "Open VirusTotal website"
 msgstr "打开 VirusTotal 网站"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Show notification only"
 msgstr "仅显示通知"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Information"
 msgstr "信息"
 
@@ -5691,7 +5747,7 @@ msgstr ""
 "此操作将从安全存储中移除密钥。如需使用 VirusTotal 扫描，您需要重新输入密钥。"
 
 #: desktop/src/pages/SettingsPreferences.tsx:439
-#: desktop/src/pages/Urlscan.tsx:91
+#: desktop/src/pages/Urlscan.tsx:103
 msgid "Enter your urlscan API key."
 msgstr "Enter your urlscan API key."
 
@@ -5699,16 +5755,20 @@ msgstr "Enter your urlscan API key."
 msgid "The urlscan API key cannot contain spaces."
 msgstr "The urlscan API key cannot contain spaces."
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Paste the API key from your urlscan.io account settings."
 msgstr "Paste the API key from your urlscan.io account settings."
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/Urlscan.tsx:175
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Urlscan.tsx:219
 msgid "Get an API key"
 msgstr "Get an API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
+msgid "Open urlscan.io website"
+msgstr "打开 urlscan.io 网站"
+
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
@@ -5716,7 +5776,7 @@ msgstr ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid ""
 "Submitting a URL shares it with urlscan.io, including its query string, and "
 "can expose private or internal addresses. Never submit login links, session "
@@ -5726,11 +5786,11 @@ msgstr ""
 "can expose private or internal addresses. Never submit login links, session "
 "tokens, or confidential information."
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Delete urlscan.io API key"
 msgstr "Delete urlscan.io API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
@@ -5738,181 +5798,181 @@ msgstr ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
 
-#: desktop/src/pages/SettingsPreferences.tsx:463
+#: desktop/src/pages/SettingsPreferences.tsx:464
 msgid "Unable to read debug logs: {error}"
 msgstr "无法读取调试日志：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:471
+#: desktop/src/pages/SettingsPreferences.tsx:472
 msgid "Unable to read system information: {error}"
 msgstr "无法读取系统信息：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:478
+#: desktop/src/pages/SettingsPreferences.tsx:479
 msgid "ZIP archives"
 msgstr "ZIP 压缩包"
 
-#: desktop/src/pages/SettingsPreferences.tsx:479
+#: desktop/src/pages/SettingsPreferences.tsx:480
 msgid "All files"
 msgstr "所有文件"
 
-#: desktop/src/pages/SettingsPreferences.tsx:481
+#: desktop/src/pages/SettingsPreferences.tsx:482
 msgid "Logs exported successfully"
 msgstr "日志导出成功"
 
-#: desktop/src/pages/SettingsPreferences.tsx:483
+#: desktop/src/pages/SettingsPreferences.tsx:484
 msgid "Unable to export logs: {error}"
 msgstr "无法导出日志：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:495
+#: desktop/src/pages/SettingsPreferences.tsx:496
 msgid "{count} log file cleared"
 msgid_plural "{count} log files cleared"
 msgstr[0] "已清除 {count} 个日志文件"
 
-#: desktop/src/pages/SettingsPreferences.tsx:498
+#: desktop/src/pages/SettingsPreferences.tsx:499
 msgid "Unable to clear logs: {error}"
 msgstr "无法清除日志：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:505
+#: desktop/src/pages/SettingsPreferences.tsx:506
 msgid "Linux Defender System Information"
 msgstr "Linux Defender System Information"
 
-#: desktop/src/pages/SettingsPreferences.tsx:507
+#: desktop/src/pages/SettingsPreferences.tsx:508
 msgid "Installation Type: {value}"
 msgstr "安装类型：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:508
+#: desktop/src/pages/SettingsPreferences.tsx:509
 msgid "Distribution: {value}"
 msgstr "发行版：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:509
+#: desktop/src/pages/SettingsPreferences.tsx:510
 msgid "Desktop Environment: {value}"
 msgstr "桌面环境：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:510
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Rust Runtime: {value}"
 msgstr "Rust 运行时：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:511
+#: desktop/src/pages/SettingsPreferences.tsx:512
 msgid "Tauri Runtime: {value}"
 msgstr "Tauri 运行时：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:512
+#: desktop/src/pages/SettingsPreferences.tsx:513
 msgid "Platform: {value}"
 msgstr "平台：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:513
+#: desktop/src/pages/SettingsPreferences.tsx:514
 msgid "Architecture: {value}"
 msgstr "架构：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:514
+#: desktop/src/pages/SettingsPreferences.tsx:515
 msgid "Version: {value}"
 msgstr "版本：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:518
+#: desktop/src/pages/SettingsPreferences.tsx:519
 msgid "System information copied to clipboard"
 msgstr "系统信息已复制到剪贴板"
 
-#: desktop/src/pages/SettingsPreferences.tsx:520
+#: desktop/src/pages/SettingsPreferences.tsx:521
 msgid "Unable to copy system information: {error}"
 msgstr "无法复制系统信息：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:525
+#: desktop/src/pages/SettingsPreferences.tsx:526
 msgid "Logging Settings"
 msgstr "日志设置"
 
-#: desktop/src/pages/SettingsPreferences.tsx:525
+#: desktop/src/pages/SettingsPreferences.tsx:526
 msgid "Higher levels produce more detailed logs and apply immediately."
 msgstr "日志级别越高，记录的内容越详细。更改会立即生效。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:526
+#: desktop/src/pages/SettingsPreferences.tsx:527
 msgid "Log Level"
 msgstr "日志级别"
 
-#: desktop/src/pages/SettingsPreferences.tsx:527
+#: desktop/src/pages/SettingsPreferences.tsx:528
 msgid "Log File Location"
 msgstr "日志文件位置"
 
-#: desktop/src/pages/SettingsPreferences.tsx:529
+#: desktop/src/pages/SettingsPreferences.tsx:530
 msgid "Log Management"
 msgstr "日志管理"
 
-#: desktop/src/pages/SettingsPreferences.tsx:529
+#: desktop/src/pages/SettingsPreferences.tsx:530
 msgid ""
 "Export a ZIP archive for support or permanently clear the application logs."
 msgstr "将日志导出为 ZIP 压缩包以供技术支持使用，或永久清除应用程序日志。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "Current Log Size"
 msgstr "当前日志大小"
 
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Export Logs"
 msgstr "导出日志"
 
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Save all sanitized debug logs to a ZIP archive."
 msgstr "将所有已脱敏的调试日志保存为 ZIP 压缩包。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Clear Logs"
 msgstr "清除日志"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "This permanently deletes all debug log files."
 msgstr "此操作将永久删除所有调试日志文件。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Clear"
 msgstr "清除"
 
-#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:535
 msgid "System Information"
 msgstr "系统信息"
 
-#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:535
 msgid "Useful for troubleshooting and bug reports."
 msgstr "便于排查问题和提交错误报告。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Installation Type"
 msgstr "安装类型"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Distribution"
 msgstr "发行版"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Desktop Environment"
 msgstr "桌面环境"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Rust Runtime"
 msgstr "Rust 运行时"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Tauri Runtime"
 msgstr "Tauri 运行时"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Platform"
 msgstr "平台"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Copy System Info"
 msgstr "复制系统信息"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Copy all system information to the clipboard."
 msgstr "将所有系统信息复制到剪贴板。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Loading system information…"
 msgstr "正在加载系统信息…"
 
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Clear logs"
 msgstr "清除日志"
 
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid ""
 "This permanently deletes {count} log file totaling {size}. This action "
 "cannot be undone."
@@ -5921,7 +5981,7 @@ msgid_plural ""
 "cannot be undone."
 msgstr[0] "这将永久删除 {count} 个日志文件，总大小为 {size}。此操作无法撤销。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Delete Logs"
 msgstr "删除日志"
 
@@ -6021,47 +6081,47 @@ msgstr "扫描活动"
 msgid "Scan trends over the selected timeframe"
 msgstr "所选时间范围内的扫描趋势"
 
-#: desktop/src/pages/Urlscan.tsx:29
+#: desktop/src/pages/Urlscan.tsx:32
 msgid "Private — visible only to you"
 msgstr "Private — visible only to you"
 
-#: desktop/src/pages/Urlscan.tsx:30
+#: desktop/src/pages/Urlscan.tsx:33
 msgid "Unlisted — visible to urlscan Pro researchers"
 msgstr "Unlisted — visible to urlscan Pro researchers"
 
-#: desktop/src/pages/Urlscan.tsx:31
+#: desktop/src/pages/Urlscan.tsx:34
 msgid "Public — visible in urlscan search"
 msgstr "Public — visible in urlscan search"
 
-#: desktop/src/pages/Urlscan.tsx:52
+#: desktop/src/pages/Urlscan.tsx:55
 msgid "System keyring is locked"
 msgstr "System keyring is locked"
 
-#: desktop/src/pages/Urlscan.tsx:53
+#: desktop/src/pages/Urlscan.tsx:56
 msgid "System keyring is unavailable"
 msgstr "System keyring is unavailable"
 
-#: desktop/src/pages/Urlscan.tsx:91
+#: desktop/src/pages/Urlscan.tsx:103
 msgid "Enter your VirusTotal API key."
 msgstr "Enter your VirusTotal API key."
 
-#: desktop/src/pages/Urlscan.tsx:103
+#: desktop/src/pages/Urlscan.tsx:115
 msgid "Unable to save the API key: {error}"
 msgstr "Unable to save the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:122
+#: desktop/src/pages/Urlscan.tsx:134
 msgid "Unable to delete the API key: {error}"
 msgstr "Unable to delete the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:136
+#: desktop/src/pages/Urlscan.tsx:148
 msgid "URL submitted to urlscan"
 msgstr "URL submitted to urlscan"
 
-#: desktop/src/pages/Urlscan.tsx:144
+#: desktop/src/pages/Urlscan.tsx:156
 msgid "URL analysis submitted to VirusTotal"
 msgstr "URL analysis submitted to VirusTotal"
 
-#: desktop/src/pages/Urlscan.tsx:154
+#: desktop/src/pages/Urlscan.tsx:166
 msgid ""
 "Private scans are visible only to you unless you share the result; urlscan "
 "retains them for a limited period."
@@ -6069,7 +6129,7 @@ msgstr ""
 "Private scans are visible only to you unless you share the result; urlscan "
 "retains them for a limited period."
 
-#: desktop/src/pages/Urlscan.tsx:156
+#: desktop/src/pages/Urlscan.tsx:168
 msgid ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
@@ -6077,7 +6137,7 @@ msgstr ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
 
-#: desktop/src/pages/Urlscan.tsx:157
+#: desktop/src/pages/Urlscan.tsx:169
 msgid ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
@@ -6085,23 +6145,39 @@ msgstr ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
 
-#: desktop/src/pages/Urlscan.tsx:162
+#: desktop/src/pages/Urlscan.tsx:181 desktop/src/pages/Urlscan.tsx:201
+msgid "Enter your urlscan API key before submitting a URL."
+msgstr "提交 URL 前请输入您的 urlscan API 密钥。"
+
+#: desktop/src/pages/Urlscan.tsx:182 desktop/src/pages/Urlscan.tsx:202
+msgid "Enter your VirusTotal API key before submitting a URL."
+msgstr "提交 URL 前请输入您的 VirusTotal API 密钥。"
+
+#: desktop/src/pages/Urlscan.tsx:189
+msgid "Opened the urlscan.io website in your browser"
+msgstr "已在浏览器中打开 urlscan.io 网站"
+
+#: desktop/src/pages/Urlscan.tsx:196
+msgid "Configure a urlscan API key in Preferences before submitting a URL."
+msgstr "提交 URL 前请在首选项中配置 urlscan API 密钥。"
+
+#: desktop/src/pages/Urlscan.tsx:206
 msgid "Website URL inspection"
 msgstr "Website URL inspection"
 
-#: desktop/src/pages/Urlscan.tsx:163
+#: desktop/src/pages/Urlscan.tsx:207
 msgid "URL scan service"
 msgstr "URL scan service"
 
-#: desktop/src/pages/Urlscan.tsx:169
+#: desktop/src/pages/Urlscan.tsx:213
 msgid "urlscan.io account"
 msgstr "urlscan.io account"
 
-#: desktop/src/pages/Urlscan.tsx:169
+#: desktop/src/pages/Urlscan.tsx:213
 msgid "VirusTotal account"
 msgstr "VirusTotal account"
 
-#: desktop/src/pages/Urlscan.tsx:170
+#: desktop/src/pages/Urlscan.tsx:214
 msgid ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
@@ -6109,35 +6185,35 @@ msgstr ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
 
-#: desktop/src/pages/Urlscan.tsx:171
+#: desktop/src/pages/Urlscan.tsx:215
 msgid "Key status"
 msgstr "Key status"
 
-#: desktop/src/pages/Urlscan.tsx:172
+#: desktop/src/pages/Urlscan.tsx:216
 msgid "Personal API key"
 msgstr "Personal API key"
 
-#: desktop/src/pages/Urlscan.tsx:172
+#: desktop/src/pages/Urlscan.tsx:216
 msgid "Paste your urlscan API key"
 msgstr "Paste your urlscan API key"
 
-#: desktop/src/pages/Urlscan.tsx:172
+#: desktop/src/pages/Urlscan.tsx:216
 msgid "Paste your VirusTotal API key"
 msgstr "Paste your VirusTotal API key"
 
-#: desktop/src/pages/Urlscan.tsx:174
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Save key"
 msgstr "Save key"
 
-#: desktop/src/pages/Urlscan.tsx:174
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Delete key"
 msgstr "Delete key"
 
-#: desktop/src/pages/Urlscan.tsx:180
+#: desktop/src/pages/Urlscan.tsx:224
 msgid "Submit a website for inspection"
 msgstr "Submit a website for inspection"
 
-#: desktop/src/pages/Urlscan.tsx:182
+#: desktop/src/pages/Urlscan.tsx:226
 msgid ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
@@ -6145,7 +6221,7 @@ msgstr ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/Urlscan.tsx:183
+#: desktop/src/pages/Urlscan.tsx:227
 msgid ""
 "VirusTotal checks the URL with multiple security engines and blocklists. "
 "This is a remote reputation analysis, not a local file scan."
@@ -6153,11 +6229,11 @@ msgstr ""
 "VirusTotal checks the URL with multiple security engines and blocklists. "
 "This is a remote reputation analysis, not a local file scan."
 
-#: desktop/src/pages/Urlscan.tsx:185
+#: desktop/src/pages/Urlscan.tsx:229
 msgid "Result visibility"
 msgstr "Result visibility"
 
-#: desktop/src/pages/Urlscan.tsx:187
+#: desktop/src/pages/Urlscan.tsx:231
 msgid ""
 "urlscan receives the complete URL, including its query string, and visits "
 "it. Never submit login links, session tokens, private/internal URLs, or "
@@ -6167,7 +6243,7 @@ msgstr ""
 "it. Never submit login links, session tokens, private/internal URLs, or "
 "confidential information."
 
-#: desktop/src/pages/Urlscan.tsx:188
+#: desktop/src/pages/Urlscan.tsx:232
 msgid ""
 "VirusTotal adds submitted and queried URLs to its dataset, where they may be "
 "shared with its community and security partners. Never submit login links, "
@@ -6177,59 +6253,59 @@ msgstr ""
 "shared with its community and security partners. Never submit login links, "
 "session tokens, private/internal URLs, or confidential information."
 
-#: desktop/src/pages/Urlscan.tsx:190
+#: desktop/src/pages/Urlscan.tsx:234
 msgid "Submission accepted"
 msgstr "Submission accepted"
 
-#: desktop/src/pages/Urlscan.tsx:190
+#: desktop/src/pages/Urlscan.tsx:234
 msgid "Visibility: {visibility}"
 msgstr "Visibility: {visibility}"
 
-#: desktop/src/pages/Urlscan.tsx:190
+#: desktop/src/pages/Urlscan.tsx:234
 msgid "Open urlscan result"
 msgstr "Open urlscan result"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "VirusTotal reported detections"
 msgstr "VirusTotal reported detections"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "Analysis complete — no detections reported"
 msgstr "Analysis complete — no detections reported"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "Analysis is still processing"
 msgstr "Analysis is still processing"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "VirusTotal rate limit reached"
 msgstr "VirusTotal rate limit reached"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "VirusTotal analysis failed"
 msgstr "VirusTotal analysis failed"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "{detections} of {total} URL engines reported suspicious or malicious"
 msgstr "{detections} of {total} URL engines reported suspicious or malicious"
 
-#: desktop/src/pages/Urlscan.tsx:192 desktop/src/pages/Urlscan.tsx:200
+#: desktop/src/pages/Urlscan.tsx:236 desktop/src/pages/Urlscan.tsx:244
 msgid "Submitting…"
 msgstr "Submitting…"
 
-#: desktop/src/pages/Urlscan.tsx:192
+#: desktop/src/pages/Urlscan.tsx:236
 msgid "Review submission"
 msgstr "Review submission"
 
-#: desktop/src/pages/Urlscan.tsx:194
+#: desktop/src/pages/Urlscan.tsx:238
 msgid "Confirm urlscan submission"
 msgstr "Confirm urlscan submission"
 
-#: desktop/src/pages/Urlscan.tsx:194
+#: desktop/src/pages/Urlscan.tsx:238
 msgid "Confirm VirusTotal URL submission"
 msgstr "Confirm VirusTotal URL submission"
 
-#: desktop/src/pages/Urlscan.tsx:196
+#: desktop/src/pages/Urlscan.tsx:240
 msgid ""
 "urlscan will visit this URL and store page activity. The service receives "
 "the full URL, including its query string."
@@ -6237,7 +6313,7 @@ msgstr ""
 "urlscan will visit this URL and store page activity. The service receives "
 "the full URL, including its query string."
 
-#: desktop/src/pages/Urlscan.tsx:197
+#: desktop/src/pages/Urlscan.tsx:241
 msgid ""
 "VirusTotal will submit this URL for analysis and add it to its dataset, "
 "where it may be shared with its community and security partners."
@@ -6245,15 +6321,15 @@ msgstr ""
 "VirusTotal will submit this URL for analysis and add it to its dataset, "
 "where it may be shared with its community and security partners."
 
-#: desktop/src/pages/Urlscan.tsx:198
+#: desktop/src/pages/Urlscan.tsx:242
 msgid "URL"
 msgstr "URL"
 
-#: desktop/src/pages/Urlscan.tsx:198
+#: desktop/src/pages/Urlscan.tsx:242
 msgid "Visibility"
 msgstr "Visibility"
 
-#: desktop/src/pages/Urlscan.tsx:200
+#: desktop/src/pages/Urlscan.tsx:244
 msgid "Submit URL"
 msgstr "Submit URL"
 
@@ -6327,21 +6403,3 @@ msgstr "病毒特征库已超过 1 天未更新"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "系统已受到保护"
-
-msgid "Open urlscan.io website"
-msgstr "打开 urlscan.io 网站"
-
-msgid "Opened the VirusTotal upload page in your browser"
-msgstr "已在浏览器中打开 VirusTotal 上传页面"
-
-msgid "Opened the urlscan.io website in your browser"
-msgstr "已在浏览器中打开 urlscan.io 网站"
-
-msgid "Enter your urlscan API key before submitting a URL."
-msgstr "提交 URL 前请输入您的 urlscan API 密钥。"
-
-msgid "Enter your VirusTotal API key before submitting a URL."
-msgstr "提交 URL 前请输入您的 VirusTotal API 密钥。"
-
-msgid "Configure a urlscan API key in Preferences before submitting a URL."
-msgstr "提交 URL 前请在首选项中配置 urlscan API 密钥。"

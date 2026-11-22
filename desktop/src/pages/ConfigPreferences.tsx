@@ -106,6 +106,27 @@ const SUGGESTED_SIGNATURE_URLS = [
   "https://sigs.interserver.net/shell.ldb",
 ] as const;
 
+// URLhaus stopped serving anonymous ClamAV signatures; the feed now lives
+// behind an abuse.ch Auth-Key that forms part of the export path.
+const URLHAUS_EXPORT_PREFIX = "https://urlhaus-api.abuse.ch/v2/files/exports/";
+const URLHAUS_EXPORT_SUFFIX = "/urlhaus_clamav.ndb";
+// Auth-Keys are path segments, so the pattern rejects separators, whitespace,
+// and dots so the value cannot escape the export path when freshclam receives
+// the URL.
+const URLHAUS_AUTH_KEY = /^[A-Za-z0-9_-]{4,128}$/;
+
+function isUrlhausFeed(url: string): boolean {
+  return url.startsWith(URLHAUS_EXPORT_PREFIX) && url.endsWith(URLHAUS_EXPORT_SUFFIX);
+}
+
+function urlhausFeedUrl(authKey: string): string {
+  return `${URLHAUS_EXPORT_PREFIX}${authKey}${URLHAUS_EXPORT_SUFFIX}`;
+}
+
+function displayCustomUrl(url: string): string {
+  return isUrlhausFeed(url) ? `${URLHAUS_EXPORT_PREFIX}****${URLHAUS_EXPORT_SUFFIX}` : url;
+}
+
 const defaultSchedule = (): Schedule => ({
   scheduled_scans_enabled: false,
   schedule_frequency: "weekly",
@@ -342,7 +363,7 @@ function CustomUrlListField({ values, onChange }: { values: string[]; onChange: 
     <div className="toolbar actions"><button className="button" type="button" onClick={add}>{_("Add")}</button></div>
     {values.length > 0 && <ul className="table">
       {values.map((item) => <li className="row setting-row" key={item}>
-        <code className="monospace">{item}</code>
+        <code className="monospace">{displayCustomUrl(item)}</code>
         <button className="button danger" type="button" onClick={() => onChange(values.filter((valueItem) => valueItem !== item))}>{_("Remove")}</button>
       </li>)}
     </ul>}
@@ -361,6 +382,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const [manualConfigurations, setManualConfigurations] = useState<readonly ManualConfiguration[]>([]);
   const [configLoadCount, setConfigLoadCount] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [urlhausKey, setUrlhausKey] = useState("");
   const loadRequests = useRef<Record<ConfigKind, number>>({ freshclam: 0, clamd: 0 });
   const persistedConfigPaths = useRef<Record<ConfigKind, string>>({ freshclam: "", clamd: "" });
   const contextVersion = useRef(0);
@@ -527,6 +549,27 @@ export default function ConfigPreferences({ section }: { section: string }) {
       "DatabaseCustomURL",
       [...(values.DatabaseCustomURL ?? []), ...SUGGESTED_SIGNATURE_URLS.filter((url) => !values.DatabaseCustomURL?.includes(url))],
     ));
+  };
+
+  const addUrlhausFeed = () => {
+    const authKey = urlhausKey.trim();
+    if (!URLHAUS_AUTH_KEY.test(authKey)) {
+      notify(
+        _(
+          // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
+          "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
+        ),
+        "warning",
+      );
+      return;
+    }
+    updateConfig("freshclam", (values) => {
+      const existing = values.DatabaseCustomURL ?? [];
+      const next = [...existing.filter((url) => !isUrlhausFeed(url)), urlhausFeedUrl(authKey)];
+      return valuesForMany(values, "DatabaseCustomURL", next);
+    });
+    setUrlhausKey("");
+    notify(_("URLhaus feed added. Save & Apply is still required."), "success");
   };
 
   const openReference = async (url: string) => {
@@ -758,8 +801,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
         <CustomUrlListField values={freshclamValues.DatabaseCustomURL ?? []} onChange={(next) => updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", next))} />
         <div className="toolbar actions"><button className="button" type="button" onClick={addSuggestedUrls}>{_("Suggested")}</button></div>
         <p className="muted">{_(
-          // Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
-          "Suggested adds the RFXN signatures and three InterServer databases to this draft. Save & Apply is still required.",
+          // Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged. URLhaus is a provider name.
+          "Suggested adds the RFXN signatures and three InterServer databases to this draft. Add URLhaus below with a free abuse.ch Auth-Key. Save & Apply is still required.",
         )}</p>
         <p className="muted">{_(
           // Translators: Keep the URI schemes unchanged.
@@ -774,6 +817,16 @@ export default function ConfigPreferences({ section }: { section: string }) {
         )}</small></span><button className="button" type="button" onClick={() => void openReference("https://sanesecurity.com/")}>{_("Open provider")}</button></div>
         <div className="setting-row"><span className="row-copy"><strong>RFXN</strong><small className="muted">{_("Free Linux malware and web-shell hash and heuristic signatures from Linux Malware Detect.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://www.rfxn.com/projects/linux-malware-detect/")}>{_("Open provider")}</button></div>
         <div className="setting-row"><span className="row-copy"><strong>InterServer</strong><small className="muted">{_("Community hash, web-shell, and general malware signature databases.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://sigs.interserver.net/")}>{_("Open provider")}</button></div>
+        <div className="setting-row"><span className="row-copy"><strong>URLhaus</strong><small className="muted">{_("Free malware URL signatures; requires a free abuse.ch Auth-Key.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://auth.abuse.ch/")}>{_("Create Auth-Key")}</button></div>
+      </section>
+      <section className="preference-section form-section"><h3 className="section-heading">{_("URLhaus Feed")}</h3>
+        <label className="field field-control" htmlFor="urlhaus-auth-key"><span>{_("Auth-Key")}</span>
+          <div className="inline-form">
+            <input id="urlhaus-auth-key" type="password" autoComplete="off" spellCheck={false} value={urlhausKey} placeholder={_("Paste your Auth-Key")} onChange={(event) => setUrlhausKey(event.target.value)} />
+            <button className="button" type="button" onClick={addUrlhausFeed}>{_("Add URLhaus")}</button>
+          </div>
+        </label>
+        <p className="muted">{_("Linux Defender writes the key into freshclam.conf as part of the feed URL. Create one at auth.abuse.ch.")}</p>
       </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("Proxy Settings")}</h3>
         <TextField label={_("Proxy Server")} field="HTTPProxyServer" value={value(freshclamValues, "HTTPProxyServer")} onChange={(next) => setFreshclamField("HTTPProxyServer", next)} />

@@ -233,7 +233,7 @@ ClamTk's 23 open issues and four open PR dispositions above are still the ledger
 
 ## Nine-repository merger review (2026-11-20)
 
-A second sweep reviewed nine same-name or same-category GitHub repositories, plus the upstream ClamUI default branch, against this single Rust/Tauri/React runtime. None of the repositories contained a four-entry official base-database list: every scanner that enumerated ClamAV databases used `main`, `daily`, and `bytecode` (each `.cvd` or `.cld`). The earlier local 4→3 change was in the suggested third-party feed list, not in the official database set. URLhaus was the removed fourth suggestion; it now returns HTTP 410 Gone. The suggestion list therefore uses RFXN (`rfxn.hdb`, `rfxn.ndb`) plus the three InterServer files, all verified reachable over HTTPS.
+A second sweep reviewed nine same-name or same-category GitHub repositories, plus the upstream ClamUI default branch, against this single Rust/Tauri/React runtime. None of the repositories contained a four-entry official base-database list: every scanner that enumerated ClamAV databases used `main`, `daily`, and `bytecode` (each `.cvd` or `.cld`). The earlier local 4→3 change was in the suggested third-party feed list, not in the official database set. The URLhaus suggestion was removed when the anonymous `https://urlhaus.abuse.ch/downloads/urlhaus.ndb` endpoint started returning HTTP 410; URLhaus now requires a free abuse.ch Auth-Key for its ClamAV signature export, and Linux Defender re-offered it as a URLhaus Feed provider (paste the Auth-Key, add the feed, then Save & Apply). The Suggested button still fills RFXN (`rfxn.hdb`, `rfxn.ndb`) plus the three InterServer files.
 
 License boundary: only Herodium is MIT. Linux Defender reimplemented behaviour from the GPL and custom-licensed projects and copied no code, strings, rules, or data from them. Behaviour adoption must stay independently written and tested at the owning boundary.
 
@@ -254,7 +254,24 @@ License boundary: only Herodium is MIT. Linux Defender reimplemented behaviour f
 - Official base-database inventory now reports `main`, `daily`, and `bytecode` separately from the count of custom signature families, in both the audit section and the updater database status. A missing base database is a warning/failure instead of being folded into the generic freshness check.
 - Quarantine entries can be re-scanned against the current signatures from the Quarantine page. Payloads are integrity-checked first; results distinguish still detected, no longer detected (probable false positive), integrity failure, and scan error. Scanning happens in place and never copies a payload out of the vault.
 - The suggested feed list adds RFXN and uses HTTPS for InterServer.
+- URLhaus is again offered as a provider: the anonymous endpoint returns HTTP 410 Gone, and abuse.ch now requires a free abuse.ch Auth-Key. Preferences adds a URLhaus Feed section that builds `https://urlhaus-api.abuse.ch/v2/files/exports/<auth-key>/urlhaus_clamav.ndb` from the pasted key (reachable verified with an HTTP 401 probe for an invalid key). The key is stored in freshclam.conf as part of the feed URL; the Suggested button still fills only RFXN and the three InterServer files. Regression test: `crates/linux-defender-core/tests/config.rs` — `urlhaus_feed_url_round_trips_as_a_custom_signature_url`.
 - `clamscan` can now be invoked with non-UTF-8 quarantine payload names through an `OsString` command path.
+
+### ClamUI + ClamTk parity gap matrix
+
+"Parity" means a corresponding Linux Defender workflow exists; it does not claim pixel or behavior parity.
+
+| Area | ClamUI | ClamTk (retired tree; behavior source) | Linux Defender | Gap or decision |
+|---|---|---|---|---|
+| Core modules | audit, audit/firewall, cli, common, config, credentials, credits, headless, host, host_probe, i18n, logs, network/public_ip, platform, portmaster, privileged, profiles, quarantine, scan_parser, scanner, scheduler, settings, threat, updater, virustotal | same set; system scanner, GTK/Qt UI, perl glue | identical core module set plus `urlhaus` (Linux Defender extension for the restored provider); `historical_summary` exists in both sources | No missing core module. |
+| CLI | help, scan, quarantine <list|restore|delete>, profile, status, history, install-privileged-helper, --version | same subcommands plus quiet/autostart/syslog helpers of ClamTk style | Linux Defender CLI preserves the seven subcommands (help, scan, quarantine, profile, status, history, install-privileged-helper) and quarantined-file restore | Parity. |
+| Tray | desktop tray and file-manager launchers | tray plus Nemo/Thunar/Nautilus/Send To and KDE addons | tray (`desktop/src-tauri/src/tray.rs`) and the same file-manager integrations | Parity. |
+| Pages | Audit, Components, ConfigPreferences, Database, Logs, Network, Preferences, Profiles, Quarantine, Results, Scan, SettingsPreferences, Statistics | GTK screens: ClamTk, ClamTk Views, ClamTk Tray, ClamTk, ClamTk, plus update utilities | Audit, Components, ConfigPreferences, Database, Logs, Network, Overview (extra), Preferences, Profiles, Quarantine, Results, Scan, SettingsPreferences, Statistics, Urlscan (extra) | Superset; see the screen-by-screen table above for per-screen notes. |
+| Suggested feeds | none | none in the suggested flow | RFXN (`rfxn.hdb`, `rfxn.ndb`) + InterServer over HTTPS; URLhaus restored with a free abuse.ch Auth-Key | Linux Defender keeps the useful suggested set; ClamUI has no equivalent today, so there is no parity gap to close. |
+| Online checks | virus total file scan | virus total file scan, plus ClamTk `ldconfig` style extras | virus total + urlscan, explicit consent, private default; ClamTk virus-total integration preserved | Extension, not a gap. |
+| Scheduling | user systemd schedules; missed-run semantics | cron schedules; per-user mode | user systemd scheduler + per-profile targets, UI-managed schedules, documented off-machine behavior | Same capability class. |
+| Audit | ClamAV health, firewall (open ports), macOS framework, automatic updates, intrusion detection, SSH hardening, Portmaster health | same audit categories | same audit categories; Linux Defender ports Permission-less `clamscan`/`freshclam` invocations | Parity. |
+| Secrets and config | protected config via `/usr/bin/clamui-apply-preferences` and `PKEXEC_UID` | host ClamAV config editing | protected config via `/usr/bin/linux-defender-apply-preferences` with pre-rename helper compatibility | Parity plus name migration. |
 
 ### Deferred, with reasons
 

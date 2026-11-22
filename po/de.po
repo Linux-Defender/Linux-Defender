@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-20 19:42-0500\n"
+"POT-Creation-Date: 2026-11-21 21:43-0500\n"
 "PO-Revision-Date: 2026-10-20 10:21+0200\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: German\n"
@@ -2143,8 +2143,8 @@ msgstr "Öffnen"
 msgid "Overview"
 msgstr "Übersicht"
 
-#: desktop/src/App.tsx:124 desktop/src/pages/Scan.tsx:688
-#: desktop/src/pages/Scan.tsx:690
+#: desktop/src/App.tsx:124 desktop/src/pages/Scan.tsx:724
+#: desktop/src/pages/Scan.tsx:726
 msgid "Scan"
 msgstr "Scan"
 
@@ -2188,13 +2188,13 @@ msgstr "Profile"
 msgid "Results"
 msgstr "Ergebnisse"
 
-#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:536
+#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:578
 msgid "Could not open link"
 msgstr "Link konnte nicht geöffnet werden"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
 #: desktop/src/App.tsx:396 desktop/src/App.tsx:411 desktop/src/App.tsx:429
-#: desktop/src/pages/Scan.tsx:467
+#: desktop/src/pages/Scan.tsx:503
 msgid "Scan in progress — wait for it to finish before changing targets"
 msgstr ""
 "Ein Scan läuft – warten Sie auf seinen Abschluss, bevor Sie die Ziele ändern"
@@ -2330,7 +2330,7 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1060 desktop/src/pages/Scan.tsx:228
+#: desktop/src/App.tsx:1060 desktop/src/pages/Scan.tsx:264
 msgid "Remember my choice"
 msgstr "Auswahl merken"
 
@@ -2339,11 +2339,11 @@ msgstr "Auswahl merken"
 #: desktop/src/pages/Logs.tsx:412 desktop/src/pages/Network.tsx:441
 #: desktop/src/pages/Profiles.tsx:245 desktop/src/pages/Profiles.tsx:246
 #: desktop/src/pages/Quarantine.tsx:377 desktop/src/pages/Results.tsx:206
-#: desktop/src/pages/Scan.tsx:716 desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:752 desktop/src/pages/Scan.tsx:758
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/SettingsPreferences.tsx:537
-#: desktop/src/pages/Urlscan.tsx:200
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/Urlscan.tsx:244
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -2371,8 +2371,8 @@ msgstr "Scan abbrechen und schließen"
 
 #: desktop/src/App.tsx:1065 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:85 desktop/src/Modal.tsx:110
-#: desktop/src/pages/Scan.tsx:312 desktop/src/pages/Scan.tsx:318
-#: desktop/src/pages/Scan.tsx:330 desktop/src/pages/SettingsPreferences.tsx:314
+#: desktop/src/pages/Scan.tsx:348 desktop/src/pages/Scan.tsx:354
+#: desktop/src/pages/Scan.tsx:366 desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Close"
 msgstr "Schließen"
 
@@ -2559,7 +2559,7 @@ msgstr ""
 "diese Prüfung zu umgehen."
 
 #: desktop/src/HelperTrustErrorDialog.tsx:72 desktop/src/UiErrorBoundary.tsx:36
-#: desktop/src/pages/ConfigPreferences.tsx:877
+#: desktop/src/pages/ConfigPreferences.tsx:929
 msgid "Technical details"
 msgstr "Technische Details"
 
@@ -2569,7 +2569,7 @@ msgstr "Reparaturanleitung öffnen"
 
 #. Translators: This button opens the failed native configuration snapshot.
 #: desktop/src/HelperTrustErrorDialog.tsx:80
-#: desktop/src/pages/ConfigPreferences.tsx:881
+#: desktop/src/pages/ConfigPreferences.tsx:933
 msgid "See Configuration"
 msgstr "Konfiguration anzeigen"
 
@@ -2616,8 +2616,8 @@ msgstr "Abgebrochen"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
-#: desktop/src/pages/SettingsPreferences.tsx:511
-#: desktop/src/pages/SettingsPreferences.tsx:535 desktop/src/protection.ts:131
+#: desktop/src/pages/SettingsPreferences.tsx:512
+#: desktop/src/pages/SettingsPreferences.tsx:536 desktop/src/protection.ts:131
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -2802,8 +2802,8 @@ msgstr "Befehl konnte nicht kopiert werden: {error}"
 
 #: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
 #: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:413
-#: desktop/src/pages/Scan.tsx:720 desktop/src/pages/Scan.tsx:725
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/Scan.tsx:756 desktop/src/pages/Scan.tsx:761
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -2923,7 +2923,7 @@ msgid "Checking…"
 msgstr "Wird geprüft …"
 
 #: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:283
-#: desktop/src/pages/Scan.tsx:691
+#: desktop/src/pages/Scan.tsx:727
 msgid "Refresh status"
 msgstr "Status aktualisieren"
 
@@ -3015,28 +3015,28 @@ msgstr "Wöchentlich"
 msgid "Monthly"
 msgstr "Monatlich"
 
-#: desktop/src/pages/ConfigPreferences.tsx:202
+#: desktop/src/pages/ConfigPreferences.tsx:222
 msgid "No configuration file selected"
 msgstr "Keine Konfigurationsdatei ausgewählt"
 
-#: desktop/src/pages/ConfigPreferences.tsx:209
+#: desktop/src/pages/ConfigPreferences.tsx:229
 msgid "The file is not currently readable."
 msgstr "Die Datei ist derzeit nicht lesbar."
 
-#: desktop/src/pages/ConfigPreferences.tsx:212
+#: desktop/src/pages/ConfigPreferences.tsx:232
 msgid "Detect"
 msgstr "Erkennen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:213
+#: desktop/src/pages/ConfigPreferences.tsx:233
 msgid "Browse"
 msgstr "Durchsuchen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:214
+#: desktop/src/pages/ConfigPreferences.tsx:234
 msgid "Authorize read"
 msgstr "Lesen autorisieren"
 
 #. Translators: Save & Apply and Authorize read are button labels; use their translations.
-#: desktop/src/pages/ConfigPreferences.tsx:217
+#: desktop/src/pages/ConfigPreferences.tsx:237
 msgid ""
 "Selecting a file keeps the path in this pending proposal. Save & Apply "
 "persists it only after the complete proposal is valid. Authorization is "
@@ -3047,58 +3047,71 @@ msgstr ""
 "gültig ist. Eine Autorisierung wird nur angefordert, wenn Sie ausdrücklich "
 "„Lesen autorisieren“ auswählen."
 
-#: desktop/src/pages/ConfigPreferences.tsx:295
-#: desktop/src/pages/ConfigPreferences.tsx:342
+#: desktop/src/pages/ConfigPreferences.tsx:315
+#: desktop/src/pages/ConfigPreferences.tsx:362
 #: desktop/src/pages/SettingsPreferences.tsx:381
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:300
-#: desktop/src/pages/ConfigPreferences.tsx:346
+#: desktop/src/pages/ConfigPreferences.tsx:320
+#: desktop/src/pages/ConfigPreferences.tsx:366
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:713
+#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:749
 #: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Remove"
 msgstr "Entfernen"
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:328
+#: desktop/src/pages/ConfigPreferences.tsx:348
 msgid "Enter an http, https, ftp, ftps, or file URL."
 msgstr "Geben Sie eine URL mit http, https, ftp, ftps oder file ein."
 
-#: desktop/src/pages/ConfigPreferences.tsx:340
+#: desktop/src/pages/ConfigPreferences.tsx:360
 msgid "Add URLs"
 msgstr "URLs hinzufügen"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:447
+#: desktop/src/pages/ConfigPreferences.tsx:468
 msgid "Configuration file selection is pending Save & Apply."
 msgstr ""
 "Die Auswahl der Konfigurationsdatei steht bis zu „Speichern und anwenden“ "
 "aus."
 
-#: desktop/src/pages/ConfigPreferences.tsx:459
+#: desktop/src/pages/ConfigPreferences.tsx:480
 msgid "No configuration file was found."
 msgstr "Es wurde keine Konfigurationsdatei gefunden."
 
-#: desktop/src/pages/ConfigPreferences.tsx:473
+#: desktop/src/pages/ConfigPreferences.tsx:494
 msgid "Select a .conf configuration file."
 msgstr "Wählen Sie eine .conf-Konfigurationsdatei aus."
 
-#: desktop/src/pages/ConfigPreferences.tsx:509
+#: desktop/src/pages/ConfigPreferences.tsx:530
 msgid "Configuration loaded with administrator authorization."
 msgstr "Konfiguration mit Administratorautorisierung geladen."
 
-#: desktop/src/pages/ConfigPreferences.tsx:546
+#. Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
+#: desktop/src/pages/ConfigPreferences.tsx:557
+msgid ""
+"Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, "
+"underscore, or hyphen)."
+msgstr "Gib den Auth-Key von deinem abuse.ch-Konto ein (4 bis 128 Buchstaben, "
+  "Ziffern, Unterstrich oder Bindestrich)."
+
+#: desktop/src/pages/ConfigPreferences.tsx:571
+msgid "URLhaus feed added. Save & Apply is still required."
+msgstr "URLhaus-Feed wurde hinzugefügt. Speichern und anwenden ist noch "
+  "erforderlich."
+
+#: desktop/src/pages/ConfigPreferences.tsx:588
 msgid "Scan backend saved."
 msgstr "Scan-Backend gespeichert."
 
-#: desktop/src/pages/ConfigPreferences.tsx:579
+#: desktop/src/pages/ConfigPreferences.tsx:621
 msgid "Choose a configuration file before applying its changes."
 msgstr ""
 "Wählen Sie eine Konfigurationsdatei aus, bevor Sie ihre Änderungen anwenden."
 
-#: desktop/src/pages/ConfigPreferences.tsx:591
+#: desktop/src/pages/ConfigPreferences.tsx:633
 msgid ""
 "On-Access scanning requires an excluded username, UID, or root user to "
 "prevent scan loops."
@@ -3106,143 +3119,146 @@ msgstr ""
 "On-Access-Scans erfordern einen ausgeschlossenen Benutzernamen, eine UID "
 "oder den Root-Benutzer, um Scan-Schleifen zu verhindern."
 
-#: desktop/src/pages/ConfigPreferences.tsx:599
-#: desktop/src/pages/ConfigPreferences.tsx:689
+#: desktop/src/pages/ConfigPreferences.tsx:641
+#: desktop/src/pages/ConfigPreferences.tsx:731
 msgid "No changes to apply."
 msgstr "Keine Änderungen zum Anwenden."
 
-#: desktop/src/pages/ConfigPreferences.tsx:614
+#: desktop/src/pages/ConfigPreferences.tsx:656
 msgid "Configuration validation failed."
 msgstr "Konfigurationsprüfung fehlgeschlagen."
 
-#: desktop/src/pages/ConfigPreferences.tsx:689
+#: desktop/src/pages/ConfigPreferences.tsx:731
 msgid "Configuration saved and applied."
 msgstr "Konfiguration gespeichert und angewendet."
 
-#: desktop/src/pages/ConfigPreferences.tsx:689
-#: desktop/src/pages/ConfigPreferences.tsx:706
+#: desktop/src/pages/ConfigPreferences.tsx:731
+#: desktop/src/pages/ConfigPreferences.tsx:748
 msgid "Some changes could not be applied."
 msgstr "Einige Änderungen konnten nicht angewendet werden."
 
-#: desktop/src/pages/ConfigPreferences.tsx:690
+#: desktop/src/pages/ConfigPreferences.tsx:732
 msgid "Saved groups"
 msgstr "Gespeicherte Gruppen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:715
+#: desktop/src/pages/ConfigPreferences.tsx:757
 msgid "Checking scanner status…"
 msgstr "Scannerstatus wird geprüft …"
 
-#: desktop/src/pages/ConfigPreferences.tsx:717
+#: desktop/src/pages/ConfigPreferences.tsx:759
 msgid "Daemon connected"
 msgstr "Daemon verbunden"
 
-#: desktop/src/pages/ConfigPreferences.tsx:718
+#: desktop/src/pages/ConfigPreferences.tsx:760
 msgid "Scanner available"
 msgstr "Scanner verfügbar"
 
-#: desktop/src/pages/ConfigPreferences.tsx:718
+#: desktop/src/pages/ConfigPreferences.tsx:760
 msgid "Scanner unavailable"
 msgstr "Scanner nicht verfügbar"
 
-#: desktop/src/pages/ConfigPreferences.tsx:728
+#: desktop/src/pages/ConfigPreferences.tsx:770
 msgid "Scan PE Files"
 msgstr "PE-Dateien scannen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:729
+#: desktop/src/pages/ConfigPreferences.tsx:771
 msgid "Scan ELF Files"
 msgstr "ELF-Dateien scannen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:730
+#: desktop/src/pages/ConfigPreferences.tsx:772
 msgid "Scan OLE2 Files"
 msgstr "OLE2-Dateien scannen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:731
+#: desktop/src/pages/ConfigPreferences.tsx:773
 msgid "Scan PDF Files"
 msgstr "PDF-Dateien scannen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:732
+#: desktop/src/pages/ConfigPreferences.tsx:774
 msgid "Scan HTML Files"
 msgstr "HTML-Dateien scannen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:733
+#: desktop/src/pages/ConfigPreferences.tsx:775
 msgid "Scan Archive Files"
 msgstr "Archivdateien scannen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:739
+#: desktop/src/pages/ConfigPreferences.tsx:781
 #: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Database Updates"
 msgstr "Datenbankaktualisierungen"
 
 #. Translators: Keep freshclam.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:740
+#: desktop/src/pages/ConfigPreferences.tsx:782
 msgid "freshclam.conf"
 msgstr "freshclam.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:744
+#: desktop/src/pages/ConfigPreferences.tsx:786
 msgid "Paths"
 msgstr "Pfade"
 
-#: desktop/src/pages/ConfigPreferences.tsx:745
+#: desktop/src/pages/ConfigPreferences.tsx:787
 msgid "Database Directory"
 msgstr "Datenbankverzeichnis"
 
-#: desktop/src/pages/ConfigPreferences.tsx:746
+#: desktop/src/pages/ConfigPreferences.tsx:788
 msgid "Update Log File"
 msgstr "Aktualisierungsprotokolldatei"
 
-#: desktop/src/pages/ConfigPreferences.tsx:747
+#: desktop/src/pages/ConfigPreferences.tsx:789
 msgid "PID File"
 msgstr "PID-Datei"
 
-#: desktop/src/pages/ConfigPreferences.tsx:748
+#: desktop/src/pages/ConfigPreferences.tsx:790
 msgid "Notify ClamD Config"
 msgstr "ClamD-Konfiguration benachrichtigen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:749
+#: desktop/src/pages/ConfigPreferences.tsx:791
 msgid "Log timestamps"
 msgstr "Zeitstempel im Protokoll"
 
-#: desktop/src/pages/ConfigPreferences.tsx:750
+#: desktop/src/pages/ConfigPreferences.tsx:792
 msgid "Verbose logging"
 msgstr "Ausführliche Protokollierung"
 
-#: desktop/src/pages/ConfigPreferences.tsx:751
+#: desktop/src/pages/ConfigPreferences.tsx:793
 msgid "Syslog logging"
 msgstr "Syslog-Protokollierung"
 
-#: desktop/src/pages/ConfigPreferences.tsx:753
+#: desktop/src/pages/ConfigPreferences.tsx:795
 msgid "Update Behavior"
 msgstr "Aktualisierungsverhalten"
 
-#: desktop/src/pages/ConfigPreferences.tsx:754
+#: desktop/src/pages/ConfigPreferences.tsx:796
 msgid "Checks per day"
 msgstr "Prüfungen pro Tag"
 
-#: desktop/src/pages/ConfigPreferences.tsx:754
+#: desktop/src/pages/ConfigPreferences.tsx:796
 msgid "0 disables automatic checks."
 msgstr "0 deaktiviert automatische Prüfungen."
 
-#: desktop/src/pages/ConfigPreferences.tsx:755
+#: desktop/src/pages/ConfigPreferences.tsx:797
 msgid "Database Mirror"
 msgstr "Datenbankspiegelserver"
 
-#: desktop/src/pages/ConfigPreferences.tsx:757
+#: desktop/src/pages/ConfigPreferences.tsx:799
 msgid "Custom Signature Databases"
 msgstr "Benutzerdefinierte Signaturdatenbanken"
 
-#: desktop/src/pages/ConfigPreferences.tsx:759
+#: desktop/src/pages/ConfigPreferences.tsx:801
 msgid "Suggested"
 msgstr "Vorgeschlagen"
 
-#. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:760
+#. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged. URLhaus is a provider name.
+#: desktop/src/pages/ConfigPreferences.tsx:802
 msgid ""
 "Suggested adds the RFXN signatures and three InterServer databases to this "
-"draft. Save & Apply is still required."
-msgstr "Vorgeschlagen fügt diesem Entwurf die RFXN-Signaturen und drei InterServer-Datenbanken hinzu. „Speichern und anwenden“ ist weiterhin erforderlich."
+"draft. Add URLhaus below with a free abuse.ch Auth-Key. Save & Apply is "
+"still required."
+msgstr "Vorgeschlagen: die RFXN-Signaturen und drei InterServer-Datenbanken "
+  "werden in dieser Entwurfsliste ergänzt. URLhaus unten mit einem kostenlosen "
+  "abuse.ch-Auth-Key hinzufügen. Speichern und anwenden ist noch erforderlich."
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:764
+#: desktop/src/pages/ConfigPreferences.tsx:806
 msgid ""
 "Supported URL schemes: http, https, ftp, ftps, and file. Paste each provider "
 "URL as a separate entry."
@@ -3250,25 +3266,25 @@ msgstr ""
 "Unterstützte URL-Schemata: http, https, ftp, ftps und file. Fügen Sie jede "
 "Anbieter-URL als separaten Eintrag ein."
 
-#: desktop/src/pages/ConfigPreferences.tsx:769
+#: desktop/src/pages/ConfigPreferences.tsx:811
 msgid "Signature Providers"
 msgstr "Signaturanbieter"
 
-#: desktop/src/pages/ConfigPreferences.tsx:770
+#: desktop/src/pages/ConfigPreferences.tsx:812
 msgid "Registration is required; URLs include your personal API key."
 msgstr ""
 "Eine Registrierung ist erforderlich; die URLs enthalten Ihren persönlichen "
 "API-Schlüssel."
 
-#: desktop/src/pages/ConfigPreferences.tsx:770
-#: desktop/src/pages/ConfigPreferences.tsx:774
-#: desktop/src/pages/ConfigPreferences.tsx:775
-#: desktop/src/pages/ConfigPreferences.tsx:776
+#: desktop/src/pages/ConfigPreferences.tsx:812
+#: desktop/src/pages/ConfigPreferences.tsx:816
+#: desktop/src/pages/ConfigPreferences.tsx:817
+#: desktop/src/pages/ConfigPreferences.tsx:818
 msgid "Open provider"
 msgstr "Im Browser öffnen"
 
 #. Translators: Keep fangfrisch and clamav-unofficial-sigs unchanged; they are tool names.
-#: desktop/src/pages/ConfigPreferences.tsx:771
+#: desktop/src/pages/ConfigPreferences.tsx:813
 msgid ""
 "Use fangfrisch or clamav-unofficial-sigs; it is not a direct custom URL "
 "provider."
@@ -3276,191 +3292,225 @@ msgstr ""
 "Verwenden Sie fangfrisch oder clamav-unofficial-sigs; dies ist kein direkter "
 "Anbieter benutzerdefinierter URLs."
 
-#: desktop/src/pages/ConfigPreferences.tsx:775
+#: desktop/src/pages/ConfigPreferences.tsx:817
 msgid ""
 "Free Linux malware and web-shell hash and heuristic signatures from Linux "
 "Malware Detect."
-msgstr "Kostenlose Hash- und Heuristiksignaturen für Linux-Malware und Web-Shells von Linux Malware Detect."
+msgstr ""
+"Kostenlose Hash- und Heuristiksignaturen für Linux-Malware und Web-Shells "
+"von Linux Malware Detect."
 
-#: desktop/src/pages/ConfigPreferences.tsx:776
+#: desktop/src/pages/ConfigPreferences.tsx:818
 msgid "Community hash, web-shell, and general malware signature databases."
 msgstr ""
 "Community-Datenbanken für Hashes, Web-Shells und allgemeine Schadsoftware-"
 "Signaturen."
 
-#: desktop/src/pages/ConfigPreferences.tsx:778
+#: desktop/src/pages/ConfigPreferences.tsx:819
+msgid "Free malware URL signatures; requires a free abuse.ch Auth-Key."
+msgstr "Freie URLhaus-Malware-URL-Signaturen; erfordert einen kostenlosen "
+  "Auth-Key bei abuse.ch."
+
+#: desktop/src/pages/ConfigPreferences.tsx:819
+msgid "Create Auth-Key"
+msgstr "Auth-Key erstellen"
+
+#: desktop/src/pages/ConfigPreferences.tsx:821
+msgid "URLhaus Feed"
+msgstr "URLhaus-Feed"
+
+#: desktop/src/pages/ConfigPreferences.tsx:822
+msgid "Auth-Key"
+msgstr "Auth-Key"
+
+#: desktop/src/pages/ConfigPreferences.tsx:824
+msgid "Paste your Auth-Key"
+msgstr "Auth-Key einfügen"
+
+#: desktop/src/pages/ConfigPreferences.tsx:825
+msgid "Add URLhaus"
+msgstr "URLhaus hinzufügen"
+
+#: desktop/src/pages/ConfigPreferences.tsx:828
+msgid ""
+"Linux Defender writes the key into freshclam.conf as part of the feed URL. "
+"Create one at auth.abuse.ch."
+msgstr "Linux Defender schreibt den Schlüssel in freshclam.conf als Teil der "
+  "Feed-URL. Erstelle ihn auf auth.abuse.ch."
+
+#: desktop/src/pages/ConfigPreferences.tsx:830
 msgid "Proxy Settings"
 msgstr "Proxy-Einstellungen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:779
+#: desktop/src/pages/ConfigPreferences.tsx:831
 msgid "Proxy Server"
 msgstr "Proxy-Server"
 
-#: desktop/src/pages/ConfigPreferences.tsx:780
+#: desktop/src/pages/ConfigPreferences.tsx:832
 msgid "Proxy Port"
 msgstr "Proxy-Port"
 
-#: desktop/src/pages/ConfigPreferences.tsx:780
+#: desktop/src/pages/ConfigPreferences.tsx:832
 msgid "0 disables the proxy port."
 msgstr "0 deaktiviert den Proxy-Port."
 
-#: desktop/src/pages/ConfigPreferences.tsx:781
+#: desktop/src/pages/ConfigPreferences.tsx:833
 msgid "Proxy Username"
 msgstr "Proxy-Benutzername"
 
-#: desktop/src/pages/ConfigPreferences.tsx:782
+#: desktop/src/pages/ConfigPreferences.tsx:834
 msgid "Proxy Password"
 msgstr "Proxy-Passwort"
 
-#: desktop/src/pages/ConfigPreferences.tsx:787
+#: desktop/src/pages/ConfigPreferences.tsx:839
 msgid "Scanner Settings"
 msgstr "Scanner-Einstellungen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:789
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "Scan Backend"
 msgstr "Scan-Backend"
 
-#: desktop/src/pages/ConfigPreferences.tsx:789
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "Auto (prefer daemon)"
 msgstr "Automatisch (Daemon bevorzugen)"
 
 #. Translators: Keep clamd unchanged; it is the daemon command and service name.
-#: desktop/src/pages/ConfigPreferences.tsx:789
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "ClamAV Daemon (clamd)"
 msgstr "ClamAV-Daemon (clamd)"
 
 #. Translators: Keep clamscan unchanged; it is the scanner command name.
-#: desktop/src/pages/ConfigPreferences.tsx:792
+#: desktop/src/pages/ConfigPreferences.tsx:844
 msgid "Standalone Scanner (clamscan)"
 msgstr "Eigenständiger Scanner (clamscan)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:796
+#: desktop/src/pages/ConfigPreferences.tsx:848
 msgid "Daemon Status"
 msgstr "Daemon-Status"
 
-#: desktop/src/pages/ConfigPreferences.tsx:796
+#: desktop/src/pages/ConfigPreferences.tsx:848
 msgid "Refresh Status"
 msgstr "Status aktualisieren"
 
-#: desktop/src/pages/ConfigPreferences.tsx:797
+#: desktop/src/pages/ConfigPreferences.tsx:849
 msgid "Documentation"
 msgstr "Dokumentation"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:799
-#: desktop/src/pages/ConfigPreferences.tsx:820
+#: desktop/src/pages/ConfigPreferences.tsx:851
+#: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "clamd.conf"
 msgstr "clamd.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:803
+#: desktop/src/pages/ConfigPreferences.tsx:855
 msgid "File Type Scanning"
 msgstr "Dateitypen scannen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:806
+#: desktop/src/pages/ConfigPreferences.tsx:858
 msgid "Performance and Limits"
 msgstr "Leistung und Grenzen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:807
-#: desktop/src/pages/ConfigPreferences.tsx:833
+#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:885
 msgid "Max File Size (MB)"
 msgstr "Maximale Dateigröße (MB)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:807
-#: desktop/src/pages/ConfigPreferences.tsx:808
-#: desktop/src/pages/ConfigPreferences.tsx:810
-#: desktop/src/pages/ConfigPreferences.tsx:833
+#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:860
+#: desktop/src/pages/ConfigPreferences.tsx:862
+#: desktop/src/pages/ConfigPreferences.tsx:885
 msgid "0 means unlimited."
 msgstr "0 bedeutet unbegrenzt."
 
-#: desktop/src/pages/ConfigPreferences.tsx:808
+#: desktop/src/pages/ConfigPreferences.tsx:860
 msgid "Max Scan Size (MB)"
 msgstr "Maximale Scangröße (MB)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:809
+#: desktop/src/pages/ConfigPreferences.tsx:861
 msgid "Max Archive Recursion"
 msgstr "Maximale Archivrekursion"
 
-#: desktop/src/pages/ConfigPreferences.tsx:810
+#: desktop/src/pages/ConfigPreferences.tsx:862
 msgid "Max Files in Archive"
 msgstr "Maximale Dateien im Archiv"
 
-#: desktop/src/pages/ConfigPreferences.tsx:812
+#: desktop/src/pages/ConfigPreferences.tsx:864
 msgid "Logging"
 msgstr "Protokollierung"
 
-#: desktop/src/pages/ConfigPreferences.tsx:813
+#: desktop/src/pages/ConfigPreferences.tsx:865
 msgid "Log File Path"
 msgstr "Protokolldateipfad"
 
-#: desktop/src/pages/ConfigPreferences.tsx:814
+#: desktop/src/pages/ConfigPreferences.tsx:866
 msgid "Verbose Logging"
 msgstr "Ausführliche Protokollierung"
 
-#: desktop/src/pages/ConfigPreferences.tsx:814
+#: desktop/src/pages/ConfigPreferences.tsx:866
 msgid "Syslog Logging"
 msgstr "Syslog-Protokollierung"
 
-#: desktop/src/pages/ConfigPreferences.tsx:819
+#: desktop/src/pages/ConfigPreferences.tsx:871
 msgid "On-Access Scanning"
 msgstr "Zugriffsgesteuertes Scannen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:824
+#: desktop/src/pages/ConfigPreferences.tsx:876
 msgid "Monitored Paths"
 msgstr "Überwachte Pfade"
 
-#: desktop/src/pages/ConfigPreferences.tsx:825
+#: desktop/src/pages/ConfigPreferences.tsx:877
 msgid "Include Paths"
 msgstr "Einzubeziehende Pfade"
 
-#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:878
 msgid "Exclude Paths"
 msgstr "Auszuschließende Pfade"
 
-#: desktop/src/pages/ConfigPreferences.tsx:828
+#: desktop/src/pages/ConfigPreferences.tsx:880
 msgid "Behavior Settings"
 msgstr "Verhaltenseinstellungen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Prevention Mode"
 msgstr "Präventionsmodus"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Extra Scanning"
 msgstr "Zusätzliche Scans"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Deny on Error"
 msgstr "Bei Fehler verweigern"
 
-#: desktop/src/pages/ConfigPreferences.tsx:829
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Disable DDD"
 msgstr "DDD deaktivieren"
 
-#: desktop/src/pages/ConfigPreferences.tsx:831
+#: desktop/src/pages/ConfigPreferences.tsx:883
 msgid "Performance Settings"
 msgstr "Leistungseinstellungen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:832
+#: desktop/src/pages/ConfigPreferences.tsx:884
 msgid "Max Threads"
 msgstr "Maximale Threads"
 
-#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:886
 msgid "Curl Timeout (seconds)"
 msgstr "Curl-Zeitüberschreitung (Sekunden)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:886
 msgid "0 disables the timeout."
 msgstr "0 deaktiviert die Zeitüberschreitung."
 
-#: desktop/src/pages/ConfigPreferences.tsx:835
+#: desktop/src/pages/ConfigPreferences.tsx:887
 msgid "Retry Attempts"
 msgstr "Wiederholungsversuche"
 
-#: desktop/src/pages/ConfigPreferences.tsx:837
+#: desktop/src/pages/ConfigPreferences.tsx:889
 msgid "Scan Loop Prevention"
 msgstr "Verhinderung von Scan-Schleifen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:838
+#: desktop/src/pages/ConfigPreferences.tsx:890
 msgid ""
 "At least one loop-prevention exclusion is required. Exclude the clamav "
 "service account, its UID, or root to prevent recursive scans."
@@ -3469,60 +3519,60 @@ msgstr ""
 "Schließen Sie das ClamAV-Dienstkonto, seine UID oder root aus, um rekursive "
 "Scans zu verhindern."
 
-#: desktop/src/pages/ConfigPreferences.tsx:839
+#: desktop/src/pages/ConfigPreferences.tsx:891
 msgid "Exclude Username"
 msgstr "Benutzername ausschließen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:840
+#: desktop/src/pages/ConfigPreferences.tsx:892
 msgid "Exclude User ID"
 msgstr "Benutzer-ID ausschließen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:841
+#: desktop/src/pages/ConfigPreferences.tsx:893
 msgid "Exclude Root User"
 msgstr "Root-Benutzer ausschließen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:846
+#: desktop/src/pages/ConfigPreferences.tsx:898
 msgid "Scheduled Scans"
 msgstr "Geplante Scans"
 
-#: desktop/src/pages/ConfigPreferences.tsx:847
+#: desktop/src/pages/ConfigPreferences.tsx:899
 msgid "Schedule"
 msgstr "Zeitplan"
 
-#: desktop/src/pages/ConfigPreferences.tsx:848
+#: desktop/src/pages/ConfigPreferences.tsx:900
 msgid "Enable Scheduled Scans"
 msgstr "Geplante Scans aktivieren"
 
-#: desktop/src/pages/ConfigPreferences.tsx:849
+#: desktop/src/pages/ConfigPreferences.tsx:901
 msgid "Scan Frequency"
 msgstr "Scan-Häufigkeit"
 
-#: desktop/src/pages/ConfigPreferences.tsx:850
+#: desktop/src/pages/ConfigPreferences.tsx:902
 msgid "Scan Time (24-hour)"
 msgstr "Scan-Zeit (24-Stunden-Format)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:851
+#: desktop/src/pages/ConfigPreferences.tsx:903
 msgid "Day of Week"
 msgstr "Wochentag"
 
-#: desktop/src/pages/ConfigPreferences.tsx:851
+#: desktop/src/pages/ConfigPreferences.tsx:903
 msgid "Used for weekly scans."
 msgstr "Wird für wöchentliche Scans verwendet."
 
-#: desktop/src/pages/ConfigPreferences.tsx:852
+#: desktop/src/pages/ConfigPreferences.tsx:904
 msgid "Day of Month"
 msgstr "Tag des Monats"
 
-#: desktop/src/pages/ConfigPreferences.tsx:852
+#: desktop/src/pages/ConfigPreferences.tsx:904
 msgid "Used for monthly scans."
 msgstr "Wird für monatliche Scans verwendet."
 
-#: desktop/src/pages/ConfigPreferences.tsx:853
-#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:712
+#: desktop/src/pages/ConfigPreferences.tsx:905
+#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:748
 msgid "Scan Targets"
 msgstr "Scan-Ziele"
 
-#: desktop/src/pages/ConfigPreferences.tsx:854
+#: desktop/src/pages/ConfigPreferences.tsx:906
 msgid ""
 "No targets are configured. The scheduled scan will use your home directory "
 "without saving it as an explicit target."
@@ -3530,36 +3580,36 @@ msgstr ""
 "Es sind keine Ziele konfiguriert. Der geplante Scan verwendet Ihr Home-"
 "Verzeichnis, ohne es als explizites Ziel zu speichern."
 
-#: desktop/src/pages/ConfigPreferences.tsx:855
+#: desktop/src/pages/ConfigPreferences.tsx:907
 #: desktop/src/pages/SettingsPreferences.tsx:403
 msgid "Skip on Battery"
 msgstr "Bei Akkubetrieb überspringen"
 
-#: desktop/src/pages/ConfigPreferences.tsx:855
+#: desktop/src/pages/ConfigPreferences.tsx:907
 msgid "Do not start scheduled scans while on battery power."
 msgstr "Geplante Scans bei Akkubetrieb nicht starten."
 
-#: desktop/src/pages/ConfigPreferences.tsx:856
+#: desktop/src/pages/ConfigPreferences.tsx:908
 msgid "Auto-Quarantine"
 msgstr "Automatische Quarantäne"
 
-#: desktop/src/pages/ConfigPreferences.tsx:856
+#: desktop/src/pages/ConfigPreferences.tsx:908
 msgid "Automatically quarantine threats found by scheduled scans."
 msgstr ""
 "Von geplanten Scans erkannte Bedrohungen automatisch in Quarantäne "
 "verschieben."
 
-#: desktop/src/pages/ConfigPreferences.tsx:861
-#: desktop/src/pages/ConfigPreferences.tsx:871
+#: desktop/src/pages/ConfigPreferences.tsx:913
+#: desktop/src/pages/ConfigPreferences.tsx:923
 msgid "Save & Apply"
 msgstr "Speichern und anwenden"
 
-#: desktop/src/pages/ConfigPreferences.tsx:862
+#: desktop/src/pages/ConfigPreferences.tsx:914
 msgid "Apply Configuration"
 msgstr "Konfiguration anwenden"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:863
+#: desktop/src/pages/ConfigPreferences.tsx:915
 msgid ""
 "All edited forms are captured at the moment you click Save & Apply. Every "
 "configured file is validated before any write or authorization request."
@@ -3569,7 +3619,7 @@ msgstr ""
 "Autorisierungsaufruf geprüft."
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:867
+#: desktop/src/pages/ConfigPreferences.tsx:919
 msgid ""
 "Scanner and On-Access changes share one clamd.conf proposal; neither form "
 "can overwrite the other's detached changes."
@@ -3578,8 +3628,8 @@ msgstr ""
 "keines der Formulare kann die getrennten Änderungen des anderen "
 "überschreiben."
 
-#: desktop/src/pages/ConfigPreferences.tsx:871
-#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:227
+#: desktop/src/pages/ConfigPreferences.tsx:923
+#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:263
 msgid "Saving…"
 msgstr "Wird gespeichert …"
 
@@ -3778,7 +3828,10 @@ msgstr "Basisdatenbanken"
 msgid ""
 "Official ClamAV databases found in the configured database directory. A "
 "missing entry is downloaded by the next successful freshclam update."
-msgstr "Offizielle ClamAV-Datenbanken im konfigurierten Datenbankverzeichnis. Ein fehlender Eintrag wird beim nächsten erfolgreichen freshclam-Update heruntergeladen."
+msgstr ""
+"Offizielle ClamAV-Datenbanken im konfigurierten Datenbankverzeichnis. Ein "
+"fehlender Eintrag wird beim nächsten erfolgreichen freshclam-Update "
+"heruntergeladen."
 
 #: desktop/src/pages/Database.tsx:320
 msgid "{count} custom signature file"
@@ -4008,9 +4061,9 @@ msgstr "Frühere Scan- und Aktualisierungsvorgänge"
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
 #: desktop/src/pages/Quarantine.tsx:354
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/SettingsPreferences.tsx:530
-#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:171
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:215
 msgid "Refresh"
 msgstr "Aktualisieren"
 
@@ -4024,7 +4077,7 @@ msgid "Export JSON"
 msgstr "JSON exportieren"
 
 #: desktop/src/pages/Logs.tsx:370 desktop/src/pages/Logs.tsx:412
-#: desktop/src/pages/Scan.tsx:712
+#: desktop/src/pages/Scan.tsx:748
 msgid "Clear All"
 msgstr "Alle löschen"
 
@@ -4059,7 +4112,7 @@ msgid "Export Text"
 msgstr "Text exportieren"
 
 #: desktop/src/pages/Logs.tsx:392 desktop/src/pages/Logs.tsx:402
-#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:756
 msgid "Fullscreen"
 msgstr "Vollbild"
 
@@ -4205,8 +4258,8 @@ msgstr "Wird aktualisiert …"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
 #: desktop/src/pages/Overview.tsx:153
-#: desktop/src/pages/SettingsPreferences.tsx:527
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:528
+#: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "Loading…"
 msgstr "Wird geladen …"
 
@@ -4366,7 +4419,7 @@ msgstr "Schutzstatus"
 msgid "Last Scan"
 msgstr "Letzter Scan"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:754
 msgid "Start Scan"
 msgstr "Scan starten"
 
@@ -4383,7 +4436,7 @@ msgid "Scanner engine"
 msgstr "Scanner-Engine"
 
 #: desktop/src/pages/Overview.tsx:192
-#: desktop/src/pages/SettingsPreferences.tsx:456
+#: desktop/src/pages/SettingsPreferences.tsx:457
 msgid "{count} file"
 msgid_plural "{count} files"
 msgstr[0] "{count} Datei"
@@ -4412,6 +4465,7 @@ msgstr "Detaillierten Scan-Verlauf anzeigen"
 
 #: desktop/src/pages/Preferences.tsx:13
 #: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Behavior"
 msgstr "Verhalten"
 
@@ -4440,11 +4494,11 @@ msgstr "Zugriffsüberwachung"
 msgid "YARA Rules"
 msgstr "YARA-Regeln"
 
-#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:165
+#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:209
 msgid "VirusTotal"
 msgstr "VirusTotal"
 
-#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:164
+#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:208
 msgid "urlscan.io"
 msgstr "urlscan.io"
 
@@ -4502,7 +4556,7 @@ msgstr "Namen von Standardprofilen sind geschützt"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:713
+#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:749
 msgid "No targets added"
 msgstr "Keine Ziele hinzugefügt"
 
@@ -4621,7 +4675,7 @@ msgstr "Duplizieren"
 #: desktop/src/pages/Profiles.tsx:237 desktop/src/pages/Profiles.tsx:245
 #: desktop/src/pages/Quarantine.tsx:365 desktop/src/pages/Quarantine.tsx:377
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Delete"
 msgstr "Löschen"
 
@@ -4708,7 +4762,9 @@ msgstr "Alte Quarantäneeinträge konnten nicht gelöscht werden: {error}"
 
 #: desktop/src/pages/Quarantine.tsx:286
 msgid "Linux Defender returned an invalid rescan result."
-msgstr "Linux Defender hat ein ungültiges Ergebnis der erneuten Prüfung zurückgegeben."
+msgstr ""
+"Linux Defender hat ein ungültiges Ergebnis der erneuten Prüfung "
+"zurückgegeben."
 
 #: desktop/src/pages/Quarantine.tsx:289
 msgid "{count} item is still detected."
@@ -5007,7 +5063,7 @@ msgstr "Schädlich"
 msgid "Suspicious"
 msgstr "Verdächtig"
 
-#: desktop/src/pages/Results.tsx:110 desktop/src/pages/Scan.tsx:676
+#: desktop/src/pages/Results.tsx:110 desktop/src/pages/Scan.tsx:712
 msgid "Scan target"
 msgstr "Scan-Ziel"
 
@@ -5077,7 +5133,7 @@ msgstr ""
 "Weitere nicht zugängliche Dateien werden in dieser Ansicht nicht angezeigt."
 
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Results.tsx:201
-#: desktop/src/pages/Scan.tsx:720 desktop/src/pages/Scan.tsx:725
+#: desktop/src/pages/Scan.tsx:756 desktop/src/pages/Scan.tsx:761
 msgid "Scan details"
 msgstr "Scan-Details"
 
@@ -5129,7 +5185,7 @@ msgstr "JSON kopieren"
 msgid "Copy Hash"
 msgstr "Hash kopieren"
 
-#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:329
+#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:365
 msgid "View on VirusTotal"
 msgstr "Auf VirusTotal anzeigen"
 
@@ -5183,7 +5239,7 @@ msgstr[1] "Scan abgeschlossen – {count} Bedrohungen erkannt"
 msgid "Scan cancelled — partial results are available"
 msgstr "Scan abgebrochen – unvollständige Ergebnisse sind verfügbar"
 
-#: desktop/src/pages/Scan.tsx:116 desktop/src/pages/Scan.tsx:678
+#: desktop/src/pages/Scan.tsx:116 desktop/src/pages/Scan.tsx:714
 msgid "Scan error"
 msgstr "Scan-Fehler"
 
@@ -5191,15 +5247,26 @@ msgstr "Scan-Fehler"
 msgid "Unknown error"
 msgstr "Unbekannter Fehler"
 
-#: desktop/src/pages/Scan.tsx:180
+#: desktop/src/pages/Scan.tsx:178 desktop/src/pages/Urlscan.tsx:190
+msgid "Opened the VirusTotal upload page in your browser"
+msgstr "VirusTotal-Uploadseite im Browser geöffnet"
+
+#: desktop/src/pages/Scan.tsx:185 desktop/src/pages/Scan.tsx:353
+#: desktop/src/pages/Urlscan.tsx:197
+msgid ""
+"Configure a VirusTotal API key in Preferences before starting this scan."
+msgstr ""
+"Configure a VirusTotal API key in Preferences before starting this scan."
+
+#: desktop/src/pages/Scan.tsx:216
 msgid "API key must contain exactly 64 hexadecimal characters"
 msgstr "API-Schlüssel muss genau 64 hexadezimale Zeichen enthalten"
 
-#: desktop/src/pages/Scan.tsx:212
+#: desktop/src/pages/Scan.tsx:248
 msgid "VirusTotal Scan"
 msgstr "VirusTotal-Scan"
 
-#: desktop/src/pages/Scan.tsx:213
+#: desktop/src/pages/Scan.tsx:249
 msgid ""
 "VirusTotal uploads one file at a time. Only send files you are authorized to "
 "share."
@@ -5207,61 +5274,61 @@ msgstr ""
 "VirusTotal lädt jeweils eine Datei hoch. Senden Sie nur Dateien, die Sie "
 "weitergeben dürfen."
 
-#: desktop/src/pages/Scan.tsx:216
+#: desktop/src/pages/Scan.tsx:252
 msgid "Calculating file hash…"
 msgstr "Calculating file hash…"
 
-#: desktop/src/pages/Scan.tsx:216
+#: desktop/src/pages/Scan.tsx:252
 msgid "Checking the VirusTotal file report…"
 msgstr "Checking the VirusTotal file report…"
 
-#: desktop/src/pages/Scan.tsx:216
+#: desktop/src/pages/Scan.tsx:252
 msgid "Uploading file to VirusTotal…"
 msgstr "Uploading file to VirusTotal…"
 
-#: desktop/src/pages/Scan.tsx:216
+#: desktop/src/pages/Scan.tsx:252
 msgid "VirusTotal is analyzing the file…"
 msgstr "VirusTotal is analyzing the file…"
 
-#: desktop/src/pages/Scan.tsx:218 desktop/src/pages/Scan.tsx:324
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Scan.tsx:254 desktop/src/pages/Scan.tsx:360
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "Open VirusTotal analysis"
 msgstr "Open VirusTotal analysis"
 
-#: desktop/src/pages/Scan.tsx:219 desktop/src/pages/Scan.tsx:325
+#: desktop/src/pages/Scan.tsx:255 desktop/src/pages/Scan.tsx:361
 msgid "Cancel scan"
 msgstr "Cancel scan"
 
-#: desktop/src/pages/Scan.tsx:223
+#: desktop/src/pages/Scan.tsx:259
 msgid "API key available"
 msgstr "API-Schlüssel verfügbar"
 
-#: desktop/src/pages/Scan.tsx:224 desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:260 desktop/src/pages/Scan.tsx:754
 msgid "Scanning…"
 msgstr "Scan läuft …"
 
-#: desktop/src/pages/Scan.tsx:224 desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:260 desktop/src/pages/Scan.tsx:754
 msgid "Scan with VirusTotal"
 msgstr "Mit VirusTotal scannen"
 
-#: desktop/src/pages/Scan.tsx:226 desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "API Key"
 msgstr "API-Schlüssel"
 
-#: desktop/src/pages/Scan.tsx:227
+#: desktop/src/pages/Scan.tsx:263
 msgid "Save & Scan"
 msgstr "Speichern und scannen"
 
-#: desktop/src/pages/Scan.tsx:229
+#: desktop/src/pages/Scan.tsx:265
 msgid "Upload file manually"
 msgstr "Datei manuell hochladen"
 
-#: desktop/src/pages/Scan.tsx:306
+#: desktop/src/pages/Scan.tsx:342
 msgid "VirusTotal Folder Scan"
 msgstr "VirusTotal Folder Scan"
 
-#: desktop/src/pages/Scan.tsx:307
+#: desktop/src/pages/Scan.tsx:343
 msgid ""
 "Review the folder contents before any files are sent. VirusTotal receives "
 "each file hash and filename; files without an existing report may be "
@@ -5271,7 +5338,7 @@ msgstr ""
 "each file hash and filename; files without an existing report may be "
 "uploaded and shared with its security partners."
 
-#: desktop/src/pages/Scan.tsx:308
+#: desktop/src/pages/Scan.tsx:344
 msgid ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
@@ -5279,96 +5346,90 @@ msgstr ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
 
-#: desktop/src/pages/Scan.tsx:311
+#: desktop/src/pages/Scan.tsx:347
 msgid "Preparing folder preview…"
 msgstr "Preparing folder preview…"
 
-#: desktop/src/pages/Scan.tsx:314
+#: desktop/src/pages/Scan.tsx:350
 msgid "{count} file, {size} MiB total"
 msgid_plural "{count} files, {size} MiB total"
 msgstr[0] "{count} file, {size} MiB total"
 msgstr[1] "{count} files, {size} MiB total"
 
-#: desktop/src/pages/Scan.tsx:315
+#: desktop/src/pages/Scan.tsx:351
 msgid "{count} unreadable entry will be skipped."
 msgid_plural "{count} unreadable entries will be skipped."
 msgstr[0] "{count} unreadable entry will be skipped."
 msgstr[1] "{count} unreadable entries will be skipped."
 
-#: desktop/src/pages/Scan.tsx:316
+#: desktop/src/pages/Scan.tsx:352
 msgid "No readable files were found in this folder."
 msgstr "No readable files were found in this folder."
 
-#: desktop/src/pages/Scan.tsx:317
-msgid ""
-"Configure a VirusTotal API key in Preferences before starting this scan."
-msgstr ""
-"Configure a VirusTotal API key in Preferences before starting this scan."
-
-#: desktop/src/pages/Scan.tsx:318
+#: desktop/src/pages/Scan.tsx:354
 msgid "Upload and scan folder"
 msgstr "Upload and scan folder"
 
-#: desktop/src/pages/Scan.tsx:321
+#: desktop/src/pages/Scan.tsx:357
 msgid "File {current} of {total}: {stage}"
 msgstr "File {current} of {total}: {stage}"
 
-#: desktop/src/pages/Scan.tsx:321
+#: desktop/src/pages/Scan.tsx:357
 msgid "hashing"
 msgstr "hashing"
 
-#: desktop/src/pages/Scan.tsx:321
+#: desktop/src/pages/Scan.tsx:357
 msgid "uploading"
 msgstr "uploading"
 
-#: desktop/src/pages/Scan.tsx:321
+#: desktop/src/pages/Scan.tsx:357
 msgid "analyzing"
 msgstr "analyzing"
 
-#: desktop/src/pages/Scan.tsx:328
+#: desktop/src/pages/Scan.tsx:364
 msgid "{count} of {total} file scanned"
 msgid_plural "{count} of {total} files scanned"
 msgstr[0] "{count} of {total} file scanned"
 msgstr[1] "{count} of {total} files scanned"
 
-#: desktop/src/pages/Scan.tsx:328
+#: desktop/src/pages/Scan.tsx:364
 msgid "{count} detection reported"
 msgid_plural "{count} detections reported"
 msgstr[0] "{count} detection reported"
 msgstr[1] "{count} detections reported"
 
-#: desktop/src/pages/Scan.tsx:328
+#: desktop/src/pages/Scan.tsx:364
 msgid "cancelled"
 msgstr "cancelled"
 
-#: desktop/src/pages/Scan.tsx:363
+#: desktop/src/pages/Scan.tsx:399
 msgid "Unable to load scan profiles"
 msgstr "Scan-Profile konnten nicht geladen werden"
 
-#: desktop/src/pages/Scan.tsx:370
+#: desktop/src/pages/Scan.tsx:406
 msgid "Unable to check scanner status"
 msgstr "Scannerstatus kann nicht geprüft werden"
 
-#: desktop/src/pages/Scan.tsx:404 desktop/src/pages/Scan.tsx:485
+#: desktop/src/pages/Scan.tsx:440 desktop/src/pages/Scan.tsx:521
 msgid "Please select a file or folder to scan"
 msgstr "Wählen Sie zuerst eine Datei oder einen Ordner aus"
 
-#: desktop/src/pages/Scan.tsx:418
+#: desktop/src/pages/Scan.tsx:454
 msgid "Starting scan…"
 msgstr "Scan wird gestartet …"
 
-#: desktop/src/pages/Scan.tsx:485
+#: desktop/src/pages/Scan.tsx:521
 msgid "Quick Scan profile has no valid targets"
 msgstr "Das Schnellscan-Profil enthält keine gültigen Ziele."
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:499 desktop/src/pages/Scan.tsx:602
-#: desktop/src/pages/Scan.tsx:662
+#: desktop/src/pages/Scan.tsx:535 desktop/src/pages/Scan.tsx:638
+#: desktop/src/pages/Scan.tsx:698
 msgid "Scan in progress — wait for it to finish before adding targets"
 msgstr ""
 "Ein Scan läuft – warten Sie auf seinen Abschluss, bevor Sie Ziele hinzufügen"
 
-#: desktop/src/pages/Scan.tsx:519
+#: desktop/src/pages/Scan.tsx:555
 msgid "VirusTotal scans one file at a time; {count} selection was ignored."
 msgid_plural ""
 "VirusTotal scans one file at a time; {count} selections were ignored."
@@ -5377,135 +5438,135 @@ msgstr[0] ""
 msgstr[1] ""
 "VirusTotal scannt jeweils eine Datei; {count} Auswahlen wurden ignoriert."
 
-#: desktop/src/pages/Scan.tsx:534 desktop/src/pages/Scan.tsx:671
+#: desktop/src/pages/Scan.tsx:570 desktop/src/pages/Scan.tsx:707
 msgid "Only local files and folders can be scanned"
 msgstr "Nur lokale Dateien und Ordner können gescannt werden"
 
-#: desktop/src/pages/Scan.tsx:611
+#: desktop/src/pages/Scan.tsx:647
 msgid "Unable to choose scan targets"
 msgstr "Scan-Ziele konnten nicht ausgewählt werden"
 
-#: desktop/src/pages/Scan.tsx:620
+#: desktop/src/pages/Scan.tsx:656
 msgid "Unable to open the folder picker"
 msgstr "Unable to open the folder picker"
 
-#: desktop/src/pages/Scan.tsx:627
+#: desktop/src/pages/Scan.tsx:663
 msgid "Cancelling scan…"
 msgstr "Scan wird abgebrochen …"
 
-#: desktop/src/pages/Scan.tsx:629
+#: desktop/src/pages/Scan.tsx:665
 msgid "Unable to cancel scan"
 msgstr "Scan kann nicht abgebrochen werden"
 
-#: desktop/src/pages/Scan.tsx:645
+#: desktop/src/pages/Scan.tsx:681
 msgid "Running EICAR test…"
 msgstr "EICAR-Test wird ausgeführt …"
 
-#: desktop/src/pages/Scan.tsx:690
+#: desktop/src/pages/Scan.tsx:726
 msgid "Backend"
 msgstr "Backend"
 
-#: desktop/src/pages/Scan.tsx:691
+#: desktop/src/pages/Scan.tsx:727
 msgid "Manage Profiles"
 msgstr "Profile verwalten"
 
-#: desktop/src/pages/Scan.tsx:693
+#: desktop/src/pages/Scan.tsx:729
 msgid "Scan type"
 msgstr "Scan type"
 
-#: desktop/src/pages/Scan.tsx:694
+#: desktop/src/pages/Scan.tsx:730
 msgid "Files & Folders"
 msgstr "Files & Folders"
 
-#: desktop/src/pages/Scan.tsx:695 desktop/src/pages/Urlscan.tsx:184
+#: desktop/src/pages/Scan.tsx:731 desktop/src/pages/Urlscan.tsx:228
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:698 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:734 desktop/src/pages/Scan.tsx:756
 msgid "Details"
 msgstr "Details"
 
-#: desktop/src/pages/Scan.tsx:702
+#: desktop/src/pages/Scan.tsx:738
 msgid "Profile"
 msgstr "Profil"
 
-#: desktop/src/pages/Scan.tsx:708
+#: desktop/src/pages/Scan.tsx:744
 msgid "No Profile (Manual)"
 msgstr "Kein Profil (manuell)"
 
-#: desktop/src/pages/Scan.tsx:712
+#: desktop/src/pages/Scan.tsx:748
 msgid "Drop local files or folders here, or add them below."
 msgstr "Lokale Dateien oder Ordner hier ablegen oder unten hinzufügen."
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Scanning"
 msgstr "Scan läuft"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Waiting for scan data…"
 msgstr "Warten auf Scandaten …"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Scan progress"
 msgstr "Scan-Fortschritt"
 
-#: desktop/src/pages/Scan.tsx:716 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:752 desktop/src/pages/Scan.tsx:756
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "{count} Datei gescannt"
 msgstr[1] "{count} Dateien gescannt"
 
-#: desktop/src/pages/Scan.tsx:716 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:752 desktop/src/pages/Scan.tsx:756
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
 msgstr[0] "{count} Bedrohung"
 msgstr[1] "{count} Bedrohungen"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Estimated file count exceeded"
 msgstr "Geschätzte Dateianzahl überschritten"
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid ""
 "Live progress is disabled. The completed scan result will remain available."
 msgstr ""
 "Der Live-Fortschritt ist deaktiviert. Das abgeschlossene Scan-Ergebnis "
 "bleibt verfügbar."
 
-#: desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:752
 msgid "Cancel All"
 msgstr "Alle abbrechen"
 
-#: desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:754
 msgid "Run EICAR Test"
 msgstr "EICAR-Test ausführen"
 
-#: desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:754
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:718
+#: desktop/src/pages/Scan.tsx:754
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:756
 msgid "Latest scan"
 msgstr "Letzter Scan"
 
-#: desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:756
 msgid "View Results"
 msgstr "Ergebnisse anzeigen"
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:758
 msgid "Virus database is not available"
 msgstr "Virendatenbank ist nicht verfügbar"
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:758
 msgid "Update the database before starting a scan."
 msgstr "Aktualisieren Sie die Datenbank, bevor Sie einen Scan starten."
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:758
 msgid "Open Database Updates"
 msgstr "Datenbankaktualisierungen öffnen"
 
@@ -5865,7 +5926,7 @@ msgstr "API-Schlüssel konnte nicht gespeichert werden"
 
 #: desktop/src/pages/SettingsPreferences.tsx:422
 #: desktop/src/pages/SettingsPreferences.tsx:446
-#: desktop/src/pages/Urlscan.tsx:120
+#: desktop/src/pages/Urlscan.tsx:132
 msgid "API key deleted"
 msgstr "API-Schlüssel gelöscht"
 
@@ -5875,7 +5936,7 @@ msgid "Unable to delete the API key"
 msgstr "API-Schlüssel konnte nicht gelöscht werden"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid ""
 "Keys are stored in the operating system keyring or the explicitly enabled "
 "compatibility fallback; they are never returned to the interface."
@@ -5885,30 +5946,30 @@ msgstr ""
 "Oberfläche zurückgegeben."
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/Urlscan.tsx:47
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Urlscan.tsx:50
 msgid "Configured ({masked}) using {backend}"
 msgstr "Konfiguriert ({masked}) über {backend}"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/Urlscan.tsx:48
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Urlscan.tsx:51
 msgid "masked"
 msgstr "maskiert"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Keyring is locked"
 msgstr "Schlüsselbund ist gesperrt"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Keyring unavailable"
 msgstr "Schlüsselbund nicht verfügbar"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/Urlscan.tsx:54
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Urlscan.tsx:57
 msgid "Not configured"
 msgstr "Nicht konfiguriert"
 
@@ -5917,7 +5978,7 @@ msgid "Exactly 64 hexadecimal characters."
 msgstr "Genau 64 hexadezimale Zeichen."
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Save Key"
 msgstr "Schlüssel speichern"
 
@@ -5926,15 +5987,17 @@ msgid "Get a free API key"
 msgstr "Kostenlosen API-Schlüssel erhalten"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Delete Key"
 msgstr "Schlüssel löschen"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "When API key is missing"
 msgstr "Wenn API-Schlüssel fehlt"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Always ask"
 msgstr "Immer fragen"
 
@@ -5943,11 +6006,12 @@ msgid "Open VirusTotal website"
 msgstr "VirusTotal-Website öffnen"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Show notification only"
 msgstr "Nur Benachrichtigung anzeigen"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Information"
 msgstr "Informationen"
 
@@ -5972,7 +6036,7 @@ msgstr ""
 "VirusTotal-Scans müssen Sie ihn erneut eingeben."
 
 #: desktop/src/pages/SettingsPreferences.tsx:439
-#: desktop/src/pages/Urlscan.tsx:91
+#: desktop/src/pages/Urlscan.tsx:103
 msgid "Enter your urlscan API key."
 msgstr "Enter your urlscan API key."
 
@@ -5980,16 +6044,20 @@ msgstr "Enter your urlscan API key."
 msgid "The urlscan API key cannot contain spaces."
 msgstr "The urlscan API key cannot contain spaces."
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Paste the API key from your urlscan.io account settings."
 msgstr "Paste the API key from your urlscan.io account settings."
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
-#: desktop/src/pages/Urlscan.tsx:175
+#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Urlscan.tsx:219
 msgid "Get an API key"
 msgstr "Get an API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
+msgid "Open urlscan.io website"
+msgstr "urlscan.io-Website öffnen"
+
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
@@ -5997,7 +6065,7 @@ msgstr ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid ""
 "Submitting a URL shares it with urlscan.io, including its query string, and "
 "can expose private or internal addresses. Never submit login links, session "
@@ -6007,11 +6075,11 @@ msgstr ""
 "can expose private or internal addresses. Never submit login links, session "
 "tokens, or confidential information."
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Delete urlscan.io API key"
 msgstr "Delete urlscan.io API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:448
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
@@ -6019,186 +6087,186 @@ msgstr ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
 
-#: desktop/src/pages/SettingsPreferences.tsx:463
+#: desktop/src/pages/SettingsPreferences.tsx:464
 msgid "Unable to read debug logs: {error}"
 msgstr "Debug-Protokolle konnten nicht gelesen werden: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:471
+#: desktop/src/pages/SettingsPreferences.tsx:472
 msgid "Unable to read system information: {error}"
 msgstr "Systeminformationen konnten nicht gelesen werden: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:478
+#: desktop/src/pages/SettingsPreferences.tsx:479
 msgid "ZIP archives"
 msgstr "ZIP-Archive"
 
-#: desktop/src/pages/SettingsPreferences.tsx:479
+#: desktop/src/pages/SettingsPreferences.tsx:480
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: desktop/src/pages/SettingsPreferences.tsx:481
+#: desktop/src/pages/SettingsPreferences.tsx:482
 msgid "Logs exported successfully"
 msgstr "Protokolle erfolgreich exportiert"
 
-#: desktop/src/pages/SettingsPreferences.tsx:483
+#: desktop/src/pages/SettingsPreferences.tsx:484
 msgid "Unable to export logs: {error}"
 msgstr "Protokolle konnten nicht exportiert werden: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:495
+#: desktop/src/pages/SettingsPreferences.tsx:496
 msgid "{count} log file cleared"
 msgid_plural "{count} log files cleared"
 msgstr[0] "{count} Protokolldatei gelöscht"
 msgstr[1] "{count} Protokolldateien gelöscht"
 
-#: desktop/src/pages/SettingsPreferences.tsx:498
+#: desktop/src/pages/SettingsPreferences.tsx:499
 msgid "Unable to clear logs: {error}"
 msgstr "Protokolle konnten nicht gelöscht werden: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:505
+#: desktop/src/pages/SettingsPreferences.tsx:506
 msgid "Linux Defender System Information"
 msgstr "Linux Defender System Information"
 
-#: desktop/src/pages/SettingsPreferences.tsx:507
+#: desktop/src/pages/SettingsPreferences.tsx:508
 msgid "Installation Type: {value}"
 msgstr "Installationstyp: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:508
+#: desktop/src/pages/SettingsPreferences.tsx:509
 msgid "Distribution: {value}"
 msgstr "Distribution: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:509
+#: desktop/src/pages/SettingsPreferences.tsx:510
 msgid "Desktop Environment: {value}"
 msgstr "Desktop-Umgebung: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:510
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Rust Runtime: {value}"
 msgstr "Rust-Laufzeit: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:511
+#: desktop/src/pages/SettingsPreferences.tsx:512
 msgid "Tauri Runtime: {value}"
 msgstr "Tauri-Laufzeit: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:512
+#: desktop/src/pages/SettingsPreferences.tsx:513
 msgid "Platform: {value}"
 msgstr "Plattform: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:513
+#: desktop/src/pages/SettingsPreferences.tsx:514
 msgid "Architecture: {value}"
 msgstr "Architektur: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:514
+#: desktop/src/pages/SettingsPreferences.tsx:515
 msgid "Version: {value}"
 msgstr "Version: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:518
+#: desktop/src/pages/SettingsPreferences.tsx:519
 msgid "System information copied to clipboard"
 msgstr "Systeminformationen in die Zwischenablage kopiert"
 
-#: desktop/src/pages/SettingsPreferences.tsx:520
+#: desktop/src/pages/SettingsPreferences.tsx:521
 msgid "Unable to copy system information: {error}"
 msgstr "Systeminformationen konnten nicht kopiert werden: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:525
+#: desktop/src/pages/SettingsPreferences.tsx:526
 msgid "Logging Settings"
 msgstr "Protokolleinstellungen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:525
+#: desktop/src/pages/SettingsPreferences.tsx:526
 msgid "Higher levels produce more detailed logs and apply immediately."
 msgstr ""
 "Höhere Stufen erzeugen detailliertere Protokolle und werden sofort "
 "angewendet."
 
-#: desktop/src/pages/SettingsPreferences.tsx:526
+#: desktop/src/pages/SettingsPreferences.tsx:527
 msgid "Log Level"
 msgstr "Protokollstufe"
 
-#: desktop/src/pages/SettingsPreferences.tsx:527
+#: desktop/src/pages/SettingsPreferences.tsx:528
 msgid "Log File Location"
 msgstr "Speicherort der Protokolldatei"
 
-#: desktop/src/pages/SettingsPreferences.tsx:529
+#: desktop/src/pages/SettingsPreferences.tsx:530
 msgid "Log Management"
 msgstr "Protokollverwaltung"
 
-#: desktop/src/pages/SettingsPreferences.tsx:529
+#: desktop/src/pages/SettingsPreferences.tsx:530
 msgid ""
 "Export a ZIP archive for support or permanently clear the application logs."
 msgstr ""
 "ZIP-Archiv für den Support exportieren oder die Anwendungsprotokolle "
 "dauerhaft löschen."
 
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "Current Log Size"
 msgstr "Aktuelle Protokollgröße"
 
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Export Logs"
 msgstr "Protokolle exportieren"
 
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Save all sanitized debug logs to a ZIP archive."
 msgstr "Alle bereinigten Debug-Protokolle in einem ZIP-Archiv speichern."
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Clear Logs"
 msgstr "Protokolle löschen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "This permanently deletes all debug log files."
 msgstr "Dadurch werden alle Debug-Protokolldateien dauerhaft gelöscht."
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Clear"
 msgstr "Löschen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:535
 msgid "System Information"
 msgstr "Systeminformationen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:535
 msgid "Useful for troubleshooting and bug reports."
 msgstr "Nützlich für Fehlerbehebung und Fehlerberichte."
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Installation Type"
 msgstr "Installationstyp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Distribution"
 msgstr "Distribution"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Desktop Environment"
 msgstr "Desktop-Umgebung"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Rust Runtime"
 msgstr "Rust-Laufzeit"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Tauri Runtime"
 msgstr "Tauri-Laufzeit"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Platform"
 msgstr "Plattform"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Copy System Info"
 msgstr "Systeminformationen kopieren"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Copy all system information to the clipboard."
 msgstr "Alle Systeminformationen in die Zwischenablage kopieren."
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Loading system information…"
 msgstr "Systeminformationen werden geladen …"
 
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Clear logs"
 msgstr "Protokolle löschen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid ""
 "This permanently deletes {count} log file totaling {size}. This action "
 "cannot be undone."
@@ -6212,7 +6280,7 @@ msgstr[1] ""
 "Dadurch werden {count} Protokolldateien mit insgesamt {size} dauerhaft "
 "gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
 
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Delete Logs"
 msgstr "Protokolle löschen"
 
@@ -6315,47 +6383,47 @@ msgstr "Scan-Aktivität"
 msgid "Scan trends over the selected timeframe"
 msgstr "Scan-Trends im ausgewählten Zeitraum"
 
-#: desktop/src/pages/Urlscan.tsx:29
+#: desktop/src/pages/Urlscan.tsx:32
 msgid "Private — visible only to you"
 msgstr "Private — visible only to you"
 
-#: desktop/src/pages/Urlscan.tsx:30
+#: desktop/src/pages/Urlscan.tsx:33
 msgid "Unlisted — visible to urlscan Pro researchers"
 msgstr "Unlisted — visible to urlscan Pro researchers"
 
-#: desktop/src/pages/Urlscan.tsx:31
+#: desktop/src/pages/Urlscan.tsx:34
 msgid "Public — visible in urlscan search"
 msgstr "Public — visible in urlscan search"
 
-#: desktop/src/pages/Urlscan.tsx:52
+#: desktop/src/pages/Urlscan.tsx:55
 msgid "System keyring is locked"
 msgstr "System keyring is locked"
 
-#: desktop/src/pages/Urlscan.tsx:53
+#: desktop/src/pages/Urlscan.tsx:56
 msgid "System keyring is unavailable"
 msgstr "System keyring is unavailable"
 
-#: desktop/src/pages/Urlscan.tsx:91
+#: desktop/src/pages/Urlscan.tsx:103
 msgid "Enter your VirusTotal API key."
 msgstr "Enter your VirusTotal API key."
 
-#: desktop/src/pages/Urlscan.tsx:103
+#: desktop/src/pages/Urlscan.tsx:115
 msgid "Unable to save the API key: {error}"
 msgstr "Unable to save the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:122
+#: desktop/src/pages/Urlscan.tsx:134
 msgid "Unable to delete the API key: {error}"
 msgstr "Unable to delete the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:136
+#: desktop/src/pages/Urlscan.tsx:148
 msgid "URL submitted to urlscan"
 msgstr "URL submitted to urlscan"
 
-#: desktop/src/pages/Urlscan.tsx:144
+#: desktop/src/pages/Urlscan.tsx:156
 msgid "URL analysis submitted to VirusTotal"
 msgstr "URL analysis submitted to VirusTotal"
 
-#: desktop/src/pages/Urlscan.tsx:154
+#: desktop/src/pages/Urlscan.tsx:166
 msgid ""
 "Private scans are visible only to you unless you share the result; urlscan "
 "retains them for a limited period."
@@ -6363,7 +6431,7 @@ msgstr ""
 "Private scans are visible only to you unless you share the result; urlscan "
 "retains them for a limited period."
 
-#: desktop/src/pages/Urlscan.tsx:156
+#: desktop/src/pages/Urlscan.tsx:168
 msgid ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
@@ -6371,7 +6439,7 @@ msgstr ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
 
-#: desktop/src/pages/Urlscan.tsx:157
+#: desktop/src/pages/Urlscan.tsx:169
 msgid ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
@@ -6379,23 +6447,43 @@ msgstr ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
 
-#: desktop/src/pages/Urlscan.tsx:162
+#: desktop/src/pages/Urlscan.tsx:181 desktop/src/pages/Urlscan.tsx:201
+msgid "Enter your urlscan API key before submitting a URL."
+msgstr ""
+"Geben Sie Ihren urlscan-API-Schlüssel ein, bevor Sie eine URL übermitteln."
+
+#: desktop/src/pages/Urlscan.tsx:182 desktop/src/pages/Urlscan.tsx:202
+msgid "Enter your VirusTotal API key before submitting a URL."
+msgstr ""
+"Geben Sie Ihren VirusTotal-API-Schlüssel ein, bevor Sie eine URL übermitteln."
+
+#: desktop/src/pages/Urlscan.tsx:189
+msgid "Opened the urlscan.io website in your browser"
+msgstr "urlscan.io-Website im Browser geöffnet"
+
+#: desktop/src/pages/Urlscan.tsx:196
+msgid "Configure a urlscan API key in Preferences before submitting a URL."
+msgstr ""
+"Konfigurieren Sie in den Einstellungen einen urlscan-API-Schlüssel, bevor "
+"Sie eine URL übermitteln."
+
+#: desktop/src/pages/Urlscan.tsx:206
 msgid "Website URL inspection"
 msgstr "Website URL inspection"
 
-#: desktop/src/pages/Urlscan.tsx:163
+#: desktop/src/pages/Urlscan.tsx:207
 msgid "URL scan service"
 msgstr "URL scan service"
 
-#: desktop/src/pages/Urlscan.tsx:169
+#: desktop/src/pages/Urlscan.tsx:213
 msgid "urlscan.io account"
 msgstr "urlscan.io account"
 
-#: desktop/src/pages/Urlscan.tsx:169
+#: desktop/src/pages/Urlscan.tsx:213
 msgid "VirusTotal account"
 msgstr "VirusTotal account"
 
-#: desktop/src/pages/Urlscan.tsx:170
+#: desktop/src/pages/Urlscan.tsx:214
 msgid ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
@@ -6403,35 +6491,35 @@ msgstr ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
 
-#: desktop/src/pages/Urlscan.tsx:171
+#: desktop/src/pages/Urlscan.tsx:215
 msgid "Key status"
 msgstr "Key status"
 
-#: desktop/src/pages/Urlscan.tsx:172
+#: desktop/src/pages/Urlscan.tsx:216
 msgid "Personal API key"
 msgstr "Personal API key"
 
-#: desktop/src/pages/Urlscan.tsx:172
+#: desktop/src/pages/Urlscan.tsx:216
 msgid "Paste your urlscan API key"
 msgstr "Paste your urlscan API key"
 
-#: desktop/src/pages/Urlscan.tsx:172
+#: desktop/src/pages/Urlscan.tsx:216
 msgid "Paste your VirusTotal API key"
 msgstr "Paste your VirusTotal API key"
 
-#: desktop/src/pages/Urlscan.tsx:174
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Save key"
 msgstr "Save key"
 
-#: desktop/src/pages/Urlscan.tsx:174
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Delete key"
 msgstr "Delete key"
 
-#: desktop/src/pages/Urlscan.tsx:180
+#: desktop/src/pages/Urlscan.tsx:224
 msgid "Submit a website for inspection"
 msgstr "Submit a website for inspection"
 
-#: desktop/src/pages/Urlscan.tsx:182
+#: desktop/src/pages/Urlscan.tsx:226
 msgid ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
@@ -6439,7 +6527,7 @@ msgstr ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/Urlscan.tsx:183
+#: desktop/src/pages/Urlscan.tsx:227
 msgid ""
 "VirusTotal checks the URL with multiple security engines and blocklists. "
 "This is a remote reputation analysis, not a local file scan."
@@ -6447,11 +6535,11 @@ msgstr ""
 "VirusTotal checks the URL with multiple security engines and blocklists. "
 "This is a remote reputation analysis, not a local file scan."
 
-#: desktop/src/pages/Urlscan.tsx:185
+#: desktop/src/pages/Urlscan.tsx:229
 msgid "Result visibility"
 msgstr "Result visibility"
 
-#: desktop/src/pages/Urlscan.tsx:187
+#: desktop/src/pages/Urlscan.tsx:231
 msgid ""
 "urlscan receives the complete URL, including its query string, and visits "
 "it. Never submit login links, session tokens, private/internal URLs, or "
@@ -6461,7 +6549,7 @@ msgstr ""
 "it. Never submit login links, session tokens, private/internal URLs, or "
 "confidential information."
 
-#: desktop/src/pages/Urlscan.tsx:188
+#: desktop/src/pages/Urlscan.tsx:232
 msgid ""
 "VirusTotal adds submitted and queried URLs to its dataset, where they may be "
 "shared with its community and security partners. Never submit login links, "
@@ -6471,59 +6559,59 @@ msgstr ""
 "shared with its community and security partners. Never submit login links, "
 "session tokens, private/internal URLs, or confidential information."
 
-#: desktop/src/pages/Urlscan.tsx:190
+#: desktop/src/pages/Urlscan.tsx:234
 msgid "Submission accepted"
 msgstr "Submission accepted"
 
-#: desktop/src/pages/Urlscan.tsx:190
+#: desktop/src/pages/Urlscan.tsx:234
 msgid "Visibility: {visibility}"
 msgstr "Visibility: {visibility}"
 
-#: desktop/src/pages/Urlscan.tsx:190
+#: desktop/src/pages/Urlscan.tsx:234
 msgid "Open urlscan result"
 msgstr "Open urlscan result"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "VirusTotal reported detections"
 msgstr "VirusTotal reported detections"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "Analysis complete — no detections reported"
 msgstr "Analysis complete — no detections reported"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "Analysis is still processing"
 msgstr "Analysis is still processing"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "VirusTotal rate limit reached"
 msgstr "VirusTotal rate limit reached"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "VirusTotal analysis failed"
 msgstr "VirusTotal analysis failed"
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:235
 msgid "{detections} of {total} URL engines reported suspicious or malicious"
 msgstr "{detections} of {total} URL engines reported suspicious or malicious"
 
-#: desktop/src/pages/Urlscan.tsx:192 desktop/src/pages/Urlscan.tsx:200
+#: desktop/src/pages/Urlscan.tsx:236 desktop/src/pages/Urlscan.tsx:244
 msgid "Submitting…"
 msgstr "Submitting…"
 
-#: desktop/src/pages/Urlscan.tsx:192
+#: desktop/src/pages/Urlscan.tsx:236
 msgid "Review submission"
 msgstr "Review submission"
 
-#: desktop/src/pages/Urlscan.tsx:194
+#: desktop/src/pages/Urlscan.tsx:238
 msgid "Confirm urlscan submission"
 msgstr "Confirm urlscan submission"
 
-#: desktop/src/pages/Urlscan.tsx:194
+#: desktop/src/pages/Urlscan.tsx:238
 msgid "Confirm VirusTotal URL submission"
 msgstr "Confirm VirusTotal URL submission"
 
-#: desktop/src/pages/Urlscan.tsx:196
+#: desktop/src/pages/Urlscan.tsx:240
 msgid ""
 "urlscan will visit this URL and store page activity. The service receives "
 "the full URL, including its query string."
@@ -6531,7 +6619,7 @@ msgstr ""
 "urlscan will visit this URL and store page activity. The service receives "
 "the full URL, including its query string."
 
-#: desktop/src/pages/Urlscan.tsx:197
+#: desktop/src/pages/Urlscan.tsx:241
 msgid ""
 "VirusTotal will submit this URL for analysis and add it to its dataset, "
 "where it may be shared with its community and security partners."
@@ -6539,15 +6627,15 @@ msgstr ""
 "VirusTotal will submit this URL for analysis and add it to its dataset, "
 "where it may be shared with its community and security partners."
 
-#: desktop/src/pages/Urlscan.tsx:198
+#: desktop/src/pages/Urlscan.tsx:242
 msgid "URL"
 msgstr "URL"
 
-#: desktop/src/pages/Urlscan.tsx:198
+#: desktop/src/pages/Urlscan.tsx:242
 msgid "Visibility"
 msgstr "Visibility"
 
-#: desktop/src/pages/Urlscan.tsx:200
+#: desktop/src/pages/Urlscan.tsx:244
 msgid "Submit URL"
 msgstr "Submit URL"
 
@@ -6624,21 +6712,3 @@ msgstr "Virendefinitionen sind älter als 1 Tag"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "System ist geschützt"
-
-msgid "Open urlscan.io website"
-msgstr "urlscan.io-Website öffnen"
-
-msgid "Opened the VirusTotal upload page in your browser"
-msgstr "VirusTotal-Uploadseite im Browser geöffnet"
-
-msgid "Opened the urlscan.io website in your browser"
-msgstr "urlscan.io-Website im Browser geöffnet"
-
-msgid "Enter your urlscan API key before submitting a URL."
-msgstr "Geben Sie Ihren urlscan-API-Schlüssel ein, bevor Sie eine URL übermitteln."
-
-msgid "Enter your VirusTotal API key before submitting a URL."
-msgstr "Geben Sie Ihren VirusTotal-API-Schlüssel ein, bevor Sie eine URL übermitteln."
-
-msgid "Configure a urlscan API key in Preferences before submitting a URL."
-msgstr "Konfigurieren Sie in den Einstellungen einen urlscan-API-Schlüssel, bevor Sie eine URL übermitteln."

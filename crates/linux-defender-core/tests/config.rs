@@ -89,6 +89,43 @@ fn load_and_save_retain_comments_order_and_repeated_directives() {
 }
 
 #[test]
+fn urlhaus_feed_url_round_trips_as_a_custom_signature_url() {
+    let fixture = TestContext::new();
+    let path = fixture.config("freshclam.conf");
+    fs::create_dir_all(&fixture.root).expect("root");
+    fs::write(
+        &path,
+        "DatabaseCustomURL https://www.rfxn.com/downloads/rfxn.hdb\n",
+    )
+    .expect("config fixture");
+
+    let urlhaus =
+        "https://urlhaus-api.abuse.ch/v2/files/exports/ab12cd34ef56-0123/urlhaus_clamav.ndb";
+    let values = json!({"DatabaseCustomURL": [urlhaus, "https://www.rfxn.com/downloads/rfxn.hdb"]});
+    let validated = dispatch(
+        &fixture.context,
+        "validate",
+        json!({"kind": "freshclam", "values": values}),
+    )
+    .expect("validate");
+    assert_eq!(validated["valid"], true, "{}", validated["errors"]);
+
+    let saved = dispatch(
+        &fixture.context,
+        "save",
+        json!({"configs": [{"kind": "freshclam", "path": path, "values": values}]}),
+    )
+    .expect("save");
+    assert_eq!(saved["status"], "applied");
+    let document = fs::read_to_string(&path).expect("saved document");
+    assert!(
+        document.contains(urlhaus),
+        "missing {urlhaus} in {document}"
+    );
+    assert!(document.contains("https://www.rfxn.com/downloads/rfxn.hdb"));
+}
+
+#[test]
 fn load_uses_latin1_fallback_without_losing_directive_values() {
     let fixture = TestContext::new();
     let path = fixture.config("latin1.conf");
