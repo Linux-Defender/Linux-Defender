@@ -847,16 +847,6 @@ export default function ConfigPreferences({ section }: { section: string }) {
         <div className="setting-row"><span className="row-copy"><strong>InterServer</strong><small className="muted">{_("Community hash, web-shell, and general malware signature databases.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://sigs.interserver.net/")}>{_("Open provider")}</button></div>
         <div className="setting-row"><span className="row-copy"><strong>URLhaus</strong><small className="muted">{_("Free malware URL blocklist, enabled by default.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://auth.abuse.ch/")}>{_("Open provider")}</button></div>
       </section>
-      <section className="preference-section form-section"><h3 className="section-heading">{_("URLhaus Feed")}</h3>
-        {urlhausKeyStatus?.present ? (
-          <p className="muted">{_("The URLhaus feed is applied by default for every install.")}</p>
-        ) : (
-          <p className="muted">{_("No URLhaus Auth-Key is saved yet.")}</p>
-        )}
-        {urlhausKeyStatus?.present && <div className="toolbar actions"><button className="button danger" type="button" onClick={() => void deleteUrlhausKey()}>{_("Delete")}</button></div>}
-        <p className="muted">{_("Linux Defender adds the URLhaus feed to freshclam automatically for every install.")}</p>
-        {existingUrlhausKey && <p className="muted">{_("A URLhaus feed is already in this draft.")}</p>}
-      </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("Proxy Settings")}</h3>
         <TextField label={_("Proxy Server")} field="HTTPProxyServer" value={value(freshclamValues, "HTTPProxyServer")} onChange={(next) => setFreshclamField("HTTPProxyServer", next)} />
         <NumberField label={_("Proxy Port")} field="HTTPProxyPort" value={numberValue(freshclamValues, "HTTPProxyPort", 0)} min={0} max={65535} note={_("0 disables the proxy port.")} onChange={(next) => setFreshclamField("HTTPProxyPort", String(next))} />
