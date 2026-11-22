@@ -6618,3 +6618,21 @@ msgstr "Las definiciones de virus tienen más de 1 día"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "El sistema está protegido"
+
+msgid "Open urlscan.io website"
+msgstr "Abrir el sitio web de urlscan.io"
+
+msgid "Opened the VirusTotal upload page in your browser"
+msgstr "Se abrió la página de carga de VirusTotal en el navegador"
+
+msgid "Opened the urlscan.io website in your browser"
+msgstr "Se abrió el sitio web de urlscan.io en el navegador"
+
+msgid "Enter your urlscan API key before submitting a URL."
+msgstr "Introduce tu clave de API de urlscan antes de enviar una URL."
+
+msgid "Enter your VirusTotal API key before submitting a URL."
+msgstr "Introduce tu clave de API de VirusTotal antes de enviar una URL."
+
+msgid "Configure a urlscan API key in Preferences before submitting a URL."
+msgstr "Configura una clave de API de urlscan en Preferencias antes de enviar una URL."

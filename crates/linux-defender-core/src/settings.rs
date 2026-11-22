@@ -115,6 +115,7 @@ pub fn default_settings() -> Value {
         "urlscan_api_key": null,
         "allow_plaintext_api_key_fallback": false,
         "virustotal_remember_no_key_action": "none",
+        "urlscan_remember_no_key_action": "none",
         "debug_log_level": "WARNING",
         "debug_log_max_size_mb": 5,
         "debug_log_max_files": 3,
@@ -336,6 +337,22 @@ mod tests {
             assert_eq!(settings["update_inactivity_timeout_minutes"], minutes);
             assert_eq!(settings["future_setting"], json!({"retained": true}));
         }
+    }
+
+    #[test]
+    fn urlscan_missing_key_action_defaults_and_round_trips() {
+        let temp = TempDir::new().expect("temporary directory");
+        let context = Context::with_paths(paths(&temp)).expect("context");
+        assert_eq!(
+            context.settings().expect("settings read")["urlscan_remember_no_key_action"],
+            "none"
+        );
+        context
+            .update_settings(json!({"urlscan_remember_no_key_action": "open_website"}))
+            .expect("settings saved");
+        let settings = context.settings().expect("settings read");
+        assert_eq!(settings["urlscan_remember_no_key_action"], "open_website");
+        assert_eq!(settings["virustotal_remember_no_key_action"], "none");
     }
 
     #[test]

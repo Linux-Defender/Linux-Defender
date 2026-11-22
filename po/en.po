@@ -6484,3 +6484,21 @@ msgstr "Virus definitions are over 1 day old"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "System is protected"
+
+msgid "Open urlscan.io website"
+msgstr "Open urlscan.io website"
+
+msgid "Opened the VirusTotal upload page in your browser"
+msgstr "Opened the VirusTotal upload page in your browser"
+
+msgid "Opened the urlscan.io website in your browser"
+msgstr "Opened the urlscan.io website in your browser"
+
+msgid "Enter your urlscan API key before submitting a URL."
+msgstr "Enter your urlscan API key before submitting a URL."
+
+msgid "Enter your VirusTotal API key before submitting a URL."
+msgstr "Enter your VirusTotal API key before submitting a URL."
+
+msgid "Configure a urlscan API key in Preferences before submitting a URL."
+msgstr "Configure a urlscan API key in Preferences before submitting a URL."

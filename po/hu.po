@@ -6582,3 +6582,21 @@ msgstr "A vírusdefiníciók több mint 1 naposak"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "A rendszer védett"
+
+msgid "Open urlscan.io website"
+msgstr "A urlscan.io webhely megnyitása"
+
+msgid "Opened the VirusTotal upload page in your browser"
+msgstr "A VirusTotal feltöltési oldala megnyílt a böngészőben"
+
+msgid "Opened the urlscan.io website in your browser"
+msgstr "A urlscan.io webhely megnyílt a böngészőben"
+
+msgid "Enter your urlscan API key before submitting a URL."
+msgstr "A URL elküldése előtt adja meg a urlscan API-kulcsát."
+
+msgid "Enter your VirusTotal API key before submitting a URL."
+msgstr "A URL elküldése előtt adja meg a VirusTotal API-kulcsát."
+
+msgid "Configure a urlscan API key in Preferences before submitting a URL."
+msgstr "A URL elküldése előtt állítson be urlscan API-kulcsot a Beállításokban."

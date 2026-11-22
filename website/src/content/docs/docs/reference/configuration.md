@@ -40,10 +40,11 @@ The settings file is an object. Linux Defender merges missing defaults, preserve
 | `debug_log_level` | `"WARNING"` | `DEBUG`, `INFO`, `WARNING`, or `ERROR` |
 | `debug_log_max_size_mb` | `5` | Positive whole MiB per active debug log; zero, missing, invalid, or overflowing values use 5 MiB |
 | `debug_log_max_files` | `3` | Positive whole numbered-backup count; zero, missing, or invalid values use 3 |
-| `virustotal_api_key` | `null` | Compatibility field; the system keyring is preferred |
+| `virustotal_api_key` / `urlscan_api_key` | `null` | Compatibility fields; the system keyring is preferred |
 | `allow_plaintext_api_key_fallback` | `false` | Explicitly permits less-private fallback storage |
+| `virustotal_remember_no_key_action` / `urlscan_remember_no_key_action` | `"none"` | Missing-key behavior for an online inspection: `none` asks, `open_website` opens the provider website, and `prompt` shows a notification only |
 
-VirusTotal API keys are not returned to the frontend in settings data. Do not submit private files or hashes that you are not authorized to share.
+VirusTotal and urlscan API keys are not returned to the frontend in settings data. Do not submit private files, hashes, or URLs that you are not authorized to share.
 
 The update timeout applies to subsequently started manual and forced `freshclam` updates, not updates requested by signaling an existing service. Output on either stream resets the inactivity period; there is no total elapsed-time cap while output continues. Change it in **Preferences → Behavior → Database Updates**, independently of protected host configuration.
 

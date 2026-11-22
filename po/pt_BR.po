@@ -6584,3 +6584,21 @@ msgstr "As definições de vírus estão desatualizadas há mais de 1 dia"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "O sistema está protegido"
+
+msgid "Open urlscan.io website"
+msgstr "Abrir o site do urlscan.io"
+
+msgid "Opened the VirusTotal upload page in your browser"
+msgstr "Página de upload do VirusTotal aberta no navegador"
+
+msgid "Opened the urlscan.io website in your browser"
+msgstr "Site do urlscan.io aberto no navegador"
+
+msgid "Enter your urlscan API key before submitting a URL."
+msgstr "Digite sua chave de API do urlscan antes de enviar uma URL."
+
+msgid "Enter your VirusTotal API key before submitting a URL."
+msgstr "Digite sua chave de API do VirusTotal antes de enviar uma URL."
+
+msgid "Configure a urlscan API key in Preferences before submitting a URL."
+msgstr "Configure uma chave de API do urlscan nas Preferências antes de enviar uma URL."

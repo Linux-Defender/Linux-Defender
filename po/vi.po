@@ -6483,3 +6483,21 @@ msgstr "Cơ sở dữ liệu virus đã cũ hơn 1 ngày"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "Hệ thống đang được bảo vệ"
+
+msgid "Open urlscan.io website"
+msgstr "Mở trang web urlscan.io"
+
+msgid "Opened the VirusTotal upload page in your browser"
+msgstr "Đã mở trang tải lên VirusTotal trong trình duyệt"
+
+msgid "Opened the urlscan.io website in your browser"
+msgstr "Đã mở trang web urlscan.io trong trình duyệt"
+
+msgid "Enter your urlscan API key before submitting a URL."
+msgstr "Nhập khóa API urlscan của bạn trước khi gửi URL."
+
+msgid "Enter your VirusTotal API key before submitting a URL."
+msgstr "Nhập khóa API VirusTotal của bạn trước khi gửi URL."
+
+msgid "Configure a urlscan API key in Preferences before submitting a URL."
+msgstr "Định cấu hình khóa API urlscan trong Tùy chọn trước khi gửi URL."

@@ -149,8 +149,44 @@ function VirusTotalDialog({ path, onClose }: { path: string; onClose: () => void
     };
   }, []);
 
+  const missingKeyHandled = useRef(false);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
   useEffect(() => {
-    void request<{ present?: boolean; masked?: string }>("virustotal.key_status").then(setKeyStatus).catch((reason: unknown) => setError(String(reason)));
+    let active = true;
+    void Promise.allSettled([
+      request<{ present?: boolean; masked?: string; status?: string }>("virustotal.key_status"),
+      request<Record<string, unknown>>("settings.get"),
+    ]).then(async ([statusResult, settingsResult]) => {
+      if (!active) return;
+      if (statusResult.status === "rejected") {
+        setError(String(statusResult.reason));
+        return;
+      }
+      const status = statusResult.value;
+      setKeyStatus(status);
+      if (status.present || status.status !== "not_configured" || missingKeyHandled.current) return;
+      const action = settingsResult.status === "fulfilled" && typeof settingsResult.value.virustotal_remember_no_key_action === "string"
+        ? settingsResult.value.virustotal_remember_no_key_action
+        : "none";
+      if (action === "open_website") {
+        missingKeyHandled.current = true;
+        try {
+          await openExternal(VT_UPLOAD_URL);
+          if (!active) return;
+          notify(_("Opened the VirusTotal upload page in your browser"), "info");
+          onCloseRef.current();
+        } catch (reason) {
+          setError(String(reason));
+        }
+      } else if (action === "prompt") {
+        missingKeyHandled.current = true;
+        notify(_("Configure a VirusTotal API key in Preferences before starting this scan."), "error");
+        onCloseRef.current();
+      }
+    });
+    return () => { active = false; };
   }, []);
 
   const start = async () => {

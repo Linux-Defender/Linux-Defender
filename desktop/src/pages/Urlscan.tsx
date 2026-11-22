@@ -25,6 +25,9 @@ type VirusTotalSubmission = {
   error_message?: string;
 };
 
+const URLSCAN_WEBSITE = "https://urlscan.io/";
+const VIRUSTOTAL_UPLOAD_URL = "https://www.virustotal.com/gui/home/upload";
+
 const VISIBILITIES: Array<{ id: Visibility; label: () => string }> = [
   { id: "private", label: () => _("Private — visible only to you") },
   { id: "unlisted", label: () => _("Unlisted — visible to urlscan Pro researchers") },
@@ -66,12 +69,14 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
   const [busy, setBusy] = useState(false);
   const [urlscanResult, setUrlscanResult] = useState<UrlscanSubmission | null>(null);
   const [virusTotalResult, setVirusTotalResult] = useState<VirusTotalSubmission | null>(null);
+  const [noKeyActions, setNoKeyActions] = useState<Record<Provider, string>>({ urlscan: "none", virustotal: "none" });
   const [error, setError] = useState<string | null>(null);
 
   const refreshKeys = useCallback(async () => {
-    const [urlscan, virusTotal] = await Promise.allSettled([
+    const [urlscan, virusTotal, settings] = await Promise.allSettled([
       request<KeyStatus>("urlscan.key_status"),
       request<KeyStatus>("virustotal.key_status"),
+      request<Record<string, unknown>>("settings.get"),
     ]);
     setUrlscanStatus(urlscan.status === "fulfilled"
       ? urlscan.value
@@ -79,6 +84,13 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
     setVirusTotalStatus(virusTotal.status === "fulfilled"
       ? virusTotal.value
       : { present: false, backend: "none", status: "unavailable" });
+    if (settings.status === "fulfilled") {
+      const value = settings.value;
+      setNoKeyActions({
+        urlscan: typeof value.urlscan_remember_no_key_action === "string" ? value.urlscan_remember_no_key_action : "none",
+        virustotal: typeof value.virustotal_remember_no_key_action === "string" ? value.virustotal_remember_no_key_action : "none",
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -158,6 +170,38 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
   const currentStatus = provider === "urlscan" ? urlscanStatus : virusTotalStatus;
   const hasKey = currentStatus?.present === true;
 
+  const review = (): void => {
+    setError(null);
+    if (hasKey) {
+      setConfirm(true);
+      return;
+    }
+    if (currentStatus?.status !== "not_configured") {
+      setError(provider === "urlscan"
+        ? _("Enter your urlscan API key before submitting a URL.")
+        : _("Enter your VirusTotal API key before submitting a URL."));
+      return;
+    }
+    const action = provider === "urlscan" ? noKeyActions.urlscan : noKeyActions.virustotal;
+    if (action === "open_website") {
+      void openExternal(provider === "urlscan" ? URLSCAN_WEBSITE : VIRUSTOTAL_UPLOAD_URL)
+        .then(() => notify(provider === "urlscan"
+          ? _("Opened the urlscan.io website in your browser")
+          : _("Opened the VirusTotal upload page in your browser"), "info"))
+        .catch((reason: unknown) => setError(String(reason)));
+      return;
+    }
+    if (action === "prompt") {
+      notify(provider === "urlscan"
+        ? _("Configure a urlscan API key in Preferences before submitting a URL.")
+        : _("Configure a VirusTotal API key in Preferences before starting this scan."), "error");
+      return;
+    }
+    setError(provider === "urlscan"
+      ? _("Enter your urlscan API key before submitting a URL.")
+      : _("Enter your VirusTotal API key before submitting a URL."));
+  };
+
   return <div className="settings-preferences urlscan-page">
     <h2>{_("Website URL inspection")}</h2>
     <div className="segmented-control" role="group" aria-label={_("URL scan service")}>
@@ -189,7 +233,7 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
       {error ? <p className="notice error" role="alert">{error}</p> : null}
       {provider === "urlscan" && urlscanResult ? <div className="notice success" role="status"><div><strong>{_("Submission accepted")}</strong><p>{_("Visibility: {visibility}", { visibility: urlscanResult.visibility })}</p></div><button className="button" type="button" onClick={() => void openExternal(urlscanResult.result_url)}><Icon name="external-link" />{_("Open urlscan result")}</button></div> : null}
       {provider === "virustotal" && virusTotalResult ? <div className={`notice ${virusTotalResult.status === "detected" ? "warning" : virusTotalResult.status === "error" || virusTotalResult.status === "rate_limited" ? "error" : "success"}`} role="status"><div><strong>{virusTotalResult.status === "detected" ? _("VirusTotal reported detections") : virusTotalResult.status === "clean" ? _("Analysis complete — no detections reported") : virusTotalResult.status === "pending" ? _("Analysis is still processing") : virusTotalResult.status === "rate_limited" ? _("VirusTotal rate limit reached") : _("VirusTotal analysis failed")}</strong>{virusTotalResult.status === "clean" || virusTotalResult.status === "detected" ? <p>{_("{detections} of {total} URL engines reported suspicious or malicious", { detections: virusTotalResult.detections, total: virusTotalResult.total_engines })}</p> : null}{virusTotalResult.error_message ? <p>{virusTotalResult.error_message}</p> : null}</div>{virusTotalResult.analysis_url ? <button className="button" type="button" onClick={() => void openExternal(virusTotalResult.analysis_url!)}><Icon name="external-link" />{_("Open VirusTotal analysis")}</button> : null}</div> : null}
-      <div className="button-row"><button className="button primary" type="button" disabled={busy || !hasKey || !validUrl(url)} onClick={() => { setError(null); setConfirm(true); }}>{busy ? _("Submitting…") : _("Review submission")}</button></div>
+      <div className="button-row"><button className="button primary" type="button" disabled={busy || !validUrl(url)} onClick={review}>{busy ? _("Submitting…") : _("Review submission")}</button></div>
     </section>
     {confirm ? <Modal title={provider === "urlscan" ? _("Confirm urlscan submission") : _("Confirm VirusTotal URL submission")} busy={busy} onClose={() => { if (!busy) setConfirm(false); }}>
       <p>{provider === "urlscan"

@@ -6327,3 +6327,21 @@ msgstr "病毒特征库已超过 1 天未更新"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "系统已受到保护"
+
+msgid "Open urlscan.io website"
+msgstr "打开 urlscan.io 网站"
+
+msgid "Opened the VirusTotal upload page in your browser"
+msgstr "已在浏览器中打开 VirusTotal 上传页面"
+
+msgid "Opened the urlscan.io website in your browser"
+msgstr "已在浏览器中打开 urlscan.io 网站"
+
+msgid "Enter your urlscan API key before submitting a URL."
+msgstr "提交 URL 前请输入您的 urlscan API 密钥。"
+
+msgid "Enter your VirusTotal API key before submitting a URL."
+msgstr "提交 URL 前请输入您的 VirusTotal API 密钥。"
+
+msgid "Configure a urlscan API key in Preferences before submitting a URL."
+msgstr "提交 URL 前请在首选项中配置 urlscan API 密钥。"

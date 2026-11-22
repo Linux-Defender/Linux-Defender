@@ -13,6 +13,7 @@
 - Adopted upstream PR #298 website dependency updates. Deferred PR #299 TypeScript 7.0.2 because Astro 7.4.5's checker rejects TypeScript 7.
 - Added an Overview dashboard as the default view: protection posture, all-time totals, engine and definition checks, the quarantine count, and quick actions, with `Ctrl+0` as its shortcut. The existing `Ctrl+1`…`Ctrl+8` shortcuts are unchanged.
 - Added urlscan.io API key management to Preferences alongside VirusTotal, including keyring-backed storage, status, replacement, and deletion.
+- urlscan.io Preferences now offer the same “When API key is missing” behavior as VirusTotal, and both providers honor the saved choice when an online inspection starts without a key.
 
 ### Changed
 
