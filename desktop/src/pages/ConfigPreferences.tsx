@@ -570,7 +570,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const addUrlhausFeed = () => {
     const typed = urlhausKeyDraft.trim();
     if (typed) {
-      void saveUrlhausKey(typed, { addFeed: true });
+      void saveUrlhausKey(typed, { addFeed: true, autoApply: true });
       return;
     }
     if (!urlhausFeedUrl) {
@@ -592,7 +592,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
     // the feed is added to the draft without any further click.
     const key = value.trim();
     if (key && key.length >= 8 && !urlhausKeyBusy) {
-      void saveUrlhausKey(key, { addFeed: true });
+      void saveUrlhausKey(key, { addFeed: true, autoApply: true });
     }
   };
 
@@ -620,10 +620,10 @@ export default function ConfigPreferences({ section }: { section: string }) {
     if ((freshclam.values.DatabaseCustomURL ?? []).some(isUrlhausFeed)) return;
     autoAddedPaths.current.add(freshclam.path);
     updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", [...(values.DatabaseCustomURL ?? []), urlhausFeedUrl]));
-    notify(_("URLhaus feed added to the draft. Save & Apply is still required."), "success");
+    notify(_("URLhaus feed added to the draft."), "success");
   }, [freshclam?.path, urlhausFeedUrl, updateConfig]);
 
-  const saveUrlhausKey = async (typed: string, options: { addFeed: boolean; notify?: boolean }) => {
+  const saveUrlhausKey = async (typed: string, options: { addFeed: boolean; autoApply?: boolean; notify?: boolean }) => {
     const key = typed.trim();
     if (!key || !URLHAUS_AUTH_KEY.test(key)) {
       if (options.notify !== false) {
@@ -644,8 +644,11 @@ export default function ConfigPreferences({ section }: { section: string }) {
         addUrlhausFeedToDraft(buildUrlhausFeedUrl(key));
       }
       await refreshUrlhausFeed();
+      if (options.autoApply) {
+        setUrlhausApplyPending(true);
+      }
       if (options.notify !== false) {
-        notify(_("The URLhaus Auth-Key is saved; the feed is added to the draft by default."), "success");
+        notify(_("The URLhaus Auth-Key is saved; the URLhaus feed is applied."), "success");
       }
     } catch (error) {
       notify(String(error), "error");
@@ -689,6 +692,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
     }
   }, [backend, refreshScanner]);
 
+  const [urlhausApplyPending, setUrlhausApplyPending] = useState(false);
   const saveAndApply = useCallback(async () => {
     if (configLoadCount > 0) {
       return;
@@ -867,6 +871,14 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const setClamdField = (key: string, next: string) => updateConfig("clamd", (values) => valuesForSingle(values, key, next));
   const setClamdMany = (key: string, next: string[]) => updateConfig("clamd", (values) => valuesForMany(values, key, next));
 
+  // URLhaus: applying is automatic — when the key is saved, the feed change is
+  // applied without the user pressing Save & Apply for the URLhaus flow.
+  useEffect(() => {
+    if (!urlhausApplyPending) return;
+    setUrlhausApplyPending(false);
+    void saveAndApply();
+  }, [urlhausApplyPending, saveAndApply]);
+
   const fileTypeLabels: Record<(typeof FILE_TYPE_FIELDS)[number], string> = {
     ScanPE: _("Scan PE Files"),
     ScanELF: _("Scan ELF Files"),
@@ -924,12 +936,12 @@ export default function ConfigPreferences({ section }: { section: string }) {
           <div className="inline-form">
             <input id="urlhaus-auth-key" type="password" autoComplete="off" spellCheck={false} value={urlhausKeyDraft} placeholder={_("Paste your Auth-Key")} onChange={(event) => handleUrlhausKeyChange(event.target.value)} />
             <button className="button" type="button" onClick={addUrlhausFeed}>{_("Add URLhaus")}</button>
-            <button className="button" type="button" disabled={urlhausKeyBusy || !urlhausKeyDraft.trim()} onClick={() => void saveUrlhausKey(urlhausKeyDraft, { addFeed: true })}>{_("Save Key")}</button>
+            <button className="button" type="button" disabled={urlhausKeyBusy || !urlhausKeyDraft.trim()} onClick={() => void saveUrlhausKey(urlhausKeyDraft, { addFeed: true, autoApply: true })}>{_("Save Key")}</button>
             <button className="button danger" type="button" disabled={urlhausKeyBusy || !urlhausKeyStatus?.present} onClick={() => void deleteUrlhausKey()}>{_("Delete")}</button>
           </div>
         </label>
         {urlhausKeyStatus?.present ? (
-          <p className="muted">{_("The URLhaus feed is added to the draft by default when a URLhaus Auth-Key is saved.")}</p>
+          <p className="muted">{_("The URLhaus Auth-Key is saved; the URLhaus feed is applied.")}</p>
         ) : (
           <p className="muted">{_("No URLhaus Auth-Key is saved yet.")}</p>
         )}

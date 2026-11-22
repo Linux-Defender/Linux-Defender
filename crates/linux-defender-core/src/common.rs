@@ -107,11 +107,7 @@ fn migrate_legacy_directory(legacy: &Path, current: &Path) -> AppResult<()> {
         let mut entries = fs::read_dir(current)
             .map_err(|error| format!("Could not inspect Linux Defender data directory: {error}"))?;
         if entries.next().is_some() {
-            return Err(format!(
-                "Both old and new Linux Defender data directories contain files. They were left untouched; back up and merge {} into {} before retrying",
-                legacy.display(),
-                current.display()
-            ));
+            return merge_legacy_directory_into_current(legacy, current);
         }
         fs::remove_dir(current)
             .map_err(|error| format!("Could not prepare Linux Defender data migration: {error}"))?;
@@ -131,6 +127,110 @@ fn migrate_legacy_directory(legacy: &Path, current: &Path) -> AppResult<()> {
     })?;
     log::info!("Migrated Linux Defender data from {}", legacy.display());
     Ok(())
+}
+
+/// When both the legacy and the current data directories contain entries,
+/// merge the legacy tree into the current one — the current tree wins on
+/// conflicts — and then move the legacy directory aside so the app can start
+/// without manual merging.
+fn merge_legacy_directory_into_current(legacy: &Path, current: &Path) -> AppResult<()> {
+    merge_legacy_entries(legacy, current)?;
+    let aside = unique_legacy_aside_path(legacy)?;
+    fs::rename(legacy, &aside).map_err(|error| {
+        format!(
+            "Could not move legacy data directory {} after merging into {}: {error}",
+            legacy.display(),
+            current.display()
+        )
+    })?;
+    log::info!(
+        "Merged legacy data directory {} into {}; moved aside to {}",
+        legacy.display(),
+        current.display(),
+        aside.display()
+    );
+    Ok(())
+}
+
+/// Copies legacy entries that the current tree does not already have. Current
+/// entries win on conflicts; nothing in the current tree is overwritten.
+fn merge_legacy_entries(legacy: &Path, current: &Path) -> AppResult<()> {
+    for entry in fs::read_dir(legacy).map_err(|error| {
+        format!(
+            "Could not inspect legacy data directory {}: {error}",
+            legacy.display()
+        )
+    })? {
+        let entry = entry.map_err(|error| {
+            format!(
+                "Could not inspect legacy data directory {}: {error}",
+                legacy.display()
+            )
+        })?;
+        let source = entry.path();
+        let relative = source
+            .strip_prefix(legacy)
+            .map_err(|error| format!("Unexpected path while merging legacy data: {error}"))?;
+        let target = current.join(relative);
+        let file_type = entry
+            .file_type()
+            .map_err(|error| format!("Could not inspect {}: {error}", source.display()))?;
+        if file_type.is_dir() {
+            merge_legacy_entries(&source, &target)?;
+            continue;
+        }
+        if target.symlink_metadata().is_ok() {
+            continue;
+        }
+        if let Some(parent) = target.parent() {
+            fs::create_dir_all(parent).map_err(|error| {
+                format!("Could not prepare directory {}: {error}", parent.display())
+            })?;
+        }
+        fs::copy(&source, &target).map_err(|error| {
+            format!(
+                "Could not merge {} into {}: {error}",
+                source.display(),
+                target.display()
+            )
+        })?;
+    }
+    Ok(())
+}
+
+/// Returns the first free path to move the legacy directory to (`<name>.migrated`,
+/// then `<name>.migrated-1`, and so on).
+fn unique_legacy_aside_path(legacy: &Path) -> AppResult<PathBuf> {
+    let name = legacy.file_name().and_then(|name| name.to_str());
+    let Some(name) = name else {
+        return Err(format!(
+            "Legacy data directory {} has no name",
+            legacy.display()
+        ));
+    };
+    for suffix in [
+        "migrated",
+        "migrated-1",
+        "migrated-2",
+        "migrated-3",
+        "migrated-4",
+    ] {
+        let candidate = legacy.with_file_name(format!("{name}.{suffix}"));
+        match fs::symlink_metadata(&candidate) {
+            Ok(_) => continue,
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(candidate),
+            Err(error) => {
+                return Err(format!(
+                    "Could not inspect {}: {error}",
+                    candidate.display()
+                ));
+            }
+        }
+    }
+    Err(format!(
+        "Could not find a free aside path for legacy data directory {}",
+        legacy.display()
+    ))
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -612,7 +712,7 @@ mod tests {
     }
 
     #[test]
-    fn legacy_data_collision_fails_without_mutating_either_directory() {
+    fn legacy_data_collision_merges_current_wins_and_moves_legacy_aside() {
         let temporary = tempfile::tempdir().expect("temp dir");
         let legacy = temporary.path().join("clamui");
         let current = temporary.path().join("linux-defender");
@@ -620,10 +720,19 @@ mod tests {
         fs::create_dir(&current).expect("current dir");
         fs::write(legacy.join("settings.json"), b"old").expect("legacy settings");
         fs::write(current.join("settings.json"), b"new").expect("current settings");
+        fs::write(legacy.join("extra.json"), b"extra").expect("legacy extra");
 
-        assert!(migrate_legacy_directory(&legacy, &current).is_err());
-        assert_eq!(fs::read(legacy.join("settings.json")).unwrap(), b"old");
+        migrate_legacy_directory(&legacy, &current).expect("migration");
+
+        // The current tree wins on conflicts.
         assert_eq!(fs::read(current.join("settings.json")).unwrap(), b"new");
+        // Legacy-only entries are merged into the current tree.
+        assert_eq!(fs::read(current.join("extra.json")).unwrap(), b"extra");
+        // The legacy directory is preserved, moved aside rather than deleted.
+        let aside = temporary.path().join("clamui.migrated");
+        assert!(!legacy.exists());
+        assert_eq!(fs::read(aside.join("settings.json")).unwrap(), b"old");
+        assert_eq!(fs::read(aside.join("extra.json")).unwrap(), b"extra");
     }
 
     #[test]
