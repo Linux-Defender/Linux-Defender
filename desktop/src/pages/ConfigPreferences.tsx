@@ -116,7 +116,12 @@ const URLHAUS_EXPORT_SUFFIX = "/urlhaus_clamav.ndb";
 const URLHAUS_AUTH_KEY = /^[A-Za-z0-9_-]{4,128}$/;
 
 function isUrlhausFeed(url: string): boolean {
-  return url.startsWith(URLHAUS_EXPORT_PREFIX) && url.endsWith(URLHAUS_EXPORT_SUFFIX);
+  return urlhausAuthKeyFromUrl(url) !== null;
+}
+
+function urlhausAuthKeyFromUrl(url: string): string | null {
+  if (!url.startsWith(URLHAUS_EXPORT_PREFIX) || !url.endsWith(URLHAUS_EXPORT_SUFFIX)) return null;
+  return url.slice(URLHAUS_EXPORT_PREFIX.length, url.length - URLHAUS_EXPORT_SUFFIX.length);
 }
 
 function urlhausFeedUrl(authKey: string): string {
@@ -552,8 +557,19 @@ export default function ConfigPreferences({ section }: { section: string }) {
   };
 
   const addUrlhausFeed = () => {
-    const authKey = urlhausKey.trim();
-    if (!URLHAUS_AUTH_KEY.test(authKey)) {
+    const typed = urlhausKey.trim();
+    if (typed && !URLHAUS_AUTH_KEY.test(typed)) {
+      notify(
+        _(
+          // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
+          "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
+        ),
+        "warning",
+      );
+      return;
+    }
+    const authKey = typed || existingUrlhausKey;
+    if (!authKey) {
       notify(
         _(
           // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
@@ -762,6 +778,10 @@ export default function ConfigPreferences({ section }: { section: string }) {
   }, [scanner]);
 
   const freshclamValues = freshclam?.values ?? EMPTY_VALUES;
+  const existingUrlhausKey = useMemo(() => {
+    const feed = freshclamValues.DatabaseCustomURL?.find(isUrlhausFeed);
+    return feed ? (urlhausAuthKeyFromUrl(feed) ?? "") : "";
+  }, [freshclamValues.DatabaseCustomURL]);
   const clamdValues = clamd?.values ?? EMPTY_VALUES;
   const setFreshclamField = (key: string, next: string) => updateConfig("freshclam", (values) => valuesForSingle(values, key, next));
   const setClamdField = (key: string, next: string) => updateConfig("clamd", (values) => valuesForSingle(values, key, next));
@@ -827,6 +847,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
           </div>
         </label>
         <p className="muted">{_("Linux Defender writes the key into freshclam.conf as part of the feed URL. Create one at auth.abuse.ch.")}</p>
+        {existingUrlhausKey && <p className="muted">{_("A URLhaus feed is already in this draft.")}</p>}
       </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("Proxy Settings")}</h3>
         <TextField label={_("Proxy Server")} field="HTTPProxyServer" value={value(freshclamValues, "HTTPProxyServer")} onChange={(next) => setFreshclamField("HTTPProxyServer", next)} />
