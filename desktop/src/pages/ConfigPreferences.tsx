@@ -111,10 +111,6 @@ const SUGGESTED_SIGNATURE_URLS = [
 // behind an abuse.ch Auth-Key that forms part of the export path.
 const URLHAUS_EXPORT_PREFIX = "https://urlhaus-api.abuse.ch/v2/files/exports/";
 const URLHAUS_EXPORT_SUFFIX = "/urlhaus_clamav.ndb";
-// Auth-Keys are path segments, so the pattern rejects separators, whitespace,
-// and dots so the value cannot escape the export path when freshclam receives
-// the URL.
-const URLHAUS_AUTH_KEY = /^[A-Za-z0-9_-]{4,128}$/;
 
 function isUrlhausFeed(url: string): boolean {
   return urlhausAuthKeyFromUrl(url) !== null;
@@ -123,10 +119,6 @@ function isUrlhausFeed(url: string): boolean {
 function urlhausAuthKeyFromUrl(url: string): string | null {
   if (!url.startsWith(URLHAUS_EXPORT_PREFIX) || !url.endsWith(URLHAUS_EXPORT_SUFFIX)) return null;
   return url.slice(URLHAUS_EXPORT_PREFIX.length, url.length - URLHAUS_EXPORT_SUFFIX.length);
-}
-
-function buildUrlhausFeedUrl(authKey: string): string {
-  return `${URLHAUS_EXPORT_PREFIX}${authKey}${URLHAUS_EXPORT_SUFFIX}`;
 }
 
 function displayCustomUrl(url: string): string {
@@ -388,10 +380,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const [manualConfigurations, setManualConfigurations] = useState<readonly ManualConfiguration[]>([]);
   const [configLoadCount, setConfigLoadCount] = useState(0);
   const [busy, setBusy] = useState(false);
-  const [urlhausKeyDraft, setUrlhausKeyDraft] = useState("");
   const [urlhausKeyStatus, setUrlhausKeyStatus] = useState<UrlhausKeyStatus | null>(null);
   const [urlhausFeedUrl, setUrlhausFeedUrl] = useState<string | null>(null);
-  const [urlhausKeyBusy, setUrlhausKeyBusy] = useState(false);
   const loadRequests = useRef<Record<ConfigKind, number>>({ freshclam: 0, clamd: 0 });
   const persistedConfigPaths = useRef<Record<ConfigKind, string>>({ freshclam: "", clamd: "" });
   const contextVersion = useRef(0);
@@ -560,42 +550,6 @@ export default function ConfigPreferences({ section }: { section: string }) {
     ));
   };
 
-  const addUrlhausFeedToDraft = (feedUrl: string) => {
-    updateConfig("freshclam", (values) => {
-      const existing = values.DatabaseCustomURL ?? [];
-      return valuesForMany(values, "DatabaseCustomURL", [...existing.filter((url) => !isUrlhausFeed(url)), feedUrl]);
-    });
-  };
-
-  const addUrlhausFeed = () => {
-    const typed = urlhausKeyDraft.trim();
-    if (typed) {
-      void saveUrlhausKey(typed, { addFeed: true, autoApply: true });
-      return;
-    }
-    if (!urlhausFeedUrl) {
-      notify(
-        _(
-          // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
-          "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
-        ),
-        "warning",
-      );
-      return;
-    }
-    addUrlhausFeedToDraft(urlhausFeedUrl);
-  };
-
-  const handleUrlhausKeyChange = (value: string) => {
-    setUrlhausKeyDraft(value);
-    // Saving as soon as the key is pasted keeps "Add URLhaus" out of the flow:
-    // the feed is added to the draft without any further click.
-    const key = value.trim();
-    if (key && key.length >= 8 && !urlhausKeyBusy) {
-      void saveUrlhausKey(key, { addFeed: true, autoApply: true });
-    }
-  };
-
   const refreshUrlhausFeed = useCallback(async () => {
     try {
       setUrlhausKeyStatus(await request<UrlhausKeyStatus>("urlhaus.key_status", {}));
@@ -623,51 +577,13 @@ export default function ConfigPreferences({ section }: { section: string }) {
     notify(_("URLhaus feed added to the draft."), "success");
   }, [freshclam?.path, urlhausFeedUrl, updateConfig]);
 
-  const saveUrlhausKey = async (typed: string, options: { addFeed: boolean; autoApply?: boolean; notify?: boolean }) => {
-    const key = typed.trim();
-    if (!key || !URLHAUS_AUTH_KEY.test(key)) {
-      if (options.notify !== false) {
-        notify(
-          _(
-            // Translators: Keep abuse.ch and URLhaus unchanged; it is a provider name.
-            "Enter the Auth-Key from your abuse.ch account (4 to 128 letters, digits, underscore, or hyphen).",
-          ),
-          "warning",
-        );
-      }
-      return;
-    }
-    setUrlhausKeyBusy(true);
-    try {
-      await request("urlhaus.key_save", { key });
-      if (options.addFeed) {
-        addUrlhausFeedToDraft(buildUrlhausFeedUrl(key));
-      }
-      await refreshUrlhausFeed();
-      if (options.autoApply) {
-        setUrlhausApplyPending(true);
-      }
-      if (options.notify !== false) {
-        notify(_("The URLhaus Auth-Key is saved; the URLhaus feed is applied."), "success");
-      }
-    } catch (error) {
-      notify(String(error), "error");
-    } finally {
-      setUrlhausKeyBusy(false);
-    }
-  };
-
   const deleteUrlhausKey = async () => {
-    setUrlhausKeyBusy(true);
     try {
       await request("urlhaus.key_delete", {});
       await refreshUrlhausFeed();
-      setUrlhausKeyDraft("");
       notify(_("URLhaus Auth-Key deleted"), "success");
     } catch (error) {
       notify(String(error), "error");
-    } finally {
-      setUrlhausKeyBusy(false);
     }
   };
 
@@ -914,7 +830,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
         <div className="toolbar actions"><button className="button" type="button" onClick={addSuggestedUrls}>{_("Suggested")}</button></div>
         <p className="muted">{_(
           // Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged. URLhaus is a provider name.
-          "Suggested adds the RFXN signatures and three InterServer databases to this draft. Add URLhaus below with a free abuse.ch Auth-Key. Save & Apply is still required.",
+          "Suggested adds the RFXN signatures and three InterServer databases to this draft. Save & Apply is still required.",
         )}</p>
         <p className="muted">{_(
           // Translators: Keep the URI schemes unchanged.
@@ -929,23 +845,16 @@ export default function ConfigPreferences({ section }: { section: string }) {
         )}</small></span><button className="button" type="button" onClick={() => void openReference("https://sanesecurity.com/")}>{_("Open provider")}</button></div>
         <div className="setting-row"><span className="row-copy"><strong>RFXN</strong><small className="muted">{_("Free Linux malware and web-shell hash and heuristic signatures from Linux Malware Detect.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://www.rfxn.com/projects/linux-malware-detect/")}>{_("Open provider")}</button></div>
         <div className="setting-row"><span className="row-copy"><strong>InterServer</strong><small className="muted">{_("Community hash, web-shell, and general malware signature databases.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://sigs.interserver.net/")}>{_("Open provider")}</button></div>
-        <div className="setting-row"><span className="row-copy"><strong>URLhaus</strong><small className="muted">{_("Free malware URL blocklist; requires a free abuse.ch Auth-Key.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://auth.abuse.ch/")}>{_("Open provider")}</button></div>
+        <div className="setting-row"><span className="row-copy"><strong>URLhaus</strong><small className="muted">{_("Free malware URL blocklist, enabled by default.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://auth.abuse.ch/")}>{_("Open provider")}</button></div>
       </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("URLhaus Feed")}</h3>
-        <label className="field field-control" htmlFor="urlhaus-auth-key"><span>{_("Auth-Key")}</span>
-          <div className="inline-form">
-            <input id="urlhaus-auth-key" type="password" autoComplete="off" spellCheck={false} value={urlhausKeyDraft} placeholder={_("Paste your Auth-Key")} onChange={(event) => handleUrlhausKeyChange(event.target.value)} />
-            <button className="button" type="button" onClick={addUrlhausFeed}>{_("Add URLhaus")}</button>
-            <button className="button" type="button" disabled={urlhausKeyBusy || !urlhausKeyDraft.trim()} onClick={() => void saveUrlhausKey(urlhausKeyDraft, { addFeed: true, autoApply: true })}>{_("Save Key")}</button>
-            <button className="button danger" type="button" disabled={urlhausKeyBusy || !urlhausKeyStatus?.present} onClick={() => void deleteUrlhausKey()}>{_("Delete")}</button>
-          </div>
-        </label>
         {urlhausKeyStatus?.present ? (
-          <p className="muted">{_("The URLhaus Auth-Key is saved; the URLhaus feed is applied.")}</p>
+          <p className="muted">{_("The URLhaus feed is applied by default for every install.")}</p>
         ) : (
           <p className="muted">{_("No URLhaus Auth-Key is saved yet.")}</p>
         )}
-        <p className="muted">{_("Linux Defender writes the key into freshclam.conf as part of the feed URL. Create one at auth.abuse.ch.")}</p>
+        {urlhausKeyStatus?.present && <div className="toolbar actions"><button className="button danger" type="button" onClick={() => void deleteUrlhausKey()}>{_("Delete")}</button></div>}
+        <p className="muted">{_("Linux Defender adds the URLhaus feed to freshclam automatically for every install.")}</p>
         {existingUrlhausKey && <p className="muted">{_("A URLhaus feed is already in this draft.")}</p>}
       </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("Proxy Settings")}</h3>
