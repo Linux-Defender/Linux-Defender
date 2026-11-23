@@ -2651,7 +2651,7 @@ pub fn status() -> PrivilegedHelperStatus {
             } else {
                 missing_native_helper_state()
             };
-            if helper_installable(flatpak_host, backend, state) {
+            if helper_installable(flatpak_host, backend, state) || local_dev_helper_available() {
                 PrivilegedHelperStatus {
                     state: "installable".to_owned(),
                     package_name: HELPER_PACKAGE.to_owned(),
@@ -2950,6 +2950,17 @@ fn download_verified_asset(
         return Err("downloaded helper package did not pass digest verification".to_owned());
     }
     Ok(())
+}
+
+/// True when a locally built helper sits next to the running executable. Such
+/// a build can install the helper through pkexec (`install_matching_helper`),
+/// which re-validates the source with O_NOFOLLOW before copying it to /usr.
+fn local_dev_helper_available() -> bool {
+    std::env::current_exe()
+        .ok()
+        .and_then(|executable| executable.parent().map(Path::to_path_buf))
+        .map(|parent| parent.join("linux-defender-apply-preferences"))
+        .is_some_and(|path| path.is_file())
 }
 
 fn install_matching_helper() -> AppResult<PrivilegedHelperStatus> {

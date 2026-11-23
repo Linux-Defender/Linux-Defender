@@ -62,9 +62,11 @@ export function HelperTrustErrorDialog({
       {!missing && <p className="helper-trust-error-requirement">{_("The helper must be an executable file owned by root, not a symbolic link, and other users must not be able to change it.")}</p>}
       <h3>{_("How to fix it")}</h3>
       <ol className="helper-trust-error-steps">
-        <li>{missing
-          ? _("Install the matching helper from the same trusted Linux Defender release.")
-          : _("Reinstall the matching helper from the same trusted Linux Defender release.")}</li>
+        {canOfferInstall
+          ? <li>{_("Use Install Helper below to install the trusted helper that was built with this application.")}</li>
+          : <li>{missing
+            ? _("Install the matching helper from the same trusted Linux Defender release.")
+            : _("Reinstall the matching helper from the same trusted Linux Defender release.")}</li>}
         <li>{_("Then return to Preferences and repeat the action.")}</li>
       </ol>
       {!missing && <p className="helper-trust-error-caution"><Icon name="shield" />{_("Do not change the permissions of an unknown executable to bypass this check.")}</p>}

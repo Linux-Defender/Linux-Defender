@@ -75,6 +75,8 @@ Protected host settings require a trusted helper and graphical Polkit authorizat
 
 If authorization is cancelled or a helper check fails, the protected write remains blocked. Review the exact failure and retry only after a verified helper is available. If an apply fails after some host files were written, use **See Configuration** to inspect each target before manually changing it; the view is read-only.
 
+When running a source build, the helper binary is built next to the desktop executable. In that case Linux Defender detects it and offers **Install Helper** in the blocked-settings dialog even on distributions without a packaged helper (for example Arch/CachyOS). That action uses pkexec to install the same trusted binary that was built with the application; it does not download or substitute an engine or a helper from another release. On a packaged install, install only the version- and architecture-matched helper package.
+
 ## File-manager action or tray icon is absent
 
 Linux Defender's integration actions are managed by the development build and depend on the desktop and file-manager version. Recheck **Preferences → Behavior → Configure Integration**, then restart the affected file manager or desktop session. The tray requires an SNI watcher; GNOME users may need [AppIndicator Support](https://extensions.gnome.org/extension/615/appindicator-support/). Report the desktop environment and exact file-manager version if an action is missing.

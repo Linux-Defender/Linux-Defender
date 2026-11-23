@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-23 09:42-0500\n"
+"POT-Creation-Date: 2026-11-23 12:14-0500\n"
 "PO-Revision-Date: 2026-10-17 12:00+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmål\n"
@@ -1700,7 +1700,7 @@ msgid "Reading configuration"
 msgstr "Leser konfigurasjon"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3075
+#: crates/linux-defender-core/src/privileged.rs:3086
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -2540,7 +2540,7 @@ msgid "Cancel Scan and Close"
 msgstr "Avbryt skanningen og lukk"
 
 #: desktop/src/App.tsx:1064 desktop/src/ConfigurationRecovery.tsx:94
-#: desktop/src/HelperTrustErrorDialog.tsx:85 desktop/src/Modal.tsx:110
+#: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:346 desktop/src/pages/Scan.tsx:352
 #: desktop/src/pages/Scan.tsx:364 desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Close"
@@ -2571,7 +2571,7 @@ msgstr ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
 
-#: desktop/src/App.tsx:1075 desktop/src/HelperTrustErrorDialog.tsx:76
+#: desktop/src/App.tsx:1075 desktop/src/HelperTrustErrorDialog.tsx:78
 msgid "Installing privileged helper…"
 msgstr "Installerer privilegert hjelper …"
 
@@ -2579,15 +2579,15 @@ msgstr "Installerer privilegert hjelper …"
 msgid "Not now"
 msgstr "Ikke nå"
 
-#: desktop/src/App.tsx:1077 desktop/src/HelperTrustErrorDialog.tsx:84
+#: desktop/src/App.tsx:1077 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Installing…"
 msgstr "Installerer …"
 
-#: desktop/src/App.tsx:1077 desktop/src/HelperTrustErrorDialog.tsx:84
+#: desktop/src/App.tsx:1077 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Try Again"
 msgstr "Prøv igjen"
 
-#: desktop/src/App.tsx:1077 desktop/src/HelperTrustErrorDialog.tsx:84
+#: desktop/src/App.tsx:1077 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Install Helper"
 msgstr "Installer hjelper"
 
@@ -2705,38 +2705,44 @@ msgstr "Hvordan fikse det"
 
 #: desktop/src/HelperTrustErrorDialog.tsx:66
 msgid ""
+"Use Install Helper below to install the trusted helper that was built with "
+"this application."
+msgstr "Use Install Helper below to install the trusted helper that was built with this application."
+
+#: desktop/src/HelperTrustErrorDialog.tsx:68
+msgid ""
 "Install the matching helper from the same trusted Linux Defender release."
 msgstr ""
 "Install the matching helper from the same trusted Linux Defender release."
 
-#: desktop/src/HelperTrustErrorDialog.tsx:67
+#: desktop/src/HelperTrustErrorDialog.tsx:69
 msgid ""
 "Reinstall the matching helper from the same trusted Linux Defender release."
 msgstr ""
 "Reinstall the matching helper from the same trusted Linux Defender release."
 
-#: desktop/src/HelperTrustErrorDialog.tsx:68
+#: desktop/src/HelperTrustErrorDialog.tsx:70
 msgid "Then return to Preferences and repeat the action."
 msgstr "Gå deretter tilbake til Innstillinger og gjenta handlingen."
 
-#: desktop/src/HelperTrustErrorDialog.tsx:70
+#: desktop/src/HelperTrustErrorDialog.tsx:72
 msgid ""
 "Do not change the permissions of an unknown executable to bypass this check."
 msgstr ""
 "Ikke endre tillatelsene til en ukjent kjørbar fil for å omgå denne "
 "kontrollen."
 
-#: desktop/src/HelperTrustErrorDialog.tsx:72 desktop/src/UiErrorBoundary.tsx:36
+#: desktop/src/HelperTrustErrorDialog.tsx:74 desktop/src/UiErrorBoundary.tsx:36
 #: desktop/src/pages/ConfigPreferences.tsx:917
 msgid "Technical details"
 msgstr "Tekniske detaljer"
 
-#: desktop/src/HelperTrustErrorDialog.tsx:79
+#: desktop/src/HelperTrustErrorDialog.tsx:81
 msgid "Open repair instructions"
 msgstr "Åpne reparasjonsinstruksjonene"
 
 #. Translators: This button opens the failed native configuration snapshot.
-#: desktop/src/HelperTrustErrorDialog.tsx:80
+#: desktop/src/HelperTrustErrorDialog.tsx:82
 #: desktop/src/pages/ConfigPreferences.tsx:921
 msgid "See Configuration"
 msgstr "Se konfigurasjon"
