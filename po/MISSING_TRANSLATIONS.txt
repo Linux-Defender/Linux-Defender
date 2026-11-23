@@ -1,0 +1,72 @@
+# Missing translations — audit refactor (audit.rs / firewall.rs / opensnitch.rs)
+
+Regenerated with `./scripts/update-pot.sh`. These msgids are in the POT but not in
+the committed catalogs. Every locale needs a non-empty `msgstr` (or `msgstr[0]`/
+`msgstr[1]`) for each. Translator comments are preserved from the source.
+
+German translations (from this session) are listed per-string. See
+docs/translations/README.md for the full instructions and locale notes.
+
+## de — German (from /tmp/translations.json → translate_audit.py NEW dict)
+
+An OpenSnitch system service is changing state; its status is unknown. = Der OpenSnitch-Systemdienst ändert seinen Status; sein Zustand ist unbekannt.
+An installed OpenSnitch system service is inactive or failed. = Ein installierter OpenSnitch-Systemdienst ist inaktiv oder fehlgeschlagen.
+Application firewalls = Anwendungs-Firewalls
+Check UFW with administrator access = UFW mit Administratorzugriff prüfen
+Could not launch OpenSnitch graphical interface: {error} = OpenSnitch-GUI konnte nicht gestartet werden: {error}
+Dashboard = Dashboard
+Dashboard updates are unavailable: {error} = Dashboard-Updates nicht verfügbar: {error}
+Enable UFW or Firewalld to protect the system. = UFW oder Firewalld aktivieren, um das System zu schützen.
+Enable scheduled scans in Preferences → Schedule = Geplante Scans in Einstellungen → Zeitplan aktivieren
+File estimate is approximate; progress is indeterminate. = Dateischätzung ist annähernd; der Fortschritt ist unbestimmt.
+Firewalld is active and managing the firewall. = Firewalld ist aktiv und verwaltet die Firewall.
+No active firewall manager was detected. = Kein aktiver Firewall-Manager wurde erkannt.
+No local OpenSnitch graphical interface launch target was detected. = Kein Startziel für die grafische OpenSnitch-Oberfläche lokal erkannt.
+No scheduling backend is available on this system = Auf diesem System ist kein Scheduler-Backend verfügbar
+Open OpenSnitch = OpenSnitch öffnen
+Open Ports = Offene Ports
+OpenSnitch graphical interface = Grafische OpenSnitch-Oberfläche
+OpenSnitch graphical interface availability could not be determined. = Die Verfügbarkeit der grafischen OpenSnitch-Oberfläche konnte nicht ermittelt werden.
+OpenSnitch graphical interface is not available. = Die grafische OpenSnitch-Oberfläche ist nicht verfügbar.
+OpenSnitch service = OpenSnitch-Dienst
+OpenSnitch system service status could not be determined. = Der Status des OpenSnitch-Systemdienstes konnte nicht ermittelt werden.
+Scan files and folders with ClamAV. = Dateien und Ordner mit ClamAV scannen.
+Scan overview updates are unavailable: {error} = Scanübersichts-Updates nicht verfügbar: {error}
+Scheduled scans are enabled = Geplante Scans sind aktiviert
+Scheduled scans are not enabled = Geplante Scans sind deaktiviert
+Scheduled scans require a systemd user session or cron = Geplante Scans erfordern eine systemd-Benutzersitzung oder Cron
+Target {index}/{count}: {path} = Ziel {index}/{count}: {path}
+The UFW status check failed. = Der UFW-Status-Check schlug fehl.
+The UFW status check returned incomplete or invalid output. = Der UFW-Status-Check lief unvollständige oder ungültige Ausgaben.
+The UFW status check timed out. = Der UFW-Status-Check lief in eine Zeitüberschreitung.
+The active firewall manager could not be verified. = Der aktive Firewall-Manager konnte nicht überprüft werden.
+UFW was not found at a trusted system path. = UFW wurde in einem vertrauenswürdigen Systempfad nicht gefunden.
+{count} file scanned overall = {count} Dateien insgesamt gescannt
+
+## en — English (source strings)
+
+Use the msgid as the msgstr (identity), or a better phrasing if desired.
+
+## Other locales (es, fr, hu, it, nb, pt_BR, vi, zh_CN)
+
+For each string in this file, add the translation to `po/<locale>.po` for the
+msgid, then:
+
+    msgcmp po/<locale>.po po/linux-defender.pot
+    msgfmt -c po/<locale>.po
+    ./scripts/check-translations.sh
+
+## How to apply programmatically (polib recipe)
+
+    import polib
+    for loc in ["de","en","es","fr","hu","it","nb","pt_BR","vi","zh_CN"]:
+        po = polib.pofile(f"po/{loc}.po")
+        tr = load_translations(loc)          # dict: msgid -> msgstr
+        for entry in po:
+            if entry.msgid in tr and not entry.msgstr:
+                entry.msgstr = tr[entry.msgid]
+                for i, form in enumerate(entry.msgstr.split("\x00")):
+                    pass
+        po.save()
+
+Note: for entries with `msgid_plural`, set both `msgstr[0]` and `msgstr[1]`.
