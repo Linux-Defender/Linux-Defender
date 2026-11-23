@@ -7,7 +7,6 @@ import { _ } from "../i18n";
 
 type ConfigKind = "freshclam" | "clamd";
 type ConfigValues = Record<string, string[]>;
-type UrlhausKeyStatus = { present: boolean; backend?: string; status: string; masked?: string };
 
 type ConfigDocument = {
   kind: ConfigKind;
@@ -380,7 +379,6 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const [manualConfigurations, setManualConfigurations] = useState<readonly ManualConfiguration[]>([]);
   const [configLoadCount, setConfigLoadCount] = useState(0);
   const [busy, setBusy] = useState(false);
-  const [urlhausKeyStatus, setUrlhausKeyStatus] = useState<UrlhausKeyStatus | null>(null);
   const [urlhausFeedUrl, setUrlhausFeedUrl] = useState<string | null>(null);
   const loadRequests = useRef<Record<ConfigKind, number>>({ freshclam: 0, clamd: 0 });
   const persistedConfigPaths = useRef<Record<ConfigKind, string>>({ freshclam: "", clamd: "" });
@@ -546,16 +544,11 @@ export default function ConfigPreferences({ section }: { section: string }) {
     updateConfig("freshclam", (values) => valuesForMany(
       values,
       "DatabaseCustomURL",
-      [...(values.DatabaseCustomURL ?? []), ...SUGGESTED_SIGNATURE_URLS, ...(urlhausFeedUrl ? [urlhausFeedUrl] : [])].filter((url) => !values.DatabaseCustomURL?.includes(url)),
+      [...(values.DatabaseCustomURL ?? []), ...SUGGESTED_SIGNATURE_URLS].filter((url) => !values.DatabaseCustomURL?.includes(url)),
     ));
   };
 
   const refreshUrlhausFeed = useCallback(async () => {
-    try {
-      setUrlhausKeyStatus(await request<UrlhausKeyStatus>("urlhaus.key_status", {}));
-    } catch {
-      setUrlhausKeyStatus({ present: false, status: "error" });
-    }
     try {
       const result = await request<{ url: string | null }>("urlhaus.feed_url", {});
       setUrlhausFeedUrl(result.url ?? null);
@@ -576,16 +569,6 @@ export default function ConfigPreferences({ section }: { section: string }) {
     updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", [...(values.DatabaseCustomURL ?? []), urlhausFeedUrl]));
     notify(_("URLhaus feed added to the draft."), "success");
   }, [freshclam?.path, urlhausFeedUrl, updateConfig]);
-
-  const deleteUrlhausKey = async () => {
-    try {
-      await request("urlhaus.key_delete", {});
-      await refreshUrlhausFeed();
-      notify(_("URLhaus Auth-Key deleted"), "success");
-    } catch (error) {
-      notify(String(error), "error");
-    }
-  };
 
   const openReference = async (url: string) => {
     try {
@@ -608,7 +591,6 @@ export default function ConfigPreferences({ section }: { section: string }) {
     }
   }, [backend, refreshScanner]);
 
-  const [urlhausApplyPending, setUrlhausApplyPending] = useState(false);
   const saveAndApply = useCallback(async () => {
     if (configLoadCount > 0) {
       return;
@@ -778,22 +760,10 @@ export default function ConfigPreferences({ section }: { section: string }) {
   }, [scanner]);
 
   const freshclamValues = freshclam?.values ?? EMPTY_VALUES;
-  const existingUrlhausKey = useMemo(() => {
-    const feed = freshclamValues.DatabaseCustomURL?.find(isUrlhausFeed);
-    return feed ? (urlhausAuthKeyFromUrl(feed) ?? "") : "";
-  }, [freshclamValues.DatabaseCustomURL]);
   const clamdValues = clamd?.values ?? EMPTY_VALUES;
   const setFreshclamField = (key: string, next: string) => updateConfig("freshclam", (values) => valuesForSingle(values, key, next));
   const setClamdField = (key: string, next: string) => updateConfig("clamd", (values) => valuesForSingle(values, key, next));
   const setClamdMany = (key: string, next: string[]) => updateConfig("clamd", (values) => valuesForMany(values, key, next));
-
-  // URLhaus: applying is automatic — when the key is saved, the feed change is
-  // applied without the user pressing Save & Apply for the URLhaus flow.
-  useEffect(() => {
-    if (!urlhausApplyPending) return;
-    setUrlhausApplyPending(false);
-    void saveAndApply();
-  }, [urlhausApplyPending, saveAndApply]);
 
   const fileTypeLabels: Record<(typeof FILE_TYPE_FIELDS)[number], string> = {
     ScanPE: _("Scan PE Files"),
@@ -829,7 +799,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
         <CustomUrlListField values={freshclamValues.DatabaseCustomURL ?? []} onChange={(next) => updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", next))} />
         <div className="toolbar actions"><button className="button" type="button" onClick={addSuggestedUrls}>{_("Suggested")}</button></div>
         <p className="muted">{_(
-          // Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged. URLhaus is a provider name.
+          // Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
           "Suggested adds the RFXN signatures and three InterServer databases to this draft. Save & Apply is still required.",
         )}</p>
         <p className="muted">{_(
