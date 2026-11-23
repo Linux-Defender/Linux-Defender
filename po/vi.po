@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-22 23:50-0500\n"
+"POT-Creation-Date: 2026-11-23 00:39-0500\n"
 "PO-Revision-Date: 2026-11-03 21:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -2133,7 +2133,7 @@ msgstr "Hồ sơ quét"
 msgid "Results"
 msgstr "Kết quả"
 
-#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:577
+#: desktop/src/App.tsx:316 desktop/src/pages/ConfigPreferences.tsx:579
 msgid "Could not open link"
 msgstr "Không thể mở liên kết"
 
@@ -2500,7 +2500,7 @@ msgstr ""
 "bước kiểm tra này."
 
 #: desktop/src/HelperTrustErrorDialog.tsx:72 desktop/src/UiErrorBoundary.tsx:36
-#: desktop/src/pages/ConfigPreferences.tsx:922
+#: desktop/src/pages/ConfigPreferences.tsx:930
 msgid "Technical details"
 msgstr "Chi tiết kỹ thuật"
 
@@ -2510,7 +2510,7 @@ msgstr "Mở hướng dẫn khắc phục"
 
 #. Translators: This button opens the failed native configuration snapshot.
 #: desktop/src/HelperTrustErrorDialog.tsx:80
-#: desktop/src/pages/ConfigPreferences.tsx:926
+#: desktop/src/pages/ConfigPreferences.tsx:934
 msgid "See Configuration"
 msgstr "Xem cấu hình"
 
@@ -3010,36 +3010,35 @@ msgid "Add URLs"
 msgstr "Thêm URL"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:466
+#: desktop/src/pages/ConfigPreferences.tsx:467
 msgid "Configuration file selection is pending Save & Apply."
 msgstr "Lựa chọn tệp cấu hình đang chờ “Lưu và áp dụng”."
 
-#: desktop/src/pages/ConfigPreferences.tsx:478
+#: desktop/src/pages/ConfigPreferences.tsx:479
 msgid "No configuration file was found."
 msgstr "Không tìm thấy tệp cấu hình nào."
 
-#: desktop/src/pages/ConfigPreferences.tsx:492
+#: desktop/src/pages/ConfigPreferences.tsx:493
 msgid "Select a .conf configuration file."
 msgstr "Chọn một tệp cấu hình .conf."
 
-#: desktop/src/pages/ConfigPreferences.tsx:528
+#: desktop/src/pages/ConfigPreferences.tsx:529
 msgid "Configuration loaded with administrator authorization."
 msgstr "Đã tải cấu hình bằng quyền quản trị."
 
-#: desktop/src/pages/ConfigPreferences.tsx:570
-msgid ""
-"URLhaus feed added to the draft. Save & Apply is still required to enable it."
-msgstr "Đã thêm feed URLhaus vào bản nháp. Cần Lưu và áp dụng để kích hoạt."
+#: desktop/src/pages/ConfigPreferences.tsx:571
+msgid "URLhaus feed added to the draft and applied automatically."
+msgstr "Đã thêm feed URLhaus vào bản nháp và tự động áp dụng."
 
-#: desktop/src/pages/ConfigPreferences.tsx:587
+#: desktop/src/pages/ConfigPreferences.tsx:589
 msgid "Scan backend saved."
 msgstr "Đã lưu cơ chế quét."
 
-#: desktop/src/pages/ConfigPreferences.tsx:620
+#: desktop/src/pages/ConfigPreferences.tsx:622
 msgid "Choose a configuration file before applying its changes."
 msgstr "Hãy chọn tệp cấu hình trước khi áp dụng thay đổi."
 
-#: desktop/src/pages/ConfigPreferences.tsx:632
+#: desktop/src/pages/ConfigPreferences.tsx:634
 msgid ""
 "On-Access scanning requires an excluded username, UID, or root user to "
 "prevent scan loops."
@@ -3047,136 +3046,136 @@ msgstr ""
 "Quét thời gian thực yêu cầu loại trừ một tên người dùng, UID hoặc người dùng "
 "root để tránh vòng lặp quét."
 
-#: desktop/src/pages/ConfigPreferences.tsx:640
-#: desktop/src/pages/ConfigPreferences.tsx:730
+#: desktop/src/pages/ConfigPreferences.tsx:642
+#: desktop/src/pages/ConfigPreferences.tsx:732
 msgid "No changes to apply."
 msgstr "Không có thay đổi nào để áp dụng."
 
-#: desktop/src/pages/ConfigPreferences.tsx:655
+#: desktop/src/pages/ConfigPreferences.tsx:657
 msgid "Configuration validation failed."
 msgstr "Kiểm tra tính hợp lệ của cấu hình không thành công."
 
-#: desktop/src/pages/ConfigPreferences.tsx:730
+#: desktop/src/pages/ConfigPreferences.tsx:732
 msgid "Configuration saved and applied."
 msgstr "Đã lưu và áp dụng cấu hình."
 
-#: desktop/src/pages/ConfigPreferences.tsx:730
-#: desktop/src/pages/ConfigPreferences.tsx:750
+#: desktop/src/pages/ConfigPreferences.tsx:732
+#: desktop/src/pages/ConfigPreferences.tsx:752
 msgid "Some changes could not be applied."
 msgstr "Không thể áp dụng một số thay đổi."
 
-#: desktop/src/pages/ConfigPreferences.tsx:731
+#: desktop/src/pages/ConfigPreferences.tsx:733
 msgid "Saved groups"
 msgstr "Nhóm đã lưu"
 
-#: desktop/src/pages/ConfigPreferences.tsx:759
+#: desktop/src/pages/ConfigPreferences.tsx:761
 msgid "Checking scanner status…"
 msgstr "Đang kiểm tra trạng thái trình quét…"
 
-#: desktop/src/pages/ConfigPreferences.tsx:761
+#: desktop/src/pages/ConfigPreferences.tsx:763
 msgid "Daemon connected"
 msgstr "Đã kết nối dịch vụ"
 
-#: desktop/src/pages/ConfigPreferences.tsx:762
+#: desktop/src/pages/ConfigPreferences.tsx:764
 msgid "Scanner available"
 msgstr "Trình quét khả dụng"
 
-#: desktop/src/pages/ConfigPreferences.tsx:762
+#: desktop/src/pages/ConfigPreferences.tsx:764
 msgid "Scanner unavailable"
 msgstr "Trình quét không khả dụng"
 
-#: desktop/src/pages/ConfigPreferences.tsx:772
+#: desktop/src/pages/ConfigPreferences.tsx:780
 msgid "Scan PE Files"
 msgstr "Quét tệp PE"
 
-#: desktop/src/pages/ConfigPreferences.tsx:773
+#: desktop/src/pages/ConfigPreferences.tsx:781
 msgid "Scan ELF Files"
 msgstr "Quét tệp ELF"
 
-#: desktop/src/pages/ConfigPreferences.tsx:774
+#: desktop/src/pages/ConfigPreferences.tsx:782
 msgid "Scan OLE2 Files"
 msgstr "Quét tệp OLE2"
 
-#: desktop/src/pages/ConfigPreferences.tsx:775
+#: desktop/src/pages/ConfigPreferences.tsx:783
 msgid "Scan PDF Files"
 msgstr "Quét tệp PDF"
 
-#: desktop/src/pages/ConfigPreferences.tsx:776
+#: desktop/src/pages/ConfigPreferences.tsx:784
 msgid "Scan HTML Files"
 msgstr "Quét tệp HTML"
 
-#: desktop/src/pages/ConfigPreferences.tsx:777
+#: desktop/src/pages/ConfigPreferences.tsx:785
 msgid "Scan Archive Files"
 msgstr "Quét tệp nén"
 
-#: desktop/src/pages/ConfigPreferences.tsx:783
+#: desktop/src/pages/ConfigPreferences.tsx:791
 #: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Database Updates"
 msgstr "Cập nhật cơ sở dữ liệu"
 
 #. Translators: Keep freshclam.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:784
+#: desktop/src/pages/ConfigPreferences.tsx:792
 msgid "freshclam.conf"
 msgstr "freshclam.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:788
+#: desktop/src/pages/ConfigPreferences.tsx:796
 msgid "Paths"
 msgstr "Đường dẫn"
 
-#: desktop/src/pages/ConfigPreferences.tsx:789
+#: desktop/src/pages/ConfigPreferences.tsx:797
 msgid "Database Directory"
 msgstr "Thư mục cơ sở dữ liệu"
 
-#: desktop/src/pages/ConfigPreferences.tsx:790
+#: desktop/src/pages/ConfigPreferences.tsx:798
 msgid "Update Log File"
 msgstr "Tệp nhật ký cập nhật"
 
-#: desktop/src/pages/ConfigPreferences.tsx:791
+#: desktop/src/pages/ConfigPreferences.tsx:799
 msgid "PID File"
 msgstr "Tệp PID"
 
-#: desktop/src/pages/ConfigPreferences.tsx:792
+#: desktop/src/pages/ConfigPreferences.tsx:800
 msgid "Notify ClamD Config"
 msgstr "Cấu hình ClamD cần thông báo"
 
-#: desktop/src/pages/ConfigPreferences.tsx:793
+#: desktop/src/pages/ConfigPreferences.tsx:801
 msgid "Log timestamps"
 msgstr "Ghi dấu thời gian vào nhật ký"
 
-#: desktop/src/pages/ConfigPreferences.tsx:794
+#: desktop/src/pages/ConfigPreferences.tsx:802
 msgid "Verbose logging"
 msgstr "Ghi nhật ký chi tiết"
 
-#: desktop/src/pages/ConfigPreferences.tsx:795
+#: desktop/src/pages/ConfigPreferences.tsx:803
 msgid "Syslog logging"
 msgstr "Ghi nhật ký vào syslog"
 
-#: desktop/src/pages/ConfigPreferences.tsx:797
+#: desktop/src/pages/ConfigPreferences.tsx:805
 msgid "Update Behavior"
 msgstr "Hành vi cập nhật"
 
-#: desktop/src/pages/ConfigPreferences.tsx:798
+#: desktop/src/pages/ConfigPreferences.tsx:806
 msgid "Checks per day"
 msgstr "Số lần kiểm tra mỗi ngày"
 
-#: desktop/src/pages/ConfigPreferences.tsx:798
+#: desktop/src/pages/ConfigPreferences.tsx:806
 msgid "0 disables automatic checks."
 msgstr "0 sẽ tắt kiểm tra tự động."
 
-#: desktop/src/pages/ConfigPreferences.tsx:799
+#: desktop/src/pages/ConfigPreferences.tsx:807
 msgid "Database Mirror"
 msgstr "Máy chủ tải xuống cơ sở dữ liệu"
 
-#: desktop/src/pages/ConfigPreferences.tsx:801
+#: desktop/src/pages/ConfigPreferences.tsx:809
 msgid "Custom Signature Databases"
 msgstr "Cơ sở dữ liệu chữ ký virus tùy chỉnh"
 
-#: desktop/src/pages/ConfigPreferences.tsx:803
+#: desktop/src/pages/ConfigPreferences.tsx:811
 msgid "Suggested"
 msgstr "Đề xuất"
 
 #. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:804
+#: desktop/src/pages/ConfigPreferences.tsx:812
 msgid ""
 "Suggested adds the RFXN signatures and three InterServer databases to this "
 "draft. Save & Apply is still required."
@@ -3185,7 +3184,7 @@ msgstr ""
 "này. Cần phải Lưu và áp dụng."
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:808
+#: desktop/src/pages/ConfigPreferences.tsx:816
 msgid ""
 "Supported URL schemes: http, https, ftp, ftps, and file. Paste each provider "
 "URL as a separate entry."
@@ -3193,24 +3192,24 @@ msgstr ""
 "Các giao thức URL được hỗ trợ: http, https, ftp, ftps và file. Dán từng URL "
 "của nhà cung cấp thành một mục riêng."
 
-#: desktop/src/pages/ConfigPreferences.tsx:813
+#: desktop/src/pages/ConfigPreferences.tsx:821
 msgid "Signature Providers"
 msgstr "Nhà cung cấp chữ ký virus"
 
-#: desktop/src/pages/ConfigPreferences.tsx:814
+#: desktop/src/pages/ConfigPreferences.tsx:822
 msgid "Registration is required; URLs include your personal API key."
 msgstr "Cần đăng ký; URL chứa khóa API cá nhân của bạn."
 
-#: desktop/src/pages/ConfigPreferences.tsx:814
-#: desktop/src/pages/ConfigPreferences.tsx:818
-#: desktop/src/pages/ConfigPreferences.tsx:819
-#: desktop/src/pages/ConfigPreferences.tsx:820
-#: desktop/src/pages/ConfigPreferences.tsx:821
+#: desktop/src/pages/ConfigPreferences.tsx:822
+#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:827
+#: desktop/src/pages/ConfigPreferences.tsx:828
+#: desktop/src/pages/ConfigPreferences.tsx:829
 msgid "Open provider"
 msgstr "Mở trang nhà cung cấp"
 
 #. Translators: Keep fangfrisch and clamav-unofficial-sigs unchanged; they are tool names.
-#: desktop/src/pages/ConfigPreferences.tsx:815
+#: desktop/src/pages/ConfigPreferences.tsx:823
 msgid ""
 "Use fangfrisch or clamav-unofficial-sigs; it is not a direct custom URL "
 "provider."
@@ -3218,7 +3217,7 @@ msgstr ""
 "Hãy dùng fangfrisch hoặc clamav-unofficial-sigs; nhà cung cấp này không hỗ "
 "trợ thêm trực tiếp bằng URL tùy chỉnh."
 
-#: desktop/src/pages/ConfigPreferences.tsx:819
+#: desktop/src/pages/ConfigPreferences.tsx:827
 msgid ""
 "Free Linux malware and web-shell hash and heuristic signatures from Linux "
 "Malware Detect."
@@ -3226,13 +3225,13 @@ msgstr ""
 "Chữ ký băm và chữ ký suy luận miễn phí cho phần mềm độc hại Linux và web "
 "shell từ Linux Malware Detect."
 
-#: desktop/src/pages/ConfigPreferences.tsx:820
+#: desktop/src/pages/ConfigPreferences.tsx:828
 msgid "Community hash, web-shell, and general malware signature databases."
 msgstr ""
 "Cơ sở dữ liệu chữ ký virus cộng đồng cho mã băm, web shell và phần mềm độc "
 "hại nói chung."
 
-#: desktop/src/pages/ConfigPreferences.tsx:821
+#: desktop/src/pages/ConfigPreferences.tsx:829
 msgid ""
 "Free malware URL blocklist, enabled by default. Added to Custom Signature "
 "Databases automatically."
@@ -3240,179 +3239,179 @@ msgstr ""
 "Danh sách chặn URL phần mềm độc hại miễn phí, được bật theo mặc định. Được "
 "thêm tự động vào Cơ sở dữ liệu chữ ký tùy chỉnh."
 
-#: desktop/src/pages/ConfigPreferences.tsx:823
+#: desktop/src/pages/ConfigPreferences.tsx:831
 msgid "Proxy Settings"
 msgstr "Cài đặt proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:824
+#: desktop/src/pages/ConfigPreferences.tsx:832
 msgid "Proxy Server"
 msgstr "Máy chủ proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:825
+#: desktop/src/pages/ConfigPreferences.tsx:833
 msgid "Proxy Port"
 msgstr "Cổng proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:825
+#: desktop/src/pages/ConfigPreferences.tsx:833
 msgid "0 disables the proxy port."
 msgstr "0 sẽ tắt cổng proxy."
 
-#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:834
 msgid "Proxy Username"
 msgstr "Tên người dùng proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:827
+#: desktop/src/pages/ConfigPreferences.tsx:835
 msgid "Proxy Password"
 msgstr "Mật khẩu proxy"
 
-#: desktop/src/pages/ConfigPreferences.tsx:832
+#: desktop/src/pages/ConfigPreferences.tsx:840
 msgid "Scanner Settings"
 msgstr "Cài đặt trình quét"
 
-#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:842
 msgid "Scan Backend"
 msgstr "Cơ chế quét"
 
-#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:842
 msgid "Auto (prefer daemon)"
 msgstr "Tự động (ưu tiên dịch vụ)"
 
 #. Translators: Keep clamd unchanged; it is the daemon command and service name.
-#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:842
 msgid "ClamAV Daemon (clamd)"
 msgstr "Dịch vụ ClamAV (clamd)"
 
 #. Translators: Keep clamscan unchanged; it is the scanner command name.
-#: desktop/src/pages/ConfigPreferences.tsx:837
+#: desktop/src/pages/ConfigPreferences.tsx:845
 msgid "Standalone Scanner (clamscan)"
 msgstr "Trình quét độc lập (clamscan)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:841
+#: desktop/src/pages/ConfigPreferences.tsx:849
 msgid "Daemon Status"
 msgstr "Trạng thái dịch vụ"
 
-#: desktop/src/pages/ConfigPreferences.tsx:841
+#: desktop/src/pages/ConfigPreferences.tsx:849
 msgid "Refresh Status"
 msgstr "Làm mới trạng thái"
 
-#: desktop/src/pages/ConfigPreferences.tsx:842
+#: desktop/src/pages/ConfigPreferences.tsx:850
 msgid "Documentation"
 msgstr "Tài liệu"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:844
-#: desktop/src/pages/ConfigPreferences.tsx:865
+#: desktop/src/pages/ConfigPreferences.tsx:852
+#: desktop/src/pages/ConfigPreferences.tsx:873
 msgid "clamd.conf"
 msgstr "clamd.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:848
+#: desktop/src/pages/ConfigPreferences.tsx:856
 msgid "File Type Scanning"
 msgstr "Quét theo loại tệp"
 
-#: desktop/src/pages/ConfigPreferences.tsx:851
+#: desktop/src/pages/ConfigPreferences.tsx:859
 msgid "Performance and Limits"
 msgstr "Hiệu năng và giới hạn"
 
-#: desktop/src/pages/ConfigPreferences.tsx:852
-#: desktop/src/pages/ConfigPreferences.tsx:878
+#: desktop/src/pages/ConfigPreferences.tsx:860
+#: desktop/src/pages/ConfigPreferences.tsx:886
 msgid "Max File Size (MB)"
 msgstr "Kích thước tệp tối đa (MB)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:852
-#: desktop/src/pages/ConfigPreferences.tsx:853
-#: desktop/src/pages/ConfigPreferences.tsx:855
-#: desktop/src/pages/ConfigPreferences.tsx:878
+#: desktop/src/pages/ConfigPreferences.tsx:860
+#: desktop/src/pages/ConfigPreferences.tsx:861
+#: desktop/src/pages/ConfigPreferences.tsx:863
+#: desktop/src/pages/ConfigPreferences.tsx:886
 msgid "0 means unlimited."
 msgstr "0 nghĩa là không giới hạn."
 
-#: desktop/src/pages/ConfigPreferences.tsx:853
+#: desktop/src/pages/ConfigPreferences.tsx:861
 msgid "Max Scan Size (MB)"
 msgstr "Dung lượng quét tối đa (MB)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:854
+#: desktop/src/pages/ConfigPreferences.tsx:862
 msgid "Max Archive Recursion"
 msgstr "Độ sâu lồng tối đa của tệp nén"
 
-#: desktop/src/pages/ConfigPreferences.tsx:855
+#: desktop/src/pages/ConfigPreferences.tsx:863
 msgid "Max Files in Archive"
 msgstr "Số tệp tối đa trong tệp nén"
 
-#: desktop/src/pages/ConfigPreferences.tsx:857
+#: desktop/src/pages/ConfigPreferences.tsx:865
 msgid "Logging"
 msgstr "Ghi nhật ký"
 
-#: desktop/src/pages/ConfigPreferences.tsx:858
+#: desktop/src/pages/ConfigPreferences.tsx:866
 msgid "Log File Path"
 msgstr "Đường dẫn tệp nhật ký"
 
-#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:867
 msgid "Verbose Logging"
 msgstr "Ghi nhật ký chi tiết"
 
-#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:867
 msgid "Syslog Logging"
 msgstr "Ghi nhật ký vào syslog"
 
-#: desktop/src/pages/ConfigPreferences.tsx:864
+#: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "On-Access Scanning"
 msgstr "Quét thời gian thực"
 
-#: desktop/src/pages/ConfigPreferences.tsx:869
+#: desktop/src/pages/ConfigPreferences.tsx:877
 msgid "Monitored Paths"
 msgstr "Đường dẫn được giám sát"
 
-#: desktop/src/pages/ConfigPreferences.tsx:870
+#: desktop/src/pages/ConfigPreferences.tsx:878
 msgid "Include Paths"
 msgstr "Đường dẫn bao gồm"
 
-#: desktop/src/pages/ConfigPreferences.tsx:871
+#: desktop/src/pages/ConfigPreferences.tsx:879
 msgid "Exclude Paths"
 msgstr "Đường dẫn loại trừ"
 
-#: desktop/src/pages/ConfigPreferences.tsx:873
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Behavior Settings"
 msgstr "Cài đặt hành vi"
 
-#: desktop/src/pages/ConfigPreferences.tsx:874
+#: desktop/src/pages/ConfigPreferences.tsx:882
 msgid "Prevention Mode"
 msgstr "Chế độ ngăn chặn"
 
-#: desktop/src/pages/ConfigPreferences.tsx:874
+#: desktop/src/pages/ConfigPreferences.tsx:882
 msgid "Extra Scanning"
 msgstr "Quét bổ sung"
 
-#: desktop/src/pages/ConfigPreferences.tsx:874
+#: desktop/src/pages/ConfigPreferences.tsx:882
 msgid "Deny on Error"
 msgstr "Chặn truy cập khi gặp lỗi"
 
-#: desktop/src/pages/ConfigPreferences.tsx:874
+#: desktop/src/pages/ConfigPreferences.tsx:882
 msgid "Disable DDD"
 msgstr "Tắt DDD"
 
-#: desktop/src/pages/ConfigPreferences.tsx:876
+#: desktop/src/pages/ConfigPreferences.tsx:884
 msgid "Performance Settings"
 msgstr "Cài đặt hiệu năng"
 
-#: desktop/src/pages/ConfigPreferences.tsx:877
+#: desktop/src/pages/ConfigPreferences.tsx:885
 msgid "Max Threads"
 msgstr "Số luồng tối đa"
 
-#: desktop/src/pages/ConfigPreferences.tsx:879
+#: desktop/src/pages/ConfigPreferences.tsx:887
 msgid "Curl Timeout (seconds)"
 msgstr "Thời gian chờ Curl (giây)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:879
+#: desktop/src/pages/ConfigPreferences.tsx:887
 msgid "0 disables the timeout."
 msgstr "0 sẽ tắt thời gian chờ."
 
-#: desktop/src/pages/ConfigPreferences.tsx:880
+#: desktop/src/pages/ConfigPreferences.tsx:888
 msgid "Retry Attempts"
 msgstr "Số lần thử lại"
 
-#: desktop/src/pages/ConfigPreferences.tsx:882
+#: desktop/src/pages/ConfigPreferences.tsx:890
 msgid "Scan Loop Prevention"
 msgstr "Chống quét lặp vòng"
 
-#: desktop/src/pages/ConfigPreferences.tsx:883
+#: desktop/src/pages/ConfigPreferences.tsx:891
 msgid ""
 "At least one loop-prevention exclusion is required. Exclude the clamav "
 "service account, its UID, or root to prevent recursive scans."
@@ -3420,60 +3419,60 @@ msgstr ""
 "Cần ít nhất một ngoại lệ chống lặp vòng. Hãy loại trừ tài khoản dịch vụ "
 "clamav, UID của tài khoản đó hoặc root để tránh quét đệ quy."
 
-#: desktop/src/pages/ConfigPreferences.tsx:884
+#: desktop/src/pages/ConfigPreferences.tsx:892
 msgid "Exclude Username"
 msgstr "Loại trừ tên người dùng"
 
-#: desktop/src/pages/ConfigPreferences.tsx:885
+#: desktop/src/pages/ConfigPreferences.tsx:893
 msgid "Exclude User ID"
 msgstr "Loại trừ ID người dùng"
 
-#: desktop/src/pages/ConfigPreferences.tsx:886
+#: desktop/src/pages/ConfigPreferences.tsx:894
 msgid "Exclude Root User"
 msgstr "Loại trừ người dùng root"
 
-#: desktop/src/pages/ConfigPreferences.tsx:891
+#: desktop/src/pages/ConfigPreferences.tsx:899
 msgid "Scheduled Scans"
 msgstr "Quét theo lịch"
 
-#: desktop/src/pages/ConfigPreferences.tsx:892
+#: desktop/src/pages/ConfigPreferences.tsx:900
 msgid "Schedule"
 msgstr "Lịch quét"
 
-#: desktop/src/pages/ConfigPreferences.tsx:893
+#: desktop/src/pages/ConfigPreferences.tsx:901
 msgid "Enable Scheduled Scans"
 msgstr "Bật quét theo lịch"
 
-#: desktop/src/pages/ConfigPreferences.tsx:894
+#: desktop/src/pages/ConfigPreferences.tsx:902
 msgid "Scan Frequency"
 msgstr "Tần suất quét"
 
-#: desktop/src/pages/ConfigPreferences.tsx:895
+#: desktop/src/pages/ConfigPreferences.tsx:903
 msgid "Scan Time (24-hour)"
 msgstr "Thời gian quét (định dạng 24 giờ)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:896
+#: desktop/src/pages/ConfigPreferences.tsx:904
 msgid "Day of Week"
 msgstr "Ngày trong tuần"
 
-#: desktop/src/pages/ConfigPreferences.tsx:896
+#: desktop/src/pages/ConfigPreferences.tsx:904
 msgid "Used for weekly scans."
 msgstr "Dùng cho quét hằng tuần."
 
-#: desktop/src/pages/ConfigPreferences.tsx:897
+#: desktop/src/pages/ConfigPreferences.tsx:905
 msgid "Day of Month"
 msgstr "Ngày trong tháng"
 
-#: desktop/src/pages/ConfigPreferences.tsx:897
+#: desktop/src/pages/ConfigPreferences.tsx:905
 msgid "Used for monthly scans."
 msgstr "Dùng cho quét hằng tháng."
 
-#: desktop/src/pages/ConfigPreferences.tsx:898
+#: desktop/src/pages/ConfigPreferences.tsx:906
 #: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:748
 msgid "Scan Targets"
 msgstr "Mục tiêu quét"
 
-#: desktop/src/pages/ConfigPreferences.tsx:899
+#: desktop/src/pages/ConfigPreferences.tsx:907
 msgid ""
 "No targets are configured. The scheduled scan will use your home directory "
 "without saving it as an explicit target."
@@ -3481,34 +3480,34 @@ msgstr ""
 "Chưa cấu hình mục tiêu nào. Lượt quét theo lịch sẽ dùng thư mục cá nhân của "
 "bạn mà không lưu thư mục đó thành mục tiêu cụ thể."
 
-#: desktop/src/pages/ConfigPreferences.tsx:900
+#: desktop/src/pages/ConfigPreferences.tsx:908
 #: desktop/src/pages/SettingsPreferences.tsx:403
 msgid "Skip on Battery"
 msgstr "Bỏ qua khi dùng pin"
 
-#: desktop/src/pages/ConfigPreferences.tsx:900
+#: desktop/src/pages/ConfigPreferences.tsx:908
 msgid "Do not start scheduled scans while on battery power."
 msgstr "Không bắt đầu quét theo lịch khi máy đang chạy bằng pin."
 
-#: desktop/src/pages/ConfigPreferences.tsx:901
+#: desktop/src/pages/ConfigPreferences.tsx:909
 msgid "Auto-Quarantine"
 msgstr "Tự động cách ly"
 
-#: desktop/src/pages/ConfigPreferences.tsx:901
+#: desktop/src/pages/ConfigPreferences.tsx:909
 msgid "Automatically quarantine threats found by scheduled scans."
 msgstr "Tự động cách ly các mối đe dọa được phát hiện khi quét theo lịch."
 
-#: desktop/src/pages/ConfigPreferences.tsx:906
-#: desktop/src/pages/ConfigPreferences.tsx:916
+#: desktop/src/pages/ConfigPreferences.tsx:914
+#: desktop/src/pages/ConfigPreferences.tsx:924
 msgid "Save & Apply"
 msgstr "Lưu và áp dụng"
 
-#: desktop/src/pages/ConfigPreferences.tsx:907
+#: desktop/src/pages/ConfigPreferences.tsx:915
 msgid "Apply Configuration"
 msgstr "Áp dụng cấu hình"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:908
+#: desktop/src/pages/ConfigPreferences.tsx:916
 msgid ""
 "All edited forms are captured at the moment you click Save & Apply. Every "
 "configured file is validated before any write or authorization request."
@@ -3518,7 +3517,7 @@ msgstr ""
 "cầu cấp quyền."
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:912
+#: desktop/src/pages/ConfigPreferences.tsx:920
 msgid ""
 "Scanner and On-Access changes share one clamd.conf proposal; neither form "
 "can overwrite the other's detached changes."
@@ -3527,7 +3526,7 @@ msgstr ""
 "đề xuất clamd.conf; biểu mẫu này không thể ghi đè các thay đổi riêng của "
 "biểu mẫu kia."
 
-#: desktop/src/pages/ConfigPreferences.tsx:916
+#: desktop/src/pages/ConfigPreferences.tsx:924
 #: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:263
 msgid "Saving…"
 msgstr "Đang lưu…"

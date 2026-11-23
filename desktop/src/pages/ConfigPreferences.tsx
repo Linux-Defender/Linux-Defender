@@ -380,6 +380,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const [configLoadCount, setConfigLoadCount] = useState(0);
   const [busy, setBusy] = useState(false);
   const [urlhausFeedUrl, setUrlhausFeedUrl] = useState<string | null>(null);
+  const [urlhausApplyPending, setUrlhausApplyPending] = useState(false);
   const loadRequests = useRef<Record<ConfigKind, number>>({ freshclam: 0, clamd: 0 });
   const persistedConfigPaths = useRef<Record<ConfigKind, string>>({ freshclam: "", clamd: "" });
   const contextVersion = useRef(0);
@@ -567,7 +568,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
     if ((freshclam.values.DatabaseCustomURL ?? []).some(isUrlhausFeed)) return;
     autoAddedPaths.current.add(freshclam.path);
     updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", [...(values.DatabaseCustomURL ?? []), urlhausFeedUrl]));
-    notify(_("URLhaus feed added to the draft. Save & Apply is still required to enable it."), "success");
+    notify(_("URLhaus feed added to the draft and applied automatically."), "success");
+    setUrlhausApplyPending(true);
   }, [freshclam?.path, urlhausFeedUrl, updateConfig]);
 
   const openReference = async (url: string) => {
@@ -767,6 +769,12 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const setFreshclamField = (key: string, next: string) => updateConfig("freshclam", (values) => valuesForSingle(values, key, next));
   const setClamdField = (key: string, next: string) => updateConfig("clamd", (values) => valuesForSingle(values, key, next));
   const setClamdMany = (key: string, next: string[]) => updateConfig("clamd", (values) => valuesForMany(values, key, next));
+
+  useEffect(() => {
+    if (!urlhausApplyPending || configLoadCount > 0) return;
+    setUrlhausApplyPending(false);
+    void saveAndApply();
+  }, [urlhausApplyPending, configLoadCount, saveAndApply]);
 
   const fileTypeLabels: Record<(typeof FILE_TYPE_FIELDS)[number], string> = {
     ScanPE: _("Scan PE Files"),
