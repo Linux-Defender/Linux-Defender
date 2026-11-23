@@ -29,12 +29,17 @@ pub(super) fn install_cli_helper(ctx: &Context, prefix: &Path) -> AppResult<Stri
                 "Linux Defender is running inside a Flatpak sandbox, which cannot install files on the host. Install the matching linux-defender-privileged-helper package on the host system instead.",
             ));
         }
+        let executable_path = std::env::current_exe()
+            .ok()
+            .map(|path| path.display().to_string())
+            .unwrap_or_else(|| "linux-defender".to_owned());
         if unsafe { libc::geteuid() } != 0 {
             return Err(crate::i18n::translate(
                 ctx,
-                // Translators: keep the paths and "sudo linux-defender install-privileged-helper" command unchanged.
-                "This command installs files under /usr and /usr/share and must be run as root. Try: sudo linux-defender install-privileged-helper",
-            ));
+                // Translators: keep the paths and the install-privileged-helper command unchanged.
+                "This command installs files under /usr and /usr/share and must be run as root. Try: sudo {command} install-privileged-helper",
+            )
+            .replace("{command}", &executable_path));
         }
     }
 

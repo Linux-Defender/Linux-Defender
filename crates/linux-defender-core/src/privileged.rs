@@ -2916,6 +2916,38 @@ fn install_matching_helper() -> AppResult<PrivilegedHelperStatus> {
     if current.installed {
         return Ok(current);
     }
+
+    // Development and locally built binaries: if the matching helper executable
+    // sits next to this process, install it directly with pkexec instead of
+    // downloading a signed release package.
+    if let Ok(executable) = std::env::current_exe() {
+        let source = executable
+            .parent()
+            .map(|parent| parent.join("linux-defender-apply-preferences"));
+        if let Some(source) = source {
+            if source.is_file() {
+                let mut command = if flatpak() {
+                    let mut command = Command::new("flatpak-spawn");
+                    command.args(["--host", "/usr/bin/pkexec"]);
+                    command
+                } else {
+                    Command::new("/usr/bin/pkexec")
+                };
+                command.arg(&executable).arg("install-privileged-helper");
+                let output = command.output().map_err(|error| {
+                    format!("cannot launch pkexec for the local helper install: {error}")
+                })?;
+                if output.status.success() {
+                    return Ok(status());
+                }
+                let detail = String::from_utf8_lossy(&output.stderr).trim().to_owned();
+                if !detail.is_empty() {
+                    return Err(detail);
+                }
+            }
+        }
+    }
+
     if !current.installable {
         return Err(current.detail.unwrap_or_else(|| {
             "the privileged helper cannot be installed automatically here".to_owned()
