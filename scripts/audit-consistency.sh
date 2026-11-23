@@ -25,10 +25,34 @@ cargo clippy --workspace --all-targets --locked -- -D warnings >/dev/null || fai
 step "Rust tests"
 cargo test --workspace --locked >/dev/null || fail "cargo test --workspace"
 
-step "Website check / build / links"
+step "Website check / build / links / assets"
 bun run --cwd website check >/dev/null || fail "website check"
 bun run --cwd website build >/dev/null || fail "website build"
 python3 scripts/check-built-links.py website/dist >/dev/null || fail "built-site links"
+# Every Starlight sidebar entry in astro.config.mjs must resolve to a real doc.
+python3 - <<'PY' || fail "sidebar target missing"
+import re
+from pathlib import Path
+cfg = Path("website/astro.config.mjs").read_text()
+ids = re.findall(r'"(docs(?:/[^"]*)?)"', cfg)
+for doc_id in ids:
+    doc = Path(f"website/src/content/docs/{doc_id}.md")
+    mdx = Path(f"website/src/content/docs/{doc_id}.mdx")
+    index = Path(f"website/src/content/docs/{doc_id}/index.md")
+    if not (doc.exists() or mdx.exists() or index.exists()):
+        raise SystemExit(f"sidebar target missing: {doc_id}")
+PY
+# No dead website components: every .astro in src/components must be imported.
+python3 - <<'PY' || fail "unused website component"
+from pathlib import Path
+comps = {p.stem for p in Path("website/src/components").glob("*.astro")}
+src = "\n".join(p.read_text() for p in Path("website/src").rglob("*.astro"))
+for name in sorted(comps):
+    if name not in src.replace(f"components/{name}.astro", ""):
+        # crude but effective: the component name must appear in an import line
+        if not any(f"{name}" in line and "import" in line for line in src.splitlines()):
+            raise SystemExit(f"unused website component: {name}")
+PY
 
 step "Gettext current + well-formed"
 ./scripts/update-pot.sh --check >/dev/null || fail "POT stale"

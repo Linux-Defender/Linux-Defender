@@ -76,6 +76,8 @@ Rust core tests live under `crates/linux-defender-core/tests/` alongside module-
 
 Tests are necessary but not sufficient: also exercise the real app on this host when verifying behavior. Run the headless CLI (`./target/debug/linux-defender-cli status --json`, `history`, and an EICAR `scan`), check the local debug log at `~/.local/share/linux-defender/debug/linux-defender.log` and `~/.local/share/linux-defender/logs/`, and confirm the Tauri build starts (CI covers the full GUI build on the Ubuntu 22.04 baseline). A green unit suite does not prove the host ClamAV bridge, helper, or tray work.
 
+For website changes, do the same: `bun run --cwd website check/build`, run `bun run --cwd website dev` (or `preview`) and load the home page plus at least one docs page in a browser with no console errors, and run a Lighthouse audit on the **production preview** (the dev toolbar adds a "Learn more" link that fails the SEO link-text check and is not part of the site). `scripts/audit-consistency.sh` verifies website build/links/sidebar targets/unused components.
+
 For gettext changes, validate extraction and catalogs with:
 
 ```bash

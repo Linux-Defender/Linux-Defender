@@ -136,42 +136,12 @@
     background-position: -1px -1px;
   }
 
-  /* Screenshots already include their own GNOME headerbar, so we only add
-     a light rounded border and shadow - no duplicated chrome. */
-  .shot {
-    @apply block w-full h-auto rounded-xl overflow-hidden border border-white/10 shadow-window;
-  }
-
-  /* GNOME-style headerbar used only for the synthetic terminal demo.
-     Flat, centered title, single close affordance on the right. */
-  .gnome-headerbar {
-    @apply flex items-center gap-2 px-3 py-2 bg-[#131917] border-b border-white/[0.06];
-  }
-  .gnome-title {
-    @apply text-xs font-medium truncate px-2;
-  }
-
-  /* Terminal styling */
+  /* Terminal styling (used by the install-tabs command preview) */
   .term {
     @apply rounded-xl border border-white/10 bg-[#0b0f0d] font-mono text-[13px] leading-[1.55] text-guard-sage-pale/90 shadow-window overflow-hidden;
   }
   .term-body {
     @apply p-4 sm:p-5;
-  }
-  .term-prompt {
-    @apply text-guard-sage;
-  }
-  .term-user {
-    @apply text-guard-sky;
-  }
-  .term-ok {
-    @apply text-guard-sage;
-  }
-  .term-warn {
-    @apply text-guard-amber;
-  }
-  .term-dim {
-    @apply text-white/55;
   }
 
   .btn-primary {

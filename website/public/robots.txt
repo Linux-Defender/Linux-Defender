@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://linux-defender.github.io/Linux-Defender/sitemap-index.xml

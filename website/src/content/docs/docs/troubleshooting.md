@@ -12,7 +12,7 @@ clamscan --version
 freshclam --version
 ```
 
-Use the distro's FreshClam service or timer to update signatures. On Kira's CachyOS setup, check `clamav-freshclam-once.timer` and its service journal. Do not run a second `freshclam` process while the service is updating the same database. A warning that FreshClam could not notify `clamd` means there is no reachable daemon socket; it does not undo a database update that passed its database test.
+Use the distro's FreshClam service or timer to update signatures. On systemd hosts, check `systemctl status clamav-freshclam.timer` (or the distribution's equivalent one-shot timer) and its service journal. Do not run a second `freshclam` process while the service is updating the same database. A warning that FreshClam could not notify `clamd` means there is no reachable daemon socket; it does not undo a database update that passed its database test.
 
 If a manual or forced update stops for inactivity, check host `freshclam` output and connectivity. **Preferences → Behavior → Database Updates** controls the allowed time without stdout or stderr output (10 minutes by default). Active updates have no total time limit; signaling an existing update service is not subject to this setting.
 

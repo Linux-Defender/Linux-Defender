@@ -56,6 +56,12 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
    and confirm the Tauri build. Check GitHub tabs (Actions, Security,
    issues/PRs) for anything unresolved. A green unit suite is not proof the
    host ClamAV bridge, helper, or tray work.
+10. **Website exercise.** For site changes, run `bun run --cwd website dev` or
+    `preview`, open the home page and a docs page with no console errors, and
+    run Lighthouse on the production preview (dev toolbar skews SEO link-text).
+    `scripts/audit-consistency.sh` checks build, links, sidebar targets, and
+    unused components; current production baseline is 1.0 accessibility,
+    1.0 best practices, 1.0 SEO.
 
 ## What is deliberately NOT ported (do not "fix" by copying)
 
