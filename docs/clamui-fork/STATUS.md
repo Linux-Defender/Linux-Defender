@@ -10,7 +10,7 @@ Written so a successor can continue without loss.
 | **Snap runtime support** | `common.rs` `is_snap()`/`snap_root()`/`without_snap_entries()` + host-command snap-variable stripping; `scheduler.rs` `is_snap_scheduled_scan_command`/`snap_launcher_command`; `runtime.rs` `open_with_desktop` snap xdg-open routing; `tests/snap.rs`; `.github/workflows/build-snap.yml`; `snap/local/linux-defender-launch`. |
 | **Config elevation probe** | `config.rs` `config.needs_elevation` dispatch action (`needs_elevation_check`) matching upstream. |
 | **Stability** | `host_probe.rs` `reap_limited_child()` — off-thread child reaping so a stuck host command never blocks the request thread. |
-| **Desktop port** | `accent_color.rs`, `clipboard.rs` (GTK) wired; `Dashboard.tsx`, `ScanOverview.tsx`; modules `accentColor.ts`, `configAuthorize.ts`, `configDraft.ts`, `initialMountedPages.ts`, `pageId.ts`, `pathList.ts`, `savePlan.ts`, `scanHistory.ts`, `ScanProgressPanel.tsx`; tests in `desktop/tests/`. |
+| **Desktop port** | `accent_color.rs`, `clipboard.rs` (GTK), `Dashboard`/`ScanOverview` superseded by LD's `Overview`; modules `accentColor.ts`, `configAuthorize.ts`, `configDraft.ts`, `initialMountedPages.ts`, `pageId.ts`, `pathList.ts`, `savePlan.ts`, `ScanProgressPanel.tsx` — all wired; tests in `desktop/tests/`. |
 | **Desktop wiring** | `main.rs`, `runtime.rs` (accent + clipboard + snap opener), `model.rs` (`StartupState.accent`), `Cargo.toml` deps. |
 | **Packaging/distro** | `snap/`, `icons/`, `scripts/install-nemo-actions.sh`, `data/` WebExtensions, screenshots, `.github/FUNDING.yml`, `build-snap.yml`, `flathub/cargo-sources.json` refreshed for cookie 0.18.3. |
 | **Translations** | POT regenerated; all 10 catalogs merged and translated; `check-translations.sh`, `msgcmp`, `msgfmt -c`, `update-pot.sh --check` all pass. |
@@ -43,10 +43,11 @@ drafting, `accentColor.ts` applies the native system accent, and
 `ScanProgressPanel.tsx` renders live scan progress. `CONTEXT.md` therefore still
 documents "Save & Apply", not "Flush".
 
-`Dashboard.tsx` was **removed**: upstream's Dashboard is a thin wrapper around
-`ScanOverview`, but Linux Defender has an independent, richer `pages/Overview.tsx`
-that serves the same role (and `ScanOverview` is used directly by `Scan.tsx`).
-It was superseded, not lost — no code referenced it.
+`Dashboard.tsx`, `pages/ScanOverview.tsx` and `scanHistory.ts` were **removed**:
+upstream's Dashboard is a thin wrapper around `ScanOverview`, but Linux Defender
+has an independent, richer `pages/Overview.tsx` that serves the same role with
+its own history handling. Nothing referenced them; their tests covered only the
+removed helper. Superseded, not lost.
 
 ## Docs adopted from upstream (rebranded)
 

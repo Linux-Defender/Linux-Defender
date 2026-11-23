@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-23 09:15-0500\n"
+"POT-Creation-Date: 2026-11-23 09:42-0500\n"
 "PO-Revision-Date: 2026-08-09 00:00-0300\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -2297,7 +2297,6 @@ msgid "Database"
 msgstr "Banco de dados"
 
 #: desktop/src/App.tsx:117 desktop/src/pages/Logs.tsx:358
-#: desktop/src/pages/ScanOverview.tsx:80
 msgid "Logs"
 msgstr "Registros"
 
@@ -2492,7 +2491,7 @@ msgstr "Cancelar"
 msgid "Minimize to tray"
 msgstr "Minimizar para bandeja"
 
-#: desktop/src/App.tsx:1062 desktop/src/pages/ScanOverview.tsx:66
+#: desktop/src/App.tsx:1062
 msgid "Scan in Progress"
 msgstr "Verificação em andamento"
 
@@ -2810,7 +2809,6 @@ msgstr "Cancelado"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
-#: desktop/src/pages/ScanOverview.tsx:59 desktop/src/pages/ScanOverview.tsx:60
 #: desktop/src/pages/SettingsPreferences.tsx:512
 #: desktop/src/pages/SettingsPreferences.tsx:536 desktop/src/protection.ts:131
 msgid "Unknown"
@@ -3333,12 +3331,10 @@ msgid "Daemon connected"
 msgstr "Daemon conectado"
 
 #: desktop/src/pages/ConfigPreferences.tsx:751
-#: desktop/src/pages/ScanOverview.tsx:66
 msgid "Scanner available"
 msgstr "Scanner disponível"
 
 #: desktop/src/pages/ConfigPreferences.tsx:751
-#: desktop/src/pages/ScanOverview.tsx:66
 msgid "Scanner unavailable"
 msgstr "Scanner indisponível"
 
@@ -4412,8 +4408,7 @@ msgid "Refreshing…"
 msgstr "Atualizando…"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
-#: desktop/src/pages/Overview.tsx:153 desktop/src/pages/ScanOverview.tsx:59
-#: desktop/src/pages/ScanOverview.tsx:66
+#: desktop/src/pages/Overview.tsx:153
 #: desktop/src/pages/SettingsPreferences.tsx:528
 #: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "Loading…"
@@ -5230,7 +5225,7 @@ msgstr "Copiar ou exportar"
 msgid "Quarantine All"
 msgstr "Colocar tudo em quarentena"
 
-#: desktop/src/pages/Results.tsx:181 desktop/src/pages/ScanOverview.tsx:73
+#: desktop/src/pages/Results.tsx:181
 msgid "Files scanned"
 msgstr "Arquivos verificados"
 
@@ -5238,7 +5233,7 @@ msgstr "Arquivos verificados"
 msgid "Directories"
 msgstr "Diretórios"
 
-#: desktop/src/pages/Results.tsx:183 desktop/src/pages/ScanOverview.tsx:74
+#: desktop/src/pages/Results.tsx:183
 msgid "Threats found"
 msgstr "Ameaças encontradas"
 
@@ -5314,7 +5309,7 @@ msgstr "Resultados do VirusTotal"
 msgid "Detections"
 msgstr "Detecções"
 
-#: desktop/src/pages/Results.tsx:225 desktop/src/pages/ScanOverview.tsx:72
+#: desktop/src/pages/Results.tsx:225
 msgid "Last scanned"
 msgstr "Última verificação"
 
@@ -5652,11 +5647,11 @@ msgstr "Select exactly one file before using VirusTotal"
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/ScanOverview.tsx:77
+#: desktop/src/pages/Scan.tsx:751
 msgid "Latest scan"
 msgstr "Verificação mais recente"
 
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/ScanOverview.tsx:80
+#: desktop/src/pages/Scan.tsx:751
 msgid "View Results"
 msgstr "Ver resultados"
 
@@ -5664,25 +5659,13 @@ msgstr "Ver resultados"
 msgid "Virus database is not available"
 msgstr "O banco de dados de vírus não está disponível"
 
-#: desktop/src/pages/Scan.tsx:753 desktop/src/pages/ScanOverview.tsx:67
+#: desktop/src/pages/Scan.tsx:753
 msgid "Update the database before starting a scan."
 msgstr "Atualize o banco de dados antes de iniciar uma verificação."
 
 #: desktop/src/pages/Scan.tsx:753
 msgid "Open Database Updates"
 msgstr "Abrir atualizações do banco de dados"
-
-#: desktop/src/pages/ScanOverview.tsx:44
-msgid "Scan overview updates are unavailable: {error}"
-msgstr "Scan overview updates are unavailable: {error}"
-
-#: desktop/src/pages/ScanOverview.tsx:59 desktop/src/protection.ts:109
-msgid "No scans recorded"
-msgstr "Nenhuma verificação registrada"
-
-#: desktop/src/pages/ScanOverview.tsx:67
-msgid "Scan files and folders with ClamAV."
-msgstr "Scan files and folders with ClamAV."
 
 #: desktop/src/pages/SettingsPreferences.tsx:47
 msgid "Node.js dependencies"
@@ -6771,6 +6754,10 @@ msgstr ""
 msgid "Scan of the user's home directory and personal files"
 msgstr ""
 "Verificação do diretório pessoal do usuário e de seus arquivos pessoais"
+
+#: desktop/src/protection.ts:109
+msgid "No scans recorded"
+msgstr "Nenhuma verificação registrada"
 
 #: desktop/src/protection.ts:112
 msgid "less than an hour ago"

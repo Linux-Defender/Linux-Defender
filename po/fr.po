@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-23 09:15-0500\n"
+"POT-Creation-Date: 2026-11-23 09:42-0500\n"
 "PO-Revision-Date: 2026-06-30 13:00+0200\n"
 "Last-Translator: Robin GUY <contact@robinguy.fr>\n"
 "Language-Team: French\n"
@@ -2328,7 +2328,6 @@ msgid "Database"
 msgstr "Base virale"
 
 #: desktop/src/App.tsx:117 desktop/src/pages/Logs.tsx:358
-#: desktop/src/pages/ScanOverview.tsx:80
 msgid "Logs"
 msgstr "Journaux"
 
@@ -2524,7 +2523,7 @@ msgstr "Annuler"
 msgid "Minimize to tray"
 msgstr "Réduire dans la zone de notification"
 
-#: desktop/src/App.tsx:1062 desktop/src/pages/ScanOverview.tsx:66
+#: desktop/src/App.tsx:1062
 msgid "Scan in Progress"
 msgstr "Analyse en cours"
 
@@ -2847,7 +2846,6 @@ msgstr "Annulé"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
-#: desktop/src/pages/ScanOverview.tsx:59 desktop/src/pages/ScanOverview.tsx:60
 #: desktop/src/pages/SettingsPreferences.tsx:512
 #: desktop/src/pages/SettingsPreferences.tsx:536 desktop/src/protection.ts:131
 msgid "Unknown"
@@ -3374,12 +3372,10 @@ msgid "Daemon connected"
 msgstr "Démon connecté"
 
 #: desktop/src/pages/ConfigPreferences.tsx:751
-#: desktop/src/pages/ScanOverview.tsx:66
 msgid "Scanner available"
 msgstr "Moteur d’analyse disponible"
 
 #: desktop/src/pages/ConfigPreferences.tsx:751
-#: desktop/src/pages/ScanOverview.tsx:66
 msgid "Scanner unavailable"
 msgstr "Moteur d’analyse indisponible"
 
@@ -4468,8 +4464,7 @@ msgid "Refreshing…"
 msgstr "Actualisation…"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
-#: desktop/src/pages/Overview.tsx:153 desktop/src/pages/ScanOverview.tsx:59
-#: desktop/src/pages/ScanOverview.tsx:66
+#: desktop/src/pages/Overview.tsx:153
 #: desktop/src/pages/SettingsPreferences.tsx:528
 #: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "Loading…"
@@ -5297,7 +5292,7 @@ msgstr "Copier ou exporter"
 msgid "Quarantine All"
 msgstr "Tout mettre en quarantaine"
 
-#: desktop/src/pages/Results.tsx:181 desktop/src/pages/ScanOverview.tsx:73
+#: desktop/src/pages/Results.tsx:181
 msgid "Files scanned"
 msgstr "Fichiers analysés"
 
@@ -5305,7 +5300,7 @@ msgstr "Fichiers analysés"
 msgid "Directories"
 msgstr "Répertoires"
 
-#: desktop/src/pages/Results.tsx:183 desktop/src/pages/ScanOverview.tsx:74
+#: desktop/src/pages/Results.tsx:183
 msgid "Threats found"
 msgstr "Menaces détectées"
 
@@ -5382,7 +5377,7 @@ msgstr "Résultats de VirusTotal"
 msgid "Detections"
 msgstr "Détections"
 
-#: desktop/src/pages/Results.tsx:225 desktop/src/pages/ScanOverview.tsx:72
+#: desktop/src/pages/Results.tsx:225
 msgid "Last scanned"
 msgstr "Dernière analyse"
 
@@ -5720,11 +5715,11 @@ msgstr "Select exactly one file before using VirusTotal"
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/ScanOverview.tsx:77
+#: desktop/src/pages/Scan.tsx:751
 msgid "Latest scan"
 msgstr "Dernière analyse"
 
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/ScanOverview.tsx:80
+#: desktop/src/pages/Scan.tsx:751
 msgid "View Results"
 msgstr "Afficher les résultats"
 
@@ -5732,25 +5727,13 @@ msgstr "Afficher les résultats"
 msgid "Virus database is not available"
 msgstr "La base de données virale n’est pas disponible"
 
-#: desktop/src/pages/Scan.tsx:753 desktop/src/pages/ScanOverview.tsx:67
+#: desktop/src/pages/Scan.tsx:753
 msgid "Update the database before starting a scan."
 msgstr "Mettez à jour la base de données avant de lancer une analyse."
 
 #: desktop/src/pages/Scan.tsx:753
 msgid "Open Database Updates"
 msgstr "Ouvrir les mises à jour de la base de données"
-
-#: desktop/src/pages/ScanOverview.tsx:44
-msgid "Scan overview updates are unavailable: {error}"
-msgstr "Scan overview updates are unavailable: {error}"
-
-#: desktop/src/pages/ScanOverview.tsx:59 desktop/src/protection.ts:109
-msgid "No scans recorded"
-msgstr "Aucune analyse enregistrée"
-
-#: desktop/src/pages/ScanOverview.tsx:67
-msgid "Scan files and folders with ClamAV."
-msgstr "Scan files and folders with ClamAV."
 
 #: desktop/src/pages/SettingsPreferences.tsx:47
 msgid "Node.js dependencies"
@@ -6843,6 +6826,10 @@ msgstr "Analyse complète de tous les répertoires accessibles du système"
 msgid "Scan of the user's home directory and personal files"
 msgstr ""
 "Analyse du répertoire personnel et des fichiers personnels de l’utilisateur"
+
+#: desktop/src/protection.ts:109
+msgid "No scans recorded"
+msgstr "Aucune analyse enregistrée"
 
 #: desktop/src/protection.ts:112
 msgid "less than an hour ago"
