@@ -1,4 +1,7 @@
-export type ConfigValues = Record<string, string[]>;
+import {
+  type ConfigValues,
+  isConfigDraftDirty,
+} from "./configDraft";
 
 export type ConfigDocument = {
   kind: "freshclam" | "clamd";
@@ -25,17 +28,9 @@ export function cloneValues(values: ConfigValues): ConfigValues {
   return Object.fromEntries(Object.entries(values).map(([key, value]) => [key, [...value]]));
 }
 
-export function valuesEqual(left: ConfigValues, right: ConfigValues): boolean {
-  const leftKeys = Object.keys(left).sort();
-  const rightKeys = Object.keys(right).sort();
-  return leftKeys.length === rightKeys.length && leftKeys.every((key, index) =>
-    key === rightKeys[index] && left[key].length === right[key].length && left[key].every((value, valueIndex) => value === right[key][valueIndex]),
-  );
-}
-
 /** True when the form holds edits (values or path) not yet reflected in the loaded baseline. */
 export function isConfigDirty(document: ConfigDocument): boolean {
-  return !valuesEqual(document.values, document.baseline) || document.path !== document.baselinePath;
+  return isConfigDraftDirty(document);
 }
 
 /**

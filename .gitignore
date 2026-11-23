@@ -105,17 +105,19 @@ linux-defender.zip
 *.env
 
 # Claude Code sandbox stubs (read-only device files blocking writes to protected paths)
-.vscode
-HEAD
-config
-hooks
-objects
-refs
-.bash_profile
-.bashrc
-.gitconfig
-.gitmodules
-.profile
+# Anchored to repo root so tracked compat files (.gitar/config/, scripts/hooks/)
+# are not silently ignored.
+/.vscode
+/HEAD
+/config
+/hooks
+/objects
+/refs
+/.bash_profile
+/.bashrc
+/.gitconfig
+/.gitmodules
+/.profile
 .ripgreprc
 .zprofile
 .zshrc

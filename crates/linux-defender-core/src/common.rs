@@ -398,12 +398,6 @@ impl Drop for Job {
     }
 }
 
-pub fn new_operation_id(id: Option<&str>) -> String {
-    id.filter(|value| !value.is_empty())
-        .map(ToOwned::to_owned)
-        .unwrap_or_else(|| Uuid::new_v4().to_string())
-}
-
 pub fn atomic_write(path: &Path, bytes: &[u8], mode: u32) -> AppResult<()> {
     let parent = match path
         .parent()

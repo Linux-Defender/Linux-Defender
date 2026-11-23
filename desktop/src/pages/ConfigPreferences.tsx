@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { notify, openExternal, openPaths, request } from "../api";
 import { type ManualConfiguration, useConfigurationRecovery } from "../ConfigurationRecovery";
-import { mergeAuthorizedConfig } from "../configAuthorize";
+import { cloneValues, mergeAuthorizedConfig } from "../configAuthorize";
 import { isHelperTrustError } from "../helperTrustError";
 import { _ } from "../i18n";
 import { addNewestFirst, parseListDraft } from "../pathList";
@@ -137,10 +137,6 @@ const defaultSchedule = (): Schedule => ({
   schedule_day_of_week: 0,
   schedule_day_of_month: 1,
 });
-
-function cloneValues(values: ConfigValues): ConfigValues {
-  return Object.fromEntries(Object.entries(values).map(([key, value]) => [key, [...value]]));
-}
 
 function schedulesEqual(left: Schedule, right: Schedule): boolean {
   return left.scheduled_scans_enabled === right.scheduled_scans_enabled

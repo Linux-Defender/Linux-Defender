@@ -28,37 +28,9 @@
   --shadow-glow: 0 0 0 1px rgba(124, 227, 139, 0.35),
     0 0 48px -8px rgba(124, 227, 139, 0.40);
 
-  --animate-scan-sweep: scan-sweep 2.4s ease-in-out 1;
-  --animate-caret-blink: caret-blink 1.1s steps(1) infinite;
   --animate-fade-up: fade-up 0.7s ease-out both;
 }
 
-@keyframes scan-sweep {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.8;
-  }
-  85% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-}
-@keyframes caret-blink {
-  0%,
-  49% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
 @keyframes fade-up {
   0% {
     opacity: 0;
@@ -165,23 +137,6 @@
 
   .card {
     @apply rounded-xl border border-white/[0.08] bg-white/[0.02] p-5;
-  }
-
-  /* Scan-line for the hero shield */
-  .scan-sweep::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(124, 227, 139, 0.0) 45%,
-      rgba(124, 227, 139, 0.55) 50%,
-      rgba(124, 227, 139, 0.0) 55%,
-      transparent 100%
-    );
-    animation: scan-sweep 2.4s ease-in-out 1;
-    pointer-events: none;
   }
 }
 
