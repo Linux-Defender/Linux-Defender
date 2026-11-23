@@ -8,14 +8,20 @@ use linux_defender_core::portmaster::{parse_authorization_response, parse_module
 
 fn audit_check(status: AuditStatus) -> AuditCheck {
     AuditCheck {
+        id: String::new(),
+        fingerprint: String::new(),
+        acknowledged: false,
         name: "fixture".to_owned(),
         status,
         detail: "fixture".to_owned(),
+        optional_missing: false,
+        essential: false,
         recommendation: None,
         install_command: None,
         info_url: None,
         launch_command: None,
         launch_label: None,
+        listening_ports: None,
     }
 }
 

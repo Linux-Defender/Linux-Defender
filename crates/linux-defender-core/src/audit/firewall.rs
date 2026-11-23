@@ -4,22 +4,46 @@ use super::{
 };
 use crate::host_probe::{run_limited_command, LimitedCommandOutput};
 use serde_json::Value;
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, VecDeque};
+use std::path::{Path, PathBuf};
 use std::time::Duration;
 
 const PROBE_TIMEOUT: Duration = Duration::from_secs(2);
+const AUTH_TIMEOUT: Duration = Duration::from_secs(120);
 const PROBE_OUTPUT_LIMIT: usize = 256 * 1024;
+const UFW_PATHS: [&str; 3] = ["/usr/sbin/ufw", "/usr/bin/ufw", "/sbin/ufw"];
 
 pub(super) fn check_firewall(ctx: &Context) -> AuditSection {
+    let ufw = inspect_ufw(&probe("ufw", &["status", "verbose"]));
+    let ufw_service_active = ufw == UfwState::Unknown && ufw_unprivileged_signal();
+    build_firewall(ctx, ufw, ufw_service_active)
+}
+
+/// Without root, `ufw status` itself cannot be read, but UFW's active/enabled
+/// state can still be observed: `systemctl is-active ufw` and
+/// `/etc/ufw/ufw.conf`'s `ENABLED=` line are both world-readable.
+fn ufw_unprivileged_signal() -> bool {
+    systemctl_reports_active(&probe("systemctl", &["is-active", "ufw"]))
+        || ufw_conf_reports_enabled(
+            &std::fs::read_to_string("/etc/ufw/ufw.conf").unwrap_or_default(),
+        )
+}
+
+fn systemctl_reports_active(output: &LimitedCommandOutput) -> bool {
+    usable(output) && output.stdout.trim() == "active"
+}
+
+fn ufw_conf_reports_enabled(text: &str) -> bool {
+    text.lines().any(|line| line.trim() == "ENABLED=yes")
+}
+
+fn build_firewall(ctx: &Context, ufw: UfwState, ufw_service_active: bool) -> AuditSection {
     let mut section = AuditSection::new(
         ctx,
         AuditCategory::Firewall,
         "Firewall",
         "security-medium-symbolic",
     );
-
-    let ufw = inspect_ufw(&probe("ufw", &["status", "verbose"]));
-    add_ufw(ctx, &mut section, ufw);
 
     let firewalld = inspect_firewalld_owner(&probe(
         "busctl",
@@ -38,6 +62,17 @@ pub(super) fn check_firewall(ctx: &Context) -> AuditSection {
             "org.fedoraproject.FirewallD1",
         ],
     ));
+
+    add_active_firewall(ctx, &mut section, ufw, firewalld, ufw_service_active);
+
+    add_ufw(
+        ctx,
+        &mut section,
+        ufw,
+        firewalld == FirewalldOwner::Present,
+        ufw_service_active,
+        || trusted_ufw_path().is_some(),
+    );
     add_firewalld(ctx, &mut section, firewalld);
     add_firewalld_command(ctx, &mut section, command_available("firewall-cmd"));
 
@@ -51,7 +86,7 @@ pub(super) fn check_firewall(ctx: &Context) -> AuditSection {
 
     if manager_overlap(ufw, firewalld) {
         let name = tr(ctx, "Firewall manager overlap");
-        section.push(AuditCheck::new(name, AuditStatus::Warning, tr(
+        section.push(AuditCheck::new("firewall_manager_overlap", name, AuditStatus::Warning, tr(
             ctx,
             "UFW is active while Firewalld owns its D-Bus name; their rule interaction was not evaluated.",
         )));
@@ -66,6 +101,180 @@ pub(super) fn check_firewall(ctx: &Context) -> AuditSection {
 
 fn probe(program: &str, args: &[&str]) -> LimitedCommandOutput {
     run_limited_command(program, args, PROBE_TIMEOUT, PROBE_OUTPUT_LIMIT)
+}
+
+fn trusted_ufw_path() -> Option<&'static str> {
+    UFW_PATHS
+        .into_iter()
+        .find(|path| trusted_host_executable(path))
+}
+
+fn trusted_host_executable(path: &str) -> bool {
+    trusted_path_with(
+        path,
+        |path| {
+            let path = path.to_str()?;
+            let output = probe("/usr/bin/stat", &["--format=%u:%f", "--", path]);
+            if !usable(&output) {
+                return None;
+            }
+            let (uid, mode) = output.stdout.trim().split_once(':')?;
+            Some((
+                uid.parse::<u32>().ok()?,
+                u32::from_str_radix(mode, 16).ok()?,
+            ))
+        },
+        |path| {
+            let path = path.to_str()?;
+            let output = probe("/usr/bin/readlink", &["--", path]);
+            if !usable(&output) {
+                return None;
+            }
+            Some(output.stdout.strip_suffix('\n')?.to_owned())
+        },
+    )
+}
+
+fn trusted_path_with(
+    path: &str,
+    metadata: impl Fn(&Path) -> Option<(u32, u32)>,
+    read_link: impl Fn(&Path) -> Option<String>,
+) -> bool {
+    fn components(path: &str) -> Option<VecDeque<String>> {
+        Path::new(path)
+            .components()
+            .map(|part| part.as_os_str().to_str().map(str::to_owned))
+            .collect()
+    }
+    let Some(mut pending) = components(path) else {
+        return false;
+    };
+    let Some((0, root_mode)) = metadata(Path::new("/")) else {
+        return false;
+    };
+    if root_mode & 0o170000 != 0o040000 || root_mode & 0o022 != 0 {
+        return false;
+    }
+    let mut current = PathBuf::from("/");
+    // Bound both symlink cycles and hostile host path lengths.
+    for _ in 0..40 {
+        let Some(part) = pending.pop_front() else {
+            return false;
+        };
+        match part.as_str() {
+            "/" => {
+                current = PathBuf::from("/");
+                continue;
+            }
+            "." => continue,
+            ".." => {
+                current.pop();
+                continue;
+            }
+            _ => current.push(part),
+        }
+        let Some((0, mode)) = metadata(&current) else {
+            return false;
+        };
+        match mode & 0o170000 {
+            0o120000 => {
+                let Some(target) = read_link(&current) else {
+                    return false;
+                };
+                let Some(mut target_parts) = components(&target) else {
+                    return false;
+                };
+                if target_parts.is_empty() {
+                    return false;
+                }
+                current.pop();
+                target_parts.append(&mut pending);
+                pending = target_parts;
+            }
+            0o040000 if !pending.is_empty() && mode & 0o022 == 0 => {}
+            0o100000 if pending.is_empty() && mode & 0o022 == 0 && mode & 0o100 != 0 => {
+                return true;
+            }
+            _ => return false,
+        }
+    }
+    false
+}
+
+pub(super) fn request_ufw_status(ctx: &Context) -> crate::AppResult<Value> {
+    let Some(path) = trusted_ufw_path() else {
+        // Translators: UFW is the name of the firewall application.
+        return Err(tr(ctx, "UFW was not found at a trusted system path."));
+    };
+    if !trusted_host_executable("/usr/bin/pkexec") {
+        return Err(tr(
+            ctx,
+            // Translators: UFW is the name of the firewall application.
+            "Administrator authorization for the UFW status check was denied or unavailable.",
+        ));
+    }
+    let output = run_limited_command(
+        "/usr/bin/pkexec",
+        &["--disable-internal-agent", path, "status", "verbose"],
+        AUTH_TIMEOUT,
+        PROBE_OUTPUT_LIMIT,
+    );
+    finish_ufw_status(ctx, &output, |state| build_firewall(ctx, state, false))
+}
+
+fn finish_ufw_status(
+    ctx: &Context,
+    output: &LimitedCommandOutput,
+    build: impl FnOnce(UfwState) -> AuditSection,
+) -> crate::AppResult<Value> {
+    if output.timed_out {
+        // Translators: UFW is the name of the firewall application.
+        return Err(tr(ctx, "The UFW status check timed out."));
+    }
+    if output.truncated || output.invalid_utf8 || output.code.is_none() {
+        return Err(tr(
+            ctx,
+            // Translators: UFW is the name of the firewall application.
+            "The UFW status check returned incomplete or invalid output.",
+        ));
+    }
+    match output.code {
+        Some(126) => return Ok(serde_json::json!({"cancelled": true})),
+        Some(127) => {
+            return Err(tr(
+                ctx,
+                // Translators: UFW is the name of the firewall application.
+                "Administrator authorization for the UFW status check was denied or unavailable.",
+            ));
+        }
+        Some(0) => {}
+        _ => {
+            // Translators: UFW is the name of the firewall application.
+            return Err(tr(ctx, "The UFW status check failed."));
+        }
+    }
+    let state = inspect_ufw(output);
+    if matches!(
+        state,
+        UfwState::Unknown
+            | UfwState::Active {
+                incoming: InputPolicy::Unverified,
+                ..
+            }
+    ) {
+        return Err(tr(
+            ctx,
+            // Translators: UFW is the name of the firewall application.
+            "The UFW status check returned incomplete or invalid output.",
+        ));
+    }
+    let mut section = build(state);
+    super::acknowledgements::apply(ctx, &mut section);
+    ctx.emit(
+        "audit-progress",
+        serde_json::json!({"section": section, "index": 0, "total": 1}),
+    );
+    Ok(serde_json::json!({"cancelled": false, "section": section}))
 }
 
 fn usable(output: &LimitedCommandOutput) -> bool {
@@ -96,7 +305,12 @@ enum UfwState {
 }
 
 fn inspect_ufw(output: &LimitedCommandOutput) -> UfwState {
-    if !usable(output) {
+    if !usable(output)
+        || output
+            .stdout
+            .chars()
+            .any(|c| c.is_control() && !matches!(c, '\n' | '\r' | '\t'))
+    {
         return UfwState::Unknown;
     }
     parse_ufw_status(&output.stdout)
@@ -120,22 +334,23 @@ fn parse_ufw_status(text: &str) -> UfwState {
     if !active {
         return UfwState::Inactive;
     }
-    let incoming = text
+    let mut defaults = text
         .lines()
-        .find_map(|line| line.strip_prefix("Default: "))
-        .and_then(|line| {
-            line.split(',').find_map(|part| {
-                let part = part.trim();
-                let value = part.strip_suffix(" (incoming)")?;
-                Some(match value {
-                    "deny" => InputPolicy::Deny,
-                    "reject" => InputPolicy::Reject,
-                    "allow" => InputPolicy::Allow,
-                    _ => InputPolicy::Unverified,
-                })
-            })
-        })
-        .unwrap_or(InputPolicy::Unverified);
+        .filter_map(|line| line.strip_prefix("Default: "));
+    let incoming = match (defaults.next(), defaults.next()) {
+        (Some(line), None) => {
+            let mut policies = line
+                .split(',')
+                .filter_map(|part| part.trim().strip_suffix(" (incoming)"));
+            match (policies.next(), policies.next()) {
+                (Some("deny"), None) => InputPolicy::Deny,
+                (Some("reject"), None) => InputPolicy::Reject,
+                (Some("allow"), None) => InputPolicy::Allow,
+                _ => InputPolicy::Unverified,
+            }
+        }
+        _ => InputPolicy::Unverified,
+    };
     let listed_exceptions = text.lines().any(|line| {
         let mut action_seen = false;
         for field in line.split_whitespace() {
@@ -153,48 +368,80 @@ fn parse_ufw_status(text: &str) -> UfwState {
     }
 }
 
-fn add_ufw(ctx: &Context, section: &mut AuditSection, state: UfwState) {
-    let name = tr(ctx, "UFW Firewall");
-    let mut row = match state {
+fn ufw_status_check(
+    ctx: &Context,
+    name: String,
+    state: UfwState,
+    other_manager_active: bool,
+    service_active: bool,
+) -> AuditCheck {
+    match state {
         UfwState::Active {
             incoming: InputPolicy::Deny,
             listed_exceptions: true,
-        } => AuditCheck::new(name, AuditStatus::Pass, tr(
+        } => AuditCheck::new("ufw", name, AuditStatus::Pass, tr(
             ctx,
             "UFW is active; the default incoming policy is deny. Listed rules may allow exceptions.",
         )),
         UfwState::Active {
             incoming: InputPolicy::Reject,
             listed_exceptions: true,
-        } => AuditCheck::new(name, AuditStatus::Pass, tr(
+        } => AuditCheck::new("ufw", name, AuditStatus::Pass, tr(
             ctx,
             "UFW is active; the default incoming policy is reject. Listed rules may allow exceptions.",
         )),
         UfwState::Active {
             incoming: InputPolicy::Deny,
             listed_exceptions: false,
-        } => AuditCheck::new(name, AuditStatus::Pass, tr(ctx, "UFW is active; the default incoming policy is deny.")),
+        } => AuditCheck::new("ufw", name, AuditStatus::Pass, tr(ctx, "UFW is active; the default incoming policy is deny.")),
         UfwState::Active {
             incoming: InputPolicy::Reject,
             listed_exceptions: false,
-        } => AuditCheck::new(name, AuditStatus::Pass, tr(ctx, "UFW is active; the default incoming policy is reject.")),
+        } => AuditCheck::new("ufw", name, AuditStatus::Pass, tr(ctx, "UFW is active; the default incoming policy is reject.")),
         UfwState::Active {
             incoming: InputPolicy::Allow,
             ..
-        } => AuditCheck::new(name, AuditStatus::Warning, tr(
+        } => AuditCheck::new("ufw", name, AuditStatus::Warning, tr(
             ctx,
             "UFW is active, but the default incoming policy allows traffic.",
         )),
         UfwState::Active {
             incoming: InputPolicy::Unverified,
             ..
-        } => AuditCheck::new(name, AuditStatus::Unknown, tr(
+        } => AuditCheck::new("ufw", name, AuditStatus::Unknown, tr(
             ctx,
             "UFW is active, but its default incoming policy could not be verified.",
         )),
-        UfwState::Inactive => AuditCheck::new(name, AuditStatus::Warning, tr(ctx, "UFW reports inactive.")),
-        UfwState::Unknown => AuditCheck::new(name, AuditStatus::Unknown, tr(ctx, "UFW status could not be inspected safely.")),
-    };
+        UfwState::Inactive if other_manager_active => AuditCheck::new("ufw", name, AuditStatus::Pass, tr(
+            ctx,
+            "UFW is inactive, but another firewall manager is active and protecting the system.",
+        )),
+        UfwState::Inactive => AuditCheck::new("ufw", name, AuditStatus::Warning, tr(ctx, "UFW reports inactive.")),
+        UfwState::Unknown if service_active => AuditCheck::new("ufw", name, AuditStatus::Pass, tr(
+            ctx,
+            "UFW's service is active, but its default firewall policy could not be verified without administrator access.",
+        )),
+        UfwState::Unknown => AuditCheck::new("ufw", name, AuditStatus::Unknown, tr(ctx, "UFW status could not be inspected safely.")),
+    }
+}
+
+fn add_ufw(
+    ctx: &Context,
+    section: &mut AuditSection,
+    state: UfwState,
+    other_manager_active: bool,
+    service_active: bool,
+    trusted_available: impl FnOnce() -> bool,
+) {
+    let name = tr(ctx, "UFW Firewall");
+    let mut row = ufw_status_check(ctx, name, state, other_manager_active, service_active);
+    if state == UfwState::Unknown && trusted_available() {
+        row.launch_command = Some("__ufw_status__".to_owned());
+        // Translators: UFW is the name of the firewall application.
+        row.launch_label = Some(tr(ctx, "Check UFW with administrator access"));
+        // Translators: UFW is the name of the firewall application.
+        row.recommendation = Some(tr(ctx, "Administrator access may be required to read UFW status. This check does not change firewall settings."));
+    }
     row.info_url = Some(URL_UFW.to_owned());
     section.push(row);
 }
@@ -233,15 +480,15 @@ fn parse_firewalld_owner(text: &str) -> FirewalldOwner {
 fn add_firewalld(ctx: &Context, section: &mut AuditSection, owner: FirewalldOwner) {
     let name = tr(ctx, "Firewalld");
     let mut row = match owner {
-        FirewalldOwner::Present => AuditCheck::new(name, AuditStatus::Unknown, tr(
+        FirewalldOwner::Present => AuditCheck::new("firewalld", name, AuditStatus::Unknown, tr(
             ctx,
             "Firewalld owns its D-Bus name; readiness and firewall policy were not queried.",
         )),
-        FirewalldOwner::Absent => AuditCheck::new(name, AuditStatus::Unknown, tr(
+        FirewalldOwner::Absent => AuditCheck::new("firewalld", name, AuditStatus::Unknown, tr(
             ctx,
             "No Firewalld D-Bus owner was observed; this does not establish kernel firewall policy.",
         )),
-        FirewalldOwner::Unknown => AuditCheck::new(name, AuditStatus::Unknown, tr(
+        FirewalldOwner::Unknown => AuditCheck::new("firewalld", name, AuditStatus::Unknown, tr(
             ctx,
             "Firewalld ownership could not be verified; readiness and firewall policy were not queried.",
         )),
@@ -259,12 +506,14 @@ fn add_firewalld_command(ctx: &Context, section: &mut AuditSection, present: boo
     let name = tr(ctx, "firewall-cmd");
     let row = if present {
         AuditCheck::new(
+            "firewall_cmd",
             name,
             AuditStatus::Pass,
             tr(ctx, "firewall-cmd is installed; it was not executed."),
         )
     } else {
         AuditCheck::new(
+            "firewall_cmd",
             name,
             AuditStatus::Unknown,
             tr(
@@ -407,15 +656,15 @@ fn combine_family_evidence(policies: &[FamilyEvidence]) -> FamilyEvidence {
 fn add_nftables(ctx: &Context, section: &mut AuditSection, assessment: Option<NativeAssessment>) {
     let name = tr(ctx, "nftables (native rules)");
     let mut row = match assessment.map(nft_status) {
-        Some(AuditStatus::Pass) => AuditCheck::new(name, AuditStatus::Pass, tr(
+        Some(AuditStatus::Pass) => AuditCheck::new("nftables", name, AuditStatus::Pass, tr(
             ctx,
             "nftables has restrictive default input policies for IPv4 and IPv6; individual rules may allow exceptions.",
         )),
-        Some(AuditStatus::Warning) => AuditCheck::new(name, AuditStatus::Warning, tr(
+        Some(AuditStatus::Warning) => AuditCheck::new("nftables", name, AuditStatus::Warning, tr(
             ctx,
             "nftables reports a permissive default input policy; remaining coverage may be incomplete",
         )),
-        _ => AuditCheck::new(name, AuditStatus::Unknown, tr(
+        _ => AuditCheck::new("nftables", name, AuditStatus::Unknown, tr(
             ctx,
             "nftables input policy coverage could not be verified for both IPv4 and IPv6",
         )),
@@ -477,12 +726,12 @@ fn parse_iptables_save(text: &str) -> Option<FamilyEvidence> {
 fn add_iptables4(ctx: &Context, section: &mut AuditSection, evidence: Option<FamilyEvidence>) {
     let name = tr(ctx, "iptables (IPv4)");
     let row = match evidence {
-        Some(FamilyEvidence::Restrictive) => AuditCheck::new(name, AuditStatus::Pass, tr(
+        Some(FamilyEvidence::Restrictive) => AuditCheck::new("iptables_ipv4", name, AuditStatus::Pass, tr(
             ctx,
             "iptables has a restrictive INPUT default policy; individual rules may allow exceptions.",
         )),
-        Some(FamilyEvidence::Permissive) => AuditCheck::new(name, AuditStatus::Warning, tr(ctx, "iptables has a permissive INPUT default policy")),
-        _ => AuditCheck::new(name, AuditStatus::Unknown, tr(ctx, "iptables INPUT policy could not be verified")),
+        Some(FamilyEvidence::Permissive) => AuditCheck::new("iptables_ipv4", name, AuditStatus::Warning, tr(ctx, "iptables has a permissive INPUT default policy")),
+        _ => AuditCheck::new("iptables_ipv4", name, AuditStatus::Unknown, tr(ctx, "iptables INPUT policy could not be verified")),
     };
     section.push(row);
 }
@@ -490,12 +739,12 @@ fn add_iptables4(ctx: &Context, section: &mut AuditSection, evidence: Option<Fam
 fn add_iptables6(ctx: &Context, section: &mut AuditSection, evidence: Option<FamilyEvidence>) {
     let name = tr(ctx, "iptables (IPv6)");
     let row = match evidence {
-        Some(FamilyEvidence::Restrictive) => AuditCheck::new(name, AuditStatus::Pass, tr(
+        Some(FamilyEvidence::Restrictive) => AuditCheck::new("iptables_ipv6", name, AuditStatus::Pass, tr(
             ctx,
             "ip6tables has a restrictive INPUT default policy; individual rules may allow exceptions.",
         )),
-        Some(FamilyEvidence::Permissive) => AuditCheck::new(name, AuditStatus::Warning, tr(ctx, "ip6tables has a permissive INPUT default policy")),
-        _ => AuditCheck::new(name, AuditStatus::Unknown, tr(ctx, "ip6tables INPUT policy could not be verified")),
+        Some(FamilyEvidence::Permissive) => AuditCheck::new("iptables_ipv6", name, AuditStatus::Warning, tr(ctx, "ip6tables has a permissive INPUT default policy")),
+        _ => AuditCheck::new("iptables_ipv6", name, AuditStatus::Unknown, tr(ctx, "ip6tables INPUT policy could not be verified")),
     };
     section.push(row);
 }
@@ -504,16 +753,92 @@ fn manager_overlap(ufw: UfwState, firewalld: FirewalldOwner) -> bool {
     matches!(ufw, UfwState::Active { .. }) && firewalld == FirewalldOwner::Present
 }
 
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+enum ActiveManager {
+    Ufw,
+    Firewalld,
+    Both,
+    None,
+    Unknown,
+}
+
+fn active_manager(
+    ufw: UfwState,
+    firewalld: FirewalldOwner,
+    ufw_service_active: bool,
+) -> ActiveManager {
+    match (ufw, firewalld) {
+        (UfwState::Active { .. }, FirewalldOwner::Present) => ActiveManager::Both,
+        (UfwState::Active { .. }, _) => ActiveManager::Ufw,
+        (_, FirewalldOwner::Present) => ActiveManager::Firewalld,
+        (UfwState::Inactive, FirewalldOwner::Absent) => ActiveManager::None,
+        (UfwState::Inactive, FirewalldOwner::Unknown) => ActiveManager::Unknown,
+        (UfwState::Unknown, _) if ufw_service_active => ActiveManager::Ufw,
+        (UfwState::Unknown, _) => ActiveManager::Unknown,
+    }
+}
+
+/// A single synthesized row for the Essentials summary: exactly one active
+/// firewall manager, instead of per-backend rows that would otherwise
+/// compete with each other (see the detailed, non-essential rows below).
+fn add_active_firewall(
+    ctx: &Context,
+    section: &mut AuditSection,
+    ufw: UfwState,
+    firewalld: FirewalldOwner,
+    ufw_service_active: bool,
+) {
+    let name = tr(ctx, "Firewall");
+    let manager = active_manager(ufw, firewalld, ufw_service_active);
+    let mut row = match manager {
+        ActiveManager::Both => AuditCheck::new("firewall", name, AuditStatus::Warning, tr(
+            ctx,
+            "UFW and Firewalld are both active; review which one is meant to control your firewall rules.",
+        )),
+        ActiveManager::Ufw => ufw_status_check(ctx, name, ufw, false, ufw_service_active),
+        ActiveManager::Firewalld => AuditCheck::new("firewall", name, AuditStatus::Pass, tr(
+            ctx,
+            "Firewalld is active and managing the firewall.",
+        )),
+        ActiveManager::None => {
+            let mut row = AuditCheck::new("firewall", name, AuditStatus::Warning, tr(
+                ctx,
+                "No active firewall manager was detected.",
+            ));
+            row.recommendation = Some(tr(ctx, "Enable UFW or Firewalld to protect the system."));
+            row
+        }
+        ActiveManager::Unknown => AuditCheck::new("firewall", name, AuditStatus::Unknown, tr(
+            ctx,
+            "The active firewall manager could not be verified.",
+        )),
+    };
+    row.id = "firewall".to_owned();
+    row.essential = true;
+    row.info_url = Some(if manager == ActiveManager::Firewalld {
+        URL_FIREWALLD.to_owned()
+    } else {
+        URL_UFW.to_owned()
+    });
+    section.push(row);
+}
+
 fn add_gufw(ctx: &Context, section: &mut AuditSection, present: bool) {
     let name = tr(ctx, "Gufw");
     let mut row = if present {
-        AuditCheck::new(name, AuditStatus::Pass, tr(ctx, "Gufw is available."))
+        AuditCheck::new(
+            "gufw",
+            name,
+            AuditStatus::Pass,
+            tr(ctx, "Gufw is available."),
+        )
     } else {
-        AuditCheck::new(name, AuditStatus::Skipped, tr(
+        AuditCheck::new("gufw", name, AuditStatus::Skipped, tr(
             ctx,
             "Gufw was not confirmed; this optional inventory does not affect firewall policy analysis.",
         ))
     };
+    row.optional_missing = !present;
     if present {
         row.launch_command = Some("gufw".to_owned());
         row.launch_label = Some(tr(ctx, "Open Gufw"));
@@ -525,16 +850,18 @@ fn add_firewall_config(ctx: &Context, section: &mut AuditSection, present: bool)
     let name = tr(ctx, "Firewall Config");
     let mut row = if present {
         AuditCheck::new(
+            "firewall_config",
             name,
             AuditStatus::Pass,
             tr(ctx, "Firewall Config is available."),
         )
     } else {
-        AuditCheck::new(name, AuditStatus::Skipped, tr(
+        AuditCheck::new("firewall_config", name, AuditStatus::Skipped, tr(
             ctx,
             "Firewall Config was not confirmed; this optional inventory does not affect firewall policy analysis.",
         ))
     };
+    row.optional_missing = !present;
     if present {
         row.launch_command = Some("firewall-config".to_owned());
         row.launch_label = Some(tr(ctx, "Open Firewall Config"));
@@ -576,8 +903,9 @@ fn dpkg_status_installed(text: &str) -> bool {
 
 fn add_plasma_firewall(ctx: &Context, section: &mut AuditSection, installed: bool) {
     let name = tr(ctx, "Plasma Firewall");
-    let row = if installed {
+    let mut row = if installed {
         AuditCheck::new(
+            "plasma_firewall",
             name,
             AuditStatus::Pass,
             tr(
@@ -587,6 +915,7 @@ fn add_plasma_firewall(ctx: &Context, section: &mut AuditSection, installed: boo
         )
     } else {
         AuditCheck::new(
+            "plasma_firewall",
             name,
             AuditStatus::Skipped,
             tr(
@@ -595,6 +924,7 @@ fn add_plasma_firewall(ctx: &Context, section: &mut AuditSection, installed: boo
             ),
         )
     };
+    row.optional_missing = !installed;
     section.push(row);
 }
 
@@ -660,6 +990,217 @@ mod tests {
     }
 
     #[test]
+    fn trusted_ufw_path_rejects_unsafe_owners_modes_and_symlink_resolution() {
+        let mut entries = BTreeMap::from([
+            ("/", (0, 0o040755)),
+            ("/usr", (0, 0o040755)),
+            ("/usr/sbin", (0, 0o040755)),
+            ("/usr/sbin/ufw", (0, 0o120777)),
+            ("/usr/lib", (0, 0o040755)),
+            ("/usr/lib/ufw", (0, 0o100755)),
+            ("/tmp", (0, 0o041777)),
+        ]);
+        let trusted = |entries: &BTreeMap<&str, (u32, u32)>, target: &str| {
+            trusted_path_with(
+                "/usr/sbin/ufw",
+                |path| entries.get(path.to_str()?).copied(),
+                |_| Some(target.to_owned()),
+            )
+        };
+        assert!(trusted(&entries, "../lib/ufw"));
+        assert!(!trusted(&entries, "/tmp/ufw"));
+        assert!(!trusted(&entries, "/usr/sbin/ufw"));
+        entries.insert("/usr/lib/ufw", (1000, 0o100755));
+        assert!(!trusted(&entries, "../lib/ufw"));
+        entries.insert("/usr/lib/ufw", (0, 0o100775));
+        assert!(!trusted(&entries, "../lib/ufw"));
+        entries.insert("/usr/lib/ufw", (0, 0o100757));
+        assert!(!trusted(&entries, "../lib/ufw"));
+        entries.insert("/usr/lib/ufw", (0, 0o100644));
+        assert!(!trusted(&entries, "../lib/ufw"));
+        entries.insert("/usr/lib/ufw", (0, 0o100755));
+        entries.insert("/usr/lib", (0, 0o040775));
+        assert!(!trusted(&entries, "../lib/ufw"));
+        entries.insert("/usr/lib", (0, 0o040755));
+        entries.insert("/usr/sbin/ufw", (1000, 0o120777));
+        assert!(!trusted(&entries, "../lib/ufw"));
+    }
+
+    #[test]
+    fn ufw_admin_action_requires_unknown_state_and_trusted_executable() {
+        let temp = TempDir::new().expect("create temporary context root");
+        let ctx = test_context(&temp);
+        let mut section = AuditSection::new(
+            &ctx,
+            AuditCategory::Firewall,
+            "Firewall",
+            "security-medium-symbolic",
+        );
+        add_ufw(&ctx, &mut section, UfwState::Unknown, false, false, || {
+            false
+        });
+        add_ufw(&ctx, &mut section, UfwState::Unknown, false, false, || true);
+        add_ufw(&ctx, &mut section, UfwState::Inactive, false, false, || {
+            true
+        });
+
+        assert_eq!(section.checks[0].launch_command, None);
+        assert_eq!(section.checks[0].recommendation, None);
+        assert_eq!(
+            section.checks[1].launch_command.as_deref(),
+            Some("__ufw_status__")
+        );
+        assert_eq!(
+            section.checks[1].launch_label.as_deref(),
+            Some("Check UFW with administrator access")
+        );
+        assert_eq!(section.checks[2].launch_command, None);
+    }
+
+    #[test]
+    fn authenticated_ufw_output_controls_returned_and_emitted_firewall_rows() {
+        use std::sync::{Arc, Mutex};
+
+        let temp = TempDir::new().expect("create temporary context root");
+        let events = Arc::new(Mutex::new(Vec::new()));
+        let received = Arc::clone(&events);
+        let ctx = test_context(&temp).with_emitter(move |event| {
+            received.lock().expect("event lock").push(event);
+        });
+        for (output, expected) in [
+            (
+                "Status: active\nDefault: deny (incoming), allow (outgoing)\n",
+                AuditStatus::Pass,
+            ),
+            (
+                "Status: active\nDefault: reject (incoming), allow (outgoing)\n",
+                AuditStatus::Pass,
+            ),
+            (
+                "Status: active\nDefault: allow (incoming), allow (outgoing)\n",
+                AuditStatus::Warning,
+            ),
+            ("Status: inactive\n", AuditStatus::Warning),
+        ] {
+            let result = finish_ufw_status(
+                &ctx,
+                &completed_output(output.as_bytes().to_vec()),
+                |state| {
+                    let mut section = AuditSection::new(
+                        &ctx,
+                        AuditCategory::Firewall,
+                        "Firewall",
+                        "security-medium-symbolic",
+                    );
+                    add_ufw(&ctx, &mut section, state, false, false, || false);
+                    section
+                },
+            )
+            .expect("valid UFW status");
+            assert_eq!(result["cancelled"], false);
+            let section: AuditSection =
+                serde_json::from_value(result["section"].clone()).expect("section");
+            assert_eq!(section.category, AuditCategory::Firewall);
+            assert_eq!(section.checks[0].status, expected);
+            assert_eq!(section.overall_status, expected);
+            let mut events = events.lock().expect("event lock");
+            let event = events.pop().expect("progress event");
+            assert_eq!(event.event, "audit-progress");
+            assert_eq!(event.data["section"], result["section"]);
+            assert!(events.is_empty());
+        }
+    }
+
+    #[test]
+    fn authenticated_ufw_cancellation_denial_and_bad_output_never_emit_sections() {
+        use std::sync::{Arc, Mutex};
+
+        let temp = TempDir::new().expect("create temporary context root");
+        let events = Arc::new(Mutex::new(Vec::new()));
+        let received = Arc::clone(&events);
+        let ctx = test_context(&temp).with_emitter(move |event| {
+            received.lock().expect("event lock").push(event);
+        });
+        let mut output = completed_output(b"Status: active\nDefault: deny (incoming)\n".to_vec());
+        output.code = Some(126);
+        let cancelled = finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild"));
+        assert_eq!(
+            cancelled.expect("cancelled"),
+            serde_json::json!({"cancelled": true})
+        );
+
+        output.code = Some(127);
+        assert_eq!(
+            finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).unwrap_err(),
+            "Administrator authorization for the UFW status check was denied or unavailable."
+        );
+        output.code = Some(1);
+        assert_eq!(
+            finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).unwrap_err(),
+            "The UFW status check failed."
+        );
+        output.code = Some(0);
+        output.timed_out = true;
+        assert_eq!(
+            finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).unwrap_err(),
+            "The UFW status check timed out."
+        );
+        output.timed_out = false;
+        output.truncated = true;
+        assert_eq!(
+            finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).unwrap_err(),
+            "The UFW status check returned incomplete or invalid output."
+        );
+        output.truncated = false;
+        output.invalid_utf8 = true;
+        assert!(finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).is_err());
+        output.invalid_utf8 = false;
+        output.code = None;
+        assert!(finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).is_err());
+        output.code = Some(0);
+        output.stdout = "Status: active-ish\n".to_owned();
+        assert!(finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).is_err());
+        output.stdout = "Status: active\n".to_owned();
+        assert!(finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).is_err());
+        output.stdout = "Status: active\nDefault: deny (incoming)\n\0".to_owned();
+        assert!(finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).is_err());
+        output.stdout =
+            "Status: active\nDefault: deny (incoming)\nDefault: allow (incoming)\n".to_owned();
+        assert!(finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).is_err());
+        output.stdout = "Status: active\nDefault: deny (incoming), allow (incoming)\n".to_owned();
+        assert!(finish_ufw_status(&ctx, &output, |_| panic!("must not rebuild")).is_err());
+        assert!(events.lock().expect("event lock").is_empty());
+    }
+
+    #[test]
+    fn optional_missing_marks_only_unconfirmed_management_inventory() {
+        let temp = TempDir::new().expect("create temporary context root");
+        let ctx = test_context(&temp);
+        let mut section = AuditSection::new(
+            &ctx,
+            AuditCategory::Firewall,
+            "Firewall",
+            "security-medium-symbolic",
+        );
+
+        for present in [false, true] {
+            add_gufw(&ctx, &mut section, present);
+            add_firewall_config(&ctx, &mut section, present);
+            add_plasma_firewall(&ctx, &mut section, present);
+        }
+        add_ufw(&ctx, &mut section, UfwState::Inactive, false, false, || {
+            false
+        });
+        add_ufw(&ctx, &mut section, UfwState::Unknown, false, false, || {
+            false
+        });
+        add_nftables(&ctx, &mut section, None);
+
+        assert!(section.checks[..3].iter().all(|row| row.optional_missing));
+        assert!(section.checks[3..].iter().all(|row| !row.optional_missing));
+    }
+
+    #[test]
     fn ufw_requires_an_exact_successful_status_header() {
         assert_eq!(
             parse_ufw_status("Status: active\nDefault: deny (incoming), allow (outgoing)\n"),
@@ -708,7 +1249,14 @@ mod tests {
             "Firewall",
             "security-medium-symbolic",
         );
-        add_ufw(&ctx, &mut qualified, with_ipv6_exception);
+        add_ufw(
+            &ctx,
+            &mut qualified,
+            with_ipv6_exception,
+            false,
+            false,
+            || false,
+        );
         let qualified = qualified.checks.pop().expect("qualified UFW row");
 
         let mut unqualified = AuditSection::new(
@@ -717,7 +1265,14 @@ mod tests {
             "Firewall",
             "security-medium-symbolic",
         );
-        add_ufw(&ctx, &mut unqualified, without_exception);
+        add_ufw(
+            &ctx,
+            &mut unqualified,
+            without_exception,
+            false,
+            false,
+            || false,
+        );
         let unqualified = unqualified.checks.pop().expect("unqualified UFW row");
 
         assert_eq!(qualified.status, AuditStatus::Pass);
@@ -772,6 +1327,204 @@ mod tests {
             FirewalldOwner::Present
         ));
         assert!(!manager_overlap(active, FirewalldOwner::Absent));
+    }
+
+    #[test]
+    fn active_manager_picks_exactly_one_backend_or_flags_the_unclear_cases() {
+        let active = UfwState::Active {
+            incoming: InputPolicy::Deny,
+            listed_exceptions: false,
+        };
+        // None active: no protection at all.
+        assert_eq!(
+            active_manager(UfwState::Inactive, FirewalldOwner::Absent, false),
+            ActiveManager::None
+        );
+        // UFW only.
+        assert_eq!(
+            active_manager(active, FirewalldOwner::Absent, false),
+            ActiveManager::Ufw
+        );
+        // Firewalld only.
+        assert_eq!(
+            active_manager(UfwState::Inactive, FirewalldOwner::Present, false),
+            ActiveManager::Firewalld
+        );
+        // Both active.
+        assert_eq!(
+            active_manager(active, FirewalldOwner::Present, false),
+            ActiveManager::Both
+        );
+        // Unknown: neither backend could be verified.
+        assert_eq!(
+            active_manager(UfwState::Unknown, FirewalldOwner::Absent, false),
+            ActiveManager::Unknown
+        );
+        assert_eq!(
+            active_manager(UfwState::Unknown, FirewalldOwner::Unknown, false),
+            ActiveManager::Unknown
+        );
+        assert_eq!(
+            active_manager(UfwState::Inactive, FirewalldOwner::Unknown, false),
+            ActiveManager::Unknown
+        );
+    }
+
+    #[test]
+    fn active_manager_trusts_the_unprivileged_ufw_service_signal_when_status_is_unreadable() {
+        // `ufw status` requires root, but systemd/ufw.conf still confirm UFW is on.
+        assert_eq!(
+            active_manager(UfwState::Unknown, FirewalldOwner::Absent, true),
+            ActiveManager::Ufw
+        );
+        assert_eq!(
+            active_manager(UfwState::Unknown, FirewalldOwner::Unknown, true),
+            ActiveManager::Ufw
+        );
+        // Firewalld's D-Bus ownership is itself an unprivileged signal and still wins.
+        assert_eq!(
+            active_manager(UfwState::Unknown, FirewalldOwner::Present, true),
+            ActiveManager::Firewalld
+        );
+    }
+
+    #[test]
+    fn add_active_firewall_produces_one_essential_row_per_case() {
+        let temp = TempDir::new().expect("create temporary context root");
+        let ctx = test_context(&temp);
+        let active = UfwState::Active {
+            incoming: InputPolicy::Deny,
+            listed_exceptions: false,
+        };
+        let cases = [
+            (
+                UfwState::Inactive,
+                FirewalldOwner::Absent,
+                AuditStatus::Warning,
+            ),
+            (active, FirewalldOwner::Absent, AuditStatus::Pass),
+            (
+                UfwState::Inactive,
+                FirewalldOwner::Present,
+                AuditStatus::Pass,
+            ),
+            (active, FirewalldOwner::Present, AuditStatus::Warning),
+            (
+                UfwState::Unknown,
+                FirewalldOwner::Absent,
+                AuditStatus::Unknown,
+            ),
+        ];
+        for (ufw, firewalld, expected) in cases {
+            let mut section = AuditSection::new(
+                &ctx,
+                AuditCategory::Firewall,
+                "Firewall",
+                "security-medium-symbolic",
+            );
+            add_active_firewall(&ctx, &mut section, ufw, firewalld, false);
+            assert_eq!(section.checks.len(), 1);
+            assert!(section.checks[0].essential);
+            assert_eq!(section.checks[0].status, expected);
+        }
+    }
+
+    /// Mint-style host: `systemctl is-active ufw` (or ufw.conf) confirms UFW
+    /// is on, but `ufw status` itself cannot be read without root. The
+    /// Firewall essential row must report UFW as active, not "unclear".
+    #[test]
+    fn essential_firewall_row_trusts_ufw_service_signal_when_status_is_unreadable() {
+        let temp = TempDir::new().expect("create temporary context root");
+        let ctx = test_context(&temp);
+        let mut section = AuditSection::new(
+            &ctx,
+            AuditCategory::Firewall,
+            "Firewall",
+            "security-medium-symbolic",
+        );
+        add_active_firewall(
+            &ctx,
+            &mut section,
+            UfwState::Unknown,
+            FirewalldOwner::Absent,
+            true,
+        );
+        assert_eq!(section.checks.len(), 1);
+        assert!(section.checks[0].essential);
+        assert_eq!(section.checks[0].status, AuditStatus::Pass);
+
+        let mut unsignaled = AuditSection::new(
+            &ctx,
+            AuditCategory::Firewall,
+            "Firewall",
+            "security-medium-symbolic",
+        );
+        add_active_firewall(
+            &ctx,
+            &mut unsignaled,
+            UfwState::Unknown,
+            FirewalldOwner::Absent,
+            false,
+        );
+        assert_eq!(unsignaled.checks[0].status, AuditStatus::Unknown);
+    }
+
+    /// Same unreadable-without-root scenario, but for the detailed "UFW
+    /// Firewall" row: it must still offer the administrator-access check for
+    /// the (still unverified) default policy.
+    #[test]
+    fn ufw_detail_row_reports_active_but_keeps_the_admin_check_for_default_policy() {
+        let temp = TempDir::new().expect("create temporary context root");
+        let ctx = test_context(&temp);
+        let mut section = AuditSection::new(
+            &ctx,
+            AuditCategory::Firewall,
+            "Firewall",
+            "security-medium-symbolic",
+        );
+        add_ufw(&ctx, &mut section, UfwState::Unknown, false, true, || true);
+        assert_eq!(section.checks[0].status, AuditStatus::Pass);
+        assert_eq!(
+            section.checks[0].launch_command.as_deref(),
+            Some("__ufw_status__")
+        );
+    }
+
+    #[test]
+    fn inactive_ufw_does_not_warn_when_firewalld_is_protecting_the_system() {
+        let temp = TempDir::new().expect("create temporary context root");
+        let ctx = test_context(&temp);
+        let mut protected = AuditSection::new(
+            &ctx,
+            AuditCategory::Firewall,
+            "Firewall",
+            "security-medium-symbolic",
+        );
+        add_ufw(
+            &ctx,
+            &mut protected,
+            UfwState::Inactive,
+            true,
+            false,
+            || false,
+        );
+        assert_eq!(protected.checks[0].status, AuditStatus::Pass);
+
+        let mut unprotected = AuditSection::new(
+            &ctx,
+            AuditCategory::Firewall,
+            "Firewall",
+            "security-medium-symbolic",
+        );
+        add_ufw(
+            &ctx,
+            &mut unprotected,
+            UfwState::Inactive,
+            false,
+            false,
+            || false,
+        );
+        assert_eq!(unprotected.checks[0].status, AuditStatus::Warning);
     }
 
     #[test]
@@ -899,6 +1652,27 @@ mod tests {
         assert!(!probe_is_usable(Some(0), false, true, false));
         assert!(!probe_is_usable(Some(0), false, false, true));
         assert!(probe_is_usable(Some(0), false, false, false));
+    }
+
+    #[test]
+    fn systemctl_reports_active_requires_an_exact_unprivileged_active_result() {
+        assert!(systemctl_reports_active(&completed_output(
+            b"active\n".to_vec()
+        )));
+        assert!(!systemctl_reports_active(&completed_output(
+            b"inactive\n".to_vec()
+        )));
+        let mut failed = completed_output(b"active\n".to_vec());
+        failed.code = Some(3);
+        assert!(!systemctl_reports_active(&failed));
+    }
+
+    #[test]
+    fn ufw_conf_reports_enabled_requires_an_exact_enabled_line() {
+        assert!(ufw_conf_reports_enabled("ENABLED=yes\nLOGLEVEL=low\n"));
+        assert!(!ufw_conf_reports_enabled("ENABLED=no\n"));
+        assert!(!ufw_conf_reports_enabled("# ENABLED=yes\n"));
+        assert!(!ufw_conf_reports_enabled(""));
     }
 
     #[test]

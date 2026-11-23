@@ -755,6 +755,7 @@ impl SignatureInventory {
         json!({"main": self.main, "daily": self.daily, "bytecode": self.bytecode})
     }
 
+    #[allow(dead_code)]
     pub(crate) fn missing(self) -> Vec<&'static str> {
         let mut missing = Vec::new();
         if !self.main {

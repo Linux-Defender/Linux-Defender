@@ -1,3 +1,5 @@
+mod accent_color;
+mod clipboard;
 mod model;
 mod notifications;
 mod policy;

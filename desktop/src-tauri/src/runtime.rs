@@ -26,6 +26,7 @@ use tauri::{
     webview::NewWindowResponse, AppHandle, DragDropEvent, Emitter, Manager, RunEvent, State,
     WebviewUrl, WebviewWindowBuilder, WindowEvent,
 };
+#[cfg(not(target_os = "linux"))]
 use tauri_plugin_clipboard_manager::ClipboardExt;
 use tauri_plugin_notification::{Action, ActionType, NotificationExt};
 
@@ -219,6 +220,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
             tray_available: false,
             version: env!("CARGO_PKG_VERSION").into(),
             active_jobs: Vec::new(),
+            accent: None,
         }),
         active_jobs: RunningJobs {
             entries: Mutex::new(HashMap::new()),
@@ -253,6 +255,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_notification::init())
         .manage(state)
+        .manage(crate::accent_color::AccentColor::default())
         .invoke_handler(tauri::generate_handler![
             request,
             choose_paths,
@@ -289,6 +292,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                 .map_err(|error| error.to_string())?;
             *app_slot.lock().expect("app handle poisoned") = Some(app.handle().clone());
             let state = app.state::<AppState>();
+            crate::accent_color::init(app.handle().clone(), state.ctx.clone());
             let _ = linux_defender_core::logs::write_debug(
                 &state.ctx,
                 "INFO",
@@ -478,9 +482,17 @@ async fn save_export(
 async fn copy_text(state: State<'_, AppState>, app: AppHandle, text: String) -> Result<(), String> {
     let _operation = state.active_jobs.register("native.copy_text".into())?;
     tauri::async_runtime::spawn_blocking(move || {
-        app.clipboard()
-            .write_text(text)
-            .map_err(|error| error.to_string())
+        #[cfg(target_os = "linux")]
+        {
+            let _ = &app;
+            crate::clipboard::write_text(&text)
+        }
+        #[cfg(not(target_os = "linux"))]
+        {
+            app.clipboard()
+                .write_text(text)
+                .map_err(|error| error.to_string())
+        }
     })
     .await
     .map_err(|error| error.to_string())?
@@ -570,7 +582,7 @@ fn request_close(
 }
 
 #[tauri::command]
-fn startup_state(state: State<'_, AppState>) -> StartupState {
+fn startup_state(app: AppHandle, state: State<'_, AppState>) -> StartupState {
     let mut startup = state
         .initial
         .lock()
@@ -578,6 +590,7 @@ fn startup_state(state: State<'_, AppState>) -> StartupState {
         .clone();
     startup.tray_available = state.tray.available();
     startup.active_jobs = state.active_jobs.snapshot();
+    startup.accent = app.state::<crate::accent_color::AccentColor>().current();
     startup
 }
 
