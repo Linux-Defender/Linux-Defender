@@ -2481,6 +2481,8 @@ name = "linux-defender"
 version = "0.6.0"
 dependencies = [
  "base64 0.23.1",
+ "futures-util",
+ "gtk",
  "ksni",
  "linux-defender-core",
  "open",
@@ -2492,7 +2494,9 @@ dependencies = [
  "tauri-plugin-clipboard-manager",
  "tauri-plugin-notification",
  "tauri-plugin-single-instance",
+ "tokio",
  "url",
+ "zbus",
 ]
 
 [[package]]
