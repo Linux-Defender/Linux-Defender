@@ -74,6 +74,8 @@ cargo run -p linux-defender-core --bin linux-defender-cli -- help
 
 Rust core tests live under `crates/linux-defender-core/tests/` alongside module-local tests. Add focused consumer-visible, data-compatibility, or security invariants beside the owning module; avoid implementation-text or mock-only tests.
 
+Tests are necessary but not sufficient: also exercise the real app on this host when verifying behavior. Run the headless CLI (`./target/debug/linux-defender-cli status --json`, `history`, and an EICAR `scan`), check the local debug log at `~/.local/share/linux-defender/debug/linux-defender.log` and `~/.local/share/linux-defender/logs/`, and confirm the Tauri build starts (CI covers the full GUI build on the Ubuntu 22.04 baseline). A green unit suite does not prove the host ClamAV bridge, helper, or tray work.
+
 For gettext changes, validate extraction and catalogs with:
 
 ```bash

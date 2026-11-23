@@ -31,6 +31,35 @@ import { features } from "../content/features";
     </section>
 
     <WhyLinuxAV />
+    <section id="docs-start" class="container-tight py-10 sm:py-16">
+      <div class="max-w-2xl mb-8">
+        <span class="eyebrow">Documentation</span>
+        <h2 class="mt-3 section-title">Find your next step</h2>
+        <p class="mt-4 lede">Install, scan, configure, or contribute — the guides are organized by task.</p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <a class="card group hover:border-guard-forest/40 transition-colors" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/docs/installation/`}>
+          <span class="eyebrow">Start here</span>
+          <h3 class="mt-2 text-lg font-semibold text-white">Installation</h3>
+          <p class="mt-2 text-sm text-white/60">Runtime and package requirements for every format.</p>
+        </a>
+        <a class="card group hover:border-guard-forest/40 transition-colors" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/docs/getting-started/`}>
+          <span class="eyebrow">First scan</span>
+          <h3 class="mt-2 text-lg font-semibold text-white">Getting started</h3>
+          <p class="mt-2 text-sm text-white/60">Run your first local scan and read the results.</p>
+        </a>
+        <a class="card group hover:border-guard-forest/40 transition-colors" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/docs/`}>
+          <span class="eyebrow">Use</span>
+          <h3 class="mt-2 text-lg font-semibold text-white">User guides</h3>
+          <p class="mt-2 text-sm text-white/60">Scanning, quarantine, schedules, privacy, and troubleshooting.</p>
+        </a>
+        <a class="card group hover:border-guard-forest/40 transition-colors" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/docs/contributing/development/`}>
+          <span class="eyebrow">Contribute</span>
+          <h3 class="mt-2 text-lg font-semibold text-white">Development</h3>
+          <p class="mt-2 text-sm text-white/60">Source, validation, architecture, and packaging.</p>
+        </a>
+      </div>
+    </section>
     <InstallTabs />
   </main>
   <Footer />

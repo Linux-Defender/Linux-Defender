@@ -51,6 +51,11 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
    obsolete entries, then `msgfmt -c` / `msgcmp` verify.
 8. **CI sync.** All workflows on HEAD must be green. A local "looks fine" is
    not enough. Check with `gh run list --commit $(git rev-parse HEAD)`.
+9. **Real-app exercise.** Run the headless CLI (`status --json`, `history`, an
+   EICAR `scan`), read `~/.local/share/linux-defender/debug/linux-defender.log`,
+   and confirm the Tauri build. Check GitHub tabs (Actions, Security,
+   issues/PRs) for anything unresolved. A green unit suite is not proof the
+   host ClamAV bridge, helper, or tray work.
 
 ## What is deliberately NOT ported (do not "fix" by copying)
 
