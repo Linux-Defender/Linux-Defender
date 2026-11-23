@@ -22,7 +22,8 @@
   },
   "overrides": {
     "@pagefind/default-ui": "1.4.0",
-    "pagefind": "1.4.0"
+    "pagefind": "1.4.0",
+    "katex": "0.19.1"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",

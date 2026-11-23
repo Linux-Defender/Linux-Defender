@@ -52,3 +52,11 @@ jobs:
       - name: Audit frontend dependencies
         working-directory: desktop
         run: bun audit
+
+      - name: Verify locked website dependencies
+        working-directory: website
+        run: bun install --frozen-lockfile
+
+      - name: Audit website dependencies
+        working-directory: website
+        run: bun audit
