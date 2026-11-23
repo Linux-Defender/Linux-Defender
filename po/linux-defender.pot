@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-23 00:39-0500\n"
+"POT-Creation-Date: 2026-11-23 03:22-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,138 +19,145 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: crates/linux-defender-core/src/audit.rs:346
+#: crates/linux-defender-core/src/audit.rs:347
 msgid "ClamAV is not installed"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:348
+#: crates/linux-defender-core/src/audit.rs:349
 msgid "Install ClamAV to enable virus scanning"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:365
+#: crates/linux-defender-core/src/audit.rs:367
 msgid "Installed: {version}"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:376
+#: crates/linux-defender-core/src/audit.rs:379
 msgid "Up to date ({days} day old, built {date})"
 msgid_plural "Up to date ({days} days old, built {date})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/audit.rs:392
-#: crates/linux-defender-core/src/audit.rs:410
+#: crates/linux-defender-core/src/audit.rs:397
+#: crates/linux-defender-core/src/audit.rs:417
 msgid "Database is {days} day old (built {date})"
 msgid_plural "Database is {days} days old (built {date})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/audit.rs:400
+#: crates/linux-defender-core/src/audit.rs:405
 msgid "Update virus database to ensure protection"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:418
+#: crates/linux-defender-core/src/audit.rs:425
 msgid "Database is critically outdated. Update immediately."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:437
+#: crates/linux-defender-core/src/audit.rs:446
 msgid "Database files exist but age could not be determined"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:439
+#: crates/linux-defender-core/src/audit.rs:448
 msgid "No virus database found"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:443
+#: crates/linux-defender-core/src/audit.rs:452
 msgid "Download virus database"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:458
-msgid "All official base databases are present"
-msgstr ""
-
-#: crates/linux-defender-core/src/audit.rs:469
-msgid "Missing base databases: {databases}"
-msgstr ""
-
-#: crates/linux-defender-core/src/audit.rs:475
-msgid "Download the missing databases with freshclam"
-msgstr ""
-
-#: crates/linux-defender-core/src/audit.rs:487
-msgid "No custom signature files are loaded"
-msgstr ""
-
-#: crates/linux-defender-core/src/audit.rs:489
-msgid "{count} custom signature file is loaded"
-msgid_plural "{count} custom signature files are loaded"
-msgstr[0] ""
-msgstr[1] ""
-
-#: crates/linux-defender-core/src/audit.rs:509
+#: crates/linux-defender-core/src/audit.rs:470
 msgid "Service {name} is running"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:520
+#: crates/linux-defender-core/src/audit.rs:482
 msgid "Daemon is responding"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:527
+#: crates/linux-defender-core/src/audit.rs:490
 msgid "ClamAV daemon is not running"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:529
+#: crates/linux-defender-core/src/audit.rs:492
 msgid "Start the daemon for faster scanning"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:550
+#: crates/linux-defender-core/src/audit.rs:509
 msgid "Freshclam service is active"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:557
+#: crates/linux-defender-core/src/audit.rs:517
 msgid "Freshclam automatic update service is not running"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:559
+#: crates/linux-defender-core/src/audit.rs:519
 msgid "Enable automatic database updates"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:771
+#: crates/linux-defender-core/src/audit.rs:543
+msgid "Scheduled scans are enabled"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit.rs:551
+msgid "Scheduled scans are not enabled"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit.rs:553
+msgid "Enable scheduled scans in Preferences → Schedule"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit.rs:561
+msgid "No scheduling backend is available on this system"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit.rs:563
+msgid "Scheduled scans require a systemd user session or cron"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit.rs:749
+msgid "Open Ports"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit.rs:755
 msgid "{count} port listening, risky ports: {ports}"
 msgid_plural "{count} ports listening, risky ports: {ports}"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/audit.rs:782
+#: crates/linux-defender-core/src/audit.rs:766
 msgid "Review if these services need to be exposed"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:789
+#: crates/linux-defender-core/src/audit.rs:773
 msgid "{count} port listening"
 msgid_plural "{count} ports listening"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/audit.rs:797
+#: crates/linux-defender-core/src/audit.rs:781
 msgid "Review open ports and close unnecessary services"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:804
+#: crates/linux-defender-core/src/audit.rs:791
+#: crates/linux-defender-core/src/network.rs:220
+msgid "Some network socket rows could not be read."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit.rs:798
 msgid "No open ports detected"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:835
+#: crates/linux-defender-core/src/audit.rs:832
 msgid "AppArmor is enabled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:842
+#: crates/linux-defender-core/src/audit.rs:840
 msgid "AppArmor module is loaded but not enabled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:844
+#: crates/linux-defender-core/src/audit.rs:842
 msgid "Enable AppArmor for application sandboxing"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:859
+#: crates/linux-defender-core/src/audit.rs:858
 msgid "SELinux is enforcing"
 msgstr ""
 
@@ -162,403 +169,553 @@ msgstr ""
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:879
+#: crates/linux-defender-core/src/audit.rs:880
 msgid "SELinux is disabled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:881
+#: crates/linux-defender-core/src/audit.rs:882
 msgid "Enable SELinux for mandatory access control"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:895
+#: crates/linux-defender-core/src/audit.rs:897
 msgid "No mandatory access control framework detected"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:897
+#: crates/linux-defender-core/src/audit.rs:899
 msgid "Consider enabling AppArmor or SELinux"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:922
+#: crates/linux-defender-core/src/audit.rs:925
 msgid "Automatic security updates are enabled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:932
+#: crates/linux-defender-core/src/audit.rs:936
 msgid "Unattended upgrades is installed but disabled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:934
+#: crates/linux-defender-core/src/audit.rs:938
 msgid "Enable automatic security updates"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:947
+#: crates/linux-defender-core/src/audit.rs:952
 msgid "DNF automatic updates are enabled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:957
+#: crates/linux-defender-core/src/audit.rs:963
 msgid "DNF automatic is installed but timer is not active"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:959
+#: crates/linux-defender-core/src/audit.rs:965
 msgid "Enable automatic updates"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:972
+#: crates/linux-defender-core/src/audit.rs:979
 msgid "Could not determine automatic update status"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:974
+#: crates/linux-defender-core/src/audit.rs:981
 msgid "Configure automatic security updates"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:988
+#: crates/linux-defender-core/src/audit.rs:996
 msgid "System reboot required to apply updates"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:990
+#: crates/linux-defender-core/src/audit.rs:998
 msgid "Reboot the system to apply pending security updates"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1035
+#: crates/linux-defender-core/src/audit.rs:1044
 msgid "{name} is installed but not running"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1053
+#: crates/linux-defender-core/src/audit.rs:1063
 msgid "No intrusion detection system found"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1055
+#: crates/linux-defender-core/src/audit.rs:1065
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1081
+#: crates/linux-defender-core/src/audit.rs:1092
 msgid "SSH server is not running (no remote attack surface)"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1091
+#: crates/linux-defender-core/src/audit.rs:1103
 msgid "SSH server is running"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1100
+#: crates/linux-defender-core/src/audit.rs:1113
 msgid "Could not read SSH configuration"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1118
+#: crates/linux-defender-core/src/audit.rs:1132
 msgid "Root login: {value}"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1125
+#: crates/linux-defender-core/src/audit.rs:1140
 msgid "Root login is allowed ({value})"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1131
+#: crates/linux-defender-core/src/audit.rs:1146
 msgid "Disable root SSH login for security"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1145
+#: crates/linux-defender-core/src/audit.rs:1161
 msgid "Password authentication is disabled (key-only)"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1152
+#: crates/linux-defender-core/src/audit.rs:1169
 msgid "Password authentication is enabled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1154
+#: crates/linux-defender-core/src/audit.rs:1171
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1171
+#: crates/linux-defender-core/src/audit.rs:1189
 msgid "X11 forwarding is disabled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1178
+#: crates/linux-defender-core/src/audit.rs:1197
 msgid "X11 forwarding is enabled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1180
+#: crates/linux-defender-core/src/audit.rs:1199
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1255
+#: crates/linux-defender-core/src/audit.rs:1259
+msgid "Application firewalls"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit.rs:1282
 msgid "Portmaster is running and protecting connections"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1279
+#: crates/linux-defender-core/src/audit.rs:1305
 msgid "Authorize Linux Defender in Portmaster for per-module health"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1285
+#: crates/linux-defender-core/src/audit.rs:1311
 msgid "Authorize"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1295
+#: crates/linux-defender-core/src/audit.rs:1322
 msgid "Portmaster is installed but not running"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1297
+#: crates/linux-defender-core/src/audit.rs:1324
 msgid "Start the Portmaster service to enable network protection"
 msgstr ""
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/linux-defender-core/src/audit.rs:1310
+#: crates/linux-defender-core/src/audit.rs:1338
 msgid "Not detected — optional network monitor and application firewall"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1324
+#: crates/linux-defender-core/src/audit.rs:1354
 msgid "Could not probe Portmaster: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1374
+#: crates/linux-defender-core/src/audit.rs:1404
 msgid "{name} is not installed"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1380
+#: crates/linux-defender-core/src/audit.rs:1411
 msgid "Install {name} for comprehensive security auditing"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1386
+#: crates/linux-defender-core/src/audit.rs:1417
 msgid "Install chkrootkit for rootkit detection"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1405
+#: crates/linux-defender-core/src/audit.rs:1437
 msgid "Authentication was cancelled"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1413
+#: crates/linux-defender-core/src/audit.rs:1445
 msgid "Lynis audit timed out after 5 minutes"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1415
+#: crates/linux-defender-core/src/audit.rs:1447
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1433
-#: crates/linux-defender-core/src/audit.rs:1477
+#: crates/linux-defender-core/src/audit.rs:1466
+#: crates/linux-defender-core/src/audit.rs:1512
 msgid "Failed to run Lynis: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1439
+#: crates/linux-defender-core/src/audit.rs:1472
 msgid "Failed to run chkrootkit: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1505
+#: crates/linux-defender-core/src/audit.rs:1541
 msgid "Score: {score}/100"
 msgstr ""
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/linux-defender-core/src/audit.rs:1508
+#: crates/linux-defender-core/src/audit.rs:1544
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1524
+#: crates/linux-defender-core/src/audit.rs:1561
 msgid "Audit completed (exit code {code})"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1562
-#: crates/linux-defender-core/src/audit.rs:1576
+#: crates/linux-defender-core/src/audit.rs:1599
+#: crates/linux-defender-core/src/audit.rs:1613
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1606
+#: crates/linux-defender-core/src/audit.rs:1650
 msgid "No rootkits detected"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit.rs:1617
+#: crates/linux-defender-core/src/audit.rs:1662
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/audit.rs:1625
+#: crates/linux-defender-core/src/audit.rs:1670
 msgid "Investigate the detected threats immediately"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:53
+#: crates/linux-defender-core/src/audit/firewall.rs:88
 msgid "Firewall manager overlap"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:54
+#: crates/linux-defender-core/src/audit/firewall.rs:89
 msgid ""
 "UFW is active while Firewalld owns its D-Bus name; their rule interaction "
 "was not evaluated."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:157
-msgid "UFW Firewall"
+#: crates/linux-defender-core/src/audit/firewall.rs:207
+msgid "UFW was not found at a trusted system path."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:162
+#. Translators: UFW is the name of the firewall application.
+#: crates/linux-defender-core/src/audit/firewall.rs:210
+#: crates/linux-defender-core/src/audit/firewall.rs:244
+msgid ""
+"Administrator authorization for the UFW status check was denied or "
+"unavailable."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:232
+msgid "The UFW status check timed out."
+msgstr ""
+
+#. Translators: UFW is the name of the firewall application.
+#: crates/linux-defender-core/src/audit/firewall.rs:235
+#: crates/linux-defender-core/src/audit/firewall.rs:265
+msgid "The UFW status check returned incomplete or invalid output."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:253
+msgid "The UFW status check failed."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:382
 msgid ""
 "UFW is active; the default incoming policy is deny. Listed rules may allow "
 "exceptions."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:169
+#: crates/linux-defender-core/src/audit/firewall.rs:389
 msgid ""
 "UFW is active; the default incoming policy is reject. Listed rules may allow "
 "exceptions."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:176
+#: crates/linux-defender-core/src/audit/firewall.rs:396
 msgid "UFW is active; the default incoming policy is deny."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:180
+#: crates/linux-defender-core/src/audit/firewall.rs:400
 msgid "UFW is active; the default incoming policy is reject."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:184
+#: crates/linux-defender-core/src/audit/firewall.rs:404
 msgid "UFW is active, but the default incoming policy allows traffic."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:191
+#: crates/linux-defender-core/src/audit/firewall.rs:411
 msgid "UFW is active, but its default incoming policy could not be verified."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:195
+#: crates/linux-defender-core/src/audit/firewall.rs:415
+msgid ""
+"UFW is inactive, but another firewall manager is active and protecting the "
+"system."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:419
 msgid "UFW reports inactive."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:196
+#: crates/linux-defender-core/src/audit/firewall.rs:420
+msgid ""
+"UFW's service is active, but its default firewall policy could not be "
+"verified without administrator access."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:424
 msgid "UFW status could not be inspected safely."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:234
+#: crates/linux-defender-core/src/audit/firewall.rs:436
+msgid "UFW Firewall"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:441
+msgid "Check UFW with administrator access"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:443
+msgid ""
+"Administrator access may be required to read UFW status. This check does not "
+"change firewall settings."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:481
 msgid "Firewalld"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:236
+#: crates/linux-defender-core/src/audit/firewall.rs:483
 msgid ""
 "Firewalld owns its D-Bus name; readiness and firewall policy were not "
 "queried."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:240
+#: crates/linux-defender-core/src/audit/firewall.rs:487
 msgid ""
 "No Firewalld D-Bus owner was observed; this does not establish kernel "
 "firewall policy."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:244
+#: crates/linux-defender-core/src/audit/firewall.rs:491
 msgid ""
 "Firewalld ownership could not be verified; readiness and firewall policy "
 "were not queried."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:259
+#: crates/linux-defender-core/src/audit/firewall.rs:506
 msgid "firewall-cmd"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:264
+#: crates/linux-defender-core/src/audit/firewall.rs:512
 msgid "firewall-cmd is installed; it was not executed."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:270
+#: crates/linux-defender-core/src/audit/firewall.rs:519
 msgid "firewall-cmd could not be confirmed without executing it."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:408
+#: crates/linux-defender-core/src/audit/firewall.rs:657
 msgid "nftables (native rules)"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:410
+#: crates/linux-defender-core/src/audit/firewall.rs:659
 msgid ""
 "nftables has restrictive default input policies for IPv4 and IPv6; "
 "individual rules may allow exceptions."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:414
+#: crates/linux-defender-core/src/audit/firewall.rs:663
 msgid ""
 "nftables reports a permissive default input policy; remaining coverage may "
 "be incomplete"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:418
+#: crates/linux-defender-core/src/audit/firewall.rs:667
 msgid ""
 "nftables input policy coverage could not be verified for both IPv4 and IPv6"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:478
+#: crates/linux-defender-core/src/audit/firewall.rs:727
 msgid "iptables (IPv4)"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:480
+#: crates/linux-defender-core/src/audit/firewall.rs:729
 msgid ""
 "iptables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:484
+#: crates/linux-defender-core/src/audit/firewall.rs:733
 msgid "iptables has a permissive INPUT default policy"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:485
+#: crates/linux-defender-core/src/audit/firewall.rs:734
 msgid "iptables INPUT policy could not be verified"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:491
+#: crates/linux-defender-core/src/audit/firewall.rs:740
 msgid "iptables (IPv6)"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:493
+#: crates/linux-defender-core/src/audit/firewall.rs:742
 msgid ""
 "ip6tables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:497
+#: crates/linux-defender-core/src/audit/firewall.rs:746
 msgid "ip6tables has a permissive INPUT default policy"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:498
+#: crates/linux-defender-core/src/audit/firewall.rs:747
 msgid "ip6tables INPUT policy could not be verified"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:508
+#: crates/linux-defender-core/src/audit/firewall.rs:791
+msgid "Firewall"
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:794
+msgid ""
+"UFW and Firewalld are both active; review which one is meant to control your "
+"firewall rules."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:799
+msgid "Firewalld is active and managing the firewall."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:804
+msgid "No active firewall manager was detected."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:808
+msgid "Enable UFW or Firewalld to protect the system."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:811
+msgid "The active firewall manager could not be verified."
+msgstr ""
+
+#: crates/linux-defender-core/src/audit/firewall.rs:827
 msgid "Gufw"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:510
+#: crates/linux-defender-core/src/audit/firewall.rs:833
 msgid "Gufw is available."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:512
+#: crates/linux-defender-core/src/audit/firewall.rs:836
 msgid ""
 "Gufw was not confirmed; this optional inventory does not affect firewall "
 "policy analysis."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:519
+#: crates/linux-defender-core/src/audit/firewall.rs:844
 msgid "Open Gufw"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:525
+#: crates/linux-defender-core/src/audit/firewall.rs:850
 msgid "Firewall Config"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:530
+#: crates/linux-defender-core/src/audit/firewall.rs:856
 msgid "Firewall Config is available."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:533
+#: crates/linux-defender-core/src/audit/firewall.rs:859
 msgid ""
 "Firewall Config was not confirmed; this optional inventory does not affect "
 "firewall policy analysis."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:540
+#: crates/linux-defender-core/src/audit/firewall.rs:867
 msgid "Open Firewall Config"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:578
+#: crates/linux-defender-core/src/audit/firewall.rs:905
 msgid "Plasma Firewall"
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:583
+#: crates/linux-defender-core/src/audit/firewall.rs:911
 msgid "Plasma Firewall is installed; it manages an existing firewall backend."
 msgstr ""
 
-#: crates/linux-defender-core/src/audit/firewall.rs:592
+#: crates/linux-defender-core/src/audit/firewall.rs:921
 msgid "Plasma Firewall was not confirmed; it is only a management module."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:188
+msgid "OpenSnitch service"
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:194
+msgid ""
+"An OpenSnitch system service is active and running. This does not verify "
+"filtering."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:197
+msgid "An installed OpenSnitch system service is inactive or failed."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:200
+msgid "An OpenSnitch system service is changing state; its status is unknown."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:203
+msgid ""
+"No local OpenSnitch system service was detected. A manually started daemon "
+"was not checked."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:206
+msgid "OpenSnitch system service status could not be determined."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:216
+msgid "OpenSnitch graphical interface"
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:222
+msgid ""
+"The OpenSnitch graphical interface is available. Its connection status was "
+"not checked."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:225
+msgid "No local OpenSnitch graphical interface launch target was detected."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:228
+#: crates/linux-defender-core/src/audit/opensnitch.rs:257
+msgid "OpenSnitch graphical interface availability could not be determined."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:236
+msgid "Open OpenSnitch"
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:250
+msgid "OpenSnitch graphical interface is not available."
+msgstr ""
+
+#. Translators: Keep the product name OpenSnitch and the {error} placeholder unchanged.
+#: crates/linux-defender-core/src/audit/opensnitch.rs:271
+msgid "Could not launch OpenSnitch graphical interface: {error}"
 msgstr ""
 
 #: crates/linux-defender-core/src/cli.rs:56
@@ -1209,31 +1366,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 
-#: crates/linux-defender-core/src/host.rs:996
+#: crates/linux-defender-core/src/host.rs:997
 msgid "Daemon not responding: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/host.rs:999
+#: crates/linux-defender-core/src/host.rs:1000
 msgid "{binary} found but returned error: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/host.rs:1004
+#: crates/linux-defender-core/src/host.rs:1005
 msgid "{service} is active"
 msgstr ""
 
-#: crates/linux-defender-core/src/host.rs:1007
+#: crates/linux-defender-core/src/host.rs:1008
 msgid "No virus database files found in {path}"
 msgstr ""
 
-#: crates/linux-defender-core/src/host.rs:1013
+#: crates/linux-defender-core/src/host.rs:1014
 msgid "Error accessing database {path}: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/host.rs:1019
+#: crates/linux-defender-core/src/host.rs:1020
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr ""
 
-#: crates/linux-defender-core/src/host.rs:1029
+#: crates/linux-defender-core/src/host.rs:1030
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
@@ -1304,42 +1461,38 @@ msgid_plural "Threats found: {count}"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/network.rs:86
+#: crates/linux-defender-core/src/network.rs:96
 msgid "Network action is not supported."
 msgstr ""
 
-#: crates/linux-defender-core/src/network.rs:90
+#: crates/linux-defender-core/src/network.rs:100
 msgid "Network snapshot accepts no arguments."
 msgstr ""
 
-#: crates/linux-defender-core/src/network.rs:118
+#: crates/linux-defender-core/src/network.rs:216
 msgid ""
 "Some network socket rows could not be read, and the list was limited to 4096 "
 "rows."
 msgstr ""
 
-#: crates/linux-defender-core/src/network.rs:125
-msgid "Some network socket rows could not be read."
-msgstr ""
-
-#: crates/linux-defender-core/src/network.rs:129
+#: crates/linux-defender-core/src/network.rs:221
 msgid "Network socket list was limited to 4096 rows."
 msgstr ""
 
-#: crates/linux-defender-core/src/network.rs:152
+#: crates/linux-defender-core/src/network.rs:228
 msgid "Network socket listing timed out. Try again."
 msgstr ""
 
-#: crates/linux-defender-core/src/network.rs:156
+#: crates/linux-defender-core/src/network.rs:232
 msgid "Network socket listing could not be completed safely. Try again."
 msgstr ""
 
-#: crates/linux-defender-core/src/network.rs:163
+#: crates/linux-defender-core/src/network.rs:239
 msgid ""
 "Network socket listing returned invalid text and could not be read safely."
 msgstr ""
 
-#: crates/linux-defender-core/src/network.rs:170
+#: crates/linux-defender-core/src/network.rs:246
 msgid ""
 "Network socket listing is unavailable. Check that the system socket tool is "
 "installed and try again."
@@ -1937,43 +2090,43 @@ msgstr ""
 msgid "Security Audit Complete"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:202
+#: desktop/src-tauri/src/runtime.rs:203
 msgid "Quick Scan"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:203
+#: desktop/src-tauri/src/runtime.rs:204
 msgid "Full Scan"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:204
+#: desktop/src-tauri/src/runtime.rs:205
 msgid "Home Folder"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:205
+#: desktop/src-tauri/src/runtime.rs:206
 msgid "Update Database"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:206
+#: desktop/src-tauri/src/runtime.rs:207
 msgid "Scan Profile"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:207
+#: desktop/src-tauri/src/runtime.rs:208
 msgid "Quit"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:408
+#: desktop/src-tauri/src/runtime.rs:412
 msgid "Add Folders"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:410
+#: desktop/src-tauri/src/runtime.rs:414
 msgid "Add Files"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:454
+#: desktop/src-tauri/src/runtime.rs:458
 msgid "Export"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:585
+#: desktop/src-tauri/src/runtime.rs:598
 msgid "Open"
 msgstr ""
 
@@ -1992,6 +2145,7 @@ msgid "Database"
 msgstr ""
 
 #: desktop/src/App.tsx:128 desktop/src/pages/Logs.tsx:358
+#: desktop/src/pages/ScanOverview.tsx:80
 msgid "Logs"
 msgstr ""
 
@@ -2165,12 +2319,12 @@ msgid "Remember my choice"
 msgstr ""
 
 #: desktop/src/App.tsx:1061 desktop/src/App.tsx:1065
-#: desktop/src/pages/Database.tsx:350 desktop/src/pages/Database.tsx:376
-#: desktop/src/pages/Logs.tsx:412 desktop/src/pages/Network.tsx:441
-#: desktop/src/pages/Profiles.tsx:245 desktop/src/pages/Profiles.tsx:246
-#: desktop/src/pages/Quarantine.tsx:377 desktop/src/pages/Results.tsx:206
-#: desktop/src/pages/Scan.tsx:752 desktop/src/pages/Scan.tsx:758
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
+#: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:245
+#: desktop/src/pages/Profiles.tsx:246 desktop/src/pages/Quarantine.tsx:377
+#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:752
+#: desktop/src/pages/Scan.tsx:758 desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:449
 #: desktop/src/pages/SettingsPreferences.tsx:538
 #: desktop/src/pages/Urlscan.tsx:244
@@ -2181,7 +2335,7 @@ msgstr ""
 msgid "Minimize to tray"
 msgstr ""
 
-#: desktop/src/App.tsx:1063
+#: desktop/src/App.tsx:1063 desktop/src/pages/ScanOverview.tsx:66
 msgid "Scan in Progress"
 msgstr ""
 
@@ -2376,6 +2530,60 @@ msgstr ""
 msgid "See Configuration"
 msgstr ""
 
+#: desktop/src/ScanProgressPanel.tsx:18
+msgid "Target {index}/{count}: {path}"
+msgstr ""
+
+#: desktop/src/ScanProgressPanel.tsx:19 desktop/src/pages/Results.tsx:110
+#: desktop/src/pages/Scan.tsx:712
+msgid "Scan target"
+msgstr ""
+
+#: desktop/src/ScanProgressPanel.tsx:22 desktop/src/pages/Scan.tsx:752
+msgid "Scanning"
+msgstr ""
+
+#: desktop/src/ScanProgressPanel.tsx:24
+msgid "{count} file scanned overall"
+msgid_plural "{count} files scanned overall"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desktop/src/ScanProgressPanel.tsx:26 desktop/src/pages/Scan.tsx:752
+msgid "Waiting for scan data…"
+msgstr ""
+
+#: desktop/src/ScanProgressPanel.tsx:27 desktop/src/pages/Scan.tsx:752
+msgid "Scan progress"
+msgstr ""
+
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:752
+#: desktop/src/pages/Scan.tsx:756
+msgid "{count} file scanned"
+msgid_plural "{count} files scanned"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:752
+#: desktop/src/pages/Scan.tsx:756 desktop/src/pages/Statistics.tsx:30
+msgid "{count} threat"
+msgid_plural "{count} threats"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desktop/src/ScanProgressPanel.tsx:29
+msgid "File estimate is approximate; progress is indeterminate."
+msgstr ""
+
+#: desktop/src/ScanProgressPanel.tsx:31 desktop/src/pages/Scan.tsx:752
+msgid ""
+"Live progress is disabled. The completed scan result will remain available."
+msgstr ""
+
+#: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Scan.tsx:752
+msgid "Cancel All"
+msgstr ""
+
 #: desktop/src/UiErrorBoundary.tsx:33 desktop/src/i18n.ts:94
 #: desktop/src/pages/Results.tsx:64 desktop/src/protection.ts:130
 msgid "Error"
@@ -2419,6 +2627,7 @@ msgstr ""
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
+#: desktop/src/pages/ScanOverview.tsx:59 desktop/src/pages/ScanOverview.tsx:60
 #: desktop/src/pages/SettingsPreferences.tsx:512
 #: desktop/src/pages/SettingsPreferences.tsx:536 desktop/src/protection.ts:131
 msgid "Unknown"
@@ -2430,10 +2639,6 @@ msgstr ""
 
 #: desktop/src/pages/Audit.tsx:43
 msgid "ClamAV Health"
-msgstr ""
-
-#: desktop/src/pages/Audit.tsx:44
-msgid "Firewall"
 msgstr ""
 
 #: desktop/src/pages/Audit.tsx:45
@@ -2922,10 +3127,12 @@ msgid "Daemon connected"
 msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:764
+#: desktop/src/pages/ScanOverview.tsx:66
 msgid "Scanner available"
 msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:764
+#: desktop/src/pages/ScanOverview.tsx:66
 msgid "Scanner unavailable"
 msgstr ""
 
@@ -3352,6 +3559,14 @@ msgstr ""
 #: desktop/src/pages/ConfigPreferences.tsx:924
 #: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:263
 msgid "Saving…"
+msgstr ""
+
+#: desktop/src/pages/Dashboard.tsx:31
+msgid "Dashboard updates are unavailable: {error}"
+msgstr ""
+
+#: desktop/src/pages/Dashboard.tsx:38
+msgid "Dashboard"
 msgstr ""
 
 #: desktop/src/pages/Database.tsx:74
@@ -3947,7 +4162,8 @@ msgid "Refreshing…"
 msgstr ""
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
-#: desktop/src/pages/Overview.tsx:153
+#: desktop/src/pages/Overview.tsx:153 desktop/src/pages/ScanOverview.tsx:59
+#: desktop/src/pages/ScanOverview.tsx:66
 #: desktop/src/pages/SettingsPreferences.tsx:528
 #: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "Loading…"
@@ -4719,10 +4935,6 @@ msgstr ""
 msgid "Suspicious"
 msgstr ""
 
-#: desktop/src/pages/Results.tsx:110 desktop/src/pages/Scan.tsx:712
-msgid "Scan target"
-msgstr ""
-
 #: desktop/src/pages/Results.tsx:116
 msgid "No scan output is available"
 msgstr ""
@@ -4743,7 +4955,7 @@ msgstr ""
 msgid "Quarantine All"
 msgstr ""
 
-#: desktop/src/pages/Results.tsx:181
+#: desktop/src/pages/Results.tsx:181 desktop/src/pages/ScanOverview.tsx:73
 msgid "Files scanned"
 msgstr ""
 
@@ -4751,7 +4963,7 @@ msgstr ""
 msgid "Directories"
 msgstr ""
 
-#: desktop/src/pages/Results.tsx:183
+#: desktop/src/pages/Results.tsx:183 desktop/src/pages/ScanOverview.tsx:74
 msgid "Threats found"
 msgstr ""
 
@@ -4827,7 +5039,7 @@ msgstr ""
 msgid "Detections"
 msgstr ""
 
-#: desktop/src/pages/Results.tsx:225
+#: desktop/src/pages/Results.tsx:225 desktop/src/pages/ScanOverview.tsx:72
 msgid "Last scanned"
 msgstr ""
 
@@ -5141,41 +5353,7 @@ msgid "Drop local files or folders here, or add them below."
 msgstr ""
 
 #: desktop/src/pages/Scan.tsx:752
-msgid "Scanning"
-msgstr ""
-
-#: desktop/src/pages/Scan.tsx:752
-msgid "Waiting for scan data…"
-msgstr ""
-
-#: desktop/src/pages/Scan.tsx:752
-msgid "Scan progress"
-msgstr ""
-
-#: desktop/src/pages/Scan.tsx:752 desktop/src/pages/Scan.tsx:756
-msgid "{count} file scanned"
-msgid_plural "{count} files scanned"
-msgstr[0] ""
-msgstr[1] ""
-
-#: desktop/src/pages/Scan.tsx:752 desktop/src/pages/Scan.tsx:756
-#: desktop/src/pages/Statistics.tsx:30
-msgid "{count} threat"
-msgid_plural "{count} threats"
-msgstr[0] ""
-msgstr[1] ""
-
-#: desktop/src/pages/Scan.tsx:752
 msgid "Estimated file count exceeded"
-msgstr ""
-
-#: desktop/src/pages/Scan.tsx:752
-msgid ""
-"Live progress is disabled. The completed scan result will remain available."
-msgstr ""
-
-#: desktop/src/pages/Scan.tsx:752
-msgid "Cancel All"
 msgstr ""
 
 #: desktop/src/pages/Scan.tsx:754
@@ -5190,11 +5368,11 @@ msgstr ""
 msgid "Scan a folder with VirusTotal"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:756
+#: desktop/src/pages/Scan.tsx:756 desktop/src/pages/ScanOverview.tsx:77
 msgid "Latest scan"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:756
+#: desktop/src/pages/Scan.tsx:756 desktop/src/pages/ScanOverview.tsx:80
 msgid "View Results"
 msgstr ""
 
@@ -5202,12 +5380,24 @@ msgstr ""
 msgid "Virus database is not available"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:758
+#: desktop/src/pages/Scan.tsx:758 desktop/src/pages/ScanOverview.tsx:67
 msgid "Update the database before starting a scan."
 msgstr ""
 
 #: desktop/src/pages/Scan.tsx:758
 msgid "Open Database Updates"
+msgstr ""
+
+#: desktop/src/pages/ScanOverview.tsx:44
+msgid "Scan overview updates are unavailable: {error}"
+msgstr ""
+
+#: desktop/src/pages/ScanOverview.tsx:59 desktop/src/protection.ts:109
+msgid "No scans recorded"
+msgstr ""
+
+#: desktop/src/pages/ScanOverview.tsx:67
+msgid "Scan files and folders with ClamAV."
 msgstr ""
 
 #: desktop/src/pages/SettingsPreferences.tsx:47
@@ -6212,10 +6402,6 @@ msgstr ""
 
 #: desktop/src/profilePresentation.ts:38
 msgid "Scan of the user's home directory and personal files"
-msgstr ""
-
-#: desktop/src/protection.ts:109
-msgid "No scans recorded"
 msgstr ""
 
 #: desktop/src/protection.ts:112
