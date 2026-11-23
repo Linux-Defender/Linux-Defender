@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-22 23:24-0500\n"
+"POT-Creation-Date: 2026-11-22 23:50-0500\n"
 "PO-Revision-Date: 2026-04-03 19:20+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -1557,7 +1557,7 @@ msgid "Reading configuration"
 msgstr "Lettura della configurazione"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3002
+#: crates/linux-defender-core/src/privileged.rs:3034
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -1575,22 +1575,22 @@ msgstr ""
 "files on the host. Install the matching linux-defender-privileged-helper "
 "package on the host system instead."
 
-#. Translators: keep the paths and "sudo linux-defender install-privileged-helper" command unchanged.
-#: crates/linux-defender-core/src/privileged/cli_install.rs:33
+#. Translators: keep the paths and the install-privileged-helper command unchanged.
+#: crates/linux-defender-core/src/privileged/cli_install.rs:37
 msgid ""
 "This command installs files under /usr and /usr/share and must be run as "
-"root. Try: sudo linux-defender install-privileged-helper"
+"root. Try: sudo {command} install-privileged-helper"
 msgstr ""
 "Questo comando installa file in /usr e /usr/share e deve essere eseguito "
-"come root. Prova: sudo linux-defender install-privileged-helper"
+"come root. Provare: sudo {command} install-privileged-helper"
 
 #. Translators: keep the {error} placeholder; it is a sanitized installation error.
-#: crates/linux-defender-core/src/privileged/cli_install.rs:120
+#: crates/linux-defender-core/src/privileged/cli_install.rs:125
 msgid "Failed to install privileged helper: {error}"
 msgstr "Impossibile installare l'helper con privilegi: {error}"
 
 #. Translators: keep the {bin} and {policy} placeholders; they are installed file paths.
-#: crates/linux-defender-core/src/privileged/cli_install.rs:130
+#: crates/linux-defender-core/src/privileged/cli_install.rs:135
 msgid ""
 "Installed privileged helper at {bin} and polkit policy at {policy}. Saving "
 "system ClamAV configuration from Linux Defender should now work."
