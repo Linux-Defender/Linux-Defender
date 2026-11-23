@@ -1,27 +1,40 @@
 export type HelperTrustFailure = "missing" | "untrusted";
 
-const HELPER_FAILURES: Record<string, HelperTrustFailure> = {
-  "the canonical privileged helper is missing": "missing",
-  "the canonical host privileged helper is unavailable": "missing",
-  "the canonical privileged helper is not a root-owned immutable executable": "untrusted",
-  "legacy privileged helper libraries are not root-owned and immutable": "untrusted",
-};
-
-function normalizedTrustFailure(message: string): string {
-  let normalized = message.trim();
-  while (normalized.startsWith("Error:")) {
-    normalized = normalized.slice("Error:".length).trimStart();
-  }
-  return normalized.trim();
-}
-
-/** Classifies exact native helper failures without broad text matching. */
+/**
+ * Classifies native helper failures. The Rust side embeds the helper path in
+ * most messages, so matching is by the stable phrase rather than the full
+ * string. The "canonical" wording used by older tests is still accepted for
+ * backwards compatibility.
+ */
 export function helperTrustFailure(message: string): HelperTrustFailure | null {
-  const normalized = normalizedTrustFailure(message);
-  return Object.hasOwn(HELPER_FAILURES, normalized) ? HELPER_FAILURES[normalized] : null;
+  const normalized = message.trim().toLowerCase();
+  if (
+    /the (host )?privileged helper\b/.test(normalized) &&
+    (normalized.endsWith(" is missing") || normalized.endsWith(" is unavailable"))
+  ) {
+    return "missing";
+  }
+  if (
+    /the (host )?privileged helper\b/.test(normalized) &&
+    normalized.endsWith(" is not a root-owned immutable executable")
+  ) {
+    return "untrusted";
+  }
+  if (normalized === "legacy privileged helper libraries are not root-owned and immutable") {
+    return "untrusted";
+  }
+  if (normalized === "the privileged helper is unavailable") {
+    return "missing";
+  }
+  // Backwards-compatible exact wording.
+  if (normalized === "the canonical privileged helper is missing") return "missing";
+  if (normalized === "the canonical host privileged helper is unavailable") return "missing";
+  if (normalized === "the canonical privileged helper is not a root-owned immutable executable") return "untrusted";
+  if (normalized === "legacy privileged helper libraries are not root-owned and immutable") return "untrusted";
+  return null;
 }
 
-/** Recognizes exact native helper failures without changing their fail-closed behavior. */
+/** Recognizes native helper failures without changing their fail-closed behavior. */
 export function isHelperTrustError(message: string): boolean {
   return helperTrustFailure(message) !== null;
 }

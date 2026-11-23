@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-22 22:09-0500\n"
+"POT-Creation-Date: 2026-11-22 22:51-0500\n"
 "PO-Revision-Date: 2026-04-03 19:20+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -3176,8 +3176,11 @@ msgid "Configuration loaded with administrator authorization."
 msgstr "Configurazione caricata con autorizzazione dell'amministratore."
 
 #: desktop/src/pages/ConfigPreferences.tsx:570
-msgid "URLhaus feed added to the draft."
-msgstr "Il feed URLhaus è stato aggiunto alla bozza."
+msgid ""
+"URLhaus feed added to the draft. Save & Apply is still required to enable it."
+msgstr ""
+"Feed URLhaus aggiunto alla bozza. Salvare e applicare è ancora obbligatorio "
+"per attivarlo."
 
 #: desktop/src/pages/ConfigPreferences.tsx:587
 msgid "Scan backend saved."

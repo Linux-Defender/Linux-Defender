@@ -567,7 +567,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
     if ((freshclam.values.DatabaseCustomURL ?? []).some(isUrlhausFeed)) return;
     autoAddedPaths.current.add(freshclam.path);
     updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", [...(values.DatabaseCustomURL ?? []), urlhausFeedUrl]));
-    notify(_("URLhaus feed added to the draft."), "success");
+    notify(_("URLhaus feed added to the draft. Save & Apply is still required to enable it."), "success");
   }, [freshclam?.path, urlhausFeedUrl, updateConfig]);
 
   const openReference = async (url: string) => {
@@ -731,7 +731,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
         durable && `${_("Saved groups")}: ${durable}`,
       ].filter(Boolean).join("\n");
       const hasUnconfirmedConfiguration = (result.configs ?? []).some((config) => config.changed && !config.written);
-      const recoveryConfigurations = hasUnconfirmedConfiguration ? result.manual_configurations : [];
+      const recoveryConfigurations = hasUnconfirmedConfiguration && !helperFailure ? result.manual_configurations : [];
       setManualConfigurations(recoveryConfigurations);
       setReport({ tone, message, ...(technicalDetails ? { technicalDetails } : {}) });
       if (helperFailure) {

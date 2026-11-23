@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-22 22:09-0500\n"
+"POT-Creation-Date: 2026-11-22 22:51-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2870,7 +2870,8 @@ msgid "Configuration loaded with administrator authorization."
 msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:570
-msgid "URLhaus feed added to the draft."
+msgid ""
+"URLhaus feed added to the draft. Save & Apply is still required to enable it."
 msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:587

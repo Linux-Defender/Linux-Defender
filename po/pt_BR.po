@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-22 22:09-0500\n"
+"POT-Creation-Date: 2026-11-22 22:51-0500\n"
 "PO-Revision-Date: 2026-08-09 00:00-0300\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -3052,8 +3052,11 @@ msgid "Configuration loaded with administrator authorization."
 msgstr "Configuração carregada com autorização de administrador."
 
 #: desktop/src/pages/ConfigPreferences.tsx:570
-msgid "URLhaus feed added to the draft."
-msgstr "O feed do URLhaus foi adicionado ao rascunho."
+msgid ""
+"URLhaus feed added to the draft. Save & Apply is still required to enable it."
+msgstr ""
+"Feed URLhaus adicionado ao rascunho. Salvar e aplicar ainda é obrigatório "
+"para ativá-lo."
 
 #: desktop/src/pages/ConfigPreferences.tsx:587
 msgid "Scan backend saved."
@@ -3262,8 +3265,7 @@ msgid ""
 "Databases automatically."
 msgstr ""
 "Lista de bloqueio de URLs de malware gratuita, ativada por padrão. "
-"Adicionada automaticamente aos bancos de dados de assinaturas "
-"personalizadas."
+"Adicionada automaticamente aos bancos de dados de assinaturas personalizadas."
 
 #: desktop/src/pages/ConfigPreferences.tsx:823
 msgid "Proxy Settings"
