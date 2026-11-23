@@ -16,3 +16,12 @@ A set of preference changes confirmed saved during a Save & Apply attempt, such 
 
 **Scan result**:
 A scan outcome containing its status, detected threats, counts, warnings, and errors. Standalone observed counts and daemon pre-counts are distinct evidence, not interchangeable measurements.
+
+**Parity**:
+A ClamUI/ClamTk/Lenspect behavior is *ported* (implemented and tested in this Rust/Tauri/React runtime), *intentionally deferred* (documented in `docs/clamui-fork/STATUS.md` with a reason), or *open*. A merged upstream PR is not proof a behavior exists here; verify code and tests.
+
+**Integration**:
+A narrow, tested seam between Linux Defender and the host desktop or ClamAV — file-manager actions, tray/D-Bus, host `clamscan`/`clamdscan`/`freshclam`, the privileged helper, safe open/export/clipboard, VirusTotal/urlscan, or scheduled scans. Integrations never bundle an engine or add a second app runtime.
+
+**Dead / stale**:
+A ported module with no live caller (wire it or remove it), or an old ClamUI identifier/text in a live file (only migration/compat references are allowed). `scripts/audit-consistency.sh` checks both.

@@ -40,11 +40,13 @@ The Rust core and desktop are the only application implementation. Make behavior
 
 When reviewing or adopting work from ClamTk, Lenspect, or another related scanner, keep the parity matrix in `docs/revival/RELATED-PROJECT-REVIEW.md` current. Record the upstream repository, reviewed default-branch commit/date, issue or PR identifiers, and whether each behavior is implemented, intentionally deferred, or still open. Review issue reports and PR diffs independently; a merged upstream PR is not proof that the behavior exists here. Port behavior into this single Rust/Tauri/React runtime and add a regression test at the owning boundary. Check privacy, network disclosure, credentials, file and URL limits, cancellation, accessibility, localization, platform compatibility, and license obligations before adoption. Do not copy GPL-licensed Lenspect code into this MIT-licensed project without an explicit licensing decision; behavior can be independently implemented and tested. Re-run the parity review when changing a related integration and before release.
 
-The authoritative fork status — what was ported from upstream ClamUI, what is deliberately deferred (scanner concurrency, full Flush UI), and what is superseded (Dashboard) — lives in [`docs/clamui-fork/STATUS.md`](docs/clamui-fork/STATUS.md). Keep it current when porting. Compatibility identifiers (`clamui-apply-preferences`, `~/.config/clamui`, `clamui.log*`, cron markers, Nautilus fallbacks) are retained with dedicated tests; do not "rebrand" them away.
+The authoritative fork status — what was ported from upstream ClamUI, what is deliberately deferred (scanner concurrency, full Flush UI), and what is superseded (Dashboard/ScanOverview/scanHistory) — lives in [`docs/clamui-fork/STATUS.md`](docs/clamui-fork/STATUS.md). Keep it current when porting. Compatibility identifiers (`clamui-apply-preferences`, `~/.config/clamui`, `clamui.log*`, cron markers, Nautilus fallbacks) are retained with dedicated tests; do not "rebrand" them away.
+
+For a full parity/consistency/dead-code/stale-reference audit, use the `linux-defender-parity` skill and run [`scripts/audit-consistency.sh`](scripts/audit-consistency.sh) (also run weekly in the Consistency Audit CI workflow). For integration work (file-manager actions, tray, host ClamAV, safe open/export/clipboard, online services, scheduling), use the `linux-defender-integrations` skill.
 
 ## Consistency, staleness, and dead code
 
-Before declaring any port or refactor done:
+Before declaring any port or refactor done, run `bash scripts/audit-consistency.sh` (or use the `linux-defender-parity` skill). It checks:
 
 - **Cross-file consistency:** verify the Rust core, Tauri runtime, frontend API types, translations, docs, packaging manifests, and CI workflows agree. A new IPC field must exist in `StartupState`, the Rust `StartupState`, and any event payloads; a new UI string must be in the POT and all 10 catalogs.
 - **Dead code:** a ported module must either be wired to a caller or removed/superseded. Check with `grep -rl "<module>" desktop/src --include=*.ts --include=*.tsx | grep -v "/<module>."` for frontend modules and `cargo clippy -- -D warnings` (which flags unused Rust items) for the core. Document any intentional non-use in `docs/clamui-fork/STATUS.md`.
@@ -101,12 +103,14 @@ CI builds native artifacts on the Ubuntu 22.04-compatible baseline. A build on a
 
 Project-local coding-agent skills are optional development aids, not build or runtime dependencies. Their canonical imports are in `.agents/skills`; `.claude/skills` provides compatibility links. For installation details, see the [Development guide](website/src/content/docs/docs/contributing/development.md).
 
-Refresh only a deliberately selected upstream skill. `skills-lock.json` records its source, selected path, and content hash; it does not pin a commit. Start OMP from the repository root: `.omp/config.yml` applies its cwd-scoped `ignoredSkills` filter while preserving global skill payloads.
+Three skills (`accessibility`, `rust-best-practices`, `vercel-react-best-practices`) are pinned to upstream imports in `skills-lock.json` (source, selected path, content hash — not a commit). Refresh only a deliberately selected upstream skill. The `linux-defender-*` skills are maintained locally in this repo and are not in the lock file. Start OMP from the repository root: `.omp/config.yml` applies its cwd-scoped `ignoredSkills` filter while preserving global skill payloads.
 
 - Rust changes: use `rust-best-practices`.
 - React client changes: use `vercel-react-best-practices`; apply it to `desktop/src/`, not Next.js or server patterns.
 - Accessibility work: use `accessibility`, then validate the actual Tauri/WebKitGTK desktop rather than relying only on browser scores.
 - Gettext messages, catalogs, plural forms, translator notes, or extraction: use `linux-defender-gettext` and the translation guide it points to.
+- Porting/parity, cross-file consistency, dead code, stale branding, or "is everything synced": use `linux-defender-parity` and run `scripts/audit-consistency.sh`.
+- Integrations (file-manager actions, tray/D-Bus, host ClamAV, privileged helper, safe open/export/clipboard, VirusTotal/urlscan, scheduling): use `linux-defender-integrations`.
 - Globally managed IPC and release skills remain optional; contributors do not need them to work on Linux Defender.
 
 ## Runtime, data, and security rules

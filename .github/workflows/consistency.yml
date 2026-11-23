@@ -1,0 +1,48 @@
+name: Consistency Audit
+
+# Runs the same full audit contributors run locally (scripts/audit-consistency.sh)
+# so drift in parity/dead code/stale refs/translations is caught before merge.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1" # Weekly consistency audit, like CodeQL/dependency audit.
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Full consistency audit
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Install native build dependencies
+        run: |
+          sudo bash .github/workflows/install-ubuntu-build-deps.sh \
+            build-essential libjavascriptcoregtk-4.1-dev libgtk-3-dev \
+            librsvg2-dev libssl-dev libwebkit2gtk-4.1-dev libsoup-3.0-dev \
+            libxdo-dev pkg-config gettext
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.3.14"
+
+      - name: Install frontend dependencies
+        run: |
+          ( cd desktop && bun install --frozen-lockfile )
+          ( cd website && bun install --frozen-lockfile )
+
+      - name: Run audit
+        run: bash scripts/audit-consistency.sh

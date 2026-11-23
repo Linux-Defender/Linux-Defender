@@ -15,7 +15,8 @@ Written so a successor can continue without loss.
 | **Packaging/distro** | `snap/`, `icons/`, `scripts/install-nemo-actions.sh`, `data/` WebExtensions, screenshots, `.github/FUNDING.yml`, `build-snap.yml`, `flathub/cargo-sources.json` refreshed for cookie 0.18.3. |
 | **Translations** | POT regenerated; all 10 catalogs merged and translated; `check-translations.sh`, `msgcmp`, `msgfmt -c`, `update-pot.sh --check` all pass. |
 | **Docs** | `docs/clamui-fork/` (README, REPOS, STATUS), `docs/documentation/`, `docs/README.md`, `docs/translations/`, `po/MISSING_TRANSLATIONS.txt`. |
-| **Validation (all green)** | `cargo fmt/clippy/test` (163 + 1 snap), `bun check/build/test` (28), `check-translations.sh`. |
+| **Agent tooling** | `linux-defender-parity` + `linux-defender-integrations` skills, `scripts/audit-consistency.sh` full local audit, `.github/workflows/consistency.yml` weekly CI audit; `AGENTS.md` / `CLAUDE.md` / `CONTEXT.md` updated for all assistants (Claude, OpenCode, Cursor, Aider, Continue, Zed). |
+| **Validation (all green)** | `cargo fmt/clippy/test` (163 + 1 snap), `bun check/build/test` (69), `bash scripts/audit-consistency.sh` (full audit). |
 
 ## Deliberate deferral (documented, not forgotten)
 

@@ -159,6 +159,14 @@ cargo test --workspace
 
 Clippy compiles the production Tauri crate, whose `generate_context!` embeds `desktop/dist`; build the frozen frontend assets before running it.
 
+For a single command that also checks gettext catalogs, stale branding, dead frontend modules, git sync, and GitHub Actions status, run the full local audit:
+
+```bash
+bash scripts/audit-consistency.sh
+```
+
+This is the same check the weekly Consistency Audit workflow runs. Fix every failure before pushing.
+
 Exercise the real CLI and persisted compatibility fixtures in addition to unit tests. Test clean, EICAR, cancellation, scheduling dry-run, privileged-helper rejection, and compatible CLI output. For desktop work, manually verify Tauri startup, navigation, events, native dialogs, tray behavior, and file-argument forwarding.
 
 Recorded migration evidence includes Rust workspace tests and strict Clippy, real Tauri/AppImage/Flatpak EICAR scans through the host bridge, prior XDG JSON/SQLite/keyring compatibility, and desktop copy/ZIP-export coverage. It is not a zero-regression guarantee and does not claim exercised protected host writes, VirusTotal uploads, physical-device hardware, Wayland, or an aarch64 build of the current migration revision.
