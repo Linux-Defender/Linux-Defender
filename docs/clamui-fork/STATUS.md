@@ -43,11 +43,10 @@ drafting, `accentColor.ts` applies the native system accent, and
 `ScanProgressPanel.tsx` renders live scan progress. `CONTEXT.md` therefore still
 documents "Save & Apply", not "Flush".
 
-`Dashboard.tsx` is the one genuinely unused ported file: upstream's Dashboard is
-a thin wrapper around `ScanOverview`, but Linux Defender has an independent,
-richer `pages/Overview.tsx` that serves the same role (and `ScanOverview` is used
-directly by `Scan.tsx`). `Dashboard.tsx` is superseded, not forgotten — it can be
-removed in a cleanup pass if desired.
+`Dashboard.tsx` was **removed**: upstream's Dashboard is a thin wrapper around
+`ScanOverview`, but Linux Defender has an independent, richer `pages/Overview.tsx`
+that serves the same role (and `ScanOverview` is used directly by `Scan.tsx`).
+It was superseded, not lost — no code referenced it.
 
 ## Docs adopted from upstream (rebranded)
 

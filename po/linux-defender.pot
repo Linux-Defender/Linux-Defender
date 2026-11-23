@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-23 08:43-0500\n"
+"POT-Creation-Date: 2026-11-23 09:15-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3558,14 +3558,6 @@ msgstr ""
 #: desktop/src/pages/ConfigPreferences.tsx:911
 #: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:261
 msgid "Saving…"
-msgstr ""
-
-#: desktop/src/pages/Dashboard.tsx:31
-msgid "Dashboard updates are unavailable: {error}"
-msgstr ""
-
-#: desktop/src/pages/Dashboard.tsx:38
-msgid "Dashboard"
 msgstr ""
 
 #: desktop/src/pages/Database.tsx:74

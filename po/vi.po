@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-23 08:43-0500\n"
+"POT-Creation-Date: 2026-11-23 09:15-0500\n"
 "PO-Revision-Date: 2026-11-03 21:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -3756,14 +3756,6 @@ msgstr ""
 #: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:261
 msgid "Saving…"
 msgstr "Đang lưu…"
-
-#: desktop/src/pages/Dashboard.tsx:31
-msgid "Dashboard updates are unavailable: {error}"
-msgstr "Dashboard updates are unavailable: {error}"
-
-#: desktop/src/pages/Dashboard.tsx:38
-msgid "Dashboard"
-msgstr "Bảng điều khiển"
 
 #: desktop/src/pages/Database.tsx:74
 msgid "Active (PID {pid})"

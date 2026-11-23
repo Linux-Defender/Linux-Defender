@@ -40,9 +40,21 @@ The Rust core and desktop are the only application implementation. Make behavior
 
 When reviewing or adopting work from ClamTk, Lenspect, or another related scanner, keep the parity matrix in `docs/revival/RELATED-PROJECT-REVIEW.md` current. Record the upstream repository, reviewed default-branch commit/date, issue or PR identifiers, and whether each behavior is implemented, intentionally deferred, or still open. Review issue reports and PR diffs independently; a merged upstream PR is not proof that the behavior exists here. Port behavior into this single Rust/Tauri/React runtime and add a regression test at the owning boundary. Check privacy, network disclosure, credentials, file and URL limits, cancellation, accessibility, localization, platform compatibility, and license obligations before adoption. Do not copy GPL-licensed Lenspect code into this MIT-licensed project without an explicit licensing decision; behavior can be independently implemented and tested. Re-run the parity review when changing a related integration and before release.
 
+The authoritative fork status — what was ported from upstream ClamUI, what is deliberately deferred (scanner concurrency, full Flush UI), and what is superseded (Dashboard) — lives in [`docs/clamui-fork/STATUS.md`](docs/clamui-fork/STATUS.md). Keep it current when porting. Compatibility identifiers (`clamui-apply-preferences`, `~/.config/clamui`, `clamui.log*`, cron markers, Nautilus fallbacks) are retained with dedicated tests; do not "rebrand" them away.
+
+## Consistency, staleness, and dead code
+
+Before declaring any port or refactor done:
+
+- **Cross-file consistency:** verify the Rust core, Tauri runtime, frontend API types, translations, docs, packaging manifests, and CI workflows agree. A new IPC field must exist in `StartupState`, the Rust `StartupState`, and any event payloads; a new UI string must be in the POT and all 10 catalogs.
+- **Dead code:** a ported module must either be wired to a caller or removed/superseded. Check with `grep -rl "<module>" desktop/src --include=*.ts --include=*.tsx | grep -v "/<module>."` for frontend modules and `cargo clippy -- -D warnings` (which flags unused Rust items) for the core. Document any intentional non-use in `docs/clamui-fork/STATUS.md`.
+- **Stale references:** `grep -rniE 'clamui\.com|linx.systems|clamui@|rooki\.xyz|io\.github\.linx'` in live files must return only intentional historical/compat references (docs/revival, CHANGELOG, LICENSE, upstream fork docs). Fix anything else.
+- **Generated files:** never hand-edit `po/*.mo`, `desktop/dist/`, `website/public/` generated assets, or `desktop/src-tauri/gen/`. Refresh the POT with `./scripts/update-pot.sh` and merge catalogs with `msgmerge`, then verify with `msgfmt -c` and `msgcmp`.
+- **CI parity:** before pushing, make sure the full workflow set is green (builds for every package format, Test, Lint, CodeQL, Dependency Audit, Translations, Website). A failure on HEAD is not acceptable even if the code "looks fine" locally.
+
 ## Build and test entry points
 
-Toolchain manifests are the source of truth. Typical local commands are:
+Toolchain manifests are the source of truth. Work on one file or one small function at a time; after every Rust edit run `cargo check`, after every TypeScript/Astro edit run `bun run --cwd desktop check` (or `npm run build`/`npx tsc --noEmit` where appropriate). Fix any compiler error or warning immediately and re-run until clean before replying to the user. Typical local commands are:
 
 ```bash
 cargo test --workspace --locked

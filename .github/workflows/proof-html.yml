@@ -1,0 +1,42 @@
+name: Proof HTML
+
+# Adapted from the Linux-Guardians org demo repo. Runs on demand because the
+# published site uses the repository-page base path (/Linux-Defender/), which
+# check-built-links.py (website.yml) validates in a base-path-aware way.
+# proof-html is kept for additional structural HTML checks (DOCTYPE, duplicate
+# IDs, alt text) when run manually against a locally built site.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  proof-html:
+    name: Validate built site HTML (manual)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.3.14"
+
+      - name: Install website dependencies
+        working-directory: website
+        run: bun install --frozen-lockfile
+
+      - name: Build website
+        working-directory: website
+        run: bun run build
+
+      - name: Proof built HTML
+        uses: anishathalye/proof-html@v1.1.0
+        with:
+          directory: ./website/dist
+          check_html: true
+          empty_alt_ignore: true
+        env:
+          DO_NOT_CHECK_WWW: "true"
