@@ -1,5 +1,5 @@
 export type PageId =
-  | "dashboard"
+  | "overview"
   | "scan"
   | "database"
   | "logs"

@@ -12,6 +12,7 @@ import {
   type NativeEvent,
   type Credits,
 } from "./api";
+import { applyAccentColor } from "./accentColor";
 import {
   ConfigurationRecoveryDialog,
   ConfigurationRecoveryProvider,
@@ -21,6 +22,8 @@ import { HelperTrustErrorDialog } from "./HelperTrustErrorDialog";
 import { helperTrustFailure, isHelperTrustError } from "./helperTrustError";
 import { Icon, type IconName } from "./Icon";
 import { _, activeCatalog } from "./i18n";
+import { INITIAL_MOUNTED_PAGES } from "./initialMountedPages";
+import type { PageId } from "./pageId";
 import { Modal } from "./Modal";
 import Audit from "./pages/Audit";
 import Components from "./pages/Components";
@@ -34,20 +37,6 @@ import Quarantine from "./pages/Quarantine";
 import Results from "./pages/Results";
 import Scan from "./pages/Scan";
 import Statistics from "./pages/Statistics";
-
-type PageId =
-  | "overview"
-  | "scan"
-  | "database"
-  | "logs"
-  | "components"
-  | "quarantine"
-  | "statistics"
-  | "audit"
-  | "network"
-  | "preferences"
-  | "profiles"
-  | "results";
 
 type NavigationDetail = { page: PageId; args: Record<string, unknown> };
 type Toast = { id: number; message: string; type: "success" | "error" | "info" | "warning" };
@@ -233,7 +222,7 @@ export default function App(): ReactNode {
   const [activePage, setActivePage] = useState<PageId>("overview");
   const activePageRef = useRef<PageId>("overview");
   const [previousPage, setPreviousPage] = useState<Exclude<PageId, "preferences">>("overview");
-  const [mountedPages, setMountedPages] = useState<Set<PageId>>(() => new Set(["overview"]));
+  const [mountedPages, setMountedPages] = useState<Set<PageId>>(() => new Set(INITIAL_MOUNTED_PAGES));
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [helperTrustError, setHelperTrustError] = useState<string | null>(null);
   const [recoveryConfigurations, setRecoveryConfigurations] = useState<readonly ManualConfiguration[] | null>(null);
@@ -725,6 +714,15 @@ export default function App(): ReactNode {
       if (event.event === "show-onboarding") {
         setOnboardingOpen(true);
       }
+      if (
+        event.event === "accent-color-changed" &&
+        typeof event.data === "object" &&
+        event.data !== null &&
+        "accent" in event.data &&
+        (typeof event.data.accent === "string" || event.data.accent === null)
+      ) {
+        applyAccentColor(event.data.accent);
+      }
     };
 
     void onEvent(receiveEvent)
@@ -753,6 +751,7 @@ export default function App(): ReactNode {
 
       const state = startupResult.value;
       setStartupInfo({ version: state.version, trayAvailable: state.tray_available });
+      if (state.accent) applyAccentColor(state.accent);
       let skippedHelperVersion = "";
       if (settingsResult.status === "fulfilled") {
         const settings = settingsResult.value;

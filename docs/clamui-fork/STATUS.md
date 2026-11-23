@@ -32,6 +32,36 @@ Also intentionally not ported: cosmetic `desktop/src/assets/linux-defender-logo.
 (LD uses the shield icon in `App.tsx`), and `docs/issue-325-screenshots/*` (upstream
 issue-specific screenshots).
 
+Upstream's **autosave/batched "Flush" flow** remains deliberately deferred as a
+full UI change: `ConfigPreferences.tsx` still uses the explicit **Save & Apply**
+button, not upstream's direct-on-section-leave/full-on-close flush. However the
+shared helpers are now **live and tested**: `savePlan.ts` (`pendingProposals`)
+computes the Save & Apply proposals, `configDraft.ts` supplies the dirty check,
+`configAuthorize.ts` (`mergeAuthorizedConfig`) fixes issue #343 so authorizing a
+config read no longer discards unsaved edits, `pathList.ts` handles URL-list
+drafting, `accentColor.ts` applies the native system accent, and
+`ScanProgressPanel.tsx` renders live scan progress. `CONTEXT.md` therefore still
+documents "Save & Apply", not "Flush".
+
+`Dashboard.tsx` is the one genuinely unused ported file: upstream's Dashboard is
+a thin wrapper around `ScanOverview`, but Linux Defender has an independent,
+richer `pages/Overview.tsx` that serves the same role (and `ScanOverview` is used
+directly by `Scan.tsx`). `Dashboard.tsx` is superseded, not forgotten — it can be
+removed in a cleanup pass if desired.
+
+## Docs adopted from upstream (rebranded)
+
+- `AGENTS.md`: "Security first" (least privilege, CSP/navigation, IPC trust
+  boundary, scoped native access, isolation), "Native commands and state", and
+  "Release builds and dependency hygiene" sections.
+- `CONTRIBUTING.md`: git-hooks install step (`./scripts/hooks/install-hooks.sh`).
+- `.github/workflows/auto-assign.yml` from the Linux-Guardians org demo repo.
+- `README.md`: CI status badges (org demo pattern), adapted to our workflows.
+
+The demo repo's `package.json`/`index.html`/demo `README.md`/`proof-html.yml` were
+reviewed and intentionally not copied: they are demo scaffolding, redundant with
+our real manifests/site link checker, or would duplicate our project README.
+
 ## Compatibility contracts (kept deliberately, per AGENTS.md)
 
 Legacy identifiers — `clamui-apply-preferences`, `clamui-scheduled-scan`,

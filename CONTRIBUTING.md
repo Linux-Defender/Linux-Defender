@@ -15,4 +15,12 @@ Linux Defender is a Rust core with a Tauri/React desktop. Keep ClamAV and FreshC
 
 Before opening a pull request, run the checks relevant to your change. For Rust changes, use `cargo fmt --all -- --check`, `cargo clippy --workspace --all-targets --locked -- -D warnings`, and `cargo test --workspace --locked`. For desktop and website changes, install dependencies with `bun install --frozen-lockfile` in the relevant directory, then run its check/build scripts. Include the exact checks and results in your pull request.
 
+Install the repository hooks before contributing so formatting and frontend type checks run automatically:
+
+```bash
+./scripts/hooks/install-hooks.sh
+```
+
+Participation is governed by the [Code of Conduct](CODE_OF_CONDUCT.md).
+
 The [issue and PR ledgers](docs/revival/) describe ongoing upstream parity work; review does not mean every report is implemented. Please keep those records current when porting behavior from ClamTk or another related scanner.

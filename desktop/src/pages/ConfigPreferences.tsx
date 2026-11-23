@@ -2,8 +2,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { notify, openExternal, openPaths, request } from "../api";
 import { type ManualConfiguration, useConfigurationRecovery } from "../ConfigurationRecovery";
+import { mergeAuthorizedConfig } from "../configAuthorize";
 import { isHelperTrustError } from "../helperTrustError";
 import { _ } from "../i18n";
+import { addNewestFirst, parseListDraft } from "../pathList";
+import { pendingProposals } from "../savePlan";
 
 type ConfigKind = "freshclam" | "clamd";
 type ConfigValues = Record<string, string[]>;
@@ -137,14 +140,6 @@ const defaultSchedule = (): Schedule => ({
 
 function cloneValues(values: ConfigValues): ConfigValues {
   return Object.fromEntries(Object.entries(values).map(([key, value]) => [key, [...value]]));
-}
-
-function valuesEqual(left: ConfigValues, right: ConfigValues): boolean {
-  const leftKeys = Object.keys(left).sort();
-  const rightKeys = Object.keys(right).sort();
-  return leftKeys.length === rightKeys.length && leftKeys.every((key, index) =>
-    key === rightKeys[index] && left[key].length === right[key].length && left[key].every((value, valueIndex) => value === right[key][valueIndex]),
-  );
 }
 
 function schedulesEqual(left: Schedule, right: Schedule): boolean {
@@ -296,9 +291,9 @@ function StringListField({ label, field, values, onChange, placeholder }: {
   const [draft, setDraft] = useState("");
   const id = fieldId(field);
   const add = () => {
-    const candidates = draft.split(",").map((candidate) => candidate.trim()).filter(Boolean);
+    const candidates = parseListDraft(draft);
     if (candidates.length === 0) return;
-    onChange([...values, ...candidates.filter((candidate) => !values.includes(candidate))]);
+    onChange(addNewestFirst(values, candidates));
     setDraft("");
   };
   return <div className="form-grid">
@@ -513,16 +508,13 @@ export default function ConfigPreferences({ section }: { section: string }) {
       if (!persistedConfigPaths.current[kind]) {
         persistedConfigPaths.current[kind] = document.baselinePath;
       }
-      const next: ConfigDocument = {
-        kind,
-        path: loaded.path ?? document.path,
-        baselinePath: persistedConfigPaths.current[kind],
-        values: cloneValues(loaded.values ?? EMPTY_VALUES),
-        baseline: cloneValues(loaded.values ?? EMPTY_VALUES),
-        needsSizeUnitMigration: loaded.needs_size_unit_migration === true,
-        readable: loaded.readable ?? true,
+      const next = mergeAuthorizedConfig(document, {
+        path: loaded.path,
+        values: loaded.values,
+        needs_size_unit_migration: loaded.needs_size_unit_migration,
+        readable: loaded.readable,
         error: loaded.error,
-      };
+      }, persistedConfigPaths.current[kind]);
       changeConfigContext();
       if (kind === "freshclam") setFreshclam(next);
       else setClamd(next);
@@ -612,12 +604,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
       baseline: cloneValues(clamd.baseline),
     };
     const scheduleSnapshot = { ...schedule, schedule_targets: [...schedule.schedule_targets] };
-    const configs = [freshclamSnapshot, clamdSnapshot].filter((document): document is ConfigDocument => Boolean(document && (
-      !valuesEqual(document.values, document.baseline)
-      || document.path !== document.baselinePath
-      || (document.kind === "clamd" && document.needsSizeUnitMigration)
-    )));
-    const unselected = configs.find((document) => !document.path);
+    const changedConfigs = pendingProposals([freshclamSnapshot, clamdSnapshot]);
+    const unselected = changedConfigs.find((proposal) => !proposal.path);
     if (unselected) {
       const message = _("Choose a configuration file before applying its changes.");
       setReport({ tone: "error", message });
@@ -636,7 +624,6 @@ export default function ConfigPreferences({ section }: { section: string }) {
       notify(message, "error");
       return;
     }
-    const changedConfigs = configs.map((document) => ({ kind: document.kind, path: document.path, values: document.values }));
     const scheduleChanged = !schedulesEqual(scheduleSnapshot, scheduleBaseline);
     if (changedConfigs.length === 0 && !scheduleChanged) {
       const message = _("No changes to apply.");

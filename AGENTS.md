@@ -2,6 +2,25 @@
 
 Linux Defender is a Linux desktop frontend for **host-installed ClamAV**. Its Rust/Tauri/React source incorporates an MIT-licensed upstream foundation. The Linux Defender product name is the only user-facing brand. Retain original contributor notices and historical upstream references where required, and retain old command, data, helper, and secret-service identifiers only as compatibility contracts until their migration has dedicated tests. The production application is Rust: a headless core, a Tauri 2 native runtime, and a React/TypeScript frontend.
 
+The public desktop, AppStream, and Flatpak identity is `io.github.linuxdefender.linuxdefender`; Tauri's private bundle identifier is `io.github.linuxdefender.linuxdefender`. Do not substitute one for the other in public identity assets.
+
+## Security first
+
+Security takes precedence over convenience, performance, and package size.
+
+- **Least privilege:** define explicit capabilities in `desktop/src-tauri/capabilities/` for each window or webview and select them in `tauri.conf.json`. Grant only required permissions; do not use broad default permission sets or wildcard grants.
+- **CSP and navigation:** keep a restrictive CSP in `desktop/src-tauri/tauri.conf.json`, with `script-src`, `connect-src`, and other directives limited to required sources. Avoid `unsafe-inline` and `unsafe-eval`; reject untrusted webview/window navigation.
+- **IPC trust boundary:** treat all frontend arguments as untrusted. Validate every argument in Rust before dispatch or side effects, including operation IDs, paths, URLs, and value bounds; sanitize untrusted text before display or logging. Frontend checks are not authorization.
+- **Scoped native access:** scope filesystem, shell, and network plugin permissions narrowly. Custom commands must enforce their own allowlists and operation ownership. Keep native opening, exports, clipboard actions, and external URLs tied to explicit user requests; prefer maintained, scoped Tauri plugins where they fit the existing core and privileged-helper boundaries.
+- **Isolation:** prefer Tauri's isolation pattern when frontend dependencies expand the attack surface; it supplements rather than replaces Rust-side validation and capability restrictions.
+
+## Native commands and state
+
+- Expose IPC handlers with `#[tauri::command]` and register them only through `tauri::generate_handler!`. Return `Result<T, E>` with serializable errors; use `thiserror` for structured Rust errors and expose only sanitized frontend details.
+- Use `async fn` for I/O-bound handlers; offload blocking core scans, SQLite operations, and process work rather than blocking the UI or async executor. Preserve the headless core boundary.
+- Manage shared runtime state through `tauri::State`, with `Arc` and `Mutex`/`RwLock` where needed. Prefer `tokio::sync` primitives for asynchronous contention; never hold blocking lock guards across `.await`.
+- Keep implementation details private or `pub(crate)`; export only APIs required across crate boundaries.
+
 ## Architecture and boundaries
 
 | Area | Responsibility |
@@ -60,6 +79,11 @@ bun run build
 ```
 
 CI builds native artifacts on the Ubuntu 22.04-compatible baseline. A build on a newer host does not establish that compatibility.
+
+## Release builds and dependency hygiene
+
+- Configure release profile settings in the workspace `Cargo.toml` for size (`lto`, reduced `codegen-units`, optimized `opt-level`, `panic = "abort"`, `strip`). Check scan responsiveness and failure handling under the release profile before shipping.
+- Keep the system WebKitGTK WebView; do not bundle a browser runtime. Keep Tauri, Rust dependencies, and frontend packages current through the repository's locked dependency workflows. Run `cargo audit` and `bun audit` when updating dependencies and address relevant advisories.
 
 ## Coding-agent skills
 

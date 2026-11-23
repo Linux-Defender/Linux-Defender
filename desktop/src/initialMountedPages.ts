@@ -4,4 +4,4 @@ import type { PageId } from "./pageId";
 // linux-defender-page-selected/linux-defender-quick-scan and open-targets synchronously,
 // before a lazily mounted Scan page's useEffect has attached its window
 // listeners, so those first events would otherwise be dropped.
-export const INITIAL_MOUNTED_PAGES: readonly PageId[] = ["dashboard", "scan"];
+export const INITIAL_MOUNTED_PAGES: readonly PageId[] = ["overview", "scan"];
