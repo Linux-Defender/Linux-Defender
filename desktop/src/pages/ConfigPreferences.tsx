@@ -749,7 +749,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
       const technicalDetails = String(error);
       const message = _("Some changes could not be applied.");
       setReport({ tone: "error", message, technicalDetails });
-      notify(isHelperTrustError(technicalDetails) ? technicalDetails : message, "error");
+      notify(isHelperTrustError(technicalDetails) ? technicalDetails : `${message}: ${technicalDetails.split("\\n", 1)[0]}`, "error");
     } finally {
       setBusy(false);
     }
