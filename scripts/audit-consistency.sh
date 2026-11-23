@@ -11,6 +11,11 @@ cd "$PROJECT_ROOT"
 fail() { printf 'AUDIT FAIL: %s\n' "$*" >&2; exit 1; }
 step() { printf '\n== %s ==\n' "$*"; }
 
+step "Frontend type-check / build / tests (needed before clippy: generate_context! embeds dist)"
+bun run --cwd desktop check >/dev/null || fail "desktop check (tsc)"
+bun run --cwd desktop build >/dev/null || fail "desktop build"
+( cd desktop && bun test >/dev/null ) || fail "desktop tests"
+
 step "Rust format"
 cargo fmt --check --all || fail "cargo fmt --check --all"
 
@@ -19,11 +24,6 @@ cargo clippy --workspace --all-targets --locked -- -D warnings >/dev/null || fai
 
 step "Rust tests"
 cargo test --workspace --locked >/dev/null || fail "cargo test --workspace"
-
-step "Frontend type-check / build / tests"
-bun run --cwd desktop check >/dev/null || fail "desktop check (tsc)"
-bun run --cwd desktop build >/dev/null || fail "desktop build"
-( cd desktop && bun test >/dev/null ) || fail "desktop tests"
 
 step "Website check / build / links"
 bun run --cwd website check >/dev/null || fail "website check"
