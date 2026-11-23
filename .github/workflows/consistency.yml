@@ -44,5 +44,9 @@ jobs:
           ( cd desktop && bun install --frozen-lockfile )
           ( cd website && bun install --frozen-lockfile )
 
+      - name: Install Chromium for Mermaid rendering
+        working-directory: website
+        run: bunx playwright install --with-deps chromium
+
       - name: Run audit
         run: bash scripts/audit-consistency.sh
