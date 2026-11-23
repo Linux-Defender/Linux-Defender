@@ -1,5 +1,5 @@
-use linux_defender_core::common::Context;
 use futures_util::StreamExt;
+use linux_defender_core::common::Context;
 use serde_json::json;
 use std::{sync::Mutex, time::Duration};
 use tauri::{AppHandle, Emitter, Manager};

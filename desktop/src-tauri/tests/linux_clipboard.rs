@@ -16,7 +16,11 @@ fn copies_using_the_existing_display_without_an_x11_fallback() {
     let display = gtk::gdk::Display::default().expect("connected application display");
     let selection = gtk::Clipboard::default(&display).expect("application clipboard");
 
-    for text in ["sudo apt install fail2ban", "Linux Defender\nGrüße 日本語", ""] {
+    for text in [
+        "sudo apt install fail2ban",
+        "Linux Defender\nGrüße 日本語",
+        "",
+    ] {
         clipboard::write_text(text).expect("copy must succeed without an X11 fallback");
         assert_eq!(selection.wait_for_text().as_deref(), Some(text));
     }
