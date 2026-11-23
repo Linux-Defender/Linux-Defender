@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-22 22:51-0500\n"
+"POT-Creation-Date: 2026-11-22 23:24-0500\n"
 "PO-Revision-Date: 2026-06-30 13:00+0200\n"
 "Last-Translator: Robin GUY <contact@robinguy.fr>\n"
 "Language-Team: French\n"
@@ -3017,6 +3017,10 @@ msgstr "Toutes les semaines"
 #: desktop/src/pages/ConfigPreferences.tsx:88
 msgid "Monthly"
 msgstr "Tous les mois"
+
+#: desktop/src/pages/ConfigPreferences.tsx:124
+msgid "URLhaus feed (malware URL blocklist)"
+msgstr "Flux URLhaus (liste de blocage d'URL de logiciels malveillants)"
 
 #: desktop/src/pages/ConfigPreferences.tsx:220
 msgid "No configuration file selected"

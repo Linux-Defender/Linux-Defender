@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-22 22:51-0500\n"
+"POT-Creation-Date: 2026-11-22 23:24-0500\n"
 "PO-Revision-Date: 2026-09-13 09:59+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Hungarian\n"
@@ -2991,6 +2991,10 @@ msgstr "Hetente"
 #: desktop/src/pages/ConfigPreferences.tsx:88
 msgid "Monthly"
 msgstr "Havonta"
+
+#: desktop/src/pages/ConfigPreferences.tsx:124
+msgid "URLhaus feed (malware URL blocklist)"
+msgstr "URLhaus-feed (kártevő URL-blokklista)"
 
 #: desktop/src/pages/ConfigPreferences.tsx:220
 msgid "No configuration file selected"

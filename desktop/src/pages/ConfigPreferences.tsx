@@ -121,7 +121,7 @@ function urlhausAuthKeyFromUrl(url: string): string | null {
 }
 
 function displayCustomUrl(url: string): string {
-  return isUrlhausFeed(url) ? `${URLHAUS_EXPORT_PREFIX}****${URLHAUS_EXPORT_SUFFIX}` : url;
+  return isUrlhausFeed(url) ? _("URLhaus feed (malware URL blocklist)") : url;
 }
 
 const defaultSchedule = (): Schedule => ({
