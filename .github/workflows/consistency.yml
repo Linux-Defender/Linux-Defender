@@ -29,6 +29,20 @@ jobs:
             librsvg2-dev libssl-dev libwebkit2gtk-4.1-dev libsoup-3.0-dev \
             libxdo-dev pkg-config gettext
 
+      - name: Install gettext (explicit, idempotent)
+        # Defense in depth: build-deps already installs gettext, but the audit
+        # depends on msgfmt/msgcmp/msgmerge/msgen/xgettext/msgcat. Install and
+        # verify them explicitly so a missing or stale tool fails fast with a
+        # clear message instead of an opaque gettext error deep in the audit.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
+          for tool in msgfmt msgcmp msgmerge msgen xgettext msgcat; do
+            command -v "$tool" >/dev/null || { echo "missing gettext tool: $tool" >&2; exit 1; }
+            "$tool" --version >/dev/null
+            echo "  $tool: OK"
+          done
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
