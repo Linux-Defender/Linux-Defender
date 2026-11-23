@@ -387,6 +387,56 @@ fn passwd_home(uid: u32) -> AppResult<PathBuf> {
     Ok(PathBuf::from(home))
 }
 
+/// Redact the caller's home directory from a helper error message.
+///
+/// The privileged helper's stderr is delivered only back to the invoking user,
+/// so this is defence in depth rather than a cross-user disclosure fix. It
+/// keeps the home layout out of anything that captures helper output while
+/// preserving the rest of the diagnostic. A failed lookup leaves the message
+/// unchanged, because it has no home prefix to remove.
+fn redact_home(message: &str, uid: u32) -> String {
+    match passwd_home(uid) {
+        Ok(home) => {
+            let home = home.to_string_lossy();
+            if home == "/" {
+                message.to_owned()
+            } else {
+                redact_prefix(message, &home)
+            }
+        }
+        Err(_) => message.to_owned(),
+    }
+}
+
+fn redact_prefix(message: &str, prefix: &str) -> String {
+    if prefix.is_empty() {
+        message.to_owned()
+    } else {
+        message.replace(prefix, "~")
+    }
+}
+
+#[cfg(test)]
+mod redact_tests {
+    use super::redact_prefix;
+
+    #[test]
+    fn redact_prefix_removes_the_home_directory() {
+        let message =
+            "cannot safely open staging root /home/alice/.cache/clamui/privileged-staging: denied";
+        assert_eq!(
+            redact_prefix(message, "/home/alice"),
+            "cannot safely open staging root ~/.cache/clamui/privileged-staging: denied"
+        );
+    }
+
+    #[test]
+    fn redact_prefix_keeps_messages_that_do_not_contain_it() {
+        assert_eq!(redact_prefix("no path here", "/home/alice"), "no path here");
+        assert_eq!(redact_prefix("no path here", ""), "no path here");
+    }
+}
+
 /// The only staging root accepted by both caller and helper. It never reads
 /// HOME, XDG_CACHE_HOME, or a Flatpak-specific environment variable.
 ///
@@ -2330,7 +2380,10 @@ pub fn run_helper(args: &[String]) -> i32 {
     match result {
         Ok(()) => 0,
         Err(error) => {
-            eprintln!("Error: {error}");
+            // The helper's stderr is delivered only to the invoking user, but
+            // the message can embed staging paths. Replace the home prefix so
+            // the caller's filesystem layout is not written out verbatim.
+            eprintln!("Error: {}", redact_home(&error, uid));
             if rest.first().map(String::as_str) == Some("--read-config") && rest.len() != 2
                 || (rest.first().map(String::as_str) != Some("--read-config")
                     && (rest.is_empty() || !rest.len().is_multiple_of(2)))
