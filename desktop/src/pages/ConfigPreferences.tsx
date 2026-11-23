@@ -737,7 +737,10 @@ export default function ConfigPreferences({ section }: { section: string }) {
       if (helperFailure) {
         helperFailed(helperFailure, recoveryConfigurations);
       } else {
-        notify(tone === "warning" || tone === "error" ? message.split("\n", 1)[0] : message, tone);
+        const notifyMessage = (tone === "warning" || tone === "error") && technicalDetails
+          ? `${message.split("\n", 1)[0]}: ${technicalDetails.split("\n", 1)[0]}`
+          : message;
+        notify(notifyMessage, tone);
       }
     } catch (error) {
       if (!isCurrentAttempt()) {
@@ -815,7 +818,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
         )}</small></span><button className="button" type="button" onClick={() => void openReference("https://sanesecurity.com/")}>{_("Open provider")}</button></div>
         <div className="setting-row"><span className="row-copy"><strong>RFXN</strong><small className="muted">{_("Free Linux malware and web-shell hash and heuristic signatures from Linux Malware Detect.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://www.rfxn.com/projects/linux-malware-detect/")}>{_("Open provider")}</button></div>
         <div className="setting-row"><span className="row-copy"><strong>InterServer</strong><small className="muted">{_("Community hash, web-shell, and general malware signature databases.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://sigs.interserver.net/")}>{_("Open provider")}</button></div>
-        <div className="setting-row"><span className="row-copy"><strong>URLhaus</strong><small className="muted">{_("Free malware URL blocklist, enabled by default.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://auth.abuse.ch/")}>{_("Open provider")}</button></div>
+        <div className="setting-row"><span className="row-copy"><strong>URLhaus</strong><small className="muted">{_("Free malware URL blocklist, enabled by default. Added to Custom Signature Databases automatically.")}</small></span><button className="button" type="button" onClick={() => void openReference("https://auth.abuse.ch/")}>{_("Open provider")}</button></div>
       </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("Proxy Settings")}</h3>
         <TextField label={_("Proxy Server")} field="HTTPProxyServer" value={value(freshclamValues, "HTTPProxyServer")} onChange={(next) => setFreshclamField("HTTPProxyServer", next)} />
