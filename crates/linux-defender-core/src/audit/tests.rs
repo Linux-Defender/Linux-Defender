@@ -19,7 +19,7 @@ fn noninteractive_audit_preserves_output_and_failure_status() {
 
 #[test]
 fn lynis_runs_noninteractively_with_an_open_parent_stdin() {
-    const FIXTURE_ROOT: &str = "CLAMUI_LYNIS_TEST_ROOT";
+    const FIXTURE_ROOT: &str = "LINUX_DEFENDER_LYNIS_TEST_ROOT";
     if let Some(root) = std::env::var_os(FIXTURE_ROOT) {
         let root = std::path::PathBuf::from(root);
         let ctx = Context::with_paths(Paths {
@@ -54,7 +54,7 @@ fn lynis_runs_noninteractively_with_an_open_parent_stdin() {
                 "[ \"$*\" = 'audit system --cronjob --quiet' ] || exit 42\n",
                 // Model the ownership warning that waits for ENTER even in cron mode.
                 "read -r answer\n",
-                "printf 'completed' > \"$CLAMUI_LYNIS_TEST_ROOT/result\"\n",
+                "printf 'completed' > \"$LINUX_DEFENDER_LYNIS_TEST_ROOT/result\"\n",
             ),
         ),
     ] {

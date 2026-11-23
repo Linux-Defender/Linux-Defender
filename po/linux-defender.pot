@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-23 05:44-0500\n"
+"POT-Creation-Date: 2026-11-23 06:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1258,101 +1258,101 @@ msgstr[1] ""
 msgid "Usage: linux-defender install-privileged-helper"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:319
-#: crates/linux-defender-core/src/config.rs:338
+#: crates/linux-defender-core/src/config.rs:326
+#: crates/linux-defender-core/src/config.rs:345
 msgid "Configuration file not found"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:403
+#: crates/linux-defender-core/src/config.rs:410
 msgid "Invalid scheduled scan configuration: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:462
-#: crates/linux-defender-core/src/config.rs:520
+#: crates/linux-defender-core/src/config.rs:469
+#: crates/linux-defender-core/src/config.rs:527
 msgid "Not attempted because an earlier direct configuration write failed"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:500
+#: crates/linux-defender-core/src/config.rs:507
 msgid "Protected configuration write failed"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:575
+#: crates/linux-defender-core/src/config.rs:582
 msgid "Cannot save configuration paths: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:605
-#: crates/linux-defender-core/src/config.rs:639
+#: crates/linux-defender-core/src/config.rs:612
+#: crates/linux-defender-core/src/config.rs:646
 msgid "Cannot save scheduled scan preferences: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:618
-#: crates/linux-defender-core/src/config.rs:627
+#: crates/linux-defender-core/src/config.rs:625
+#: crates/linux-defender-core/src/config.rs:634
 msgid "Failed to apply scheduled scan configuration: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:701
+#: crates/linux-defender-core/src/config.rs:708
 msgid "Configuration path appears more than once: {path}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:709
+#: crates/linux-defender-core/src/config.rs:716
 msgid "Configuration kinds sharing {setting} must use the same path"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:720
+#: crates/linux-defender-core/src/config.rs:727
 msgid "Cannot prepare {path}: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:810
+#: crates/linux-defender-core/src/config.rs:817
 msgid "Cannot read {path}: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:820
+#: crates/linux-defender-core/src/config.rs:827
 msgid "Configuration is not a regular file: {path}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:826
+#: crates/linux-defender-core/src/config.rs:833
 msgid "Cannot create {path}: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:835
+#: crates/linux-defender-core/src/config.rs:842
 msgid "Cannot write {path}: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:934
+#: crates/linux-defender-core/src/config.rs:941
 msgid ""
 "On-Access scanning requires at least one loop-prevention exclusion: Exclude "
 "Username, Exclude User ID, or Exclude Root User"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:959
+#: crates/linux-defender-core/src/config.rs:966
 msgid "{key}: invalid boolean value: {value}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:988
+#: crates/linux-defender-core/src/config.rs:995
 msgid "{key}: value {value} is below minimum {minimum}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:996
+#: crates/linux-defender-core/src/config.rs:1003
 msgid "{key}: value {value} exceeds maximum {maximum}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1005
+#: crates/linux-defender-core/src/config.rs:1012
 msgid "{key}: not a valid integer: {value}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1014
+#: crates/linux-defender-core/src/config.rs:1021
 msgid "{key}: size must start with a number: {value}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1031
+#: crates/linux-defender-core/src/config.rs:1038
 msgid "{key}: path cannot be empty"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1046
+#: crates/linux-defender-core/src/config.rs:1053
 msgid "{key}: string value cannot be empty"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1057
+#: crates/linux-defender-core/src/config.rs:1064
 msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr ""
 
@@ -1503,55 +1503,55 @@ msgid "Not running as Flatpak"
 msgstr ""
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1077
+#: crates/linux-defender-core/src/privileged.rs:1118
 msgid "Authorization was cancelled while {operation}."
 msgstr ""
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1083
+#: crates/linux-defender-core/src/privileged.rs:1124
 msgid "The privileged helper is unavailable while {operation}."
 msgstr ""
 
 #. Translators: PKEXEC_UID is a technical environment-variable name; keep it unchanged.
-#: crates/linux-defender-core/src/privileged.rs:1089
+#: crates/linux-defender-core/src/privileged.rs:1130
 msgid "The privileged helper rejected PKEXEC_UID while {operation}."
 msgstr ""
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1095
+#: crates/linux-defender-core/src/privileged.rs:1136
 msgid "The privileged helper reported a protocol mismatch while {operation}."
 msgstr ""
 
 #. Translators: keep {operation}, numeric {code}, and sanitized diagnostic {detail}.
-#: crates/linux-defender-core/src/privileged.rs:1101
+#: crates/linux-defender-core/src/privileged.rs:1142
 msgid "The privileged helper failed while {operation} (exit {code}): {detail}."
 msgstr ""
 
 #. Translators: keep the {operation} and numeric {code} placeholders.
-#: crates/linux-defender-core/src/privileged.rs:1109
+#: crates/linux-defender-core/src/privileged.rs:1150
 msgid "The privileged helper failed while {operation} (exit {code})."
 msgstr ""
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1116
+#: crates/linux-defender-core/src/privileged.rs:1157
 msgid "The privileged helper was terminated while {operation}."
 msgstr ""
 
-#: crates/linux-defender-core/src/privileged.rs:1175
+#: crates/linux-defender-core/src/privileged.rs:1216
 msgid "Applying configuration"
 msgstr ""
 
 #. Translators: keep {message}; it is the complete preceding helper error.
-#: crates/linux-defender-core/src/privileged.rs:1177
+#: crates/linux-defender-core/src/privileged.rs:1218
 msgid "{message} One or more earlier replacements may have succeeded."
 msgstr ""
 
-#: crates/linux-defender-core/src/privileged.rs:1419
+#: crates/linux-defender-core/src/privileged.rs:1460
 msgid "Reading configuration"
 msgstr ""
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3034
+#: crates/linux-defender-core/src/privileged.rs:3075
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -1757,156 +1757,156 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/scheduler.rs:860
+#: crates/linux-defender-core/src/scheduler.rs:903
 msgid "Scheduled scan cancelled"
 msgstr ""
 
 #. Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/scheduler.rs:879
+#: crates/linux-defender-core/src/scheduler.rs:922
 msgid ""
 "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] "
 "[--target PATH] [--dry-run] [--verbose|-v]"
 msgstr ""
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/linux-defender-core/src/scheduler.rs:920
+#: crates/linux-defender-core/src/scheduler.rs:963
 msgid "Linux Defender scheduled scan starting…"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:929
+#: crates/linux-defender-core/src/scheduler.rs:972
 msgid "Scheduled scan skipped (on battery power)"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:946
+#: crates/linux-defender-core/src/scheduler.rs:989
 msgid "Warning: Target does not exist: {target}"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:958
+#: crates/linux-defender-core/src/scheduler.rs:1001
 msgid "Error: No valid scan targets found"
 msgstr ""
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/linux-defender-core/src/scheduler.rs:962
+#: crates/linux-defender-core/src/scheduler.rs:1005
 msgid "Dry run mode — scan not executed"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:970
+#: crates/linux-defender-core/src/scheduler.rs:1013
 msgid "  Skip on battery: {value}"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:975
+#: crates/linux-defender-core/src/scheduler.rs:1018
 msgid "  Auto quarantine: {value}"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:983
+#: crates/linux-defender-core/src/scheduler.rs:1026
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1007
+#: crates/linux-defender-core/src/scheduler.rs:1050
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr ""
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/linux-defender-core/src/scheduler.rs:1017
+#: crates/linux-defender-core/src/scheduler.rs:1060
 msgid "Error: ClamAV not available — {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1026
+#: crates/linux-defender-core/src/scheduler.rs:1069
 msgid "Scheduled Scan Failed"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1027
+#: crates/linux-defender-core/src/scheduler.rs:1070
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1090
+#: crates/linux-defender-core/src/scheduler.rs:1133
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1101
+#: crates/linux-defender-core/src/scheduler.rs:1144
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1110
+#: crates/linux-defender-core/src/scheduler.rs:1153
 msgid "Scheduled scan completed with errors"
 msgstr ""
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/scheduler.rs:1113
+#: crates/linux-defender-core/src/scheduler.rs:1156
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1128
+#: crates/linux-defender-core/src/scheduler.rs:1171
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1130
+#: crates/linux-defender-core/src/scheduler.rs:1173
 msgid "Files Scanned: {count}"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1131
+#: crates/linux-defender-core/src/scheduler.rs:1174
 msgid "Threats Found: {count}"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1132
+#: crates/linux-defender-core/src/scheduler.rs:1175
 msgid "Targets: {targets}"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1136
+#: crates/linux-defender-core/src/scheduler.rs:1179
 msgid "Quarantined: {count}"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1141
+#: crates/linux-defender-core/src/scheduler.rs:1184
 msgid "Quarantine Failed: {count}"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1169
+#: crates/linux-defender-core/src/scheduler.rs:1212
 msgid "Scheduled Scan: Threats Detected!"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1175
+#: crates/linux-defender-core/src/scheduler.rs:1218
 msgid "Scheduled Scan Completed"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1176
+#: crates/linux-defender-core/src/scheduler.rs:1219
 msgid "Scan completed with some errors. Check logs for details."
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1184
+#: crates/linux-defender-core/src/scheduler.rs:1227
 msgid "Scheduled Scan Complete"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1197
+#: crates/linux-defender-core/src/scheduler.rs:1240
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1223
+#: crates/linux-defender-core/src/scheduler.rs:1266
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1228
+#: crates/linux-defender-core/src/scheduler.rs:1271
 msgid "Scan skipped due to battery-aware settings."
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1234
+#: crates/linux-defender-core/src/scheduler.rs:1277
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr ""
 
-#: crates/linux-defender-core/src/scheduler.rs:1239
+#: crates/linux-defender-core/src/scheduler.rs:1282
 msgid "Skipping scan: running on battery power"
 msgstr ""
 
@@ -2126,7 +2126,7 @@ msgstr ""
 msgid "Export"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:598
+#: desktop/src-tauri/src/runtime.rs:617
 msgid "Open"
 msgstr ""
 

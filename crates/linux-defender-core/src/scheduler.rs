@@ -685,6 +685,12 @@ pub fn is_scheduled_scan_command(line: &str) -> bool {
     {
         return true;
     }
+    if command
+        .first()
+        .is_some_and(|program| is_snap_scheduled_scan_command(program))
+    {
+        return true;
+    }
     if command[0] == "flatpak"
         && command[1..].iter().any(|word| {
             SCHEDULER_PROGRAMS
@@ -758,6 +764,40 @@ fn shell_words(input: &str) -> Vec<String> {
 /// until the new binary is on PATH.
 const SCHEDULER_PROGRAMS: [&str; 2] = ["linux-defender-scheduled-scan", "clamui-scheduled-scan"];
 
+/// Recognize a revision-independent snap scheduled-scan command such as
+/// `/snap/bin/linux-defender.scheduled-scan`.
+fn is_snap_scheduled_scan_command(program: &str) -> bool {
+    let path = Path::new(program);
+    let in_snap_bin = path.parent().is_some_and(|parent| {
+        parent == Path::new("/snap/bin") || parent == Path::new("/var/lib/snapd/snap/bin")
+    });
+    let Some(instance) = path
+        .file_name()
+        .and_then(OsStr::to_str)
+        .and_then(|name| name.strip_suffix(".scheduled-scan"))
+    else {
+        return false;
+    };
+    in_snap_bin && instance == "linux-defender"
+}
+
+/// The revision-independent snap command. `$SNAP` contains the revision and
+/// changes on every refresh, so timers must not point at the executable path.
+fn snap_launcher_command() -> Option<Vec<String>> {
+    crate::common::snap_root()?;
+    let name = "linux-defender.scheduled-scan";
+    let candidates = [
+        PathBuf::from("/snap/bin"),
+        PathBuf::from("/var/lib/snapd/snap/bin"),
+    ];
+    let command = candidates
+        .iter()
+        .map(|directory| directory.join(name))
+        .find(|path| path.exists())
+        .unwrap_or_else(|| candidates[0].join(name));
+    Some(vec![command.display().to_string()])
+}
+
 fn launcher_command() -> Option<Vec<String>> {
     if is_flatpak() {
         // The manifest in this repository is the source of truth for what the
@@ -770,6 +810,9 @@ fn launcher_command() -> Option<Vec<String>> {
             format!("--command={}", SCHEDULER_PROGRAMS[0]),
             app_id,
         ]);
+    }
+    if let Some(command) = snap_launcher_command() {
+        return Some(command);
     }
     if let Some(appimage) = env::var_os("APPIMAGE")
         .map(PathBuf::from)

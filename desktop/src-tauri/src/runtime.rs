@@ -498,12 +498,33 @@ async fn copy_text(state: State<'_, AppState>, app: AppHandle, text: String) -> 
     .map_err(|error| error.to_string())?
 }
 
+/// Open a target with the desktop's default handler. Under a classic snap,
+/// route `xdg-open` through the host environment so the snap's bundled GTK
+/// libraries are not inherited by the host handler.
+fn open_with_desktop(target: &std::ffi::OsStr) -> Result<(), String> {
+    if !linux_defender_core::common::is_snap() {
+        return open::that(target).map_err(|error| error.to_string());
+    }
+    let status = linux_defender_core::common::host_command("xdg-open", &[])
+        .arg(target)
+        .stdin(std::process::Stdio::null())
+        .stdout(std::process::Stdio::null())
+        .stderr(std::process::Stdio::null())
+        .status()
+        .map_err(|error| error.to_string())?;
+    if status.success() {
+        Ok(())
+    } else {
+        Err(format!("xdg-open failed with {status}"))
+    }
+}
+
 #[tauri::command]
 async fn open_external(state: State<'_, AppState>, url: String) -> Result<(), String> {
     let _operation = state.active_jobs.register("native.open_external".into())?;
     let url = is_safe_external_url(&url)?;
     tauri::async_runtime::spawn_blocking(move || {
-        open::that(url.as_str()).map_err(|error| error.to_string())
+        open_with_desktop(std::ffi::OsStr::new(url.as_str()))
     })
     .await
     .map_err(|error| error.to_string())?
@@ -518,11 +539,9 @@ async fn open_path(state: State<'_, AppState>, path: String) -> Result<(), Strin
     if !metadata.file_type().is_file() && !metadata.file_type().is_dir() {
         return Err("requested path is not a regular file or directory".into());
     }
-    tauri::async_runtime::spawn_blocking(move || {
-        open::that(path).map_err(|error| error.to_string())
-    })
-    .await
-    .map_err(|error| error.to_string())?
+    tauri::async_runtime::spawn_blocking(move || open_with_desktop(path.as_os_str()))
+        .await
+        .map_err(|error| error.to_string())?
 }
 
 #[tauri::command]

@@ -40,18 +40,18 @@ pub(crate) fn run_limited_command(
         return incomplete_limited_output();
     };
     let Some(mut stdout_reader) = child.stdout.take() else {
-        terminate_limited_process_group(&mut child);
+        terminate_limited_process_group(child);
         return incomplete_limited_output();
     };
     let Some(mut stderr_reader) = child.stderr.take() else {
         drop(stdout_reader);
-        terminate_limited_process_group(&mut child);
+        terminate_limited_process_group(child);
         return incomplete_limited_output();
     };
     if set_limited_nonblocking(&stdout_reader).is_err()
         || set_limited_nonblocking(&stderr_reader).is_err()
     {
-        terminate_limited_process_group(&mut child);
+        terminate_limited_process_group(child);
         drop(stdout_reader);
         drop(stderr_reader);
         return incomplete_limited_output();
@@ -133,11 +133,11 @@ pub(crate) fn run_limited_command(
     }
 
     let complete = !timed_out && !truncated && !incomplete && status.is_some();
-    if !complete {
-        terminate_limited_process_group(&mut child);
-    }
     drop(stdout_reader);
     drop(stderr_reader);
+    if !complete {
+        terminate_limited_process_group(child);
+    }
     let (stdout, stdout_invalid_utf8) = limited_output_text(stdout);
     let stderr_invalid_utf8 = std::str::from_utf8(&stderr).is_err();
     LimitedCommandOutput {
@@ -246,11 +246,24 @@ fn drain_limited_pipe<R: Read>(
     }
 }
 
-fn terminate_limited_process_group(child: &mut Child) {
+fn terminate_limited_process_group(mut child: Child) {
     let group = child.id() as libc::pid_t;
     let _ = unsafe { libc::kill(-group, libc::SIGKILL) };
     let _ = child.kill();
-    let _ = child.wait();
+    reap_limited_child(child);
+}
+
+fn reap_limited_child(mut child: Child) {
+    if matches!(child.try_wait(), Ok(Some(_))) {
+        return;
+    }
+    // An elevated or uninterruptible child may outlive both kill attempts.
+    // Never wait for it on the request thread after the probe deadline.
+    let _ = std::thread::Builder::new()
+        .name("linux-defender-probe-reaper".to_owned())
+        .spawn(move || {
+            let _ = child.wait();
+        });
 }
 
 pub(crate) fn limited_output_text(bytes: Vec<u8>) -> (String, bool) {

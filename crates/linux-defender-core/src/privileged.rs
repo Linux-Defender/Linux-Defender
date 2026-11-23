@@ -325,13 +325,54 @@ fn canonical_local_tool<'a>(candidates: &'a [&'a str]) -> AppResult<&'a str> {
     candidates
         .iter()
         .copied()
-        .find(|path| root_owned_regular(Path::new(path), true))
+        .find(|path| resolved_local_tool(Path::new(path)).is_ok())
         .ok_or_else(|| {
             format!(
                 "required trusted tool is unavailable: {}",
                 candidates.join(" or ")
             )
         })
+}
+
+/// Validate a trusted local tool: canonicalize it and check every ancestor
+/// directory from the root down, then the file itself, for root ownership and
+/// no group/world write bits. Execute the resolved path, never the symlink.
+fn resolved_local_tool(candidate: &Path) -> AppResult<PathBuf> {
+    let resolved = fs::canonicalize(candidate)
+        .map_err(|error| format!("cannot resolve {}: {error}", candidate.display()))?;
+    let ancestors: Vec<_> = resolved.ancestors().skip(1).collect();
+    for directory in ancestors.into_iter().rev() {
+        validate_local_tool_metadata(directory, &safe_metadata(directory)?, true)?;
+    }
+    validate_local_tool_metadata(&resolved, &safe_metadata(&resolved)?, false)?;
+    Ok(resolved)
+}
+
+fn validate_local_tool_metadata(
+    path: &Path,
+    metadata: &fs::Metadata,
+    directory: bool,
+) -> AppResult<()> {
+    match local_tool_metadata_failure(metadata.mode(), metadata.uid(), directory) {
+        Some(reason) => Err(format!("{}: {reason}", path.display())),
+        None => Ok(()),
+    }
+}
+
+fn local_tool_metadata_failure(mode: u32, uid: u32, directory: bool) -> Option<&'static str> {
+    if directory && mode & libc::S_IFMT != libc::S_IFDIR {
+        Some("not a directory")
+    } else if !directory && mode & libc::S_IFMT != libc::S_IFREG {
+        Some("not a regular file")
+    } else if uid != 0 {
+        Some("not owned by root")
+    } else if mode & 0o022 != 0 {
+        Some("group or world writable")
+    } else if !directory && mode & 0o100 == 0 {
+        Some("not executable by root")
+    } else {
+        None
+    }
 }
 
 fn command_in_environment(program: &str, flatpak: bool) -> Command {

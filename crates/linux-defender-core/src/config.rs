@@ -293,10 +293,17 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
         "load" => load(ctx, args),
         "read_authorized" => read_authorized(ctx, args),
         "validate" => validate(ctx, args),
+        "needs_elevation" => needs_elevation_check(ctx, args),
         "save" => save(ctx, args, false),
         "apply" => save(ctx, args, true),
         _ => Err(format!("Unknown config action: {action}")),
     }
+}
+
+fn needs_elevation_check(_ctx: &Context, args: Value) -> AppResult<Value> {
+    let object = object(args)?;
+    let path = absolute_path(&required_string(&object, "path")?)?;
+    Ok(json!({ "needs_elevation": needs_elevation(&path) }))
 }
 
 fn detect(ctx: &Context, args: Value) -> AppResult<Value> {

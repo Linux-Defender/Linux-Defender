@@ -1,41 +1,50 @@
 # ClamUI Fork — Status
 
-Written so a successor can continue without loss. As of `9579181`.
+Written so a successor can continue without loss.
 
 ## Completed
 
 | Work | Detail |
 |---|---|
-| **Rust core port** (audit refactor) | `crates/linux-defender-core/src/audit.rs`, `audit/firewall.rs`, `audit/opensnitch.rs`, `audit/acknowledgements.rs`, `audit/tests.rs`, `scanner/host_count.rs` — from upstream `clamui-core/`. `network.rs` `listener_snapshot*` ported. `privileged.rs` gets dev-build helper install via pkexec. |
-| **Desktop port** | `accent_color.rs`, `clipboard.rs` (GTK) wired; `Dashboard.tsx`, `ScanOverview.tsx` pages; modules `accentColor.ts`, `configAuthorize.ts`, `configDraft.ts`, `initialMountedPages.ts`, `pageId.ts`, `pathList.ts`, `savePlan.ts`, `scanHistory.ts`, `ScanProgressPanel.tsx`; tests in `desktop/tests/`. |
-| **Desktop wiring** | `main.rs` (module decls), `runtime.rs` (`manage(AccentColor)`, `accent_color::init` in setup, `startup.accent`), `model.rs` (`StartupState.accent`), `Cargo.toml` (deps: `gtk`, `tokio`, `zbus`, `futures-util`), `clipboard`-based `copy_text` on Linux. |
-| **Distro/packaging** | `snap/` (snapcraft), `icons/`, `.gitar/` policy, `scripts/install-nemo-actions.sh`, `data/` WebExtensions, `website/public/CNAME`, screenshots. |
-| **Docs** | `docs/clamui-fork/` (README, REPOS), `docs/documentation/`, `docs/README.md`, `docs/translations/`. |
-| **Validation (all green)** | `cargo fmt --check`, `cargo clippy -- -D warnings`, `cargo test` (163), `bun check/build/test` (28), `check-translations.sh`, `msgcmp` |
+| **Rust core port** (audit refactor) | `crates/linux-defender-core/src/audit.rs`, `audit/firewall.rs`, `audit/opensnitch.rs`, `audit/acknowledgements.rs`, `audit/tests.rs`, `scanner/host_count.rs` — from upstream `clamui-core/`. `network.rs` `listener_snapshot*` ported. `privileged.rs` helper install via pkexec + ancestor-chain local-tool validation. |
+| **Snap runtime support** | `common.rs` `is_snap()`/`snap_root()`/`without_snap_entries()` + host-command snap-variable stripping; `scheduler.rs` `is_snap_scheduled_scan_command`/`snap_launcher_command`; `runtime.rs` `open_with_desktop` snap xdg-open routing; `tests/snap.rs`; `.github/workflows/build-snap.yml`; `snap/local/linux-defender-launch`. |
+| **Config elevation probe** | `config.rs` `config.needs_elevation` dispatch action (`needs_elevation_check`) matching upstream. |
+| **Stability** | `host_probe.rs` `reap_limited_child()` — off-thread child reaping so a stuck host command never blocks the request thread. |
+| **Desktop port** | `accent_color.rs`, `clipboard.rs` (GTK) wired; `Dashboard.tsx`, `ScanOverview.tsx`; modules `accentColor.ts`, `configAuthorize.ts`, `configDraft.ts`, `initialMountedPages.ts`, `pageId.ts`, `pathList.ts`, `savePlan.ts`, `scanHistory.ts`, `ScanProgressPanel.tsx`; tests in `desktop/tests/`. |
+| **Desktop wiring** | `main.rs`, `runtime.rs` (accent + clipboard + snap opener), `model.rs` (`StartupState.accent`), `Cargo.toml` deps. |
+| **Packaging/distro** | `snap/`, `icons/`, `scripts/install-nemo-actions.sh`, `data/` WebExtensions, screenshots, `.github/FUNDING.yml`, `build-snap.yml`, `flathub/cargo-sources.json` refreshed for cookie 0.18.3. |
+| **Translations** | POT regenerated; all 10 catalogs merged and translated; `check-translations.sh`, `msgcmp`, `msgfmt -c`, `update-pot.sh --check` all pass. |
+| **Docs** | `docs/clamui-fork/` (README, REPOS, STATUS), `docs/documentation/`, `docs/README.md`, `docs/translations/`, `po/MISSING_TRANSLATIONS.txt`. |
+| **Validation (all green)** | `cargo fmt/clippy/test` (163 + 1 snap), `bun check/build/test` (28), `check-translations.sh`. |
 
-## Blocked (Translations CI fails)
+## Deliberate deferral (documented, not forgotten)
 
-`update-pot.sh --check`: POT stale — the audit refactor added 32 new strings not in
-the catalogs (see [`../../po/MISSING_TRANSLATIONS.txt`](../../po/MISSING_TRANSLATIONS.txt)).
+`crates/linux-defender-core/src/scanner.rs`: upstream added concurrent daemon
+scan sharding (`run_daemon_file_lists`, `daemon_worker_count`,
+`merge_daemon_worker_outputs`, `combined_clamdscan_exit_code`) and cumulative
+multi-target progress (`ProgressReporter` fields). This is a ~760-line behavioral
+change in a scanner that has **diverged** from upstream (LD adds YARA rules,
+engine options in profiles, Thunar integration). Porting it blindly risks scan
+correctness regressions in an antivirus engine, so it is intentionally deferred.
+The upstream-independent scan features in LD are preserved and tested.
 
-- German translations of those 32 are documented there (from `/tmp/translations.json`).
-- es/fr/hu/it/nb/pt_BR/vi/zh_CN need them too; English fallback is acceptable.
-- Recipe + polib instructions: [`docs/translations/README.md`](../translations/README.md).
+Also intentionally not ported: cosmetic `desktop/src/assets/linux-defender-logo.svg`
+(LD uses the shield icon in `App.tsx`), and `docs/issue-325-screenshots/*` (upstream
+issue-specific screenshots).
 
-## Known-good end state
+## Compatibility contracts (kept deliberately, per AGENTS.md)
 
-```sh
-./scripts/update-pot.sh && for l in de en es fr hu it nb pt_BR vi zh_CN; do
-  msgmerge --update po/$l.po po/linux-defender.pot
-done
-# fill new entries with translations (see docs/translations/README.md)
-./scripts/update-pot.sh --check && ./scripts/check-translations.sh
-```
+Legacy identifiers — `clamui-apply-preferences`, `clamui-scheduled-scan`,
+`~/.config/clamui`, `~/.cache/clamui/privileged-staging`, `clamui.log*`, the
+`clamui` Nautilus-script fallback, `uninstall.sh` pre-rename cleanup, and
+`Scheduler` cron markers — are retained only as compatibility/migration
+contracts with dedicated tests. Do not "rebrand" these.
 
 ## Notes for the next model
 
-- The committed catalogs pass `check-translations.sh` (the active catalogs contain all
-  of the OLD strings; the POT is ahead). Do NOT regenerate the catalogs with msgmerge
-  blindly — `msgattrib --no-obsolete --no-fuzzy` first if needed, and `msgfmt -c` after.
-- The `/tmp/translations.json` on this machine is a backup of the German translations.
-- Hand-rolled PO editors have been tried and are unreliable; use polib or regenerate.
+- All catalog checks pass; `./scripts/check-translations.sh` is the gate.
+- `/tmp/translations.json` is a backup of the German translations used.
+- Hand-rolled PO editors are unreliable; prefer `polib` or the documented recipe.
+- CI: all 10 workflows green; keep it that way by running `cargo fmt --check`,
+  `cargo clippy -- -D warnings`, `cargo test`, `bun check/build/test`, and the
+  i18n scripts before committing.
