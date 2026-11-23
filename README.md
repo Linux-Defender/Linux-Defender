@@ -1,5 +1,12 @@
 # Linux Defender
 
+[![Build AppImage](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-appimage.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-appimage.yml)
+[![Build Flatpak](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-flatpak.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-flatpak.yml)
+[![Test](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/test.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/test.yml)
+[![Lint](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/lint.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/lint.yml)
+[![CodeQL](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/codeql.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/codeql.yml)
+[![Translations](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/i18n.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/i18n.yml)
+
 A community project for one maintainable Linux malware-scanning desktop app. The goal is one interface that carries forward useful ClamTk workflows and the current Rust/Tauri feature set while using the system's supported ClamAV tools and signature database.
 
 **Development status:** Linux Defender 0.6.0 development snapshot (Rust core, Tauri desktop runtime, React/TypeScript UI). Legacy application, executable, helper, and data identifiers remain temporarily so existing settings and integrations are not lost while migration is designed. ClamTk parity, CachyOS packaging, and desktop validation remain in progress. No Linux Defender signed installer packages are published; do not treat this branch as a finished or guaranteed protection product.
