@@ -2303,8 +2303,8 @@ fn verify_rpm_embedded_signature(package: &Path) -> AppResult<()> {
 pub fn run_helper(args: &[String]) -> i32 {
     let uid = match parse_pkexec_uid() {
         Ok(uid) => uid,
-        Err(error) => {
-            eprintln!("Error: {error}");
+        Err(_error) => {
+            eprintln!("Error: PKEXEC_UID validation failed");
             return 3;
         }
     };
