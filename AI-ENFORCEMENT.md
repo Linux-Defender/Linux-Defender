@@ -34,10 +34,13 @@ into hooks and CI; you cannot claim "done" while they fail.
    Nautilus fallbacks are upgrade contracts with tests. Keep them.
 7. **Exercise the real app and site**, not just unit tests: headless CLI
    (`status --json`, `history`, EICAR `scan`), logs, and a production-preview
-   Lighthouse run for site changes. `scripts/check-signatures.py` verifies the
-   host database is current and detects EICAR; `scripts/check-signature-feeds.py`
-   verifies the product-default URLhaus export (Auth-Key redacted). The host
-   engine and signature database are NEVER bundled by any package format.
+   Lighthouse run for site changes. For visual bugs, use the browser harness
+   (`desktop/visual-harness.html`) AND focus the real Tauri window and run
+   `bash scripts/capture-app-window.sh`, then read the PNG — WebKitGTK is not
+   Chromium. `scripts/check-signatures.py` verifies the host database is current
+   and detects EICAR; `scripts/check-signature-feeds.py` verifies the
+   product-default URLhaus export (Auth-Key redacted). The host engine and
+   signature database are NEVER bundled by any package format.
 8. **For full verification** run `bash scripts/audit-consistency.sh` (adds
    builds, clippy, tests, git/CI sync). Pre-commit runs all static checks;
    pre-push runs the full audit. Do not bypass hooks to "save time."

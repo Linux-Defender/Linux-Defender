@@ -57,6 +57,8 @@ Use the Tauri command for desktop development; do not substitute direct `cargo r
 
 For a **visual-only** check of the React layout without launching Tauri, start `bun run --cwd desktop dev` and open `http://127.0.0.1:1420/visual-harness.html` in a browser. That page is a development-only entry that injects mocked native IPC before the app mounts, so the real components and CSS render in a normal browser and can be inspected with screenshots, the accessibility tree, and Lighthouse. It is not part of the production build (Vite only builds `index.html`) and its mock data is not a substitute for exercising the host ClamAV bridge, helper, or event stream in the real app.
 
+To see the **real Tauri/WebKitGTK window** (native form controls can render differently from Chromium), run the app with `bun run --cwd desktop tauri dev`, focus its window, and run `bash scripts/capture-app-window.sh [out.png]`. The script uses Spectacle on KDE/Wayland and ImageMagick/scrot/gnome-screenshot on other sessions, then prints the PNG path; open that file with an image-capable tool. OpenCode exposes this as `/capture-app` through `opencode.json`, and Claude Code through `.claude/commands/capture-app.md`, so any agent can inspect the actual desktop UI rather than assuming the browser rendering matches.
+
 The GUI runs through Tauri/WebKitGTK. For the headless core CLI, use the native binary directly; this route must not initialize a WebKit window:
 
 ```bash

@@ -110,4 +110,6 @@ This section exists so no request from the whole revival conversation is lost. I
 | 20 | Visual UI bug: Scan Profile row overlapped on every load | `desktop/src/styles.css` (deterministic custom `<select>` rendering), `desktop/visual-harness.html` + development guide (browser visual check), accessibility skill |
 | 21 | Privileged-helper prompt returning on every launch after install | `crates/linux-defender-core/src/privileged.rs` (`trusted_helper_status`: a trusted native helper is `installed` with `needs_onboarding: false`; package version mismatch is informational), regression test in `helper_status_tests` |
 
+| 22 | See inside the real WebKitGTK window, not only the Chromium harness | `scripts/capture-app-window.sh` (Spectacle/ImageMagick/scrot/gnome-screenshot), `/capture-app` command in `opencode.json` and `.claude/commands/capture-app.md`, documented in the development guide and accessibility skill |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

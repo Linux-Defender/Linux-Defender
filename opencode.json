@@ -1,5 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "instructions": ["AI-ENFORCEMENT.md"],
-  "skills": ["./agents/skills"]
+  "skills": ["./agents/skills"],
+  "commands": {
+    "capture-app": {
+      "description": "Capture the real Tauri/WebKitGTK app window for visual inspection",
+      "template": "Run `bash scripts/capture-app-window.sh`, focus the Linux Defender window first if needed, then read the saved PNG with the read tool and compare it against the browser visual harness. Report any visual difference that affects layout or accessibility."
+    }
+  }
 }
