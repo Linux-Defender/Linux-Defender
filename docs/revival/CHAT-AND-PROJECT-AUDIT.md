@@ -127,4 +127,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 30 | Optional literal Claude Code plugin package, without replacing current wiring | Added `.claude/plugins/linux-defender-enforcement/` with `plugin.json`, pointer skill, `/capture-app` command, and reviewer agent; it declares **no hooks**, so the always-on settings hooks stay the single enforcement path; `claude plugin validate` passes and is enforced by `check-ai-enforcement-wiring.py` |
 
+| 31 | CI failed on transient GitHub HTTP 502 for two real links | Link checkers now retry 429/5xx three times and skip only after a genuine upstream outage; 403/404/410 still fail; regression test `scripts/tests/test_external_links.py` wired into `check-all.sh` |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

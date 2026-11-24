@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """Verify external URLs in the canonical upstream repository inventory.
 
-Checks every bare URL in docs/revival/UPSTREAM-REPOSITORIES.md. HTTP 4xx/5xx
-fails the check; transport errors are reported and skipped so the check works
-offline. This catches dead upstream links before they rot in the docs again.
+Checks every bare URL in docs/revival/UPSTREAM-REPOSITORIES.md. 403/404/410
+fail; transient 5xx/429 outages are retried three times then skipped, and
+transport errors are skipped so the check works offline. This catches dead
+upstream links before they rot in the docs again.
 """
 from __future__ import annotations
 
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -23,13 +25,23 @@ def check(url: str) -> tuple[str, str]:
         "User-Agent": "linux-defender-doc-link-check",
         "Range": "bytes=0-0",
     })
-    try:
-        with urllib.request.urlopen(req, timeout=25) as response:
-            return ("ok", str(response.status))
-    except urllib.error.HTTPError as exc:
-        return ("dead", str(exc.code))
-    except Exception as exc:
-        return ("skip", type(exc).__name__)
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=25) as response:
+                return ("ok", str(response.status))
+        except urllib.error.HTTPError as exc:
+            if exc.code in {429, 500, 502, 503, 504}:
+                if attempt < 2:
+                    time.sleep(1 + attempt)
+                    continue
+                return ("skip", f"HTTP {exc.code} after 3 attempts (upstream outage)")
+            return ("dead", str(exc.code))
+        except Exception as exc:
+            if attempt < 2:
+                time.sleep(1 + attempt)
+                continue
+            return ("skip", type(exc).__name__)
+    return ("skip", "unknown")
 
 
 def main() -> int:

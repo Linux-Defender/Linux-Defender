@@ -4,9 +4,9 @@
 Inline code spans and fenced code blocks are stripped first: placeholder URLs
 such as `https://.../exports/<auth-key>/...` are documentation examples, not
 links to visit. Imported skill payloads under `.agents/` are omitted because
-they are upstream-owned and hash-locked. Transport errors are reported and
-skipped so offline checks work; HTTP 403 and every other 4xx/5xx fail — a link
-that leads to a challenge page or nowhere is not a usable documentation link. Kept separate from check-all.sh because it performs network requests;
+they are upstream-owned and hash-locked. Transport errors are retried and then reported/skipped so offline checks work;
+transient 5xx/429 outages are retried three times before being skipped, while
+403/404/410 fail — a link to a challenge page or nowhere is not usable. Kept separate from check-all.sh because it performs network requests;
 audit-consistency.sh and a weekly CI job run it.
 """
 from __future__ import annotations
@@ -14,6 +14,7 @@ from __future__ import annotations
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -36,15 +37,21 @@ def check(url: str) -> tuple[str, str, str]:
         "User-Agent": "linux-defender-doc-link-check",
         "Range": "bytes=0-0",
     })
-    for attempt in range(2):
+    for attempt in range(3):
         try:
             with urllib.request.urlopen(req, timeout=25) as resp:
                 return (url, "ok", str(resp.status))
         except urllib.error.HTTPError as exc:
-            return (url, "dead", str(exc.code))
+            if exc.code in {429, 500, 502, 503, 504}:
+                if attempt < 2:
+                    time.sleep(1 + attempt)  # transient upstream outage, retry
+                    continue
+                return (url, "skip", f"HTTP {exc.code} after 3 attempts (upstream outage)")
+            return (url, "dead", str(exc.code))  # 403/404/410 are dead links
         except Exception as exc:
-            if attempt == 0:
-                continue  # one retry for transient DNS/TLS/timeouts
+            if attempt < 2:
+                time.sleep(1 + attempt)  # transient DNS/TLS/timeout, retry
+                continue
             return (url, "skip", type(exc).__name__)
     return (url, "skip", "unknown")
 

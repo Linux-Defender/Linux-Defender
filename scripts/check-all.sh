@@ -27,6 +27,7 @@ step "Repo-wide consistency (versions, app id, workflow/script inventory)"
 python3 scripts/check-repo-consistency.py || fail "repo-wide consistency"
 
 step "Upstream repository inventory (external URLs resolve)"
+python3 scripts/tests/test_external_links.py >/dev/null 2>&1 || fail "external link checker tests"
 python3 scripts/check-upstream-urls.py || fail "dead upstream URL"
 
 step "Dev/build wiring (tauri dev -> Vite -> dist, vendored glib patch)"
