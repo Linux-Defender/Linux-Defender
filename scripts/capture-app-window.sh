@@ -11,6 +11,11 @@
 #   bash scripts/capture-app-window.sh [out.png]
 #   # Then: read <out.png> with your image-capable tool.
 #
+# Works with any Linux Defender build (native, AppImage, Flatpak, Snap, RPM):
+# it captures a window, not a package. Supports KDE/Wayland (Spectacle),
+# GNOME (gnome-screenshot), wlroots/Sway/Hyprland (grim), and X11
+# (ImageMagick import / scrot / ffmpeg), with graceful failure if none exists.
+#
 # Focus the Linux Defender window before running (the Wayland path captures the
 # active window, since Wayland clients cannot be focused with xdotool).
 set -uo pipefail
@@ -26,6 +31,9 @@ if [ "${XDG_SESSION_TYPE:-}" = "wayland" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; the
     elif command -v gnome-screenshot >/dev/null 2>&1; then
         echo "Capturing active window with gnome-screenshot (Wayland)..."
         if gnome-screenshot -w -f "$OUT" >/dev/null 2>&1; then captured=1; fi
+    elif command -v grim >/dev/null 2>&1; then
+        echo "Capturing screen with grim (Wayland/wlroots)..."
+        if grim "$OUT" >/dev/null 2>&1; then captured=1; fi
     fi
 fi
 
@@ -59,6 +67,10 @@ fi
 
 if [ ! -s "$OUT" ]; then
     echo "ERROR: capture tool ran but produced no file at $OUT" >&2
+    exit 1
+fi
+if command -v file >/dev/null 2>&1 && ! file "$OUT" | grep -q "PNG image data"; then
+    echo "ERROR: capture at $OUT is not a PNG image" >&2
     exit 1
 fi
 
