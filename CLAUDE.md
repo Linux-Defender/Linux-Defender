@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-The AI-assistant guide for this repository lives in [`AGENTS.md`](AGENTS.md). That file is the canonical, tool-neutral source: git hooks and CI enforce the same rules in Claude Code, Aider, Cursor, Continue, Zed, or any other assistant. Claude Code is a first-class adapter, not a privileged one.
+The AI-assistant guide for this repository lives in [`AGENTS.md`](AGENTS.md). That file is the canonical, tool-neutral source: git hooks and CI enforce the same rules in Claude Code, Open Code, Aider, Cursor, Continue, Zed, or any other assistant. Claude Code is a first-class adapter, not a privileged one.
 
 **Edit `AGENTS.md`, not this file.** This stub exists only so Claude Code's CLAUDE.md auto-discovery still finds guidance. Also read [`AI-ENFORCEMENT.md`](AI-ENFORCEMENT.md): the canonical rules file with skill-style frontmatter. It is injected at `SessionStart`, re-reminded on `UserPromptSubmit`, and no adapter duplicates its text. Before saying "done", run `bash scripts/check-all.sh` and fix every failure; `.claude/settings.json` runs it automatically on every `Stop`. `scripts/check-ai-enforcement-wiring.py` verifies this wiring. An optional plugin package at `.claude/plugins/linux-defender-enforcement/` adds a pointer skill, a capture command, and a reviewer agent; it deliberately declares no hooks, so the always-on settings hooks remain the only enforcement path.
 
