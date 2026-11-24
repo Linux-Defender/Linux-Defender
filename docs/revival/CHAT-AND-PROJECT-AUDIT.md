@@ -129,4 +129,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 31 | CI failed on transient GitHub HTTP 502 for two real links | Link checkers now retry 429/5xx three times and skip only after a genuine upstream outage; 403/404/410 still fail; regression test `scripts/tests/test_external_links.py` wired into `check-all.sh` |
 
+| 32 | Enforcement must be universal and tool-neutral, with no OpenCode bias | `AGENTS.md`, git hooks, and CI declared the universal path for Claude Code, Aider, Cursor, Continue, Zed, OpenCode, and any other assistant; Claude Code documented first as a first-class adapter; `.aider.conf.yml` loads the rules into Aider; OpenCode kept working but explicitly listed as one adapter among several; `check-ai-enforcement-wiring.py` enforces this |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

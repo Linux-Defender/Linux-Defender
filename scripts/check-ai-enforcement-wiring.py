@@ -127,6 +127,18 @@ def main() -> int:
             if result.returncode != 0:
                 failures.append(f"claude plugin validate failed: {result.stdout.strip() or result.stderr.strip()}")
 
+    # Aider is a first-class, tool-neutral adapter.
+    aider = read(".aider.conf.yml")
+    if "AGENTS.md" not in aider or "AI-ENFORCEMENT.md" not in aider:
+        failures.append(".aider.conf.yml does not load AGENTS.md and AI-ENFORCEMENT.md")
+
+    # The guides must present the universal path, not privilege one tool.
+    agents_doc = read("AGENTS.md")
+    if "tool-agnostic" not in agents_doc or "Universal baseline" not in agents_doc:
+        failures.append("AGENTS.md does not document the tool-agnostic universal baseline")
+    if "not the primary path" not in agents_doc:
+        failures.append("AGENTS.md presents one adapter as the primary path")
+
     # Pointer skill and contributor guides must name the canonical file/skill.
     skill = read(".agents/skills/linux-defender-enforcement/SKILL.md")
     if "AI-ENFORCEMENT.md" not in skill:

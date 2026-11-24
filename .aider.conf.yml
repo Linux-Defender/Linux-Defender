@@ -1,0 +1,6 @@
+# Tool-neutral Aider adapter: always load the canonical AI rules and the
+# repository guidance into every chat. Hooks and CI enforce the same checks
+# regardless of which assistant is used.
+read:
+  - AGENTS.md
+  - AI-ENFORCEMENT.md

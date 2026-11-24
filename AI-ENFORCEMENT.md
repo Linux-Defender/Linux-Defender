@@ -5,12 +5,15 @@ description: Mandatory Linux Defender rules injected into every AI model context
 
 # Linux Defender — mandatory rules for every AI model
 
-This is the **canonical** rules file. The OpenCode plugin reads it at runtime
-and injects it into every model context; `opencode.json` loads it as
-instructions; a Claude Code `SessionStart` hook injects its contents; and a
-thin skill (`linux-defender-enforcement`) points here. Do **not** copy these
-rules into a plugin or hook — adapters must read this file. The checks below
-are wired into hooks and CI; you cannot claim "done" while they fail.
+This is the **canonical** rules file for **every** assistant, not for one tool.
+The universal path is `AGENTS.md`, the git hooks, and CI; they work identically
+in Claude Code, Aider, Cursor, Continue, Zed, OpenCode, or any other assistant.
+Optional tool adapters only add convenience: `opencode.json` and its plugin,
+Claude Code `SessionStart`/`Stop` hooks, an Aider config, and a thin
+`linux-defender-enforcement` skill all read this file at runtime. Do **not**
+copy these rules into a plugin or hook — adapters must read this file. The
+checks below are wired into hooks and CI; you cannot claim "done" while they
+fail.
 
 ## Non-negotiable before you reply "done"
 
@@ -67,11 +70,13 @@ are wired into hooks and CI; you cannot claim "done" while they fail.
   EICAR, and URLhaus feed health check.
 - `.github/workflows/upstream-freshness.yml` → weekly skill drift detection.
 - `.github/workflows/doc-links.yml` → weekly external documentation link check.
-- OpenCode: `opencode.json` loads this file as instructions; the local plugin
-  `.opencode/plugins/linux-defender-enforcement/` reads this file at runtime and
-  injects it into every model context. No rules are duplicated in the plugin.
 - Claude Code: `.claude/settings.json` runs `check-all.sh` on `Stop` and injects
   this file at `SessionStart` through `scripts/hooks/ai-enforcement-context.py`.
+- Aider: `.aider.conf.yml` reads `AGENTS.md` and this file into every chat.
+- OpenCode: `opencode.json` loads this file as instructions; the local plugin
+  `.opencode/plugins/linux-defender-enforcement/` reads this file at runtime.
+  This is one adapter among several, not the primary path. No rules are
+  duplicated in the plugin.
 - The thin `.agents/skills/linux-defender-enforcement/` skill points here, so
   assistants that discover skills can find and load the rules. An optional
   Claude Code plugin package at `.claude/plugins/linux-defender-enforcement/`
