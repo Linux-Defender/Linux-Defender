@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 RULES = ROOT / "AI-ENFORCEMENT.md"
 SHELL_DIR = ROOT / "scripts/hooks"
 PLUGIN_ROOT = ROOT / ".claude/plugins/linux-defender-enforcement"
+EDITOR_ADAPTER = ROOT / ".editor-adapters/enforcement/index.ts"
 
 
 def read(rel: str) -> str:
@@ -44,14 +45,20 @@ def main() -> int:
     if "AI-ENFORCEMENT.md" not in instructions:
         failures.append("opencode.json no longer loads AI-ENFORCEMENT.md as instructions")
 
-    # OpenCode plugin must read the file at runtime, not embed a copy.
-    plugin = read(".opencode/plugins/linux-defender-enforcement/index.ts")
+    # Optional editor adapter must be loaded from its neutral path and read the
+    # canonical file at runtime; it must never embed a copy of the rules.
+    plugin = EDITOR_ADAPTER.read_text(errors="replace") if EDITOR_ADAPTER.exists() else ""
     if not plugin:
-        failures.append("OpenCode enforcement plugin is missing")
+        failures.append("optional editor adapter is missing")
     if "AI-ENFORCEMENT.md" not in plugin or "readFile" not in plugin:
-        failures.append("OpenCode plugin does not read AI-ENFORCEMENT.md at runtime")
+        failures.append("editor adapter does not read AI-ENFORCEMENT.md at runtime")
     if 'const RULES = `LINUX' in plugin:
-        failures.append("OpenCode plugin duplicates rules instead of reading the canonical file")
+        failures.append("editor adapter duplicates rules instead of reading the canonical file")
+    plugins = config.get("plugins", [])
+    if not any(".editor-adapters/enforcement" in json.dumps(item) for item in plugins):
+        failures.append("editor adapter is not loaded from its neutral configured path")
+    if (ROOT / ".opencode").exists():
+        failures.append("old adapter directory still exists; current tree should stay neutral")
 
     # Claude Code hooks.
     try:
