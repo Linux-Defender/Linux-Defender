@@ -8,8 +8,9 @@ into hooks and CI; you cannot claim "done" while they fail.
 ## Non-negotiable before you reply "done"
 
 1. **Run `bash scripts/check-all.sh`. Fix EVERY failure.** It blocks broken doc
-   links, orphaned/dead files, cross-layer drift, gettext drift, stale branding,
-   dead frontend modules, unwired website components, and skill drift. It is the
+   links, orphaned/dead files, cross-layer drift, version/identity drift,
+   stale/missing signature databases, gettext drift, stale branding, dead
+   frontend modules, unwired website components, and skill drift. It is the
    single source of truth for static checks — do not invent a parallel check.
 2. **Load the `linux-defender-parity` skill** for any task touching more than
    one layer (core, Tauri runtime, React frontend, translations, docs, packaging,
@@ -33,7 +34,10 @@ into hooks and CI; you cannot claim "done" while they fail.
    Nautilus fallbacks are upgrade contracts with tests. Keep them.
 7. **Exercise the real app and site**, not just unit tests: headless CLI
    (`status --json`, `history`, EICAR `scan`), logs, and a production-preview
-   Lighthouse run for site changes.
+   Lighthouse run for site changes. `scripts/check-signatures.py` verifies the
+   host database is current and detects EICAR; `scripts/check-signature-feeds.py`
+   verifies the product-default URLhaus export (Auth-Key redacted). The host
+   engine and signature database are NEVER bundled by any package format.
 8. **For full verification** run `bash scripts/audit-consistency.sh` (adds
    builds, clippy, tests, git/CI sync). Pre-commit runs all static checks;
    pre-push runs the full audit. Do not bypass hooks to "save time."
@@ -44,6 +48,9 @@ into hooks and CI; you cannot claim "done" while they fail.
 - `scripts/hooks/pre-push` → the full audit.
 - `.github/workflows/consistency.yml` → the same checks on every push/PR and
   weekly on `main`; CI runs both `check-all.sh` and `audit-consistency.sh`.
+- `.github/workflows/signature-database.yml` → weekly host ClamAV database,
+  EICAR, and URLhaus feed health check.
+- `.github/workflows/upstream-freshness.yml` → weekly skill drift detection.
 - OpenCode plugin `.opencode/plugins/linux-defender-enforcement/` injects these
   rules into every model context; `opencode.json` loads this file as instructions.
 - `.claude/settings.json` runs the static checks on every Claude Code `Stop`.

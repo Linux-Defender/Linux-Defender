@@ -23,6 +23,12 @@ python3 scripts/check-dead-files.py || fail "dead files"
 step "Cross-layer contracts (IPC / CLI / locales / feature matrix)"
 python3 scripts/check-cross-layer.py || fail "cross-layer parity"
 
+step "Repo-wide consistency (versions, app id, workflow/script inventory)"
+python3 scripts/check-repo-consistency.py || fail "repo-wide consistency"
+
+step "Host ClamAV signature database (presence, age, EICAR)"
+python3 scripts/check-signatures.py || fail "signature database"
+
 step "Gettext current + well-formed"
 ./scripts/update-pot.sh --check >/dev/null || fail "POT stale"
 ./scripts/check-potfiles.sh >/dev/null || fail "potfiles coverage"

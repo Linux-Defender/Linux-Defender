@@ -1,0 +1,79 @@
+name: Signature Database
+
+# Weekly health check for the host signature boundary we do not bundle: verify
+# the host ClamAV database updates and detects EICAR, and that the product
+# default URLhaus feed is reachable and valid. Opens a review issue on failure.
+on:
+  schedule:
+    - cron: "43 5 * * 1"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  signatures:
+    name: Host signatures and default feed
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install host ClamAV
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y clamav clamav-freshclam
+          sudo systemctl stop clamav-freshclam 2>/dev/null || true
+          sudo freshclam
+
+      - name: Verify host database and EICAR detection
+        id: verify
+        run: python3 scripts/check-signatures.py
+
+      - name: Verify product-default URLhaus feed
+        run: python3 scripts/check-signature-feeds.py
+
+      - name: Write workflow summary
+        if: always()
+        run: |
+          {
+            echo "## Signature database"
+            echo "- Host database and EICAR: ${{ steps.verify.conclusion || 'see steps' }}"
+            echo "- Product-default URLhaus feed: checked in the feed step"
+            echo "- No engine or database is bundled by any Linux Defender package."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or refresh issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          title="Signature database check failed"
+          body=$(
+            cat <<EOF
+          The weekly Signature Database check failed.
+
+          - Run: $RUN_URL
+
+          Investigate the host ClamAV freshclam database update and the product-default
+          URLhaus export. Remember: Linux Defender never bundles an engine or a
+          signature database; it only uses host tools through the established boundary.
+          The URLhaus Auth-Key must never appear in an issue, log, setting, or event.
+          EOF
+          )
+          existing="$(gh api "repos/$REPO/issues?state=open&per_page=100" \
+            --jq ".[] | select(.title == \"$title\" and .pull_request == null) | .number" \
+            | head -n 1 || true)"
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/$REPO/issues/$existing" -f body="$body" >/dev/null
+          else
+            gh issue create --repo "$REPO" --title "$title" --body "$body" >/dev/null
+          fi

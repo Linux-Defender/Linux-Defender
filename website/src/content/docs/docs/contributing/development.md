@@ -53,7 +53,7 @@ From the repository root, install the locked frontend dependencies and start Tau
 bun run --cwd desktop tauri dev
 ```
 
-Use the Tauri command for desktop development; do not substitute direct `cargo run`. Tauri development uses its configured `build.devUrl`, while the native custom-protocol production binary embeds `frontendDist`.
+Use the Tauri command for desktop development; do not substitute direct `cargo run`. Tauri development uses its configured `build.devUrl`, while the native custom-protocol production binary embeds `frontendDist`. `scripts/local-run.sh` wraps the same workflow for quick source runs (`--deps` syncs locked dependencies, `--run -- /path` passes a target); it never replaces the validation commands below.
 
 The GUI runs through Tauri/WebKitGTK. For the headless core CLI, use the native binary directly; this route must not initialize a WebKit window:
 
@@ -124,14 +124,14 @@ Start OpenCode from the repository root: `opencode.json` loads `AI-ENFORCEMENT.m
 
 [`AI-ENFORCEMENT.md`](https://github.com/Linux-Defender/Linux-Defender/blob/main/AI-ENFORCEMENT.md) lists the non-negotiable rules every contributor and AI model follows. The rules are enforced, not merely documented:
 
-- `bash scripts/check-all.sh` is the single source of truth for static checks: broken doc links, orphaned docs/modules/skills, cross-layer contracts, gettext, skill hashes and wiring, stale branding, dead frontend modules, and website sidebar/component wiring.
+- `bash scripts/check-all.sh` is the single source of truth for static checks: broken doc links, orphaned files anywhere in the repo, cross-layer contracts, version and app-identity agreement, host signature database health (presence, age, EICAR), gettext, skill hashes and wiring, stale branding, dead frontend modules, and website sidebar/component wiring.
 - `bash scripts/audit-consistency.sh` adds the heavy builds, tests, clippy, git sync, and CI status.
 - `./scripts/hooks/install-hooks.sh` installs a pre-commit hook (all static checks plus Rust format and TypeScript type-check) and a pre-push hook (the full audit).
 - Consistency Audit CI runs both scripts on every push and pull request, and weekly on `main`.
 
 Cross-layer features are declared in `scripts/cross-layer-contracts.json`. Add an entry whenever a feature spans two or more layers (core, native runtime, frontend, website docs, packaging); `scripts/check-cross-layer.py` also derives Tauri commands, CLI subcommands, and active locales from source so a feature cannot land in only one layer.
 
-Two scheduled workflows keep dependencies and skills fresh. `Refresh Dependabot sources` rebuilds locked Flatpak dependency sources for Dependabot pull requests. `Upstream Freshness` runs `scripts/check-upstream-freshness.py` weekly: it compares each imported skill against the current upstream file and opens a review issue on drift. Upstream content is never auto-merged — review provenance and license first.
+Three scheduled workflows keep dependencies, skills, and signatures fresh. `Refresh Dependabot sources` (`dependabot-refresh.yml`) rebuilds locked Flatpak dependency sources for Dependabot pull requests. `Upstream Freshness` (`upstream-freshness.yml`) runs `scripts/check-upstream-freshness.py` weekly: it compares each imported skill against the current upstream file and opens a review issue on drift. `Signature Database` (`signature-database.yml`) installs host ClamAV, runs `freshclam`, and executes `scripts/check-signatures.py` and `scripts/check-signature-feeds.py` weekly. Upstream content is never auto-merged — review provenance and license first, and never bundle an engine or signature database in any package. The URLhaus Auth-Key is redacted from all output.
 
 ClamAV and gettext guidance is authored for this project; the contributor rules and the existing [architecture](/Linux-Defender/docs/contributing/architecture/) and [translation](/Linux-Defender/docs/contributing/translating/) pages remain authoritative. The React guidance applies to the client UI: exclude Next.js and other server-only changes. Check native accessibility in Tauri/WebKitGTK—Chrome accessibility scores alone do not prove the desktop application is accessible.
 

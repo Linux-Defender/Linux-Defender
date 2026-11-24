@@ -80,3 +80,31 @@ This pass does not complete ClamTk feature/data parity, create a Linux Defender 
 Supporting evidence: [issue/PR tracker](CLAMTK-ISSUE-PR-TRACKER.md), [related project review](RELATED-PROJECT-REVIEW.md), [Lenspect review](LENSPECT-REVIEW.md), [source consolidation](SOURCE-CONSOLIDATION.md), and [CachyOS setup](CACHYOS-TEST-SETUP.md).
 
 ClamTk's concrete page-by-page migration status is in the “ClamTk screen-by-screen parity check” section of [RELATED-PROJECT-REVIEW.md](RELATED-PROJECT-REVIEW.md). Treat any row marked partial/open as unfinished parity, even when Linux Defender has a similarly named page.
+
+## Consolidated revival-chat requirement ledger
+
+This section exists so no request from the whole revival conversation is lost. It is the checklist used before saying "done"; each row names where the requirement is satisfied and automatically re-verified.
+
+| # | Requirement (from the chat) | Where it is satisfied / re-verified |
+| --- | --- | --- |
+| 1 | Full ClamUI/ClamTk/Lenspect parity, preserving Linux Defender branding | `docs/revival/RELATED-PROJECT-REVIEW.md`, `docs/clamui-fork/STATUS.md`; `linux-defender-parity` skill |
+| 2 | Make no mistakes; miss nothing; read and satisfy the whole message | `AI-ENFORCEMENT.md` rule 5, injected into every OpenCode model and Claude Code Stop hook |
+| 3 | Local and GitHub fully synced; every CI green; no stale/dead/incompatible text | `scripts/audit-consistency.sh` git/CI step; `bash scripts/check-all.sh`; Consistency Audit workflow |
+| 4 | Keep the rebranded identity and all compatibility aliases | `AGENTS.md` user-facing compatibility section; `scripts/cross-layer-contracts.json` alias contracts |
+| 5 | URLhaus on by default with product Auth-Key; no paste/Delete UI | `crates/linux-defender-core/src/urlhaus.rs`; `scripts/check-signature-feeds.py`; contract `urlhaus` |
+| 6 | URLhaus feed auto-added to freshclam draft; Save & Apply is explicit host write | `desktop/src/configDraft.ts`, `savePlan.ts`, `configAuthorize.ts`; deferred Flush UI documented in `docs/clamui-fork/STATUS.md` |
+| 7 | Privileged helper stays host/Polkit-only; local adjacent helper for source builds | `crates/linux-defender-core/src/privileged.rs`, `data/*.policy`, `debian/`; `linux-defender-integrations` skill |
+| 8 | CodeQL cleartext-logging alert handled without weakening logging | sanitized native error text; Security tab shows 0 open alerts |
+| 9 | Superseded upstream pages removed rather than left dead | `docs/clamui-fork/STATUS.md`; dead-file and dead-frontend-module checks |
+| 10 | Scanner concurrency / full Flush UI deliberately deferred with a reason | `docs/clamui-fork/STATUS.md` "Deliberate deferral" |
+| 11 | Improve existing base skills, not only add new ones | `.agents/skills/{accessibility,rust-best-practices,vercel-react-best-practices}/SKILL.md` locally adapted; `skills-lock.json` records both hashes |
+| 12 | More parity, compatibility, integrations, security, quality, documentation in all layers | cross-layer contracts, integration skill, consistency audit, website checks |
+| 13 | Exercise the real app, live site, logs, workflows, GitHub tabs | `scripts/check-signatures.py`, headless CLI EICAR run, production-preview Lighthouse, `gh run list` |
+| 14 | Auto-update for everything | `dependabot-refresh.yml`, `upstream-freshness.yml`, `signature-database.yml`; hooks and CI enforce checks on every change |
+| 15 | No dead links, dead files, stale docs/skills/site; everything wired | `scripts/check-doc-links.py`, `scripts/check-dead-files.py` (whole repo), `scripts/check-all.sh` |
+| 16 | Cross-compat: a feature in one layer must appear in all consuming layers | `scripts/cross-layer-contracts.json`, `scripts/check-cross-layer.py` (derives Tauri commands, CLI subcommands, locales) |
+| 17 | Make every AI model listen | `AI-ENFORCEMENT.md` + `opencode.json` instructions + OpenCode context-hook plugin + `.claude/settings.json` Stop hook + git hooks |
+| 18 | Whole repo, all files, all sites, all app layers | `scripts/check-repo-consistency.py` (versions, app id, workflow/script inventory), whole-repo dead-file check, website build/link/sidebar/component checks |
+| 19 | Database signatures checked | `scripts/check-signatures.py` (database age + EICAR), `scripts/check-signature-feeds.py` (URLhaus, key redacted), `signature-database.yml`; no engine or database bundled anywhere |
+
+Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

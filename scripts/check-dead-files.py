@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Fail when source or documentation files are orphaned (dead files).
+"""Fail when tracked files are orphaned (dead files) anywhere in the repo.
 
-A file is live when another tracked file references it by path or by module
-name, or when it is a known convention entry point. This catches the common
-drift where a module, doc, or skill is added but never wired to a caller.
+A file is live when another tracked file references it by path, basename, or
+module name, or when it lives in a directory that tooling discovers by
+convention (GitHub metadata, tests, published assets, packaging, etc.). This
+covers the whole repository: source, docs, skills, workflows, scripts, site,
+and packaging.
 """
 from __future__ import annotations
 
@@ -12,16 +14,25 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SKIP_PARTS = {".git", "node_modules", "target", "dist", ".astro", "vendor", ".svelte-kit"}
+SKIP_PARTS = {".git", "node_modules", "target", "dist", ".astro", "vendor", ".svelte-kit", "__pycache__"}
+BINARY_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".ico", ".woff", ".woff2", ".ttf", ".mo", ".pdf", ".zip"}
 
-# Convention entry points and generated/legacy files that are intentionally
-# not referenced by any other source file.
-ALLOWED = {
+# Files that are entry points by convention and need no in-repo reference.
+ALLOWED_NAMES = {
     "README.md", "CHANGELOG.md", "RELEASE_NOTES.md", "LICENSE", "AGENTS.md",
-    "CLAUDE.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md",
-    "index.md", "index.mdx", "404.md", "SKILL.md", "cheat-sheet.md",
-    "main.rs", "lib.rs", "main.tsx", "index.ts", "index.tsx", "App.tsx",
-    "vite-env.d.ts", "setupTests.ts", "middleware.ts",
+    "CLAUDE.md", "CONTEXT.md", "AI-ENFORCEMENT.md", "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md", "SECURITY.md", "index.md", "index.mdx", "404.md",
+    "SKILL.md", "main.rs", "lib.rs", "main.tsx", "index.ts", "index.tsx",
+    "App.tsx", "vite-env.d.ts", "middleware.ts", ".gitignore", ".tldrignore",
+    "content.config.ts", "astro.config.mjs",
+}
+
+# Directories whose contents are discovered by tooling rather than by an
+# explicit reference to each file name.
+CONVENTION_DIRS = {
+    ".github", "tests", "screenshots", "hooks", "rules", "references",
+    "assets", "public", "icons", "data", "debian", "flathub", "appimage",
+    "snap", "capabilities",
 }
 
 
@@ -32,52 +43,42 @@ def tracked_files() -> list[Path]:
     return [ROOT / p for p in out]
 
 
-def is_live(path: Path, all_text: str, rel: str) -> bool:
-    name = path.name
-    if name in ALLOWED:
-        return True
-    stem = path.stem
-    # Path reference (with or without extension) or module/basename reference.
-    for needle in (rel, rel.rsplit(".", 1)[0], name, stem):
-        if needle and needle in all_text:
-            return True
-    return False
-
-
 def main() -> int:
     files = [p for p in tracked_files() if not any(part in SKIP_PARTS for part in p.parts)]
-    text_map: dict[Path, str] = {}
+    texts: dict[Path, str] = {}
     for p in files:
         try:
-            text_map[p] = p.read_text(encoding="utf-8", errors="replace")
+            texts[p] = p.read_text(encoding="utf-8", errors="replace")
         except (OSError, UnicodeError):
-            text_map[p] = ""
-    # Exclude each file's own content from the corpus so self-mentions don't
-    # count as being referenced by another file.
-    all_text = "\n".join(text_map.values())
+            texts[p] = ""
+    corpus = "\n".join(texts.values())
 
-    candidates: list[Path] = []
-    for p in files:
-        if p.suffix not in {".md", ".mdx", ".rs", ".ts", ".tsx", ".astro", ".py", ".sh"}:
+    orphans: list[Path] = []
+    checked = 0
+    for path in files:
+        if path.suffix.lower() in BINARY_SUFFIXES:
             continue
-        rel = p.relative_to(ROOT).as_posix()
-        # Only docs, Rust modules, and skill assets are checked; build config,
-        # scripts, and platform manifests are referenced by tooling by design.
-        if not (rel.startswith("docs/") or rel.startswith("website/src/content/")
-                or rel.startswith(".agents/skills/") or rel.startswith("crates/")
-                or rel.startswith("desktop/src-tauri/src/")):
+        rel = path.relative_to(ROOT).as_posix()
+        name = path.name
+        if name in ALLOWED_NAMES:
             continue
-        others = all_text.replace(text_map[p], "", 1)
-        if not is_live(p, others, rel):
-            candidates.append(p)
+        parent_names = set(path.parts[:-1])
+        if parent_names & CONVENTION_DIRS:
+            continue
+        others = corpus.replace(texts[path], "", 1)
+        needles = {rel, rel.rsplit(".", 1)[0], name, path.stem}
+        if any(n and n in others for n in needles):
+            continue
+        checked += 1
+        orphans.append(path)
 
-    if candidates:
+    if orphans:
         print("Orphaned files (wire to a caller or remove):", file=sys.stderr)
-        for p in candidates:
+        for p in orphans:
             print(f"  {p.relative_to(ROOT)}", file=sys.stderr)
-        print(f"{len(candidates)} orphaned file(s)", file=sys.stderr)
+        print(f"{len(orphans)} orphaned file(s)", file=sys.stderr)
         return 1
-    print(f"Checked {len(files)} tracked files: no orphaned docs/modules/skills")
+    print(f"Checked {len(files)} tracked files ({checked} strictly): no orphaned files")
     return 0
 
 

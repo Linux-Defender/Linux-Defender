@@ -11,6 +11,7 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
 
 ## Authoritative records
 
+- `docs/revival/CHAT-AND-PROJECT-AUDIT.md` — consolidated revival-chat requirement ledger; every request in the conversation with its satisfaction evidence.
 - `docs/revival/RELATED-PROJECT-REVIEW.md` — the live upstream parity matrix
   (repository, reviewed commit/date, issue/PR ids, implemented/deferred/open).
 - `docs/clamui-fork/STATUS.md` — what was ported from ClamUI, what is
@@ -57,6 +58,17 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
    `scripts/cross-layer-contracts.json` listing every layer that consumes it.
    `scripts/check-cross-layer.py` also derives Tauri commands, CLI subcommands,
    and locales from source and asserts they are wired in all consuming layers.
+6d. **Whole-repo consistency.** `scripts/check-repo-consistency.py` asserts the
+   version agrees across the workspace manifest, Tauri crate, desktop package,
+   AppStream metadata, and Flatpak release notes; that the public app id is used
+   in every package format; and that every workflow and maintenance script is
+   referenced somewhere. `scripts/check-dead-files.py` now covers all tracked
+   files, not just a few directories.
+6e. **Signature database health.** `scripts/check-signatures.py` verifies the
+   host ClamAV database is present, current, and detects EICAR;
+   `scripts/check-signature-feeds.py` verifies the product-default URLhaus
+   export with the Auth-Key redacted. The host engine and signature database
+   are never bundled. The `Signature Database` workflow runs these weekly.
 7. **Generated artifacts.** Never hand-edit `po/*.mo`, `desktop/dist/`,
    `website/public/` generated assets, or `desktop/src-tauri/gen/`. Refresh the
    POT with `./scripts/update-pot.sh`, merge catalogs with `msgmerge`, strip

@@ -105,6 +105,17 @@
         "frontend": ["yara"],
         "site": ["yara"]
       }
+    },
+    {
+      "id": "host-signature-database",
+      "why": "Host FreshClam database handling must exist in core, UI, site, docs, and packages; Linux Defender never bundles an engine or database.",
+      "layers": {
+        "core": ["freshclam", "databasedirectory"],
+        "frontend": ["freshclam"],
+        "site": ["freshclam"],
+        "docs": ["freshclam"],
+        "packaging": ["freshclam"]
+      }
     }
   ]
 }
