@@ -119,4 +119,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 26 | 403 links are genuinely unusable, not "bot-blocked"; more stale text in fork README | Treat all 4xx/5xx as dead in `scripts/check-external-links.py`; replaced the ClamAV false-positive URL with the project's issue tracker; fixed stale "Lensorreview", translation status, deprecated-upstream claim, and compatibility-ID wording; `scripts/check-stale-phrases.py` guards every corrected claim |
 
+| 27 | No doc may be forgotten, stale, or unindexed | `scripts/check-doc-indexes.py` verifies every internal doc is reachable from its folder index; combined with the external-link, stale-phrase, dead-file, and cross-layer checks, docs are continuously verified |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.
