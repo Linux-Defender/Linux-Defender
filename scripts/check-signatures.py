@@ -26,7 +26,14 @@ def run(cmd: list[str]) -> subprocess.CompletedProcess[str]:
 
 
 def main() -> int:
-    version = run(["clamscan", "--version"])
+    try:
+        version = run(["clamscan", "--version"])
+    except FileNotFoundError:
+        print("SKIP: host ClamAV (clamscan) is not installed")
+        return 0
+    except subprocess.TimeoutExpired:
+        print("FAIL: clamscan --version timed out", file=sys.stderr)
+        return 1
     if version.returncode == 127 or "not found" in version.stderr.lower():
         print("SKIP: host ClamAV (clamscan) is not installed")
         return 0
@@ -59,7 +66,11 @@ def main() -> int:
     with tempfile.TemporaryDirectory(prefix="ld-eicar-") as tmp:
         sample = Path(tmp) / "eicar.txt"
         sample.write_text(EICAR, encoding="ascii")
-        scan = run(["clamscan", "--no-summary", "--infected", str(sample)])
+        try:
+            scan = run(["clamscan", "--no-summary", "--infected", str(sample)])
+        except subprocess.TimeoutExpired:
+            print("FAIL: EICAR scan timed out", file=sys.stderr)
+            return 1
         text = f"{scan.stdout}\n{scan.stderr}".lower()
         if "eicar" not in text:
             print(f"FAIL: EICAR was not detected (exit {scan.returncode}): {text.strip()}", file=sys.stderr)
