@@ -4,7 +4,7 @@ Review snapshot: 2026-11-11. Sources: public GitHub REST API, default-branch che
 
 The ClamUI default branch advanced after the earlier v0.5.1 snapshot documented below. This pass checked the official v0.6.0 release and website, then reviewed the newer default-branch commit `30a72f036870e80c487bf95b13aa80bfc906bd4a` (2026-11-11), which fixes update inactivity handling for #307. That runtime fix is ported locally with a configurable inactivity timeout and regression tests. Vietnamese (`vi`) from v0.6.0 is active in the desktop and CLI catalogs. The two currently open upstream PRs are website dependency changes; #298 is adopted and validated, while #299’s TypeScript 7.0.2 bump is deferred because Astro 7.4.5 `astro check` explicitly rejects TypeScript 7 and requires TypeScript 6. Linux Defender's 0.6.0 version is a development snapshot with local additions; it is not the upstream ClamUI release and has no signed Linux Defender packages. Installed upstream ClamUI remains identified as `io.github.linx_systems.ClamUI`; its user data is not migrated into a new Linux Defender app identity yet.
 
-Lenspect's issues, all 25 PRs, remaining VirusTotal parity gaps, license boundary, and parity-maintenance rule are recorded in [LENSPECT-REVIEW.md](LENSPECT-REVIEW.md).
+Lenspect's issues, all 25 PRs, remaining VirusTotal parity gaps, license boundary, and parity-maintenance rule are recorded in [LENSPECT-REVIEW.md](LENSPECT-REVIEW.md). The dated, request-by-request coverage ledger for the revival chat is [CHAT-AND-PROJECT-AUDIT.md](CHAT-AND-PROJECT-AUDIT.md).
 
 ## Direction
 

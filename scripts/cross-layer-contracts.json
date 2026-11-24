@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "purpose": "Cross-layer feature contracts. Every feature below MUST appear in each declared layer. A feature added to only one scanner/runtime/doc layer fails scripts/check-cross-layer.py. Add a contract entry when introducing any cross-cutting feature.",
+  "layers": {
+    "core": { "paths": ["crates/"], "extensions": [".rs"] },
+    "runtime": { "paths": ["desktop/src-tauri/"], "extensions": [".rs"] },
+    "frontend": { "paths": ["desktop/src/"], "extensions": [".ts", ".tsx"] },
+    "site": { "paths": ["website/src/content/"], "extensions": [".md", ".mdx"] },
+    "packaging": { "paths": ["debian/", "flathub/", "appimage/", "snap/", "scripts/"], "extensions": [".sh", ".md", ".json", ".toml", ".xml", ".yaml", ".yml"] },
+    "docs": { "paths": ["docs/"], "extensions": [".md"] }
+  },
+  "features": [
+    {
+      "id": "urlhaus",
+      "why": "Default URLhaus feed must be known to the core, visible in the UI, and documented on the site.",
+      "layers": {
+        "core": ["urlhaus", "4bf8c78f1e2c86892a179019b21653d9c6f8469596e87501"],
+        "frontend": ["urlhaus"],
+        "site": ["urlhaus"],
+        "docs": ["urlhaus"]
+      }
+    },
+    {
+      "id": "privileged-helper",
+      "why": "Host preference writes must exist in the core protocol, native runtime, UI, docs, and packages.",
+      "layers": {
+        "core": ["apply-preferences"],
+        "runtime": ["apply-preferences"],
+        "frontend": ["apply-preferences"],
+        "site": ["apply-preferences"],
+        "packaging": ["apply-preferences"],
+        "docs": ["apply-preferences"]
+      }
+    },
+    {
+      "id": "compat-alias-helper",
+      "why": "The pre-rename helper alias is an upgrade contract, not branding to drop.",
+      "layers": {
+        "core": ["clamui-apply-preferences"],
+        "runtime": ["clamui-apply-preferences"],
+        "docs": ["clamui-apply-preferences"]
+      }
+    },
+    {
+      "id": "compat-alias-scheduler",
+      "why": "The pre-rename scheduled-scan alias is an upgrade contract.",
+      "layers": {
+        "core": ["clamui-scheduled-scan"],
+        "runtime": ["clamui-scheduled-scan"],
+        "site": ["clamui-scheduled-scan"]
+      }
+    },
+    {
+      "id": "event-channel",
+      "why": "Core emits {event,data}; the native bridge forwards on one named channel and the frontend/site must agree.",
+      "layers": {
+        "runtime": ["linux-defender-event"],
+        "frontend": ["linux-defender-event"],
+        "site": ["linux-defender-event"],
+        "docs": ["linux-defender-event"]
+      }
+    },
+    {
+      "id": "virustotal",
+      "why": "Online hash checking must be wired across core, runtime, UI, and docs.",
+      "layers": {
+        "core": ["virustotal"],
+        "runtime": ["virustotal"],
+        "frontend": ["virustotal"],
+        "site": ["virustotal"]
+      }
+    },
+    {
+      "id": "urlscan",
+      "why": "Online URL checking must be wired across core, UI, and docs.",
+      "layers": {
+        "core": ["urlscan"],
+        "frontend": ["urlscan"],
+        "site": ["urlscan"]
+      }
+    },
+    {
+      "id": "scheduler",
+      "why": "Scheduled scans must exist in core, UI, and docs.",
+      "layers": {
+        "core": ["schedul"],
+        "frontend": ["schedul"],
+        "site": ["schedul"]
+      }
+    },
+    {
+      "id": "quarantine",
+      "why": "Quarantine must exist in core, UI, and docs.",
+      "layers": {
+        "core": ["quarantine"],
+        "frontend": ["quarantine"],
+        "site": ["quarantine"]
+      }
+    },
+    {
+      "id": "yara",
+      "why": "Local YARA rules must exist in core, UI, and docs.",
+      "layers": {
+        "core": ["yara"],
+        "frontend": ["yara"],
+        "site": ["yara"]
+      }
+    }
+  ]
+}

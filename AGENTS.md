@@ -4,6 +4,10 @@ Linux Defender is a Linux desktop frontend for **host-installed ClamAV**. Its Ru
 
 The public desktop, AppStream, and Flatpak identity is `io.github.linuxdefender.linuxdefender`; Tauri's private bundle identifier is `io.github.linuxdefender.linuxdefender`. Do not substitute one for the other in public identity assets.
 
+## Mandatory enforcement (read first)
+
+Every AI model and contributor must follow [`AI-ENFORCEMENT.md`](AI-ENFORCEMENT.md). Before declaring any task done, run **`bash scripts/check-all.sh`** and fix every failure; for full verification run `bash scripts/audit-consistency.sh`. These are not optional: the same checks run in the pre-commit and pre-push hooks and in `Consistency Audit` CI. Cross-cutting features must be declared in `scripts/cross-layer-contracts.json` and wired in every consuming layer; dead links, dead files, stale docs/skills/site, and un-wired modules fail the check automatically.
+
 ## Security first
 
 Security takes precedence over convenience, performance, and package size.
@@ -107,13 +111,15 @@ CI builds native artifacts on the Ubuntu 22.04-compatible baseline. A build on a
 
 Project-local coding-agent skills are optional development aids, not build or runtime dependencies. Their canonical imports are in `.agents/skills`; `.claude/skills` provides compatibility links. For installation details, see the [Development guide](website/src/content/docs/docs/contributing/development.md).
 
-Three skills (`accessibility`, `rust-best-practices`, `vercel-react-best-practices`) are imported from upstream and pinned by content hash in `skills-lock.json` (source, selected path, hash, review date — not a commit). Refresh only a deliberately selected upstream skill: review the diff, update the payload, and refresh its hash/date in the same change. The `linux-defender-*` skills are maintained locally in this repo and are not in the lock file. `scripts/audit-consistency.sh` verifies imported skills still match their locked hashes. Start OMP from the repository root: `.omp/config.yml` applies its cwd-scoped `ignoredSkills` filter while preserving global skill payloads.
+Three skills (`accessibility`, `rust-best-practices`, `vercel-react-best-practices`) are imported from upstream and locally adapted with Linux Defender enforcement rules. `skills-lock.json` records the source, selected path, reviewed upstream hash (`upstreamHash`), enforced local payload hash (`computedHash`), and review date — not a commit. Refresh only a deliberately selected upstream skill: review the diff, update the payload, and refresh both hashes/date in the same change. The `linux-defender-*` skills are maintained locally in this repo and are not in the lock file. `scripts/check-all.sh` verifies imported skills still match their locked hashes AND that every skill is named in this file, `CLAUDE.md`, or the development guide (so no skill is forgotten).
+
+Start OpenCode from the repository root: `opencode.json` loads `AI-ENFORCEMENT.md` as instructions and searches `./agents/skills`; the local plugin in `.opencode/plugins/linux-defender-enforcement/` injects the hard rules into every model context. Claude Code runs `scripts/check-all.sh` on every `Stop` via `.claude/settings.json`. Install the git hooks with `./scripts/hooks/install-hooks.sh` so pre-commit and pre-push enforce the same checks for every contributor and model. The `Upstream Freshness` workflow runs `scripts/check-upstream-freshness.py` weekly and opens a review issue when an imported skill drifts; dependency auto-refresh is handled by `dependabot-refresh.yml`.
 
 - Rust changes: use `rust-best-practices`.
 - React client changes: use `vercel-react-best-practices`; apply it to `desktop/src/`, not Next.js or server patterns.
 - Accessibility work: use `accessibility`, then validate the actual Tauri/WebKitGTK desktop rather than relying only on browser scores.
 - Gettext messages, catalogs, plural forms, translator notes, or extraction: use `linux-defender-gettext` and the translation guide it points to.
-- Porting/parity, cross-file consistency, dead code, stale branding, or "is everything synced": use `linux-defender-parity` and run `scripts/audit-consistency.sh`.
+- Porting/parity, cross-file consistency, dead code, stale branding, or "is everything synced": use `linux-defender-parity` and run `bash scripts/check-all.sh`, then `bash scripts/audit-consistency.sh`.
 - Integrations (file-manager actions, tray/D-Bus, host ClamAV, privileged helper, safe open/export/clipboard, VirusTotal/urlscan, scheduling): use `linux-defender-integrations`.
 - Globally managed IPC and release skills remain optional; contributors do not need them to work on Linux Defender.
 

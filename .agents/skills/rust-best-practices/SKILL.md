@@ -20,6 +20,10 @@ allowed-tools: Bash(cargo:*) Bash(rustc:*) Bash(rustfmt:*) Bash(clippy:*) Read W
 
 Apply these guidelines when writing or reviewing Rust code. Based on Apollo GraphQL's [Rust Best Practices Handbook](https://github.com/apollographql/rust-best-practices).
 
+## Linux Defender project rules (local adaptation)
+
+This upstream guidance is adapted for Linux Defender. Keep the headless core (`crates/linux-defender-core/`) free of Tauri/widget dependencies; validate every IPC argument in Rust; return `Result<T, E>` with `thiserror` and sanitized frontend errors. After **every** Rust edit run `cargo check` and fix all errors/warnings, then `cargo fmt --check --all` and `cargo clippy --workspace --all-targets --locked -- -D warnings`. Before saying "done" run `bash scripts/check-all.sh` and `bash scripts/audit-consistency.sh`. A new core behavior is not complete until it is wired through the Tauri command allowlist, the typed frontend API, the cross-layer contracts in `scripts/cross-layer-contracts.json`, translations, and docs. Add consumer-visible regression tests at the owning boundary; `cargo clippy -D warnings` is what catches dead Rust items.
+
 ## Best Practices Reference
 
 Before reviewing, familiarize yourself with Apollo's Rust best practices. Read ALL relevant chapters in the same turn in parallel. Reference these files when providing feedback:

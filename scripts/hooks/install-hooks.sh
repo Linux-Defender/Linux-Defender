@@ -27,8 +27,14 @@ if [ -f "$GIT_HOOKS_DIR/pre-commit" ]; then
     mv "$GIT_HOOKS_DIR/pre-commit" "$GIT_HOOKS_DIR/pre-commit.backup"
 fi
 
-ln -sf "../../scripts/hooks/pre-commit" "$GIT_HOOKS_DIR/pre-commit"
-chmod +x "$SCRIPT_DIR/pre-commit"
+if [ -f "$GIT_HOOKS_DIR/pre-push" ]; then
+    printf "  Backing up existing pre-push hook...\n"
+    mv "$GIT_HOOKS_DIR/pre-push" "$GIT_HOOKS_DIR/pre-push.backup"
+fi
 
-printf "${GREEN}Installed:${NC} pre-commit hook (Rust formatting and TypeScript checks)\n"
+ln -sf "../../scripts/hooks/pre-commit" "$GIT_HOOKS_DIR/pre-commit"
+ln -sf "../../scripts/hooks/pre-push" "$GIT_HOOKS_DIR/pre-push"
+chmod +x "$SCRIPT_DIR/pre-commit" "$SCRIPT_DIR/pre-push"
+
+printf "${GREEN}Installed:${NC} pre-commit (all static checks + fmt/TS) and pre-push (full audit) hooks\n"
 printf "\n${GREEN}Done!${NC} Git hooks installed successfully.\n"

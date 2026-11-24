@@ -1,0 +1,11 @@
+#!/bin/bash
+# Git pre-push hook: run the FULL audit (heavy builds/tests + static checks)
+# before any push. Git/CI sync checks are skipped because the commit is not on
+# the remote yet. Bypass only for genuine emergencies: git push --no-verify.
+set -euo pipefail
+
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+cd "$REPO_ROOT"
+
+echo "Running full audit before push (static checks, builds, tests, lints)..."
+SKIP_GIT_SYNC=1 bash scripts/audit-consistency.sh

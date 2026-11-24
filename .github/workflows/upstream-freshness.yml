@@ -1,0 +1,89 @@
+name: Upstream Freshness
+
+# Auto-update detector for imported skills. Runs weekly and on demand; opens a
+# review issue when upstream content drifts from the recorded hashes. It never
+# auto-merges upstream code: review provenance and license before refreshing.
+on:
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    name: Check imported skill freshness
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Check upstream drift
+        id: drift
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/check-upstream-freshness.py | tee "$RUNNER_TEMP/freshness.json"
+          python3 - "$RUNNER_TEMP/freshness.json" >> "$GITHUB_OUTPUT" <<'PY'
+          import json, sys
+          data = json.load(open(sys.argv[1]))
+          print(f"drift_count={len(data['drift'])}")
+          print(f"error_count={len(data['errors'])}")
+          names = ", ".join(sorted({d["skill"] for d in data["drift"]}))
+          print(f"drift_names={names}")
+          PY
+
+      - name: Write workflow summary
+        env:
+          DRIFT: ${{ steps.drift.outputs.drift_count }}
+          ERRORS: ${{ steps.drift.outputs.error_count }}
+          NAMES: ${{ steps.drift.outputs.drift_names }}
+        run: |
+          {
+            echo "## Upstream freshness"
+            echo "- Drifted skills: $DRIFT"
+            echo "- Fetch errors: $ERRORS"
+            echo "- Names: ${NAMES:-none}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or refresh review issue on drift
+        if: steps.drift.outputs.drift_count != '0' || steps.drift.outputs.error_count != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          NAMES: ${{ steps.drift.outputs.drift_names }}
+          DRIFT: ${{ steps.drift.outputs.drift_count }}
+          ERRORS: ${{ steps.drift.outputs.error_count }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          title="Upstream skill freshness review needed"
+          body=$(
+            cat <<EOF
+          The weekly Upstream Freshness check detected changes in imported upstream skills.
+
+          - Drifted skills: $DRIFT
+          - Fetch errors: $ERRORS
+          - Names: ${NAMES:-none}
+          - Run: $RUN_URL
+
+          Review the upstream diff and license, update the imported payload in \`.agents/skills\`,
+          keep the Linux Defender enforcement section, then refresh \`upstreamHash\`,
+          \`computedHash\`, and \`reviewedUpstreamAt\` in \`skills-lock.json\` in the same change.
+          Never auto-merge unreviewed upstream content.
+          EOF
+          )
+          existing="$(gh api "repos/$REPO/issues?state=open&per_page=100" \
+            --jq ".[] | select(.title == \"$title\" and .pull_request == null) | .number" \
+            | head -n 1 || true)"
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/$REPO/issues/$existing" -f body="$body" >/dev/null
+          else
+            gh issue create --repo "$REPO" --title "$title" --body "$body" >/dev/null
+          fi

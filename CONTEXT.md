@@ -24,4 +24,7 @@ A ClamUI/ClamTk/Lenspect behavior is *ported* (implemented and tested in this Ru
 A narrow, tested seam between Linux Defender and the host desktop or ClamAV — file-manager actions, tray/D-Bus, host `clamscan`/`clamdscan`/`freshclam`, the privileged helper, safe open/export/clipboard, VirusTotal/urlscan, or scheduled scans. Integrations never bundle an engine or add a second app runtime.
 
 **Dead / stale**:
-A ported module with no live caller (wire it or remove it), or an old ClamUI identifier/text in a live file (only migration/compat references are allowed). `scripts/audit-consistency.sh` checks both.
+A ported module with no live caller (wire it or remove it), a broken doc link, an orphaned doc/skill, or an old ClamUI identifier/text in a live file (only migration/compat references are allowed). `scripts/check-all.sh` checks all of these on every commit and PR; `scripts/audit-consistency.sh` adds builds, tests, and sync.
+
+**Cross-layer contract**:
+A feature declared in `scripts/cross-layer-contracts.json` with the list of layers (core, native runtime, frontend, website docs, packaging) that must contain it. A feature added to only one layer fails `scripts/check-cross-layer.py`, which also derives Tauri commands, CLI subcommands, and locales from source. See `AI-ENFORCEMENT.md` for the mandatory rules injected into every AI model.

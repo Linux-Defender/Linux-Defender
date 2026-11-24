@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/check-all.sh",
+            "timeout": 300,
+            "statusMessage": "Running Linux Defender static consistency checks..."
+          }
+        ]
+      }
+    ]
+  }
+}

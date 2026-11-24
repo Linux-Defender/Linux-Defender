@@ -78,5 +78,8 @@ jobs:
         working-directory: website
         run: bunx playwright install --with-deps chromium
 
-      - name: Run audit (repo, app, site, translations, sync)
+      - name: Static checks (dead links, dead files, cross-layer parity, skills, gettext)
+        run: bash scripts/check-all.sh
+
+      - name: Run full audit (repo, app, site, builds, tests, sync)
         run: bash scripts/audit-consistency.sh

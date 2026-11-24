@@ -1,12 +1,17 @@
 #!/bin/bash
-# Git pre-commit hook for the Rust core and TypeScript desktop application.
-#
+# Git pre-commit hook: enforcement that actually blocks stale/dead/unwired work.
+# Runs the full static check suite on EVERY commit, regardless of which files
+# changed, because cross-layer drift is invisible when looking at one file.
 # Install with ./scripts/hooks/install-hooks.sh.
+# Bypass only for genuine emergencies with: git commit --no-verify
 
 set -euo pipefail
 
 REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 cd "$REPO_ROOT"
+
+echo "Running static consistency checks (dead links, dead files, cross-layer parity, gettext, skills)..."
+bash scripts/check-all.sh
 
 mapfile -t STAGED_FILES < <(git diff --cached --name-only --diff-filter=ACMR)
 
@@ -30,8 +35,5 @@ fi
 
 if "$has_frontend_source"; then
     echo "Type-checking TypeScript frontend..."
-    (
-        cd desktop
-        bun run check
-    )
+    ( cd desktop && bun run check )
 fi

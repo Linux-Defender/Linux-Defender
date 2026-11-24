@@ -76,6 +76,7 @@ Thumbs.db
 .auto-claude-status
 .claude_settings.json
 .claude/*
+!.claude/settings.json
 !.claude/skills/
 .claude/skills/*
 !.claude/skills/*

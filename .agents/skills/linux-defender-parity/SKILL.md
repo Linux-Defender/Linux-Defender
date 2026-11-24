@@ -18,14 +18,17 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
   superseded (Dashboard/ScanOverview/scanHistory). Update it when porting.
 - `AGENTS.md` — canonical contributor rules (security, IPC, compatibility,
   build/test, Claude/OpenCode/Cursor/Aider/Continue/Zed guidance).
+- `AI-ENFORCEMENT.md` — mandatory rules injected into every model context.
+- `scripts/cross-layer-contracts.json` — declarative cross-layer feature matrix.
+- `scripts/check-all.sh` — single source of truth for all static checks.
 
 ## Audit checklist (run all, in order)
 
-1. **Full automated check.** Run `bash scripts/audit-consistency.sh`. It
-   verifies formatting, clippy, tests, frontend type-check/build/tests, the
-   website, gettext extraction/catalogs, stale references, dead frontend
-   modules, git sync, and GitHub Actions status. Fix every failure before
-   continuing.
+1. **Static checks then full audit.** Run `bash scripts/check-all.sh` and fix
+   every failure, then `bash scripts/audit-consistency.sh` for builds, clippy,
+   tests, git sync, and GitHub Actions status. `check-all.sh` is enforced by the
+   pre-commit hook, the pre-push hook runs the full audit, and Consistency Audit
+   CI runs both. Never declare done while either fails.
 2. **Parity matrix.** For the behavior being added/changed, confirm the matrix
    in `docs/revival/RELATED-PROJECT-REVIEW.md` records the upstream source,
    reviewed commit, and status. A merged upstream PR is not proof the behavior
@@ -45,6 +48,15 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
    `clamui.com|linx.systems|clamui@|rooki.xyz|io.github.linx`. Only intentional
    historical/compat references (docs/revival, docs/clamui-fork, CHANGELOG,
    LICENSE, migration constants and their tests) are allowed.
+6b. **Dead links and dead files.** `scripts/check-doc-links.py` fails on broken
+   relative links in every Markdown/MDX file; `scripts/check-dead-files.py`
+   fails on orphaned docs, modules, and skills. Link every new doc from an
+   existing index and import every new module from a live caller.
+6c. **Cross-layer feature matrix.** Any new cross-cutting feature (e.g. a new
+   scanner backend, online service, or config area) must get an entry in
+   `scripts/cross-layer-contracts.json` listing every layer that consumes it.
+   `scripts/check-cross-layer.py` also derives Tauri commands, CLI subcommands,
+   and locales from source and asserts they are wired in all consuming layers.
 7. **Generated artifacts.** Never hand-edit `po/*.mo`, `desktop/dist/`,
    `website/public/` generated assets, or `desktop/src-tauri/gen/`. Refresh the
    POT with `./scripts/update-pot.sh`, merge catalogs with `msgmerge`, strip

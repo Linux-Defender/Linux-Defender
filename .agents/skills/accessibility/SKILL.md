@@ -11,6 +11,10 @@ metadata:
 
 Comprehensive accessibility guidelines based on WCAG 2.2 and Lighthouse accessibility audits. Goal: make content usable by everyone, including people with disabilities.
 
+## Linux Defender project rules (local adaptation)
+
+This upstream guidance is adapted for Linux Defender. Website accessibility is only complete when the same a11y standard holds in the native Tauri/WebKitGTK app. Before saying "done": run `bash scripts/check-all.sh` (it catches dead links, stale site pages, and unwired components), then `bun run --cwd website build` and a Lighthouse run on the **production preview** (target 1.0 accessibility / best practices / SEO). Keyboard and screen-reader checks must also be done in the real desktop app, not only in a browser. Never add a UI string without an extractable gettext literal in all ten active catalogs (`linux-defender-gettext` skill).
+
 ## Evidence-led audit workflow
 
 When a rendered page is available:

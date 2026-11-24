@@ -5,22 +5,31 @@
       "source": "addyosmani/web-quality-skills",
       "sourceType": "github",
       "skillPath": "skills/accessibility/SKILL.md",
-      "computedHash": "267fb2a0707d6142f2871f22688203a42ba21291a2aa200fb740936e41362b5d",
-      "reviewedUpstreamAt": "2026-11-23"
+      "computedHash": "cb43f15c4ace5fa2a6f471eaff628544d5e13626c94cf95bb32afdc60407691e",
+      "reviewedUpstreamAt": "2026-11-23",
+      "upstreamHash": "267fb2a0707d6142f2871f22688203a42ba21291a2aa200fb740936e41362b5d",
+      "locallyAdapted": true,
+      "adaptation": "Linux Defender project enforcement section appended; upstream guidance otherwise preserved."
     },
     "rust-best-practices": {
       "source": "apollographql/skills",
       "sourceType": "github",
       "skillPath": "skills/rust-best-practices/SKILL.md",
-      "computedHash": "b1651a95a2c36a8350c033449f52d07eebfdbf08e3bd1d5b22c4b7f55f7aa17c",
-      "reviewedUpstreamAt": "2026-11-23"
+      "computedHash": "e9617b2cdd82550dd656e5a07bbf9362015f749dad2fc8a23e83c66588b5b46c",
+      "reviewedUpstreamAt": "2026-11-23",
+      "upstreamHash": "b1651a95a2c36a8350c033449f52d07eebfdbf08e3bd1d5b22c4b7f55f7aa17c",
+      "locallyAdapted": true,
+      "adaptation": "Linux Defender project enforcement section appended; upstream guidance otherwise preserved."
     },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
       "skillPath": "skills/react-best-practices/SKILL.md",
-      "computedHash": "71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355",
-      "reviewedUpstreamAt": "2026-11-23"
+      "computedHash": "93c267eb362385bf9ca90dd0169ee16a4b7fd496cf12434e017891a49153e291",
+      "reviewedUpstreamAt": "2026-11-23",
+      "upstreamHash": "71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355",
+      "locallyAdapted": true,
+      "adaptation": "Linux Defender project enforcement section appended; upstream guidance otherwise preserved."
     }
   }
 }

@@ -23,7 +23,7 @@ The extractor recognizes the Rust helpers in `scripts/update-pot.sh` and the fro
 
 1. Change the source literal(s) and any precise translator note first. If this is a catalog-only translation, preserve placeholders, markup, whitespace, and all required `msgstr[N]` entries.
 2. For source-message changes, use GNU gettext and the frozen desktop dependencies: `(cd desktop && bun install --frozen-lockfile)`, then run `./scripts/update-pot.sh`. Merge the resulting template into every active catalog, translate the affected entries, and keep `po/LINGUAS` aligned with its ten catalogs.
-3. Run only the repository contracts appropriate to the change: `./scripts/update-pot.sh --check` checks template freshness; `./scripts/check-potfiles.sh` checks Rust/Tauri and TypeScript discovery; `./scripts/check-translations.sh` validates the active catalogs and compiled source identities. Do not invoke the internal catalog checker directly; its flags are owned by `check-translations.sh`.
+3. Run only the repository contracts appropriate to the change: `./scripts/update-pot.sh --check` checks template freshness; `./scripts/check-potfiles.sh` checks Rust/Tauri and TypeScript discovery; `./scripts/check-translations.sh` validates the active catalogs and compiled source identities. Do not invoke the internal catalog checker directly; its flags are owned by `check-translations.sh`. These are wired into `bash scripts/check-all.sh` and run on every commit, PR, and weekly Consistency Audit. `scripts/check-cross-layer.py` independently derives the active locale list from `po/LINGUAS` and fails if it disagrees with the shipped `po/*.po` catalogs.
 
 ### CLI help branch
 

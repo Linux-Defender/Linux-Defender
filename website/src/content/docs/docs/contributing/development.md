@@ -116,9 +116,22 @@ npx skills@1.7.4 add vercel-labs/agent-skills --skill vercel-react-best-practice
 npx skills@1.7.4 add addyosmani/web-quality-skills --skill accessibility
 ```
 
-Do not use `-g` or bulk-install an upstream repository. Imported payloads belong in `.agents/skills`; `.claude/skills` provides compatibility links, and `skills-lock.json` records each source, selected `skillPath`, and content hash plus the date the upstream was reviewed. Refresh only a named skill intentionally: review the upstream diff, update the imported file, and refresh that skill's `computedHash` and `reviewedUpstreamAt` in the same change. `bash scripts/audit-consistency.sh` verifies every imported skill still matches its locked hash.
+Do not use `-g` or bulk-install an upstream repository. Imported payloads belong in `.agents/skills`; `.claude/skills` provides compatibility links. The three imported skills are locally adapted with Linux Defender enforcement rules. `skills-lock.json` records each source, selected `skillPath`, the reviewed upstream hash (`upstreamHash`), the enforced local payload hash (`computedHash`), a `locallyAdapted` flag, and the review date. Refresh only a named skill intentionally: review the upstream diff, update the imported file, and refresh both hashes and the date in the same change. `bash scripts/check-all.sh` verifies every imported skill still matches its locked local hash and that every skill is named in `AGENTS.md`, `CLAUDE.md`, or this guide, so no skill is forgotten.
 
-The project-only OMP filter is `.omp/config.yml` under `skills.ignoredSkills`; it excludes irrelevant global skills without deleting their global payloads. Start OMP from the repository root because project configuration is current-working-directory scoped.
+Start OpenCode from the repository root: `opencode.json` loads `AI-ENFORCEMENT.md` as instructions and searches `./agents/skills`, and the local plugin under `.opencode/plugins/linux-defender-enforcement/` injects the mandatory rules into every model context. Claude Code runs the static checks on every `Stop` through `.claude/settings.json`.
+
+### Automatic consistency enforcement
+
+[`AI-ENFORCEMENT.md`](https://github.com/Linux-Defender/Linux-Defender/blob/main/AI-ENFORCEMENT.md) lists the non-negotiable rules every contributor and AI model follows. The rules are enforced, not merely documented:
+
+- `bash scripts/check-all.sh` is the single source of truth for static checks: broken doc links, orphaned docs/modules/skills, cross-layer contracts, gettext, skill hashes and wiring, stale branding, dead frontend modules, and website sidebar/component wiring.
+- `bash scripts/audit-consistency.sh` adds the heavy builds, tests, clippy, git sync, and CI status.
+- `./scripts/hooks/install-hooks.sh` installs a pre-commit hook (all static checks plus Rust format and TypeScript type-check) and a pre-push hook (the full audit).
+- Consistency Audit CI runs both scripts on every push and pull request, and weekly on `main`.
+
+Cross-layer features are declared in `scripts/cross-layer-contracts.json`. Add an entry whenever a feature spans two or more layers (core, native runtime, frontend, website docs, packaging); `scripts/check-cross-layer.py` also derives Tauri commands, CLI subcommands, and active locales from source so a feature cannot land in only one layer.
+
+Two scheduled workflows keep dependencies and skills fresh. `Refresh Dependabot sources` rebuilds locked Flatpak dependency sources for Dependabot pull requests. `Upstream Freshness` runs `scripts/check-upstream-freshness.py` weekly: it compares each imported skill against the current upstream file and opens a review issue on drift. Upstream content is never auto-merged — review provenance and license first.
 
 ClamAV and gettext guidance is authored for this project; the contributor rules and the existing [architecture](/Linux-Defender/docs/contributing/architecture/) and [translation](/Linux-Defender/docs/contributing/translating/) pages remain authoritative. The React guidance applies to the client UI: exclude Next.js and other server-only changes. Check native accessibility in Tauri/WebKitGTK—Chrome accessibility scores alone do not prove the desktop application is accessible.
 

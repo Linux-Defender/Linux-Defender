@@ -11,6 +11,10 @@ metadata:
 
 Comprehensive performance optimization guide for React and Next.js applications, maintained by Vercel. Contains 70 rules across 8 categories, prioritized by impact to guide automated refactoring and code generation.
 
+## Linux Defender project rules (local adaptation)
+
+This upstream guidance is adapted for Linux Defender's desktop client. Apply the rules to `desktop/src/` only — this is a Tauri + Vite + React app, not Next.js or a server. Every new frontend module must be imported by a live caller (`scripts/check-all.sh` fails on dead modules), every new IPC operation must exist in both Rust and the typed `desktop/src/api.ts` contract, and every new user-visible string must be an extractable gettext literal in all ten catalogs. After every TS/Astro edit run `bun run --cwd desktop check` (or `npm run build`/`npx tsc --noEmit`) and fix all errors/warnings before replying. Before saying "done" run `bash scripts/check-all.sh`; for the site also `bun run --cwd website check/build` and a production-preview Lighthouse run.
+
 ## When to Apply
 
 Reference these guidelines when:
