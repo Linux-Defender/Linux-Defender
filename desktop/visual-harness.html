@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Linux Defender (visual harness)</title>
+    <script>
+      window.__TAURI_INTERNALS__ = {
+        invoke: async (cmd, args) => {
+          if (cmd === "startup_state") return { version: "0.6.0", tray_available: false, active_jobs: [], accent: null };
+          if (cmd === "plugin:event|listen" || cmd === "plugin:event|unlisten") return () => {};
+          if (cmd === "request") {
+            const a = args && args.action;
+            if (a === "i18n.catalog") return { language: "en", messages: {}, languages: [{ code: "en", name: "English" }] };
+            if (a === "settings.get") return {};
+            if (a === "privileged.status") return { installed: true, needsOnboarding: false, version: "0.6.0" };
+            if (a === "profiles.list") return { profiles: [{
+              id: "quick", name: "Quick Scan", targets: [], exclusions: { paths: [], patterns: [] },
+              is_default: true, description: "Fast scan of the Downloads folder for quick threat detection", options: {}
+            }] };
+            if (a === "scanner.status") return { available: true, backend: "clamscan", active_backend: "clamscan", database_available: true };
+            if (a === "virustotal.key_status") return { present: false, status: "not_configured" };
+            if (a === "urlhaus.key_status") return { present: true, status: "configured", masked: "4bf8***" };
+            return null;
+          }
+          return null;
+        },
+        transformCallback: (cb) => cb,
+        metadata: { currentWindow: { label: "main" } }
+      };
+      window.__TAURI__ = window.__TAURI_INTERNALS__;
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -27,7 +27,7 @@ step "Repo-wide consistency (versions, app id, workflow/script inventory)"
 python3 scripts/check-repo-consistency.py || fail "repo-wide consistency"
 
 step "Host ClamAV signature database (presence, age, EICAR)"
-python3 scripts/tests/test_signature_check.py >/dev/null || fail "signature checker tests"
+python3 scripts/tests/test_signature_check.py >/dev/null 2>&1 || fail "signature checker tests"
 python3 scripts/check-signatures.py || fail "signature database"
 
 step "Gettext current + well-formed"

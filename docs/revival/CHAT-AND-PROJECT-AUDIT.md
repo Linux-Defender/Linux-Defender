@@ -107,4 +107,7 @@ This section exists so no request from the whole revival conversation is lost. I
 | 18 | Whole repo, all files, all sites, all app layers | `scripts/check-repo-consistency.py` (versions, app id, workflow/script inventory), whole-repo dead-file check, website build/link/sidebar/component checks |
 | 19 | Database signatures checked | `scripts/check-signatures.py` (database age + EICAR), `scripts/check-signature-feeds.py` (URLhaus, key redacted), `signature-database.yml`; no engine or database bundled anywhere |
 
+| 20 | Visual UI bug: Scan Profile row overlapped on every load | `desktop/src/styles.css` (deterministic custom `<select>` rendering), `desktop/visual-harness.html` + development guide (browser visual check), accessibility skill |
+| 21 | Privileged-helper prompt returning on every launch after install | `crates/linux-defender-core/src/privileged.rs` (`trusted_helper_status`: a trusted native helper is `installed` with `needs_onboarding: false`; package version mismatch is informational), regression test in `helper_status_tests` |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

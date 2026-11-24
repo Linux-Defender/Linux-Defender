@@ -15,6 +15,8 @@ Comprehensive accessibility guidelines based on WCAG 2.2 and Lighthouse accessib
 
 This upstream guidance is adapted for Linux Defender. Website accessibility is only complete when the same a11y standard holds in the native Tauri/WebKitGTK app. Before saying "done": run `bash scripts/check-all.sh` (it catches dead links, stale site pages, and unwired components), then `bun run --cwd website build` and a Lighthouse run on the **production preview** (target 1.0 accessibility / best practices / SEO). Keyboard and screen-reader checks must also be done in the real desktop app, not only in a browser. Never add a UI string without an extractable gettext literal in all ten active catalogs (`linux-defender-gettext` skill).
 
+**For a reported visual bug, look at the rendered UI.** Start `bun run --cwd desktop dev` and open `http://127.0.0.1:1420/visual-harness.html` in a browser; it mocks native IPC so the real components and CSS render. Use a screenshot plus the accessibility tree to confirm layout and focus behavior, then verify in the real Tauri/WebKitGTK app because native form controls (notably `<select>`) can render differently. Prefer deterministic CSS (`appearance: none`, explicit `min-width`/`max-width`) over relying on native widget painting.
+
 ## Evidence-led audit workflow
 
 When a rendered page is available:

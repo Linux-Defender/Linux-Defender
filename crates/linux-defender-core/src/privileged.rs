@@ -2599,6 +2599,23 @@ fn trusted_helper_status(
             installable: true,
             needs_onboarding: true,
         },
+        Ok(false) if !flatpak_host => PrivilegedHelperStatus {
+            // A trusted native helper is already present and usable: the
+            // trust check in trusted_helper_path() is the security boundary.
+            // A host package version mismatch is informational (for example a
+            // locally installed helper from a source build); do not reopen the
+            // install modal on every launch for it. Flatpak still needs the
+            // host package and keeps its own installable/needs_onboarding path.
+            state: "outdated".to_owned(),
+            package_name: HELPER_PACKAGE.to_owned(),
+            version,
+            detail: Some(
+                "A trusted privileged helper is installed, but its host package version does not match this Linux Defender version. It can still be used; upgrade the helper package when available.".to_owned(),
+            ),
+            installed: true,
+            installable: false,
+            needs_onboarding: false,
+        },
         Ok(false) => PrivilegedHelperStatus {
             state: "outdated".to_owned(),
             package_name: HELPER_PACKAGE.to_owned(),
@@ -3533,13 +3550,15 @@ mod helper_status_tests {
     }
 
     #[test]
-    fn known_native_helper_mismatch_remains_outdated() {
+    fn trusted_native_helper_with_package_mismatch_does_not_nag() {
+        // A trusted helper is present and usable; a host package version
+        // mismatch is informational and must not reopen onboarding on launch.
         assert_status(
             trusted_helper_status("0.5.1".to_owned(), false, true, Ok(false)),
             "outdated",
-            false,
-            false,
             true,
+            false,
+            false,
         );
     }
 

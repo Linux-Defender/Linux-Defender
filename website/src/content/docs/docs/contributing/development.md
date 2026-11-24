@@ -55,6 +55,8 @@ bun run --cwd desktop tauri dev
 
 Use the Tauri command for desktop development; do not substitute direct `cargo run`. Tauri development uses its configured `build.devUrl`, while the native custom-protocol production binary embeds `frontendDist`. `scripts/local-run.sh` wraps the same workflow for quick source runs (`--deps` syncs locked dependencies, `--run -- /path` passes a target); it never replaces the validation commands below.
 
+For a **visual-only** check of the React layout without launching Tauri, start `bun run --cwd desktop dev` and open `http://127.0.0.1:1420/visual-harness.html` in a browser. That page is a development-only entry that injects mocked native IPC before the app mounts, so the real components and CSS render in a normal browser and can be inspected with screenshots, the accessibility tree, and Lighthouse. It is not part of the production build (Vite only builds `index.html`) and its mock data is not a substitute for exercising the host ClamAV bridge, helper, or event stream in the real app.
+
 The GUI runs through Tauri/WebKitGTK. For the headless core CLI, use the native binary directly; this route must not initialize a WebKit window:
 
 ```bash
