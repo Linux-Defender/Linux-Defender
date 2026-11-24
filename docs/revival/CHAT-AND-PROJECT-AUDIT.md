@@ -133,4 +133,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 33 | All supported assistants must stay listed and no skill may be dropped from CLAUDE.md | Reinstated the full tool-neutral list (Claude Code, OpenCode, Aider, Cursor, Continue, Zed) in AGENTS.md, CLAUDE.md, AI-ENFORCEMENT.md, CONTEXT.md, and the dev guide; restored `linux-defender-enforcement` to the CLAUDE.md skill list; checker now verifies every supported assistant is present and Claude Code is listed first without privilege |
 
+| 34 | Add Arch/AUR and Sway support using the old ClamUI AUR folder as reference | Reviewed `Estemobs/aur-clamui` at `27193c8` (MIT, Python/GTK4 0.3.0) and independently wrote `aur/PKGBUILD` + `aur/linux-defender-privileged-helper/PKGBUILD` for the Rust/Tauri app/helper, with `.SRCINFO`, rebranded assets, host-ClamAV boundary, Sway/wlroots `optdepends`, docs, parity matrix, cross-layer contract, and `scripts/check-aur-consistency.py` |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

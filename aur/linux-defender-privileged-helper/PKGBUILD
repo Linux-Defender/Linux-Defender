@@ -1,0 +1,33 @@
+# Maintainer: Linux Defender contributors
+# Arch/AUR source recipe for the root-owned privileged helper.
+# Keep the version matched to the linux-defender application package.
+
+pkgname=linux-defender-privileged-helper
+pkgver=0.6.0
+pkgrel=1
+pkgdesc="Root-owned Linux Defender helper and PolicyKit policy for host ClamAV configuration"
+arch=('x86_64' 'aarch64')
+url="https://github.com/Linux-Defender/Linux-Defender"
+license=('MIT')
+depends=('glibc' 'polkit')
+makedepends=('base-devel' 'rust' 'cargo' 'pkgconf' 'glib2' 'openssl')
+_commit=4f2c175a7114add065926933ddb8447a0d28b77e
+source=("$pkgname-$pkgver-$_commit.tar.gz::https://github.com/Linux-Defender/Linux-Defender/archive/$_commit.tar.gz")
+sha256sums=('51f37656a873b719d5be445d62bc7ae8dabdd316204586f07ae2fbad3f93725b')
+
+build() {
+  cd "$srcdir/Linux-Defender-$_commit"
+  cargo build --release --locked --package linux-defender-core \
+    --bin linux-defender-apply-preferences
+}
+
+package() {
+  cd "$srcdir/Linux-Defender-$_commit"
+  local _id=io.github.linuxdefender.linuxdefender
+
+  install -Dm755 target/release/linux-defender-apply-preferences \
+    "$pkgdir/usr/bin/linux-defender-apply-preferences"
+  install -Dm644 "data/$_id.policy" \
+    "$pkgdir/usr/share/polkit-1/actions/$_id.policy"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

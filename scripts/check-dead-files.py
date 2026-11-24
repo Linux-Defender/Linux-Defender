@@ -32,7 +32,7 @@ ALLOWED_NAMES = {
 CONVENTION_DIRS = {
     ".github", "tests", "screenshots", "hooks", "rules", "references",
     "assets", "public", "icons", "data", "debian", "flathub", "appimage",
-    "snap", "capabilities", "plugins",
+    "snap", "capabilities", "plugins", "aur",
 }
 
 

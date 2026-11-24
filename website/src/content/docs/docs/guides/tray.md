@@ -3,7 +3,7 @@ title: Use the system tray
 description: Run Linux Defender in the background when the desktop supports SNI.
 ---
 
-Linux Defender's tray is optional. It uses an in-process, pure-Rust StatusNotifierItem and DBusMenu implementation. It does not run the retired Python tray subprocess and does not require a GTK or `libdbusmenu` tray binding. KDE Plasma, Cinnamon, MATE, and Budgie generally provide an SNI watcher; GNOME requires [AppIndicator Support](https://extensions.gnome.org/extension/615/appindicator-support/) or another compatible watcher.
+Linux Defender's tray is optional. It uses an in-process, pure-Rust StatusNotifierItem and DBusMenu implementation. It does not run the retired Python tray subprocess and does not require a GTK or `libdbusmenu` tray binding. KDE Plasma, Cinnamon, MATE, and Budgie generally provide an SNI watcher; GNOME requires [AppIndicator Support](https://extensions.gnome.org/extension/615/appindicator-support/) or another compatible watcher. On Sway and other wlroots compositors, add a tray watcher to your bar (for example `waybar` with a `tray` module); the tray does not need a Python process or a `libdbusmenu` binding. Native dialogs there normally need `xdg-desktop-portal-wlr`. Sway behavior still needs a real desktop validation pass.
 
 ## Configure behavior
 

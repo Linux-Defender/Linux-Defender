@@ -214,6 +214,12 @@ ClamUI already provides file-manager actions for Dolphin, Nautilus, and Nemo. Li
 
 [MidnightBSD/mports PR #1935](https://github.com/MidnightBSD/mports/pull/1935) merged 2026-10-23. It updates only `security/clamtk` port files, switching to `piposeimandi/clamtk` 6.19. The PR says that fork has four commits from 2025-07 and no later activity at review time. This is a packaging precedent, not a modern UI or code base to merge wholesale.
 
+## Arch/AUR packaging reference
+
+[`Estemobs/aur-clamui`](https://github.com/Estemobs/aur-clamui) was reviewed at `27193c8711ec16de34dee81b742977087a56a57b` (2026-08-29, MIT). Its `aur/PKGBUILD` targets the **old Python/GTK4 ClamUI 0.3.0** line: Python build hooks, `python-*` dependencies, GTK4/libadwaita, upstream `linx_systems` desktop/policy/icon names, and an upstream tarball SHA-256. None of that matches Linux Defender's Rust/Tauri/GTK3/WebKitGTK 4.1 application, so nothing was copied.
+
+Disposition: **implemented independently** as `aur/PKGBUILD` plus `aur/linux-defender-privileged-helper/PKGBUILD` in this repository. They build the Rust/Tauri binaries with the frozen Bun frontend, install rebranded `io.github.linuxdefender.linuxdefender` assets, install the version-matched root-owned helper and Polkit policy separately, compile the ten gettext catalogs, and leave ClamAV and its database host-owned. Sway/wlroots support is exposed through `waybar` and `xdg-desktop-portal-wlr` `optdepends` plus tray/installation documentation; the app's SNI tray needs no Python or `libdbusmenu` binding. The recipes are **not published to the AUR** yet, and real Sway desktop validation remains open.
+
 ## Security and quality decisions
 
 - Preserve host ClamAV/FreshClam ownership by the OS package/service. The UI should display engine version, database age, update source, and service state; OS package managers update software while FreshClam updates definitions.

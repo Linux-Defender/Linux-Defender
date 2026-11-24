@@ -23,6 +23,7 @@ complete cross-check that nothing is forgotten or orphaned.
 - [README](../README.md)
 - [RELEASE_NOTES](../RELEASE_NOTES.md)
 - [SECURITY](../SECURITY.md)
+- [aur/README](../aur/README.md)
 - [flathub/RELEASE_NOTES](../flathub/RELEASE_NOTES.md)
 
 ## Internal development and research docs

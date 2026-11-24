@@ -1,0 +1,20 @@
+pkgbase = linux-defender-privileged-helper
+	pkgdesc = Root-owned Linux Defender helper and PolicyKit policy for host ClamAV configuration
+	pkgver = 0.6.0
+	pkgrel = 1
+	url = https://github.com/Linux-Defender/Linux-Defender
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	makedepends = base-devel
+	makedepends = rust
+	makedepends = cargo
+	makedepends = pkgconf
+	makedepends = glib2
+	makedepends = openssl
+	depends = glibc
+	depends = polkit
+	source = linux-defender-privileged-helper-0.6.0-4f2c175a7114add065926933ddb8447a0d28b77e.tar.gz::https://github.com/Linux-Defender/Linux-Defender/archive/4f2c175a7114add065926933ddb8447a0d28b77e.tar.gz
+	sha256sums = 51f37656a873b719d5be445d62bc7ae8dabdd316204586f07ae2fbad3f93725b
+
+pkgname = linux-defender-privileged-helper

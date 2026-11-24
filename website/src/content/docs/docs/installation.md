@@ -5,7 +5,7 @@ description: Current development-build status and how to run Linux Defender on C
 
 ## Release status
 
-Linux Defender **0.6.0 is a development snapshot**. It has no signed Linux Defender installer, Flatpak, AppImage, DEB, RPM, or Arch package published yet. Use the source checkout to test it; an upstream app package is a different product build.
+Linux Defender **0.6.0 is a development snapshot**. It has no signed Linux Defender installer, Flatpak, AppImage, DEB, RPM, or published AUR package yet. AUR source recipes live in the repository's `aur/` directory but have not been submitted to the AUR; use the source checkout or those recipes to test it. An upstream app package is a different product build.
 
 The current source still uses transitional launch, helper, and data identifiers for compatibility. The native source build and the previous Flatpak install use different data locations, but migration from ClamTk's settings, history, schedule, and quarantine is not complete. Keep existing installs and their data backed up while testing this branch.
 
@@ -25,13 +25,13 @@ If you already enabled `clamav-freshclam-once.timer`, leave updates to that time
 
 ClamAV signature updates and Linux Defender software updates use separate channels. FreshClam updates signatures through the service or timer supplied by the Linux distribution. Once releases are available, Linux Defender should update through its installation source: a configured system package repository for native packages, the Flatpak remote for a Flatpak installation, or the external AppImageUpdate tool with signed `.zsync` metadata for an AppImage.
 
-Linux Defender has no published release or signed installer packages yet, so none of those application-update paths is currently available. There is no universal in-app self-updater, and CachyOS/Arch does not yet have a Linux Defender package. The project is not yet validated across all distributions.
+Linux Defender has no published release or signed installer packages yet, so none of those application-update paths is currently available. There is no universal in-app self-updater, and CachyOS/Arch has local AUR source recipes but no published AUR package or update channel yet. The project is not yet validated across all distributions.
 
 ## Compatibility status
 
 | Target | Current project status |
 | --- | --- |
-| CachyOS / Arch | Source-build instructions exist; no PKGBUILD/AUR package and no desktop validation yet. |
+| CachyOS / Arch | AUR `PKGBUILD` recipes for the app and the matching helper exist in `aur/`, but are not published to the AUR and have no desktop validation claim yet. Sway is expected to work with a tray watcher such as `waybar`. |
 | Debian / Ubuntu | DEB build workflow targets amd64 and arm64; no Linux Defender package release yet. |
 | Fedora | RPM workflow packages the privileged helper only, not the full desktop app. |
 | Flatpak | CI build target for x86_64 and aarch64; not published on Flathub or another update remote. |
@@ -60,6 +60,22 @@ bun run tauri dev
 ```
 
 The full workspace test command is included, but this development environment previously had privileged-helper test failures and CLI integration tests that did not finish. A successful app launch does not replace those tests or desktop validation.
+
+### AUR source build (CachyOS / Arch)
+
+From a checkout, build and install the application recipe, then the optional
+version-matched helper recipe:
+
+```bash
+cd aur && makepkg -si
+cd linux-defender-privileged-helper && makepkg -si
+```
+
+Both recipes pin the same source commit and verify its SHA-256. Install
+`clamav` separately; no engine or signature database is bundled. On Sway,
+install `waybar` with a tray module and `xdg-desktop-portal-wlr` for native
+dialogs. See the [tray guide](/Linux-Defender/docs/guides/tray/) and the `aur/README.md`
+in your repository checkout.
 
 ## Other Linux distributions
 

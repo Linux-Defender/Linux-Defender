@@ -1,0 +1,94 @@
+# Maintainer: Linux Defender contributors
+# Arch/AUR source recipe for the Linux Defender desktop application.
+# This is rewritten for the Rust/Tauri/React stack; it is not derived from the
+# old Python/GTK4 ClamUI recipe. Host ClamAV and its database are NOT bundled.
+
+pkgname=linux-defender
+pkgver=0.6.0
+pkgrel=1
+pkgdesc="Linux desktop frontend for host-installed ClamAV (Rust/Tauri/React)"
+arch=('x86_64' 'aarch64')
+url="https://github.com/Linux-Defender/Linux-Defender"
+license=('MIT')
+depends=(
+  'glib2'
+  'gtk3'
+  'webkit2gtk-4.1'
+  'libsoup3'
+  'librsvg'
+  'openssl'
+  'dbus'
+  'hicolor-icon-theme'
+  'desktop-file-utils'
+  'clamav'
+  'polkit'
+)
+makedepends=('base-devel' 'rust' 'cargo' 'bun' 'gettext' 'pkgconf')
+optdepends=(
+  'linux-defender-privileged-helper: apply protected host ClamAV configuration'
+  'waybar: StatusNotifierItem tray on Sway and other wlroots desktops'
+  'sway: Wayland compositor'
+  'xdg-desktop-portal-wlr: native dialogs on wlroots compositors'
+  'nemo: Nemo context actions'
+  'nautilus: Nautilus scripts'
+  'dolphin: KDE service menus'
+)
+_commit=4f2c175a7114add065926933ddb8447a0d28b77e
+source=("$pkgname-$pkgver-$_commit.tar.gz::https://github.com/Linux-Defender/Linux-Defender/archive/$_commit.tar.gz")
+sha256sums=('51f37656a873b719d5be445d62bc7ae8dabdd316204586f07ae2fbad3f93725b')
+
+build() {
+  cd "$srcdir/Linux-Defender-$_commit"
+
+  ( cd desktop && bun install --frozen-lockfile && bun run build )
+
+  cargo build --release --locked --package linux-defender --bin linux-defender
+  cargo build --release --locked --package linux-defender-core \
+    --bin linux-defender-scheduled-scan
+}
+
+package() {
+  cd "$srcdir/Linux-Defender-$_commit"
+  local _id=io.github.linuxdefender.linuxdefender
+
+  install -Dm755 target/release/linux-defender "$pkgdir/usr/bin/linux-defender"
+  install -Dm755 target/release/linux-defender-scheduled-scan \
+    "$pkgdir/usr/bin/linux-defender-scheduled-scan"
+
+  install -Dm644 "data/$_id.desktop" \
+    "$pkgdir/usr/share/applications/$_id.desktop"
+  install -Dm644 "data/$_id.metainfo.xml" \
+    "$pkgdir/usr/share/metainfo/$_id.metainfo.xml"
+  install -Dm644 "icons/$_id.svg" \
+    "$pkgdir/usr/share/icons/hicolor/scalable/apps/$_id.svg"
+  install -Dm644 "icons/$_id.png" \
+    "$pkgdir/usr/share/icons/hicolor/128x128/apps/$_id.png"
+
+  install -Dm644 "data/$_id.nemo_action" \
+    "$pkgdir/usr/share/nemo/actions/$_id.nemo_action"
+  install -Dm644 "data/$_id-virustotal.nemo_action" \
+    "$pkgdir/usr/share/nemo/actions/$_id-virustotal.nemo_action"
+  install -Dm644 "data/$_id.service.desktop" \
+    "$pkgdir/usr/share/kio/servicemenus/$_id.service.desktop"
+  install -Dm644 "data/$_id.service.desktop" \
+    "$pkgdir/usr/share/kservices5/ServiceMenus/$_id.service.desktop"
+  install -Dm644 "data/$_id-virustotal.desktop" \
+    "$pkgdir/usr/share/kio/servicemenus/$_id-virustotal.desktop"
+  install -Dm644 "data/$_id-virustotal.desktop" \
+    "$pkgdir/usr/share/kservices5/ServiceMenus/$_id-virustotal.desktop"
+  install -Dm755 scripts/linux-defender-scan-nautilus.sh \
+    "$pkgdir/usr/share/linux-defender/integrations/linux-defender-scan-nautilus.sh"
+  install -Dm755 scripts/linux-defender-virustotal-nautilus.sh \
+    "$pkgdir/usr/share/linux-defender/integrations/linux-defender-virustotal-nautilus.sh"
+
+  while IFS= read -r lang || [ -n "$lang" ]; do
+    lang="${lang%%#*}"
+    lang="$(printf '%s' "$lang" | tr -d '[:space:]')"
+    [ -z "$lang" ] && continue
+    [ -f "po/$lang.po" ] || continue
+    install -d "$pkgdir/usr/share/locale/$lang/LC_MESSAGES"
+    msgfmt -o "$pkgdir/usr/share/locale/$lang/LC_MESSAGES/linux-defender.mo" "po/$lang.po"
+  done < po/LINGUAS
+
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
