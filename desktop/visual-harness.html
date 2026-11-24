@@ -14,17 +14,22 @@
             const a = args && args.action;
             if (a === "i18n.catalog") return { language: "en", messages: {}, languages: [{ code: "en", name: "English" }] };
             if (a === "settings.get") return {};
-            if (a === "privileged.status") return { installed: true, needsOnboarding: false, version: "0.6.0" };
+            if (a === "privileged.status") return { installed: true, installable: false, needs_onboarding: false, version: "0.6.0", state: "installed", detail: null };
             if (a === "profiles.list") return { profiles: [{
               id: "quick", name: "Quick Scan", targets: [], exclusions: { paths: [], patterns: [] },
               is_default: true, description: "Fast scan of the Downloads folder for quick threat detection", options: {}
             }] };
-            if (a === "scanner.status") return { available: true, backend: "clamscan", active_backend: "clamscan", database_available: true };
+            if (a === "scanner.status") return {
+              available: true, backend: "clamscan", active_backend: "clamscan",
+              configured_backend: "auto", database_available: true,
+              daemon_status: { available: false, connected: false, clamdscan_available: false, message: "Daemon not running" }
+            };
+            if (a === "config.needs_elevation") return {};
             if (a === "virustotal.key_status") return { present: false, status: "not_configured" };
             if (a === "urlhaus.key_status") return { present: true, status: "configured", masked: "4bf8***" };
-            return null;
+            return {};
           }
-          return null;
+          return {};
         },
         transformCallback: (cb) => cb,
         metadata: { currentWindow: { label: "main" } }
