@@ -44,6 +44,8 @@ git switch main
 
 The inherited native package workflows use an Ubuntu 22.04-compatible baseline to retain the intended glibc floor. Linux Defender's modified packages still need clean builds and installation tests before any distribution claim; a local build on a newer distribution does **not** establish compatibility with Ubuntu 22.04 or older hosts.
 
+`scripts/check-build-wiring.py` verifies this whole dev path in the static checks: `tauri.conf.json` must invoke the desktop Vite server on the pinned `127.0.0.1:1420`, `desktop/bun.lock` must exist for the frozen install, and the patched `vendor/glib-0.18.5` crate must stay wired through `[patch.crates-io]` with its soundness fix intact. `cargo machete` also runs there so unused Rust dependencies (declared but never used by any crate) fail the check.
+
 `cargo check` may print warnings from `vendor/glib-0.18.5` about elided lifetimes or parentheses. That directory is a pinned, patched copy of the EOL glib 0.18 line required by the GTK3/WebKitGTK 4.1 Tauri stack; upstream published no 0.18.6, and the patch carries the RUSTSEC-2024-0429 soundness fix. Those warnings are expected on newer Rust toolchains and are not application warnings. The workspace manifest intentionally declares only dependencies that a crate actually uses, so the dev build stays free of unused-dependency warnings.
 
 ## Work on the app

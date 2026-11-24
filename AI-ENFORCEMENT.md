@@ -9,9 +9,11 @@ into hooks and CI; you cannot claim "done" while they fail.
 
 1. **Run `bash scripts/check-all.sh`. Fix EVERY failure.** It blocks broken doc
    links, orphaned/dead files, cross-layer drift, version/identity drift,
-   stale/missing signature databases, gettext drift, stale branding, dead
-   frontend modules, unwired website components, and skill drift. It is the
-   single source of truth for static checks — do not invent a parallel check.
+   dev/build wiring drift (tauri dev -> Vite -> dist, patched vendored glib),
+   unused Rust dependencies (cargo machete), stale/missing signature databases,
+   gettext drift, stale branding, dead frontend modules, unwired website
+   components, and skill drift. It is the single source of truth for static
+   checks — do not invent a parallel check.
 2. **Load the `linux-defender-parity` skill** for any task touching more than
    one layer (core, Tauri runtime, React frontend, translations, docs, packaging,
    CI) or any "audit / parity / dead / stale / sync / verify everything" request.

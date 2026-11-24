@@ -59,6 +59,11 @@ jobs:
         with:
           components: clippy, rustfmt
 
+      - name: Install cargo-machete
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-machete
+
       - name: Install Bun
         uses: oven-sh/setup-bun@v2
         with:

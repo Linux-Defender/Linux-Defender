@@ -111,5 +111,6 @@ This section exists so no request from the whole revival conversation is lost. I
 | 21 | Privileged-helper prompt returning on every launch after install | `crates/linux-defender-core/src/privileged.rs` (`trusted_helper_status`: a trusted native helper is `installed` with `needs_onboarding: false`; package version mismatch is informational), regression test in `helper_status_tests` |
 
 | 22 | See inside the real WebKitGTK window, not only the Chromium harness | `scripts/capture-app-window.sh` (Spectacle/ImageMagick/scrot/gnome-screenshot), `/capture-app` command in `opencode.json` and `.claude/commands/capture-app.md`, documented in the development guide and accessibility skill |
+| 23 | Unused dev dependency + dev command wiring must stay clean | `cargo machete` wired into `check-all.sh` and Consistency Audit CI; removed unused `percent-encoding`; `scripts/check-build-wiring.py` verifies `tauri dev` -> Vite 1420 -> dist -> patched vendored glib so the command contributors run cannot silently drift |
 
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

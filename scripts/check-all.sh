@@ -26,6 +26,16 @@ python3 scripts/check-cross-layer.py || fail "cross-layer parity"
 step "Repo-wide consistency (versions, app id, workflow/script inventory)"
 python3 scripts/check-repo-consistency.py || fail "repo-wide consistency"
 
+step "Dev/build wiring (tauri dev -> Vite -> dist, vendored glib patch)"
+python3 scripts/check-build-wiring.py || fail "build wiring"
+
+step "Unused Rust dependencies (cargo machete)"
+if command -v cargo-machete >/dev/null 2>&1; then
+    cargo machete 2>&1 | grep -q "didn't find any unused dependencies" || fail "unused Rust dependency (run cargo machete)"
+else
+    echo "cargo-machete not installed; skipping dependency dead-code check"
+fi
+
 step "Host ClamAV signature database (presence, age, EICAR)"
 python3 scripts/tests/test_signature_check.py >/dev/null 2>&1 || fail "signature checker tests"
 python3 scripts/check-signatures.py || fail "signature database"
