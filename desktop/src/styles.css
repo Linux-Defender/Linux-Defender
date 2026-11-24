@@ -884,7 +884,7 @@ details.audit-row > .audit-details {
 .field-control > small { font-weight: 400; }
 
 .scan-profile-row > .field {
-  grid-template-columns: minmax(100px, 160px) minmax(240px, 1fr);
+  grid-template-columns: minmax(72px, 140px) minmax(0, 1fr);
   align-items: center;
   flex: 1 1 auto;
   gap: 12px;
@@ -903,7 +903,7 @@ details.audit-row > .audit-details {
   background-repeat: no-repeat;
   background-position: right 10px center;
 }
-.scan-profile-row > .row-copy { flex: 1 1 0; min-width: 0; }
+.scan-profile-row > .row-copy { flex: 1 1 auto; min-width: 0; }
 .scan-profile-row .row-description { margin: 0; }
 .scan-profile-row > .row-copy:empty { display: none; }
 
@@ -2306,7 +2306,11 @@ dialog.modal-dialog.about-dialog { width: min(720px, calc(100vw - 32px)); }
   .scan-profile-row > .field {
     grid-template-columns: minmax(0, 1fr);
     gap: 4px;
+    flex: 1 1 100%;
   }
+  /* Stack the description below the profile control on narrow windows so
+     long text can wrap instead of being clipped beside the select. */
+  .scan-profile-row > .row-copy { flex: 1 1 100%; }
 }
 
 @media (max-width: 520px) {
