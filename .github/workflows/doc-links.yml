@@ -1,0 +1,66 @@
+name: Doc Links
+
+# Weekly check for dead external links across every tracked Markdown/MDX file.
+# Opens or refreshes an issue when a link dies. Code examples and imported skill
+# payloads are excluded; bot-blocked hosts (403) are skipped.
+on:
+  schedule:
+    - cron: "29 5 * * 1"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    name: Verify external documentation links
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Verify external links
+        id: links
+        run: python3 scripts/check-external-links.py 2>&1 | tee "$RUNNER_TEMP/doc-links.log"
+
+      - name: Write workflow summary
+        if: always()
+        run: |
+          {
+            echo "## External documentation links"
+            tail -n 12 "$RUNNER_TEMP/doc-links.log" || true
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or refresh issue on dead links
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          title="Dead external documentation links"
+          body=$(
+            cat <<EOF
+          The weekly Doc Links check found dead external links in tracked documentation.
+
+          - Run: $RUN_URL
+
+          Fix the URLs in the owning document. Do not delete historical context:
+          point to stable advisory, repository, or documentation pages instead of
+          per-resource URLs that may be closed or renamed. See
+          \`docs/revival/UPSTREAM-REPOSITORIES.md\` for the canonical project inventory.
+          EOF
+          )
+          existing="$(gh api "repos/$REPO/issues?state=open&per_page=100" \
+            --jq ".[] | select(.title == \"$title\" and .pull_request == null) | .number" \
+            | head -n 1 || true)"
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/$REPO/issues/$existing" -f body="$body" >/dev/null
+          else
+            gh issue create --repo "$REPO" --title "$title" --body "$body" >/dev/null
+          fi

@@ -26,6 +26,9 @@ python3 scripts/check-cross-layer.py || fail "cross-layer parity"
 step "Repo-wide consistency (versions, app id, workflow/script inventory)"
 python3 scripts/check-repo-consistency.py || fail "repo-wide consistency"
 
+step "Upstream repository inventory (external URLs resolve)"
+python3 scripts/check-upstream-urls.py || fail "dead upstream URL"
+
 step "Dev/build wiring (tauri dev -> Vite -> dist, vendored glib patch)"
 python3 scripts/check-build-wiring.py || fail "build wiring"
 
@@ -72,6 +75,9 @@ for skill in sorted(Path(".agents/skills").glob("*/SKILL.md")):
     if name not in guides:
         raise SystemExit(f"skill not wired into AGENTS.md/CLAUDE.md/dev guide: {name}")
 PY
+
+step "Known-stale documentation claims"
+python3 scripts/check-stale-phrases.py || fail "stale documentation claim"
 
 step "Stale brand references"
 STALE=$(grep -rniE 'clamui\.com|linx\.systems|clamui@|rooki\.xyz|io\.github\.linx' \

@@ -11,7 +11,7 @@ reviewing, or migrating around the project.
 | Folder | Contents |
 |---|---|
 | [`../clamui-fork/`](../clamui-fork/) | ClamUI fork history: what was ported from upstream, the rebrand state, and the upstream parity matrix |
-| [`../revival/`](../revival/) | Revival/rework records: rebrand audits, ClamTk/Lenspect/ClamUI parity reviews, upstream changelog (also published) |
+| [`../revival/`](../revival/README.md) | Revival/rework index: link-checked upstream repository inventory, ClamTk/Lenspect/ClamUI parity reviews, rebrand audits, upstream changelog |
 
 ## Documentation guides
 

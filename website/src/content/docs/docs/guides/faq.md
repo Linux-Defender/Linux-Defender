@@ -33,7 +33,7 @@ Do not execute it. Quarantine unknown, critical, or high-severity files first; i
 
 ## Are false positives possible?
 
-Yes, especially for heuristic, packed, administrative, and potentially unwanted tools. Update definitions, research the exact detection, check provenance and hashes, and compare independent engines only when disclosure is acceptable. Keep a suspicious file quarantined while deciding. Report confirmed ClamAV false positives at [ClamAV](https://www.clamav.net/reports/fp).
+Yes, especially for heuristic, packed, administrative, and potentially unwanted tools. Update definitions, research the exact detection, check provenance and hashes, and compare independent engines only when disclosure is acceptable. Keep a suspicious file quarantined while deciding. Report confirmed false-positive detections to the [ClamAV project](https://github.com/Cisco-Talos/clamav/issues/new/choose), including the exact signature name, file hash, and why the file is legitimate. Linux Defender does not maintain the signature database; it uses the host ClamAV definitions.
 
 ## Will scans slow down my system?
 

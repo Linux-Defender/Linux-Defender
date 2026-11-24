@@ -11,6 +11,7 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
 
 ## Authoritative records
 
+- `docs/revival/README.md` — index of ALL revival research (ClamUI, ClamTk, Lenspect), including the canonical link-checked `docs/revival/UPSTREAM-REPOSITORIES.md` inventory.
 - `docs/revival/CHAT-AND-PROJECT-AUDIT.md` — consolidated revival-chat requirement ledger; every request in the conversation with its satisfaction evidence.
 - `docs/revival/RELATED-PROJECT-REVIEW.md` — the live upstream parity matrix
   (repository, reviewed commit/date, issue/PR ids, implemented/deferred/open).
@@ -69,6 +70,15 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
    `scripts/check-signature-feeds.py` verifies the product-default URLhaus
    export with the Auth-Key redacted. The host engine and signature database
    are never bundled. The `Signature Database` workflow runs these weekly.
+6f. **External upstream links.** `scripts/check-upstream-urls.py` verifies every
+   URL in `docs/revival/UPSTREAM-REPOSITORIES.md`; a 404 fails the check. Fix
+   dead links at the source and keep the inventory the single canonical list.
+   `scripts/check-external-links.py` extends this to every external link in all
+   tracked Markdown/MDX (code examples and imported skills excluded; 403 and all
+   other 4xx/5xx fail); it runs in the full audit and in the weekly `Doc Links`
+   workflow. `scripts/check-stale-phrases.py` fails when any of the stale
+   claims listed in that script (wrong translation status, a misspelled
+   project name, the old repository-inventory path) reappear in live docs.
 7. **Generated artifacts.** Never hand-edit `po/*.mo`, `desktop/dist/`,
    `website/public/` generated assets, or `desktop/src-tauri/gen/`. Refresh the
    POT with `./scripts/update-pot.sh`, merge catalogs with `msgmerge`, strip

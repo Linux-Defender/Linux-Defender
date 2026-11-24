@@ -33,6 +33,9 @@ python3 scripts/check-built-links.py website/dist >/dev/null || fail "built-site
 step "All static consistency checks (scripts/check-all.sh)"
 bash scripts/check-all.sh || fail "static consistency checks"
 
+step "External documentation links (all Markdown/MDX)"
+python3 scripts/check-external-links.py || fail "dead external documentation link"
+
 step "Git sync"
 LOCAL=$(git rev-parse HEAD)
 if [ -n "${GITHUB_ACTIONS:-}" ] || [ -n "${SKIP_GIT_SYNC:-}" ]; then

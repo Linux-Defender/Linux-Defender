@@ -8,5 +8,5 @@ Repo documentation and internal reference material.
 ## Folder index
 - [`clamui-fork/`](clamui-fork/) — the ClamUI fork: what was ported from upstream, the rebrand state, and the upstream parity matrix
 - [`documentation/`](documentation/) — general documentation index and in-repo reference
-- [`revival/`](revival/) — revival/rework records (rebrand audits, parity reviews, upstream changelog)
+- [`revival/`](revival/) — revival/rework records. Start with its [index](revival/README.md): upstream repository inventory, ClamUI/ClamTk/Lenspect parity reviews, rebrand audits, and the requirement ledger.
 - [`translations/`](translations/) — gettext catalog status and how to finish the audit-string translations
