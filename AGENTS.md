@@ -46,6 +46,8 @@ When reviewing or adopting work from ClamTk, Lenspect, or another related scanne
 
 The authoritative fork status — what was ported from upstream ClamUI, what is deliberately deferred (scanner concurrency, full Flush UI), and what is superseded (Dashboard/ScanOverview/scanHistory) — lives in [`docs/clamui-fork/STATUS.md`](docs/clamui-fork/STATUS.md). Keep it current when porting. Compatibility identifiers (`clamui-apply-preferences`, `~/.config/clamui`, `clamui.log*`, cron markers, Nautilus fallbacks) are retained with dedicated tests; do not "rebrand" them away.
 
+The generated [documentation map](docs/DOC-MAP.md) links every tracked Markdown/MDX document, and `scripts/generate-doc-map.py --check` enforces it on every commit. Run `python3 scripts/generate-doc-map.py` after adding or removing a doc.
+
 The [revival research index](docs/revival/README.md) is the entry point for all related-project work: the link-checked [upstream repository inventory](docs/revival/UPSTREAM-REPOSITORIES.md) (ClamUI, ClamTk, Lenspect), the parity matrix, the ClamTk and Lenspect reviews, and the rebrand records. Keep the inventory's URLs current; `scripts/check-upstream-urls.py` verifies them on every commit, and `scripts/check-external-links.py` verifies every external link in all tracked documentation in the full audit and in the weekly `Doc Links` workflow.
 
 The consolidated [revival-chat requirement ledger](docs/revival/CHAT-AND-PROJECT-AUDIT.md) records every request from the whole conversation, where it is satisfied, and which check re-verifies it. Keep it current when new requests arrive.

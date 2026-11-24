@@ -121,4 +121,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 27 | No doc may be forgotten, stale, or unindexed | `scripts/check-doc-indexes.py` verifies every internal doc is reachable from its folder index; combined with the external-link, stale-phrase, dead-file, and cross-layer checks, docs are continuously verified |
 
+| 28 | Every Markdown/MDX doc must be linked to every other area, not just an index | Generated `docs/DOC-MAP.md` links all 60 tracked documents; `scripts/generate-doc-map.py --check` runs in `check-all.sh`, so adding/removing a doc without regenerating the map fails; folder indexes and stale-phrase checks remain in place |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

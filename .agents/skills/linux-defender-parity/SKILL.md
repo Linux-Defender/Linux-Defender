@@ -80,7 +80,10 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
    claims listed in that script (wrong translation status, a misspelled
    project name, the old repository-inventory path) reappear in live docs.
    `scripts/check-doc-indexes.py` requires every internal document to be linked
-   from its folder index, so no document can be forgotten.
+   from its folder index, so no document can be forgotten. The generated
+   `docs/DOC-MAP.md` links every tracked document; run
+   `python3 scripts/generate-doc-map.py` after adding/removing docs, and
+   `--check` enforces this in `check-all.sh`.
 7. **Generated artifacts.** Never hand-edit `po/*.mo`, `desktop/dist/`,
    `website/public/` generated assets, or `desktop/src-tauri/gen/`. Refresh the
    POT with `./scripts/update-pot.sh`, merge catalogs with `msgmerge`, strip

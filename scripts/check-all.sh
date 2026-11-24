@@ -76,8 +76,9 @@ for skill in sorted(Path(".agents/skills").glob("*/SKILL.md")):
         raise SystemExit(f"skill not wired into AGENTS.md/CLAUDE.md/dev guide: {name}")
 PY
 
-step "Doc indexes and known-stale claims"
+step "Doc indexes, complete map, and known-stale claims"
 python3 scripts/check-doc-indexes.py || fail "doc index coverage"
+python3 scripts/generate-doc-map.py --check || fail "documentation map stale (run generate-doc-map.py)"
 python3 scripts/check-stale-phrases.py || fail "stale documentation claim"
 
 step "Stale brand references"

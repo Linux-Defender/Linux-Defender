@@ -5,6 +5,10 @@ Repo documentation and internal reference material.
 ## Direct contents
 - [DESIGN.md](DESIGN.md) — visual identity (Guardian color tokens, typography, component rules)
 
+The [complete documentation map](DOC-MAP.md) links every Markdown/MDX document
+in the repository. It is generated and automatically verified, so a new doc
+cannot be written and then forgotten.
+
 ## Folder index
 - [`clamui-fork/`](clamui-fork/) — the ClamUI fork: what was ported from upstream, the rebrand state, and the upstream parity matrix
 - [`documentation/`](documentation/) — general documentation index and in-repo reference
