@@ -143,19 +143,17 @@ def main() -> int:
     agents_doc = read("AGENTS.md")
     if "tool-agnostic" not in agents_doc or "Universal baseline" not in agents_doc:
         failures.append("AGENTS.md does not document the tool-agnostic universal baseline")
-    # Optional adapters stay functional but are not advertised in the
-    # contributor documentation: the rules are tool-neutral.
-    import re
-    tracked = subprocess.run(
-        ["git", "ls-files", "*.md", "*.mdx"], cwd=ROOT, capture_output=True, text=True, check=True
-    ).stdout.splitlines()
-    for rel in tracked:
-        path = ROOT / rel
-        if not path.is_file():
-            continue
-        text = path.read_text(encoding="utf-8", errors="replace")
-        if re.search(r"opencode|open\s+code", text, re.I):
-            failures.append(f"optional adapter is advertised in documentation: {rel}")
+    # Every supported assistant must be named in the tool-neutral guides, with
+    # Claude Code first. No tool is dropped or presented as privileged.
+    tools = ["Claude Code", "OpenCode", "Aider", "Cursor", "Continue", "Zed"]
+    for guide in ("AGENTS.md", "CLAUDE.md", "AI-ENFORCEMENT.md"):
+        text = read(guide)
+        for tool in tools:
+            if tool not in text:
+                failures.append(f"{guide} does not list supported assistant: {tool}")
+        positions = [text.find(tool) for tool in tools]
+        if -1 not in positions and positions != sorted(positions):
+            failures.append(f"{guide} lists assistants in a biased order")
 
     # Pointer skill and contributor guides must name the canonical file/skill.
     skill = read(".agents/skills/linux-defender-enforcement/SKILL.md")
@@ -167,8 +165,10 @@ def main() -> int:
                   "website/src/content/docs/docs/contributing/development.md"):
         if "AI-ENFORCEMENT.md" not in read(guide):
             failures.append(f"{guide} does not reference AI-ENFORCEMENT.md")
-    if "linux-defender-enforcement" not in read("AGENTS.md"):
-        failures.append("AGENTS.md does not list the enforcement skill")
+    for guide in ("AGENTS.md", "CLAUDE.md",
+                  "website/src/content/docs/docs/contributing/development.md"):
+        if "linux-defender-enforcement" not in read(guide):
+            failures.append(f"{guide} does not list the enforcement skill")
     if "check-ai-enforcement-wiring.py" not in rules_text:
         failures.append("AI-ENFORCEMENT.md does not document its own wiring check")
 

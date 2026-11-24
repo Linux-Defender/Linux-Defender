@@ -131,4 +131,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 32 | Enforcement must be universal and tool-neutral, with no preferred assistant | `AGENTS.md`, git hooks, and CI declared the universal path for Claude Code, Aider, Cursor, Continue, Zed, and any other assistant; tool-specific adapters are kept functional but not advertised in contributor docs; `.aider.conf.yml` loads the rules into Aider; `check-ai-enforcement-wiring.py` enforces both the wiring and the low-visibility adapter policy |
 
+| 33 | All supported assistants must stay listed and no skill may be dropped from CLAUDE.md | Reinstated the full tool-neutral list (Claude Code, OpenCode, Aider, Cursor, Continue, Zed) in AGENTS.md, CLAUDE.md, AI-ENFORCEMENT.md, CONTEXT.md, and the dev guide; restored `linux-defender-enforcement` to the CLAUDE.md skill list; checker now verifies every supported assistant is present and Claude Code is listed first without privilege |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

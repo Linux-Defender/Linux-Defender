@@ -7,7 +7,7 @@ description: Mandatory Linux Defender rules injected into every AI model context
 
 This is the **canonical** rules file for **every** assistant, not for one tool.
 The universal path is `AGENTS.md`, the git hooks, and CI; they work identically
-in Claude Code, Aider, Cursor, Continue, Zed, or any other assistant.
+in Claude Code, OpenCode, Aider, Cursor, Continue, Zed, or any other assistant.
 Optional tool adapters only add convenience: Claude Code `SessionStart`/`Stop`
 hooks, an Aider config, and a thin `linux-defender-enforcement` skill all read
 this file at runtime. Do **not**
@@ -73,6 +73,8 @@ fail.
 - Claude Code: `.claude/settings.json` runs `check-all.sh` on `Stop` and injects
   this file at `SessionStart` through `scripts/hooks/ai-enforcement-context.py`.
 - Aider: `.aider.conf.yml` reads `AGENTS.md` and this file into every chat.
+- OpenCode: instructions and a configured adapter read this file at runtime.
+- Cursor / Continue / Zed: the universal `AGENTS.md` baseline applies directly.
 - The thin `.agents/skills/linux-defender-enforcement/` skill points here, so
   assistants that discover skills can find and load the rules. An optional
   Claude Code plugin package at `.claude/plugins/linux-defender-enforcement/`
