@@ -1,22 +1,37 @@
 import { Plugin } from "@opencode/plugin";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
-// Injected into every model context in this repository so every agent, model,
-// and subagent obeys the same hard rules instead of relying on prose guidance.
-const RULES = `LINUX DEFENDER MANDATORY RULES (enforced by hooks and CI):
-1. Before saying "done", run bash scripts/check-all.sh and fix EVERY failure.
-2. For any multi-layer or audit/parity/dead/stale/sync task, use the linux-defender-parity skill.
-3. Cross-layer parity: a feature in one layer must be wired in every consuming layer; add it to scripts/cross-layer-contracts.json.
-4. No dead links, dead files, stale docs/skills/site, or un-wired modules. Link new docs, import new modules, name new skills in AGENTS.md/CLAUDE.md/dev guide, add new site pages to the sidebar, reference new scripts/workflows.
-5. Read the entire user request, enumerate every requirement, and satisfy all of them. Never declare done with a named item unaddressed.
-6. Keep compatibility identifiers (clamui-* names, ~/.config/clamui, ~/.local/share/clamui, clamui.log*, cron markers, Nautilus fallbacks). Do not rebrand them away.
-7. Exercise the real app (headless CLI status/history/EICAR scan, logs) and the production-preview site (Lighthouse), not only unit tests. For visual bugs use the browser harness (desktop/visual-harness.html) AND focus the real Tauri window and run bash scripts/capture-app-window.sh, then read the PNG: WebKitGTK is not Chromium. Verify host signature database freshness with scripts/check-signatures.py and the product-default URLhaus feed with scripts/check-signature-feeds.py (Auth-Key redacted). Never bundle an engine or signature database in any package.
-8. Pre-commit runs static checks; pre-push runs the full audit; CI runs both. Do not bypass hooks. Full check: bash scripts/audit-consistency.sh.`;
+// The rules are NOT duplicated here. AI-ENFORCEMENT.md is the single source of
+// truth; this plugin reads it on every load so edits there reach every model.
+const RULES_FILE = "AI-ENFORCEMENT.md";
+
+function stripFrontmatter(text: string): string {
+  return text.startsWith("---\n") ? text.replace(/^---\n[\s\S]*?\n---\n/, "") : text;
+}
+
+async function loadRules(ctx: any): Promise<string> {
+  const root = ctx.location?.project?.canonical || ctx.location?.directory || process.cwd();
+  try {
+    const text = await readFile(join(root, RULES_FILE), "utf8");
+    return `LINUX DEFENDER — MANDATORY RULES (source: ${RULES_FILE}):\n${stripFrontmatter(text)}`;
+  } catch (error) {
+    return `LINUX DEFENDER ENFORCEMENT ERROR: could not read ${RULES_FILE} from ${root}. Run bash scripts/check-all.sh before declaring anything done.\n${String(error)}`;
+  }
+}
 
 export default Plugin.define({
   id: "linux-defender-enforcement",
   async setup(ctx) {
-    await ctx.session.hook("context", (event) => {
-      event.system.push({ type: "text", text: RULES });
+    const rules = await loadRules(ctx);
+    await ctx.session.hook("context", (_event) => {
+      event_system_push(_event, rules);
     });
   },
 });
+
+// Kept as a separate helper so the hook body stays tiny and the injected text
+// comes from exactly one place (the file read above).
+function event_system_push(event: any, text: string): void {
+  event.system.push({ type: "text", text });
+}

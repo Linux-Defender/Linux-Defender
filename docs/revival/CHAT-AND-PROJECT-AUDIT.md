@@ -123,4 +123,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 28 | Every Markdown/MDX doc must be linked to every other area, not just an index | Generated `docs/DOC-MAP.md` links all 60 tracked documents; `scripts/generate-doc-map.py --check` runs in `check-all.sh`, so adding/removing a doc without regenerating the map fails; folder indexes and stale-phrase checks remain in place |
 
+| 29 | `AI-ENFORCEMENT.md` should be a first-class, skill-like single source of truth wired into every AI adapter | Added skill-style frontmatter; OpenCode plugin now reads the file at runtime instead of duplicating rules; Claude Code `SessionStart`/`UserPromptSubmit` hooks inject via `scripts/hooks/ai-enforcement-context.py`; thin `linux-defender-enforcement` skill + `.claude/skills` link; `scripts/check-ai-enforcement-wiring.py` verifies all adapters and rejects duplicated rules |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

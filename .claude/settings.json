@@ -1,5 +1,28 @@
 {
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/scripts/hooks/ai-enforcement-context.py", "SessionStart"],
+            "statusMessage": "Loading Linux Defender enforcement rules..."
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/scripts/hooks/ai-enforcement-context.py", "UserPromptSubmit"]
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [

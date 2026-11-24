@@ -130,7 +130,7 @@ Start OpenCode from the repository root: `opencode.json` loads `AI-ENFORCEMENT.m
 
 ### Automatic consistency enforcement
 
-[`AI-ENFORCEMENT.md`](https://github.com/Linux-Defender/Linux-Defender/blob/main/AI-ENFORCEMENT.md) lists the non-negotiable rules every contributor and AI model follows. The rules are enforced, not merely documented:
+[`AI-ENFORCEMENT.md`](https://github.com/Linux-Defender/Linux-Defender/blob/main/AI-ENFORCEMENT.md) is the canonical rules file, written with skill-style frontmatter. Adapters read it at runtime instead of copying it: `opencode.json` loads it as instructions, the OpenCode plugin reads it on every load, Claude Code injects it at `SessionStart` with a short `UserPromptSubmit` reminder, and the thin `linux-defender-enforcement` skill points to it. `scripts/check-ai-enforcement-wiring.py` fails if any adapter stops reading it or duplicates its text. The rules are enforced, not merely documented:
 
 - `bash scripts/check-all.sh` is the single source of truth for static checks: broken doc links, orphaned files anywhere in the repo, cross-layer contracts, version and app-identity agreement, host signature database health (presence, age, EICAR), gettext, skill hashes and wiring, stale branding, dead frontend modules, and website sidebar/component wiring.
 - `bash scripts/audit-consistency.sh` adds the heavy builds, tests, clippy, git sync, and CI status.

@@ -52,6 +52,9 @@ for po in po/*.po; do
     msgcmp "$po" po/linux-defender.pot >/dev/null 2>&1 || fail "msgcmp $po"
 done
 
+step "AI enforcement wiring (single source of truth, no duplicated rules)"
+python3 scripts/check-ai-enforcement-wiring.py || fail "AI enforcement adapter drift"
+
 step "Skill provenance + skill documentation wiring"
 python3 - <<'PY' || fail "skill check"
 import hashlib, json

@@ -1,9 +1,16 @@
+---
+name: ai-enforcement
+description: Mandatory Linux Defender rules injected into every AI model context. Use before saying "done", for any multi-layer change, audit, parity, dead/stale/sync check, or when a visual bug is reported. It is the canonical single source of truth; all adapters read this file at runtime.
+---
+
 # Linux Defender — mandatory rules for every AI model
 
-This file is injected into every agent context (OpenCode plugin hook, Claude
-Code hook, and `opencode.json` instructions) and is referenced by `AGENTS.md`.
-It exists because prose advice alone is ignored. The checks below are wired
-into hooks and CI; you cannot claim "done" while they fail.
+This is the **canonical** rules file. The OpenCode plugin reads it at runtime
+and injects it into every model context; `opencode.json` loads it as
+instructions; a Claude Code `SessionStart` hook injects its contents; and a
+thin skill (`linux-defender-enforcement`) points here. Do **not** copy these
+rules into a plugin or hook — adapters must read this file. The checks below
+are wired into hooks and CI; you cannot claim "done" while they fail.
 
 ## Non-negotiable before you reply "done"
 
@@ -12,8 +19,9 @@ into hooks and CI; you cannot claim "done" while they fail.
    dev/build wiring drift (tauri dev -> Vite -> dist, patched vendored glib),
    unused Rust dependencies (cargo machete), stale/missing signature databases,
    gettext drift, stale branding, dead frontend modules, unwired website
-   components, and skill drift. It is the single source of truth for static
-   checks — do not invent a parallel check.
+   components, skill drift, dead external links, stale doc phrases, and a stale
+   documentation map. It is the single source of truth for static checks — do
+   not invent a parallel check.
 2. **Load the `linux-defender-parity` skill** for any task touching more than
    one layer (core, Tauri runtime, React frontend, translations, docs, packaging,
    CI) or any "audit / parity / dead / stale / sync / verify everything" request.
@@ -24,10 +32,11 @@ into hooks and CI; you cannot claim "done" while they fail.
    from `generate_handler!`, CLI subcommands from `cli.rs`, and locales from
    `po/LINGUAS`, then asserts each appears everywhere it is consumed.
 4. **No dead links, no dead files, no stale docs/skills/site.** New docs must be
-   linked from an existing index; new modules must be imported; new skills must
-   be named in `AGENTS.md`, `CLAUDE.md`, and the website development guide; new
-   website pages must be in the Starlight sidebar. The checkers enforce all of
-   this automatically.
+   linked from an existing index **and** the generated `docs/DOC-MAP.md`
+   (regenerate with `python3 scripts/generate-doc-map.py`); new modules must be
+   imported; new skills must be named in `AGENTS.md`, `CLAUDE.md`, and the
+   website development guide; new website pages must be in the Starlight
+   sidebar. The checkers enforce all of this automatically.
 5. **Read the whole request.** Do not reduce a multi-part request to one easy
    part. Re-read it, enumerate every requirement, and satisfy each one. Never
    say "all done" while any named item is unaddressed.
@@ -44,8 +53,9 @@ into hooks and CI; you cannot claim "done" while they fail.
    product-default URLhaus export (Auth-Key redacted). The host engine and
    signature database are NEVER bundled by any package format.
 8. **For full verification** run `bash scripts/audit-consistency.sh` (adds
-   builds, clippy, tests, git/CI sync). Pre-commit runs all static checks;
-   pre-push runs the full audit. Do not bypass hooks to "save time."
+   builds, clippy, tests, git/CI sync, and every external documentation link).
+   Pre-commit runs all static checks; pre-push runs the full audit. Do not
+   bypass hooks to "save time."
 
 ## Automatic enforcement (already installed)
 
@@ -56,9 +66,20 @@ into hooks and CI; you cannot claim "done" while they fail.
 - `.github/workflows/signature-database.yml` → weekly host ClamAV database,
   EICAR, and URLhaus feed health check.
 - `.github/workflows/upstream-freshness.yml` → weekly skill drift detection.
-- OpenCode plugin `.opencode/plugins/linux-defender-enforcement/` injects these
-  rules into every model context; `opencode.json` loads this file as instructions.
-- `.claude/settings.json` runs the static checks on every Claude Code `Stop`.
+- `.github/workflows/doc-links.yml` → weekly external documentation link check.
+- OpenCode: `opencode.json` loads this file as instructions; the local plugin
+  `.opencode/plugins/linux-defender-enforcement/` reads this file at runtime and
+  injects it into every model context. No rules are duplicated in the plugin.
+- Claude Code: `.claude/settings.json` runs `check-all.sh` on `Stop` and injects
+  this file at `SessionStart` through `scripts/hooks/ai-enforcement-context.py`.
+- The thin `.agents/skills/linux-defender-enforcement/` skill points here, so
+  assistants that discover skills can find and load the rules.
 
 If you bypass a hook, you must still run the check it replaced and report the
 result. There is no "trust me" path.
+
+## Keeping this file honest
+
+`scripts/check-ai-enforcement-wiring.py` verifies in every commit that all
+adapters still read this file (no duplicated rules, all hooks/commands/skill
+wired). Editing the rules here is enough; do not edit copies elsewhere.
