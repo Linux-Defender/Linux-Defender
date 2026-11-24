@@ -9,6 +9,7 @@ plugin or hook. It runs in check-all.sh on every commit.
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -16,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 RULES = ROOT / "AI-ENFORCEMENT.md"
 SHELL_DIR = ROOT / "scripts/hooks"
+PLUGIN_ROOT = ROOT / ".claude/plugins/linux-defender-enforcement"
 
 
 def read(rel: str) -> str:
@@ -88,6 +90,42 @@ def main() -> int:
                 failures.append(f"ai-enforcement-context.py {event} emitted empty/oversized context")
         except (ValueError, KeyError) as exc:
             failures.append(f"ai-enforcement-context.py {event} emitted invalid JSON: {exc}")
+
+    # Optional Claude Code plugin package. It must add components, never
+    # duplicate the always-on settings hooks or the rules themselves.
+    manifest_path = PLUGIN_ROOT / ".claude-plugin/plugin.json"
+    if not manifest_path.exists():
+        failures.append("Claude Code plugin manifest is missing")
+    else:
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            failures.append(f"plugin.json is invalid: {exc}")
+            manifest = {}
+        if manifest.get("name") != "linux-defender-enforcement":
+            failures.append("plugin name is not linux-defender-enforcement")
+        if "hooks" in manifest or (PLUGIN_ROOT / "hooks/hooks.json").exists():
+            failures.append("plugin declares hooks that would duplicate the always-on settings hooks")
+        for component in ("skills/linux-defender-enforcement/SKILL.md",
+                          "commands/capture-app.md", "agents/enforcement-reviewer.md"):
+            if not (PLUGIN_ROOT / component).exists():
+                failures.append(f"plugin component missing: {component}")
+        plugin_skill = (PLUGIN_ROOT / "skills/linux-defender-enforcement/SKILL.md").read_text(errors="replace") if (PLUGIN_ROOT / "skills/linux-defender-enforcement/SKILL.md").exists() else ""
+        if "AI-ENFORCEMENT.md" not in plugin_skill or "Non-negotiable before you reply" in plugin_skill:
+            failures.append("plugin skill must point to, not copy, the canonical rules")
+        plugin_command = (PLUGIN_ROOT / "commands/capture-app.md").read_text(errors="replace") if (PLUGIN_ROOT / "commands/capture-app.md").exists() else ""
+        if "capture-app-window.sh" not in plugin_command:
+            failures.append("plugin capture command is not wired to the capture script")
+        plugin_agent = (PLUGIN_ROOT / "agents/enforcement-reviewer.md").read_text(errors="replace") if (PLUGIN_ROOT / "agents/enforcement-reviewer.md").exists() else ""
+        if "AI-ENFORCEMENT.md" not in plugin_agent:
+            failures.append("plugin reviewer agent does not point to the canonical rules")
+        if shutil.which("claude"):
+            result = subprocess.run(
+                ["claude", "plugin", "validate", str(PLUGIN_ROOT)],
+                cwd=ROOT, capture_output=True, text=True,
+            )
+            if result.returncode != 0:
+                failures.append(f"claude plugin validate failed: {result.stdout.strip() or result.stderr.strip()}")
 
     # Pointer skill and contributor guides must name the canonical file/skill.
     skill = read(".agents/skills/linux-defender-enforcement/SKILL.md")

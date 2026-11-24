@@ -78,6 +78,9 @@ complete cross-check that nothing is forgotten or orphaned.
 ## Coding-agent tooling
 
 - [.claude/commands/capture-app](../.claude/commands/capture-app.md)
+- [.claude/plugins/linux-defender-enforcement/agents/enforcement-reviewer](../.claude/plugins/linux-defender-enforcement/agents/enforcement-reviewer.md)
+- [.claude/plugins/linux-defender-enforcement/commands/capture-app](../.claude/plugins/linux-defender-enforcement/commands/capture-app.md)
+- [.claude/plugins/linux-defender-enforcement/skills/linux-defender-enforcement/SKILL](../.claude/plugins/linux-defender-enforcement/skills/linux-defender-enforcement/SKILL.md)
 
 ## Regenerating
 

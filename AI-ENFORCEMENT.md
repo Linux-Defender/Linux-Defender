@@ -73,7 +73,11 @@ are wired into hooks and CI; you cannot claim "done" while they fail.
 - Claude Code: `.claude/settings.json` runs `check-all.sh` on `Stop` and injects
   this file at `SessionStart` through `scripts/hooks/ai-enforcement-context.py`.
 - The thin `.agents/skills/linux-defender-enforcement/` skill points here, so
-  assistants that discover skills can find and load the rules.
+  assistants that discover skills can find and load the rules. An optional
+  Claude Code plugin package at `.claude/plugins/linux-defender-enforcement/`
+  bundles a pointer skill, a capture command, and a reviewer agent; it declares
+  **no hooks**, so enforcement still comes only from the always-on settings
+  hooks. `claude plugin validate` validates that package.
 
 If you bypass a hook, you must still run the check it replaced and report the
 result. There is no "trust me" path.

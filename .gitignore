@@ -79,6 +79,8 @@ Thumbs.db
 !.claude/settings.json
 !.claude/commands/
 !.claude/commands/*
+!.claude/plugins/
+!.claude/plugins/**
 !.claude/skills/
 .claude/skills/*
 !.claude/skills/*

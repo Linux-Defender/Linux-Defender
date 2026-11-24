@@ -1,0 +1,16 @@
+{
+  "name": "linux-defender-enforcement",
+  "displayName": "Linux Defender Enforcement",
+  "version": "0.6.0",
+  "description": "Optional Claude Code package exposing the Linux Defender rules skill, app-capture command, and compliance reviewer agent. The always-on project hooks in .claude/settings.json remain the enforcement path; this plugin deliberately declares no hooks.",
+  "author": {
+    "name": "Kira (Linux-Defender)",
+    "url": "https://github.com/Linux-Defender/Linux-Defender"
+  },
+  "repository": "https://github.com/Linux-Defender/Linux-Defender",
+  "license": "MIT",
+  "keywords": ["linux-defender", "enforcement", "parity", "consistency"],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/enforcement-reviewer.md"]
+}
