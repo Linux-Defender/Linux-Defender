@@ -19,7 +19,7 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
   deliberately deferred (scanner concurrency, full Flush UI), and what was
   superseded (Dashboard/ScanOverview/scanHistory). Update it when porting.
 - `AGENTS.md` — canonical contributor rules (security, IPC, compatibility,
-  build/test, Claude/OpenCode/Cursor/Aider/Continue/Zed guidance).
+  build/test, Claude/Cursor/Aider/Continue/Zed guidance).
 - `AI-ENFORCEMENT.md` — mandatory rules injected into every model context.
 - `scripts/cross-layer-contracts.json` — declarative cross-layer feature matrix.
 - `scripts/check-all.sh` — single source of truth for all static checks.

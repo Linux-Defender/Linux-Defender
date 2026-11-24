@@ -136,8 +136,19 @@ def main() -> int:
     agents_doc = read("AGENTS.md")
     if "tool-agnostic" not in agents_doc or "Universal baseline" not in agents_doc:
         failures.append("AGENTS.md does not document the tool-agnostic universal baseline")
-    if "not the primary path" not in agents_doc:
-        failures.append("AGENTS.md presents one adapter as the primary path")
+    # Optional adapters stay functional but are not advertised in the
+    # contributor documentation: the rules are tool-neutral.
+    import re
+    tracked = subprocess.run(
+        ["git", "ls-files", "*.md", "*.mdx"], cwd=ROOT, capture_output=True, text=True, check=True
+    ).stdout.splitlines()
+    for rel in tracked:
+        path = ROOT / rel
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        if re.search(r"opencode|open\s+code", text, re.I):
+            failures.append(f"optional adapter is advertised in documentation: {rel}")
 
     # Pointer skill and contributor guides must name the canonical file/skill.
     skill = read(".agents/skills/linux-defender-enforcement/SKILL.md")

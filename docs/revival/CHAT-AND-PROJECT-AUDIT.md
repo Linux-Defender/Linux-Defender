@@ -88,7 +88,7 @@ This section exists so no request from the whole revival conversation is lost. I
 | # | Requirement (from the chat) | Where it is satisfied / re-verified |
 | --- | --- | --- |
 | 1 | Full ClamUI/ClamTk/Lenspect parity, preserving Linux Defender branding | `docs/revival/RELATED-PROJECT-REVIEW.md`, `docs/clamui-fork/STATUS.md`; `linux-defender-parity` skill |
-| 2 | Make no mistakes; miss nothing; read and satisfy the whole message | `AI-ENFORCEMENT.md` rule 5, injected into every OpenCode model and Claude Code Stop hook |
+| 2 | Make no mistakes; miss nothing; read and satisfy the whole message | `AI-ENFORCEMENT.md` rule 5, injected into model context and enforced by hooks and CI |
 | 3 | Local and GitHub fully synced; every CI green; no stale/dead/incompatible text | `scripts/audit-consistency.sh` git/CI step; `bash scripts/check-all.sh`; Consistency Audit workflow |
 | 4 | Keep the rebranded identity and all compatibility aliases | `AGENTS.md` user-facing compatibility section; `scripts/cross-layer-contracts.json` alias contracts |
 | 5 | URLhaus on by default with product Auth-Key; no paste/Delete UI | `crates/linux-defender-core/src/urlhaus.rs`; `scripts/check-signature-feeds.py`; contract `urlhaus` |
@@ -103,14 +103,14 @@ This section exists so no request from the whole revival conversation is lost. I
 | 14 | Auto-update for everything | `dependabot-refresh.yml`, `upstream-freshness.yml`, `signature-database.yml`; hooks and CI enforce checks on every change |
 | 15 | No dead links, dead files, stale docs/skills/site; everything wired | `scripts/check-doc-links.py`, `scripts/check-dead-files.py` (whole repo), `scripts/check-all.sh` |
 | 16 | Cross-compat: a feature in one layer must appear in all consuming layers | `scripts/cross-layer-contracts.json`, `scripts/check-cross-layer.py` (derives Tauri commands, CLI subcommands, locales) |
-| 17 | Make every AI model listen | `AI-ENFORCEMENT.md` + `opencode.json` instructions + OpenCode context-hook plugin + `.claude/settings.json` Stop hook + git hooks |
+| 17 | Make every AI model listen | `AI-ENFORCEMENT.md` + tool adapters + `.claude/settings.json` hooks + git hooks + CI |
 | 18 | Whole repo, all files, all sites, all app layers | `scripts/check-repo-consistency.py` (versions, app id, workflow/script inventory), whole-repo dead-file check, website build/link/sidebar/component checks |
 | 19 | Database signatures checked | `scripts/check-signatures.py` (database age + EICAR), `scripts/check-signature-feeds.py` (URLhaus, key redacted), `signature-database.yml`; no engine or database bundled anywhere |
 
 | 20 | Visual UI bug: Scan Profile row overlapped on every load | `desktop/src/styles.css` (deterministic custom `<select>` rendering), `desktop/visual-harness.html` + development guide (browser visual check), accessibility skill |
 | 21 | Privileged-helper prompt returning on every launch after install | `crates/linux-defender-core/src/privileged.rs` (`trusted_helper_status`: a trusted native helper is `installed` with `needs_onboarding: false`; package version mismatch is informational), regression test in `helper_status_tests` |
 
-| 22 | See inside the real WebKitGTK window, not only the Chromium harness | `scripts/capture-app-window.sh` (Spectacle/ImageMagick/scrot/gnome-screenshot), `/capture-app` command in `opencode.json` and `.claude/commands/capture-app.md`, documented in the development guide and accessibility skill |
+| 22 | See inside the real WebKitGTK window, not only the Chromium harness | `scripts/capture-app-window.sh` (Spectacle/ImageMagick/scrot/gnome-screenshot), `/capture-app` project command, documented in the development guide and accessibility skill |
 | 23 | Unused dev dependency + dev command wiring must stay clean | `cargo machete` wired into `check-all.sh` and Consistency Audit CI; removed unused `percent-encoding`; `scripts/check-build-wiring.py` verifies `tauri dev` -> Vite 1420 -> dist -> patched vendored glib so the command contributors run cannot silently drift |
 
 | 24 | Dead links in `docs/clamui-fork/REPOS.md`; belongs outside the fork-only folder; ClamTk docs in revival | Corrected the four HTTP 404 URLs and moved the inventory to `docs/revival/UPSTREAM-REPOSITORIES.md`; added a revival index linking all ClamTk/Lenspect/ClamUI records; `scripts/check-upstream-urls.py` verifies every inventory URL on every commit; stale Dashboard/ScanOverview "Ported" row corrected in the fork README |
@@ -123,12 +123,12 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 28 | Every Markdown/MDX doc must be linked to every other area, not just an index | Generated `docs/DOC-MAP.md` links all 60 tracked documents; `scripts/generate-doc-map.py --check` runs in `check-all.sh`, so adding/removing a doc without regenerating the map fails; folder indexes and stale-phrase checks remain in place |
 
-| 29 | `AI-ENFORCEMENT.md` should be a first-class, skill-like single source of truth wired into every AI adapter | Added skill-style frontmatter; OpenCode plugin now reads the file at runtime instead of duplicating rules; Claude Code `SessionStart`/`UserPromptSubmit` hooks inject via `scripts/hooks/ai-enforcement-context.py`; thin `linux-defender-enforcement` skill + `.claude/skills` link; `scripts/check-ai-enforcement-wiring.py` verifies all adapters and rejects duplicated rules |
+| 29 | `AI-ENFORCEMENT.md` should be a first-class, skill-like single source of truth wired into every AI adapter | Added skill-style frontmatter; tool adapters read the file at runtime instead of duplicating rules; Claude Code `SessionStart`/`UserPromptSubmit` hooks inject via `scripts/hooks/ai-enforcement-context.py`; thin `linux-defender-enforcement` skill + `.claude/skills` link; `scripts/check-ai-enforcement-wiring.py` verifies all adapters and rejects duplicated rules |
 
 | 30 | Optional literal Claude Code plugin package, without replacing current wiring | Added `.claude/plugins/linux-defender-enforcement/` with `plugin.json`, pointer skill, `/capture-app` command, and reviewer agent; it declares **no hooks**, so the always-on settings hooks stay the single enforcement path; `claude plugin validate` passes and is enforced by `check-ai-enforcement-wiring.py` |
 
 | 31 | CI failed on transient GitHub HTTP 502 for two real links | Link checkers now retry 429/5xx three times and skip only after a genuine upstream outage; 403/404/410 still fail; regression test `scripts/tests/test_external_links.py` wired into `check-all.sh` |
 
-| 32 | Enforcement must be universal and tool-neutral, with no OpenCode bias | `AGENTS.md`, git hooks, and CI declared the universal path for Claude Code, Aider, Cursor, Continue, Zed, OpenCode, and any other assistant; Claude Code documented first as a first-class adapter; `.aider.conf.yml` loads the rules into Aider; OpenCode kept working but explicitly listed as one adapter among several; `check-ai-enforcement-wiring.py` enforces this |
+| 32 | Enforcement must be universal and tool-neutral, with no preferred assistant | `AGENTS.md`, git hooks, and CI declared the universal path for Claude Code, Aider, Cursor, Continue, Zed, and any other assistant; tool-specific adapters are kept functional but not advertised in contributor docs; `.aider.conf.yml` loads the rules into Aider; `check-ai-enforcement-wiring.py` enforces both the wiring and the low-visibility adapter policy |
 
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.
