@@ -6,19 +6,15 @@ resolver = "2"
 version = "0.6.0"
 edition = "2021"
 license = "MIT"
-authors = ["Kira (Linux-Defender)"]
 repository = "https://github.com/Linux-Defender/Linux-Defender"
 
 [workspace.dependencies]
 base64 = "0.23"
 chrono = { version = "0.4", features = ["serde"] }
-clap = { version = "4", features = ["derive"] }
 signal-hook = "0.4"
-csv = "1"
 fs2 = "0.4"
 gio = "0.22"
 glib = "0.22"
-globset = "0.4"
 hex = "0.4"
 icu_casemap = "=2.3.0"
 icu_locale_core = "=2.4.0"
@@ -28,7 +24,6 @@ percent-encoding = "2"
 regex = "1"
 reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "multipart", "rustls-tls"] }
 rusqlite = { version = "0.43", features = ["bundled"] }
-semver = "1"
 serde = { version = "1", features = ["derive"] }
 secret-service = { version = "5", default-features = false, features = ["rt-async-io-crypto-rust"] }
 serde_json = "1"
