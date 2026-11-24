@@ -63,6 +63,20 @@ for po in po/*.po; do
     msgcmp "$po" po/linux-defender.pot >/dev/null 2>&1 || fail "msgcmp $po"
 done
 
+step "Skill provenance (imported payloads match skills-lock.json)"
+python3 - <<'PY' || fail "imported skill hash mismatch"
+import json, hashlib
+from pathlib import Path
+lock = json.load(open("skills-lock.json"))["skills"]
+for name, meta in lock.items():
+    p = Path(f".agents/skills/{name}/SKILL.md")
+    if not p.exists():
+        raise SystemExit(f"missing imported skill: {name}")
+    h = hashlib.sha256(p.read_bytes()).hexdigest()
+    if h != meta.get("computedHash"):
+        raise SystemExit(f"skill hash mismatch: {name} (lock {meta.get('computedHash')[:12]}, local {h[:12]})")
+PY
+
 step "Stale brand references"
 # Only intentional historical/compat references may contain these tokens.
 # The audit script and parity skill contain the pattern itself; exclude them.

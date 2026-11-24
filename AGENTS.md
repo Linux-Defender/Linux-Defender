@@ -107,7 +107,7 @@ CI builds native artifacts on the Ubuntu 22.04-compatible baseline. A build on a
 
 Project-local coding-agent skills are optional development aids, not build or runtime dependencies. Their canonical imports are in `.agents/skills`; `.claude/skills` provides compatibility links. For installation details, see the [Development guide](website/src/content/docs/docs/contributing/development.md).
 
-Three skills (`accessibility`, `rust-best-practices`, `vercel-react-best-practices`) are pinned to upstream imports in `skills-lock.json` (source, selected path, content hash — not a commit). Refresh only a deliberately selected upstream skill. The `linux-defender-*` skills are maintained locally in this repo and are not in the lock file. Start OMP from the repository root: `.omp/config.yml` applies its cwd-scoped `ignoredSkills` filter while preserving global skill payloads.
+Three skills (`accessibility`, `rust-best-practices`, `vercel-react-best-practices`) are imported from upstream and pinned by content hash in `skills-lock.json` (source, selected path, hash, review date — not a commit). Refresh only a deliberately selected upstream skill: review the diff, update the payload, and refresh its hash/date in the same change. The `linux-defender-*` skills are maintained locally in this repo and are not in the lock file. `scripts/audit-consistency.sh` verifies imported skills still match their locked hashes. Start OMP from the repository root: `.omp/config.yml` applies its cwd-scoped `ignoredSkills` filter while preserving global skill payloads.
 
 - Rust changes: use `rust-best-practices`.
 - React client changes: use `vercel-react-best-practices`; apply it to `desktop/src/`, not Next.js or server patterns.

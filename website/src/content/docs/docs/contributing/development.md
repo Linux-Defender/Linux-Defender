@@ -116,7 +116,7 @@ npx skills@1.7.4 add vercel-labs/agent-skills --skill vercel-react-best-practice
 npx skills@1.7.4 add addyosmani/web-quality-skills --skill accessibility
 ```
 
-Do not use `-g` or bulk-install an upstream repository. Imported payloads belong in `.agents/skills`; `.claude/skills` provides compatibility links, and `skills-lock.json` records each source, selected `skillPath`, and content hash. Refresh only a named skill intentionally and review its provenance and changes.
+Do not use `-g` or bulk-install an upstream repository. Imported payloads belong in `.agents/skills`; `.claude/skills` provides compatibility links, and `skills-lock.json` records each source, selected `skillPath`, and content hash plus the date the upstream was reviewed. Refresh only a named skill intentionally: review the upstream diff, update the imported file, and refresh that skill's `computedHash` and `reviewedUpstreamAt` in the same change. `bash scripts/audit-consistency.sh` verifies every imported skill still matches its locked hash.
 
 The project-only OMP filter is `.omp/config.yml` under `skills.ignoredSkills`; it excludes irrelevant global skills without deleting their global payloads. Start OMP from the repository root because project configuration is current-working-directory scoped.
 
