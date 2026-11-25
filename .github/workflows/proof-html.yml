@@ -43,10 +43,19 @@ jobs:
         working-directory: website
         run: bun run build
 
+      - name: Prepare base-path-aware HTML copy
+        # proof-html resolves absolute links against the filesystem. The site
+        # is deployed under /Linux-Defender/, so rewrite that prefix in a
+        # throwaway CI copy before validating structure.
+        run: |
+          mkdir -p website/proof
+          cp -a website/dist/. website/proof/
+          find website/proof -type f -name '*.html' -exec sed -i 's|/Linux-Defender/|/|g' {} +
+
       - name: Proof built HTML
         uses: anishathalye/proof-html@v1.1.0
         with:
-          directory: ./website/dist
+          directory: ./website/proof
           check_html: true
           empty_alt_ignore: true
         env:

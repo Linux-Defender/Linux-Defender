@@ -10,7 +10,7 @@ documentation; `scripts/check-watchers.py` verifies the index cannot drift.
 | `dependency-audit.yml` | Weekly | Rust and all Bun workspaces, including the MCP assist server. |
 | `deploy-website.yml` | Weekly | Published site rebuild so the latest-release navigation stays current. |
 | `doc-links.yml` | Weekly | Every external documentation link. |
-| `proof-html.yml` | Weekly | Built-site HTML structure (DOCTYPE, duplicate IDs, alt text) with Playwright installed for Mermaid rendering. |
+| `proof-html.yml` | Weekly | Built-site HTML structure (DOCTYPE, duplicate IDs, alt text); installs Playwright for Mermaid and validates a throwaway copy with the `/Linux-Defender/` base path rewritten to root. |
 | `packaging-sync.yml` | Weekly | All six package formats, version/app-id agreement, and the AUR reference in `packaging-lock.json`. |
 | `signature-database.yml` | Weekly | Host ClamAV database age, EICAR detection, and the product-default URLhaus export. |
 | `upstream-freshness.yml` | Weekly | Imported skill hashes in `skills-lock.json` and reviewed ClamUI/Lenspect/ClamTk heads in `parity-lock.json`. |

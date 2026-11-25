@@ -176,4 +176,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 55 | Workflows that never/rarely ran and proof-html failure | Added weekly schedule + Playwright browser install to `proof-html.yml` (it failed because Chromium was missing), added `workflow_dispatch` to Auto Assign, Release, and Validate Website so they can be verified, guarded Auto Assign dispatch, required every workflow to be manually dispatchable in `check-workflows.py`, and added Proof HTML to the watchers index |
 
+| 56 | Proof HTML still failed after Playwright fix because base-path absolute links were treated as missing files | Added a throwaway CI copy with `/Linux-Defender/` rewritten to `/` before proof-html runs; it now validates the real built HTML structure rather than being skipped |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.
