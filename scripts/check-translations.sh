@@ -122,6 +122,20 @@ if [ -f "$POT" ] && [ "${#COMPILED_CATALOGS[@]}" -eq "${#PO_FILES[@]}" ]; then
     fi
 fi
 
+# Keep the one documented catalog size in sync with the real catalogs. Other
+# documents link here instead of repeating a number that silently goes stale.
+if [ -f docs/translations/README.md ]; then
+    documented_count="$(grep -oE 'contains all [0-9,]+ source messages' docs/translations/README.md | grep -oE '[0-9,]+' | tr -d ',' | head -n1 || true)"
+    actual_count="$(msgfmt --statistics -o /dev/null po/en.po 2>&1 | awk '{print $1}')"
+    if [ -z "$documented_count" ]; then
+        echo "::error file=docs/translations/README.md::Missing the documented source-message count"
+        ERRORS=$((ERRORS + 1))
+    elif [ "$documented_count" != "$actual_count" ]; then
+        echo "::error file=docs/translations/README.md::Documented source-message count $documented_count does not match the catalogs ($actual_count)"
+        ERRORS=$((ERRORS + 1))
+    fi
+fi
+
 
 if [ "$ERRORS" -gt 0 ]; then
     echo "Found $ERRORS translation error(s)."

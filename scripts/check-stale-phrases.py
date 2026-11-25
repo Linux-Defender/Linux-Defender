@@ -33,6 +33,10 @@ STALE = {
     "all 10 workflows green": "all workflows are now checked, without a fixed count",
     "no CachyOS/Arch package definition": "AUR recipes now exist in aur/",
     "(README, REPOS, STATUS)": "REPOS was moved to docs/revival/UPSTREAM-REPOSITORIES.md",
+    "privileged-helper test failures": "the full Rust workspace suite now passes",
+    "CLI integration hangs": "the full Rust workspace suite now passes",
+    "blocked by sandbox filesystem/tool assumptions": "the full Rust workspace suite now passes",
+    "1,434": "catalog size is checked against the real catalogs in docs/translations/README.md",
 }
 
 

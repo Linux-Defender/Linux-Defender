@@ -61,7 +61,7 @@ bun install --frozen-lockfile
 bun run tauri dev
 ```
 
-The full workspace test command is included, but this development environment previously had privileged-helper test failures and CLI integration tests that did not finish. A successful app launch does not replace those tests or desktop validation.
+The full Rust workspace suite (`cargo test --workspace --locked`) passes locally with zero failures. Two environment-gated tests stay ignored by design: the GTK clipboard test (needs `xvfb-run`) and the signed-RPM bootstrap test (needs a built signed helper RPM). A successful app launch does not replace interactive desktop validation.
 
 ### AUR source build (CachyOS / Arch)
 
@@ -88,4 +88,4 @@ Tauri's native desktop build needs Rust, Bun, GTK 3, WebKitGTK 4.1, and the dist
 - Use the built-in EICAR test or another harmless test fixture; do not download real malware.
 - Keep VirusTotal and urlscan checks opt-in. Read the confirmation each time; submitted files or URLs may be retained or shared by those services.
 - Test quarantine and restore with disposable files before trusting it with important data.
-- Keep the legacy app and ClamTk user-data directories untouched until migration tooling is implemented and verified.
+- Back up the legacy ClamUI directories before upgrading: startup merges them into the Linux Defender locations and renames the old directory `<name>.migrated` (nothing is deleted). Importing ClamTk preferences, history, schedules, and quarantine is still incomplete.

@@ -53,6 +53,11 @@ def main() -> int:
     for name in ("linux-defender-scan-nautilus.sh", "linux-defender-virustotal-nautilus.sh"):
         if (ROOT / "scripts" / name).read_bytes() != (NATIVE / name).read_bytes():
             failures.append(f"scripts/{name} is out of sync with the native integration set")
+        for label, path in (("native", NATIVE / name),
+                            ("scripts", ROOT / "scripts" / name),
+                            ("Flatpak", FLATPAK / name)):
+            if not path.stat().st_mode & 0o111:
+                failures.append(f"{label} {name} is not executable")
 
     sources = {
         "Flatpak": ("flathub/io.github.linuxdefender.linuxdefender.yml",

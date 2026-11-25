@@ -11,9 +11,9 @@ url="https://github.com/Linux-Defender/Linux-Defender"
 license=('MIT')
 depends=('glibc' 'polkit')
 makedepends=('base-devel' 'rust' 'cargo' 'pkgconf' 'glib2' 'openssl')
-_commit=4f2c175a7114add065926933ddb8447a0d28b77e
+_commit=afae25badf96012449f4ab92efca238e68382ce6
 source=("$pkgname-$pkgver-$_commit.tar.gz::https://github.com/Linux-Defender/Linux-Defender/archive/$_commit.tar.gz")
-sha256sums=('51f37656a873b719d5be445d62bc7ae8dabdd316204586f07ae2fbad3f93725b')
+sha256sums=('ee51a6b3b92971fbae613d9f69a58486917513eb5041886ccf02a0823b201c68')
 
 build() {
   cd "$srcdir/Linux-Defender-$_commit"

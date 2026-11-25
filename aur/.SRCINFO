@@ -30,7 +30,7 @@ pkgbase = linux-defender
 	optdepends = nemo: Nemo context actions
 	optdepends = nautilus: Nautilus scripts
 	optdepends = dolphin: KDE service menus
-	source = linux-defender-0.6.0-4f2c175a7114add065926933ddb8447a0d28b77e.tar.gz::https://github.com/Linux-Defender/Linux-Defender/archive/4f2c175a7114add065926933ddb8447a0d28b77e.tar.gz
-	sha256sums = 51f37656a873b719d5be445d62bc7ae8dabdd316204586f07ae2fbad3f93725b
+	source = linux-defender-0.6.0-afae25badf96012449f4ab92efca238e68382ce6.tar.gz::https://github.com/Linux-Defender/Linux-Defender/archive/afae25badf96012449f4ab92efca238e68382ce6.tar.gz
+	sha256sums = ee51a6b3b92971fbae613d9f69a58486917513eb5041886ccf02a0823b201c68
 
 pkgname = linux-defender
