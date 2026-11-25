@@ -9,9 +9,17 @@ on:
     tags: ["v*"]
   pull_request:
     branches: [main]
-      - ".github/workflows/build-aur.yml"
   workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Expected commit SHA (optional)
+        type: string
   workflow_call:
+    inputs:
+      expected_sha:
+        description: Expected commit SHA (optional)
+        type: string
+        required: false
 
 permissions:
   contents: read
@@ -21,6 +29,13 @@ jobs:
     name: Validate AUR source recipes
     runs-on: ubuntu-24.04
     steps:
+      - name: Verify dispatched commit
+        if: inputs.expected_sha != ''
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          ACTUAL_SHA: ${{ github.sha }}
+        run: test "$EXPECTED_SHA" = "$ACTUAL_SHA"
+
       - name: Checkout repository
         uses: actions/checkout@v7
 

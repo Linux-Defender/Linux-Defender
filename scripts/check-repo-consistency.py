@@ -32,7 +32,7 @@ EXPECTED_CHECKS = {
     "check-packaging-freshness.py", "check-potfiles.sh", "check-repo-consistency.py",
     "check-signature-feeds.py", "check-signatures.py", "check-stale-phrases.py",
     "check-sway-integration.py", "check-translations.sh",
-    "check-upstream-freshness.py", "check-upstream-urls.py",
+    "check-upstream-freshness.py", "check-upstream-urls.py", "check-workflows.py",
     "generate-doc-map.py", "generate-translation-review.py",
 }
 

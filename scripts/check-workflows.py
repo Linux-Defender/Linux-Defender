@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+"""Fail when a GitHub Actions workflow is malformed or unnamable.
+
+A malformed `on:` block makes GitHub display the file path instead of the
+workflow name and silently prevents the workflow from running correctly. Parse
+every workflow and require a name plus a recognizable trigger.
+"""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+try:
+    import yaml
+except ImportError:
+    print("SKIP: PyYAML not installed; workflow parse check skipped", file=sys.stderr)
+    raise SystemExit(0)
+
+ROOT = Path(__file__).resolve().parent.parent
+TRIGGERS = {
+    "push", "pull_request", "schedule", "workflow_dispatch", "workflow_call",
+    "release", "issue_comment", "pull_request_target", "repository_dispatch",
+    "issues", "workflow_run", "check_run", "deployment", "page_build",
+}
+
+
+def main() -> int:
+    failures: list[str] = []
+    workflows = sorted((ROOT / ".github/workflows").glob("*.yml"))
+    for path in workflows:
+        try:
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        except yaml.YAMLError as exc:
+            failures.append(f"{path.name}: invalid YAML: {exc}")
+            continue
+        if not isinstance(data, dict):
+            failures.append(f"{path.name}: workflow is not a mapping")
+            continue
+        if not isinstance(data.get("name"), str) or not data["name"].strip():
+            failures.append(f"{path.name}: missing workflow name")
+        triggers = data.get(True, data.get("on"))
+        if not isinstance(triggers, dict):
+            failures.append(f"{path.name}: missing or malformed on: triggers")
+            continue
+        if not (set(triggers) & TRIGGERS):
+            failures.append(f"{path.name}: no recognized trigger")
+    if failures:
+        print("Workflow failures:", file=sys.stderr)
+        for f in failures:
+            print(f"  {f}", file=sys.stderr)
+        print(f"{len(failures)} workflow failure(s)", file=sys.stderr)
+        return 1
+    print(f"Workflows OK: {len(workflows)} parsed, named, and triggerable")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

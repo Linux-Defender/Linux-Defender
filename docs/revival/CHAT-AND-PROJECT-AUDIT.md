@@ -166,4 +166,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 50 | AI tooling must be organized, synced, and compatible with all assistants; Build AUR must always run | Removed Build AUR path filters so it runs on every push/PR; added Codex to all universal entry points and the wiring checker; created internal `docs/ai-tooling/README.md` index and moved detailed adapter/MCP descriptions out of the public website; reviewed upstream `c424a42` and ported On-Access descriptive notes with 4 new gettext IDs in all 10 catalogs |
 
+| 51 | Build AUR failed because a path-filter removal left invalid YAML under `pull_request` | Repaired the workflow trigger block, added `expected_sha` verification like other build workflows, and added `scripts/check-workflows.py` to check-all so every workflow is parsed, named, and triggerable before commit |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.
