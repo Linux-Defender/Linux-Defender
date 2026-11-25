@@ -14,7 +14,7 @@ Upstream `main` added YARA mode/provider/scan, folder mode and folder scan with 
 
 ## Verdict
 
-Linux Defender now implements the behavior requested by Lenspect's open product issues, locally in the native Rust/Tauri/React path. Folder VirusTotal scans show a complete file/size preview and require a separate confirmation, skip symlinks, compare a serialized file identity manifest before scanning and again when opening each file, and enforce 100-file/1-GiB limits. Per-file results and cancellation are surfaced. Single-file VirusTotal checks emit hashing, lookup, upload-byte, and analysis-link progress. URL scanning already offers VirusTotal and urlscan.
+Linux Defender now implements the behavior requested by the Lenspect product issues reviewed at `a5507a6` (all closed upstream at the 2026-11-25 recheck), locally in the native Rust/Tauri/React path. Folder VirusTotal scans show a complete file/size preview and require a separate confirmation, skip symlinks, compare a serialized file identity manifest before scanning and again when opening each file, and enforce 100-file/1-GiB limits. Per-file results and cancellation are surfaced. Single-file VirusTotal checks emit hashing, lookup, upload-byte, and analysis-link progress. URL scanning already offers VirusTotal and urlscan.
 
 Status: backend tests and frontend type/build checks pass; actual in-app dialog behavior, real request-body progress through Reqwest, live keyring/network behavior, and CachyOS desktop testing still need validation. Therefore the feature is implemented but not fully platform-verified.
 
