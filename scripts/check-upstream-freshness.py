@@ -18,6 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 LOCK = ROOT / "skills-lock.json"
+PARITY_LOCK = ROOT / "parity-lock.json"
 
 
 def fetch(url: str) -> str:
@@ -65,11 +66,33 @@ def main() -> int:
         except Exception as exc:  # network failures are reported, not fatal
             errors.append(f"{name}: {exc}")
 
+    # Reviewed upstream parity snapshots. A moved head means the parity matrix
+    # and STATUS need a fresh review; never auto-merge upstream code.
+    if PARITY_LOCK.exists():
+        parity = json.loads(PARITY_LOCK.read_text(encoding="utf-8"))["sources"]
+        for name, meta in sorted(parity.items()):
+            expected = meta.get("commit")
+            if not expected:
+                continue
+            try:
+                data = json.loads(fetch(f"https://api.github.com/repos/{meta['source']}/commits?per_page=1"))
+                actual = data[0]["sha"]
+                if actual != expected:
+                    drift.append({
+                        "source": name,
+                        "repository": meta["source"],
+                        "reviewed": expected,
+                        "current": actual,
+                        "url": f"https://github.com/{meta['source']}/commits/{actual}",
+                    })
+            except Exception as exc:
+                errors.append(f"{name}: {type(exc).__name__}: {exc}")
+
     report = {"drift": drift, "errors": errors}
     print(json.dumps(report, indent=2))
     if drift or errors:
-        print(f"\n{len(drift)} skill(s) drifted, {len(errors)} fetch error(s). "
-              "Review before refreshing skills-lock.json and the imported payloads.",
+        print(f"\n{len(drift)} reviewed upstream reference(s) drifted, {len(errors)} fetch error(s). "
+              "Review before refreshing skills-lock.json, parity-lock.json, or the imported payloads.",
               file=sys.stderr)
     return 0
 

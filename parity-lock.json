@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "sources": {
+    "clamui": {
+      "source": "linx-systems/clamui",
+      "commit": "d14019b7edd15d583c9006e0f489c4c68b943229",
+      "reviewedAt": "2026-11-25"
+    },
+    "lenspect": {
+      "source": "vmkspv/lenspect",
+      "commit": "a5507a6c8ec1bdf1f2222e7397d053ff365b3d70",
+      "reviewedAt": "2026-11-25"
+    }
+  }
+}

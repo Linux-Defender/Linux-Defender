@@ -35,7 +35,7 @@ jobs:
           data = json.load(open(sys.argv[1]))
           print(f"drift_count={len(data['drift'])}")
           print(f"error_count={len(data['errors'])}")
-          names = ", ".join(sorted({d["skill"] for d in data["drift"]}))
+          names = ", ".join(sorted({d.get("source") or d.get("skill", "unknown") for d in data["drift"]}))
           print(f"drift_names={names}")
           PY
 

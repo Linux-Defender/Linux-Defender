@@ -170,4 +170,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 52 | README badges, scripts, and docs all accounted for | Added badges for the six workflows that lacked them (24/24 covered); created `docs/documentation/SCRIPTS.md` listing all tracked scripts and added `check-badges.py` + `check-scripts-index.py` to check-all so badge/script drift fails immediately |
 
+| 53 | Upstream heads moved after the last review and could be silently missed | Added `parity-lock.json` for reviewed ClamUI/Lenspect heads, extended `check-upstream-freshness.py` (and its workflow parser) to watch them, reviewed ClamUI `d14019b` (em-dash docs change deliberately not adopted) and Lenspect `a5507a6` (YARA/folder/progress/plural/quota behaviors verified as independently implemented), and updated both parity records |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.

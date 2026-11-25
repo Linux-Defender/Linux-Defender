@@ -1,6 +1,16 @@
 # Lenspect integration and parity review
 
-Review date: 2026-11-11. Source: GitHub REST API and public repository, issue, and pull request pages. The API snapshot reports upstream `main` at `1425067051a4d9eed0f3b8b08bd4f1bf14bfa64c`, last pushed 2026-10-18. The repository is GPL-3.0. This is a public snapshot, not a review of private branches or every fork history.
+Review date: 2026-11-25. Source: GitHub REST API and public repository, issue, and pull request pages. The earlier snapshot was `1425067051a4d9eed0f3b8b08bd4f1bf14bfa64c` (2026-10-18); the current reviewed `main` is `a5507a6c8ec1bdf1f2222e7397d053ff365b3d70` (2026-11-19). The repository is GPL-3.0. This is a public snapshot, not a review of private branches or every fork history.
+
+
+## Changes since the earlier snapshot
+
+Upstream `main` added YARA mode/provider/scan, folder mode and folder scan with listing and sidebar switcher, improved progress indicators, an in-progress analysis link, enhanced plural support, an open-folder button, a quota retry, screenshots, and a Spanish translation update. Dispositions, verified against our code rather than copied from GPL sources:
+
+- **YARA, folder scan, progress, analysis link, plurals:** already independently implemented in Linux Defender under MIT (YARA rules in the core/UI, remote folder preview and identity checks, phased progress with analysis link, existing plural API). No upstream code was copied.
+- **Open-folder button / sidebar switcher / screenshots:** Lenspect UI-specific; our navigation and published screenshots follow Linux Defender's own design.
+- **Quota retry:** our VirusTotal client already handles HTTP 429 with bounded exponential backoff (`VT_RETRY_BASE_DELAY`), so no blind port is needed.
+- **Spanish translation:** our catalogs are maintained independently through the shared extract/merge workflow; no upstream catalog churn was imported.
 
 ## Verdict
 

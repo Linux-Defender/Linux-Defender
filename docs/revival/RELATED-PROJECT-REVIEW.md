@@ -163,6 +163,10 @@ Newer upstream work is reviewed here, not auto-merged. Licensing, privacy, crede
 
 Upstream commit `c424a42` (#362) adds descriptive notes and `<code>` formatting for On-Access behavior settings. Ported into `desktop/src/pages/ConfigPreferences.tsx`: the four behavior toggles now show static-literal explanations with translator notes for `fanotify`, `inotify`, and `DDD`, and exact technical terms are wrapped without putting markup into gettext msgids. Four new IDs were merged into all ten catalogs with English fallback pending human review. No upstream catalog churn was copied.
 
+### Upstream refresh (2026-11-25, master `d14019b7edd15d583c9006e0f489c4c68b943229`)
+
+Upstream commit `d14019b` replaces em dashes with hyphens in website copy. **Deliberately not adopted:** Linux Defender's contributor rules require the Unicode em dash `—` for prose breaks, and our website already passes its link/style checks. No code, catalog, or configuration behavior changed. Recorded so the newer snapshot is reviewed rather than silently missed.
+
 ### Open ClamUI pull requests
 
 - [#318 fix(scan): keep summary infection counts when threats are truncated](https://github.com/linx-systems/clamui/pull/318): opened 2026-11-16 from the fork `Linux-Defender/clamui` against `master`. It ports the #285 count behavior to upstream `clamui-core` (summary lower bound, at-least-one for exit code 1, accumulator and aggregate sums) and to the desktop result notice. The local account has read-only access to `linx-systems/clamui`, so this is a fork PR, not a direct push. Its core tests, clippy, frontend check, and frontend build pass locally.
