@@ -16,3 +16,4 @@ cannot be written and then forgotten.
 - [`revival/`](revival/) — revival/rework records. Start with its [index](revival/README.md): upstream repository inventory, ClamUI/ClamTk/Lenspect parity reviews, rebrand audits, and the requirement ledger.
 - [`translations/`](translations/) — gettext catalog status and how to finish the audit-string translations
 - [`mcp/`](../mcp/README.md) — local MCP server that assists human-only validation with read-only/proposal tools
+- [`ai-tooling/`](ai-tooling/) — internal index for assistant adapters, skills, plugins, and MCP tooling (contributor-only)

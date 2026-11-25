@@ -128,7 +128,7 @@ Do not use `-g` or bulk-install an upstream repository. Imported payloads belong
 
 ### Automatic consistency enforcement
 
-[`AI-ENFORCEMENT.md`](https://github.com/Linux-Defender/Linux-Defender/blob/main/AI-ENFORCEMENT.md) is the canonical rules file, written with skill-style frontmatter. Adapters read it at runtime instead of copying it: Claude Code injects it at `SessionStart` with a short `UserPromptSubmit` reminder, and the thin `linux-defender-enforcement` skill points to it. `scripts/check-ai-enforcement-wiring.py` fails if any adapter stops reading it or duplicates its text. The universal enforcement path is tool-neutral: `AGENTS.md`, git hooks, and CI work identically for Claude Code, OpenCode, Aider, Cursor, Continue, Zed, or any other assistant. Optional adapters only add convenience: Claude Code project hooks and a plugin package at `.claude/plugins/linux-defender-enforcement/` (a pointer skill, capture command, and reviewer agent that declares **no hooks**), and `.aider.conf.yml`, which reads `AGENTS.md` and `AI-ENFORCEMENT.md` into every chat. Validate it with `claude plugin validate .claude/plugins/linux-defender-enforcement`; load it for a session with `claude --plugin-dir .claude/plugins/linux-defender-enforcement` if you want its extra components. It is optional — every session still gets the rules and checks from `.claude/settings.json`. The rules are enforced, not merely documented:
+`AI-ENFORCEMENT.md` is the canonical rules file for every assistant; the `linux-defender-enforcement` skill points to it. Tool-specific adapters are optional contributor aids documented in the repository's internal AI tooling index; they never replace `AGENTS.md`, git hooks, and CI. The rules are enforced, not merely documented:
 
 - `bash scripts/check-all.sh` is the single source of truth for static checks: broken doc links, orphaned files anywhere in the repo, cross-layer contracts, version and app-identity agreement, host signature database health (presence, age, EICAR), gettext (including the generated `po/TRANSLATION-REVIEW.md` human-review report, host-tool guidance, and static integration assets), skill hashes and wiring, stale branding, dead frontend modules, all six packaging formats, format-correct file-manager assets, host-ClamAV setup guidance in app and site, Sway wiring, and website sidebar/component wiring.
 - `bash scripts/audit-consistency.sh` adds the heavy builds, tests, clippy, git sync, and CI status.
@@ -177,8 +177,6 @@ cargo test --workspace
 ```
 
 Clippy compiles the production Tauri crate, whose `generate_context!` embeds `desktop/dist`; build the frozen frontend assets before running it.
-
-For human-only validation tasks, the repository includes a local MCP server (`mcp/linux-defender-assist/`, documented in [`mcp/README.md`](https://github.com/Linux-Defender/Linux-Defender/blob/main/mcp/README.md)) with read-only/proposal tools. It never performs privileged installs, catalog writes, or external submissions.
 
 For a single command that also checks gettext catalogs, stale branding, dead frontend modules, git sync, and GitHub Actions status, run the full local audit:
 

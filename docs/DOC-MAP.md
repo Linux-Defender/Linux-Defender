@@ -37,6 +37,7 @@ complete cross-check that nothing is forgotten or orphaned.
 
 - [docs/DESIGN](DESIGN.md)
 - [docs/README](README.md)
+- [docs/ai-tooling/README](ai-tooling/README.md)
 - [docs/clamui-fork/README](clamui-fork/README.md)
 - [docs/clamui-fork/STATUS](clamui-fork/STATUS.md)
 - [docs/documentation/README](documentation/README.md)

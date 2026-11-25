@@ -10,22 +10,23 @@ translator decides. No machine translation is applied.
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1454 translated messages. | 30 |
-| en | 1454 translated messages. | baseline |
-| es | 1454 translated messages. | 33 |
-| fr | 1454 translated messages. | 33 |
-| hu | 1454 translated messages. | 33 |
-| it | 1454 translated messages. | 33 |
-| nb | 1454 translated messages. | 33 |
-| pt_BR | 1454 translated messages. | 33 |
-| vi | 1454 translated messages. | 32 |
-| zh_CN | 1454 translated messages. | 33 |
+| de | 1458 translated messages. | 31 |
+| en | 1458 translated messages. | baseline |
+| es | 1458 translated messages. | 34 |
+| fr | 1458 translated messages. | 34 |
+| hu | 1458 translated messages. | 34 |
+| it | 1458 translated messages. | 34 |
+| nb | 1458 translated messages. | 34 |
+| pt_BR | 1458 translated messages. | 34 |
+| vi | 1458 translated messages. | 33 |
+| zh_CN | 1458 translated messages. | 34 |
 
 ## de
 
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
@@ -59,6 +60,7 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
@@ -95,6 +97,7 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
@@ -131,6 +134,7 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
@@ -167,6 +171,7 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
@@ -203,6 +208,7 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
@@ -239,6 +245,7 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
@@ -275,6 +282,7 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
@@ -310,6 +318,7 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`

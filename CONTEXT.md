@@ -27,7 +27,7 @@ A narrow, tested seam between Linux Defender and the host desktop or ClamAV — 
 A ported module with no live caller (wire it or remove it), a broken doc link, an orphaned doc/skill, or an old ClamUI identifier/text in a live file (only migration/compat references are allowed). `scripts/check-all.sh` checks all of these on every commit and PR; `scripts/audit-consistency.sh` adds builds, tests, and sync.
 
 **Canonical AI rules**:
-`AI-ENFORCEMENT.md` at the repository root. It is a tool-neutral rules file with skill-style frontmatter; git hooks and CI enforce it for every assistant, while Claude Code, OpenCode, Aider, Cursor, Continue, Zed, and the thin `linux-defender-enforcement` pointer skill read it at runtime. Rules are never duplicated in an adapter. `scripts/check-ai-enforcement-wiring.py` enforces that contract.
+`AI-ENFORCEMENT.md` at the repository root. It is a tool-neutral rules file with skill-style frontmatter; git hooks and CI enforce it for every assistant, while Claude Code, OpenCode, Codex, Aider, Cursor, Continue, Zed, and the thin `linux-defender-enforcement` pointer skill read it at runtime. Rules are never duplicated in an adapter. `scripts/check-ai-enforcement-wiring.py` enforces that contract.
 
 **Cross-layer contract**:
 A feature declared in `scripts/cross-layer-contracts.json` with the list of layers (core, native runtime, frontend, website docs, packaging) that must contain it. A feature added to only one layer fails `scripts/check-cross-layer.py`, which also derives Tauri commands, CLI subcommands, and locales from source. See `AI-ENFORCEMENT.md` for the mandatory rules injected into every AI model.

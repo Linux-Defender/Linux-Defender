@@ -145,7 +145,7 @@ def main() -> int:
         failures.append("AGENTS.md does not document the tool-agnostic universal baseline")
     # Every supported assistant must be named in the tool-neutral guides, with
     # Claude Code first. No tool is dropped or presented as privileged.
-    tools = ["Claude Code", "OpenCode", "Aider", "Cursor", "Continue", "Zed"]
+    tools = ["Claude Code", "OpenCode", "Codex", "Aider", "Cursor", "Continue", "Zed"]
     for guide in ("AGENTS.md", "CLAUDE.md", "AI-ENFORCEMENT.md"):
         text = read(guide)
         for tool in tools:

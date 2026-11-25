@@ -159,6 +159,10 @@ Reviewed the current default branch, which advanced from `30a72f0` (2026-11-11) 
 
 Newer upstream work is reviewed here, not auto-merged. Licensing, privacy, credentials, cancellation, platform scope, and tests are checked before any adoption.
 
+### Upstream refresh (2026-11-25, master `c424a42d71597aa3116b680a97b0b9cdfd094bb0`)
+
+Upstream commit `c424a42` (#362) adds descriptive notes and `<code>` formatting for On-Access behavior settings. Ported into `desktop/src/pages/ConfigPreferences.tsx`: the four behavior toggles now show static-literal explanations with translator notes for `fanotify`, `inotify`, and `DDD`, and exact technical terms are wrapped without putting markup into gettext msgids. Four new IDs were merged into all ten catalogs with English fallback pending human review. No upstream catalog churn was copied.
+
 ### Open ClamUI pull requests
 
 - [#318 fix(scan): keep summary infection counts when threats are truncated](https://github.com/linx-systems/clamui/pull/318): opened 2026-11-16 from the fork `Linux-Defender/clamui` against `master`. It ports the #285 count behavior to upstream `clamui-core` (summary lower bound, at-least-one for exit code 1, accumulator and aggregate sums) and to the desktop result notice. The local account has read-only access to `linx-systems/clamui`, so this is a fork PR, not a direct push. Its core tests, clippy, frontend check, and frontend build pass locally.

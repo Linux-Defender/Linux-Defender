@@ -7,7 +7,7 @@ description: Mandatory Linux Defender rules injected into every AI model context
 
 This is the **canonical** rules file for **every** assistant, not for one tool.
 The universal path is `AGENTS.md`, the git hooks, and CI; they work identically
-in Claude Code, OpenCode, Aider, Cursor, Continue, Zed, or any other assistant.
+in Claude Code, OpenCode, Codex, Aider, Cursor, Continue, Zed, or any other assistant.
 Optional tool adapters only add convenience: Claude Code `SessionStart`/`Stop`
 hooks, an Aider config, and a thin `linux-defender-enforcement` skill all read
 this file at runtime. Do **not**
