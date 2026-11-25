@@ -1,9 +1,9 @@
 [
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@babel/helper-string-parser/-/helper-string-parser-8.1.2.tgz",
-        "sha512": "4d1cf96743207c87d6ab0108abfa42a54a445d0c54b76220d996f11b749d9a149b1cc00515818e8b1d2423824b577ef5fd303ea969d0e315873d68e88e4c9114",
-        "dest-filename": "@babel-helper-string-parser-8.1.2.tgz",
+        "url": "https://registry.npmjs.org/@babel/helper-string-parser/-/helper-string-parser-8.1.3.tgz",
+        "sha512": "e474ee444b608f4c48737e39cd4e20b43dbedef20f919a49c3bc14632b6dfe6cc14d0376996a46af59f1622a1c61ad84f2c5a081192b4a0fe4ec12b9d6903122",
+        "dest-filename": "@babel-helper-string-parser-8.1.3.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -15,16 +15,16 @@
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@babel/parser/-/parser-8.1.2.tgz",
-        "sha512": "643294eef697d1539177606168efb714aaffdf44ca8db532dd23197327623e782701bf8c7ac814a21e5225c139130132063d7833927a7cae7a1ae06abd898ea7",
-        "dest-filename": "@babel-parser-8.1.2.tgz",
+        "url": "https://registry.npmjs.org/@babel/parser/-/parser-8.1.3.tgz",
+        "sha512": "bf7724d9637b8e7f201099447c80c4c1333c74206339a7350998e896f07afebd0ed6899ee84ef14b6703404390a84491419596acbae19e3c43d2a8e667c40182",
+        "dest-filename": "@babel-parser-8.1.3.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@babel/types/-/types-8.1.2.tgz",
-        "sha512": "b97b7aaadd9fe46eb58d9c0d2332b544abbb9795e3b75557b4f3ce1ae56f7a16bd7f16f1d1033de14d64338a4564a4d12e358af97f2f9b08f06c87a62638904c",
-        "dest-filename": "@babel-types-8.1.2.tgz",
+        "url": "https://registry.npmjs.org/@babel/types/-/types-8.1.3.tgz",
+        "sha512": "7814441b00c744f1ed76c838e2dd3bd461362910c4b89adfd09dae4f9feabc93c1dbea5f3d938a971f7774c64e16413b416e46d095a8733c920fb6b4d497f48b",
+        "dest-filename": "@babel-types-8.1.3.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
@@ -183,93 +183,93 @@
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/api/-/api-2.12.4.tgz",
-        "sha512": "a5599f8acfb8cd3f07d10869df13d9c7d26eee4a73bc0eabaff3d224fcaec1fbee71343cb15b7ad4d614f4a3242bbd3750595869d1668ca0381e1c9b3ad37482",
-        "dest-filename": "@tauri-apps-api-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/api/-/api-2.12.5.tgz",
+        "sha512": "1bd40832de5fcc40fe692e108552b7c351d62caa4b2301ff327a42afdcf5ba01841e74b63919aaacb91cd2e00b3a344ae2a5c9cbee188b0f0b0e5fca89c0b51e",
+        "dest-filename": "@tauri-apps-api-2.12.5.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-darwin-arm64/-/cli-darwin-arm64-2.12.4.tgz",
-        "sha512": "3b1a8a49c90892827abd7d808e27c82694dab050b41db768a3b8048829808dab8004edd4f26d8c46c2d67be413881c03c75988aef800fabbc8eedbc39db9c756",
-        "dest-filename": "@tauri-apps-cli-darwin-arm64-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-darwin-arm64/-/cli-darwin-arm64-2.12.6.tgz",
+        "sha512": "5289309358457c9a06e78fa40fc894d12b77de300890dbe88e78c47c167a51b2f9ae7335d00885c144bfd831d327d478fca6dae14e38bfb7637ccb961534207a",
+        "dest-filename": "@tauri-apps-cli-darwin-arm64-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-darwin-x64/-/cli-darwin-x64-2.12.4.tgz",
-        "sha512": "7f3efaffbef030c24e69a50dea7dc2c9b446d0ffcc4c48e3a9893cd6618fca18bd9ba51ee53f8b5819c93ff0243e8a0d6ad04f236bedba51aaa26c8c278e2509",
-        "dest-filename": "@tauri-apps-cli-darwin-x64-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-darwin-x64/-/cli-darwin-x64-2.12.6.tgz",
+        "sha512": "5a16a1ab37321c2a42ce1e1369fd196c19ba9c692fb8e4a1e5f7eb80e3bb11d61a61ef910502bc2ce945bbe6db8ee979bfd71d2c38b791ca3ed3eec8959b5354",
+        "dest-filename": "@tauri-apps-cli-darwin-x64-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-arm-gnueabihf/-/cli-linux-arm-gnueabihf-2.12.4.tgz",
-        "sha512": "2b4c3c0687fa2edf1028b018851cb4cb2dfa647e6203fdf956e48ebe7c728ef09467e03724ab144e500bbe21ffb15800962b1a3f3ce6789487f173a7e10d8704",
-        "dest-filename": "@tauri-apps-cli-linux-arm-gnueabihf-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-arm-gnueabihf/-/cli-linux-arm-gnueabihf-2.12.6.tgz",
+        "sha512": "181eb078dfa2147c62159f5238a5ba7c8362b3b827c688683a5751eecaf205eeee69abe414668c09ad3242ce678de5cf5afce513d593435df3f280e39aa2be5b",
+        "dest-filename": "@tauri-apps-cli-linux-arm-gnueabihf-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-arm64-gnu/-/cli-linux-arm64-gnu-2.12.4.tgz",
-        "sha512": "8f9ace9e39915305ab9b5a28b1fd330589780fe7eac9d81444e14293486f299c6f6d34fc48e1117acd1007bac157f5d6372fa433aa422b36f7a129b6b11825ce",
-        "dest-filename": "@tauri-apps-cli-linux-arm64-gnu-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-arm64-gnu/-/cli-linux-arm64-gnu-2.12.6.tgz",
+        "sha512": "99d1e850560a7f3b54b4f284d02da1846904a3b8fab305e383ee724512920fb03680b9113d01485d60ff0c062188975e024c80f0c08fea7bef2af83fe18af259",
+        "dest-filename": "@tauri-apps-cli-linux-arm64-gnu-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-arm64-musl/-/cli-linux-arm64-musl-2.12.4.tgz",
-        "sha512": "68eb9edc5cba25befea1671f01552c5477de4f26d20add82668534e9a3b88efe1dd8ab3f2a76933f03002b708b11db863af04b63595b041ac8ca89aa2cb1f94a",
-        "dest-filename": "@tauri-apps-cli-linux-arm64-musl-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-arm64-musl/-/cli-linux-arm64-musl-2.12.6.tgz",
+        "sha512": "d81c41fbd6b7251374789d2dd2a19ef082897e004b3990c4f1ae3df4e5c7fb283827d6cca522b5a075c1c671ee48715685bcb842743fb7eb017fbb510b451978",
+        "dest-filename": "@tauri-apps-cli-linux-arm64-musl-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-riscv64-gnu/-/cli-linux-riscv64-gnu-2.12.4.tgz",
-        "sha512": "171e864a163f46f493fade8b3254c703077aebed6d11a0001ab9d4edccac55f6a244fd412a7839565eab5663baad22ce0354a9d5d4733583387f43964066fba8",
-        "dest-filename": "@tauri-apps-cli-linux-riscv64-gnu-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-riscv64-gnu/-/cli-linux-riscv64-gnu-2.12.6.tgz",
+        "sha512": "b1be7c46c3477b1f5056a1dd37571ff4c3256a651602d935373bb14d96a55270541df6e521b7bbd617e6748eb084367ce0cb9f80e75e83f6f3be1adb652d6bd3",
+        "dest-filename": "@tauri-apps-cli-linux-riscv64-gnu-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-x64-gnu/-/cli-linux-x64-gnu-2.12.4.tgz",
-        "sha512": "b4dcd949aefd6759d1a47c44a50dfc96c005a4a945958be85f38d357e951467ff349fdf0add502df09cb72ad9711a75c84fbb8b6d2b4ce2be1633afe5c60f5f5",
-        "dest-filename": "@tauri-apps-cli-linux-x64-gnu-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-x64-gnu/-/cli-linux-x64-gnu-2.12.6.tgz",
+        "sha512": "6406f8fc21d199adc4ae32f64467c78c84d350122ce33c927f4848962f4175d3ad11d4b1d337b484483197e1df0557393845bf4266e2676136f829241dcf0f72",
+        "dest-filename": "@tauri-apps-cli-linux-x64-gnu-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-x64-musl/-/cli-linux-x64-musl-2.12.4.tgz",
-        "sha512": "8e6675a6bd3112a521b84bac5adb7d62df8617a9429c61d49882fe288927a5b8cafd7436aa48430616b12bf24c1ccd80f1d01a7155c2c57264d845e9c214147c",
-        "dest-filename": "@tauri-apps-cli-linux-x64-musl-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-linux-x64-musl/-/cli-linux-x64-musl-2.12.6.tgz",
+        "sha512": "b9e4b33360eeeabe22d5dfe56f2f6412fae13e75f0e7333f558bdc5b595d1164a9914c95a21b015e4983f94eef32c9045b9b5778251e9e48bb9d8571c86046a5",
+        "dest-filename": "@tauri-apps-cli-linux-x64-musl-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-win32-arm64-msvc/-/cli-win32-arm64-msvc-2.12.4.tgz",
-        "sha512": "7c6a3ca6010767175262067f27df26d6eb09ecd1ca98a6eaee4eae4f4c75ae93aae81836615cf3a5a01b95693bd747f92c76012482f9408152e48ac3fb88264e",
-        "dest-filename": "@tauri-apps-cli-win32-arm64-msvc-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-win32-arm64-msvc/-/cli-win32-arm64-msvc-2.12.6.tgz",
+        "sha512": "e9b98eb7605049ed016dafb908971329230bed53980f1ca200ac81ae3a3ce95c4c742d6eb08426925bb75dcf37b374282b5ace330c1b00d94f17a8b94769af22",
+        "dest-filename": "@tauri-apps-cli-win32-arm64-msvc-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-win32-ia32-msvc/-/cli-win32-ia32-msvc-2.12.4.tgz",
-        "sha512": "7b397cb1021c8d8b327b74d49d31f955c5a65b371c6404a5426ee1959b74758ca3d570f4aa9556e3bbb6c5856b20aba2d05f2e42fffb406662c5d5a20a506c6e",
-        "dest-filename": "@tauri-apps-cli-win32-ia32-msvc-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-win32-ia32-msvc/-/cli-win32-ia32-msvc-2.12.6.tgz",
+        "sha512": "f6af5914db85ade05ccf0c89ba1865ac4381cc60a5c165188ab43618197ae98e8468d975ec874b1fc4d1aa863dc180752e772d3418be15afd6306b4503806d15",
+        "dest-filename": "@tauri-apps-cli-win32-ia32-msvc-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli-win32-x64-msvc/-/cli-win32-x64-msvc-2.12.4.tgz",
-        "sha512": "0c9843782aa32c334c598172ed94bc71f7801d7d912b445b40c2e20376cc5559174432783416221eb886aac521b2bf621b8d5a4dbf9d2469053e63f0d605b057",
-        "dest-filename": "@tauri-apps-cli-win32-x64-msvc-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli-win32-x64-msvc/-/cli-win32-x64-msvc-2.12.6.tgz",
+        "sha512": "8a89fb0a16e3db544ec4c4698d0ec6f2bcf9b0839a23b228050ba6d68ab9b25d55e73196c9cfe86270ab42156a3b64f12bf9410d6c6deb8f01ccb8b4d926375e",
+        "dest-filename": "@tauri-apps-cli-win32-x64-msvc-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
         "type": "file",
-        "url": "https://registry.npmjs.org/@tauri-apps/cli/-/cli-2.12.4.tgz",
-        "sha512": "248f5b1dfb9d4912629063ab8db5c49ba463cf3be62ae2dcf898b1075344f21373424365082202de94c44b7bb2a6447d9711ebb1bc737274b0848d88c4142987",
-        "dest-filename": "@tauri-apps-cli-2.12.4.tgz",
+        "url": "https://registry.npmjs.org/@tauri-apps/cli/-/cli-2.12.6.tgz",
+        "sha512": "fdc39e420aaaf0f0433ce0ce8e34f4607b38ab12821dc40c58c8819b8acb33724dafd99913e3c734a38ae3302484852d60c34bff47f0796e3c54dbf30f501ba8",
+        "dest-filename": "@tauri-apps-cli-2.12.6.tgz",
         "dest": "flatpak-node/yarn-mirror"
     },
     {
