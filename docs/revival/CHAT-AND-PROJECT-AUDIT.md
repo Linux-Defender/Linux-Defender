@@ -178,4 +178,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 56 | Proof HTML still failed after Playwright fix because base-path absolute links were treated as missing files | Added a throwaway CI copy with `/Linux-Defender/` rewritten to `/` before proof-html runs; it now validates the real built HTML structure rather than being skipped |
 
+| 57 | Proof HTML still needed base-path-safe external-link and generated-DEL handling; Auto Assign dispatch skipped | Verified latest manual runs: Proof HTML completed/success and Auto Assign completed/success; all changes additive and workflow parser/watcher checks still green |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.
