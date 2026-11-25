@@ -16,6 +16,25 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 APP_ID = "io.github.linuxdefender.linuxdefender"
+EXPECTED_WORKFLOWS = {
+    "auto-assign.yml", "build-all.yml", "build-appimage.yml", "build-deb.yml",
+    "build-flatpak.yml", "build-rpm.yml", "build-snap.yml", "codeql.yml",
+    "consistency.yml", "dependabot-refresh.yml", "dependency-audit.yml",
+    "dependency-review.yml", "deploy-website.yml", "doc-links.yml", "i18n.yml",
+    "lint.yml", "packaging-sync.yml", "proof-html.yml", "release.yml",
+    "signature-database.yml", "test.yml", "upstream-freshness.yml", "website.yml",
+}
+EXPECTED_CHECKS = {
+    "check-all.sh", "check-ai-enforcement-wiring.py", "check-aur-consistency.py",
+    "check-build-wiring.py", "check-built-links.py", "check-cross-layer.py",
+    "check-dead-files.py", "check-doc-indexes.py", "check-doc-links.py",
+    "check-external-links.py", "check-packaging-consistency.py",
+    "check-packaging-freshness.py", "check-potfiles.sh", "check-repo-consistency.py",
+    "check-signature-feeds.py", "check-signatures.py", "check-stale-phrases.py",
+    "check-sway-integration.py", "check-translations.sh",
+    "check-upstream-freshness.py", "check-upstream-urls.py",
+    "generate-doc-map.py", "generate-translation-review.py",
+}
 
 
 def read(rel: str) -> str:
@@ -76,6 +95,22 @@ def main() -> int:
     tauri_conf = read("desktop/src-tauri/tauri.conf.json")
     if '"identifier"' not in tauri_conf or APP_ID not in tauri_conf:
         failures.append("Tauri bundle identifier does not match the public app id")
+
+    # Additive-only guarantee: every individual workflow and check entry point
+    # must remain present. Unification must not silently remove an old check.
+    present_workflows = {p.name for p in (ROOT / ".github/workflows").glob("*.yml")}
+    for name in sorted(EXPECTED_WORKFLOWS - present_workflows):
+        failures.append(f"expected workflow was removed: {name}")
+    for name in sorted(EXPECTED_CHECKS):
+        if not (ROOT / "scripts" / name).exists():
+            failures.append(f"expected check entry point was removed: scripts/{name}")
+    build_all = read(".github/workflows/build-all.yml")
+    for name in ("build-deb.yml", "build-rpm.yml", "build-appimage.yml",
+                 "build-flatpak.yml", "build-snap.yml"):
+        if name not in build_all:
+            failures.append(f"build-all.yml no longer calls {name}")
+    if "aur-check" not in build_all:
+        failures.append("build-all.yml no longer validates the AUR recipes")
 
     texts = tracked_texts()
     corpus = "\n".join(texts.values())
