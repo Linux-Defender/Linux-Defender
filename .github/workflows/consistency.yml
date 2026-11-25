@@ -73,6 +73,7 @@ jobs:
         run: |
           ( cd desktop && bun install --frozen-lockfile )
           ( cd website && bun install --frozen-lockfile )
+          ( cd mcp/linux-defender-assist && bun install --frozen-lockfile )
 
       - name: Cache Playwright browsers
         uses: actions/cache@v4

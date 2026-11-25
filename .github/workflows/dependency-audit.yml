@@ -60,3 +60,11 @@ jobs:
       - name: Audit website dependencies
         working-directory: website
         run: bun audit
+
+      - name: Verify locked MCP assist dependencies
+        working-directory: mcp/linux-defender-assist
+        run: bun install --frozen-lockfile
+
+      - name: Audit MCP assist dependencies
+        working-directory: mcp/linux-defender-assist
+        run: bun audit

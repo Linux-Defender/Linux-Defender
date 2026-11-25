@@ -162,4 +162,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 48 | Get closer to human validation without claiming to be human | Added a local stdio MCP server `mcp/linux-defender-assist/` with 7 scoped tools: repo status, translation candidates, local-model translation suggestions (proposal only), desktop capture, tray probe, helper trust probe, and online-service preflight; configured in `opencode.json`; it deliberately never installs packages, invokes `pkexec`, writes catalogs, or submits data externally |
 
+| 49 | MCP server must be checked in CI like every other component | Added locked MCP dependency install to Consistency Audit and Dependency Audit workflows; `check-all.sh` type-checks the MCP server; `bun audit` reports no vulnerabilities |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.
