@@ -24,6 +24,10 @@ STALE = {
     "update-pot.sh --check fails": "POT is current and all checks pass",
     "32 missing in all 10": "all catalogs contain every source message",
     "Blocked on: translations of those 32": "historical gap is closed",
+    "all 23 workflows": "workflow count grew; use non-numeric wording",
+    "all 60 tracked documents": "doc map count grew; use non-numeric wording",
+    "261 external URLs": "link count grew; use non-numeric wording",
+    "Four scheduled workflows": "more scheduled workflows were added",
 }
 
 
