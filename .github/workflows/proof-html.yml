@@ -50,7 +50,7 @@ jobs:
         run: |
           mkdir -p website/proof
           cp -a website/dist/. website/proof/
-          find website/proof -type f -name '*.html' -exec sed -i 's|/Linux-Defender/|/|g' {} +
+          find website/proof -type f -name '*.html' -exec sed -i -e 's|/Linux-Defender/|/|g' -e 's/\x7F//g' {} +
 
       - name: Proof built HTML
         uses: anishathalye/proof-html@v1.1.0
@@ -58,5 +58,9 @@ jobs:
           directory: ./website/proof
           check_html: true
           empty_alt_ignore: true
+          # External links are validated by scripts/check-external-links.py;
+          # proof-html focuses on local structure and assets.
+          url_ignore_re: |
+            ^https?://
         env:
           DO_NOT_CHECK_WWW: "true"
