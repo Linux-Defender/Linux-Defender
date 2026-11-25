@@ -27,6 +27,9 @@ CODE_RE = re.compile(r"```.*?```|`[^`\n]*`", re.S)
 WORKFLOW_URL_RE = re.compile(
     r"github\.com/[^/]+/[^/]+/actions/workflows/([A-Za-z0-9_.-]+\.yml)(?:/badge\.svg)?"
 )
+BLOB_URL_RE = re.compile(
+    r"github\.com/[^/]+/[^/]+/blob/main/(.+?)(?:#.*)?$"
+)
 
 
 def tracked_docs() -> list[Path]:
@@ -48,6 +51,9 @@ def check(url: str) -> tuple[str, str, str]:
             workflow = WORKFLOW_URL_RE.search(url)
             if exc.code == 404 and workflow and (ROOT / ".github/workflows" / workflow.group(1)).exists():
                 return (url, "skip", "workflow exists locally; not yet published")
+            blob = BLOB_URL_RE.search(url)
+            if exc.code == 404 and blob and (ROOT / blob.group(1)).exists():
+                return (url, "skip", "file exists locally; not yet published")
             if exc.code in {429, 500, 502, 503, 504}:
                 if attempt < 2:
                     time.sleep(1 + attempt)  # transient upstream outage, retry
