@@ -130,6 +130,8 @@ Three skills (`accessibility`, `rust-best-practices`, `vercel-react-best-practic
 - **OpenCode:** rules are loaded as instructions and via a configured adapter that reads the canonical file at runtime; this is one adapter among several.
 - **Other AGENTS.md readers** (Cursor, Continue, Zed, Windsurf, etc.): the universal baseline above applies directly.
 
+A local MCP server in `mcp/linux-defender-assist/` exposes read-only/proposal tools for translation review, desktop capture, tray/helper probing, and online-service preflight; it never invokes `pkexec`, writes catalogs, or submits data externally.
+
 Tool-independent checks also run automatically: `Upstream Freshness` (`scripts/check-upstream-freshness.py`) opens a review issue when an imported skill drifts; `scripts/check-packaging-consistency.py` verifies all six formats (DEB, RPM, AppImage, Flatpak, Snap, AUR) in every commit; `Packaging Sync` (`packaging-sync.yml`) checks the same plus reviewed packaging references in `packaging-lock.json` weekly; dependency auto-refresh is handled by `dependabot-refresh.yml`; `scripts/check-build-wiring.py` verifies the documented `bun run --cwd desktop tauri dev` path end to end (Vite port 1420, frontend dist, frozen lockfile, patched vendored glib); and `cargo machete` catches unused Rust dependencies. None of these depend on which assistant you use.
 
 - Rust changes: use `rust-best-practices`.

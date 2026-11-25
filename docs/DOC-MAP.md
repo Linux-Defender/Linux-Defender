@@ -28,6 +28,7 @@ complete cross-check that nothing is forgotten or orphaned.
 - [debian/README](../debian/README.md)
 - [flathub/README](../flathub/README.md)
 - [flathub/RELEASE_NOTES](../flathub/RELEASE_NOTES.md)
+- [mcp/README](../mcp/README.md)
 - [po/TRANSLATION-REVIEW](../po/TRANSLATION-REVIEW.md)
 - [rpm/README](../rpm/README.md)
 - [snap/README](../snap/README.md)

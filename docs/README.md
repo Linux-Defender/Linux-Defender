@@ -15,3 +15,4 @@ cannot be written and then forgotten.
 - [`documentation/`](documentation/) — general documentation index and in-repo reference
 - [`revival/`](revival/) — revival/rework records. Start with its [index](revival/README.md): upstream repository inventory, ClamUI/ClamTk/Lenspect parity reviews, rebrand audits, and the requirement ledger.
 - [`translations/`](translations/) — gettext catalog status and how to finish the audit-string translations
+- [`mcp/`](../mcp/README.md) — local MCP server that assists human-only validation with read-only/proposal tools

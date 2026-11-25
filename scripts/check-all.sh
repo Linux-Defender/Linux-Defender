@@ -39,6 +39,7 @@ python3 scripts/check-host-tool-guidance.py || fail "host-tool guidance mismatch
 
 step "Dev/build wiring (tauri dev -> Vite -> dist, vendored glib patch)"
 python3 scripts/check-build-wiring.py || fail "build wiring"
+( cd mcp/linux-defender-assist && bun run build ) >/dev/null || fail "MCP assist server type-check"
 
 step "Unused Rust dependencies (cargo machete)"
 if command -v cargo-machete >/dev/null 2>&1; then

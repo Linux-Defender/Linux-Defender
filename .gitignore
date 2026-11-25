@@ -150,3 +150,5 @@ desktop/.vite/
 
 # Local task tracking
 /TODO.md
+# MCP server local dependencies
+mcp/**/node_modules/

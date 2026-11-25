@@ -178,6 +178,8 @@ cargo test --workspace
 
 Clippy compiles the production Tauri crate, whose `generate_context!` embeds `desktop/dist`; build the frozen frontend assets before running it.
 
+For human-only validation tasks, the repository includes a local MCP server (`mcp/linux-defender-assist/`, documented in [`mcp/README.md`](https://github.com/Linux-Defender/Linux-Defender/blob/main/mcp/README.md)) with read-only/proposal tools. It never performs privileged installs, catalog writes, or external submissions.
+
 For a single command that also checks gettext catalogs, stale branding, dead frontend modules, git sync, and GitHub Actions status, run the full local audit:
 
 ```bash

@@ -3,6 +3,14 @@
   "instructions": ["AI-ENFORCEMENT.md"],
   "skills": ["./agents/skills"],
   "plugins": [{ "package": "./.editor-adapters/enforcement" }],
+  "mcp": {
+    "servers": {
+      "linux-defender-assist": {
+        "type": "local",
+        "command": ["bun", "run", "mcp/linux-defender-assist/src/index.ts"]
+      }
+    }
+  },
   "commands": {
     "capture-app": {
       "description": "Capture the real Tauri/WebKitGTK app window for visual inspection",
