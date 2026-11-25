@@ -14,12 +14,16 @@ permissions:
 
 jobs:
   auto-assign:
-    # Manual dispatch is for trigger verification only; there is no issue/PR
-    # payload to assign in that case.
-    if: github.event_name == 'issues' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
+      # Manual dispatch has no issue/PR payload; verify the trigger succeeds
+      # instead of skipping the whole job, then skip only the assign action.
+      - name: Verify dispatch trigger
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "Manual dispatch verified; no issue/PR payload to assign."
+
       - name: Auto-assign new issues and pull requests to the maintainer
+        if: github.event_name == 'issues' || github.event_name == 'pull_request'
         uses: pozil/auto-assign-issue@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
