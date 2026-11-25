@@ -2,9 +2,10 @@
 """Fail when repo-wide declarations drift: versions, identity, or inventories.
 
 Checks that the application version agrees across the workspace manifest, the
-Tauri crate, the desktop package, AppStream metadata, and the Flatpak release
-notes; that every package format uses the public app id; and that every
-workflow and maintenance script is referenced somewhere so none is forgotten.
+Tauri crate, the desktop package, AppStream metadata, the Flatpak release notes,
+and both AUR PKGBUILDs; that every package format uses the public app id; and
+that every workflow and maintenance script is referenced somewhere so none is
+forgotten.
 """
 from __future__ import annotations
 
@@ -55,6 +56,8 @@ def main() -> int:
         "desktop package.json": match(r'"version"\s*:\s*"([^"]+)"', read("desktop/package.json"), "desktop version", failures),
         "AppStream release": match(r'<release\s+version="([^"]+)"', read(f"data/{APP_ID}.metainfo.xml"), "AppStream release", failures),
         "Flatpak release notes": match(r"^# Linux Defender ([0-9.]+) release description", read("flathub/RELEASE_NOTES.md"), "Flatpak release notes", failures),
+        "AUR app": match(r"^pkgver=([0-9.]+)$", read("aur/PKGBUILD"), "AUR app version", failures),
+        "AUR helper": match(r"^pkgver=([0-9.]+)$", read("aur/linux-defender-privileged-helper/PKGBUILD"), "AUR helper version", failures),
     }
     distinct = {v for v in versions.values() if v}
     if len(distinct) > 1:

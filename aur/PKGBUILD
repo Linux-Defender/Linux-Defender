@@ -1,7 +1,7 @@
 # Maintainer: Linux Defender contributors
 # Arch/AUR source recipe for the Linux Defender desktop application.
-# This is rewritten for the Rust/Tauri/React stack; it is not derived from the
-# old Python/GTK4 ClamUI recipe. Host ClamAV and its database are NOT bundled.
+# Written for the Rust/Tauri/React stack from scratch; no upstream recipe code
+# was copied. Host ClamAV and its database are NOT bundled.
 
 pkgname=linux-defender
 pkgver=0.6.0

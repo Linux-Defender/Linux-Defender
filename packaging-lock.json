@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "sources": {
+    "arch-aur-reference": {
+      "source": "Estemobs/aur-clamui",
+      "sourceType": "github",
+      "commit": "27193c8711ec16de34dee81b742977087a56a57b",
+      "reviewedAt": "2026-11-24",
+      "license": "MIT",
+      "notes": "Historical Python/GTK4 ClamUI 0.3.0 AUR recipe. Behavior reference only; Linux Defender's aur/PKGBUILD and helper recipe were independently written for Rust/Tauri."
+    }
+  }
+}

@@ -135,4 +135,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 34 | Add Arch/AUR and Sway support using the old ClamUI AUR folder as reference | Reviewed `Estemobs/aur-clamui` at `27193c8` (MIT, Python/GTK4 0.3.0) and independently wrote `aur/PKGBUILD` + `aur/linux-defender-privileged-helper/PKGBUILD` for the Rust/Tauri app/helper, with `.SRCINFO`, rebranded assets, host-ClamAV boundary, Sway/wlroots `optdepends`, docs, parity matrix, cross-layer contract, and `scripts/check-aur-consistency.py` |
 
+| 35 | AUR support must be independently sourced, stay version-synced with every other format, and have a workflow like the rest | Confirmed no upstream recipe code/brand was copied (only behavior reference at `27193c8` recorded); `check-repo-consistency.py` now includes both AUR `pkgver` values; `check-aur-consistency.py` checks the app/helper source pin and tarball hash agree; added `packaging-lock.json`, `scripts/check-packaging-freshness.py`, and weekly `packaging-sync.yml` that opens a review issue on drift or failed packaging invariants |
+
 Open (not closable by code alone): human translation review, live desktop interaction on Kira's CachyOS session, installed-package helper authorization, and real online reputation requests. These were called out explicitly in earlier sections and remain listed rather than silently dropped.

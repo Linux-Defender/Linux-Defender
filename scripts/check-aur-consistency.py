@@ -81,6 +81,16 @@ def main() -> int:
     if "Sway" not in install_doc or "Sway" not in tray_doc:
         failures.append("Sway support is not documented in installation/tray guides")
 
+    # Both recipes must pin the same Linux Defender source and tarball hash.
+    for field, pattern in (
+        ("source commit", r"^_commit=([0-9a-f]{40})$"),
+        ("tarball hash", r"^sha256sums=\('([0-9a-f]{64})'\)$"),
+    ):
+        app_value = re.search(pattern, app, re.M)
+        helper_value = re.search(pattern, helper, re.M)
+        if not app_value or not helper_value or app_value.group(1) != helper_value.group(1):
+            failures.append(f"app and helper AUR recipes disagree on {field}")
+
     if failures:
         print("AUR consistency failures:", file=sys.stderr)
         for f in failures:

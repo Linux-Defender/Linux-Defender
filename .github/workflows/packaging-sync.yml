@@ -1,0 +1,93 @@
+name: Packaging Sync
+
+# Weekly check that every package format stays version-matched, rebranded, and
+# wired, and that reviewed packaging references have not drifted upstream.
+# Like other freshness checks, it opens a review issue instead of auto-merging.
+on:
+  schedule:
+    - cron: "37 5 * * 1"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  sync:
+    name: Packaging version and reference sync
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Verify all packaging declarations agree
+        run: |
+          python3 scripts/check-repo-consistency.py
+          python3 scripts/check-aur-consistency.py
+
+      - name: Check packaging reference freshness
+        id: freshness
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/check-packaging-freshness.py | tee "$RUNNER_TEMP/packaging-freshness.json"
+          python3 - "$RUNNER_TEMP/packaging-freshness.json" >> "$GITHUB_OUTPUT" <<'PY'
+          import json, sys
+          data = json.load(open(sys.argv[1]))
+          print(f"drift_count={len(data['drift'])}")
+          print(f"error_count={len(data['errors'])}")
+          names = ", ".join(sorted({d['source'] for d in data['drift']}))
+          print(f"drift_names={names}")
+          PY
+
+      - name: Write workflow summary
+        if: always()
+        env:
+          DRIFT: ${{ steps.freshness.outputs.drift_count }}
+          ERRORS: ${{ steps.freshness.outputs.error_count }}
+          NAMES: ${{ steps.freshness.outputs.drift_names }}
+        run: |
+          {
+            echo "## Packaging sync"
+            echo "- Version/identity checks: ${{ steps.freshness.outcome }}"
+            echo "- Reference drift: ${DRIFT:-unknown}"
+            echo "- Fetch errors: ${ERRORS:-unknown}"
+            echo "- Drifted sources: ${NAMES:-none}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or refresh issue on drift or failure
+        if: failure() || steps.freshness.outputs.drift_count != '0' || steps.freshness.outputs.error_count != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          NAMES: ${{ steps.freshness.outputs.drift_names }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          title="Packaging sync needs review"
+          body=$(
+            cat <<EOF
+          The weekly Packaging Sync check found drift or a failed packaging invariant.
+
+          - Drifted sources: ${NAMES:-none}
+          - Run: $RUN_URL
+
+          Review the upstream change and the repository's packaging matrix before
+          updating \`packaging-lock.json\`, the AUR \`PKGBUILD\` files, or version
+          declarations. Do not auto-merge reference code or rebrand compatibility
+          identifiers. Re-run \`python3 scripts/check-repo-consistency.py\` and
+          \`python3 scripts/check-aur-consistency.py\` after any fix.
+          EOF
+          )
+          existing="$(gh api "repos/$REPO/issues?state=open&per_page=100" \
+            --jq ".[] | select(.title == \"$title\" and .pull_request == null) | .number" \
+            | head -n 1 || true)"
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/$REPO/issues/$existing" -f body="$body" >/dev/null
+          else
+            gh issue create --repo "$REPO" --title "$title" --body "$body" >/dev/null
+          fi
