@@ -31,6 +31,7 @@ still needs a human pass. From a running Sway session with `waybar`'s `tray`
 module configured:
 
 ```bash
+sudo pacman -S --needed sway waybar grim   # once, as a user with sudo
 bash scripts/validate-sway.sh
 ```
 
