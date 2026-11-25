@@ -53,7 +53,7 @@ jobs:
           find website/proof -type f -name '*.html' -exec sed -i -e 's|/Linux-Defender/|/|g' -e 's/\x7F//g' {} +
 
       - name: Proof built HTML
-        uses: anishathalye/proof-html@v1.1.0
+        uses: anishathalye/proof-html@v2.2.5
         with:
           directory: ./website/proof
           check_html: true
