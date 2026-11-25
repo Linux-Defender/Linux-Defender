@@ -25,6 +25,7 @@ complete cross-check that nothing is forgotten or orphaned.
 - [SECURITY](../SECURITY.md)
 - [aur/README](../aur/README.md)
 - [flathub/RELEASE_NOTES](../flathub/RELEASE_NOTES.md)
+- [po/TRANSLATION-REVIEW](../po/TRANSLATION-REVIEW.md)
 
 ## Internal development and research docs
 

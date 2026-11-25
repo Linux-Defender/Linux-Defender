@@ -21,6 +21,9 @@ STALE = {
     "ClamUI was deprecated upstream": "upstream status claim is no longer made",
     "Dashboard.tsx`, `ScanOverview.tsx`, new modules": "superseded pages were removed",
     "docs/clamui-fork/REPOS.md": "inventory moved to docs/revival/UPSTREAM-REPOSITORIES.md",
+    "update-pot.sh --check fails": "POT is current and all checks pass",
+    "32 missing in all 10": "all catalogs contain every source message",
+    "Blocked on: translations of those 32": "historical gap is closed",
 }
 
 

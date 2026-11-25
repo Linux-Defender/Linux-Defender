@@ -23,4 +23,21 @@ Right-click the icon to show/hide the window, run Quick Scan or Full Scan, selec
 
 Enable **Start in System Tray**, then create a user autostart entry if you want launch-on-login. Keep path scans separate: passing a file or folder deliberately opens the window.
 
+### Validate on Sway
+
+Sway wiring is checked in every commit (Rust SNI tray, AUR `waybar`/`sway`/
+`xdg-desktop-portal-wlr` optdepends, and these guides), but a real Sway session
+still needs a human pass. From a running Sway session with `waybar`'s `tray`
+module configured:
+
+```bash
+bash scripts/validate-sway.sh
+```
+
+The helper requires `sway`, `waybar`, `grim`, and `dbus-send`; it launches the
+app, captures the screen, and prints a checklist: tray icon visible, right-click
+menu actions, minimize/restore with scans continuing, native dialogs through the
+portal, and an EICAR scan with a clean debug log. A green repository check does
+not replace that pass.
+
 For design, native event handling, lifecycle, and security limits, see [Rust/Tauri desktop and tray architecture](/Linux-Defender/docs/contributing/architecture/).

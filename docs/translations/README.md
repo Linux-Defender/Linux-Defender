@@ -4,67 +4,47 @@ Status and instructions for the **Linux Defender** gettext catalogs.
 
 ## TL;DR
 
-- Catalogs: `po/linux-defender.pot` (template) + `po/*.po` for the 10 active locales
-  `de en es fr hu it nb pt_BR vi zh_CN`.
-- **Current status:** `check-translations.sh` passes; `update-pot.sh --check` fails —
-  the POT is stale because the ClamUI audit refactor added ~32 new strings (see
-  [`../../po/MISSING_TRANSLATIONS.txt`](../../po/MISSING_TRANSLATIONS.txt)).
-- **Blocked on:** translations of those 32 new strings in all 10 catalogs.
+- Catalogs: `po/linux-defender.pot` (template) + `po/*.po` for the 10 active
+  locales `de en es fr hu it nb pt_BR vi zh_CN`.
+- **Automated status: green.** `update-pot.sh --check`, `check-potfiles.sh`,
+  `check-translations.sh`, `msgfmt -c`, and `msgcmp` all pass. Every active
+  catalog contains all 1,434 source messages.
+- **Human status: still open.** The generated
+  [`po/TRANSLATION-REVIEW.md`](../../po/TRANSLATION-REVIEW.md) lists long English
+  strings that remain identical in non-English catalogs. Some are legitimate
+  protected literals; a translator must decide each case.
+- `po/MISSING_TRANSLATIONS.txt` is a historical snapshot from the audit refactor,
+  not a current gap list.
 
-## How to finish it
+## How to validate a catalog change
 
-1. Regenerate the POT: `./scripts/update-pot.sh`
-2. Merge each catalog: `msgmerge --update po/<loc>.po po/linux-defender.pot`
-3. Fill the new entries with translations (see [the recipe](#polib-recipe)).
-4. Verify each catalog: `msgcmp po/<loc>.po po/linux-defender.pot && msgfmt -c po/<loc>.po`
-5. Verify everything: `./scripts/check-translations.sh && ./scripts/update-pot.sh --check`
-6. Commit with message like: `Translate new ClamUI audit/firewall/opensnitch strings in all 10 catalogs`
+1. Edit the source literal(s) and precise translator note in Rust/TypeScript.
+2. Regenerate the POT with `./scripts/update-pot.sh`.
+3. Merge each catalog with `msgmerge --update po/<loc>.po po/linux-defender.pot`.
+4. Fill the affected entries, preserving placeholders, markup, whitespace, and
+   every required `msgstr[N]` form for plurals.
+5. Run `./scripts/check-translations.sh`, `./scripts/check-potfiles.sh`, and
+   `./scripts/update-pot.sh --check`.
+6. Regenerate the review report with
+   `python3 scripts/generate-translation-review.py` and commit it with the
+   catalog changes. The Translations CI workflow verifies it.
 
-## Polib recipe (recommended by the original author)
+Use a real PO library (for example `polib`) or a full regeneration from the POT
+if you need to script catalog edits. Hand-rolled PO parsers previously corrupted
+duplicate msgids, plurals, and multiline strings.
 
-```sh
-pip install polib
-```
+## Translator conventions
 
-```python
-import polib
-
-def load(loc):
-    """Return dict: msgid -> msgstr from /tmp/translations.json, extended per locale."""
-    return polib.pofile(f"po/{loc}.po")
-
-for loc in ["de", "en", "es", "fr", "hu", "it", "nb", "pt_BR", "vi", "zh_CN"]:
-    po = polib.pofile(f"po/{loc}.po")
-    for entry in po:
-        if entry.msgid and not entry.msgstr:
-            entry.msgstr = pick_translation(entry.msgid, loc)
-    po.save()
-```
-
-Notes:
-- For entries with `msgid_plural`, fill both `entry.msgstr[0]` and `entry.msgstr[1]` (or set both to the same string).
-- `pick_translation(msgid, loc)` should return the locale's translation, or the msgid itself if none is available yet (English fallback is acceptable for the first pass).
-- German translations for the 32 missing strings are documented in [`../../po/MISSING_TRANSLATIONS.txt`](../../po/MISSING_TRANSLATIONS.txt) (source: `/tmp/translations.json` → `translate_audit.py` `NEW` dict).
-
-## Getting started on a new model
-
-If you are an AI agent picking up this work:
-1. Read [`../../po/MISSING_TRANSLATIONS.txt`](../../po/MISSING_TRANSLATIONS.txt) — it lists the exact msgids and German translations.
-2. Re-run `./scripts/update-pot.sh` and `msgmerge` if the catalogs are behind, then
-   `./scripts/check-translations.sh` to see the current gap (32 missing in all 10).
-3. Translate the 32 strings into es, fr, hu, it, nb, pt_BR, vi, zh_CN (de is done; en is identity).
-4. Verify: `msgcmp po/<loc>.po po/linux-defender.pot` for all 10, then `./scripts/check-translations.sh`.
-5. Commit and push; verify the Translations CI workflow goes green (`gh run list`).
-
-## What went wrong before (why a retry helps)
-
-The attempts used hand-rolled PO parsers that corrupted files (duplicate msgids,
-broken plurals, "do not both begin with \n" errors, "msgfmt: found N fatal errors").
-Each attempt re-created the corruption. A real PO library (polib) or a full
-regeneration from the POT avoids this.
+- Keep gettext arguments static literals; select conditional branches around
+  each translated literal, then interpolate after lookup.
+- Use the existing plural API and keep every form meaningful; never introduce
+  pseudo-plurals.
+- Preserve Unicode `—`, `–`, and `…` unless a translator note says otherwise.
+- Protected literals (commands, packages, file names, app IDs) stay unchanged;
+  a `// Translators:` note must say so.
 
 ## Related docs
 
-- [Translator guide](../../website/src/content/docs/docs/contributing/translating.md) — project translation conventions.
-- [`../clamui-fork/`](../clamui-fork/) — the fork: what was ported, rebrand state, parity matrix.
-- [`../revival/RELATED-PROJECT-REVIEW.md`](../revival/RELATED-PROJECT-REVIEW.md) — the live upstream parity matrix.
+- [Translator guide](../../website/src/content/docs/docs/contributing/translating.md) — published conventions and language-specific notes.
+- [`../clamui-fork/`](../clamui-fork/) — fork status and porting record.
+- [`../revival/RELATED-PROJECT-REVIEW.md`](../revival/RELATED-PROJECT-REVIEW.md) — upstream parity matrix.

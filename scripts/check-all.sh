@@ -30,8 +30,9 @@ step "Upstream repository inventory (external URLs resolve)"
 python3 scripts/tests/test_external_links.py >/dev/null 2>&1 || fail "external link checker tests"
 python3 scripts/check-upstream-urls.py || fail "dead upstream URL"
 
-step "All package formats (DEB/RPM/AppImage/Flatpak/Snap/AUR)"
+step "All package formats (DEB/RPM/AppImage/Flatpak/Snap/AUR) and Sway wiring"
 python3 scripts/check-packaging-consistency.py || fail "packaging consistency"
+python3 scripts/check-sway-integration.py || fail "Sway integration wiring"
 
 step "Dev/build wiring (tauri dev -> Vite -> dist, vendored glib patch)"
 python3 scripts/check-build-wiring.py || fail "build wiring"
@@ -48,6 +49,7 @@ python3 scripts/tests/test_signature_check.py >/dev/null 2>&1 || fail "signature
 python3 scripts/check-signatures.py || fail "signature database"
 
 step "Gettext current + well-formed"
+python3 scripts/generate-translation-review.py --check >/dev/null || fail "translation review report stale"
 ./scripts/update-pot.sh --check >/dev/null || fail "POT stale"
 ./scripts/check-potfiles.sh >/dev/null || fail "potfiles coverage"
 ./scripts/check-translations.sh >/dev/null || fail "translation catalogs"

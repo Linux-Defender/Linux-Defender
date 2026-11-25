@@ -74,6 +74,9 @@ jobs:
         working-directory: desktop
         run: bun install --frozen-lockfile
 
+      - name: Validate human-review report is current
+        run: python3 scripts/generate-translation-review.py --check
+
       - name: Validate catalog files
         run: ./scripts/check-translations.sh
 
