@@ -23,6 +23,14 @@ Selected `.yar` and `.yara` files can be added in **Preferences → YARA Rules**
 
 ## Install a daemon
 
+The commands below are copy-only: Linux Defender never installs packages or
+starts services for you. Run them as an administrator on the host. The app's
+Components page offers the same per-family commands: **Ubuntu/Debian**
+`sudo apt install clamav`, **Fedora Workstation** `sudo dnf install clamav`,
+**Fedora Atomic** `sudo rpm-ostree install clamav`, and **Arch Linux**
+`sudo pacman -S clamav`. For daemon diagnosis on Fedora use
+`clamdscan --config-file=/etc/clamd.d/scan.conf --ping 3`.
+
 ```bash
 # Debian/Ubuntu
 sudo apt install clamav-daemon
@@ -33,6 +41,10 @@ clamdscan --version
 sudo dnf install clamd clamav-freshclam
 sudo freshclam
 sudo systemctl enable --now clamd@scan
+
+# Fedora Atomic
+sudo rpm-ostree install clamd clamav-freshclam
+sudo systemctl reboot
 
 # Arch Linux
 sudo pacman -S clamav

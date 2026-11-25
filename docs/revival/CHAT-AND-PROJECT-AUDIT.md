@@ -156,4 +156,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 45 | Flatpak and AppImage/native formats must ship matching features, not mismatched launcher scripts | Added `assets/integrations-native/` with all eight `linux-defender ...` actions; AppImage, DEB, Snap, and AUR now stage that set instead of Flatpak-only assets; Flatpak keeps its `flatpak run ...` set; `scripts/check-integration-parity.py` verifies names, launcher commands, duplicate `data/`/`scripts/` copies, and per-format staging in check-all and Packaging Sync |
 
+| 46 | App and site host-tool text/gaps must match upstream and each other | Reviewed upstream master `14362e8` (2026-11-20); recorded dispositions for all changes since `30a72f0`; aligned daemon commands to `systemctl enable --now` in app and site, added Fedora Atomic and copy-only setup notes to the website guide, and added `scripts/check-host-tool-guidance.py` to check-all |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.

@@ -64,10 +64,10 @@ const DEFINITIONS: ComponentDefinition[] = [
   {
     id: "clamd",
     guides: [
-      { distro: "Ubuntu/Debian", command: "sudo apt install clamav-daemon\nsudo systemctl enable clamav-daemon\nsudo systemctl start clamav-daemon" },
-      { distro: "Fedora Workstation", command: "sudo dnf install clamd clamav-freshclam\nsudo freshclam\nsudo systemctl enable clamd@scan\nsudo systemctl start clamd@scan" },
+      { distro: "Ubuntu/Debian", command: "sudo apt install clamav-daemon\nsudo systemctl enable --now clamav-daemon" },
+      { distro: "Fedora Workstation", command: "sudo dnf install clamd clamav-freshclam\nsudo freshclam\nsudo systemctl enable --now clamd@scan" },
       { distro: "Fedora Atomic", command: "sudo rpm-ostree install clamd clamav-freshclam\nsudo systemctl reboot" },
-      { distro: "Arch Linux", command: "sudo pacman -S clamav\nsudo systemctl enable clamav-daemon\nsudo systemctl start clamav-daemon" },
+      { distro: "Arch Linux", command: "sudo pacman -S clamav\nsudo systemctl enable --now clamav-daemon" },
     ],
   },
 ];

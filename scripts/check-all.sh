@@ -35,6 +35,7 @@ python3 scripts/check-packaging-consistency.py || fail "packaging consistency"
 python3 scripts/check-aur-consistency.py || fail "AUR consistency"
 python3 scripts/check-sway-integration.py || fail "Sway integration wiring"
 python3 scripts/check-integration-parity.py || fail "integration asset parity"
+python3 scripts/check-host-tool-guidance.py || fail "host-tool guidance mismatch"
 
 step "Dev/build wiring (tauri dev -> Vite -> dist, vendored glib patch)"
 python3 scripts/check-build-wiring.py || fail "build wiring"

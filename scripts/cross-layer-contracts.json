@@ -115,6 +115,15 @@
       }
     },
     {
+      "id": "host-tool-guidance",
+      "why": "App and website host-ClamAV setup commands must match each other and the reviewed upstream distro set.",
+      "layers": {
+        "frontend": ["Fedora Atomic"],
+        "site": ["systemctl enable --now"],
+        "docs": ["component guides"]
+      }
+    },
+    {
       "id": "integration-asset-parity",
       "why": "File-manager launcher assets must use the correct command variant per format and ship the same eight actions everywhere.",
       "layers": {

@@ -147,6 +147,18 @@ GitHub REST API snapshot: 61 open issues and 2 open pull requests. The 61st open
 
 The post-release updater fix from upstream commit `30a72f0` (#307) is ported locally. Existing open issue reports remain tracked whether or not source fixes are present.
 
+### Upstream refresh (2026-11-25, master `14362e804b65f44e9e4e777a1c13b98c36b1a926`)
+
+Reviewed the current default branch, which advanced from `30a72f0` (2026-11-11) to `14362e8` (2026-11-20). Dispositions, verified against code rather than the merge status alone:
+
+- **Host-tool component guides and copy-only warning (#357 era Components page):** the component guides are ported and extended. The four distro families (Ubuntu/Debian, Fedora Workstation, Fedora Atomic, Arch Linux) and all eight component commands are present in `desktop/src/pages/Components.tsx`; this pass aligned daemon commands to `systemctl enable --now` and added the missing Fedora Atomic block plus a copy-only note to the website daemon guide. `scripts/check-host-tool-guidance.py` enforces the app/site/upstream alignment.
+- **Classic-confinement Snap package (#357/#360):** Linux Defender has its own `snap/snapcraft.yaml` and launcher; no upstream code copied. Integration asset parity is enforced by `scripts/check-integration-parity.py`.
+- **Dashboard layout (#351), Preferences autosave/Flush UI (#350):** deliberately deferred/superseded, as recorded in `docs/clamui-fork/STATUS.md`; Linux Defender keeps `Overview` and explicit **Save & Apply**.
+- **Scan-profile description overlap (#333), sidebar descender clipping (#348), accent via XDG portal (#334), editable path lists (#345), On-Access authorization fix (#349), trusted local tool symlinks (#347), audit/firewall/opensnitch expansions (#322/#323, #329/#338):** independently implemented or already recorded in `STATUS.md`; no blind code copy.
+- **Fail2ban Wayland command copying (#332):** our core already exposes Fail2ban per-distro commands in `host.rs`; the Wayland clipboard path uses the scoped native clipboard helper rather than an X11 selection.
+
+Newer upstream work is reviewed here, not auto-merged. Licensing, privacy, credentials, cancellation, platform scope, and tests are checked before any adoption.
+
 ### Open ClamUI pull requests
 
 - [#318 fix(scan): keep summary infection counts when threats are truncated](https://github.com/linx-systems/clamui/pull/318): opened 2026-11-16 from the fork `Linux-Defender/clamui` against `master`. It ports the #285 count behavior to upstream `clamui-core` (summary lower bound, at-least-one for exit code 1, accumulator and aggregate sums) and to the desktop result notice. The local account has read-only access to `linx-systems/clamui`, so this is a fork PR, not a direct push. Its core tests, clippy, frontend check, and frontend build pass locally.
