@@ -9,6 +9,7 @@ A modern Linux desktop interface for ClamAV, built with Rust, Tauri, and a React
 [Website](https://linux-defender.github.io/Linux-Defender/) · [Documentation](https://linux-defender.github.io/Linux-Defender/docs/) · [Issues](https://github.com/Linux-Defender/Linux-Defender/issues) · [Security](SECURITY.md)
 
 [![Build AppImage](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-appimage.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-appimage.yml)
+[![Build AUR](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-aur.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-aur.yml)
 [![Build Debian Package](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-deb.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-deb.yml)
 [![Build Flatpak](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-flatpak.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-flatpak.yml)
 [![Build RPM Helper Package](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-rpm.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-rpm.yml)

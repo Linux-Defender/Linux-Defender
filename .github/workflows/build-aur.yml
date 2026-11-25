@@ -1,0 +1,53 @@
+name: Build AUR
+
+# AUR is a source recipe rather than a CI-produced binary, so this workflow
+# validates that the recipes stay syntactic, rebranded, version-matched, and
+# reproducible. It is a separate peer of Build Snap / Build Debian Package.
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+    paths:
+      - "aur/**"
+      - "scripts/check-aur-consistency.py"
+      - "scripts/check-packaging-consistency.py"
+      - "packaging-lock.json"
+      - ".github/workflows/build-aur.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "aur/**"
+      - "scripts/check-aur-consistency.py"
+      - "scripts/check-packaging-consistency.py"
+      - "packaging-lock.json"
+      - ".github/workflows/build-aur.yml"
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-aur:
+    name: Validate AUR source recipes
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Check PKGBUILD syntax
+        run: |
+          bash -n aur/PKGBUILD
+          bash -n aur/linux-defender-privileged-helper/PKGBUILD
+
+      - name: Verify AUR recipes against all packaging contracts
+        run: python3 scripts/check-aur-consistency.py
+
+      - name: Write workflow summary
+        run: |
+          {
+            echo "## AUR validation"
+            echo "- App recipe: aur/PKGBUILD + .SRCINFO"
+            echo "- Helper recipe: aur/linux-defender-privileged-helper/PKGBUILD + .SRCINFO"
+            echo "- No engine or signature database is bundled."
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -53,12 +53,12 @@ FORMATS = {
         "files": ["aur/PKGBUILD", "aur/.SRCINFO", "aur/README.md",
                   "aur/linux-defender-privileged-helper/PKGBUILD",
                   "aur/linux-defender-privileged-helper/.SRCINFO"],
-        "workflow": "packaging-sync.yml",
+        "workflow": "build-aur.yml",
         "marker": "linux-defender",
     },
 }
 BADGES = [
-    "build-appimage.yml", "build-deb.yml", "build-flatpak.yml", "build-rpm.yml",
+    "build-appimage.yml", "build-aur.yml", "build-deb.yml", "build-flatpak.yml", "build-rpm.yml",
     "build-snap.yml", "packaging-sync.yml", "signature-database.yml",
     "doc-links.yml", "upstream-freshness.yml", "consistency.yml", "test.yml",
 ]

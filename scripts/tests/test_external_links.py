@@ -47,6 +47,20 @@ class ExternalLinkTests(unittest.TestCase):
             module.urllib.request.urlopen = original
             module.time.sleep = original_sleep
 
+    def test_unpublished_workflow_badge_is_skipped(self):
+        def fake_urlopen(_req, timeout=25):
+            raise urllib.error.HTTPError("u", 404, "Not Found", {}, io.BytesIO(b""))
+
+        original = module.urllib.request.urlopen
+        module.urllib.request.urlopen = fake_urlopen
+        try:
+            url = "https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-aur.yml/badge.svg"
+            status, detail = module.check(url)[1:]
+            self.assertEqual(status, "skip")
+            self.assertIn("not yet published", detail)
+        finally:
+            module.urllib.request.urlopen = original
+
     def test_403_is_dead(self):
         def fake_urlopen(_req, timeout=25):
             raise urllib.error.HTTPError("u", 403, "Forbidden", {}, io.BytesIO(b""))

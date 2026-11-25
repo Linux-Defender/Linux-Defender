@@ -24,6 +24,9 @@ ROOT = Path(__file__).resolve().parent.parent
 SKIP_PARTS = {".git", "node_modules", "target", "dist", ".astro", "vendor", "__pycache__", ".agents"}
 URL_RE = re.compile(r"https?://[^\s)>\]]+")
 CODE_RE = re.compile(r"```.*?```|`[^`\n]*`", re.S)
+WORKFLOW_URL_RE = re.compile(
+    r"github\.com/[^/]+/[^/]+/actions/workflows/([A-Za-z0-9_.-]+\.yml)(?:/badge\.svg)?"
+)
 
 
 def tracked_docs() -> list[Path]:
@@ -42,6 +45,9 @@ def check(url: str) -> tuple[str, str, str]:
             with urllib.request.urlopen(req, timeout=25) as resp:
                 return (url, "ok", str(resp.status))
         except urllib.error.HTTPError as exc:
+            workflow = WORKFLOW_URL_RE.search(url)
+            if exc.code == 404 and workflow and (ROOT / ".github/workflows" / workflow.group(1)).exists():
+                return (url, "skip", "workflow exists locally; not yet published")
             if exc.code in {429, 500, 502, 503, 504}:
                 if attempt < 2:
                     time.sleep(1 + attempt)  # transient upstream outage, retry

@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 APP_ID = "io.github.linuxdefender.linuxdefender"
 EXPECTED_WORKFLOWS = {
-    "auto-assign.yml", "build-all.yml", "build-appimage.yml", "build-deb.yml",
+    "auto-assign.yml", "build-all.yml", "build-appimage.yml", "build-aur.yml", "build-deb.yml",
     "build-flatpak.yml", "build-rpm.yml", "build-snap.yml", "codeql.yml",
     "consistency.yml", "dependabot-refresh.yml", "dependency-audit.yml",
     "dependency-review.yml", "deploy-website.yml", "doc-links.yml", "i18n.yml",
@@ -106,11 +106,9 @@ def main() -> int:
             failures.append(f"expected check entry point was removed: scripts/{name}")
     build_all = read(".github/workflows/build-all.yml")
     for name in ("build-deb.yml", "build-rpm.yml", "build-appimage.yml",
-                 "build-flatpak.yml", "build-snap.yml"):
+                 "build-flatpak.yml", "build-snap.yml", "build-aur.yml"):
         if name not in build_all:
             failures.append(f"build-all.yml no longer calls {name}")
-    if "aur-check" not in build_all:
-        failures.append("build-all.yml no longer validates the AUR recipes")
 
     texts = tracked_texts()
     corpus = "\n".join(texts.values())

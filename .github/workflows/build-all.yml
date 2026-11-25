@@ -60,15 +60,6 @@ jobs:
     needs: verify-ref
     uses: ./.github/workflows/build-snap.yml
 
-  aur-check:
-    name: Validate AUR recipes
+  build-aur:
     needs: verify-ref
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-      - name: Validate AUR source recipes
-        run: |
-          bash -n aur/PKGBUILD
-          bash -n aur/linux-defender-privileged-helper/PKGBUILD
-          python3 scripts/check-aur-consistency.py
+    uses: ./.github/workflows/build-aur.yml
