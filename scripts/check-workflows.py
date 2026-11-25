@@ -44,6 +44,8 @@ def main() -> int:
             continue
         if not (set(triggers) & TRIGGERS):
             failures.append(f"{path.name}: no recognized trigger")
+        if "workflow_dispatch" not in triggers:
+            failures.append(f"{path.name}: missing workflow_dispatch (cannot be manually verified)")
     if failures:
         print("Workflow failures:", file=sys.stderr)
         for f in failures:

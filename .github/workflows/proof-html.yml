@@ -6,6 +6,8 @@ name: Proof HTML
 # proof-html is kept for additional structural HTML checks (DOCTYPE, duplicate
 # IDs, alt text) when run manually against a locally built site.
 on:
+  schedule:
+    - cron: "41 5 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -27,6 +29,15 @@ jobs:
       - name: Install website dependencies
         working-directory: website
         run: bun install --frozen-lockfile
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('website/bun.lock') }}
+      - name: Install Chromium for Mermaid rendering
+        working-directory: website
+        run: bunx playwright install --with-deps chromium
 
       - name: Build website
         working-directory: website

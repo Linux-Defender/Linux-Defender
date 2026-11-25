@@ -174,4 +174,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 54 | All upstream/downstream watchers and connection glitches must not leave silent gaps | Added `docs/documentation/WATCHERS.md` + `check-watchers.py` covering all 8 scheduled workflows, added ClamTk to `parity-lock.json`, confirmed the ECONNRESET screenshot was a client/API retry (repo clean and synced), and re-verified every gate |
 
+| 55 | Workflows that never/rarely ran and proof-html failure | Added weekly schedule + Playwright browser install to `proof-html.yml` (it failed because Chromium was missing), added `workflow_dispatch` to Auto Assign, Release, and Validate Website so they can be verified, guarded Auto Assign dispatch, required every workflow to be manually dispatchable in `check-workflows.py`, and added Proof HTML to the watchers index |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.

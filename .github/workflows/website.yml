@@ -7,6 +7,7 @@ on:
       - "website/**"
       - ".github/workflows/website.yml"
       - "scripts/check-built-links.py"
+  workflow_dispatch:
 
 permissions:
   contents: read
