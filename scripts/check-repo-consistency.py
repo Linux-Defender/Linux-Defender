@@ -82,6 +82,12 @@ def main() -> int:
     if len(distinct) > 1:
         failures.append(f"version mismatch across layers: {versions}")
 
+    # CI pins Bun 1.3.14, which reads lockfileVersion 1. A newer local Bun can
+    # silently write v2 and break frozen installs in CI.
+    mcp_lock = read("mcp/linux-defender-assist/bun.lock")
+    if '"lockfileVersion": 1' not in mcp_lock:
+        failures.append("MCP bun.lock is not lockfileVersion 1 (CI pins Bun 1.3.14)")
+
     # Public app identity in every package format.
     identity_files = [
         f"data/{APP_ID}.desktop",
