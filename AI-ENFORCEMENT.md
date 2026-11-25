@@ -23,7 +23,8 @@ fail.
    unused Rust dependencies (cargo machete), all-format packaging drift,
    stale/missing signature databases,
    gettext drift, stale branding, dead frontend modules, unwired website
-   components, skill drift, dead external links, stale doc phrases, and a stale
+   components, skill drift, dead external links, stale doc phrases, unwired
+   checkers or dangling gate paths, executable-bit drift, and a stale
    documentation map. It is the single source of truth for static checks — do
    not invent a parallel check.
 2. **Load the `linux-defender-parity` skill** for any task touching more than

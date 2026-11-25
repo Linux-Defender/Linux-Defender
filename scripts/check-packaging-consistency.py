@@ -159,6 +159,26 @@ def main() -> int:
             elif read(srcinfo) != result.stdout:
                 failures.append(f"stale .SRCINFO: {srcinfo.relative_to(ROOT)}")
 
+    # The pinned source commit must be real history, not a mistyped or
+    # unreviewed SHA that no one can build from.
+    pin_match = re.search(r"^_commit=([0-9a-f]{40})$", app, re.M)
+    if pin_match:
+        pin = pin_match.group(1)
+        known = subprocess.run(
+            ["git", "cat-file", "-e", f"{pin}^{{commit}}"],
+            cwd=ROOT, capture_output=True,
+        ).returncode == 0
+        if not known:
+            print(f"note: AUR pin {pin[:12]} is absent from this shallow clone; ancestry not checked")
+        elif subprocess.run(
+            ["git", "merge-base", "--is-ancestor", pin, "HEAD"],
+            cwd=ROOT, capture_output=True,
+        ).returncode != 0:
+            failures.append(
+                f"AUR source pin {pin[:12]} is not an ancestor of HEAD "
+                "(mistyped or unreviewed commit)"
+            )
+
     if failures:
         print("Packaging consistency failures:", file=sys.stderr)
         for f in failures:

@@ -26,6 +26,8 @@ application runtime dependencies.
 - `scripts/check-doc-indexes.py` — every internal doc linked from its folder index.
 - `scripts/check-doc-links.py` — broken relative Markdown links.
 - `scripts/check-external-links.py` — dead external documentation links.
+- `scripts/check-file-modes.py` — shebang and Debian maintainer scripts are executable.
+- `scripts/check-gate-wiring.py` — every checker is wired to a gate and every gate path exists.
 - `scripts/check-host-tool-guidance.py` — app/site ClamAV commands.
 - `scripts/check-integration-parity.py` — Flatpak vs native launcher assets.
 - `scripts/check-packaging-consistency.py` — all six formats.
@@ -35,6 +37,7 @@ application runtime dependencies.
 - `scripts/check-scripts-index.py` — every tracked script is listed in this index.
 - `scripts/check-signature-feeds.py` — URLhaus export health with key redacted.
 - `scripts/check-signatures.py` — host database age + EICAR.
+- `scripts/check-source-invariants.py` — explicit-apply path, retired event channel, CSP.
 - `scripts/check-stale-phrases.py` — known stale claims.
 - `scripts/check-sway-integration.py` — Sway wiring (build-time).
 - `scripts/check-translations.sh` — gettext catalog validation gate.

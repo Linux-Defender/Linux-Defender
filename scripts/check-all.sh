@@ -29,6 +29,8 @@ python3 scripts/check-workflows.py || fail "workflow parse/name drift"
 python3 scripts/check-badges.py || fail "README workflow badge coverage"
 python3 scripts/check-scripts-index.py || fail "script index coverage"
 python3 scripts/check-watchers.py || fail "watcher index coverage"
+python3 scripts/check-gate-wiring.py || fail "gate wiring (unwired or dangling checker)"
+python3 scripts/check-file-modes.py || fail "file modes (executable bit drift)"
 
 step "Upstream repository inventory (external URLs resolve)"
 python3 scripts/tests/test_external_links.py >/dev/null 2>&1 || fail "external link checker tests"
@@ -105,6 +107,9 @@ step "Doc indexes, complete map, and known-stale claims"
 python3 scripts/check-doc-indexes.py || fail "doc index coverage"
 python3 scripts/generate-doc-map.py --check || fail "documentation map stale (run generate-doc-map.py)"
 python3 scripts/check-stale-phrases.py || fail "stale documentation claim"
+
+step "Source invariants (apply path, retired event, CSP)"
+python3 scripts/check-source-invariants.py || fail "source invariants"
 
 step "Stale brand references"
 STALE=$(grep -rniE 'clamui\.com|linx\.systems|clamui@|rooki\.xyz|io\.github\.linx' \
