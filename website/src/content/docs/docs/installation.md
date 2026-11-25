@@ -40,6 +40,8 @@ Linux Defender has no published release or signed installer packages yet, so non
 
 The Rust/Tauri UI is shared, but GTK/WebKitGTK versions, helper packages, ClamAV paths, services, desktop menus, and release channels differ. A successful source build alone does not establish distribution support.
 
+File-manager integrations ship in two format-correct variants: native packages use `linux-defender ...` launchers, while Flatpak uses `flatpak run io.github.linuxdefender.linuxdefender ...`. Both sets contain the same eight Nautilus, Nemo, Dolphin, and Thunar actions, checked by `scripts/check-integration-parity.py` on every commit.
+
 ## Build and run on CachyOS / Arch
 
 Install Tauri's current Arch build dependencies, Rust, and Bun:

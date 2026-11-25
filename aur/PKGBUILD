@@ -76,10 +76,11 @@ package() {
     "$pkgdir/usr/share/kio/servicemenus/$_id-virustotal.desktop"
   install -Dm644 "data/$_id-virustotal.desktop" \
     "$pkgdir/usr/share/kservices5/ServiceMenus/$_id-virustotal.desktop"
-  install -Dm755 scripts/linux-defender-scan-nautilus.sh \
-    "$pkgdir/usr/share/linux-defender/integrations/linux-defender-scan-nautilus.sh"
-  install -Dm755 scripts/linux-defender-virustotal-nautilus.sh \
-    "$pkgdir/usr/share/linux-defender/integrations/linux-defender-virustotal-nautilus.sh"
+  # All eight native launcher assets ship together so every native format
+  # offers the same Nautilus, Nemo, Dolphin, and Thunar actions.
+  install -d "$pkgdir/usr/share/linux-defender/integrations"
+  cp -a assets/integrations-native/. "$pkgdir/usr/share/linux-defender/integrations/"
+  find "$pkgdir/usr/share/linux-defender/integrations" -type f -name '*.sh' -exec chmod 0755 '{}' +
 
   while IFS= read -r lang || [ -n "$lang" ]; do
     lang="${lang%%#*}"

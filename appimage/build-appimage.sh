@@ -148,7 +148,10 @@ extract_tauri_appdir() {
 }
 
 install_packaging_assets() {
-    local assets="$PROJECT_ROOT/crates/linux-defender-core/assets/integrations"
+    # AppImage launches the native `linux-defender` command, so stage native
+    # launcher actions (Flatpak's `flatpak run ...` variants belong only to the
+    # Flatpak package).
+    local assets="$PROJECT_ROOT/assets/integrations-native"
     local destination="$APPDIR/usr/share/linux-defender/integrations"
 
     [ -d "$assets" ] || die "integration assets missing: $assets"

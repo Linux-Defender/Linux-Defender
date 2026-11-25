@@ -220,10 +220,11 @@ stage_desktop_assets() {
         "$BUILD_DIR/usr/share/nemo/actions/io.github.linuxdefender.linuxdefender.nemo_action" 0644
     stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender-virustotal.nemo_action" \
         "$BUILD_DIR/usr/share/nemo/actions/io.github.linuxdefender.linuxdefender-virustotal.nemo_action" 0644
-    stage_required_file "$PROJECT_ROOT/scripts/linux-defender-scan-nautilus.sh" \
-        "$BUILD_DIR/usr/share/linux-defender/integrations/linux-defender-scan-nautilus.sh" 0755
-    stage_required_file "$PROJECT_ROOT/scripts/linux-defender-virustotal-nautilus.sh" \
-        "$BUILD_DIR/usr/share/linux-defender/integrations/linux-defender-virustotal-nautilus.sh" 0755
+    # All eight native launcher assets ship together so every native format
+    # offers the same Nautilus, Nemo, Dolphin, and Thunar actions.
+    cp -a "$PROJECT_ROOT/assets/integrations-native/." \
+        "$BUILD_DIR/usr/share/linux-defender/integrations/"
+    find "$BUILD_DIR/usr/share/linux-defender/integrations" -type f -name '*.sh' -exec chmod 0755 '{}' +
 
     stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.service.desktop" \
         "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linuxdefender.linuxdefender.service.desktop" 0644

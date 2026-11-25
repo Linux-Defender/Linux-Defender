@@ -1,0 +1,70 @@
+#!/bin/bash
+# Linux Defender Scanner - Nautilus Script
+# This script is installed to ~/.local/share/nautilus/scripts/
+# and provides a "Scan with Linux Defender" context menu option.
+#
+# Usage: Called by Nautilus file manager when selecting "Scripts > Scan with Linux Defender"
+# The selected files are passed via NAUTILUS_SCRIPT_SELECTED_FILE_PATHS environment variable.
+
+# Enable logging for debugging
+LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/linux-defender/scan-nautilus.log"
+mkdir -p "$(dirname "$LOG_FILE")"
+
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
+}
+
+log "Script started"
+log "NAUTILUS_SCRIPT_SELECTED_FILE_PATHS: $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
+log "Arguments: $*"
+
+# Prefer the canonical command. The pre-rename name is still accepted so this
+# script keeps working on an install that has not been upgraded yet.
+if command -v linux-defender &> /dev/null; then
+    LAUNCHER=linux-defender
+elif command -v clamui &> /dev/null; then
+    LAUNCHER=clamui
+else
+    log "ERROR: Linux Defender is not installed (no linux-defender command was found)"
+    log "PATH: $PATH"
+    # Try to notify user
+    if command -v notify-send &> /dev/null; then
+        notify-send "Linux Defender Not Found" "Please install Linux Defender to use ClamAV scanning."
+    fi
+    exit 1
+fi
+
+log "Linux Defender launcher found at: $(command -v "$LAUNCHER")"
+
+# Get selected files from Nautilus
+# NAUTILUS_SCRIPT_SELECTED_FILE_PATHS contains newline-separated paths
+if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
+    # Convert newline-separated paths to array
+    IFS=$'\n' read -d '' -r -a files <<< "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
+
+    log "Found ${#files[@]} files from NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
+
+    # Launch Linux Defender with all selected files.
+    if [[ ${#files[@]} -gt 0 ]]; then
+        log "Launching Linux Defender for selected files"
+        "$LAUNCHER" "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
+        log "Linux Defender exited with code: $?"
+    else
+        log "ERROR: No files in array"
+    fi
+else
+    # Fallback: try to use positional arguments
+    if [[ $# -gt 0 ]]; then
+        log "Using positional arguments: $*"
+        log "Launching Linux Defender for selected paths"
+        "$LAUNCHER" "$@" 2>&1 | tee -a "$LOG_FILE"
+        log "Linux Defender exited with code: $?"
+    else
+        log "ERROR: No files provided (neither env var nor arguments)"
+        if command -v notify-send &> /dev/null; then
+            notify-send "Linux Defender" "No file selected for scanning."
+        fi
+    fi
+fi
+
+log "Script finished"

@@ -115,6 +115,15 @@
       }
     },
     {
+      "id": "integration-asset-parity",
+      "why": "File-manager launcher assets must use the correct command variant per format and ship the same eight actions everywhere.",
+      "layers": {
+        "packaging": ["integrations-native", "flatpak run"],
+        "docs": ["file-manager"],
+        "site": ["Flatpak"]
+      }
+    },
+    {
       "id": "packaging-parity",
       "why": "Every supported package format must stay version-matched, rebranded, workflow-covered, badge-documented, and host-ClamAV-only.",
       "layers": {

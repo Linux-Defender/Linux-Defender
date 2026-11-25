@@ -140,6 +140,10 @@ parts:
 
       install -Dm644 data/io.github.linuxdefender.linuxdefender.metainfo.xml \
         "$CRAFT_PART_INSTALL/usr/share/metainfo/io.github.linuxdefender.linuxdefender.metainfo.xml"
+      install -d "$CRAFT_PART_INSTALL/usr/share/linux-defender/integrations"
+      cp -a assets/integrations-native/. \
+        "$CRAFT_PART_INSTALL/usr/share/linux-defender/integrations/"
+      find "$CRAFT_PART_INSTALL/usr/share/linux-defender/integrations" -type f -name '*.sh' -exec chmod 0755 '{}' +
       install -Dm644 icons/io.github.linuxdefender.linuxdefender.svg \
         "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/scalable/apps/io.github.linuxdefender.linuxdefender.svg"
       install -Dm644 icons/io.github.linuxdefender.linuxdefender.png \

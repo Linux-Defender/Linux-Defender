@@ -27,6 +27,7 @@ jobs:
         run: |
           python3 scripts/check-repo-consistency.py
           python3 scripts/check-packaging-consistency.py
+          python3 scripts/check-integration-parity.py
 
       - name: Check packaging reference freshness
         id: freshness

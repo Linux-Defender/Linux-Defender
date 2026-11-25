@@ -154,4 +154,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 44 | AUR needs a standalone `Build AUR` workflow like `Build Snap`, not only an inline job | Added `build-aur.yml` with push/PR/dispatch/call triggers, README badge, and PKGBUILD/`.SRCINFO` validation; `build-all.yml` now calls all six build workflows including `build-aur.yml`; consistency checks require the new workflow and badge |
 
+| 45 | Flatpak and AppImage/native formats must ship matching features, not mismatched launcher scripts | Added `assets/integrations-native/` with all eight `linux-defender ...` actions; AppImage, DEB, Snap, and AUR now stage that set instead of Flatpak-only assets; Flatpak keeps its `flatpak run ...` set; `scripts/check-integration-parity.py` verifies names, launcher commands, duplicate `data/`/`scripts/` copies, and per-format staging in check-all and Packaging Sync |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.
