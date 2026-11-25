@@ -19,7 +19,7 @@ Status and instructions for the **Linux Defender** gettext catalogs.
 ## How to validate a catalog change
 
 1. Edit the source literal(s) and precise translator note in Rust/TypeScript.
-2. Regenerate the POT with `./scripts/update-pot.sh`.
+2. Regenerate and merge with `python3 scripts/merge-catalogs.py` (it runs `update-pot.sh`, `msgmerge` for every active locale, and fills only newly added entries with the English fallback).
 3. Merge each catalog with `msgmerge --update po/<loc>.po po/linux-defender.pot`.
 4. Fill the affected entries, preserving placeholders, markup, whitespace, and
    every required `msgstr[N]` form for plurals.

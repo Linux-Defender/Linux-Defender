@@ -13,6 +13,8 @@ import re
 import sys
 from pathlib import Path
 
+REDACTED = "<redacted-auth-key>"
+
 ROOT = Path(__file__).resolve().parent.parent
 CONTRACTS = Path(__file__).with_name("cross-layer-contracts.json")
 
@@ -88,8 +90,9 @@ def main() -> int:
             text = caches[layer]
             for pattern in patterns:
                 if pattern.lower() not in text:
+                    shown = REDACTED if re.fullmatch(r"[0-9a-f]{40}", pattern) else pattern
                     failures.append(
-                        f"feature '{feature['id']}' missing pattern '{pattern}' in layer '{layer}'"
+                        f"feature '{feature['id']}' missing pattern '{shown}' in layer '{layer}'"
                     )
 
     if failures:

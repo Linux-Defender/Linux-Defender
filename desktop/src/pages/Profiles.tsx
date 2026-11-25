@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Icon } from "../Icon";
 import { Modal } from "../Modal";
 import { _, ngettext } from "../i18n";
-import { navigate, notify, onEvent, openPaths, request, saveText } from "../api";
+import { navigate, notify, openPaths, request, saveText } from "../api";
 import { profileDescription, profileLabel } from "../profilePresentation";
 
 
@@ -135,12 +135,9 @@ export default function Profiles() {
     void load();
   }, [load]);
   useEffect(() => {
-    const unlisten = onEvent((event) => {
-      if (event.event === "profiles-changed") void load();
-    });
-    return () => {
-      void unlisten.then((dispose) => dispose());
-    };
+    const reload = () => { void load(); };
+    window.addEventListener("linux-defender-profiles-updated", reload);
+    return () => window.removeEventListener("linux-defender-profiles-updated", reload);
   }, [load]);
 
   const saved = (profile: Profile) => {

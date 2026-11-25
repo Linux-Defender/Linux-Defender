@@ -28,6 +28,9 @@ def main() -> int:
     for command in (
         "sudo apt install clamav", "sudo dnf install clamav",
         "sudo rpm-ostree install clamav", "sudo pacman -S clamav",
+        "sudo apt install clamav-freshclam", "sudo dnf install clamav-freshclam",
+        "sudo rpm-ostree install clamav-freshclam",
+        "sudo apt install clamav-daemon", "sudo dnf install clamd clamav-freshclam",
         "sudo systemctl enable --now clamav-daemon",
         "sudo systemctl enable --now clamd@scan",
         "sudo rpm-ostree install clamd clamav-freshclam",

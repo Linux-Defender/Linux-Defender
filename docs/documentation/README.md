@@ -24,7 +24,7 @@ reviewing, or migrating around the project.
 ## Where to add what
 
 - **User-facing docs** (app behavior, config, recovery): add/update files in
-  `website/src/content/docs/docs/`. Use root-relative `/docs/.../` links.
+  `website/src/content/docs/docs/`. Use repository-page `/Linux-Defender/docs/.../` links.
 - **Internal docs** (rebrand, migration, parity, contributor guides): add files
   here under `docs/clamui-fork/`, `docs/revival/`, or this `docs/documentation/` folder.
 - **Translator notes, po/PO extraction details:** [`website/src/content/docs/docs/contributing/translating.md`](../../website/src/content/docs/docs/contributing/translating.md).

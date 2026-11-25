@@ -521,25 +521,21 @@ fn manager_arg(args: &Value) -> AppResult<FileManager> {
 }
 
 fn localize_integration_error(ctx: &Context, error: String) -> String {
-    for (prefix, template) in [
-        (
-            "Invalid integration destination: ",
-            "Invalid integration destination: {path}",
-        ),
-        (
-            "Integration destination escapes ",
-            "Integration destination escapes {path}",
-        ),
-        (
-            "Integration destination contains a symlink: ",
-            "Integration destination contains a symlink: {path}",
-        ),
-    ] {
-        if let Some(path) = error.strip_prefix(prefix) {
-            return localize_template(ctx, template, &[("path", path)]);
-        }
+    // Each translation call uses a static literal so the extractor sees the
+    // message ID; runtime paths and diagnostics are interpolated afterwards.
+    if let Some(path) = error.strip_prefix("Invalid integration destination: ") {
+        return crate::i18n::translate(ctx, "Invalid integration destination: {path}")
+            .replace("{path}", path);
     }
-    for (prefix, template) in [
+    if let Some(path) = error.strip_prefix("Integration destination escapes ") {
+        return crate::i18n::translate(ctx, "Integration destination escapes {path}")
+            .replace("{path}", path);
+    }
+    if let Some(path) = error.strip_prefix("Integration destination contains a symlink: ") {
+        return crate::i18n::translate(ctx, "Integration destination contains a symlink: {path}")
+            .replace("{path}", path);
+    }
+    for (prefix, literal) in [
         ("Failed to create ", "Failed to create {path}: {error}"),
         ("Failed to write ", "Failed to write {path}: {error}"),
         ("Failed to inspect ", "Failed to inspect {path}: {error}"),
@@ -551,19 +547,31 @@ fn localize_integration_error(ctx: &Context, error: String) -> String {
     ] {
         if let Some(details) = error.strip_prefix(prefix) {
             if let Some((path, diagnostic)) = details.rsplit_once(": ") {
-                return localize_template(ctx, template, &[("path", path), ("error", diagnostic)]);
+                let translated = match literal {
+                    "Failed to create {path}: {error}" => {
+                        crate::i18n::translate(ctx, "Failed to create {path}: {error}")
+                    }
+                    "Failed to write {path}: {error}" => {
+                        crate::i18n::translate(ctx, "Failed to write {path}: {error}")
+                    }
+                    "Failed to inspect {path}: {error}" => {
+                        crate::i18n::translate(ctx, "Failed to inspect {path}: {error}")
+                    }
+                    "Failed to set permissions on {path}: {error}" => {
+                        crate::i18n::translate(ctx, "Failed to set permissions on {path}: {error}")
+                    }
+                    "Failed to remove {path}: {error}" => {
+                        crate::i18n::translate(ctx, "Failed to remove {path}: {error}")
+                    }
+                    _ => literal.to_owned(),
+                };
+                return translated
+                    .replace("{path}", path)
+                    .replace("{error}", diagnostic);
             }
         }
     }
     error
-}
-
-fn localize_template(ctx: &Context, template: &str, replacements: &[(&str, &str)]) -> String {
-    let mut translated = crate::i18n::translate(ctx, template);
-    for (name, value) in replacements {
-        translated = translated.replace(&format!("{{{name}}}"), value);
-    }
-    translated
 }
 
 fn integration_available(paths: &IntegrationPaths, manager: FileManager) -> bool {

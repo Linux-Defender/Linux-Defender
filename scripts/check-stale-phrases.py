@@ -28,6 +28,11 @@ STALE = {
     "all 60 tracked documents": "doc map count grew; use non-numeric wording",
     "261 external URLs": "link count grew; use non-numeric wording",
     "Four scheduled workflows": "more scheduled workflows were added",
+    "leaves both copies untouched": "legacy directories are merged and renamed .migrated",
+    "refuses to merge": "legacy directories are merged and renamed .migrated",
+    "all 10 workflows green": "all workflows are now checked, without a fixed count",
+    "no CachyOS/Arch package definition": "AUR recipes now exist in aur/",
+    "(README, REPOS, STATUS)": "REPOS was moved to docs/revival/UPSTREAM-REPOSITORIES.md",
 }
 
 

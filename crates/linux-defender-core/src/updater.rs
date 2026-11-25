@@ -131,29 +131,52 @@ fn localize_result(ctx: &Context, result: &mut UpdateResult) {
         result.error_message = Some(crate::i18n::translate(ctx, "Update cancelled by user"));
     }
     if let Some(message) = result.error_message.as_deref() {
-        let translated = match message {
+        let translated = Some(match message {
             "Update process output did not close after cleanup; result cannot be classified." => {
-                Some(crate::i18n::translate(
-                    ctx,
-                    "Update process output did not close after cleanup; result cannot be classified.",
-                ))
+                crate::i18n::translate(ctx, "Update process output did not close after cleanup; result cannot be classified.")
             }
-            "Authentication cancelled. Database update requires administrator privileges."
-            | "Authorization failed. You are not authorized to update the database."
-            | "Update rate limited by mirror. Please wait a few minutes and try again."
-            | "Update blocked by CDN. This may be due to rate limiting. Please wait and try again later."
-            | "ClamAV mirror is currently unavailable. Please try again later."
-            | "SSL/TLS certificate error. The mirror may have configuration issues."
-            | "Connection timed out. Please check your network connection."
-            | "Authorization failed. Please try again and enter your password."
-            | "Database is locked. Another freshclam instance may be running."
-            | "Permission denied. You may need elevated privileges to update the database."
-            | "Connection error. Please check your network connection."
-            | "DNS resolution failed. Please check your network settings."
-            | "Update failed with an unknown error. Check the logs for details."
-            | "Update cancelled by user" => Some(crate::i18n::translate(ctx, message)),
-            _ => None,
-        };
+            "Authentication cancelled. Database update requires administrator privileges." => {
+                crate::i18n::translate(ctx, "Authentication cancelled. Database update requires administrator privileges.")
+            }
+            "Authorization failed. You are not authorized to update the database." => {
+                crate::i18n::translate(ctx, "Authorization failed. You are not authorized to update the database.")
+            }
+            "Update rate limited by mirror. Please wait a few minutes and try again." => {
+                crate::i18n::translate(ctx, "Update rate limited by mirror. Please wait a few minutes and try again.")
+            }
+            "Update blocked by CDN. This may be due to rate limiting. Please wait and try again later." => {
+                crate::i18n::translate(ctx, "Update blocked by CDN. This may be due to rate limiting. Please wait and try again later.")
+            }
+            "ClamAV mirror is currently unavailable. Please try again later." => {
+                crate::i18n::translate(ctx, "ClamAV mirror is currently unavailable. Please try again later.")
+            }
+            "SSL/TLS certificate error. The mirror may have configuration issues." => {
+                crate::i18n::translate(ctx, "SSL/TLS certificate error. The mirror may have configuration issues.")
+            }
+            "Connection timed out. Please check your network connection." => {
+                crate::i18n::translate(ctx, "Connection timed out. Please check your network connection.")
+            }
+            "Authorization failed. Please try again and enter your password." => {
+                crate::i18n::translate(ctx, "Authorization failed. Please try again and enter your password.")
+            }
+            "Database is locked. Another freshclam instance may be running." => {
+                crate::i18n::translate(ctx, "Database is locked. Another freshclam instance may be running.")
+            }
+            "Permission denied. You may need elevated privileges to update the database." => {
+                crate::i18n::translate(ctx, "Permission denied. You may need elevated privileges to update the database.")
+            }
+            "Connection error. Please check your network connection." => {
+                crate::i18n::translate(ctx, "Connection error. Please check your network connection.")
+            }
+            "DNS resolution failed. Please check your network settings." => {
+                crate::i18n::translate(ctx, "DNS resolution failed. Please check your network settings.")
+            }
+            "Update failed with an unknown error. Check the logs for details." => {
+                crate::i18n::translate(ctx, "Update failed with an unknown error. Check the logs for details.")
+            }
+            "Update cancelled by user" => crate::i18n::translate(ctx, "Update cancelled by user"),
+            _ => return,
+        });
         if let Some(translated) = translated {
             result.error_message = Some(translated);
         }

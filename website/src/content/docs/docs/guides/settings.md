@@ -3,7 +3,7 @@ title: Set preferences
 description: Choose app behavior, host ClamAV options, device scans, and diagnostics.
 ---
 
-Open **Preferences** with `Ctrl+,`. Most app preferences and exclusions save immediately. **Scheduled Scans** need **Save & Apply** to persist their settings and provision the scheduler; changes to host `freshclam.conf` or `clamd.conf` also need **Save & Apply** and elevated host access.
+Open **Preferences** with `Ctrl+,`. Most app preferences and exclusions save immediately. **Scheduled** needs **Save & Apply** to persist their settings and provision the scheduler; changes to host `freshclam.conf` or `clamd.conf` also need **Save & Apply** and elevated host access.
 
 ## Choose the right page
 
@@ -11,14 +11,15 @@ Open **Preferences** with `Ctrl+,`. Most app preferences and exclusions save imm
 | --- | --- |
 | Language, close behavior, tray startup, live progress, manual update timeout | Behavior |
 | Select ClamAV mode and socket | Scanner |
-| Schedule recurring scans | Scheduled Scans |
+| Schedule recurring scans | Scheduled |
 | Definition update settings | Database |
 | Local YARA rules folder | YARA Rules |
 | Global exclusion records | Exclusions |
 | Mounted-device scanning | Device Scan |
 | On-access ClamAV monitoring | On-Access |
 | VirusTotal API key | VirusTotal |
-| Debug logging | Debugging |
+| Debug logging | Debug |
+| urlscan.io API key | urlscan.io |
 
 For every raw key, default, location, and host boundary see [Configuration](/Linux-Defender/docs/reference/configuration/).
 

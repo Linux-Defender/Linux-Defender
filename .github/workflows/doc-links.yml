@@ -25,7 +25,9 @@ jobs:
 
       - name: Verify external links
         id: links
-        run: python3 scripts/check-external-links.py 2>&1 | tee "$RUNNER_TEMP/doc-links.log"
+        run: |
+          set -o pipefail
+          python3 scripts/check-external-links.py 2>&1 | tee "$RUNNER_TEMP/doc-links.log"
 
       - name: Write workflow summary
         if: always()

@@ -170,4 +170,4 @@ The visual identity is documented in [`docs/DESIGN.md`](docs/DESIGN.md): Guardia
 tokens, typography, component rules, and the brand-asset regeneration steps shared by
 the app and the website.
 
-Use root-relative `/docs/.../` links in website content. Keep root discoverability files concise, release content sourced from `CHANGELOG.md` and `RELEASE_NOTES.md`, and generated `website/public/` assets untouched.
+Use repository-page `/Linux-Defender/docs/.../` links in website content (the site `base` is `/Linux-Defender`). Keep root discoverability files concise, release content sourced from `CHANGELOG.md` and `RELEASE_NOTES.md`, and generated `website/public/` assets untouched.

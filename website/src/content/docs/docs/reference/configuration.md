@@ -3,7 +3,7 @@ title: Configuration reference
 description: XDG data, settings, profiles, and the protected host ClamAV boundary.
 ---
 
-Linux Defender uses its own XDG data directory and Flatpak app ID. On first launch, it moves previous ClamUI settings and data into the Linux Defender locations without changing file contents. If both old and new directories contain files, startup reports the conflict and leaves both copies untouched. Back up these paths before changing installs. Most application preferences save immediately. **Scheduled Scans** and host ClamAV configuration use **Save & Apply** because they can change both local settings and host state. Direct JSON edits take effect after restart; ensure the file remains a JSON object before restarting.
+Linux Defender uses its own XDG data directory and Flatpak app ID. On first launch, it moves previous ClamUI settings and data into the Linux Defender locations without changing file contents. If both old and new directories contain files, startup merges the legacy files into the current tree and renames the old directory `<name>.migrated`; it does not delete either copy. Back up these paths before changing installs. Most application preferences save immediately. **Scheduled Scans** and host ClamAV configuration use **Save & Apply** because they can change both local settings and host state. Direct JSON edits take effect after restart; ensure the file remains a JSON object before restarting.
 
 ## Locations
 

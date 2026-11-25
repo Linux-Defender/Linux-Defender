@@ -58,7 +58,7 @@ Linux Defender does not bundle an engine or signature database. Scanning, quaran
 - The Rust/Tauri/React foundation provides scanning, quarantine, scheduling, history, database controls, a system audit, and VirusTotal/urlscan integration.
 - Scan supports Files & Folders and Website URL modes with explicit consent before any online submission.
 - Protected host settings go through the version-matched `linux-defender-apply-preferences` helper and Polkit policy; source builds can install the locally built helper from the blocked-settings dialog.
-- File-manager integrations (Nautilus/Nemo/Dolphin) and a native SNI/DBusMenu tray are available from Preferences → Behavior.
+- File-manager integrations (Nautilus/Nemo/Dolphin/Thunar) and a native SNI/DBusMenu tray ship in every format. The in-app **Preferences → Behavior → Configure Integration** manager is available only in the Flatpak build; native packages install the actions through their package scripts.
 - Remaining parity work is tracked in [the revival records](docs/revival/RELATED-PROJECT-REVIEW.md) and [the fork status](docs/clamui-fork/STATUS.md).
 
 ## For source development

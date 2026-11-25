@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-23 15:24-0500\n"
+"POT-Creation-Date: 2026-11-25 02:37-0500\n"
 "PO-Revision-Date: 2026-04-27 19:42-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1533,7 +1533,7 @@ msgstr[0] "{count} segundo"
 msgstr[1] "{count} segundos"
 
 #: crates/linux-defender-core/src/logs.rs:1393
-#: desktop/src-tauri/src/notifications.rs:107
+#: desktop/src-tauri/src/notifications.rs:92
 msgid "Scan Complete"
 msgstr "Análisis completado"
 
@@ -1544,12 +1544,12 @@ msgstr[0] "Se encontró {count} amenaza{suffix}"
 msgstr[1] "Se encontraron {count} amenazas{suffix}"
 
 #: crates/linux-defender-core/src/logs.rs:1411
-#: desktop/src-tauri/src/notifications.rs:109
+#: desktop/src-tauri/src/notifications.rs:94
 msgid "Scan Cancelled"
 msgstr "Análisis cancelado"
 
 #: crates/linux-defender-core/src/logs.rs:1414
-#: desktop/src-tauri/src/notifications.rs:111
+#: desktop/src-tauri/src/notifications.rs:96
 msgid "Scan Error"
 msgstr "Error de análisis"
 
@@ -1621,6 +1621,38 @@ msgstr ""
 msgid "Not running as Flatpak"
 msgstr "No se ejecuta como Flatpak"
 
+#: crates/linux-defender-core/src/platform.rs:527
+msgid "Invalid integration destination: {path}"
+msgstr "Invalid integration destination: {path}"
+
+#: crates/linux-defender-core/src/platform.rs:531
+msgid "Integration destination escapes {path}"
+msgstr "Integration destination escapes {path}"
+
+#: crates/linux-defender-core/src/platform.rs:535
+msgid "Integration destination contains a symlink: {path}"
+msgstr "Integration destination contains a symlink: {path}"
+
+#: crates/linux-defender-core/src/platform.rs:552
+msgid "Failed to create {path}: {error}"
+msgstr "Failed to create {path}: {error}"
+
+#: crates/linux-defender-core/src/platform.rs:555
+msgid "Failed to write {path}: {error}"
+msgstr "Failed to write {path}: {error}"
+
+#: crates/linux-defender-core/src/platform.rs:558
+msgid "Failed to inspect {path}: {error}"
+msgstr "Failed to inspect {path}: {error}"
+
+#: crates/linux-defender-core/src/platform.rs:561
+msgid "Failed to set permissions on {path}: {error}"
+msgstr "Failed to set permissions on {path}: {error}"
+
+#: crates/linux-defender-core/src/platform.rs:564
+msgid "Failed to remove {path}: {error}"
+msgstr "Failed to remove {path}: {error}"
+
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
 #: crates/linux-defender-core/src/privileged.rs:1118
 msgid "Authorization was cancelled while {operation}."
@@ -1678,7 +1710,7 @@ msgid "Reading configuration"
 msgstr "Leyendo configuración"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3086
+#: crates/linux-defender-core/src/privileged.rs:3103
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -2076,6 +2108,7 @@ msgid "Skipping scan: running on battery power"
 msgstr "Se omite el análisis: se está usando batería"
 
 #: crates/linux-defender-core/src/updater.rs:131
+#: crates/linux-defender-core/src/updater.rs:177
 msgid "Update cancelled by user"
 msgstr "Actualización cancelada por el usuario"
 
@@ -2087,14 +2120,75 @@ msgstr ""
 "La salida del proceso de actualización no se cerró después de la limpieza; "
 "no se puede clasificar el resultado."
 
+#: crates/linux-defender-core/src/updater.rs:139
+msgid ""
+"Authentication cancelled. Database update requires administrator privileges."
+msgstr ""
+"Authentication cancelled. Database update requires administrator privileges."
+
+#: crates/linux-defender-core/src/updater.rs:142
+msgid "Authorization failed. You are not authorized to update the database."
+msgstr "Authorization failed. You are not authorized to update the database."
+
+#: crates/linux-defender-core/src/updater.rs:145
+msgid "Update rate limited by mirror. Please wait a few minutes and try again."
+msgstr ""
+"Update rate limited by mirror. Please wait a few minutes and try again."
+
+#: crates/linux-defender-core/src/updater.rs:148
+msgid ""
+"Update blocked by CDN. This may be due to rate limiting. Please wait and try "
+"again later."
+msgstr ""
+"Update blocked by CDN. This may be due to rate limiting. Please wait and try "
+"again later."
+
+#: crates/linux-defender-core/src/updater.rs:151
+msgid "ClamAV mirror is currently unavailable. Please try again later."
+msgstr "ClamAV mirror is currently unavailable. Please try again later."
+
+#: crates/linux-defender-core/src/updater.rs:154
+msgid "SSL/TLS certificate error. The mirror may have configuration issues."
+msgstr "SSL/TLS certificate error. The mirror may have configuration issues."
+
+#: crates/linux-defender-core/src/updater.rs:157
+msgid "Connection timed out. Please check your network connection."
+msgstr "Connection timed out. Please check your network connection."
+
+#: crates/linux-defender-core/src/updater.rs:160
+msgid "Authorization failed. Please try again and enter your password."
+msgstr "Authorization failed. Please try again and enter your password."
+
+#: crates/linux-defender-core/src/updater.rs:163
+msgid "Database is locked. Another freshclam instance may be running."
+msgstr "Database is locked. Another freshclam instance may be running."
+
+#: crates/linux-defender-core/src/updater.rs:166
+msgid ""
+"Permission denied. You may need elevated privileges to update the database."
+msgstr ""
+"Permission denied. You may need elevated privileges to update the database."
+
+#: crates/linux-defender-core/src/updater.rs:169
+msgid "Connection error. Please check your network connection."
+msgstr "Connection error. Please check your network connection."
+
+#: crates/linux-defender-core/src/updater.rs:172
+msgid "DNS resolution failed. Please check your network settings."
+msgstr "DNS resolution failed. Please check your network settings."
+
+#: crates/linux-defender-core/src/updater.rs:175
+msgid "Update failed with an unknown error. Check the logs for details."
+msgstr "Update failed with an unknown error. Check the logs for details."
+
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:503
+#: crates/linux-defender-core/src/updater.rs:526
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr ""
 "Se ha enviado una señal de actualización al servicio freshclam (PID {pid})"
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:793
+#: crates/linux-defender-core/src/updater.rs:816
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2102,7 +2196,7 @@ msgstr ""
 "Se está ejecutando otra instancia de freshclam (PID {pid}). Deténgala "
 "primero: sudo systemctl stop clamav-freshclam"
 
-#: crates/linux-defender-core/src/updater.rs:823
+#: crates/linux-defender-core/src/updater.rs:846
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] "Update timed out after {minutes} minutes without output"
@@ -2110,7 +2204,7 @@ msgstr[1] "Update timed out after {minutes} minutes without output"
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/updater.rs:962
+#: crates/linux-defender-core/src/updater.rs:985
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] ""
@@ -2121,21 +2215,21 @@ msgstr[1] ""
 "de datos"
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/linux-defender-core/src/updater.rs:972
+#: crates/linux-defender-core/src/updater.rs:995
 msgid "Database update completed — Already up to date"
 msgstr "Actualización de la base de datos completada — Ya está actualizada"
 
-#: crates/linux-defender-core/src/updater.rs:1039
+#: crates/linux-defender-core/src/updater.rs:1062
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "La configuración de freshclam seleccionada no existe: {path}"
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/linux-defender-core/src/updater.rs:1071
+#: crates/linux-defender-core/src/updater.rs:1094
 msgid "Could not determine freshclam PID"
 msgstr "No se ha podido determinar el PID de freshclam"
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/linux-defender-core/src/updater.rs:1081
+#: crates/linux-defender-core/src/updater.rs:1104
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
@@ -2213,59 +2307,55 @@ msgstr "Error: {error}"
 msgid "API key saved"
 msgstr "Clave API guardada"
 
-#: desktop/src-tauri/src/notifications.rs:108
+#: desktop/src-tauri/src/notifications.rs:93
 msgid "Threats Detected!"
 msgstr "¡Amenazas detectadas!"
 
-#: desktop/src-tauri/src/notifications.rs:137
+#: desktop/src-tauri/src/notifications.rs:122
 msgid "Database Update Requested"
 msgstr "Actualización de la base de datos solicitada"
 
-#: desktop/src-tauri/src/notifications.rs:138
+#: desktop/src-tauri/src/notifications.rs:123
 msgid "Freshclam service was signalled to check for updates"
 msgstr "Se envió una señal al servicio Freshclam para buscar actualizaciones"
 
-#: desktop/src-tauri/src/notifications.rs:141
+#: desktop/src-tauri/src/notifications.rs:126
 msgid "Database Updated"
 msgstr "Base de datos actualizada"
 
-#: desktop/src-tauri/src/notifications.rs:142
+#: desktop/src-tauri/src/notifications.rs:127
 msgid "{count} virus database was updated"
 msgid_plural "{count} virus databases were updated"
 msgstr[0] "Se actualizó {count} base de datos de virus"
 msgstr[1] "Se actualizaron {count} bases de datos de virus"
 
-#: desktop/src-tauri/src/notifications.rs:151
+#: desktop/src-tauri/src/notifications.rs:136
 msgid "Database Up to Date"
 msgstr "Base de datos al día"
 
-#: desktop/src-tauri/src/notifications.rs:152
+#: desktop/src-tauri/src/notifications.rs:137
 msgid "Virus definitions are already current"
 msgstr "Las definiciones de virus ya están actualizadas"
 
-#: desktop/src-tauri/src/notifications.rs:155
+#: desktop/src-tauri/src/notifications.rs:140
 msgid "Database Update Cancelled"
 msgstr "Actualización de la base de datos cancelada"
 
-#: desktop/src-tauri/src/notifications.rs:163
+#: desktop/src-tauri/src/notifications.rs:148
 msgid "Database Update Failed"
 msgstr "Actualización de la base de datos falló"
 
-#: desktop/src-tauri/src/notifications.rs:175
+#: desktop/src-tauri/src/notifications.rs:160
 msgid "VirusTotal Analysis Complete"
 msgstr "Análisis de VirusTotal completado"
 
-#: desktop/src-tauri/src/notifications.rs:182
+#: desktop/src-tauri/src/notifications.rs:167
 msgid "Scanning Device"
 msgstr "Analizando dispositivo"
 
-#: desktop/src-tauri/src/notifications.rs:189
+#: desktop/src-tauri/src/notifications.rs:174
 msgid "Device Scan Complete"
 msgstr "Análisis de dispositivo completado"
-
-#: desktop/src-tauri/src/notifications.rs:196
-msgid "Security Audit Complete"
-msgstr "Auditoría de seguridad completada"
 
 #: desktop/src-tauri/src/runtime.rs:203
 msgid "Quick Scan"
@@ -2307,189 +2397,193 @@ msgstr "Exportar"
 msgid "Open"
 msgstr "Abrir"
 
-#: desktop/src/App.tsx:111 desktop/src/pages/Overview.tsx:108
+#: desktop/src/App.tsx:112 desktop/src/pages/Overview.tsx:108
 msgid "Overview"
 msgstr "Resumen"
 
-#: desktop/src/App.tsx:113 desktop/src/pages/Scan.tsx:719
+#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:719
 #: desktop/src/pages/Scan.tsx:721
 msgid "Scan"
 msgstr "Escanear"
 
-#: desktop/src/App.tsx:115 desktop/src/pages/Database.tsx:279
+#: desktop/src/App.tsx:116 desktop/src/pages/Database.tsx:279
 #: desktop/src/pages/Preferences.tsx:15
 msgid "Database"
 msgstr "Base de datos"
 
-#: desktop/src/App.tsx:117 desktop/src/pages/Logs.tsx:358
+#: desktop/src/App.tsx:118 desktop/src/pages/Logs.tsx:358
 msgid "Logs"
 msgstr "Registros"
 
-#: desktop/src/App.tsx:119
+#: desktop/src/App.tsx:120
 msgid "Components"
 msgstr "Componentes"
 
-#: desktop/src/App.tsx:123 desktop/src/pages/Overview.tsx:135
+#: desktop/src/App.tsx:124 desktop/src/pages/Overview.tsx:135
 #: desktop/src/pages/Statistics.tsx:102
 msgid "Statistics"
 msgstr "Estadísticas"
 
-#: desktop/src/App.tsx:125
+#: desktop/src/App.tsx:126
 msgid "Audit"
 msgstr "Auditoría"
 
-#: desktop/src/App.tsx:127
+#: desktop/src/App.tsx:128
 msgid "Network"
 msgstr "Red"
 
-#: desktop/src/App.tsx:129 desktop/src/App.tsx:880 desktop/src/App.tsx:968
+#: desktop/src/App.tsx:130 desktop/src/App.tsx:888 desktop/src/App.tsx:976
 #: desktop/src/pages/Preferences.tsx:119
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: desktop/src/App.tsx:131
+#: desktop/src/App.tsx:132
 msgid "Profiles"
 msgstr "Perfiles"
 
-#: desktop/src/App.tsx:133 desktop/src/pages/Results.tsx:281
+#: desktop/src/App.tsx:134 desktop/src/pages/Results.tsx:281
 #: desktop/src/pages/Results.tsx:282
 msgid "Results"
 msgstr "Resultados"
 
-#: desktop/src/App.tsx:305 desktop/src/pages/ConfigPreferences.tsx:567
+#: desktop/src/App.tsx:306 desktop/src/pages/ConfigPreferences.tsx:567
 msgid "Could not open link"
 msgstr "No se pudo abrir el enlace"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/App.tsx:385 desktop/src/App.tsx:400 desktop/src/App.tsx:418
+#: desktop/src/App.tsx:386 desktop/src/App.tsx:401 desktop/src/App.tsx:419
 #: desktop/src/pages/Scan.tsx:501
 msgid "Scan in progress — wait for it to finish before changing targets"
 msgstr ""
 "Análisis en curso — espere a que finalice antes de cambiar los destinos"
 
-#: desktop/src/App.tsx:464
+#: desktop/src/App.tsx:465
 msgid "The privileged-helper installation returned an invalid status."
 msgstr ""
 "La instalación del asistente con privilegios devolvió un estado no válido."
 
-#: desktop/src/App.tsx:471
+#: desktop/src/App.tsx:472
 msgid "The privileged helper was installed successfully."
 msgstr "El asistente con privilegios se instaló correctamente."
 
-#: desktop/src/App.tsx:473
+#: desktop/src/App.tsx:474
 msgid ""
 "The privileged helper is still unavailable. Try again or install it manually."
 msgstr ""
 "El asistente con privilegios sigue sin estar disponible. Vuelva a intentarlo "
 "o instálelo manualmente."
 
-#: desktop/src/App.tsx:772
+#: desktop/src/App.tsx:780
 msgid "The privileged-helper status returned an invalid response."
 msgstr ""
 "El estado del asistente con privilegios devolvió una respuesta no válida."
 
-#: desktop/src/App.tsx:873
+#: desktop/src/App.tsx:881
 msgid "Linux Defender"
 msgstr "Linux Defender"
 
-#: desktop/src/App.tsx:878
+#: desktop/src/App.tsx:886
 msgid "Back"
 msgstr "Atrás"
 
-#: desktop/src/App.tsx:903
+#: desktop/src/App.tsx:911
 msgid "Scan File or Folder"
 msgstr "Analizar archivo o carpeta"
 
-#: desktop/src/App.tsx:910
+#: desktop/src/App.tsx:918
 msgid "Choose scan targets"
 msgstr "Elegir destinos de análisis"
 
-#: desktop/src/App.tsx:920
+#: desktop/src/App.tsx:928
 msgid "Scan Files"
 msgstr "Analizar archivos"
 
-#: desktop/src/App.tsx:924
+#: desktop/src/App.tsx:932
 msgid "Scan Folders"
 msgstr "Analizar carpetas"
 
-#: desktop/src/App.tsx:931
+#: desktop/src/App.tsx:939
 msgid "Scan System (Quick Scan)"
 msgstr "Analizar sistema (análisis rápido)"
 
-#: desktop/src/App.tsx:938 desktop/src/App.tsx:939
+#: desktop/src/App.tsx:946 desktop/src/App.tsx:947
 msgid "Menu"
 msgstr "Menú"
 
-#: desktop/src/App.tsx:958
+#: desktop/src/App.tsx:966
 msgid "Application menu"
 msgstr "Menú de la aplicación"
 
-#: desktop/src/App.tsx:971
+#: desktop/src/App.tsx:979
 msgid "About"
 msgstr "Acerca de"
 
-#: desktop/src/App.tsx:984
+#: desktop/src/App.tsx:992
 msgid "Main navigation"
 msgstr "Navegación principal"
 
-#: desktop/src/App.tsx:985
+#: desktop/src/App.tsx:993
 msgid "Views"
 msgstr "Vistas"
 
-#: desktop/src/App.tsx:1005 desktop/src/pages/Quarantine.tsx:339
+#: desktop/src/App.tsx:1013 desktop/src/pages/Quarantine.tsx:339
 msgid "Dismiss"
 msgstr "Descartar"
 
-#: desktop/src/App.tsx:1027
+#: desktop/src/App.tsx:1035
 msgid "About Linux Defender"
 msgstr "About Linux Defender"
 
-#: desktop/src/App.tsx:1028
+#: desktop/src/App.tsx:1036
 msgid "An on-demand Linux security scanner using your system's ClamAV tools."
 msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 
-#: desktop/src/App.tsx:1030
+#: desktop/src/App.tsx:1038
 msgid "Version"
 msgstr "Versión"
 
-#: desktop/src/App.tsx:1031 desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/App.tsx:1039 desktop/src/pages/SettingsPreferences.tsx:270
 #: desktop/src/pages/SettingsPreferences.tsx:271
 msgid "Language"
 msgstr "Idioma"
 
-#: desktop/src/App.tsx:1032
+#: desktop/src/App.tsx:1040
 msgid "License"
 msgstr "Licencia"
 
-#: desktop/src/App.tsx:1035
+#: desktop/src/App.tsx:1043
 msgid "Project website"
 msgstr "Sitio web del proyecto"
 
-#: desktop/src/App.tsx:1036
+#: desktop/src/App.tsx:1044 desktop/src/pages/ConfigPreferences.tsx:833
+msgid "Documentation"
+msgstr "Documentación"
+
+#: desktop/src/App.tsx:1045
 msgid "Issue tracker"
 msgstr "Seguimiento de incidencias"
 
-#: desktop/src/App.tsx:1038
+#: desktop/src/App.tsx:1047
 msgid "Could not load contributor credits: {error}"
 msgstr "No se pudieron cargar los créditos de colaboradores: {error}"
 
-#: desktop/src/App.tsx:1043
+#: desktop/src/App.tsx:1052
 msgid "Contributors"
 msgstr "Colaboradores"
 
-#: desktop/src/App.tsx:1052
+#: desktop/src/App.tsx:1061
 msgid "Translator credits"
 msgstr "Créditos de traducción"
 
-#: desktop/src/App.tsx:1055
+#: desktop/src/App.tsx:1064
 msgid "Loading contributor credits…"
 msgstr "Cargando los créditos de colaboradores…"
 
-#: desktop/src/App.tsx:1057
+#: desktop/src/App.tsx:1066
 msgid "Close Linux Defender?"
 msgstr "Close Linux Defender?"
 
-#: desktop/src/App.tsx:1058
+#: desktop/src/App.tsx:1067
 msgid ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
@@ -2497,15 +2591,15 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1059 desktop/src/pages/Scan.tsx:262
+#: desktop/src/App.tsx:1068 desktop/src/pages/Scan.tsx:262
 msgid "Remember my choice"
 msgstr "Recordar mi elección"
 
-#: desktop/src/App.tsx:1060 desktop/src/App.tsx:1064
+#: desktop/src/App.tsx:1069 desktop/src/App.tsx:1073
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:412
-#: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:245
-#: desktop/src/pages/Profiles.tsx:246 desktop/src/pages/Quarantine.tsx:377
+#: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
+#: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:377
 #: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:753
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:449
@@ -2514,40 +2608,40 @@ msgstr "Recordar mi elección"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: desktop/src/App.tsx:1060
+#: desktop/src/App.tsx:1069
 msgid "Minimize to tray"
 msgstr "Minimizar a la bandeja del sistema"
 
-#: desktop/src/App.tsx:1062
+#: desktop/src/App.tsx:1071
 msgid "Scan in Progress"
 msgstr "Escaneo en curso"
 
-#: desktop/src/App.tsx:1063
+#: desktop/src/App.tsx:1072
 msgid "A scan is still running. Cancelling it may leave partial results."
 msgstr ""
 "Todavía hay un análisis en curso. Cancelarlo puede dejar resultados "
 "parciales."
 
-#: desktop/src/App.tsx:1064
+#: desktop/src/App.tsx:1073
 msgid "Keep Scanning"
 msgstr "Seguir escaneando"
 
-#: desktop/src/App.tsx:1064
+#: desktop/src/App.tsx:1073
 msgid "Cancel Scan and Close"
 msgstr "Cancelar el escaneo y cerrar"
 
-#: desktop/src/App.tsx:1064 desktop/src/ConfigurationRecovery.tsx:94
+#: desktop/src/App.tsx:1073 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:346 desktop/src/pages/Scan.tsx:352
 #: desktop/src/pages/Scan.tsx:364 desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Close"
 msgstr "Cerrar"
 
-#: desktop/src/App.tsx:1066
+#: desktop/src/App.tsx:1075
 msgid "Install Privileged Helper"
 msgstr "Instalar asistente con privilegios"
 
-#: desktop/src/App.tsx:1067
+#: desktop/src/App.tsx:1076
 msgid ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
@@ -2555,14 +2649,14 @@ msgstr ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
 
-#: desktop/src/App.tsx:1069 desktop/src/HelperTrustErrorDialog.tsx:52
+#: desktop/src/App.tsx:1078 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr ""
 "La instalación de la herramienta auxiliar requiere autorización de "
 "administrador."
 
 #. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1070
+#: desktop/src/App.tsx:1079
 msgid ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
@@ -2570,27 +2664,27 @@ msgstr ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
 
-#: desktop/src/App.tsx:1075 desktop/src/HelperTrustErrorDialog.tsx:78
+#: desktop/src/App.tsx:1084 desktop/src/HelperTrustErrorDialog.tsx:78
 msgid "Installing privileged helper…"
 msgstr "Instalando asistente con privilegios…"
 
-#: desktop/src/App.tsx:1077
+#: desktop/src/App.tsx:1086
 msgid "Not now"
 msgstr "Ahora no"
 
-#: desktop/src/App.tsx:1077 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1086 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Installing…"
 msgstr "Instalando…"
 
-#: desktop/src/App.tsx:1077 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1086 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Try Again"
 msgstr "Intentar de nuevo"
 
-#: desktop/src/App.tsx:1077 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1086 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Install Helper"
 msgstr "Instalar asistente"
 
-#: desktop/src/App.tsx:1077
+#: desktop/src/App.tsx:1086
 msgid "Open Preferences"
 msgstr "Abrir preferencias"
 
@@ -3586,10 +3680,6 @@ msgstr "Estado del demonio"
 #: desktop/src/pages/ConfigPreferences.tsx:832
 msgid "Refresh Status"
 msgstr "Actualizar estado"
-
-#: desktop/src/pages/ConfigPreferences.tsx:833
-msgid "Documentation"
-msgstr "Documentación"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
 #: desktop/src/pages/ConfigPreferences.tsx:835
@@ -4739,7 +4829,7 @@ msgstr "Las opciones deben ser un objeto JSON"
 msgid "Edit Profile"
 msgstr "Editar perfil"
 
-#: desktop/src/pages/Profiles.tsx:88 desktop/src/pages/Profiles.tsx:226
+#: desktop/src/pages/Profiles.tsx:88 desktop/src/pages/Profiles.tsx:223
 msgid "New Profile"
 msgstr "Nuevo perfil"
 
@@ -4793,106 +4883,106 @@ msgstr ""
 msgid "Save Profile"
 msgstr "Guardar perfil"
 
-#: desktop/src/pages/Profiles.tsx:152
+#: desktop/src/pages/Profiles.tsx:149
 msgid "Profile saved"
 msgstr "Perfil guardado"
 
-#: desktop/src/pages/Profiles.tsx:161
+#: desktop/src/pages/Profiles.tsx:158
 msgid "Profile duplicated"
 msgstr "Perfil duplicado"
 
-#: desktop/src/pages/Profiles.tsx:177
+#: desktop/src/pages/Profiles.tsx:174
 msgid "Profile deleted"
 msgstr "Perfil eliminado"
 
-#: desktop/src/pages/Profiles.tsx:191
+#: desktop/src/pages/Profiles.tsx:188
 msgid "Profile imported"
 msgstr "Perfil importado"
 
-#: desktop/src/pages/Profiles.tsx:201
+#: desktop/src/pages/Profiles.tsx:198
 msgid "Profile export did not return data"
 msgstr "La exportación del perfil no devolvió datos"
 
-#: desktop/src/pages/Profiles.tsx:203 desktop/src/pages/Results.tsx:217
+#: desktop/src/pages/Profiles.tsx:200 desktop/src/pages/Results.tsx:217
 msgid "JSON Files"
 msgstr "Archivos JSON"
 
-#: desktop/src/pages/Profiles.tsx:203
+#: desktop/src/pages/Profiles.tsx:200
 msgid "Profile exported"
 msgstr "Perfil exportado"
 
-#: desktop/src/pages/Profiles.tsx:217
+#: desktop/src/pages/Profiles.tsx:214
 msgid "Default profiles restored"
 msgstr "Perfiles predeterminados restaurados"
 
-#: desktop/src/pages/Profiles.tsx:225 desktop/src/pages/Profiles.tsx:226
+#: desktop/src/pages/Profiles.tsx:222 desktop/src/pages/Profiles.tsx:223
 msgid "Scan Profiles"
 msgstr "Perfiles de análisis"
 
-#: desktop/src/pages/Profiles.tsx:226
+#: desktop/src/pages/Profiles.tsx:223
 msgid "Save targets, exclusions, and scan options for reuse."
 msgstr ""
 "Guarde destinos, exclusiones y opciones de análisis para reutilizarlos."
 
-#: desktop/src/pages/Profiles.tsx:226
+#: desktop/src/pages/Profiles.tsx:223
 msgid "Import"
 msgstr "Importar"
 
-#: desktop/src/pages/Profiles.tsx:226 desktop/src/pages/Profiles.tsx:246
+#: desktop/src/pages/Profiles.tsx:223 desktop/src/pages/Profiles.tsx:243
 msgid "Restore Defaults"
 msgstr "Restaurar valores predeterminados"
 
-#: desktop/src/pages/Profiles.tsx:228
+#: desktop/src/pages/Profiles.tsx:225
 msgid "Loading profiles…"
 msgstr "Cargando perfiles…"
 
-#: desktop/src/pages/Profiles.tsx:228
+#: desktop/src/pages/Profiles.tsx:225
 msgid "No profiles available"
 msgstr "No hay perfiles disponibles"
 
-#: desktop/src/pages/Profiles.tsx:230
+#: desktop/src/pages/Profiles.tsx:227
 msgid "{count} target"
 msgid_plural "{count} targets"
 msgstr[0] "{count} destino"
 msgstr[1] "{count} destinos"
 
-#: desktop/src/pages/Profiles.tsx:237
+#: desktop/src/pages/Profiles.tsx:234
 msgid "Use this profile"
 msgstr "Usar este perfil"
 
-#: desktop/src/pages/Profiles.tsx:237
+#: desktop/src/pages/Profiles.tsx:234
 msgid "Edit"
 msgstr "Editar"
 
-#: desktop/src/pages/Profiles.tsx:237
+#: desktop/src/pages/Profiles.tsx:234
 msgid "Duplicate"
 msgstr "Duplicar"
 
-#: desktop/src/pages/Profiles.tsx:237 desktop/src/pages/Profiles.tsx:245
+#: desktop/src/pages/Profiles.tsx:234 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Quarantine.tsx:365 desktop/src/pages/Quarantine.tsx:377
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "Delete"
 msgstr "Eliminar"
 
-#: desktop/src/pages/Profiles.tsx:241
+#: desktop/src/pages/Profiles.tsx:238
 msgid "Delete Profile"
 msgstr "Eliminar perfil"
 
 #. Translators: Preserve the {name} placeholder; it is a user-provided profile name. Use quotation marks appropriate for your language.
-#: desktop/src/pages/Profiles.tsx:241
+#: desktop/src/pages/Profiles.tsx:238
 msgid "Delete profile '{name}'? This cannot be undone."
 msgstr "¿Eliminar el perfil '{name}'? Esta acción no se puede deshacer."
 
-#: desktop/src/pages/Profiles.tsx:245
+#: desktop/src/pages/Profiles.tsx:242
 msgid "Deleting…"
 msgstr "Eliminando…"
 
-#: desktop/src/pages/Profiles.tsx:246
+#: desktop/src/pages/Profiles.tsx:243
 msgid "Restore Default Profiles"
 msgstr "Restaurar perfiles predeterminados"
 
-#: desktop/src/pages/Profiles.tsx:246
+#: desktop/src/pages/Profiles.tsx:243
 msgid ""
 "Restore the built-in default profiles? Any customizations to default "
 "profiles will be reset; custom profiles are preserved."
@@ -4901,7 +4991,7 @@ msgstr ""
 "las personalizaciones de los perfiles predeterminados; los perfiles "
 "personalizados se conservarán."
 
-#: desktop/src/pages/Profiles.tsx:246
+#: desktop/src/pages/Profiles.tsx:243
 msgid "Restoring…"
 msgstr "Restaurando…"
 
@@ -6864,3 +6954,6 @@ msgstr "Las definiciones de virus tienen más de 1 día"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "El sistema está protegido"
+
+#~ msgid "Security Audit Complete"
+#~ msgstr "Auditoría de seguridad completada"

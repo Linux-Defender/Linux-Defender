@@ -56,8 +56,8 @@ const DEFINITIONS: ComponentDefinition[] = [
     id: "clamdscan",
     guides: [
       { distro: "Ubuntu/Debian", command: "sudo apt install clamav-daemon" },
-      { distro: "Fedora Workstation", command: "sudo dnf install clamd" },
-      { distro: "Fedora Atomic", command: "sudo rpm-ostree install clamd\nsudo systemctl reboot" },
+      { distro: "Fedora Workstation", command: "sudo dnf install clamd clamav-freshclam" },
+      { distro: "Fedora Atomic", command: "sudo rpm-ostree install clamd clamav-freshclam\nsudo systemctl reboot" },
       { distro: "Arch Linux", command: "sudo pacman -S clamav" },
     ],
   },

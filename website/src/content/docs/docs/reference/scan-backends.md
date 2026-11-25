@@ -28,7 +28,7 @@ starts services for you. Run them as an administrator on the host. The app's
 Components page offers the same per-family commands: **Ubuntu/Debian**
 `sudo apt install clamav`, **Fedora Workstation** `sudo dnf install clamav`,
 **Fedora Atomic** `sudo rpm-ostree install clamav`, and **Arch Linux**
-`sudo pacman -S clamav`. For daemon diagnosis on Fedora use
+`sudo pacman -S clamav`. FreshClam equivalents are `sudo apt install clamav-freshclam` (Ubuntu/Debian), `sudo dnf install clamav-freshclam` (Fedora Workstation), `sudo rpm-ostree install clamav-freshclam` (Fedora Atomic), and `sudo pacman -S clamav` (Arch Linux). For daemon diagnosis on Fedora use
 `clamdscan --config-file=/etc/clamd.d/scan.conf --ping 3`.
 
 ```bash

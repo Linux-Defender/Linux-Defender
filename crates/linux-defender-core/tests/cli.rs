@@ -80,6 +80,24 @@ fn root_help_is_headless_and_lists_all_documented_commands() {
 }
 
 #[test]
+fn help_subcommand_returns_topic_examples_headlessly() {
+    let mut command = cli();
+    let root = isolated_xdg(&mut command);
+    let output = command
+        .arg("help")
+        .arg("scan")
+        .output()
+        .expect("run linux-defender-cli help scan");
+    assert!(output.status.success(), "{}", stderr(&output));
+    let output = stdout(&output);
+    assert!(
+        output.contains("linux-defender scan /home/user/Downloads"),
+        "help scan omitted its example: {output}"
+    );
+    let _ = std::fs::remove_dir_all(root);
+}
+
+#[test]
 fn version_is_a_headless_success() {
     let mut command = cli();
     let root = isolated_xdg(&mut command);

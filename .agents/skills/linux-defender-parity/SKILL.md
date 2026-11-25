@@ -124,5 +124,6 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
 `clamui-apply-preferences`, `clamui-scheduled-scan`, `~/.config/clamui`,
 `~/.local/share/clamui`, `~/.cache/clamui/privileged-staging`, `clamui.log*`,
 the `clamui` Nautilus-script fallback, `uninstall.sh` pre-rename cleanup,
-cron markers, and the `clamui-event` retired channel name. Each has dedicated
-tests. Rebranding these breaks migration and upgrade compatibility.
+and cron markers. Each active identifier has dedicated tests. The
+`clamui-event` channel name is retired (historical references only; no runtime
+code or test depends on it). Do not rebrand the active contracts away.

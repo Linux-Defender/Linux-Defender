@@ -14,6 +14,7 @@ on:
       - "scripts/check-compiled-catalogs.ts"
       - "scripts/check-potfiles.sh"
       - "scripts/update-pot.sh"
+      - "scripts/generate-translation-review.py"
       - "scripts/extract-typescript-gettext.ts"
       - ".github/workflows/i18n.yml"
   pull_request:
@@ -29,6 +30,7 @@ on:
       - "scripts/check-compiled-catalogs.ts"
       - "scripts/check-potfiles.sh"
       - "scripts/update-pot.sh"
+      - "scripts/generate-translation-review.py"
       - ".github/workflows/i18n.yml"
       - "scripts/extract-typescript-gettext.ts"
   workflow_dispatch:

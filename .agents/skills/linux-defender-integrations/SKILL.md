@@ -12,7 +12,7 @@ They are security-sensitive: keep every crossing narrow, explicit, and tested.
 
 | Integration | Owner | Notes |
 |---|---|---|
-| File-manager actions | `data/`, `flathub/integrations/`, `scripts/install-nemo-actions.sh`, `scripts/linux-defender-*-nautilus.sh`, `crates/linux-defender-core/src/platform.rs` | Nautilus scripts, Nemo actions, Dolphin `.desktop`; pre-rename `clamui` launcher fallback is a compatibility contract. |
+| File-manager actions | `data/`, `assets/integrations-native/`, `crates/linux-defender-core/assets/integrations/`, `scripts/install-nemo-actions.sh`, `scripts/linux-defender-*-nautilus.sh`, `crates/linux-defender-core/src/platform.rs` | Nautilus scripts, Nemo actions, Dolphin `.desktop`; pre-rename `clamui` launcher fallback is a compatibility contract. |
 | Tray / D-Bus | `desktop/src-tauri/src/tray.rs`, `crates/linux-defender-core/src/platform.rs` | Rust SNI/DBusMenu; no Python tray runtime. |
 | Host ClamAV | `crates/linux-defender-core/src/{scanner,host,host_probe,updater,urlhaus}.rs` | `clamscan`, `clamdscan`, `freshclam`; Flatpak uses `flatpak-spawn --host`. Never bundle an engine or database. `scripts/check-signatures.py` verifies database age and EICAR detection; `scripts/check-signature-feeds.py` verifies the product-default URLhaus export with the Auth-Key redacted; the `Signature Database` workflow runs both weekly. |
 | Privileged helper | `crates/linux-defender-core/src/privileged.rs`, `data/*.policy`, `debian/*helper*`, `rpm/` | protocol-v4, destination allowlists, `PKEXEC_UID`; pre-rename helper path accepted. |
@@ -31,7 +31,7 @@ They are security-sensitive: keep every crossing narrow, explicit, and tested.
    They strip host-library transform variables, Flatpak/snap/AppImage leakage,
    and snap runtime variables so the host's ClamAV/Polkit tools run cleanly.
 4. **Asset parity.** When adding/changing an integration, update every relevant
-   location: `data/`, `flathub/integrations/`, `scripts/` Nautilus helpers, and
+   location: `data/`, `assets/integrations-native/`, `crates/linux-defender-core/assets/integrations/`, `scripts/` Nautilus helpers, and
    the Rust `include_bytes!` in `platform.rs`. Keep the rebranded IDs:
    `io.github.linuxdefender.linuxdefender`.
 5. **Test the integration.** Add tests beside `platform.rs`/`privileged.rs`

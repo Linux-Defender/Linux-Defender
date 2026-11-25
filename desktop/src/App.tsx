@@ -712,8 +712,15 @@ export default function App(): ReactNode {
         setActivity(event.data.message);
         return;
       }
-      if (event.event === "show-onboarding") {
-        setOnboardingOpen(true);
+      if (
+        event.event === "runtime-error" &&
+        typeof event.data === "object" &&
+        event.data !== null &&
+        "message" in event.data &&
+        typeof event.data.message === "string"
+      ) {
+        notify(event.data.message, "error");
+        return;
       }
       if (
         event.event === "accent-color-changed" &&

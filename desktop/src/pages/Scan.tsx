@@ -603,7 +603,7 @@ export default function Scan() {
       } else if (event.event === "select-profile") {
         const payload = eventRecord(event.data);
         if (typeof payload?.profile_id === "string") applyProfile({ id: payload.profile_id, start: false });
-      } else if (event.event === "start-scan" || (event.event === "shortcut" && eventRecord(event.data)?.action === "start-scan")) {
+      } else if (event.event === "start-scan") {
         void startScanRef.current();
       }
     });

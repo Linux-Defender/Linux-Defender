@@ -10,50 +10,82 @@ translator decides. No machine translation is applied.
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1434 translated messages. | 14 |
-| en | 1434 translated messages. | baseline |
-| es | 1434 translated messages. | 17 |
-| fr | 1434 translated messages. | 17 |
-| hu | 1434 translated messages. | 17 |
-| it | 1434 translated messages. | 17 |
-| nb | 1434 translated messages. | 17 |
-| pt_BR | 1434 translated messages. | 17 |
-| vi | 1434 translated messages. | 16 |
-| zh_CN | 1434 translated messages. | 17 |
+| de | 1454 translated messages. | 30 |
+| en | 1454 translated messages. | baseline |
+| es | 1454 translated messages. | 33 |
+| fr | 1454 translated messages. | 33 |
+| hu | 1454 translated messages. | 33 |
+| it | 1454 translated messages. | 33 |
+| nb | 1454 translated messages. | 33 |
+| pt_BR | 1454 translated messages. | 33 |
+| vi | 1454 translated messages. | 32 |
+| zh_CN | 1454 translated messages. | 33 |
 
 ## de
 
 - `Analysis complete — no detections reported`
+- `Authorization failed. Please try again and enter your password.`
+- `Authorization failed. You are not authorized to update the database.`
+- `Connection error. Please check your network connection.`
+- `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
+- `DNS resolution failed. Please check your network settings.`
+- `Database is locked. Another freshclam instance may be running.`
+- `Failed to create {path}: {error}`
+- `Failed to inspect {path}: {error}`
+- `Failed to remove {path}: {error}`
+- `Failed to set permissions on {path}: {error}`
+- `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Integration destination contains a symlink: {path}`
+- `Integration destination escapes {path}`
+- `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `Unable to delete the API key: {error}`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
+- `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 
 ## es
 
 - `Analysis complete — no detections reported`
+- `Authorization failed. Please try again and enter your password.`
+- `Authorization failed. You are not authorized to update the database.`
+- `Connection error. Please check your network connection.`
+- `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
+- `DNS resolution failed. Please check your network settings.`
+- `Database is locked. Another freshclam instance may be running.`
 - `Enable scheduled scans in Preferences → Schedule`
+- `Failed to create {path}: {error}`
+- `Failed to inspect {path}: {error}`
+- `Failed to remove {path}: {error}`
+- `Failed to set permissions on {path}: {error}`
+- `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Integration destination contains a symlink: {path}`
+- `Integration destination escapes {path}`
+- `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
 - `Unable to delete the API key: {error}`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
+- `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -61,19 +93,35 @@ translator decides. No machine translation is applied.
 ## fr
 
 - `Analysis complete — no detections reported`
+- `Authorization failed. Please try again and enter your password.`
+- `Authorization failed. You are not authorized to update the database.`
+- `Connection error. Please check your network connection.`
+- `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
+- `DNS resolution failed. Please check your network settings.`
+- `Database is locked. Another freshclam instance may be running.`
 - `Enable scheduled scans in Preferences → Schedule`
+- `Failed to create {path}: {error}`
+- `Failed to inspect {path}: {error}`
+- `Failed to remove {path}: {error}`
+- `Failed to set permissions on {path}: {error}`
+- `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Integration destination contains a symlink: {path}`
+- `Integration destination escapes {path}`
+- `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
 - `Unable to delete the API key: {error}`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
+- `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -81,19 +129,35 @@ translator decides. No machine translation is applied.
 ## hu
 
 - `Analysis complete — no detections reported`
+- `Authorization failed. Please try again and enter your password.`
+- `Authorization failed. You are not authorized to update the database.`
+- `Connection error. Please check your network connection.`
+- `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
+- `DNS resolution failed. Please check your network settings.`
+- `Database is locked. Another freshclam instance may be running.`
 - `Enable scheduled scans in Preferences → Schedule`
+- `Failed to create {path}: {error}`
+- `Failed to inspect {path}: {error}`
+- `Failed to remove {path}: {error}`
+- `Failed to set permissions on {path}: {error}`
+- `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Integration destination contains a symlink: {path}`
+- `Integration destination escapes {path}`
+- `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
 - `Unable to delete the API key: {error}`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
+- `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -101,19 +165,35 @@ translator decides. No machine translation is applied.
 ## it
 
 - `Analysis complete — no detections reported`
+- `Authorization failed. Please try again and enter your password.`
+- `Authorization failed. You are not authorized to update the database.`
+- `Connection error. Please check your network connection.`
+- `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
+- `DNS resolution failed. Please check your network settings.`
+- `Database is locked. Another freshclam instance may be running.`
 - `Enable scheduled scans in Preferences → Schedule`
+- `Failed to create {path}: {error}`
+- `Failed to inspect {path}: {error}`
+- `Failed to remove {path}: {error}`
+- `Failed to set permissions on {path}: {error}`
+- `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Integration destination contains a symlink: {path}`
+- `Integration destination escapes {path}`
+- `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
 - `Unable to delete the API key: {error}`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
+- `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -121,19 +201,35 @@ translator decides. No machine translation is applied.
 ## nb
 
 - `Analysis complete — no detections reported`
+- `Authorization failed. Please try again and enter your password.`
+- `Authorization failed. You are not authorized to update the database.`
+- `Connection error. Please check your network connection.`
+- `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
+- `DNS resolution failed. Please check your network settings.`
+- `Database is locked. Another freshclam instance may be running.`
 - `Enable scheduled scans in Preferences → Schedule`
+- `Failed to create {path}: {error}`
+- `Failed to inspect {path}: {error}`
+- `Failed to remove {path}: {error}`
+- `Failed to set permissions on {path}: {error}`
+- `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Integration destination contains a symlink: {path}`
+- `Integration destination escapes {path}`
+- `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
 - `Unable to delete the API key: {error}`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
+- `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -141,19 +237,35 @@ translator decides. No machine translation is applied.
 ## pt_BR
 
 - `Analysis complete — no detections reported`
+- `Authorization failed. Please try again and enter your password.`
+- `Authorization failed. You are not authorized to update the database.`
+- `Connection error. Please check your network connection.`
+- `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
+- `DNS resolution failed. Please check your network settings.`
+- `Database is locked. Another freshclam instance may be running.`
 - `Enable scheduled scans in Preferences → Schedule`
+- `Failed to create {path}: {error}`
+- `Failed to inspect {path}: {error}`
+- `Failed to remove {path}: {error}`
+- `Failed to set permissions on {path}: {error}`
+- `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Integration destination contains a symlink: {path}`
+- `Integration destination escapes {path}`
+- `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
 - `Unable to delete the API key: {error}`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
+- `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -161,38 +273,70 @@ translator decides. No machine translation is applied.
 ## vi
 
 - `Analysis complete — no detections reported`
+- `Authorization failed. Please try again and enter your password.`
+- `Authorization failed. You are not authorized to update the database.`
+- `Connection error. Please check your network connection.`
+- `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
+- `DNS resolution failed. Please check your network settings.`
+- `Database is locked. Another freshclam instance may be running.`
 - `Enable scheduled scans in Preferences → Schedule`
+- `Failed to create {path}: {error}`
+- `Failed to inspect {path}: {error}`
+- `Failed to remove {path}: {error}`
+- `Failed to set permissions on {path}: {error}`
+- `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Integration destination contains a symlink: {path}`
+- `Integration destination escapes {path}`
+- `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
 - `Unable to delete the API key: {error}`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
+- `Update failed with an unknown error. Check the logs for details.`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 
 ## zh_CN
 
 - `Analysis complete — no detections reported`
+- `Authorization failed. Please try again and enter your password.`
+- `Authorization failed. You are not authorized to update the database.`
+- `Connection error. Please check your network connection.`
+- `Connection timed out. Please check your network connection.`
 - `Could not launch OpenSnitch graphical interface: {error}`
+- `DNS resolution failed. Please check your network settings.`
+- `Database is locked. Another freshclam instance may be running.`
 - `Enable scheduled scans in Preferences → Schedule`
+- `Failed to create {path}: {error}`
+- `Failed to inspect {path}: {error}`
+- `Failed to remove {path}: {error}`
+- `Failed to set permissions on {path}: {error}`
+- `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Integration destination contains a symlink: {path}`
+- `Integration destination escapes {path}`
+- `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
 - `Unable to delete the API key: {error}`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
+- `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`

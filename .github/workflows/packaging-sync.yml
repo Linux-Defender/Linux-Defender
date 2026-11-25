@@ -24,6 +24,7 @@ jobs:
           persist-credentials: false
 
       - name: Verify all packaging declarations agree
+        id: verify
         run: |
           python3 scripts/check-repo-consistency.py
           python3 scripts/check-packaging-consistency.py
@@ -54,7 +55,7 @@ jobs:
         run: |
           {
             echo "## Packaging sync"
-            echo "- Version/identity checks: ${{ steps.freshness.outcome }}"
+            echo "- Version/identity checks: ${{ steps.verify.outcome }}"
             echo "- Reference drift: ${DRIFT:-unknown}"
             echo "- Fetch errors: ${ERRORS:-unknown}"
             echo "- Drifted sources: ${NAMES:-none}"

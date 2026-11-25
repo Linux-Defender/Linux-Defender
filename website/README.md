@@ -19,7 +19,7 @@ bun run preview
 
 ## Write documentation
 
-Write published guides in `src/content/docs/docs/` with concise, task-focused Markdown/MDX and root-relative `/docs/.../` links; add a sidebar entry in `astro.config.mjs`. Use `/Linux-Defender/docs/.../` links for repository-page deployment. The release reference pages import the root `CHANGELOG.md` and `RELEASE_NOTES.md`; keep those as their source of truth and do not duplicate their content. Root `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, and `CODE_OF_CONDUCT.md` are GitHub discoverability pointers, not a second documentation tree. The current branch is a development build and does not publish signed Linux Defender packages.
+Write published guides in `src/content/docs/docs/` with concise, task-focused Markdown/MDX and repository-page `/Linux-Defender/docs/.../` links; add a sidebar entry in `astro.config.mjs`. The release reference pages import the root `CHANGELOG.md` and `RELEASE_NOTES.md`; keep those as their source of truth and do not duplicate their content. Root `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, and `CODE_OF_CONDUCT.md` are GitHub discoverability pointers, not a second documentation tree. The current branch is a development build and does not publish signed Linux Defender packages.
 
 The `/docs/` site uses Starlight for navigation, full-text search, and copyable code blocks without a separate CMS, server, or search service.
 

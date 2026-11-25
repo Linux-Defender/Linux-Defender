@@ -6,8 +6,6 @@ on:
     paths:
       - "website/**"
       - ".github/workflows/deploy-website.yml"
-      - ".github/workflows/static.yml"
-      - ".github/workflows/jekyll-gh-pages.yml"
       - "screenshots/**"
       - "icons/**"
       - "CHANGELOG.md"
@@ -74,7 +72,7 @@ jobs:
           path: website/dist
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'release' || github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:

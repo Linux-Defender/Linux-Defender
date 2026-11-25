@@ -72,9 +72,9 @@ impl Paths {
     }
 }
 
-/// Moves an existing per-user data directory without copying or deleting its
-/// contents. If both old and new directories contain data, fail clearly so
-/// startup never silently chooses one database/settings tree over the other.
+/// Moves an existing per-user data directory into the current location. If
+/// both trees contain data, the legacy files are merged into the current tree
+/// (without deleting them) and the old directory is renamed `<name>.migrated`.
 fn migrate_legacy_directory(legacy: &Path, current: &Path) -> AppResult<()> {
     let legacy_metadata = match fs::symlink_metadata(legacy) {
         Ok(metadata) => metadata,

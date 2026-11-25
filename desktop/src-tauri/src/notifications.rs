@@ -2,30 +2,24 @@ use linux_defender_core::{
     common::Context,
     i18n::{translate, translate_plural},
 };
-use serde_json::{json, Value};
-use std::collections::HashMap;
-use std::sync::{
-    atomic::{AtomicI32, Ordering},
-    Mutex,
-};
-use tauri::{AppHandle, Emitter};
+use serde_json::Value;
+use std::sync::atomic::{AtomicI32, Ordering};
+use tauri::AppHandle;
 use tauri_plugin_notification::NotificationExt;
 
 pub struct Notifications {
-    active: Mutex<HashMap<&'static str, u64>>,
     next_native_id: AtomicI32,
 }
 
 impl Notifications {
     pub fn new() -> Self {
         Self {
-            active: Mutex::new(HashMap::new()),
             next_native_id: AtomicI32::new(1),
         }
     }
 
     pub fn dispatch(&self, ctx: &Context, app: &AppHandle, event: &str, data: &Value) {
-        let Some((id, title, body, action, device_only)) = notification_for(ctx, event, data)
+        let Some((_id, title, body, action, device_only)) = notification_for(ctx, event, data)
         else {
             return;
         };
@@ -48,17 +42,8 @@ impl Notifications {
         {
             return;
         }
-        let serial = {
-            let mut active = self.active.lock().expect("notification state poisoned");
-            let serial = active.entry(id).and_modify(|n| *n += 1).or_insert(1);
-            *serial
-        };
         let native_id = self.next_native_id.fetch_add(1, Ordering::Relaxed);
         let identity = notification_identity(event, data);
-        let _ = app.emit("linux-defender-event", json!({
-            "event": "native-notification",
-            "data": {"id": id, "serial": serial, "title": title.clone(), "body": body.clone(), "action": action, "identity": identity.clone()}
-        }));
         let _ = app
             .notification()
             .builder()
@@ -190,13 +175,6 @@ fn notification_for(
             String::new(),
             "show-scan",
             true,
-        )),
-        "audit-complete" => Some((
-            "audit-complete",
-            tr("Security Audit Complete"),
-            String::new(),
-            "show-audit",
-            false,
         )),
         _ => None,
     }

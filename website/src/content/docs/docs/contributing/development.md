@@ -130,7 +130,7 @@ Do not use `-g` or bulk-install an upstream repository. Imported payloads belong
 
 [`AI-ENFORCEMENT.md`](https://github.com/Linux-Defender/Linux-Defender/blob/main/AI-ENFORCEMENT.md) is the canonical rules file, written with skill-style frontmatter. Adapters read it at runtime instead of copying it: Claude Code injects it at `SessionStart` with a short `UserPromptSubmit` reminder, and the thin `linux-defender-enforcement` skill points to it. `scripts/check-ai-enforcement-wiring.py` fails if any adapter stops reading it or duplicates its text. The universal enforcement path is tool-neutral: `AGENTS.md`, git hooks, and CI work identically for Claude Code, OpenCode, Aider, Cursor, Continue, Zed, or any other assistant. Optional adapters only add convenience: Claude Code project hooks and a plugin package at `.claude/plugins/linux-defender-enforcement/` (a pointer skill, capture command, and reviewer agent that declares **no hooks**), and `.aider.conf.yml`, which reads `AGENTS.md` and `AI-ENFORCEMENT.md` into every chat. Validate it with `claude plugin validate .claude/plugins/linux-defender-enforcement`; load it for a session with `claude --plugin-dir .claude/plugins/linux-defender-enforcement` if you want its extra components. It is optional — every session still gets the rules and checks from `.claude/settings.json`. The rules are enforced, not merely documented:
 
-- `bash scripts/check-all.sh` is the single source of truth for static checks: broken doc links, orphaned files anywhere in the repo, cross-layer contracts, version and app-identity agreement, host signature database health (presence, age, EICAR), gettext (including the generated `po/TRANSLATION-REVIEW.md` human-review report), skill hashes and wiring, stale branding, dead frontend modules, all six packaging formats, format-correct file-manager assets, host-ClamAV setup guidance in app and site, Sway wiring, and website sidebar/component wiring.
+- `bash scripts/check-all.sh` is the single source of truth for static checks: broken doc links, orphaned files anywhere in the repo, cross-layer contracts, version and app-identity agreement, host signature database health (presence, age, EICAR), gettext (including the generated `po/TRANSLATION-REVIEW.md` human-review report, host-tool guidance, and static integration assets), skill hashes and wiring, stale branding, dead frontend modules, all six packaging formats, format-correct file-manager assets, host-ClamAV setup guidance in app and site, Sway wiring, and website sidebar/component wiring.
 - `bash scripts/audit-consistency.sh` adds the heavy builds, tests, clippy, git sync, and CI status.
 - `./scripts/hooks/install-hooks.sh` installs a pre-commit hook (all static checks plus Rust format and TypeScript type-check) and a pre-push hook (the full audit).
 - Consistency Audit CI runs both scripts on every push and pull request, and weekly on `main`.
@@ -143,7 +143,7 @@ ClamAV and gettext guidance is authored for this project; the contributor rules 
 
 ### Data compatibility
 
-Linux Defender uses the following XDG layouts. On first startup it moves the prior ClamUI directories to these names without deleting their contents. If both old and new data directories are non-empty, startup stops and leaves both untouched for manual backup and merge:
+Linux Defender uses the following XDG layouts. On first startup it moves the prior ClamUI directories to these names without deleting their contents. If both old and new data directories are non-empty, startup merges the legacy files into the current tree and renames the old directory `<name>.migrated` (nothing is deleted):
 
 ```text
 $XDG_CONFIG_HOME/linux-defender/settings.json
@@ -192,7 +192,7 @@ Recorded migration evidence includes Rust workspace tests and strict Clippy, rea
 
 ## Packaging boundaries
 
-Linux Defender currently has build definitions for Debian packages, a Flatpak, an x86_64 AppImage, and Fedora helper RPMs. These are packaging targets, not a tested all-distro support guarantee, and no signed Linux Defender release is published. CachyOS/Arch has no package definition yet.
+Linux Defender currently has build definitions for Debian packages, a Flatpak, an x86_64 AppImage, and Fedora helper RPMs. These are packaging targets, not a tested all-distro support guarantee, and no signed Linux Defender release is published. CachyOS/Arch has AUR source recipes in `aur/` for the app and matching helper; they are not submitted to the AUR yet.
 
 A Debian release is a version- and architecture-matched application/helper pair. Flatpak declares GNOME 51 and dependencies for `x86_64` and `aarch64`, but a local build validates only its native architecture. AppImage remains x86_64. Fedora RPMs are helper-only. Every format retains the host ClamAV boundary.
 
