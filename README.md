@@ -26,6 +26,12 @@ A modern Linux desktop interface for ClamAV, built with Rust, Tauri, and a React
 [![Dependency Audit](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/dependency-audit.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/dependency-audit.yml)
 [![Validate Website](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/website.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/website.yml)
 [![Deploy website](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/deploy-website.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/deploy-website.yml)
+[![Build All Packages](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-all.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-all.yml)
+[![Refresh Dependabot sources](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/dependabot-refresh.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/dependabot-refresh.yml)
+[![Dependency Review](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/dependency-review.yml)
+[![Proof HTML](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/proof-html.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/proof-html.yml)
+[![Release](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/release.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/release.yml)
+[![Auto Assign](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/auto-assign.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/auto-assign.yml)
 
 </div>
 

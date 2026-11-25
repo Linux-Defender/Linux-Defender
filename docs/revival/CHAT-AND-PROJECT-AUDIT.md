@@ -168,4 +168,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 51 | Build AUR failed because a path-filter removal left invalid YAML under `pull_request` | Repaired the workflow trigger block, added `expected_sha` verification like other build workflows, and added `scripts/check-workflows.py` to check-all so every workflow is parsed, named, and triggerable before commit |
 
+| 52 | README badges, scripts, and docs all accounted for | Added badges for the six workflows that lacked them (24/24 covered); created `docs/documentation/SCRIPTS.md` listing all tracked scripts and added `check-badges.py` + `check-scripts-index.py` to check-all so badge/script drift fails immediately |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.

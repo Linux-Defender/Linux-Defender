@@ -41,6 +41,7 @@ complete cross-check that nothing is forgotten or orphaned.
 - [docs/clamui-fork/README](clamui-fork/README.md)
 - [docs/clamui-fork/STATUS](clamui-fork/STATUS.md)
 - [docs/documentation/README](documentation/README.md)
+- [docs/documentation/SCRIPTS](documentation/SCRIPTS.md)
 - [docs/revival/CACHYOS-TEST-SETUP](revival/CACHYOS-TEST-SETUP.md)
 - [docs/revival/CHAT-AND-PROJECT-AUDIT](revival/CHAT-AND-PROJECT-AUDIT.md)
 - [docs/revival/CLAMTK-ISSUE-PR-TRACKER](revival/CLAMTK-ISSUE-PR-TRACKER.md)
