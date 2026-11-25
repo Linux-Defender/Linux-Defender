@@ -41,4 +41,12 @@ menu actions, minimize/restore with scans continuing, native dialogs through the
 portal, and an EICAR scan with a clean debug log. A green repository check does
 not replace that pass.
 
+**Recorded validation (2026-11-24):** Linux Defender was launched inside a
+nested Sway 1.12 session with Waybar 0.16.0 and the `tray` module. Waybar logged
+`Tray::onAdd ... title='Linux Defender'`, the icon appeared in the bar, and a
+`grim` capture showed the full desktop window rendering correctly with no
+application error output. Right-click menu interaction, minimize/restore with an
+active scan, and native portal dialogs were **not** exercised in that pass and
+remain open for interactive desktop validation.
+
 For design, native event handling, lifecycle, and security limits, see [Rust/Tauri desktop and tray architecture](/Linux-Defender/docs/contributing/architecture/).
