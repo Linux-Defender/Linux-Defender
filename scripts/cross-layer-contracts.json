@@ -6,7 +6,7 @@
     "runtime": { "paths": ["desktop/src-tauri/"], "extensions": [".rs"] },
     "frontend": { "paths": ["desktop/src/"], "extensions": [".ts", ".tsx"] },
     "site": { "paths": ["website/src/content/"], "extensions": [".md", ".mdx"] },
-    "packaging": { "paths": ["debian/", "flathub/", "appimage/", "snap/", "scripts/"], "extensions": [".sh", ".md", ".json", ".toml", ".xml", ".yaml", ".yml"] },
+    "packaging": { "paths": ["debian/", "flathub/", "appimage/", "snap/", "aur/", "scripts/"], "extensions": ["", ".sh", ".md", ".json", ".toml", ".xml", ".yaml", ".yml"] },
     "docs": { "paths": ["docs/"], "extensions": [".md"] }
   },
   "features": [
@@ -104,6 +104,15 @@
         "core": ["yara"],
         "frontend": ["yara"],
         "site": ["yara"]
+      }
+    },
+    {
+      "id": "packaging-parity",
+      "why": "Every supported package format must stay version-matched, rebranded, workflow-covered, badge-documented, and host-ClamAV-only.",
+      "layers": {
+        "packaging": ["PKGBUILD", "snapcraft.yaml", "build-appimage.sh"],
+        "docs": ["Packaging matrix"],
+        "site": ["AUR"]
       }
     },
     {

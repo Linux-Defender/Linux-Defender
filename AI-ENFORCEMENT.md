@@ -20,7 +20,8 @@ fail.
 1. **Run `bash scripts/check-all.sh`. Fix EVERY failure.** It blocks broken doc
    links, orphaned/dead files, cross-layer drift, version/identity drift,
    dev/build wiring drift (tauri dev -> Vite -> dist, patched vendored glib),
-   unused Rust dependencies (cargo machete), stale/missing signature databases,
+   unused Rust dependencies (cargo machete), all-format packaging drift,
+   stale/missing signature databases,
    gettext drift, stale branding, dead frontend modules, unwired website
    components, skill drift, dead external links, stale doc phrases, and a stale
    documentation map. It is the single source of truth for static checks — do

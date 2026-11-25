@@ -30,8 +30,8 @@ step "Upstream repository inventory (external URLs resolve)"
 python3 scripts/tests/test_external_links.py >/dev/null 2>&1 || fail "external link checker tests"
 python3 scripts/check-upstream-urls.py || fail "dead upstream URL"
 
-step "Arch/AUR packaging and Sway support"
-python3 scripts/check-aur-consistency.py || fail "AUR recipe drift"
+step "All package formats (DEB/RPM/AppImage/Flatpak/Snap/AUR)"
+python3 scripts/check-packaging-consistency.py || fail "packaging consistency"
 
 step "Dev/build wiring (tauri dev -> Vite -> dist, vendored glib patch)"
 python3 scripts/check-build-wiring.py || fail "build wiring"

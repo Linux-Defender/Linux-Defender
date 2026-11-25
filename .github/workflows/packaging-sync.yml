@@ -26,7 +26,7 @@ jobs:
       - name: Verify all packaging declarations agree
         run: |
           python3 scripts/check-repo-consistency.py
-          python3 scripts/check-aur-consistency.py
+          python3 scripts/check-packaging-consistency.py
 
       - name: Check packaging reference freshness
         id: freshness
@@ -80,7 +80,7 @@ jobs:
           updating \`packaging-lock.json\`, the AUR \`PKGBUILD\` files, or version
           declarations. Do not auto-merge reference code or rebrand compatibility
           identifiers. Re-run \`python3 scripts/check-repo-consistency.py\` and
-          \`python3 scripts/check-aur-consistency.py\` after any fix.
+          \`python3 scripts/check-packaging-consistency.py\` after any fix.
           EOF
           )
           existing="$(gh api "repos/$REPO/issues?state=open&per_page=100" \
