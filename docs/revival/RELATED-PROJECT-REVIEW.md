@@ -147,6 +147,34 @@ GitHub REST API snapshot: 61 open issues and 2 open pull requests. The 61st open
 
 The post-release updater fix from upstream commit `30a72f0` (#307) is ported locally. Existing open issue reports remain tracked whether or not source fixes are present.
 
+### Current upstream recheck (2026-11-25, post-compaction)
+
+Live GitHub API counts at the final recheck, which supersede the older
+point-in-time counts elsewhere in this review:
+
+| Repository | Open issues | Open PRs | Default-branch head |
+|---|---|---|---|
+| `linx-systems/clamui` | 57 | 6 (dependency bumps; #299 TypeScript 7.0.2 still open, #298 closed) | `d14019b7edd15d583c9006e0f489c4c68b943229` |
+| `vmkspv/lenspect` | 0 | 0 | `a5507a6c8ec1bdf1f2222e7397d053ff365b3d70` |
+| `dave-theunsub/clamtk` | 23 | 4 (#168, #169, #170, #141) | `694833d27c800e7c3ac4ff6dd44f0b2e65025260` |
+| `Linux-Defender/Linux-Defender` | 0 | 0 | local `main` (checked at recheck time) |
+
+All reviewed heads in `parity-lock.json` (ten upstream repositories) and the
+AUR reference in `packaging-lock.json` were fetched again and match their live
+heads; `check-upstream-freshness.py` reports zero drift and zero errors. Older
+counts above are historical snapshots, not claims about the current state.
+
+New report reviewed this round: ClamUI issue
+[#361](https://github.com/linx-systems/clamui/issues/361) describes a blank
+gray window on Flatpak 0.5.1 under X11 with Intel i915. Upstream tried
+`WEBKIT_DISABLE_DMABUF_RENDERER=0`, `WEBKIT_DMABUF_RENDERER_FORCE_SHM=1`, and a
+fresh profile without a fix; the issue remains open with no confirmed root
+cause. **Disposition: monitored, no speculative code change.** Linux Defender
+already applies `WEBKIT_DISABLE_DMABUF_RENDERER=1` before webview creation on
+NVIDIA proprietary drivers and has a top-level React error boundary with Retry;
+neither is claimed to address an Intel/X11 compositing fault. Do not claim this
+upstream report is fixed here without a reproduction and a tested mitigation.
+
 ### Upstream refresh (2026-11-25, master `14362e804b65f44e9e4e777a1c13b98c36b1a926`)
 
 Reviewed the current default branch, which advanced from `30a72f0` (2026-11-11) to `14362e8` (2026-11-20). Dispositions, verified against code rather than the merge status alone:
@@ -284,7 +312,7 @@ The public [Linux-Defender/Linux-Defender](https://github.com/Linux-Defender/Lin
 
 The upstream ClamUI `main` head `6836eea` is an ancestor of the selected `master` head, not a newer release. It diverges from master due later commits; the default master branch restores scanner handling/tests and current dependencies, so main was not merged separately. Continue comparing branches when upstream history changes.
 
-ClamTk's 23 open issues and four open PR dispositions above are still the ledger; review does not equal a fix. Local verification in the unified checkout: `cargo fmt --check --all` passed; the focused platform integration suite passed (7/7), including Thunar install/remove and `%F`/VirusTotal action checks. The frontend TypeScript/Vite build passed after the Thunar UI type update. A full workspace test run found 4 existing helper tests blocked by sandbox filesystem/tool assumptions; rerunning while skipping only those passed 103 core tests and all 17 desktop unit tests, then stalled in CLI subprocess tests (8 reported running beyond 60 seconds) and was stopped. Previously, mocked VirusTotal tests passed (8), and translation checks passed (10 locales, 1,275 messages at that snapshot; current catalogs contain 1,434). The actual window, tray clicks, themes, Thunar/XFCE actions, auto-update services, and CachyOS package still require desktop validation. All reviewed work has been pushed to `main`.
+ClamTk's 23 open issues and four open PR dispositions above are still the ledger; review does not equal a fix. Local verification in the unified checkout: `cargo fmt --check --all` passed; the focused platform integration suite passed (7/7 at that review; 11/11 at the 2026-11-25 recheck), including Thunar install/remove, `%F`/VirusTotal action checks, KDE MIME coverage, and repair-by-bytes coverage. The frontend TypeScript/Vite build passed after the Thunar UI type update. A full workspace test run found 4 existing helper tests blocked by sandbox filesystem/tool assumptions; rerunning while skipping only those passed 103 core tests and all 17 desktop unit tests, then stalled in CLI subprocess tests (8 reported running beyond 60 seconds) and was stopped. Previously, mocked VirusTotal tests passed (8), and translation checks passed (10 locales, 1,275 messages at that snapshot; current catalogs contain 1,434). The actual window, tray clicks, themes, Thunar/XFCE actions, auto-update services, and CachyOS package still require desktop validation. All reviewed work has been pushed to `main`.
 
 ## Nine-repository merger review (2026-11-20)
 

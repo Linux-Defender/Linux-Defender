@@ -40,7 +40,7 @@ Linux Defender has no published release or signed installer packages yet, so non
 
 The Rust/Tauri UI is shared, but GTK/WebKitGTK versions, helper packages, ClamAV paths, services, desktop menus, and release channels differ. A successful source build alone does not establish distribution support.
 
-File-manager integrations ship in two format-correct variants: native packages use `linux-defender ...` launchers, while Flatpak uses `flatpak run io.github.linuxdefender.linuxdefender ...`. Both sets contain the same eight Nautilus, Nemo, Dolphin, and Thunar actions, checked by `scripts/check-integration-parity.py` on every commit.
+File-manager integrations ship in two format-correct variants: native packages use `linux-defender ...` launchers, while Flatpak uses `flatpak run io.github.linuxdefender.linuxdefender ...`. Both sets contain the same eight Nautilus, Nemo, Dolphin, and Thunar actions, checked by `scripts/check-integration-parity.py` on every commit. Dolphin and Konqueror service menus cover all file types and directories, so text files, images, and archives also offer the scan actions. Every action passes all selected paths to the scanner; VirusTotal checks remain limited to one file because the online service is single-file only.
 
 ## Build and run on CachyOS / Arch
 
