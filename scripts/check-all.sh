@@ -40,7 +40,15 @@ python3 scripts/check-build-wiring.py || fail "build wiring"
 
 step "Unused Rust dependencies (cargo machete)"
 if command -v cargo-machete >/dev/null 2>&1; then
-    cargo machete 2>&1 | grep -q "didn't find any unused dependencies" || fail "unused Rust dependency (run cargo machete)"
+    machete_ok=0
+    for attempt in 1 2 3; do
+        if cargo machete 2>&1 | grep -q "didn't find any unused dependencies"; then
+            machete_ok=1
+            break
+        fi
+        sleep 1
+    done
+    [ "$machete_ok" -eq 1 ] || fail "unused Rust dependency (run cargo machete)"
 else
     echo "cargo-machete not installed; skipping dependency dead-code check"
 fi
