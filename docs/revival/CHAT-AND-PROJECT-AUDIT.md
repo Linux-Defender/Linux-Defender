@@ -172,4 +172,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 53 | Upstream heads moved after the last review and could be silently missed | Added `parity-lock.json` for reviewed ClamUI/Lenspect heads, extended `check-upstream-freshness.py` (and its workflow parser) to watch them, reviewed ClamUI `d14019b` (em-dash docs change deliberately not adopted) and Lenspect `a5507a6` (YARA/folder/progress/plural/quota behaviors verified as independently implemented), and updated both parity records |
 
+| 54 | All upstream/downstream watchers and connection glitches must not leave silent gaps | Added `docs/documentation/WATCHERS.md` + `check-watchers.py` covering all 8 scheduled workflows, added ClamTk to `parity-lock.json`, confirmed the ECONNRESET screenshot was a client/API retry (repo clean and synced), and re-verified every gate |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.

@@ -41,6 +41,7 @@ application runtime dependencies.
 - `scripts/check-upstream-freshness.py` — imported skill drift.
 - `scripts/check-upstream-urls.py` — upstream inventory URLs.
 - `scripts/check-workflows.py` — workflow YAML parses, named, triggerable.
+- `scripts/check-watchers.py` — every scheduled workflow is indexed in `WATCHERS.md`.
 - `scripts/extract-typescript-gettext.ts` — TS/TSX extraction.
 - `scripts/update-pot.sh` — Rust/Tauri POT regeneration.
 

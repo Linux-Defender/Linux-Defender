@@ -10,6 +10,11 @@
       "source": "vmkspv/lenspect",
       "commit": "a5507a6c8ec1bdf1f2222e7397d053ff365b3d70",
       "reviewedAt": "2026-11-25"
+    },
+    "clamtk": {
+      "source": "dave-theunsub/clamtk",
+      "commit": "694833d27c800e7c3ac4ff6dd44f0b2e65025260",
+      "reviewedAt": "2026-11-25"
     }
   }
 }

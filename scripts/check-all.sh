@@ -28,6 +28,7 @@ python3 scripts/check-repo-consistency.py || fail "repo-wide consistency"
 python3 scripts/check-workflows.py || fail "workflow parse/name drift"
 python3 scripts/check-badges.py || fail "README workflow badge coverage"
 python3 scripts/check-scripts-index.py || fail "script index coverage"
+python3 scripts/check-watchers.py || fail "watcher index coverage"
 
 step "Upstream repository inventory (external URLs resolve)"
 python3 scripts/tests/test_external_links.py >/dev/null 2>&1 || fail "external link checker tests"

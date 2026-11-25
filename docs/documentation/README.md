@@ -13,7 +13,7 @@ reviewing, or migrating around the project.
 | [`../clamui-fork/`](../clamui-fork/) | ClamUI fork history: what was ported from upstream, the rebrand state, and the upstream parity matrix |
 | [`../revival/`](../revival/README.md) | Revival/rework index: link-checked upstream repository inventory, ClamTk/Lenspect/ClamUI parity reviews, rebrand audits, upstream changelog |
 
-See also: [scripts index](SCRIPTS.md) — every tracked script in `scripts/`, grouped by purpose.
+See also: [scripts index](SCRIPTS.md) and the [watchers index](WATCHERS.md) — every tracked script in `scripts/`, grouped by purpose.
 
 ## Documentation guides
 
