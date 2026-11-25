@@ -220,12 +220,37 @@ ClamTk has no tray implementation in its current source; upstream issue [#142](h
 
 ClamUI already provides file-manager actions for Dolphin, Nautilus, and Nemo. Linux Defender now includes Thunar “Send To” scan and VirusTotal actions in its Flatpak integration manager. The ClamTk companion projects document Dolphin/Konqueror right-click actions, Nautilus actions, Nemo actions, and the Thunar “Send To” action, but their repositories are unmaintained. Port the user-facing behavior into Linux Defender’s packaging instead of copying those legacy add-ons wholesale. Ensure every integration passes all selected paths; `%F` multi-selection must not silently scan only the first item. The Thunar action’s install/remove behavior has unit coverage, but needs real XFCE/Thunar testing.
 
-| Repository | Snapshot | Open issues / PRs | Review |
+| Repository | Reviewed snapshot | Open issues / PRs | Review and disposition |
 |---|---|---|---|
-| [clamtk-kde](https://github.com/dave-theunsub/clamtk-kde) | Last default-branch commit 2024-03-30; desktop entry calls `clamtk %F`. | Issues #1 multi-file scan, #2 missing Dolphin service-menu entry for old KDE Neon .deb; no open PRs. | Optional Dolphin integration, not UI code. `%F` can pass multiple paths but ClamTk currently reads only `ARGV[0]`; multi-selection remains a real CLI gap. |
-| [clamtk-gnome](https://github.com/dave-theunsub/clamtk-gnome) | Last default-branch commit 2024-03-30; Python Nautilus extension uses list-form subprocess. | 9 open issues; PR #18 ports to Nautilus 43/API 4. | The current default tree already contains the Nautilus 4.0 import and `*args` callback changes proposed by open PR #18, so there is no separate patch to cherry-pick. Confirm on current GNOME; extension still supports one selected file and has packaging/visibility reports. |
-| [nemo-sendto-clamtk](https://github.com/dave-theunsub/nemo-sendto-clamtk) | Last commit 2024-03-30; action calls `clamtk %F`. | No open issues/PRs; one closed translation PR. | Optional Nemo integration; validate multi-selection/path handling against revived CLI. |
-| [thunar-sendto-clamtk](https://github.com/dave-theunsub/thunar-sendto-clamtk) | Last commit 2024-03-30; desktop entry calls `clamtk %F`. | No open issues; open PR #3 is README-only. | Optional Thunar integration; check paths and packaging. Do not merge README-only changes into core. |
+| [clamtk-kde](https://github.com/dave-theunsub/clamtk-kde) | `8102f93a0800e627715c5e14e8e61e5ee9ad5ac0` (2024-03-30); release `v0.20`; `clamtk-kde.desktop` uses `ServiceTypes=KonqPopupMenu/Plugin`, `MimeType=all/allfiles;inode/directory;`, `Exec=clamtk %F`, `X-KDE-StartupNotify=true;`. | Issues #1 multi-file scan, #2 missing Dolphin service-menu entry for old KDE Neon .deb; no open PRs. | **Behavior ported:** the three Dolphin/Konqueror service menus now use `all/allfiles;inode/directory;` so text, images, and archives get the action too; a regression test guards the MIME and service keys. `%F` already passes every selected path. `X-KDE-StartupNotify` is intentionally not added (the app supplies its own launch feedback). |
+| [clamtk-gnome](https://github.com/dave-theunsub/clamtk-gnome) | `d006384dd4a2c311c1d437e8fea9a627218b5d63` (2024-03-30); release `v6.16`; Python extension resolves `GFile` paths and launches with list-form `subprocess.Popen(["clamtk", filename])`; separate folder-background item labelled “Scan directory for threats...”. | 9 open issues; PR #18 ports to Nautilus 43/API 4. | The default tree already contains the Nautilus 4.0 import and `*args` callback changes proposed by open PR #18, so there is no separate patch to cherry-pick. **Already covered:** list-form launching and multi-target pass-through. **Deliberately deferred:** the folder-background menu item would require a `nautilus-python` extension, conflicting with the no-Python-runtime preference; our Nautilus scripts handle selected paths only. |
+| [nemo-sendto-clamtk](https://github.com/dave-theunsub/nemo-sendto-clamtk) | `e47f2c486e43c9e65e3aa4e906465a9601ec66b8` (2024-03-30); release `v0.07` (`0.07-2` deb); `Selection=Any`, `Quote=double`, `Exec=clamtk %F`. | No open issues/PRs; one closed translation PR. | **Covered:** our Nemo actions use `Selection=any`, `%F`, and no shell wrapper; current Nemo already escapes shell metacharacters, so `Quote=double` is legacy robustness rather than a security requirement. No code copied. |
+| [thunar-sendto-clamtk](https://github.com/dave-theunsub/thunar-sendto-clamtk) | `583e270f114074b639c5b8282cc9d50d9dd1d576` (2024-03-30); release `v0.08-2`; desktop entry uses `TryExec=clamtk`, `%F`, `OnlyShowIn=XFCE;`, and ~50 localized `Name`/`Comment` fields. | No open issues; open PR #3 is README-only. | **Covered:** our Thunar Send To actions pass `%F` through the same multi-target scanner. `TryExec`/localized labels are intentionally not copied: native and Flatpak assets must stay launcher-aligned, and adding new gettext IDs requires catalog parity. Do not merge README-only changes into core. |
+| [build_files](https://github.com/dave-theunsub/build_files) | `3adf6b6e18d6af3b824aa0e9ecc4ebce011734b6` (2024-01-27). | Not tracked. | **Packaging precedent only.** Lists distro build inputs for ClamTk and all four plugins. No build dependency; our six package formats are maintained independently. |
+| [thunar-sendto-shredder](https://github.com/dave-theunsub/thunar-sendto-shredder) | `78cf7592d6a543f376ab1fcb49d42125ee73c752` (2019-04-11). | Not relevant. | **Integration-pattern reference only.** Its destructive shredding semantics are explicitly not ported; Linux Defender never bulk-deletes without consent and recoverable restore. |
+
+All six heads are pinned in `parity-lock.json` and watched by the weekly
+`Upstream Freshness` workflow. When any of them moves, review the diff before
+refreshing the pin — never auto-merge unreviewed upstream content.
+
+### Integration fixes adopted from this review (2026-11-25)
+
+These were implemented independently under MIT from the behaviors above; no
+GPL/Artistic source was copied:
+
+- **Dolphin MIME coverage:** all three copies of the `service.desktop` assets now
+  advertise `all/allfiles;inode/directory;`, and the VirusTotal variants
+  `all/allfiles;`. Previously `application/octet-stream;` hid the action for
+  common file types.
+- **Repair integrity:** `install_integration` now compares on-disk bytes and
+  replaces stale or modified managed assets during repair instead of treating
+  mere presence as success. Symlinks are never read through; `O_NOFOLLOW`
+  rejects them.
+- **Nautilus log hygiene:** the native and Flatpak scripts no longer write
+  selected paths, raw arguments, or `PATH` to the cache log, and they report
+  the launcher's exit status via `PIPESTATUS[0]` rather than `tee`'s status.
+- **Legacy helper:** the invalid app ID in `scripts/install-nemo-actions.sh`
+  was corrected to `io.github.linuxdefender.linuxdefender`.
 
 ### Companion issue and PR inventory
 

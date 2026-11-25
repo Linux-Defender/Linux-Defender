@@ -3,7 +3,7 @@ Type=Service
 Name=Linux Defender VirusTotal Scanner
 Comment=Scan files with VirusTotal online service
 ServiceTypes=KonqPopupMenu/Plugin
-MimeType=application/octet-stream;
+MimeType=all/allfiles;
 Actions=ScanWithVirusTotal;
 X-KDE-Priority=TopLevel
 

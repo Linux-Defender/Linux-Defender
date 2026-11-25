@@ -3,7 +3,7 @@ Type=Service
 Name=Linux Defender Scanner
 Comment=Scan files and folders with Linux Defender antivirus
 ServiceTypes=KonqPopupMenu/Plugin
-MimeType=application/octet-stream;inode/directory;
+MimeType=all/allfiles;inode/directory;
 Actions=ScanWithLinuxDefender;
 X-KDE-Priority=TopLevel
 

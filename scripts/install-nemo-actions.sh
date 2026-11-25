@@ -5,7 +5,7 @@
 # local Nemo actions directory, enabling right-click context menu integration.
 #
 # Usage:
-#   flatpak run --command=linux-defender-install-nemo-actions io.github.linuxdefender.Linux Defender
+#   flatpak run --command=linux-defender-install-nemo-actions io.github.linuxdefender.linuxdefender
 #
 # Or from within the Flatpak environment:
 #   linux-defender-install-nemo-actions
@@ -40,7 +40,7 @@ DEST_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nemo/actions"
 if [ ! -d "$SOURCE_DIR" ]; then
     log_error "Nemo action files not found at $SOURCE_DIR"
     log_error "This script should be run from within the Linux Defender Flatpak:"
-    log_error "  flatpak run --command=linux-defender-install-nemo-actions io.github.linuxdefender.Linux Defender"
+    log_error "  flatpak run --command=linux-defender-install-nemo-actions io.github.linuxdefender.linuxdefender"
     exit 1
 fi
 

@@ -25,6 +25,29 @@ fn bundled_integrations_show_linux_defender_brand_and_valid_dolphin_action() {
     assert!(!nemo.contains("ClamTk"));
 }
 
+#[test]
+fn bundled_integrations_expose_all_file_types_and_required_desktop_keys() {
+    let dolphin = include_str!(
+        "../assets/integrations/io.github.linuxdefender.linuxdefender.service.desktop"
+    );
+    let virustotal = include_str!(
+        "../assets/integrations/io.github.linuxdefender.linuxdefender-virustotal.desktop"
+    );
+    let nemo =
+        include_str!("../assets/integrations/io.github.linuxdefender.linuxdefender.nemo_action");
+
+    assert!(dolphin.contains("MimeType=all/allfiles;inode/directory;"));
+    assert!(virustotal.contains("MimeType=all/allfiles;"));
+    for entry in [dolphin, virustotal] {
+        assert!(entry.contains("Type=Service"));
+        assert!(entry.contains("ServiceTypes=KonqPopupMenu/Plugin"));
+        assert!(entry.contains("X-KDE-Priority=TopLevel"));
+        assert!(entry.contains("%F"));
+    }
+    assert!(nemo.contains("Selection=any"));
+    assert!(nemo.contains("Exec=flatpak run io.github.linuxdefender.linuxdefender %F"));
+}
+
 fn temporary_share(name: &str) -> PathBuf {
     let nonce = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -113,6 +136,25 @@ fn nemo_install_repair_and_remove_are_stateful_and_idempotent() {
     remove_integration_at(&paths, "nemo").expect("remove nemo integration");
     remove_integration_at(&paths, "nemo").expect("idempotent remove");
     assert_eq!(status(&paths, "nemo"), "not_installed");
+    fs::remove_dir_all(root).expect("remove temporary integration root");
+}
+
+#[test]
+fn nemo_repair_restores_modified_managed_asset_bytes() {
+    let root = temporary_share("nemo-repair");
+    let paths = paths(root.clone(), None);
+    install_integration_at(&paths, "nemo", false).expect("install nemo integration");
+
+    let action = root.join("nemo/actions/io.github.linuxdefender.linuxdefender.nemo_action");
+    fs::write(&action, b"[Nemo Action]\nName=Stale\n").expect("simulate a stale managed asset");
+    assert_eq!(status(&paths, "nemo"), "installed");
+
+    install_integration_at(&paths, "nemo", true).expect("repair stale asset bytes");
+    assert_eq!(
+        fs::read(&action).expect("read repaired asset"),
+        include_bytes!("../assets/integrations/io.github.linuxdefender.linuxdefender.nemo_action")
+            .to_vec()
+    );
     fs::remove_dir_all(root).expect("remove temporary integration root");
 }
 

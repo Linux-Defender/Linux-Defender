@@ -20,6 +20,36 @@
       "source": "Cisco-Talos/clamav-bytecode-compiler",
       "commit": "a1830a442110325d04708145437a5312fc6ab6f9",
       "reviewedAt": "2026-11-25"
+    },
+    "clamtk-thunar-sendto": {
+      "source": "dave-theunsub/thunar-sendto-clamtk",
+      "commit": "583e270f114074b639c5b8282cc9d50d9dd1d576",
+      "reviewedAt": "2026-11-25"
+    },
+    "clamtk-kde": {
+      "source": "dave-theunsub/clamtk-kde",
+      "commit": "8102f93a0800e627715c5e14e8e61e5ee9ad5ac0",
+      "reviewedAt": "2026-11-25"
+    },
+    "clamtk-gnome": {
+      "source": "dave-theunsub/clamtk-gnome",
+      "commit": "d006384dd4a2c311c1d437e8fea9a627218b5d63",
+      "reviewedAt": "2026-11-25"
+    },
+    "clamtk-nemo-sendto": {
+      "source": "dave-theunsub/nemo-sendto-clamtk",
+      "commit": "e47f2c486e43c9e65e3aa4e906465a9601ec66b8",
+      "reviewedAt": "2026-11-25"
+    },
+    "clamtk-build-files": {
+      "source": "dave-theunsub/build_files",
+      "commit": "3adf6b6e18d6af3b824aa0e9ecc4ebce011734b6",
+      "reviewedAt": "2026-11-25"
+    },
+    "clamtk-thunar-shredder": {
+      "source": "dave-theunsub/thunar-sendto-shredder",
+      "commit": "78cf7592d6a543f376ab1fcb49d42125ee73c752",
+      "reviewedAt": "2026-11-25"
     }
   }
 }

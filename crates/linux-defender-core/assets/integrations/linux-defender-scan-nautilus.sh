@@ -15,8 +15,8 @@ log() {
 }
 
 log "Script started (Flatpak version)"
-log "NAUTILUS_SCRIPT_SELECTED_FILE_PATHS: $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
-log "Arguments: $*"
+# Never log selected paths or arguments: they can contain private file names.
+# Only counts and status are recorded.
 
 # Check if Linux Defender Flatpak is available
 if ! flatpak info io.github.linuxdefender.linuxdefender &>/dev/null; then
@@ -40,19 +40,19 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
 
 	# Launch Linux Defender with all selected files
 	if [[ ${#files[@]} -gt 0 ]]; then
-		log "Launching: flatpak run io.github.linuxdefender.linuxdefender ${files[*]}"
+		log "Launching Linux Defender for ${#files[@]} selected path(s)"
 		flatpak run io.github.linuxdefender.linuxdefender "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
-		log "Linux Defender exited with code: $?"
+		log "Linux Defender exited with code: ${PIPESTATUS[0]}"
 	else
 		log "ERROR: No files in array"
 	fi
 else
 	# Fallback: try to use positional arguments
 	if [[ $# -gt 0 ]]; then
-		log "Using positional arguments: $*"
-		log "Launching: flatpak run io.github.linuxdefender.linuxdefender $*"
+		log "Using $# positional argument(s)"
+		log "Launching Linux Defender for $# positional argument(s)"
 		flatpak run io.github.linuxdefender.linuxdefender "$@" 2>&1 | tee -a "$LOG_FILE"
-		log "Linux Defender exited with code: $?"
+		log "Linux Defender exited with code: ${PIPESTATUS[0]}"
 	else
 		log "ERROR: No files provided (neither env var nor arguments)"
 		if command -v notify-send &>/dev/null; then

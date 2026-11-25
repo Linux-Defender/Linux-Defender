@@ -35,6 +35,18 @@ Also intentionally not ported: cosmetic `desktop/src/assets/linux-defender-logo.
 (LD uses the shield icon in `App.tsx`), and `docs/issue-325-screenshots/*` (upstream
 issue-specific screenshots).
 
+From the unmaintained ClamTk companion plugins
+(`clamtk-gnome`, `clamtk-kde`, `nemo-sendto-clamtk`, `thunar-sendto-clamtk`), the
+portable behaviors are already present or adopted independently: multi-target
+`%F` pass-through, list-form launching without a shell, and full-file-type KDE
+service-menu MIME coverage. **Deliberately deferred:** the Nautilus
+folder-background “Scan directory for threats...” item (it needs a
+`nautilus-python` extension, conflicting with the no-Python-runtime rule), the
+~50 translated desktop-file labels in each action file (new IDs require POT +
+10-catalog parity), and Thunar `TryExec`/`StartupNotify` metadata (native and
+Flatpak assets must remain launcher-aligned). These are recorded, not forgotten,
+in `docs/revival/RELATED-PROJECT-REVIEW.md`.
+
 Upstream's **autosave/batched "Flush" flow** remains deliberately deferred as a
 full UI change: `ConfigPreferences.tsx` still uses the explicit **Save & Apply**
 button, not upstream's direct-on-section-leave/full-on-close flush. However the

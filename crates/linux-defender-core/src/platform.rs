@@ -1,5 +1,5 @@
 use std::{
-    collections::{HashMap, HashSet, VecDeque},
+    collections::{HashMap, VecDeque},
     ffi::{CStr, CString},
     fs,
     io::{self, Write},
@@ -648,18 +648,27 @@ fn integration_status(
     }
 }
 
+fn asset_matches_on_disk(paths: &IntegrationPaths, asset: &IntegrationAsset) -> bool {
+    let destination = paths.local_share.join(asset.destination);
+    match fs::symlink_metadata(&destination) {
+        // Never read through a symlink. A non-regular file is treated as a
+        // mismatch so write_asset can reject it under O_NOFOLLOW.
+        Ok(metadata) if metadata.file_type().is_file() => fs::read(&destination)
+            .map(|bytes| bytes == asset.bytes)
+            .unwrap_or(false),
+        _ => false,
+    }
+}
+
 fn install_integration(
     paths: &IntegrationPaths,
     manager: FileManager,
     repair: bool,
 ) -> AppResult<()> {
-    let (status, missing) = integration_status(paths, manager);
-    if repair && status == IntegrationStatus::Installed {
-        return Ok(());
-    }
-    let missing = missing.into_iter().collect::<HashSet<_>>();
     for asset in paths.assets(manager) {
-        if repair && status == IntegrationStatus::Partial && !missing.contains(asset.destination) {
+        // Repair must restore modified or stale managed actions too, not just
+        // missing ones: an upgrade can leave an old asset with the right name.
+        if repair && asset_matches_on_disk(paths, asset) {
             continue;
         }
         write_asset(paths, asset)?;
