@@ -23,29 +23,29 @@ HELPER_PKG = AUR / "linux-defender-privileged-helper/PKGBUILD"
 
 FORMATS = {
     "DEB": {
-        "files": ["debian/build-deb.sh", "debian/build-privileged-helper-deb.sh",
+        "files": ["debian/README.md", "debian/build-deb.sh", "debian/build-privileged-helper-deb.sh",
                   "debian/DEBIAN/control", "debian/DEBIAN/control.helper"],
         "workflow": "build-deb.yml",
         "marker": "linux-defender",
     },
     "RPM helper": {
-        "files": ["rpm/build-privileged-helper-rpm.sh", "rpm/linux-defender-privileged-helper.spec"],
+        "files": ["rpm/README.md", "rpm/build-privileged-helper-rpm.sh", "rpm/linux-defender-privileged-helper.spec"],
         "workflow": "build-rpm.yml",
         "marker": "linux-defender-apply-preferences",
     },
     "AppImage": {
-        "files": ["appimage/build-appimage.sh"],
+        "files": ["appimage/README.md", "appimage/build-appimage.sh"],
         "workflow": "build-appimage.yml",
         "marker": APP_ID,
     },
     "Flatpak": {
-        "files": [f"flathub/{APP_ID}.yml", f"flathub/{APP_ID}.local.yml",
+        "files": ["flathub/README.md", f"flathub/{APP_ID}.yml", f"flathub/{APP_ID}.local.yml",
                   "flathub/cargo-sources.json", "flathub/bun-sources.json"],
         "workflow": "build-flatpak.yml",
         "marker": APP_ID,
     },
     "Snap": {
-        "files": ["snap/snapcraft.yaml", "snap/local/linux-defender-launch"],
+        "files": ["snap/README.md", "snap/snapcraft.yaml", "snap/local/linux-defender-launch"],
         "workflow": "build-snap.yml",
         "marker": APP_ID,
     },
@@ -129,9 +129,13 @@ def main() -> int:
 
     # Parity/status documentation must mention every packaging format.
     status = read(ROOT / "docs/clamui-fork/STATUS.md")
+    docs_index = read(ROOT / "docs/README.md")
     for token in ("DEB", "RPM", "AppImage", "Flatpak", "Snap", "AUR"):
         if token not in status:
             failures.append(f"fork STATUS does not record {token} packaging")
+    for folder in ("debian", "rpm", "appimage", "flathub", "snap", "aur"):
+        if f"../{folder}/README.md" not in docs_index:
+            failures.append(f"docs/README.md does not link {folder}/README.md")
 
     # AUR-specific reproducibility invariants.
     app, helper = read(APP_PKG), read(HELPER_PKG)

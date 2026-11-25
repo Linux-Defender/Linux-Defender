@@ -107,6 +107,14 @@
       }
     },
     {
+      "id": "in-app-docs-link",
+      "why": "The desktop About dialog must offer a safe, allowlisted link to the published documentation without adding a new untranslated string.",
+      "layers": {
+        "frontend": ["DOCS_URL"],
+        "site": ["Installation"]
+      }
+    },
+    {
       "id": "packaging-parity",
       "why": "Every supported package format must stay version-matched, rebranded, workflow-covered, badge-documented, and host-ClamAV-only.",
       "layers": {

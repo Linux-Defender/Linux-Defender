@@ -57,6 +57,15 @@ def main() -> int:
         if cmd not in site:
             failures.append(f"CLI subcommand '{cmd}' is not documented on the website")
 
+    # 2b. The in-app documentation link must be allowlisted and use an existing
+    # translated label, so it cannot open arbitrary URLs or add an untranslated ID.
+    app_source = read("desktop/src/App.tsx")
+    if "DOCS_URL" in app_source:
+        if "url !== DOCS_URL" not in app_source:
+            failures.append("in-app documentation URL is not in the About allowlist")
+        if '_("Documentation")' not in app_source:
+            failures.append("in-app documentation button does not reuse an existing gettext ID")
+
     # 3. Active locales must match shipped catalogs.
     linguas = [l.strip() for l in read("po/LINGUAS").splitlines()
                if l.strip() and not l.strip().startswith("#")]

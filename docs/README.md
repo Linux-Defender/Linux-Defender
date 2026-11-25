@@ -11,7 +11,7 @@ cannot be written and then forgotten.
 
 ## Folder index
 - [`clamui-fork/`](clamui-fork/) — the ClamUI fork: what was ported from upstream, the rebrand state, and the upstream parity matrix
-- [`aur/`](../aur/README.md) — Arch/AUR source recipes for the app and version-matched helper, with Sway notes
+- **Package formats:** [DEB](../debian/README.md), [RPM helper](../rpm/README.md), [AppImage](../appimage/README.md), [Flatpak](../flathub/README.md), [Snap](../snap/README.md), [AUR](../aur/README.md) — every format has a README with build prerequisites, host-ClamAV boundary, and release status.
 - [`documentation/`](documentation/) — general documentation index and in-repo reference
 - [`revival/`](revival/) — revival/rework records. Start with its [index](revival/README.md): upstream repository inventory, ClamUI/ClamTk/Lenspect parity reviews, rebrand audits, and the requirement ledger.
 - [`translations/`](translations/) — gettext catalog status and how to finish the audit-string translations

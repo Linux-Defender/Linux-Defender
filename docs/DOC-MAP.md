@@ -23,9 +23,14 @@ complete cross-check that nothing is forgotten or orphaned.
 - [README](../README.md)
 - [RELEASE_NOTES](../RELEASE_NOTES.md)
 - [SECURITY](../SECURITY.md)
+- [appimage/README](../appimage/README.md)
 - [aur/README](../aur/README.md)
+- [debian/README](../debian/README.md)
+- [flathub/README](../flathub/README.md)
 - [flathub/RELEASE_NOTES](../flathub/RELEASE_NOTES.md)
 - [po/TRANSLATION-REVIEW](../po/TRANSLATION-REVIEW.md)
+- [rpm/README](../rpm/README.md)
+- [snap/README](../snap/README.md)
 
 ## Internal development and research docs
 

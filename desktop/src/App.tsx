@@ -81,6 +81,7 @@ const destinations: Array<{
 
 const PROJECT_URL = "https://github.com/Linux-Defender/Linux-Defender";
 const ISSUES_URL = "https://github.com/Linux-Defender/Linux-Defender/issues";
+const DOCS_URL = "https://linux-defender.github.io/Linux-Defender/docs/";
 
 function safeHttpUrl(value: string): string | null {
   try {
@@ -299,7 +300,7 @@ export default function App(): ReactNode {
     const isContributorUrl = aboutCredits?.contributors.some(
       (contributor) => contributorCredit(contributor).url === url,
     ) ?? false;
-    if (!safeHttpUrl(url) || (!isContributorUrl && url !== PROJECT_URL && url !== ISSUES_URL)) {
+    if (!safeHttpUrl(url) || (!isContributorUrl && url !== PROJECT_URL && url !== ISSUES_URL && url !== DOCS_URL)) {
       return;
     }
     void openExternal(url).catch(() => notify(_("Could not open link"), "error"));
@@ -1033,6 +1034,7 @@ export default function App(): ReactNode {
         </dl>
         <div className="about-links">
           <button className="button" type="button" onClick={() => openAboutUrl(PROJECT_URL)}>{_("Project website")}</button>
+          <button className="button" type="button" onClick={() => openAboutUrl(DOCS_URL)}>{_("Documentation")}</button>
           <button className="button" type="button" onClick={() => openAboutUrl(ISSUES_URL)}>{_("Issue tracker")}</button>
         </div>
         {aboutCreditsError ? <p className="notice error" role="alert">{_(
