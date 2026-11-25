@@ -1,6 +1,6 @@
 # Upstream repositories and related projects
 
-Reviewed 2026-11-24 with HTTP status checks. This is the canonical inventory of
+Reviewed 2026-11-25 with HTTP status checks. This is the canonical inventory of
 **external** repositories and sites referenced by the revival research. It
 covers ClamUI, ClamTk, and Lenspect, so it lives in [`revival/`](README.md)
 alongside the parity reviews rather than in the ClamUI-fork-only folder.
@@ -21,11 +21,13 @@ upstream README, the published reviews, and GitHub's repository API.
 | ClamTk community fork | <https://github.com/clamtk/clamtk> | Active | Community continuation referenced in ClamTk issue discussions; behavior reference only. |
 | ClamTk Flathub packaging | <https://github.com/flathub/com.gitlab.davem.ClamTk> | Archived | Historical Flatpak packaging for the EOL app; useful for packaging comparisons, not a dependency. |
 | ClamTk historical GitLab | <https://gitlab.com/dave_m/clamtk> | Active | Original project host referenced in upstream issue quotes. |
+| ClamAV Bytecode Compiler | <https://github.com/Cisco-Talos/clamav-bytecode-compiler> | Active (GPL-2.0, release `clambc-1.4.0`) | Upstream tool for building ClamAV bytecode signatures. Reviewed as a signature-format reference only; not vendored, bundled, or integrated into this MIT-licensed product. Linux Defender uses the host ClamAV database and its own independently implemented local YARA support. |
 
 ## Repository ownership and licensing
 
 - **MIT**: ClamUI and this repository. Preserve original notices when adopting upstream work.
 - **GPL-3.0**: Lenspect. Its behavior may be implemented independently, but its code must not be copied into Linux Defender without an explicit licensing decision.
+- **GPL-2.0**: ClamAV Bytecode Compiler. Reference only; no code or build dependency was adopted.
 - **Perl/Artistic/GPL mix**: ClamTk and its plugins. Treat as behavior reference only; the Perl reference tree was retired after parity was captured.
 
 ## Keeping this inventory current

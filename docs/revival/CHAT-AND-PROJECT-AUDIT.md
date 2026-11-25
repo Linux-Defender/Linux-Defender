@@ -180,4 +180,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 57 | Proof HTML still needed base-path-safe external-link and generated-DEL handling; Auto Assign dispatch skipped | Verified latest manual runs: Proof HTML completed/success and Auto Assign completed/success; all changes additive and workflow parser/watcher checks still green |
 
+| 58 | New upstream ClamAV bytecode compiler link must be accounted for | Reviewed `Cisco-Talos/clamav-bytecode-compiler` at `a1830a4` (GPL-2.0, release clambc-1.4.0), added it to the canonical upstream inventory and `parity-lock.json`, and recorded a reference-only disposition: no code, engine, compiler, or signature database adopted |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open.

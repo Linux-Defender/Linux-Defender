@@ -167,6 +167,10 @@ Upstream commit `c424a42` (#362) adds descriptive notes and `<code>` formatting 
 
 Upstream commit `d14019b` replaces em dashes with hyphens in website copy. **Deliberately not adopted:** Linux Defender's contributor rules require the Unicode em dash `—` for prose breaks, and our website already passes its link/style checks. No code, catalog, or configuration behavior changed. Recorded so the newer snapshot is reviewed rather than silently missed.
 
+### ClamAV Bytecode Compiler reference (2026-11-25)
+
+Reviewed `Cisco-Talos/clamav-bytecode-compiler` at `a1830a442110325d04708145437a5312fc6ab6f9` (GPL-2.0, latest release `clambc-1.4.0`). It compiles cross-platform ClamAV bytecode signatures for advanced detection. **Disposition: reference only, not adopted.** Linux Defender never bundles an engine or signature database, uses the host `clamscan`/`freshclam`/`clamd` boundary, and implements local `.yar`/`.yara` support independently under MIT. Its GPL-2.0 code cannot be copied into this repository without an explicit licensing decision. Its head is pinned in `parity-lock.json` and watched by `Upstream Freshness`.
+
 ### Open ClamUI pull requests
 
 - [#318 fix(scan): keep summary infection counts when threats are truncated](https://github.com/linx-systems/clamui/pull/318): opened 2026-11-16 from the fork `Linux-Defender/clamui` against `master`. It ports the #285 count behavior to upstream `clamui-core` (summary lower bound, at-least-one for exit code 1, accumulator and aggregate sums) and to the desktop result notice. The local account has read-only access to `linx-systems/clamui`, so this is a fork PR, not a direct push. Its core tests, clippy, frontend check, and frontend build pass locally.

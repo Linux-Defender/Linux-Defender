@@ -15,6 +15,11 @@
       "source": "dave-theunsub/clamtk",
       "commit": "694833d27c800e7c3ac4ff6dd44f0b2e65025260",
       "reviewedAt": "2026-11-25"
+    },
+    "clamav-bytecode-compiler": {
+      "source": "Cisco-Talos/clamav-bytecode-compiler",
+      "commit": "a1830a442110325d04708145437a5312fc6ab6f9",
+      "reviewedAt": "2026-11-25"
     }
   }
 }
