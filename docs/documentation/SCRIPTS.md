@@ -30,6 +30,7 @@ application runtime dependencies.
 - `scripts/check-gate-wiring.py` — every checker is wired to a gate and every gate path exists.
 - `scripts/check-host-tool-guidance.py` — app/site ClamAV commands.
 - `scripts/check-integration-parity.py` — Flatpak vs native launcher assets.
+- `scripts/check-ipc-operations.py` — every literal frontend IPC operation resolves to a core handler.
 - `scripts/check-packaging-consistency.py` — all six formats.
 - `scripts/check-packaging-freshness.py` — reviewed packaging reference drift.
 - `scripts/check-potfiles.sh` — Rust/TS gettext source coverage.

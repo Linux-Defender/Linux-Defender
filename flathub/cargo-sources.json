@@ -7321,6 +7321,19 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/zbus/zbus-6.5.0.crate",
+        "sha256": "9a7f9f5dd97fa527c1202ba1cb35d48e07f77d4de8542317c854f7aef22b0668",
+        "dest": "cargo/vendor/zbus-6.5.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"9a7f9f5dd97fa527c1202ba1cb35d48e07f77d4de8542317c854f7aef22b0668\", \"files\": {}}",
+        "dest": "cargo/vendor/zbus-6.5.0",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/zbus_macros/zbus_macros-5.19.0.crate",
         "sha256": "2990635d09ade6df1868f72f8cac69a876a90981e8bd3c40b1be413f8dc88f40",
         "dest": "cargo/vendor/zbus_macros-5.19.0"
@@ -7329,6 +7342,19 @@
         "type": "inline",
         "contents": "{\"package\": \"2990635d09ade6df1868f72f8cac69a876a90981e8bd3c40b1be413f8dc88f40\", \"files\": {}}",
         "dest": "cargo/vendor/zbus_macros-5.19.0",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/zbus_macros/zbus_macros-6.5.0.crate",
+        "sha256": "2f5aa7f2c4ea81b7ccfb26bafefdb4d1a44dd9d4f82c8426173a3727311743e4",
+        "dest": "cargo/vendor/zbus_macros-6.5.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"2f5aa7f2c4ea81b7ccfb26bafefdb4d1a44dd9d4f82c8426173a3727311743e4\", \"files\": {}}",
+        "dest": "cargo/vendor/zbus_macros-6.5.0",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -7347,14 +7373,27 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/zcheapstr/zcheapstr-1.1.0.crate",
-        "sha256": "d1afec51604565183aeb5c54c20aeab286120d4e4460f7f76e3e8bb8c0d99473",
-        "dest": "cargo/vendor/zcheapstr-1.1.0"
+        "url": "https://static.crates.io/crates/zbus_utils/zbus_utils-6.1.0.crate",
+        "sha256": "af55e52da295311b368c45bcae221f020e28e97a2420360170ce389218e76ec7",
+        "dest": "cargo/vendor/zbus_utils-6.1.0"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"d1afec51604565183aeb5c54c20aeab286120d4e4460f7f76e3e8bb8c0d99473\", \"files\": {}}",
-        "dest": "cargo/vendor/zcheapstr-1.1.0",
+        "contents": "{\"package\": \"af55e52da295311b368c45bcae221f020e28e97a2420360170ce389218e76ec7\", \"files\": {}}",
+        "dest": "cargo/vendor/zbus_utils-6.1.0",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/zcheapstr/zcheapstr-1.4.0.crate",
+        "sha256": "2da34e7164b75d803c3197b86e6cf61b874106fbd472c5082575a8bc5fbd0907",
+        "dest": "cargo/vendor/zcheapstr-1.4.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"2da34e7164b75d803c3197b86e6cf61b874106fbd472c5082575a8bc5fbd0907\", \"files\": {}}",
+        "dest": "cargo/vendor/zcheapstr-1.4.0",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -7524,6 +7563,19 @@
         "type": "inline",
         "contents": "{\"package\": \"aaf7fc5d30c28483d93805c4a5e12b05bbb52407fa67c5f8bd552374cd01fb11\", \"files\": {}}",
         "dest": "cargo/vendor/zopfli-0.8.4",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/zruntime/zruntime-0.2.4.crate",
+        "sha256": "ac67096b97c00742108c4674db6bb6178adb78c4b66a506b0e4a7a9593aa5d9e",
+        "dest": "cargo/vendor/zruntime-0.2.4"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"ac67096b97c00742108c4674db6bb6178adb78c4b66a506b0e4a7a9593aa5d9e\", \"files\": {}}",
+        "dest": "cargo/vendor/zruntime-0.2.4",
         "dest-filename": ".cargo-checksum.json"
     },
     {
