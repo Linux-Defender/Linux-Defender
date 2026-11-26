@@ -807,6 +807,18 @@ fn drain_update_output(
     }
 }
 
+fn use_service_for_update(
+    prefer_service: bool,
+    force: bool,
+    custom_config: bool,
+    service_running: bool,
+) -> bool {
+    // A running freshclam daemon can be asked to update via SIGUSR1 even for a
+    // forced request. Refusing every manual update just because the idle
+    // service process exists left users with no way to force an update.
+    prefer_service && !custom_config && (!force || service_running)
+}
+
 fn join_readers(readers: Vec<thread::JoinHandle<()>>) {
     for reader in readers {
         let _ = reader.join();
@@ -1092,11 +1104,16 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 return Ok(value);
             }
             let service_default = detect_freshclam_conf_path();
+            let (service_status, service_pid) = freshclam_service();
             let custom_config = config.as_deref() != service_default.as_deref();
-            let mut result = if !force && prefer_service && !custom_config {
-                let (service, pid) = freshclam_service();
-                if service == FreshclamServiceStatus::Running {
-                    match pid
+            let mut result = if use_service_for_update(
+                prefer_service,
+                force,
+                custom_config,
+                service_status == FreshclamServiceStatus::Running,
+            ) {
+                if service_status == FreshclamServiceStatus::Running {
+                    match service_pid
                         .or_else(pidof_freshclam)
                         .as_deref()
                         .ok_or_else(|| {
@@ -1141,8 +1158,8 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
 #[cfg(test)]
 mod tests {
     use super::{
-        database_in, parse_output, pipe_output, run_update_command, UpdateOutputBuffer,
-        UpdateStatus,
+        database_in, parse_output, pipe_output, run_update_command, use_service_for_update,
+        UpdateOutputBuffer, UpdateStatus,
     };
     use crate::{Context, Paths};
     use std::io::Cursor;
@@ -1158,6 +1175,15 @@ mod tests {
             data_dir: root.join("data"),
         })
         .unwrap()
+    }
+
+    #[test]
+    fn forced_update_signals_a_running_service_but_not_an_idle_daemon_gap() {
+        assert!(use_service_for_update(true, false, false, false));
+        assert!(use_service_for_update(true, true, false, true));
+        assert!(!use_service_for_update(true, true, false, false));
+        assert!(!use_service_for_update(true, false, true, true));
+        assert!(!use_service_for_update(false, false, false, true));
     }
 
     #[test]

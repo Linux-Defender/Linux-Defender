@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 08:49-0500\n"
+"POT-Creation-Date: 2026-11-26 09:35-0500\n"
 "PO-Revision-Date: 2026-10-17 12:00+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmål\n"
@@ -2204,7 +2204,7 @@ msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr "Signal om oppdatering er sendt til freshclam-tjenesten (PID {pid})"
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:825
+#: crates/linux-defender-core/src/updater.rs:837
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2212,7 +2212,7 @@ msgstr ""
 "En annen freshclam-instans kjører (PID {pid}). Stopp den først: sudo "
 "systemctl stop clamav-freshclam"
 
-#: crates/linux-defender-core/src/updater.rs:855
+#: crates/linux-defender-core/src/updater.rs:867
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] "Update timed out after {minutes} minutes without output"
@@ -2220,28 +2220,28 @@ msgstr[1] "Update timed out after {minutes} minutes without output"
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/updater.rs:994
+#: crates/linux-defender-core/src/updater.rs:1006
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] "Databaseoppdatering fullført – {count} database oppdatert"
 msgstr[1] "Databaseoppdatering fullført – {count} databaser oppdatert"
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/linux-defender-core/src/updater.rs:1004
+#: crates/linux-defender-core/src/updater.rs:1016
 msgid "Database update completed — Already up to date"
 msgstr "Oppdatering av databasen fullført – allerede oppdatert"
 
-#: crates/linux-defender-core/src/updater.rs:1071
+#: crates/linux-defender-core/src/updater.rs:1083
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "Den valgte freshclam-konfigurasjonen eksisterer ikke: {path}"
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/linux-defender-core/src/updater.rs:1103
+#: crates/linux-defender-core/src/updater.rs:1120
 msgid "Could not determine freshclam PID"
 msgstr "Kunne ikke finne PID for freshclam"
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/linux-defender-core/src/updater.rs:1113
+#: crates/linux-defender-core/src/updater.rs:1130
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
