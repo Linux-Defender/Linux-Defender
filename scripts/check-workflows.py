@@ -22,6 +22,10 @@ TRIGGERS = {
     "release", "issue_comment", "pull_request_target", "repository_dispatch",
     "issues", "workflow_run", "check_run", "deployment", "page_build",
 }
+# auto-assign only runs on `opened` (no synchronize events), so stale runs are
+# impossible; dependabot-refresh has a dedicated per-PR group with
+# cancel-in-progress: false so its guarded generation is never interrupted.
+CONCURRENCY_EXEMPT = {"auto-assign.yml", "dependabot-refresh.yml"}
 
 
 def main() -> int:
@@ -46,6 +50,15 @@ def main() -> int:
             failures.append(f"{path.name}: no recognized trigger")
         if "workflow_dispatch" not in triggers:
             failures.append(f"{path.name}: missing workflow_dispatch (cannot be manually verified)")
+        if ("pull_request" in triggers and path.name not in CONCURRENCY_EXEMPT):
+            concurrency = data.get("concurrency")
+            if not isinstance(concurrency, dict) or "pull_request" not in str(
+                concurrency.get("cancel-in-progress", "")
+            ):
+                failures.append(
+                    f"{path.name}: PR trigger without PR-scoped concurrency; "
+                    "a newer push must cancel stale runs"
+                )
     if failures:
         print("Workflow failures:", file=sys.stderr)
         for f in failures:

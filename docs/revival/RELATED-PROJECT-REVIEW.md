@@ -154,7 +154,7 @@ point-in-time counts elsewhere in this review:
 
 | Repository | Open issues | Open PRs | Default-branch head |
 |---|---|---|---|
-| `linx-systems/clamui` | 57 | 6 (dependency bumps; #299 TypeScript 7.0.2 still open, #298 closed) | `d14019b7edd15d583c9006e0f489c4c68b943229` |
+| `linx-systems/clamui` | 57 | 7 | `e26e1e40dbfcdacfa32bed85343367913f50b966` (2026-11-26 refresh below) |
 | `vmkspv/lenspect` | 0 | 0 | `a5507a6c8ec1bdf1f2222e7397d053ff365b3d70` |
 | `dave-theunsub/clamtk` | 23 | 4 (#168, #169, #170, #141) | `694833d27c800e7c3ac4ff6dd44f0b2e65025260` |
 | `Linux-Defender/Linux-Defender` | 0 | 0 | local `main` (checked at recheck time) |
@@ -194,6 +194,15 @@ Upstream commit `c424a42` (#362) adds descriptive notes and `<code>` formatting 
 ### Upstream refresh (2026-11-25, master `d14019b7edd15d583c9006e0f489c4c68b943229`)
 
 Upstream commit `d14019b` replaces em dashes with hyphens in website copy. **Deliberately not adopted:** Linux Defender's contributor rules require the Unicode em dash `—` for prose breaks, and our website already passes its link/style checks. No code, catalog, or configuration behavior changed. Recorded so the newer snapshot is reviewed rather than silently missed.
+
+### Upstream refresh (2026-11-26, master `e26e1e40dbfcdacfa32bed85343367913f50b966`)
+
+The reviewed ClamUI pin moved from `d14019b` to `e26e1e40` after two merged PRs; both were reviewed from their diffs rather than from merge status alone.
+
+- **#365 — `cookie` 0.18.3, `form_urlencoded` 1.2.3, `url` 2.5.9 for RUSTSEC-2026-0594/-0592:** **already satisfied here.** Our locked workspace uses exactly those versions (verified in `Cargo.lock` and `flathub/cargo-sources.json`), and `cargo audit` passes in the Dependency Audit workflow. No further change needed.
+- **#363 — CI path filters, PR concurrency cancellation, Rust caching, and job timeouts:** **behavior adopted where it fixes a real defect.** Superseded pull-request runs previously continued and produced cascades of stale failures/warnings (visible in the Actions history for PR #16). All PR-triggered workflows now use a PR-scoped `concurrency` group with `cancel-in-progress: ${{ github.event_name == 'pull_request' }}`; pushes to `main`, manual runs, schedules, and reusable calls stay unique and are never cancelled. `scripts/check-workflows.py` enforces this with documented exemptions for `auto-assign.yml` (opened only) and `dependabot-refresh.yml` (its own guarded generation group). Path filters and Rust caching are deliberately deferred: `check-all.sh` must run on every PR here, and adding a third-party cache action is not needed for correctness.
+
+The new head is pinned in `parity-lock.json` with review date 2026-11-26; `check-upstream-freshness.py` reports zero drift for all ten upstream references. The weekly checker's review issues (#21 and #22) are closed with these dispositions; unreviewed upstream content is still never auto-merged.
 
 ### ClamAV Bytecode Compiler reference (2026-11-25)
 

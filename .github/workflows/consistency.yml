@@ -15,6 +15,12 @@ on:
   schedule:
     - cron: "0 5 * * 1" # Weekly consistency audit, like CodeQL/dependency audit.
 
+# A newer push to the same PR cancels stale checks. Pushes to main, manual
+# runs, schedules, and reusable calls keep unique runs and are never cancelled.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
 
