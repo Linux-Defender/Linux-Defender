@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
-"""Fail when a built static site contains a broken local link or anchor."""
+"""Fail when a built static site has broken links, anchors, or malformed structure.
+
+In addition to local links/anchors, this owns the structural checks that used
+to come from proof-html's HTML/CSS validators (v1) or its v2 Nu validator:
+DOCTYPE, unique IDs, image alt text, well-formed inline style declarations,
+and balanced CSS blocks. Those validators reject Starlight/Shiki generated
+custom properties, so this site-local check is the enforced equivalent.
+"""
 
 from __future__ import annotations
 
 import argparse
+import re
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlsplit
@@ -17,13 +25,32 @@ class PageParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
         self.anchors: set[str] = set()
+        self.ids: set[str] = set()
+        self.duplicate_ids: set[str] = set()
         self.links: list[str] = []
+        self.has_doctype = False
+        self.images_without_alt: list[str] = []
+        self.bad_inline_styles: list[str] = []
+
+    def handle_decl(self, decl: str) -> None:
+        if decl.lower().startswith("doctype"):
+            self.has_doctype = True
 
     def handle_starttag(self, _tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attributes = dict(attrs)
-        for anchor in (attributes.get("id"), attributes.get("name")):
+        if element_id := attributes.get("id"):
+            if element_id in self.ids:
+                self.duplicate_ids.add(element_id)
+            self.ids.add(element_id)
+        for anchor in (element_id, attributes.get("name")):
             if anchor:
                 self.anchors.add(anchor)
+        if _tag == "img" and "alt" not in attributes:
+            self.images_without_alt.append(attributes.get("src", "<no src>"))
+        if style := attributes.get("style"):
+            for declaration in style.split(";"):
+                if declaration.strip() and ":" not in declaration:
+                    self.bad_inline_styles.append(declaration.strip())
         for attribute in ("href", "src"):
             if value := attributes.get(attribute):
                 self.links.append(value)
@@ -83,6 +110,15 @@ def check_site(site: Path) -> list[str]:
 
     errors: list[str] = []
     for page, parser in pages.items():
+        label = page.relative_to(site)
+        if not parser.has_doctype:
+            errors.append(f"{label}: missing <!DOCTYPE html>")
+        for duplicate in sorted(parser.duplicate_ids):
+            errors.append(f"{label}: duplicate id '{duplicate}'")
+        for source in parser.images_without_alt:
+            errors.append(f"{label}: img without alt: {source}")
+        for declaration in parser.bad_inline_styles:
+            errors.append(f"{label}: malformed inline style declaration: {declaration}")
         base_url = f"https://linux-defender.github.io{BASE_PATH}{public_urls[page]}"
         for link in parser.links:
             if not is_local(link):
@@ -98,6 +134,17 @@ def check_site(site: Path) -> list[str]:
             target_parser = pages.get(target)
             if fragment and target_parser and fragment not in target_parser.anchors:
                 errors.append(f"{reference}: missing anchor #{fragment}")
+
+    # CSS blocks must be balanced. Modern at-rules and custom properties are
+    # valid here; only structural corruption is rejected (a third-party Nu
+    # validator would reject the generator's @property rules).
+    for stylesheet in site.rglob("*.css"):
+        css = re.sub(r"/\*.*?\*/", "", stylesheet.read_text(encoding="utf-8", errors="replace"), flags=re.S)
+        if css.count("{") != css.count("}"):
+            errors.append(
+                f"{stylesheet.relative_to(site)}: unbalanced CSS blocks "
+                f"({css.count('{')} open, {css.count('}')} close)"
+            )
     return errors
 
 
@@ -111,7 +158,7 @@ def main() -> int:
 
     errors = check_site(site)
     if not errors:
-        print(f"Validated local links and anchors in {site}")
+        print(f"Validated local links, anchors, and HTML/CSS structure in {site}")
         return 0
 
     print("Broken built-site references:")

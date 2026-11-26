@@ -61,8 +61,10 @@ jobs:
         with:
           directory: ./website/proof
           # v2's Nu validator rejects Starlight/Shiki generated inline custom
-          # properties and markup. Astro's build, the browser, and HTML-Proofer
-          # below cover structure; proof-html runs its link/asset checks only.
+          # properties and markup. The enforced equivalent is our own
+          # scripts/check-built-links.py (DOCTYPE, duplicate IDs, image alt,
+          # inline style declarations, CSS block balance) run by website.yml
+          # and the full audit; HTML-Proofer below checks links and assets.
           check_html: false
           check_css: false
           ignore_empty_alt: true

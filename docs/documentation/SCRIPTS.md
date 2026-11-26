@@ -19,7 +19,7 @@ application runtime dependencies.
 - `scripts/check-aur-consistency.py` — named AUR-only wrapper over the unified packaging check.
 - `scripts/check-badges.py` — every workflow has a README status badge.
 - `scripts/check-build-wiring.py` — `tauri dev` → Vite → `dist`, vendored glib patch.
-- `scripts/check-built-links.py` — built-site links.
+- `scripts/check-built-links.py` — built-site links, anchors, and HTML/CSS structure.
 - `scripts/check-compiled-catalogs.ts` — compiled catalog identity check.
 - `scripts/check-cross-layer.py` — IPC/CLI/locale/feature contracts from source.
 - `scripts/check-dead-files.py` — orphaned docs/modules/skills.
