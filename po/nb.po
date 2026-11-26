@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-25 10:50-0500\n"
+"POT-Creation-Date: 2026-11-25 19:51-0500\n"
 "PO-Revision-Date: 2026-10-17 12:00+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmål\n"
@@ -1961,12 +1961,12 @@ msgstr[1] ""
 "{count} ikke-dødelige advarsler under skanning; noen filer kan bare ha blitt "
 "skannet delvis"
 
-#: crates/linux-defender-core/src/scheduler.rs:903
+#: crates/linux-defender-core/src/scheduler.rs:871
 msgid "Scheduled scan cancelled"
 msgstr "Planlagt skanning avbrutt"
 
 #. Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/scheduler.rs:922
+#: crates/linux-defender-core/src/scheduler.rs:890
 msgid ""
 "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] "
 "[--target PATH] [--dry-run] [--verbose|-v]"
@@ -1975,59 +1975,59 @@ msgstr ""
 "[--target PATH] [--dry-run] [--verbose|-v]"
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/linux-defender-core/src/scheduler.rs:963
+#: crates/linux-defender-core/src/scheduler.rs:931
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
-#: crates/linux-defender-core/src/scheduler.rs:972
+#: crates/linux-defender-core/src/scheduler.rs:940
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "Planlagt skanning ble hoppet over (går på batteri)"
 
-#: crates/linux-defender-core/src/scheduler.rs:989
+#: crates/linux-defender-core/src/scheduler.rs:957
 msgid "Warning: Target does not exist: {target}"
 msgstr "Advarsel: Målet finnes ikke: {target}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1001
+#: crates/linux-defender-core/src/scheduler.rs:969
 msgid "Error: No valid scan targets found"
 msgstr "Feil: Fant ingen gyldig mål for skanning"
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/linux-defender-core/src/scheduler.rs:1005
+#: crates/linux-defender-core/src/scheduler.rs:973
 msgid "Dry run mode — scan not executed"
 msgstr "Tørrkjøringsmodus — skanning ikke utført"
 
-#: crates/linux-defender-core/src/scheduler.rs:1013
+#: crates/linux-defender-core/src/scheduler.rs:981
 msgid "  Skip on battery: {value}"
 msgstr "  Hopp over på batteri: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1018
+#: crates/linux-defender-core/src/scheduler.rs:986
 msgid "  Auto quarantine: {value}"
 msgstr "  Automatisk karantene: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1026
+#: crates/linux-defender-core/src/scheduler.rs:994
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} mål: {targets:?}"
 msgstr[1] "  {count} mål: {targets:?}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1050
+#: crates/linux-defender-core/src/scheduler.rs:1018
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "Planlagt skanning mislyktes: ClamAV er utilgjengelig"
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/linux-defender-core/src/scheduler.rs:1060
+#: crates/linux-defender-core/src/scheduler.rs:1028
 msgid "Error: ClamAV not available — {error}"
 msgstr "Feil: ClamAV er ikke tilgjengelig — {error}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1069
+#: crates/linux-defender-core/src/scheduler.rs:1037
 msgid "Scheduled Scan Failed"
 msgstr "Planlagt skanning mislyktes"
 
-#: crates/linux-defender-core/src/scheduler.rs:1070
+#: crates/linux-defender-core/src/scheduler.rs:1038
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "ClamAV er utilgjengelig. Installer ClamAV."
 
-#: crates/linux-defender-core/src/scheduler.rs:1133
+#: crates/linux-defender-core/src/scheduler.rs:1101
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
@@ -2036,71 +2036,71 @@ msgstr[0] ""
 msgstr[1] ""
 "Planlagt skanning fant {infected} trusler, {quarantined} satt i karantene"
 
-#: crates/linux-defender-core/src/scheduler.rs:1144
+#: crates/linux-defender-core/src/scheduler.rs:1112
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "Planlagt skanning fant {count} trussel"
 msgstr[1] "Planlagt skanning fant {count} trusler"
 
-#: crates/linux-defender-core/src/scheduler.rs:1153
+#: crates/linux-defender-core/src/scheduler.rs:1121
 msgid "Scheduled scan completed with errors"
 msgstr "Planlagt skanning ble fullført med feil"
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/scheduler.rs:1156
+#: crates/linux-defender-core/src/scheduler.rs:1124
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] "Planlagt skanning fullført – {count} fil skannet, ingen trusler"
 msgstr[1] "Planlagt skanning fullført – {count} filer skannet, ingen trusler"
 
-#: crates/linux-defender-core/src/scheduler.rs:1171
+#: crates/linux-defender-core/src/scheduler.rs:1139
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "Skannetid: {duration:.1f} sekunder"
 
-#: crates/linux-defender-core/src/scheduler.rs:1173
+#: crates/linux-defender-core/src/scheduler.rs:1141
 msgid "Files Scanned: {count}"
 msgstr "Filer skannet: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1174
+#: crates/linux-defender-core/src/scheduler.rs:1142
 msgid "Threats Found: {count}"
 msgstr "Trusler funnet: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1175
+#: crates/linux-defender-core/src/scheduler.rs:1143
 msgid "Targets: {targets}"
 msgstr "Mål: {targets}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1179
+#: crates/linux-defender-core/src/scheduler.rs:1147
 msgid "Quarantined: {count}"
 msgstr "Satt i karantene: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1184
+#: crates/linux-defender-core/src/scheduler.rs:1152
 msgid "Quarantine Failed: {count}"
 msgstr "Mislykket karantene: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1212
+#: crates/linux-defender-core/src/scheduler.rs:1180
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "Planlagt skanning: trusler oppdaget!"
 
-#: crates/linux-defender-core/src/scheduler.rs:1218
+#: crates/linux-defender-core/src/scheduler.rs:1186
 msgid "Scheduled Scan Completed"
 msgstr "Planlagt skanning er fullført"
 
-#: crates/linux-defender-core/src/scheduler.rs:1219
+#: crates/linux-defender-core/src/scheduler.rs:1187
 msgid "Scan completed with some errors. Check logs for details."
 msgstr "Skanning fullført med noen feil. Se loggene for detaljer."
 
-#: crates/linux-defender-core/src/scheduler.rs:1227
+#: crates/linux-defender-core/src/scheduler.rs:1195
 msgid "Scheduled Scan Complete"
 msgstr "Planlagt skanning fullført"
 
-#: crates/linux-defender-core/src/scheduler.rs:1240
+#: crates/linux-defender-core/src/scheduler.rs:1208
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "Kunne ikke sette i karantene: {count} fil"
 msgstr[1] "Kunne ikke sette i karantene: {count} filer"
 
-#: crates/linux-defender-core/src/scheduler.rs:1266
+#: crates/linux-defender-core/src/scheduler.rs:1234
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -2108,15 +2108,15 @@ msgstr ""
 "Batterinivå: {percent:.0f} %\n"
 "Skanningen ble hoppet over på grunn av batteriinnstillingene."
 
-#: crates/linux-defender-core/src/scheduler.rs:1271
+#: crates/linux-defender-core/src/scheduler.rs:1239
 msgid "Scan skipped due to battery-aware settings."
 msgstr "Skanning hoppet over på grunn av batteribevisste innstillinger."
 
-#: crates/linux-defender-core/src/scheduler.rs:1277
+#: crates/linux-defender-core/src/scheduler.rs:1245
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "Hopper over skanningen: maskinen går på batteri ({percent:.0f} %)"
 
-#: crates/linux-defender-core/src/scheduler.rs:1282
+#: crates/linux-defender-core/src/scheduler.rs:1250
 msgid "Skipping scan: running on battery power"
 msgstr "Hopper over skanning: kjører på batteristrøm"
 

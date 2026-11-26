@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-25 10:50-0500\n"
+"POT-Creation-Date: 2026-11-25 19:51-0500\n"
 "PO-Revision-Date: 2026-11-03 21:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -1910,12 +1910,12 @@ msgstr[0] ""
 "{count} cảnh báo không nghiêm trọng trong quá trình quét; một số tệp có thể "
 "chỉ được quét một phần"
 
-#: crates/linux-defender-core/src/scheduler.rs:903
+#: crates/linux-defender-core/src/scheduler.rs:871
 msgid "Scheduled scan cancelled"
 msgstr "Đã hủy quét theo lịch"
 
 #. Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/scheduler.rs:922
+#: crates/linux-defender-core/src/scheduler.rs:890
 msgid ""
 "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] "
 "[--target PATH] [--dry-run] [--verbose|-v]"
@@ -1924,128 +1924,128 @@ msgstr ""
 "quarantine] [--target PATH] [--dry-run] [--verbose|-v]"
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/linux-defender-core/src/scheduler.rs:963
+#: crates/linux-defender-core/src/scheduler.rs:931
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
-#: crates/linux-defender-core/src/scheduler.rs:972
+#: crates/linux-defender-core/src/scheduler.rs:940
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "Đã bỏ qua quét theo lịch (đang dùng pin)"
 
-#: crates/linux-defender-core/src/scheduler.rs:989
+#: crates/linux-defender-core/src/scheduler.rs:957
 msgid "Warning: Target does not exist: {target}"
 msgstr "Cảnh báo: Mục tiêu không tồn tại: {target}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1001
+#: crates/linux-defender-core/src/scheduler.rs:969
 msgid "Error: No valid scan targets found"
 msgstr "Lỗi: Không tìm thấy mục tiêu quét hợp lệ nào"
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/linux-defender-core/src/scheduler.rs:1005
+#: crates/linux-defender-core/src/scheduler.rs:973
 msgid "Dry run mode — scan not executed"
 msgstr "Chế độ chạy thử — không thực hiện quét"
 
-#: crates/linux-defender-core/src/scheduler.rs:1013
+#: crates/linux-defender-core/src/scheduler.rs:981
 msgid "  Skip on battery: {value}"
 msgstr "  Bỏ qua khi dùng pin: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1018
+#: crates/linux-defender-core/src/scheduler.rs:986
 msgid "  Auto quarantine: {value}"
 msgstr "  Tự động cách ly: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1026
+#: crates/linux-defender-core/src/scheduler.rs:994
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} mục tiêu: {targets:?}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1050
+#: crates/linux-defender-core/src/scheduler.rs:1018
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "Quét theo lịch thất bại: ClamAV không khả dụng"
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/linux-defender-core/src/scheduler.rs:1060
+#: crates/linux-defender-core/src/scheduler.rs:1028
 msgid "Error: ClamAV not available — {error}"
 msgstr "Lỗi: ClamAV không khả dụng — {error}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1069
+#: crates/linux-defender-core/src/scheduler.rs:1037
 msgid "Scheduled Scan Failed"
 msgstr "Quét theo lịch thất bại"
 
-#: crates/linux-defender-core/src/scheduler.rs:1070
+#: crates/linux-defender-core/src/scheduler.rs:1038
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "ClamAV không khả dụng. Vui lòng cài đặt ClamAV."
 
-#: crates/linux-defender-core/src/scheduler.rs:1133
+#: crates/linux-defender-core/src/scheduler.rs:1101
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
 msgstr[0] ""
 "Quét theo lịch phát hiện {infected} mối đe dọa, đã cách ly {quarantined}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1144
+#: crates/linux-defender-core/src/scheduler.rs:1112
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "Quét theo lịch phát hiện {count} mối đe dọa"
 
-#: crates/linux-defender-core/src/scheduler.rs:1153
+#: crates/linux-defender-core/src/scheduler.rs:1121
 msgid "Scheduled scan completed with errors"
 msgstr "Quét theo lịch đã hoàn tất nhưng có lỗi"
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/scheduler.rs:1156
+#: crates/linux-defender-core/src/scheduler.rs:1124
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] ""
 "Quét theo lịch đã hoàn tất — đã quét {count} tệp, không có mối đe dọa"
 
-#: crates/linux-defender-core/src/scheduler.rs:1171
+#: crates/linux-defender-core/src/scheduler.rs:1139
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "Thời gian quét: {duration:.1f} giây"
 
-#: crates/linux-defender-core/src/scheduler.rs:1173
+#: crates/linux-defender-core/src/scheduler.rs:1141
 msgid "Files Scanned: {count}"
 msgstr "Số tệp đã quét: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1174
+#: crates/linux-defender-core/src/scheduler.rs:1142
 msgid "Threats Found: {count}"
 msgstr "Số mối đe dọa phát hiện: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1175
+#: crates/linux-defender-core/src/scheduler.rs:1143
 msgid "Targets: {targets}"
 msgstr "Mục tiêu: {targets}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1179
+#: crates/linux-defender-core/src/scheduler.rs:1147
 msgid "Quarantined: {count}"
 msgstr "Đã cách ly: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1184
+#: crates/linux-defender-core/src/scheduler.rs:1152
 msgid "Quarantine Failed: {count}"
 msgstr "Cách ly thất bại: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1212
+#: crates/linux-defender-core/src/scheduler.rs:1180
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "Quét theo lịch: Phát hiện mối đe dọa!"
 
-#: crates/linux-defender-core/src/scheduler.rs:1218
+#: crates/linux-defender-core/src/scheduler.rs:1186
 msgid "Scheduled Scan Completed"
 msgstr "Quét theo lịch đã hoàn tất"
 
-#: crates/linux-defender-core/src/scheduler.rs:1219
+#: crates/linux-defender-core/src/scheduler.rs:1187
 msgid "Scan completed with some errors. Check logs for details."
 msgstr ""
 "Quá trình quét đã hoàn tất nhưng có một số lỗi. Xem nhật ký để biết chi tiết."
 
-#: crates/linux-defender-core/src/scheduler.rs:1227
+#: crates/linux-defender-core/src/scheduler.rs:1195
 msgid "Scheduled Scan Complete"
 msgstr "Quét theo lịch đã hoàn tất"
 
-#: crates/linux-defender-core/src/scheduler.rs:1240
+#: crates/linux-defender-core/src/scheduler.rs:1208
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "Không thể cách ly: {count} tệp"
 
-#: crates/linux-defender-core/src/scheduler.rs:1266
+#: crates/linux-defender-core/src/scheduler.rs:1234
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -2053,15 +2053,15 @@ msgstr ""
 "Mức pin: {percent:.0f}%\n"
 "Đã bỏ qua lượt quét do cài đặt tiết kiệm pin."
 
-#: crates/linux-defender-core/src/scheduler.rs:1271
+#: crates/linux-defender-core/src/scheduler.rs:1239
 msgid "Scan skipped due to battery-aware settings."
 msgstr "Đã bỏ qua lượt quét do cài đặt tiết kiệm pin."
 
-#: crates/linux-defender-core/src/scheduler.rs:1277
+#: crates/linux-defender-core/src/scheduler.rs:1245
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "Bỏ qua lượt quét: đang dùng pin ({percent:.0f}%)"
 
-#: crates/linux-defender-core/src/scheduler.rs:1282
+#: crates/linux-defender-core/src/scheduler.rs:1250
 msgid "Skipping scan: running on battery power"
 msgstr "Bỏ qua lượt quét: đang dùng pin"
 

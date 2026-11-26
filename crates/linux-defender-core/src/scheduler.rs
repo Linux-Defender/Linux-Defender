@@ -132,10 +132,6 @@ impl std::str::FromStr for ScheduleFrequency {
 pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
     match action {
         "status" => status(ctx),
-        "preview" => {
-            let schedule = schedule_argument(&args)?;
-            preview(ctx, &schedule)
-        }
         "apply" => {
             let schedule = schedule_argument(&args)?;
             apply(ctx, &schedule)
@@ -182,34 +178,6 @@ pub fn status(_ctx: &Context) -> AppResult<Value> {
         "backend": backend.as_str(), "available": true, "active": false, "next_run": Value::Null,
         "error": error
     })))
-}
-
-pub fn preview(_ctx: &Context, schedule: &ScheduleConfig) -> AppResult<Value> {
-    validate_schedule(schedule)?;
-    let backend = detect_backend();
-    let command = launcher_command()
-        .ok_or_else(|| "Could not find linux-defender-scheduled-scan command".to_string())?;
-    let calendar = on_calendar(
-        schedule.frequency,
-        &schedule.time,
-        schedule.day_of_week,
-        schedule.day_of_month,
-    );
-    let cron = cron_expression(
-        schedule.frequency,
-        &schedule.time,
-        schedule.day_of_week,
-        schedule.day_of_month,
-    );
-    Ok(json!({
-        "backend": backend.as_str(),
-        "available": backend != SchedulerBackend::None,
-        "enabled": schedule.enabled,
-        "calendar": calendar,
-        "cron": cron,
-        "service": service_file(&command, schedule),
-        "timer": timer_file(&calendar),
-    }))
 }
 
 /// Provision only the operating-system schedule. Settings persistence belongs to config.save/apply,
