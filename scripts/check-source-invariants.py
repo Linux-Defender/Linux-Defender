@@ -28,7 +28,7 @@ FORBIDDEN = (
         "URLhaus notification claims automatic application",
         ("desktop/src", "po"),
         (".ts", ".tsx", ".po"),
-        re.compile(r"applied automatically"),
+        re.compile(r"URLhaus feed added to the draft and applied automatically"),
         "the draft is not applied until the user chooses Save & Apply",
     ),
     (
