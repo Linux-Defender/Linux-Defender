@@ -1,0 +1,27 @@
+---
+// SFW adaptation of upstream ClamUI's TerminalDemo. Decorative only: static
+// text, no external scripts, no links, GNOME-style headerbar with one close
+// affordance instead of macOS traffic lights. Uses Linux Defender's own CLI.
+---
+
+<div class="term mt-5" aria-hidden="true">
+  <div class="flex h-9 items-center justify-between border-b border-white/10 px-3">
+    <div class="flex-1"></div>
+    <div class="flex-1 text-center font-mono text-[11px] text-white/60">Terminal — linux-defender-cli</div>
+    <div class="flex flex-1 justify-end">
+      <span class="grid h-5 w-5 place-items-center rounded-full border border-white/10 bg-white/[0.06] text-[10px] text-white/50">×</span>
+    </div>
+  </div>
+  <div class="term-body space-y-1">
+    <div><span class="text-guard-sage">you@fedora</span><span class="text-white/45">:~$</span> <span class="text-white/80">linux-defender-cli scan ~/Downloads</span></div>
+    <div class="text-white/50">Loading host signatures … ready</div>
+    <div class="text-white/50">Scanning /home/you/Downloads …</div>
+    <div><span class="text-white/50">/Downloads/invoice.pdf:</span> <span class="text-guard-sage">OK</span></div>
+    <div><span class="text-white/50">/Downloads/setup.exe:</span> <span class="text-guard-amber">Win.Trojan.Emotet-55519 FOUND</span></div>
+    <div><span class="text-white/50">/Downloads/archive.zip:</span> <span class="text-guard-sage">OK</span></div>
+    <div class="mt-2 border-t border-white/5 pt-2 text-white/50">----------- SCAN SUMMARY -----------</div>
+    <div><span class="text-white/50">Infected files:</span> <span class="text-guard-amber">1</span></div>
+    <div class="text-white/50">Time: 12.431 sec (0 m 12 s)</div>
+    <div class="pt-2"><span class="text-guard-sage">you@fedora</span><span class="text-white/45">:~$</span> <span class="text-white/80">linux-defender status</span> <span class="text-guard-sage">▋</span></div>
+  </div>
+</div>

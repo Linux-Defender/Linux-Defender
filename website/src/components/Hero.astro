@@ -1,5 +1,6 @@
 ---
 import ProductPreview from "./ProductPreview.astro";
+import TerminalDemo from "./TerminalDemo.astro";
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
@@ -31,6 +32,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
         <span><b class="text-white/80">Online checks</b> · optional</span>
       </div>
     </div>
-    <div class="animate-fade-up [animation-delay:120ms]"><ProductPreview /></div>
+    <div class="animate-fade-up [animation-delay:120ms]">
+      <ProductPreview />
+      <TerminalDemo />
+    </div>
   </div>
 </section>
