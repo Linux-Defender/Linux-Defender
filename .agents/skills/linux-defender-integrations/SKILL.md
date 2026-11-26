@@ -26,14 +26,21 @@ They are security-sensitive: keep every crossing narrow, explicit, and tested.
    a second tray implementation. All behavior lands in the Rust core or Tauri.
 2. **Validate at the Rust boundary.** Frontend checks are UX, not authorization.
    Paths, URLs, operation IDs, and value bounds are sanitized in Rust before
-   any host command, IPC reply, or persistence.
+   any host command, IPC reply, or persistence. A new operation must exist on
+   both sides of the dispatcher: the core action and the literal frontend
+   `request("domain.action")`. `scripts/check-ipc-operations.py` fails on a
+   frontend operation the core cannot serve, and the Tauri CSP stays restrictive
+   (`scripts/check-source-invariants.py` blocks inline/eval script and a lost
+   `object-src`/`frame-ancestors`/`base-uri`/`form-action` policy).
 3. **Scoped host execution.** Use `common::host_command`/`watched_host_command`.
    They strip host-library transform variables, Flatpak/snap/AppImage leakage,
    and snap runtime variables so the host's ClamAV/Polkit tools run cleanly.
 4. **Asset parity.** When adding/changing an integration, update every relevant
    location: `data/`, `assets/integrations-native/`, `crates/linux-defender-core/assets/integrations/`, `scripts/` Nautilus helpers, and
    the Rust `include_bytes!` in `platform.rs`. Keep the rebranded IDs:
-   `io.github.linuxdefender.linuxdefender`.
+   `io.github.linuxdefender.linuxdefender`. Every `.sh` asset and every copy is
+   tracked `100755`; `check-integration-parity.py` compares the sets and exec
+   bits, and `check-file-modes.py` catches a lost executable bit anywhere.
 5. **Test the integration.** Add tests beside `platform.rs`/`privileged.rs`
    (asset bytes, trusted-path checks, staging containment) and verify the
    generated desktop files with `msgfmt`/desktop-file tooling where relevant.
@@ -46,6 +53,9 @@ They are security-sensitive: keep every crossing narrow, explicit, and tested.
 cargo test -p linux-defender-core --test platform
 cargo test -p linux-defender-core --test privileged
 cargo test -p linux-defender-core --test snap
+python3 scripts/check-integration-parity.py
+python3 scripts/check-ipc-operations.py
+python3 scripts/check-source-invariants.py
 bash scripts/audit-consistency.sh
 ```
 
