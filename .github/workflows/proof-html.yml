@@ -61,6 +61,7 @@ jobs:
         with:
           directory: ./website/proof
           check_html: true
+          check_css: false
           ignore_empty_alt: true
           # External links are validated by scripts/check-external-links.py;
           # proof-html focuses on local structure and assets. v2 renamed the

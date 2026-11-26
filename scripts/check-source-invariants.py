@@ -51,6 +51,12 @@ PROOF_FORBIDDEN = (
     (re.compile(r"url_ignore_re"), "v2 uses ignore_url_re / disable_external"),
     (re.compile(r"empty_alt_ignore"), "v2 uses ignore_empty_alt"),
     (re.compile(r"s\|/Linux-Defender/\|/\|g"), "the broad rewrite corrupts github.com/Linux-Defender/... URLs"),
+    (re.compile(r"check_css:\s*true"), "v2's CSS validator rejects modern @property syntax"),
+)
+PROOF_REQUIRED = (
+    "check_css: false",
+    "ignore_empty_alt: true",
+    "disable_external: true",
 )
 CSP_REQUIRED = (
     "default-src 'self'",
@@ -113,6 +119,12 @@ def main() -> int:
             failures.append(
                 f"{PROOF_WORKFLOW.relative_to(ROOT)} uses {pattern.pattern!r}: {reason}"
             )
+    for required in PROOF_REQUIRED:
+        if required not in proof:
+            failures.append(
+                f"{PROOF_WORKFLOW.relative_to(ROOT)} lost '{required}' "
+                "(reviewed proof-html v2 configuration)"
+            )
 
     if failures:
         print("Source invariant failures:", file=sys.stderr)
@@ -122,7 +134,8 @@ def main() -> int:
 
     print(
         f"Source invariants OK: {len(FORBIDDEN)} behavior rules, "
-        f"{len(CSP_REQUIRED)} CSP rules, {len(PROOF_FORBIDDEN)} workflow rules"
+        f"{len(CSP_REQUIRED)} CSP rules, {len(PROOF_FORBIDDEN)} forbidden and "
+        f"{len(PROOF_REQUIRED)} required workflow rules"
     )
     return 0
 
