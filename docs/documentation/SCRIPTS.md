@@ -57,6 +57,7 @@ application runtime dependencies.
 ## Validation helpers
 
 - `scripts/capture-app-window.sh` — real Tauri/WebKitGTK screenshot.
+- `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).
 - `scripts/validate-sway.sh` — interactive Sway checklist runner.
 - `scripts/hooks/ai-enforcement-context.py`, `scripts/hooks/install-hooks.sh`, `scripts/hooks/pre-commit`, `scripts/hooks/pre-push` — git/AI hooks.
 - `scripts/tests/test_external_links.py`, `scripts/tests/test_signature_check.py` — checker regression tests.

@@ -8,7 +8,7 @@ Linux Defender is the user-facing product name, and Kira (Linux-Defender) is the
 
 The application identity migration to `linux-defender` completed on 2026-11-18. The GUI/CLI command, `linux-defender-cli`, `linux-defender-scheduled-scan`, `/usr/bin/linux-defender-apply-preferences`, the `linux-defender-event` Tauri channel, the `linux-defender` keyring service, the `linux-defender.mo` gettext domain, systemd units, cron markers, debug logs, and scheduler cache paths are now canonical. Pre-rename executables, helper installation, systemd units, cron lines, keyring entries, and `~/.config/clamui`/`~/.local/share/clamui` data remain readable as compatibility aliases so upgrades do not lose saved settings, schedules, API keys, or quarantined data. The protocol-v4 staging directory `~/.cache/clamui/privileged-staging` deliberately keeps its pre-rename path because the caller and an installed helper both validate it. See the 2026-11-18 section below for the compatibility boundaries that remain by design.
 
-The MIT license retains the original upstream copyright notice alongside the Linux Defender contributors' notice. Preserve both notices when distributing substantial portions of MIT-licensed source; the old notice is attribution, not the current product name. See the [MIT license terms](https://opensource.org/license/mit).
+The MIT license retains the original upstream copyright notice alongside the Linux Defender contributors' notice. Preserve both notices when distributing substantial portions of MIT-licensed source; the old notice is attribution, not the current product name. See the [MIT license terms](https://spdx.org/licenses/MIT.html).
 
 ## Release signing
 

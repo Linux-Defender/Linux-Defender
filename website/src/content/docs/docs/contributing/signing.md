@@ -20,6 +20,29 @@ git rev-parse HEAD
 
 Build from a commit in the Linux-Defender/Linux-Defender repository, keep the commit hash with your test notes, and review any local modifications. A locally built app is not a signed release artifact, even when its source came from GitHub.
 
+## Preparing a release
+
+Use the readiness checker before creating a tag. It verifies a clean, synced
+checkout, one branch, no collision tags, version agreement, current release
+notes, the signing key/fingerprint, and optionally that CI on HEAD is green:
+
+```bash
+python3 scripts/release-readiness.py --check-ci
+```
+
+When the notes describe the version as a release candidate (not a snapshot),
+ask it to create a **local, annotated** tag:
+
+```bash
+python3 scripts/release-readiness.py --create-tag X.Y.Z
+```
+
+It never pushes. Pushing that tag is the moment you decide to start
+`Release`; review the notes and the resulting draft release first. Upstream
+release versions are reviewed manually (latest reviewed: ClamUI `v0.6.0`); the
+weekly `Upstream Freshness` workflow watches pinned heads and skills, and never
+auto-merges upstream content.
+
 ## When the release workflow runs
 
 `Release` (`.github/workflows/release.yml`) is the only workflow that signs artifacts. It starts when a tag matching `v*` is **pushed to GitHub**, or when a maintainer dispatches it manually. It builds signed Debian app/helper packages, the signed RPM helper, and a signed AppImage with the repository's GPG secrets, then creates a **draft** GitHub release whose notes come from `RELEASE_NOTES.md`. The draft is not published automatically: a human reviews the assets and signatures first.
