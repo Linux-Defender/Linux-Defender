@@ -15,6 +15,7 @@ permissions:
 jobs:
   auto-assign:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       # Manual dispatch has no issue/PR payload; verify the trigger succeeds
       # instead of skipping the whole job, then skip only the assign action.

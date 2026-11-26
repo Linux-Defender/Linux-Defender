@@ -15,7 +15,7 @@ rebranding everything user-facing to **Linux Defender**. The upstream project
 remains available for reference; it is not a second application shipped here.
 All upstream repos/features referenced here are listed in the canonical
 [upstream repository inventory](../revival/UPSTREAM-REPOSITORIES.md), which
-covers ClamUI, ClamTk, and Lenspect.
+covers ClamUI, ClamTk, Lenspect, their plugin repos, and the ClamAV bytecode compiler.
 
 ## What was ported from ClamUI
 

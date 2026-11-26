@@ -320,3 +320,6 @@ html.light [data-copy]:hover[class~="text-white"] {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.65);
 }
+
+/* Canonical Markdown docs supply their own H1; Starlight already rendered the page title. */
+.canonical-doc > h1:first-child { display: none; }

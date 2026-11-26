@@ -1,70 +1,39 @@
 #!/bin/sh
-# Install Nemo context menu actions for Linux Defender (Flatpak version)
+# Install Nemo context-menu actions for Linux Defender from a source checkout.
 #
-# This script copies the Nemo action files from the Flatpak to the user's
-# local Nemo actions directory, enabling right-click context menu integration.
+# Linux Defender also installs these actions at runtime through platform.rs;
+# this helper is for people who want to install them from the repository
+# without starting the app. Run it from any directory:
 #
-# Usage:
-#   flatpak run --command=linux-defender-install-nemo-actions io.github.linuxdefender.linuxdefender
+#   ./scripts/install-nemo-actions.sh
 #
-# Or from within the Flatpak environment:
-#   linux-defender-install-nemo-actions
+set -eu
 
-set -e
-
-# Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
-
-log_info() {
-    printf "${GREEN}[INFO]${NC} %s\n" "$1"
-}
-
-log_warn() {
-    printf "${YELLOW}[WARN]${NC} %s\n" "$1"
-}
-
-log_error() {
-    printf "${RED}[ERROR]${NC} %s\n" "$1" >&2
-}
-
-# Source directory (inside Flatpak)
-SOURCE_DIR="/app/share/linux-defender/nemo-actions"
-
-# Destination directory (user's home)
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+SOURCE_DIR="$SCRIPT_DIR/../assets/integrations-native"
 DEST_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nemo/actions"
 
-# Check if running inside Flatpak
 if [ ! -d "$SOURCE_DIR" ]; then
-    log_error "Nemo action files not found at $SOURCE_DIR"
-    log_error "This script should be run from within the Linux Defender Flatpak:"
-    log_error "  flatpak run --command=linux-defender-install-nemo-actions io.github.linuxdefender.linuxdefender"
+    printf '[ERROR] Nemo action assets not found at %s\n' "$SOURCE_DIR" >&2
     exit 1
 fi
 
-# Create destination directory if it doesn't exist
-log_info "Creating Nemo actions directory: $DEST_DIR"
+printf '[INFO] Creating Nemo actions directory: %s\n' "$DEST_DIR"
 mkdir -p "$DEST_DIR"
 
-# Copy action files
-log_info "Installing Nemo context menu actions..."
-
+installed=0
 for action_file in "$SOURCE_DIR"/*.nemo_action; do
-    if [ -f "$action_file" ]; then
-        filename=$(basename "$action_file")
-        cp "$action_file" "$DEST_DIR/$filename"
-        log_info "Installed: $filename"
-    fi
+    [ -f "$action_file" ] || continue
+    filename=$(basename "$action_file")
+    cp "$action_file" "$DEST_DIR/$filename"
+    printf '[INFO] Installed: %s\n' "$filename"
+    installed=$((installed + 1))
 done
 
-log_info ""
-log_info "Nemo context menu actions installed successfully!"
-log_info ""
-log_info "You may need to restart Nemo for changes to take effect:"
-log_info "  nemo -q"
-log_info ""
-log_info "After restart, right-click any file or folder to see:"
-log_info "  - 'Scan with Linux Defender' - Scan with local ClamAV"
-log_info "  - 'Scan with VirusTotal' - Scan online (single file only)"
+if [ "$installed" -eq 0 ]; then
+    printf '[ERROR] No .nemo_action files found in %s\n' "$SOURCE_DIR" >&2
+    exit 1
+fi
+
+printf '[INFO] Installed %s Nemo action(s).\n' "$installed"
+printf '[INFO] Restart Nemo with `nemo -q` if the actions do not appear immediately.\n'

@@ -24,6 +24,26 @@ export default defineConfig({
     starlight({
       title: "Linux Defender Documentation",
       description: "Install, use, configure, and contribute to Linux Defender.",
+      head: [
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image",
+            content: "https://linux-defender.github.io/Linux-Defender/og-image.png",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "twitter:image",
+            content: "https://linux-defender.github.io/Linux-Defender/og-image.png",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: { name: "twitter:card", content: "summary_large_image" },
+        },
+      ],
       logo: {
         src: "./src/assets/logo.svg",
         alt: "Linux Defender",

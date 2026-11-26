@@ -6,7 +6,7 @@ documentation; `scripts/check-watchers.py` verifies the index cannot drift.
 | Workflow | Schedule | Watches |
 | --- | --- | --- |
 | `consistency.yml` | Weekly | Full repo/app/site audit: static checks, builds, clippy, tests, git/CI sync. |
-| `codeql.yml` | Weekly | Code scanning for Rust/TypeScript changes. |
+| `codeql.yml` | Weekly | Code scanning for Actions workflows, TypeScript, Python, and Rust with security and quality queries. |
 | `dependency-audit.yml` | Weekly | Rust and all Bun workspaces, including the MCP assist server. |
 | `deploy-website.yml` | Weekly | Published site rebuild so the latest-release navigation stays current. |
 | `doc-links.yml` | Weekly | Every external documentation link. |

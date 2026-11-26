@@ -4,7 +4,6 @@
   "description": "Local Linux Defender frontend only; privileged file and process access stays behind audited Rust commands.",
   "windows": ["main"],
   "permissions": [
-    "core:default",
     "core:event:default",
     "core:window:default",
     "core:window:allow-hide",

@@ -52,6 +52,7 @@ permissions:
 jobs:
   validate-translations:
     runs-on: ubuntu-22.04
+    timeout-minutes: 15
     steps:
       - name: Verify dispatched commit
         if: inputs.expected_sha != ''

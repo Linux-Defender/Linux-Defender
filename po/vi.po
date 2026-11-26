@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 03:09-0500\n"
+"POT-Creation-Date: 2026-11-26 06:50-0500\n"
 "PO-Revision-Date: 2026-11-03 21:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -1413,7 +1413,7 @@ msgstr "Không thể tạo {path}: {error}"
 msgid "Cannot write {path}: {error}"
 msgstr "Không thể ghi {path}: {error}"
 
-#: crates/linux-defender-core/src/config.rs:941
+#: crates/linux-defender-core/src/config.rs:945
 msgid ""
 "On-Access scanning requires at least one loop-prevention exclusion: Exclude "
 "Username, Exclude User ID, or Exclude Root User"
@@ -1421,35 +1421,39 @@ msgstr ""
 "Quét thời gian thực cần ít nhất một ngoại lệ để tránh vòng lặp quét: Loại "
 "trừ tên người dùng, Loại trừ ID người dùng hoặc Loại trừ người dùng root"
 
-#: crates/linux-defender-core/src/config.rs:966
+#: crates/linux-defender-core/src/config.rs:972
+msgid "{key}: value contains a control character"
+msgstr "{key}: value contains a control character"
+
+#: crates/linux-defender-core/src/config.rs:978
 msgid "{key}: invalid boolean value: {value}"
 msgstr "{key}: giá trị boolean không hợp lệ: {value}"
 
-#: crates/linux-defender-core/src/config.rs:995
+#: crates/linux-defender-core/src/config.rs:1007
 msgid "{key}: value {value} is below minimum {minimum}"
 msgstr "{key}: giá trị {value} nhỏ hơn mức tối thiểu {minimum}"
 
-#: crates/linux-defender-core/src/config.rs:1003
+#: crates/linux-defender-core/src/config.rs:1015
 msgid "{key}: value {value} exceeds maximum {maximum}"
 msgstr "{key}: giá trị {value} vượt quá mức tối đa {maximum}"
 
-#: crates/linux-defender-core/src/config.rs:1012
+#: crates/linux-defender-core/src/config.rs:1024
 msgid "{key}: not a valid integer: {value}"
 msgstr "{key}: không phải số nguyên hợp lệ: {value}"
 
-#: crates/linux-defender-core/src/config.rs:1021
+#: crates/linux-defender-core/src/config.rs:1033
 msgid "{key}: size must start with a number: {value}"
 msgstr "{key}: kích thước phải bắt đầu bằng một số: {value}"
 
-#: crates/linux-defender-core/src/config.rs:1038
+#: crates/linux-defender-core/src/config.rs:1050
 msgid "{key}: path cannot be empty"
 msgstr "{key}: đường dẫn không được để trống"
 
-#: crates/linux-defender-core/src/config.rs:1053
+#: crates/linux-defender-core/src/config.rs:1065
 msgid "{key}: string value cannot be empty"
 msgstr "{key}: giá trị chuỗi không được để trống"
 
-#: crates/linux-defender-core/src/config.rs:1064
+#: crates/linux-defender-core/src/config.rs:1076
 msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}: URL phải bắt đầu bằng http(s)://, ftp(s):// hoặc file://"
 
@@ -2263,88 +2267,88 @@ msgstr "Đã lưu khóa API"
 msgid "Threats Detected!"
 msgstr "Phát hiện mối đe dọa!"
 
-#: desktop/src-tauri/src/notifications.rs:122
+#: desktop/src-tauri/src/notifications.rs:125
 msgid "Database Update Requested"
 msgstr "Đã yêu cầu cập nhật cơ sở dữ liệu"
 
-#: desktop/src-tauri/src/notifications.rs:123
+#: desktop/src-tauri/src/notifications.rs:126
 msgid "Freshclam service was signalled to check for updates"
 msgstr "Đã gửi tín hiệu để dịch vụ freshclam kiểm tra bản cập nhật"
 
-#: desktop/src-tauri/src/notifications.rs:126
+#: desktop/src-tauri/src/notifications.rs:129
 msgid "Database Updated"
 msgstr "Đã cập nhật cơ sở dữ liệu"
 
-#: desktop/src-tauri/src/notifications.rs:127
+#: desktop/src-tauri/src/notifications.rs:130
 msgid "{count} virus database was updated"
 msgid_plural "{count} virus databases were updated"
 msgstr[0] "Đã cập nhật {count} cơ sở dữ liệu virus"
 
-#: desktop/src-tauri/src/notifications.rs:136
+#: desktop/src-tauri/src/notifications.rs:139
 msgid "Database Up to Date"
 msgstr "Cơ sở dữ liệu đã là phiên bản mới nhất"
 
-#: desktop/src-tauri/src/notifications.rs:137
+#: desktop/src-tauri/src/notifications.rs:140
 msgid "Virus definitions are already current"
 msgstr "Cơ sở dữ liệu virus đã được cập nhật đầy đủ"
 
-#: desktop/src-tauri/src/notifications.rs:140
+#: desktop/src-tauri/src/notifications.rs:143
 msgid "Database Update Cancelled"
 msgstr "Đã hủy cập nhật cơ sở dữ liệu"
 
-#: desktop/src-tauri/src/notifications.rs:148
+#: desktop/src-tauri/src/notifications.rs:151
 msgid "Database Update Failed"
 msgstr "Cập nhật cơ sở dữ liệu thất bại"
 
-#: desktop/src-tauri/src/notifications.rs:160
+#: desktop/src-tauri/src/notifications.rs:163
 msgid "VirusTotal Analysis Complete"
 msgstr "Đã hoàn tất phân tích VirusTotal"
 
-#: desktop/src-tauri/src/notifications.rs:167
+#: desktop/src-tauri/src/notifications.rs:170
 msgid "Scanning Device"
 msgstr "Đang quét thiết bị"
 
-#: desktop/src-tauri/src/notifications.rs:174
+#: desktop/src-tauri/src/notifications.rs:177
 msgid "Device Scan Complete"
 msgstr "Đã quét xong thiết bị"
 
-#: desktop/src-tauri/src/runtime.rs:204
+#: desktop/src-tauri/src/runtime.rs:205
 msgid "Quick Scan"
 msgstr "Quét nhanh"
 
-#: desktop/src-tauri/src/runtime.rs:205
+#: desktop/src-tauri/src/runtime.rs:206
 msgid "Full Scan"
 msgstr "Quét toàn bộ"
 
-#: desktop/src-tauri/src/runtime.rs:206
+#: desktop/src-tauri/src/runtime.rs:207
 msgid "Home Folder"
 msgstr "Thư mục chính"
 
-#: desktop/src-tauri/src/runtime.rs:207
+#: desktop/src-tauri/src/runtime.rs:208
 msgid "Update Database"
 msgstr "Cập nhật cơ sở dữ liệu"
 
-#: desktop/src-tauri/src/runtime.rs:208
+#: desktop/src-tauri/src/runtime.rs:209
 msgid "Scan Profile"
 msgstr "Quét theo hồ sơ"
 
-#: desktop/src-tauri/src/runtime.rs:209
+#: desktop/src-tauri/src/runtime.rs:210
 msgid "Quit"
 msgstr "Thoát"
 
-#: desktop/src-tauri/src/runtime.rs:437
+#: desktop/src-tauri/src/runtime.rs:438
 msgid "Add Folders"
 msgstr "Thêm thư mục"
 
-#: desktop/src-tauri/src/runtime.rs:439
+#: desktop/src-tauri/src/runtime.rs:440
 msgid "Add Files"
 msgstr "Thêm tệp"
 
-#: desktop/src-tauri/src/runtime.rs:483
+#: desktop/src-tauri/src/runtime.rs:492
 msgid "Export"
 msgstr "Xuất"
 
-#: desktop/src-tauri/src/runtime.rs:642
+#: desktop/src-tauri/src/runtime.rs:651
 msgid "Open"
 msgstr "Mở"
 
@@ -2352,8 +2356,8 @@ msgstr "Mở"
 msgid "Overview"
 msgstr "Tổng quan"
 
-#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:719
-#: desktop/src/pages/Scan.tsx:721
+#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:722
 msgid "Scan"
 msgstr "Quét"
 
@@ -2549,10 +2553,10 @@ msgstr "Ghi nhớ lựa chọn của tôi"
 
 #: desktop/src/App.tsx:1075 desktop/src/App.tsx:1079
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
-#: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:377
-#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:774
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:449
 #: desktop/src/pages/SettingsPreferences.tsx:538
@@ -2795,7 +2799,7 @@ msgid "Target {index}/{count}: {path}"
 msgstr "Mục tiêu {index}/{count}: {path}"
 
 #: desktop/src/ScanProgressPanel.tsx:19 desktop/src/pages/Results.tsx:110
-#: desktop/src/pages/Scan.tsx:710
+#: desktop/src/pages/Scan.tsx:711
 msgid "Scan target"
 msgstr "Mục tiêu quét"
 
@@ -2816,12 +2820,12 @@ msgstr "Đang chờ dữ liệu quét…"
 msgid "Scan progress"
 msgstr "Tiến trình quét"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:751
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "Đã quét {count} tệp"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:751
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
@@ -3062,8 +3066,8 @@ msgid "Could not copy command: {error}"
 msgstr "Không thể sao chép lệnh: {error}"
 
 #: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
-#: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:413
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/Scan.tsx:756
+#: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
+#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
 #: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Copy"
 msgstr "Sao chép"
@@ -3183,7 +3187,7 @@ msgid "Checking…"
 msgstr "Đang kiểm tra…"
 
 #: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:283
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:723
 msgid "Refresh status"
 msgstr "Làm mới trạng thái"
 
@@ -3319,7 +3323,7 @@ msgstr "Thêm"
 #: desktop/src/pages/ConfigPreferences.tsx:310
 #: desktop/src/pages/ConfigPreferences.tsx:356
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:744
+#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:765
 #: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Remove"
 msgstr "Gỡ bỏ"
@@ -3817,7 +3821,7 @@ msgid "Used for monthly scans."
 msgstr "Dùng cho quét hằng tháng."
 
 #: desktop/src/pages/ConfigPreferences.tsx:896
-#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:743
+#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:764
 msgid "Scan Targets"
 msgstr "Mục tiêu quét"
 
@@ -4206,7 +4210,7 @@ msgid "Failed to load log details: {error}"
 msgstr "Không thể tải chi tiết nhật ký: {error}"
 
 #: desktop/src/pages/Logs.tsx:283 desktop/src/pages/Logs.tsx:293
-#: desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:419
 msgid "Text"
 msgstr "Văn bản"
 
@@ -4274,23 +4278,23 @@ msgstr "Lỗi khi tải nhật ký dịch vụ"
 msgid "Review previous scan and update operations."
 msgstr "Xem lại các lượt quét và cập nhật trước đây."
 
-#: desktop/src/pages/Logs.tsx:359
+#: desktop/src/pages/Logs.tsx:362
 msgid "Log source"
 msgstr "Nguồn nhật ký"
 
-#: desktop/src/pages/Logs.tsx:360 desktop/src/pages/Logs.tsx:366
+#: desktop/src/pages/Logs.tsx:378 desktop/src/pages/Logs.tsx:384
 msgid "Historical Logs"
 msgstr "Nhật ký lịch sử"
 
-#: desktop/src/pages/Logs.tsx:361 desktop/src/pages/Logs.tsx:398
+#: desktop/src/pages/Logs.tsx:379 desktop/src/pages/Logs.tsx:416
 msgid "ClamAV Daemon"
 msgstr "Dịch vụ ClamAV"
 
-#: desktop/src/pages/Logs.tsx:366
+#: desktop/src/pages/Logs.tsx:384
 msgid "Previous scan and update operations"
 msgstr "Các lượt quét và cập nhật trước đây"
 
-#: desktop/src/pages/Logs.tsx:367 desktop/src/pages/Logs.tsx:400
+#: desktop/src/pages/Logs.tsx:385 desktop/src/pages/Logs.tsx:418
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
 #: desktop/src/pages/Quarantine.tsx:354
 #: desktop/src/pages/SettingsPreferences.tsx:425
@@ -4300,95 +4304,95 @@ msgstr "Các lượt quét và cập nhật trước đây"
 msgid "Refresh"
 msgstr "Làm mới"
 
-#: desktop/src/pages/Logs.tsx:368 desktop/src/pages/Logs.tsx:390
+#: desktop/src/pages/Logs.tsx:386 desktop/src/pages/Logs.tsx:408
 msgid "Export CSV"
 msgstr "Xuất CSV"
 
-#: desktop/src/pages/Logs.tsx:369 desktop/src/pages/Logs.tsx:391
+#: desktop/src/pages/Logs.tsx:387 desktop/src/pages/Logs.tsx:409
 #: desktop/src/pages/Results.tsx:225
 msgid "Export JSON"
 msgstr "Xuất JSON"
 
-#: desktop/src/pages/Logs.tsx:370 desktop/src/pages/Logs.tsx:412
-#: desktop/src/pages/Scan.tsx:743
+#: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:430
+#: desktop/src/pages/Scan.tsx:764
 msgid "Clear All"
 msgstr "Xóa tất cả"
 
-#: desktop/src/pages/Logs.tsx:373
+#: desktop/src/pages/Logs.tsx:391
 msgid "Loading logs…"
 msgstr "Đang tải nhật ký…"
 
-#: desktop/src/pages/Logs.tsx:373
+#: desktop/src/pages/Logs.tsx:391
 msgid "No historical logs yet."
 msgstr "Chưa có nhật ký lịch sử."
 
-#: desktop/src/pages/Logs.tsx:380
+#: desktop/src/pages/Logs.tsx:398
 msgid "{shown} of {total} loaded log shown"
 msgid_plural "{shown} of {total} loaded logs shown"
 msgstr[0] "Đang hiển thị {shown}/{total} nhật ký đã tải"
 
-#: desktop/src/pages/Logs.tsx:381 desktop/src/pages/Network.tsx:430
+#: desktop/src/pages/Logs.tsx:399 desktop/src/pages/Network.tsx:430
 msgid "Load More"
 msgstr "Tải thêm"
 
-#: desktop/src/pages/Logs.tsx:381
+#: desktop/src/pages/Logs.tsx:399
 msgid "Show All ({count})"
 msgstr "Hiển thị tất cả ({count})"
 
-#: desktop/src/pages/Logs.tsx:387 desktop/src/pages/Logs.tsx:392
+#: desktop/src/pages/Logs.tsx:405 desktop/src/pages/Logs.tsx:410
 msgid "Log Details"
 msgstr "Chi tiết nhật ký"
 
-#: desktop/src/pages/Logs.tsx:389 desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:407 desktop/src/pages/Logs.tsx:419
 msgid "Export Text"
 msgstr "Xuất văn bản"
 
-#: desktop/src/pages/Logs.tsx:392 desktop/src/pages/Logs.tsx:402
-#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Logs.tsx:410 desktop/src/pages/Logs.tsx:420
+#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:772
 msgid "Fullscreen"
 msgstr "Toàn màn hình"
 
-#: desktop/src/pages/Logs.tsx:398
+#: desktop/src/pages/Logs.tsx:416
 msgid "Live host daemon log output."
 msgstr "Nhật ký trực tiếp của dịch vụ trên hệ thống chủ."
 
-#: desktop/src/pages/Logs.tsx:399
+#: desktop/src/pages/Logs.tsx:417
 msgid "Stop Live Updates"
 msgstr "Dừng cập nhật trực tiếp"
 
-#: desktop/src/pages/Logs.tsx:399
+#: desktop/src/pages/Logs.tsx:417
 msgid "Start Live Updates"
 msgstr "Bắt đầu cập nhật trực tiếp"
 
-#: desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:419
 msgid "Exported daemon logs."
 msgstr "Đã xuất nhật ký dịch vụ."
 
-#: desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:419
 msgid "Failed to export daemon logs"
 msgstr "Không xuất được nhật ký dịch vụ"
 
-#: desktop/src/pages/Logs.tsx:402
+#: desktop/src/pages/Logs.tsx:420
 msgid "Daemon Logs"
 msgstr "Nhật ký dịch vụ"
 
-#: desktop/src/pages/Logs.tsx:405
+#: desktop/src/pages/Logs.tsx:423
 msgid "Checking daemon status…"
 msgstr "Đang kiểm tra trạng thái dịch vụ…"
 
-#: desktop/src/pages/Logs.tsx:406
+#: desktop/src/pages/Logs.tsx:424
 msgid "Live refresh is active every 3 seconds."
 msgstr "Đang tự động làm mới sau mỗi 3 giây."
 
-#: desktop/src/pages/Logs.tsx:407
+#: desktop/src/pages/Logs.tsx:425
 msgid "Daemon logs will appear here after a successful read."
 msgstr "Nhật ký dịch vụ sẽ hiển thị ở đây sau khi đọc thành công."
 
-#: desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Logs.tsx:430
 msgid "Clear All Logs?"
 msgstr "Xóa toàn bộ nhật ký?"
 
-#: desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Logs.tsx:430
 msgid ""
 "This will permanently delete all historical logs. This action cannot be "
 "undone."
@@ -4644,7 +4648,7 @@ msgstr "Trạng thái bảo vệ"
 msgid "Last Scan"
 msgstr "Lượt quét gần nhất"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:770
 msgid "Start Scan"
 msgstr "Bắt đầu quét"
 
@@ -4780,7 +4784,7 @@ msgstr "Tên hồ sơ quét mặc định được bảo vệ"
 msgid "Description"
 msgstr "Mô tả"
 
-#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:744
+#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:765
 msgid "No targets added"
 msgstr "Chưa thêm mục tiêu nào"
 
@@ -5334,7 +5338,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "Các tệp không truy cập được khác đã bị lược bỏ khỏi chế độ xem này."
 
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Results.tsx:201
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/Scan.tsx:756
+#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
 msgid "Scan details"
 msgstr "Chi tiết lượt quét"
 
@@ -5436,7 +5440,7 @@ msgstr[0] "Quét xong — phát hiện {count} mối đe dọa"
 msgid "Scan cancelled — partial results are available"
 msgstr "Đã hủy quét — có sẵn một phần kết quả"
 
-#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:712
+#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:713
 msgid "Scan error"
 msgstr "Lỗi quét"
 
@@ -5499,11 +5503,11 @@ msgstr "Cancel scan"
 msgid "API key available"
 msgstr "Đã có khóa API"
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
 msgid "Scanning…"
 msgstr "Đang quét…"
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
 msgid "Scan with VirusTotal"
 msgstr "Quét bằng VirusTotal"
 
@@ -5615,8 +5619,8 @@ msgid "Quick Scan profile has no valid targets"
 msgstr "Hồ sơ quét nhanh không có mục tiêu hợp lệ"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:533 desktop/src/pages/Scan.tsx:636
-#: desktop/src/pages/Scan.tsx:696
+#: desktop/src/pages/Scan.tsx:533 desktop/src/pages/Scan.tsx:637
+#: desktop/src/pages/Scan.tsx:697
 msgid "Scan in progress — wait for it to finish before adding targets"
 msgstr "Đang quét — hãy chờ quét xong rồi mới thêm mục tiêu"
 
@@ -5626,95 +5630,95 @@ msgid_plural ""
 "VirusTotal scans one file at a time; {count} selections were ignored."
 msgstr[0] "VirusTotal quét từng tệp một; đã bỏ qua {count} mục được chọn."
 
-#: desktop/src/pages/Scan.tsx:568 desktop/src/pages/Scan.tsx:705
+#: desktop/src/pages/Scan.tsx:568 desktop/src/pages/Scan.tsx:706
 msgid "Only local files and folders can be scanned"
 msgstr "Chỉ có thể quét tệp và thư mục cục bộ"
 
-#: desktop/src/pages/Scan.tsx:645
+#: desktop/src/pages/Scan.tsx:646
 msgid "Unable to choose scan targets"
 msgstr "Không thể chọn mục tiêu quét"
 
-#: desktop/src/pages/Scan.tsx:654
+#: desktop/src/pages/Scan.tsx:655
 msgid "Unable to open the folder picker"
 msgstr "Unable to open the folder picker"
 
-#: desktop/src/pages/Scan.tsx:661
+#: desktop/src/pages/Scan.tsx:662
 msgid "Cancelling scan…"
 msgstr "Đang hủy quét…"
 
-#: desktop/src/pages/Scan.tsx:663
+#: desktop/src/pages/Scan.tsx:664
 msgid "Unable to cancel scan"
 msgstr "Không thể hủy quét"
 
-#: desktop/src/pages/Scan.tsx:679
+#: desktop/src/pages/Scan.tsx:680
 msgid "Running EICAR test…"
 msgstr "Đang chạy thử nghiệm EICAR…"
 
-#: desktop/src/pages/Scan.tsx:721
+#: desktop/src/pages/Scan.tsx:722
 msgid "Backend"
 msgstr "Cơ chế quét"
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:723
 msgid "Manage Profiles"
 msgstr "Quản lý hồ sơ quét"
 
-#: desktop/src/pages/Scan.tsx:724
+#: desktop/src/pages/Scan.tsx:728
 msgid "Scan type"
 msgstr "Scan type"
 
-#: desktop/src/pages/Scan.tsx:725
+#: desktop/src/pages/Scan.tsx:746
 msgid "Files & Folders"
 msgstr "Files & Folders"
 
-#: desktop/src/pages/Scan.tsx:726 desktop/src/pages/Urlscan.tsx:228
+#: desktop/src/pages/Scan.tsx:747 desktop/src/pages/Urlscan.tsx:228
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:729 desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Scan.tsx:750 desktop/src/pages/Scan.tsx:772
 msgid "Details"
 msgstr "Chi tiết"
 
-#: desktop/src/pages/Scan.tsx:733
+#: desktop/src/pages/Scan.tsx:754
 msgid "Profile"
 msgstr "Hồ sơ quét"
 
-#: desktop/src/pages/Scan.tsx:739
+#: desktop/src/pages/Scan.tsx:760
 msgid "No Profile (Manual)"
 msgstr "Không dùng hồ sơ (thủ công)"
 
-#: desktop/src/pages/Scan.tsx:743
+#: desktop/src/pages/Scan.tsx:764
 msgid "Drop local files or folders here, or add them below."
 msgstr "Thả tệp hoặc thư mục cục bộ vào đây, hoặc thêm ở bên dưới."
 
-#: desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:770
 msgid "Run EICAR Test"
 msgstr "Chạy thử nghiệm EICAR"
 
-#: desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:770
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:770
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Scan.tsx:772
 msgid "Latest scan"
 msgstr "Lượt quét gần nhất"
 
-#: desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Scan.tsx:772
 msgid "View Results"
 msgstr "Xem kết quả"
 
-#: desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Scan.tsx:774
 msgid "Virus database is not available"
 msgstr "Không có cơ sở dữ liệu virus"
 
-#: desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Scan.tsx:774
 msgid "Update the database before starting a scan."
 msgstr "Hãy cập nhật cơ sở dữ liệu virus trước khi bắt đầu quét."
 
-#: desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Scan.tsx:774
 msgid "Open Database Updates"
 msgstr "Mở trang cập nhật cơ sở dữ liệu"
 

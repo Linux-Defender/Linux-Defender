@@ -24,6 +24,7 @@ permissions:
 jobs:
   rust:
     runs-on: ubuntu-22.04
+    timeout-minutes: 20
     steps:
       - name: Verify dispatched commit
         if: inputs.expected_sha != ''
@@ -75,6 +76,7 @@ jobs:
 
   frontend:
     runs-on: ubuntu-22.04
+    timeout-minutes: 20
     steps:
       - name: Verify dispatched commit
         if: inputs.expected_sha != ''

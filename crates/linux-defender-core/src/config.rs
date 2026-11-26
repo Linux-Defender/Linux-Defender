@@ -886,9 +886,13 @@ fn is_system_path(path: &Path) -> bool {
 }
 
 fn absolute_path(raw: &str) -> AppResult<PathBuf> {
+    // Paths arrive from the explicit native file dialog or the user's stored
+    // settings, not from arbitrary web navigation. The boundary here is that a
+    // proposal must be absolute and contain no NUL; host writes still go
+    // through needs_elevation/privileged::validate_destination.
     let path = PathBuf::from(raw);
-    if raw.trim().is_empty() || !path.is_absolute() {
-        return Err("Configuration path must be absolute".to_owned());
+    if raw.trim().is_empty() || raw.contains('\0') || !path.is_absolute() {
+        return Err("Configuration path must be an absolute path without NUL bytes".to_owned());
     }
     Ok(path)
 }
@@ -961,6 +965,14 @@ fn has_onaccess_loop_prevention(values: &BTreeMap<String, Vec<String>>) -> bool 
 }
 
 fn validate_option(ctx: &Context, key: &str, value: &str) -> Option<String> {
+    // Rendered ClamAV directives are newline-separated; a control character in
+    // a value could inject arbitrary directives into host configuration.
+    if value.chars().any(|character| character.is_control()) {
+        return Some(
+            crate::i18n::translate(ctx, "{key}: value contains a control character")
+                .replace("{key}", key),
+        );
+    }
     if BOOLEAN_DIRECTIVES.contains(&key) && boolean(value).is_none() {
         return Some(
             crate::i18n::translate(ctx, "{key}: invalid boolean value: {value}")

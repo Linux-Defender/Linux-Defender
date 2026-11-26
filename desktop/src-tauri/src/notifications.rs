@@ -94,11 +94,14 @@ fn notification_for(
                 "cancelled" => (tr("Scan Cancelled"), String::new()),
                 _ => (
                     tr("Scan Error"),
-                    result
-                        .get("error_message")
-                        .and_then(Value::as_str)
-                        .unwrap_or_default()
-                        .to_owned(),
+                    // Host process text is untrusted: sanitize before showing it
+                    // in a native notification, as the persistence path does.
+                    linux_defender_core::common::sanitize_line(
+                        result
+                            .get("error_message")
+                            .and_then(Value::as_str)
+                            .unwrap_or_default(),
+                    ),
                 ),
             };
             Some(("scan-complete", title, body, "show-scan", false))

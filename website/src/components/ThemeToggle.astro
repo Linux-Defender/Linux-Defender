@@ -45,6 +45,8 @@
       root.classList.toggle("dark", !isLight);
       try {
         localStorage.setItem("linux-defender-site-theme", isLight ? "light" : "dark");
+        localStorage.setItem("starlight-theme", isLight ? "light" : "dark");
+        document.documentElement.dataset.theme = isLight ? "light" : "dark";
       } catch (_) {}
     });
   };

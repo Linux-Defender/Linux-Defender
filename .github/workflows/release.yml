@@ -34,6 +34,7 @@ jobs:
   release:
     needs: [build-deb, build-rpm, build-appimage]
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
     steps:

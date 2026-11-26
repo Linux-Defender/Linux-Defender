@@ -52,7 +52,7 @@ application runtime dependencies.
 ## Packaging and integrations
 
 - `scripts/flatpak-release-source.awk`, `scripts/generate-flatpak-sources.sh`, `scripts/refresh-dependabot-sources.sh` — Flatpak locked sources.
-- `scripts/install-nemo-actions.sh`, `scripts/linux-defender-scan-nautilus.sh`, `scripts/linux-defender-virustotal-nautilus.sh` — file-manager helpers.
+- `scripts/install-nemo-actions.sh` (host-side installer from this checkout), `scripts/linux-defender-scan-nautilus.sh`, `scripts/linux-defender-virustotal-nautilus.sh` — file-manager helpers.
 
 ## Validation helpers
 

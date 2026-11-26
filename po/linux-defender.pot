@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 03:09-0500\n"
+"POT-Creation-Date: 2026-11-26 06:50-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1318,41 +1318,45 @@ msgstr ""
 msgid "Cannot write {path}: {error}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:941
+#: crates/linux-defender-core/src/config.rs:945
 msgid ""
 "On-Access scanning requires at least one loop-prevention exclusion: Exclude "
 "Username, Exclude User ID, or Exclude Root User"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:966
+#: crates/linux-defender-core/src/config.rs:972
+msgid "{key}: value contains a control character"
+msgstr ""
+
+#: crates/linux-defender-core/src/config.rs:978
 msgid "{key}: invalid boolean value: {value}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:995
+#: crates/linux-defender-core/src/config.rs:1007
 msgid "{key}: value {value} is below minimum {minimum}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1003
+#: crates/linux-defender-core/src/config.rs:1015
 msgid "{key}: value {value} exceeds maximum {maximum}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1012
+#: crates/linux-defender-core/src/config.rs:1024
 msgid "{key}: not a valid integer: {value}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1021
+#: crates/linux-defender-core/src/config.rs:1033
 msgid "{key}: size must start with a number: {value}"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1038
+#: crates/linux-defender-core/src/config.rs:1050
 msgid "{key}: path cannot be empty"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1053
+#: crates/linux-defender-core/src/config.rs:1065
 msgid "{key}: string value cannot be empty"
 msgstr ""
 
-#: crates/linux-defender-core/src/config.rs:1064
+#: crates/linux-defender-core/src/config.rs:1076
 msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr ""
 
@@ -2129,89 +2133,89 @@ msgstr ""
 msgid "Threats Detected!"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:122
+#: desktop/src-tauri/src/notifications.rs:125
 msgid "Database Update Requested"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:123
+#: desktop/src-tauri/src/notifications.rs:126
 msgid "Freshclam service was signalled to check for updates"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:126
+#: desktop/src-tauri/src/notifications.rs:129
 msgid "Database Updated"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:127
+#: desktop/src-tauri/src/notifications.rs:130
 msgid "{count} virus database was updated"
 msgid_plural "{count} virus databases were updated"
 msgstr[0] ""
 msgstr[1] ""
 
-#: desktop/src-tauri/src/notifications.rs:136
+#: desktop/src-tauri/src/notifications.rs:139
 msgid "Database Up to Date"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:137
+#: desktop/src-tauri/src/notifications.rs:140
 msgid "Virus definitions are already current"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:140
+#: desktop/src-tauri/src/notifications.rs:143
 msgid "Database Update Cancelled"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:148
+#: desktop/src-tauri/src/notifications.rs:151
 msgid "Database Update Failed"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:160
+#: desktop/src-tauri/src/notifications.rs:163
 msgid "VirusTotal Analysis Complete"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:167
+#: desktop/src-tauri/src/notifications.rs:170
 msgid "Scanning Device"
 msgstr ""
 
-#: desktop/src-tauri/src/notifications.rs:174
+#: desktop/src-tauri/src/notifications.rs:177
 msgid "Device Scan Complete"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:204
+#: desktop/src-tauri/src/runtime.rs:205
 msgid "Quick Scan"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:205
+#: desktop/src-tauri/src/runtime.rs:206
 msgid "Full Scan"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:206
+#: desktop/src-tauri/src/runtime.rs:207
 msgid "Home Folder"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:207
+#: desktop/src-tauri/src/runtime.rs:208
 msgid "Update Database"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:208
+#: desktop/src-tauri/src/runtime.rs:209
 msgid "Scan Profile"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:209
+#: desktop/src-tauri/src/runtime.rs:210
 msgid "Quit"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:437
+#: desktop/src-tauri/src/runtime.rs:438
 msgid "Add Folders"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:439
+#: desktop/src-tauri/src/runtime.rs:440
 msgid "Add Files"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:483
+#: desktop/src-tauri/src/runtime.rs:492
 msgid "Export"
 msgstr ""
 
-#: desktop/src-tauri/src/runtime.rs:642
+#: desktop/src-tauri/src/runtime.rs:651
 msgid "Open"
 msgstr ""
 
@@ -2219,8 +2223,8 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:719
-#: desktop/src/pages/Scan.tsx:721
+#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:722
 msgid "Scan"
 msgstr ""
 
@@ -2408,10 +2412,10 @@ msgstr ""
 
 #: desktop/src/App.tsx:1075 desktop/src/App.tsx:1079
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
-#: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:377
-#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:774
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:449
 #: desktop/src/pages/SettingsPreferences.tsx:538
@@ -2629,7 +2633,7 @@ msgid "Target {index}/{count}: {path}"
 msgstr ""
 
 #: desktop/src/ScanProgressPanel.tsx:19 desktop/src/pages/Results.tsx:110
-#: desktop/src/pages/Scan.tsx:710
+#: desktop/src/pages/Scan.tsx:711
 msgid "Scan target"
 msgstr ""
 
@@ -2651,13 +2655,13 @@ msgstr ""
 msgid "Scan progress"
 msgstr ""
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:751
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] ""
 msgstr[1] ""
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:751
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
@@ -2895,8 +2899,8 @@ msgid "Could not copy command: {error}"
 msgstr ""
 
 #: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
-#: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:413
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/Scan.tsx:756
+#: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
+#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
 #: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Copy"
 msgstr ""
@@ -3008,7 +3012,7 @@ msgid "Checking…"
 msgstr ""
 
 #: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:283
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:723
 msgid "Refresh status"
 msgstr ""
 
@@ -3139,7 +3143,7 @@ msgstr ""
 #: desktop/src/pages/ConfigPreferences.tsx:310
 #: desktop/src/pages/ConfigPreferences.tsx:356
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:744
+#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:765
 #: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Remove"
 msgstr ""
@@ -3616,7 +3620,7 @@ msgid "Used for monthly scans."
 msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:896
-#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:743
+#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:764
 msgid "Scan Targets"
 msgstr ""
 
@@ -3987,7 +3991,7 @@ msgid "Failed to load log details: {error}"
 msgstr ""
 
 #: desktop/src/pages/Logs.tsx:283 desktop/src/pages/Logs.tsx:293
-#: desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:419
 msgid "Text"
 msgstr ""
 
@@ -4055,23 +4059,23 @@ msgstr ""
 msgid "Review previous scan and update operations."
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:359
+#: desktop/src/pages/Logs.tsx:362
 msgid "Log source"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:360 desktop/src/pages/Logs.tsx:366
+#: desktop/src/pages/Logs.tsx:378 desktop/src/pages/Logs.tsx:384
 msgid "Historical Logs"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:361 desktop/src/pages/Logs.tsx:398
+#: desktop/src/pages/Logs.tsx:379 desktop/src/pages/Logs.tsx:416
 msgid "ClamAV Daemon"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:366
+#: desktop/src/pages/Logs.tsx:384
 msgid "Previous scan and update operations"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:367 desktop/src/pages/Logs.tsx:400
+#: desktop/src/pages/Logs.tsx:385 desktop/src/pages/Logs.tsx:418
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
 #: desktop/src/pages/Quarantine.tsx:354
 #: desktop/src/pages/SettingsPreferences.tsx:425
@@ -4081,96 +4085,96 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:368 desktop/src/pages/Logs.tsx:390
+#: desktop/src/pages/Logs.tsx:386 desktop/src/pages/Logs.tsx:408
 msgid "Export CSV"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:369 desktop/src/pages/Logs.tsx:391
+#: desktop/src/pages/Logs.tsx:387 desktop/src/pages/Logs.tsx:409
 #: desktop/src/pages/Results.tsx:225
 msgid "Export JSON"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:370 desktop/src/pages/Logs.tsx:412
-#: desktop/src/pages/Scan.tsx:743
+#: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:430
+#: desktop/src/pages/Scan.tsx:764
 msgid "Clear All"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:373
+#: desktop/src/pages/Logs.tsx:391
 msgid "Loading logs…"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:373
+#: desktop/src/pages/Logs.tsx:391
 msgid "No historical logs yet."
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:380
+#: desktop/src/pages/Logs.tsx:398
 msgid "{shown} of {total} loaded log shown"
 msgid_plural "{shown} of {total} loaded logs shown"
 msgstr[0] ""
 msgstr[1] ""
 
-#: desktop/src/pages/Logs.tsx:381 desktop/src/pages/Network.tsx:430
+#: desktop/src/pages/Logs.tsx:399 desktop/src/pages/Network.tsx:430
 msgid "Load More"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:381
+#: desktop/src/pages/Logs.tsx:399
 msgid "Show All ({count})"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:387 desktop/src/pages/Logs.tsx:392
+#: desktop/src/pages/Logs.tsx:405 desktop/src/pages/Logs.tsx:410
 msgid "Log Details"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:389 desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:407 desktop/src/pages/Logs.tsx:419
 msgid "Export Text"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:392 desktop/src/pages/Logs.tsx:402
-#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Logs.tsx:410 desktop/src/pages/Logs.tsx:420
+#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:772
 msgid "Fullscreen"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:398
+#: desktop/src/pages/Logs.tsx:416
 msgid "Live host daemon log output."
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:399
+#: desktop/src/pages/Logs.tsx:417
 msgid "Stop Live Updates"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:399
+#: desktop/src/pages/Logs.tsx:417
 msgid "Start Live Updates"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:419
 msgid "Exported daemon logs."
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:419
 msgid "Failed to export daemon logs"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:402
+#: desktop/src/pages/Logs.tsx:420
 msgid "Daemon Logs"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:405
+#: desktop/src/pages/Logs.tsx:423
 msgid "Checking daemon status…"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:406
+#: desktop/src/pages/Logs.tsx:424
 msgid "Live refresh is active every 3 seconds."
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:407
+#: desktop/src/pages/Logs.tsx:425
 msgid "Daemon logs will appear here after a successful read."
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Logs.tsx:430
 msgid "Clear All Logs?"
 msgstr ""
 
-#: desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Logs.tsx:430
 msgid ""
 "This will permanently delete all historical logs. This action cannot be "
 "undone."
@@ -4415,7 +4419,7 @@ msgstr ""
 msgid "Last Scan"
 msgstr ""
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:770
 msgid "Start Scan"
 msgstr ""
 
@@ -4552,7 +4556,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:744
+#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:765
 msgid "No targets added"
 msgstr ""
 
@@ -5101,7 +5105,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr ""
 
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Results.tsx:201
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/Scan.tsx:756
+#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
 msgid "Scan details"
 msgstr ""
 
@@ -5205,7 +5209,7 @@ msgstr[1] ""
 msgid "Scan cancelled — partial results are available"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:712
+#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:713
 msgid "Scan error"
 msgstr ""
 
@@ -5266,11 +5270,11 @@ msgstr ""
 msgid "API key available"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
 msgid "Scanning…"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
 msgid "Scan with VirusTotal"
 msgstr ""
 
@@ -5381,8 +5385,8 @@ msgid "Quick Scan profile has no valid targets"
 msgstr ""
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:533 desktop/src/pages/Scan.tsx:636
-#: desktop/src/pages/Scan.tsx:696
+#: desktop/src/pages/Scan.tsx:533 desktop/src/pages/Scan.tsx:637
+#: desktop/src/pages/Scan.tsx:697
 msgid "Scan in progress — wait for it to finish before adding targets"
 msgstr ""
 
@@ -5393,95 +5397,95 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: desktop/src/pages/Scan.tsx:568 desktop/src/pages/Scan.tsx:705
+#: desktop/src/pages/Scan.tsx:568 desktop/src/pages/Scan.tsx:706
 msgid "Only local files and folders can be scanned"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:645
+#: desktop/src/pages/Scan.tsx:646
 msgid "Unable to choose scan targets"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:654
+#: desktop/src/pages/Scan.tsx:655
 msgid "Unable to open the folder picker"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:661
+#: desktop/src/pages/Scan.tsx:662
 msgid "Cancelling scan…"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:663
+#: desktop/src/pages/Scan.tsx:664
 msgid "Unable to cancel scan"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:679
+#: desktop/src/pages/Scan.tsx:680
 msgid "Running EICAR test…"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:721
+#: desktop/src/pages/Scan.tsx:722
 msgid "Backend"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:723
 msgid "Manage Profiles"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:724
+#: desktop/src/pages/Scan.tsx:728
 msgid "Scan type"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:725
+#: desktop/src/pages/Scan.tsx:746
 msgid "Files & Folders"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:726 desktop/src/pages/Urlscan.tsx:228
+#: desktop/src/pages/Scan.tsx:747 desktop/src/pages/Urlscan.tsx:228
 msgid "Website URL"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:729 desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Scan.tsx:750 desktop/src/pages/Scan.tsx:772
 msgid "Details"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:733
+#: desktop/src/pages/Scan.tsx:754
 msgid "Profile"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:739
+#: desktop/src/pages/Scan.tsx:760
 msgid "No Profile (Manual)"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:743
+#: desktop/src/pages/Scan.tsx:764
 msgid "Drop local files or folders here, or add them below."
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:770
 msgid "Run EICAR Test"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:770
 msgid "Select exactly one file before using VirusTotal"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:770
 msgid "Scan a folder with VirusTotal"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Scan.tsx:772
 msgid "Latest scan"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Scan.tsx:772
 msgid "View Results"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Scan.tsx:774
 msgid "Virus database is not available"
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Scan.tsx:774
 msgid "Update the database before starting a scan."
 msgstr ""
 
-#: desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Scan.tsx:774
 msgid "Open Database Updates"
 msgstr ""
 

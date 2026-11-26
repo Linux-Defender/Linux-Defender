@@ -8,7 +8,7 @@ export interface LatestRelease {
 }
 
 const FALLBACK_RELEASE: LatestRelease = {
-  tag: "0.6.0-dev",
+  tag: "Releases",
   url: RELEASES_URL,
 };
 

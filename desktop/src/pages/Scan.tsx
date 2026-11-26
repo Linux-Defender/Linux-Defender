@@ -609,8 +609,9 @@ export default function Scan() {
     });
     return () => {
       stopped = true;
+      startupConsumedRef.current = false;
       window.removeEventListener("linux-defender-page-selected", pageSelected);
-      void unlisten.then((dispose) => dispose());
+      void unlisten.then((dispose) => dispose()).catch(() => undefined);
     };
   }, [addPaths, applyProfile, finish, replacePaths]);
 
@@ -721,9 +722,29 @@ export default function Scan() {
       <div><h1>{_("Scan")}</h1><p className="muted">{scanner?.active_backend || scanner?.backend ? `${_("Backend")}: ${scanner.active_backend ?? scanner.backend}` : ""}</p></div>
       <div className="actions"><button className="button" onClick={() => void refreshStatus()} disabled={scanning}>{_("Refresh status")}</button><button className="button" onClick={() => navigate("profiles")}>{_("Manage Profiles")}</button></div>
     </header>
-    <div className="tab-list scan-mode-tabs" role="tablist" aria-label={_("Scan type")}>
-      <button type="button" role="tab" id="scan-files-tab" aria-controls="scan-files-panel" aria-selected={scanMode === "files"} onClick={() => setScanMode("files")}>{_("Files & Folders")}</button>
-      <button type="button" role="tab" id="scan-website-tab" aria-controls="scan-website-panel" aria-selected={scanMode === "website"} disabled={scanning} onClick={() => setScanMode("website")}>{_("Website URL")}</button>
+    <div
+      className="tab-list scan-mode-tabs"
+      role="tablist"
+      aria-label={_("Scan type")}
+      onKeyDown={(event) => {
+        const ids = ["scan-files-tab", "scan-website-tab"];
+        const index = ids.indexOf((event.target as HTMLElement).id);
+        if (index < 0) return;
+        let next = index;
+        if (event.key === "ArrowRight") next = (index + 1) % ids.length;
+        else if (event.key === "ArrowLeft") next = (index - 1 + ids.length) % ids.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = ids.length - 1;
+        else return;
+        event.preventDefault();
+        const target = document.getElementById(ids[next]);
+        if (!target || (target as HTMLButtonElement).disabled) return;
+        setScanMode(next === 0 ? "files" : "website");
+        target.focus();
+      }}
+    >
+      <button type="button" role="tab" id="scan-files-tab" tabIndex={scanMode === "files" ? 0 : -1} aria-controls="scan-files-panel" aria-selected={scanMode === "files"} onClick={() => setScanMode("files")}>{_("Files & Folders")}</button>
+      <button type="button" role="tab" id="scan-website-tab" tabIndex={scanMode === "website" ? 0 : -1} aria-controls="scan-website-panel" aria-selected={scanMode === "website"} disabled={scanning} onClick={() => setScanMode("website")}>{_("Website URL")}</button>
     </div>
     <div id="scan-files-panel" role="tabpanel" aria-labelledby="scan-files-tab" hidden={scanMode !== "files"}>
     {notice && <div className={`notice ${notice.kind}`} role={notice.kind === "error" ? "alert" : "status"}><strong>{notice.message}</strong>{notice.detail && <details><summary>{_("Details")}</summary><pre className="monospace">{notice.detail}</pre></details>}</div>}

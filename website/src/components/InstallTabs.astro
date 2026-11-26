@@ -31,7 +31,6 @@ bun run tauri dev`;
       <button type="button" data-copy data-copy-text={testCommands} class="absolute right-8 top-8 rounded-md border border-white/10 bg-black/40 px-2.5 py-1.5 text-[11px] font-mono uppercase tracking-wider text-white/70 transition hover:bg-black/60 hover:text-white">Copy</button>
     </div>
   </div>
-
   <div class="mt-6 grid gap-4 sm:grid-cols-2">
     <div class="card">
       <h3 class="font-semibold text-white">Local engine and definitions</h3>
@@ -50,3 +49,25 @@ bun run tauri dev`;
     <a href="https://github.com/Linux-Defender/Linux-Defender/issues" rel="noopener" class="text-guard-sage hover:text-white">Report a bug</a>
   </div>
 </section>
+
+<script>
+  // Bundled by Astro: works with the site's CSP and client-side navigation.
+  function bindCopyButtons() {
+    document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) => {
+      if (button.dataset.bound) return;
+      button.dataset.bound = "1";
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(button.dataset.copyText ?? "");
+          const original = button.textContent;
+          button.textContent = "Copied";
+          setTimeout(() => { button.textContent = original; }, 1500);
+        } catch {
+          button.textContent = "Copy failed";
+        }
+      });
+    });
+  }
+  bindCopyButtons();
+  document.addEventListener("astro:page-load", bindCopyButtons);
+</script>

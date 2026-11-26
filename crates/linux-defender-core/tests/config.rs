@@ -241,6 +241,24 @@ fn clamd_load_marks_only_positive_bare_size_limits_for_repair() {
 }
 
 #[test]
+fn validation_rejects_control_characters_in_directive_values() {
+    let fixture = TestContext::new();
+    let result = dispatch(
+        &fixture.context,
+        "validate",
+        json!({
+            "kind": "clamd",
+            "values": {
+                "LogFile": ["/tmp/log\nDatabaseCustomURL file:///malicious"]
+            }
+        }),
+    )
+    .expect("validation response");
+    assert_eq!(result["valid"], false);
+    assert!(result["errors"].to_string().contains("control character"));
+}
+
+#[test]
 fn validation_accepts_unknown_directives_and_rejects_isolated_invalid_inputs() {
     let fixture = TestContext::new();
     let accepted = dispatch(

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 03:09-0500\n"
+"POT-Creation-Date: 2026-11-26 06:50-0500\n"
 "PO-Revision-Date: 2026-07-22 21:29+0800\n"
 "Last-Translator: Markson Hosben <marksonhosben@proton.me>\n"
 "Language-Team: Chinese <>\n"
@@ -1346,7 +1346,7 @@ msgstr "无法创建 {path}：{error}"
 msgid "Cannot write {path}: {error}"
 msgstr "无法写入 {path}：{error}"
 
-#: crates/linux-defender-core/src/config.rs:941
+#: crates/linux-defender-core/src/config.rs:945
 msgid ""
 "On-Access scanning requires at least one loop-prevention exclusion: Exclude "
 "Username, Exclude User ID, or Exclude Root User"
@@ -1354,35 +1354,39 @@ msgstr ""
 "访问时扫描至少需要一项防循环排除规则：排除用户名、排除用户 ID 或排除 root 用"
 "户"
 
-#: crates/linux-defender-core/src/config.rs:966
+#: crates/linux-defender-core/src/config.rs:972
+msgid "{key}: value contains a control character"
+msgstr "{key}: value contains a control character"
+
+#: crates/linux-defender-core/src/config.rs:978
 msgid "{key}: invalid boolean value: {value}"
 msgstr "{key}：无效的布尔值：{value}"
 
-#: crates/linux-defender-core/src/config.rs:995
+#: crates/linux-defender-core/src/config.rs:1007
 msgid "{key}: value {value} is below minimum {minimum}"
 msgstr "{key}：值 {value} 小于最小值 {minimum}"
 
-#: crates/linux-defender-core/src/config.rs:1003
+#: crates/linux-defender-core/src/config.rs:1015
 msgid "{key}: value {value} exceeds maximum {maximum}"
 msgstr "{key}：值 {value} 超过最大值 {maximum}"
 
-#: crates/linux-defender-core/src/config.rs:1012
+#: crates/linux-defender-core/src/config.rs:1024
 msgid "{key}: not a valid integer: {value}"
 msgstr "{key}：无效的整数：{value}"
 
-#: crates/linux-defender-core/src/config.rs:1021
+#: crates/linux-defender-core/src/config.rs:1033
 msgid "{key}: size must start with a number: {value}"
 msgstr "{key}：大小值必须以数字开头：{value}"
 
-#: crates/linux-defender-core/src/config.rs:1038
+#: crates/linux-defender-core/src/config.rs:1050
 msgid "{key}: path cannot be empty"
 msgstr "{key}：路径不能为空"
 
-#: crates/linux-defender-core/src/config.rs:1053
+#: crates/linux-defender-core/src/config.rs:1065
 msgid "{key}: string value cannot be empty"
 msgstr "{key}：字符串值不能为空"
 
-#: crates/linux-defender-core/src/config.rs:1064
+#: crates/linux-defender-core/src/config.rs:1076
 msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}：URL 必须以 http(s)://、ftp(s):// 或 file:// 开头"
 
@@ -2172,88 +2176,88 @@ msgstr "API 密钥已保存"
 msgid "Threats Detected!"
 msgstr "检测到威胁！"
 
-#: desktop/src-tauri/src/notifications.rs:122
+#: desktop/src-tauri/src/notifications.rs:125
 msgid "Database Update Requested"
 msgstr "已请求更新数据库"
 
-#: desktop/src-tauri/src/notifications.rs:123
+#: desktop/src-tauri/src/notifications.rs:126
 msgid "Freshclam service was signalled to check for updates"
 msgstr "已向 Freshclam 服务发送检查更新的信号"
 
-#: desktop/src-tauri/src/notifications.rs:126
+#: desktop/src-tauri/src/notifications.rs:129
 msgid "Database Updated"
 msgstr "数据库已更新"
 
-#: desktop/src-tauri/src/notifications.rs:127
+#: desktop/src-tauri/src/notifications.rs:130
 msgid "{count} virus database was updated"
 msgid_plural "{count} virus databases were updated"
 msgstr[0] "已更新 {count} 个病毒数据库"
 
-#: desktop/src-tauri/src/notifications.rs:136
+#: desktop/src-tauri/src/notifications.rs:139
 msgid "Database Up to Date"
 msgstr "数据库已是最新"
 
-#: desktop/src-tauri/src/notifications.rs:137
+#: desktop/src-tauri/src/notifications.rs:140
 msgid "Virus definitions are already current"
 msgstr "病毒特征库已是最新"
 
-#: desktop/src-tauri/src/notifications.rs:140
+#: desktop/src-tauri/src/notifications.rs:143
 msgid "Database Update Cancelled"
 msgstr "数据库更新已取消"
 
-#: desktop/src-tauri/src/notifications.rs:148
+#: desktop/src-tauri/src/notifications.rs:151
 msgid "Database Update Failed"
 msgstr "数据库更新失败"
 
-#: desktop/src-tauri/src/notifications.rs:160
+#: desktop/src-tauri/src/notifications.rs:163
 msgid "VirusTotal Analysis Complete"
 msgstr "VirusTotal 分析完成"
 
-#: desktop/src-tauri/src/notifications.rs:167
+#: desktop/src-tauri/src/notifications.rs:170
 msgid "Scanning Device"
 msgstr "正在扫描设备"
 
-#: desktop/src-tauri/src/notifications.rs:174
+#: desktop/src-tauri/src/notifications.rs:177
 msgid "Device Scan Complete"
 msgstr "设备扫描完成"
 
-#: desktop/src-tauri/src/runtime.rs:204
+#: desktop/src-tauri/src/runtime.rs:205
 msgid "Quick Scan"
 msgstr "快速扫描"
 
-#: desktop/src-tauri/src/runtime.rs:205
+#: desktop/src-tauri/src/runtime.rs:206
 msgid "Full Scan"
 msgstr "全盘扫描"
 
-#: desktop/src-tauri/src/runtime.rs:206
+#: desktop/src-tauri/src/runtime.rs:207
 msgid "Home Folder"
 msgstr "主文件夹"
 
-#: desktop/src-tauri/src/runtime.rs:207
+#: desktop/src-tauri/src/runtime.rs:208
 msgid "Update Database"
 msgstr "更新数据库"
 
-#: desktop/src-tauri/src/runtime.rs:208
+#: desktop/src-tauri/src/runtime.rs:209
 msgid "Scan Profile"
 msgstr "扫描配置方案"
 
-#: desktop/src-tauri/src/runtime.rs:209
+#: desktop/src-tauri/src/runtime.rs:210
 msgid "Quit"
 msgstr "退出"
 
-#: desktop/src-tauri/src/runtime.rs:437
+#: desktop/src-tauri/src/runtime.rs:438
 msgid "Add Folders"
 msgstr "添加文件夹"
 
-#: desktop/src-tauri/src/runtime.rs:439
+#: desktop/src-tauri/src/runtime.rs:440
 msgid "Add Files"
 msgstr "添加文件"
 
-#: desktop/src-tauri/src/runtime.rs:483
+#: desktop/src-tauri/src/runtime.rs:492
 msgid "Export"
 msgstr "导出"
 
-#: desktop/src-tauri/src/runtime.rs:642
+#: desktop/src-tauri/src/runtime.rs:651
 msgid "Open"
 msgstr "打开"
 
@@ -2261,8 +2265,8 @@ msgstr "打开"
 msgid "Overview"
 msgstr "概览"
 
-#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:719
-#: desktop/src/pages/Scan.tsx:721
+#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:720
+#: desktop/src/pages/Scan.tsx:722
 msgid "Scan"
 msgstr "扫描"
 
@@ -2452,10 +2456,10 @@ msgstr "记住我的选择"
 
 #: desktop/src/App.tsx:1075 desktop/src/App.tsx:1079
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
-#: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:377
-#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:774
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:449
 #: desktop/src/pages/SettingsPreferences.tsx:538
@@ -2691,7 +2695,7 @@ msgid "Target {index}/{count}: {path}"
 msgstr "目标 {index}/{count}：{path}"
 
 #: desktop/src/ScanProgressPanel.tsx:19 desktop/src/pages/Results.tsx:110
-#: desktop/src/pages/Scan.tsx:710
+#: desktop/src/pages/Scan.tsx:711
 msgid "Scan target"
 msgstr "扫描目标"
 
@@ -2712,12 +2716,12 @@ msgstr "正在等待扫描数据…"
 msgid "Scan progress"
 msgstr "扫描进度"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:751
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "已扫描 {count} 个文件"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:751
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
@@ -2953,8 +2957,8 @@ msgid "Could not copy command: {error}"
 msgstr "无法复制命令：{error}"
 
 #: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
-#: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:413
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/Scan.tsx:756
+#: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
+#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
 #: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Copy"
 msgstr "复制"
@@ -3072,7 +3076,7 @@ msgid "Checking…"
 msgstr "正在检查…"
 
 #: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:283
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:723
 msgid "Refresh status"
 msgstr "刷新状态"
 
@@ -3207,7 +3211,7 @@ msgstr "添加"
 #: desktop/src/pages/ConfigPreferences.tsx:310
 #: desktop/src/pages/ConfigPreferences.tsx:356
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:744
+#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:765
 #: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Remove"
 msgstr "移除"
@@ -3699,7 +3703,7 @@ msgid "Used for monthly scans."
 msgstr "用于每月扫描。"
 
 #: desktop/src/pages/ConfigPreferences.tsx:896
-#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:743
+#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:764
 msgid "Scan Targets"
 msgstr "扫描目标"
 
@@ -4077,7 +4081,7 @@ msgid "Failed to load log details: {error}"
 msgstr "加载日志详情失败：{error}"
 
 #: desktop/src/pages/Logs.tsx:283 desktop/src/pages/Logs.tsx:293
-#: desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:419
 msgid "Text"
 msgstr "文本"
 
@@ -4144,23 +4148,23 @@ msgstr "加载守护进程日志时出错"
 msgid "Review previous scan and update operations."
 msgstr "查看以往的扫描和更新操作。"
 
-#: desktop/src/pages/Logs.tsx:359
+#: desktop/src/pages/Logs.tsx:362
 msgid "Log source"
 msgstr "日志来源"
 
-#: desktop/src/pages/Logs.tsx:360 desktop/src/pages/Logs.tsx:366
+#: desktop/src/pages/Logs.tsx:378 desktop/src/pages/Logs.tsx:384
 msgid "Historical Logs"
 msgstr "历史日志"
 
-#: desktop/src/pages/Logs.tsx:361 desktop/src/pages/Logs.tsx:398
+#: desktop/src/pages/Logs.tsx:379 desktop/src/pages/Logs.tsx:416
 msgid "ClamAV Daemon"
 msgstr "ClamAV 守护进程"
 
-#: desktop/src/pages/Logs.tsx:366
+#: desktop/src/pages/Logs.tsx:384
 msgid "Previous scan and update operations"
 msgstr "以往的扫描和更新操作"
 
-#: desktop/src/pages/Logs.tsx:367 desktop/src/pages/Logs.tsx:400
+#: desktop/src/pages/Logs.tsx:385 desktop/src/pages/Logs.tsx:418
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
 #: desktop/src/pages/Quarantine.tsx:354
 #: desktop/src/pages/SettingsPreferences.tsx:425
@@ -4170,95 +4174,95 @@ msgstr "以往的扫描和更新操作"
 msgid "Refresh"
 msgstr "刷新"
 
-#: desktop/src/pages/Logs.tsx:368 desktop/src/pages/Logs.tsx:390
+#: desktop/src/pages/Logs.tsx:386 desktop/src/pages/Logs.tsx:408
 msgid "Export CSV"
 msgstr "导出 CSV"
 
-#: desktop/src/pages/Logs.tsx:369 desktop/src/pages/Logs.tsx:391
+#: desktop/src/pages/Logs.tsx:387 desktop/src/pages/Logs.tsx:409
 #: desktop/src/pages/Results.tsx:225
 msgid "Export JSON"
 msgstr "导出 JSON"
 
-#: desktop/src/pages/Logs.tsx:370 desktop/src/pages/Logs.tsx:412
-#: desktop/src/pages/Scan.tsx:743
+#: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:430
+#: desktop/src/pages/Scan.tsx:764
 msgid "Clear All"
 msgstr "全部清除"
 
-#: desktop/src/pages/Logs.tsx:373
+#: desktop/src/pages/Logs.tsx:391
 msgid "Loading logs…"
 msgstr "正在加载日志…"
 
-#: desktop/src/pages/Logs.tsx:373
+#: desktop/src/pages/Logs.tsx:391
 msgid "No historical logs yet."
 msgstr "暂无历史日志。"
 
-#: desktop/src/pages/Logs.tsx:380
+#: desktop/src/pages/Logs.tsx:398
 msgid "{shown} of {total} loaded log shown"
 msgid_plural "{shown} of {total} loaded logs shown"
 msgstr[0] "已加载 {total} 条日志，当前显示 {shown} 条"
 
-#: desktop/src/pages/Logs.tsx:381 desktop/src/pages/Network.tsx:430
+#: desktop/src/pages/Logs.tsx:399 desktop/src/pages/Network.tsx:430
 msgid "Load More"
 msgstr "加载更多"
 
-#: desktop/src/pages/Logs.tsx:381
+#: desktop/src/pages/Logs.tsx:399
 msgid "Show All ({count})"
 msgstr "显示全部（{count}）"
 
-#: desktop/src/pages/Logs.tsx:387 desktop/src/pages/Logs.tsx:392
+#: desktop/src/pages/Logs.tsx:405 desktop/src/pages/Logs.tsx:410
 msgid "Log Details"
 msgstr "日志详情"
 
-#: desktop/src/pages/Logs.tsx:389 desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:407 desktop/src/pages/Logs.tsx:419
 msgid "Export Text"
 msgstr "导出文本"
 
-#: desktop/src/pages/Logs.tsx:392 desktop/src/pages/Logs.tsx:402
-#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Logs.tsx:410 desktop/src/pages/Logs.tsx:420
+#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:772
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: desktop/src/pages/Logs.tsx:398
+#: desktop/src/pages/Logs.tsx:416
 msgid "Live host daemon log output."
 msgstr "宿主机守护进程的实时日志输出。"
 
-#: desktop/src/pages/Logs.tsx:399
+#: desktop/src/pages/Logs.tsx:417
 msgid "Stop Live Updates"
 msgstr "停止实时更新"
 
-#: desktop/src/pages/Logs.tsx:399
+#: desktop/src/pages/Logs.tsx:417
 msgid "Start Live Updates"
 msgstr "启动实时更新"
 
-#: desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:419
 msgid "Exported daemon logs."
 msgstr "守护进程日志已导出。"
 
-#: desktop/src/pages/Logs.tsx:401
+#: desktop/src/pages/Logs.tsx:419
 msgid "Failed to export daemon logs"
 msgstr "导出守护进程日志失败"
 
-#: desktop/src/pages/Logs.tsx:402
+#: desktop/src/pages/Logs.tsx:420
 msgid "Daemon Logs"
 msgstr "守护进程日志"
 
-#: desktop/src/pages/Logs.tsx:405
+#: desktop/src/pages/Logs.tsx:423
 msgid "Checking daemon status…"
 msgstr "正在检查守护进程状态…"
 
-#: desktop/src/pages/Logs.tsx:406
+#: desktop/src/pages/Logs.tsx:424
 msgid "Live refresh is active every 3 seconds."
 msgstr "已启用实时刷新，每 3 秒刷新一次。"
 
-#: desktop/src/pages/Logs.tsx:407
+#: desktop/src/pages/Logs.tsx:425
 msgid "Daemon logs will appear here after a successful read."
 msgstr "成功读取后，守护进程日志将显示在此处。"
 
-#: desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Logs.tsx:430
 msgid "Clear All Logs?"
 msgstr "清除所有日志？"
 
-#: desktop/src/pages/Logs.tsx:412
+#: desktop/src/pages/Logs.tsx:430
 msgid ""
 "This will permanently delete all historical logs. This action cannot be "
 "undone."
@@ -4507,7 +4511,7 @@ msgstr "防护状态"
 msgid "Last Scan"
 msgstr "上次扫描"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:770
 msgid "Start Scan"
 msgstr "开始扫描"
 
@@ -4643,7 +4647,7 @@ msgstr "默认配置文件的名称受保护"
 msgid "Description"
 msgstr "描述"
 
-#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:744
+#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:765
 msgid "No targets added"
 msgstr "未添加目标"
 
@@ -5192,7 +5196,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "其他无法访问的文件未在此视图中显示。"
 
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Results.tsx:201
-#: desktop/src/pages/Scan.tsx:751 desktop/src/pages/Scan.tsx:756
+#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
 msgid "Scan details"
 msgstr "扫描详情"
 
@@ -5294,7 +5298,7 @@ msgstr[0] "扫描完成——检测到 {count} 个威胁"
 msgid "Scan cancelled — partial results are available"
 msgstr "扫描已取消——可查看部分结果"
 
-#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:712
+#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:713
 msgid "Scan error"
 msgstr "扫描出错"
 
@@ -5356,11 +5360,11 @@ msgstr "Cancel scan"
 msgid "API key available"
 msgstr "API 密钥可用"
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
 msgid "Scanning…"
 msgstr "正在扫描…"
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
 msgid "Scan with VirusTotal"
 msgstr "使用 VirusTotal 扫描"
 
@@ -5472,8 +5476,8 @@ msgid "Quick Scan profile has no valid targets"
 msgstr "“快速扫描”配置文件中没有有效的扫描目标"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:533 desktop/src/pages/Scan.tsx:636
-#: desktop/src/pages/Scan.tsx:696
+#: desktop/src/pages/Scan.tsx:533 desktop/src/pages/Scan.tsx:637
+#: desktop/src/pages/Scan.tsx:697
 msgid "Scan in progress — wait for it to finish before adding targets"
 msgstr "正在扫描——请等待扫描完成后再添加目标"
 
@@ -5483,95 +5487,95 @@ msgid_plural ""
 "VirusTotal scans one file at a time; {count} selections were ignored."
 msgstr[0] "VirusTotal 每次只能扫描一个文件；已忽略 {count} 个选中项。"
 
-#: desktop/src/pages/Scan.tsx:568 desktop/src/pages/Scan.tsx:705
+#: desktop/src/pages/Scan.tsx:568 desktop/src/pages/Scan.tsx:706
 msgid "Only local files and folders can be scanned"
 msgstr "只能扫描本地文件和文件夹"
 
-#: desktop/src/pages/Scan.tsx:645
+#: desktop/src/pages/Scan.tsx:646
 msgid "Unable to choose scan targets"
 msgstr "无法选择扫描目标"
 
-#: desktop/src/pages/Scan.tsx:654
+#: desktop/src/pages/Scan.tsx:655
 msgid "Unable to open the folder picker"
 msgstr "Unable to open the folder picker"
 
-#: desktop/src/pages/Scan.tsx:661
+#: desktop/src/pages/Scan.tsx:662
 msgid "Cancelling scan…"
 msgstr "正在取消扫描…"
 
-#: desktop/src/pages/Scan.tsx:663
+#: desktop/src/pages/Scan.tsx:664
 msgid "Unable to cancel scan"
 msgstr "无法取消扫描"
 
-#: desktop/src/pages/Scan.tsx:679
+#: desktop/src/pages/Scan.tsx:680
 msgid "Running EICAR test…"
 msgstr "正在运行 EICAR 测试…"
 
-#: desktop/src/pages/Scan.tsx:721
+#: desktop/src/pages/Scan.tsx:722
 msgid "Backend"
 msgstr "后端"
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:723
 msgid "Manage Profiles"
 msgstr "管理配置文件"
 
-#: desktop/src/pages/Scan.tsx:724
+#: desktop/src/pages/Scan.tsx:728
 msgid "Scan type"
 msgstr "Scan type"
 
-#: desktop/src/pages/Scan.tsx:725
+#: desktop/src/pages/Scan.tsx:746
 msgid "Files & Folders"
 msgstr "Files & Folders"
 
-#: desktop/src/pages/Scan.tsx:726 desktop/src/pages/Urlscan.tsx:228
+#: desktop/src/pages/Scan.tsx:747 desktop/src/pages/Urlscan.tsx:228
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:729 desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Scan.tsx:750 desktop/src/pages/Scan.tsx:772
 msgid "Details"
 msgstr "详情"
 
-#: desktop/src/pages/Scan.tsx:733
+#: desktop/src/pages/Scan.tsx:754
 msgid "Profile"
 msgstr "配置文件"
 
-#: desktop/src/pages/Scan.tsx:739
+#: desktop/src/pages/Scan.tsx:760
 msgid "No Profile (Manual)"
 msgstr "无配置文件（手动）"
 
-#: desktop/src/pages/Scan.tsx:743
+#: desktop/src/pages/Scan.tsx:764
 msgid "Drop local files or folders here, or add them below."
 msgstr "将本地文件或文件夹拖放到此处，或在下方添加。"
 
-#: desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:770
 msgid "Run EICAR Test"
 msgstr "运行 EICAR 测试"
 
-#: desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:770
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:749
+#: desktop/src/pages/Scan.tsx:770
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Scan.tsx:772
 msgid "Latest scan"
 msgstr "最近一次扫描"
 
-#: desktop/src/pages/Scan.tsx:751
+#: desktop/src/pages/Scan.tsx:772
 msgid "View Results"
 msgstr "查看结果"
 
-#: desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Scan.tsx:774
 msgid "Virus database is not available"
 msgstr "病毒库不可用"
 
-#: desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Scan.tsx:774
 msgid "Update the database before starting a scan."
 msgstr "开始扫描前请先更新病毒库。"
 
-#: desktop/src/pages/Scan.tsx:753
+#: desktop/src/pages/Scan.tsx:774
 msgid "Open Database Updates"
 msgstr "打开病毒库更新页面"
 

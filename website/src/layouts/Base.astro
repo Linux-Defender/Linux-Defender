@@ -57,13 +57,16 @@ const ogImage = new URL(`${base}/og-image.png`, siteUrl).toString();
       // Theme bootstrap: honor saved preference, then OS, then default to dark.
       (function () {
         try {
-          const stored = localStorage.getItem("linux-defender-site-theme");
+          const stored =
+            localStorage.getItem("linux-defender-site-theme") ||
+            localStorage.getItem("starlight-theme");
           const prefersLight =
             stored === "light" ||
-            (!stored &&
+            ((!stored || stored === "auto") &&
               window.matchMedia("(prefers-color-scheme: light)").matches);
           document.documentElement.classList.toggle("light", prefersLight);
           document.documentElement.classList.toggle("dark", !prefersLight);
+          document.documentElement.dataset.theme = prefersLight ? "light" : "dark";
         } catch (_) {}
       })();
     </script>

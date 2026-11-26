@@ -31,6 +31,7 @@ use tauri_plugin_clipboard_manager::ClipboardExt;
 use tauri_plugin_notification::{Action, ActionType, NotificationExt};
 
 const CANONICAL_LINUX_APPLICATION_ID: &str = "io.github.linuxdefender.linuxdefender";
+const MAX_EXPORT_BYTES: usize = 64 * 1024 * 1024;
 
 pub struct AppState {
     ctx: Context,
@@ -473,11 +474,19 @@ async fn save_export(
     }
     let bytes = match encoding.as_deref().unwrap_or("utf8") {
         "utf8" => content.into_bytes(),
-        "base64" => STANDARD
-            .decode(content)
-            .map_err(|_| "invalid base64 export payload".to_owned())?,
+        "base64" => {
+            if content.len() > MAX_EXPORT_BYTES * 2 {
+                return Err("export payload is too large".into());
+            }
+            STANDARD
+                .decode(content)
+                .map_err(|_| "invalid base64 export payload".to_owned())?
+        }
         _ => return Err("unsupported export encoding".into()),
     };
+    if bytes.len() > MAX_EXPORT_BYTES {
+        return Err("export payload is too large".into());
+    }
     let mut dialog = rfd::FileDialog::new()
         .set_parent(&window)
         .set_title(translate(&state.ctx, "Export"))

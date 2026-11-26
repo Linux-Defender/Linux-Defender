@@ -14,6 +14,7 @@ jobs:
   sync:
     name: Packaging version and reference sync
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     permissions:
       contents: read
       issues: write

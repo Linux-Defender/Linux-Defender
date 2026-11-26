@@ -273,7 +273,7 @@ export default function Results() {
       if (result) setVirusTotal(result);
     });
     return () => {
-      void unlisten.then((dispose) => dispose());
+      void unlisten.then((dispose) => dispose()).catch(() => undefined);
     };
   }, []);
 

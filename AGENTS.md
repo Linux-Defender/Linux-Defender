@@ -2,7 +2,7 @@
 
 Linux Defender is a Linux desktop frontend for **host-installed ClamAV**. Its Rust/Tauri/React source incorporates an MIT-licensed upstream foundation. The Linux Defender product name is the only user-facing brand. Retain original contributor notices and historical upstream references where required, and retain old command, data, helper, and secret-service identifiers only as compatibility contracts until their migration has dedicated tests. The production application is Rust: a headless core, a Tauri 2 native runtime, and a React/TypeScript frontend.
 
-The public desktop, AppStream, and Flatpak identity is `io.github.linuxdefender.linuxdefender`; Tauri's private bundle identifier is `io.github.linuxdefender.linuxdefender`. Do not substitute one for the other in public identity assets.
+The public desktop, AppStream, and Flatpak identity and Tauri's private bundle identifier are the same string, `io.github.linuxdefender.linuxdefender`; `check-repo-consistency.py` enforces that agreement. Do not substitute another id in public identity assets.
 
 ## Mandatory enforcement (read first)
 
@@ -48,7 +48,7 @@ The authoritative fork status — what was ported from upstream ClamUI, what is 
 
 The generated [documentation map](docs/DOC-MAP.md) links every tracked Markdown/MDX document, and `scripts/generate-doc-map.py --check` enforces it on every commit. Run `python3 scripts/generate-doc-map.py` after adding or removing a doc.
 
-The [revival research index](docs/revival/README.md) is the entry point for all related-project work: the link-checked [upstream repository inventory](docs/revival/UPSTREAM-REPOSITORIES.md) (ClamUI, ClamTk, Lenspect), the parity matrix, the ClamTk and Lenspect reviews, and the rebrand records. Keep the inventory's URLs current; `scripts/check-upstream-urls.py` verifies them on every commit, and `scripts/check-external-links.py` verifies every external link in all tracked documentation in the full audit and in the weekly `Doc Links` workflow. Reviewed upstream heads for ClamUI and Lenspect are pinned in `parity-lock.json` and watched by the weekly `Upstream Freshness` workflow.
+The [revival research index](docs/revival/README.md) is the entry point for all related-project work: the link-checked [upstream repository inventory](docs/revival/UPSTREAM-REPOSITORIES.md) (ClamUI, ClamTk, Lenspect), the parity matrix, the ClamTk and Lenspect reviews, and the rebrand records. Keep the inventory's URLs current; `scripts/check-upstream-urls.py` verifies them on every commit, and `scripts/check-external-links.py` verifies every external link in all tracked documentation in the full audit and in the weekly `Doc Links` workflow. Reviewed upstream heads for ClamUI and Lenspect are pinned with the other ten reviewed upstream sources in `parity-lock.json` and watched by the weekly `Upstream Freshness` workflow.
 
 The consolidated [revival-chat requirement ledger](docs/revival/CHAT-AND-PROJECT-AUDIT.md) records every request from the whole conversation, where it is satisfied, and which check re-verifies it. Keep it current when new requests arrive.
 

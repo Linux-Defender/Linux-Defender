@@ -9,7 +9,7 @@ for any upstream project.
 
 | Project | Records |
 | --- | --- |
-| All projects | [UPSTREAM-REPOSITORIES.md](UPSTREAM-REPOSITORIES.md) — canonical, link-checked inventory of external repositories and sites (ClamUI, ClamTk, Lenspect). |
+| All projects | [UPSTREAM-REPOSITORIES.md](UPSTREAM-REPOSITORIES.md) — canonical, link-checked inventory of external repositories and sites (ClamUI, ClamTk, Lenspect, their plugin repos, and the ClamAV bytecode compiler). |
 | ClamUI / related projects | [RELATED-PROJECT-REVIEW.md](RELATED-PROJECT-REVIEW.md) — parity matrix and upstream issue/PR disposition. |
 | ClamUI releases | [UPSTREAM-CHANGELOG.md](UPSTREAM-CHANGELOG.md) — upstream changelog snapshot. |
 | ClamTk | [CLAMTK-RESEARCH.md](CLAMTK-RESEARCH.md) — first-pass research log; [CLAMTK-ISSUE-PR-TRACKER.md](CLAMTK-ISSUE-PR-TRACKER.md) — issue/PR findings and local dispositions. |

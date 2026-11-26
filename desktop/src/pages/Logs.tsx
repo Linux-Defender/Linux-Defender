@@ -356,9 +356,27 @@ export default function Logs({ active }: { active: boolean }) {
   return (
     <main className="page logs-page">
       <header className="page-header"><div><h1>{_("Logs")}</h1><p>{_("Review previous scan and update operations.")}</p></div></header>
-      <div className="tab-list" role="tablist" aria-label={_("Log source")}>
-        <button className="button" id="history-tab" type="button" role="tab" aria-controls="history-panel" aria-selected={tab === "history"} onClick={() => setTab("history")}>{_("Historical Logs")}</button>
-        <button className="button" id="daemon-tab" type="button" role="tab" aria-controls="daemon-panel" aria-selected={tab === "daemon"} onClick={() => setTab("daemon")}>{_("ClamAV Daemon")}</button>
+      <div
+        className="tab-list"
+        role="tablist"
+        aria-label={_("Log source")}
+        onKeyDown={(event) => {
+          const ids = ["history-tab", "daemon-tab"];
+          const index = ids.indexOf((event.target as HTMLElement).id);
+          if (index < 0) return;
+          let next = index;
+          if (event.key === "ArrowRight") next = (index + 1) % ids.length;
+          else if (event.key === "ArrowLeft") next = (index - 1 + ids.length) % ids.length;
+          else if (event.key === "Home") next = 0;
+          else if (event.key === "End") next = ids.length - 1;
+          else return;
+          event.preventDefault();
+          setTab(next === 0 ? "history" : "daemon");
+          document.getElementById(ids[next])?.focus();
+        }}
+      >
+        <button className="button" id="history-tab" type="button" role="tab" tabIndex={tab === "history" ? 0 : -1} aria-controls="history-panel" aria-selected={tab === "history"} onClick={() => setTab("history")}>{_("Historical Logs")}</button>
+        <button className="button" id="daemon-tab" type="button" role="tab" tabIndex={tab === "daemon" ? 0 : -1} aria-controls="daemon-panel" aria-selected={tab === "daemon"} onClick={() => setTab("daemon")}>{_("ClamAV Daemon")}</button>
       </div>
 
       {tab === "history" ? <div id="history-panel" role="tabpanel" aria-labelledby="history-tab">
@@ -371,8 +389,8 @@ export default function Logs({ active }: { active: boolean }) {
           </div></header>
           <div className="grouped-list">
             {loading ? <p className="muted">{_("Loading logs…")}</p> : entries.length === 0 ? <p className="empty-state">{_("No historical logs yet.")}</p> : <>
-              <div className="log-list" role="list">
-                {displayed.map((entry) => <button type="button" role="listitem" className={`group-row log-row ${selected?.id === entry.id ? "selected" : ""}`} key={entry.id} onClick={() => void selectEntry(entry)}>
+              <div className="log-list">
+                {displayed.map((entry) => <button type="button" className={`group-row log-row ${selected?.id === entry.id ? "selected" : ""}`} key={entry.id} onClick={() => void selectEntry(entry)}>
                   <span className="log-row-copy"><strong className="row-title">{entry.summary}</strong><span className="row-description inline-metadata"><span className="metadata-item">{formatDate(entry.timestamp)}</span><span className="metadata-item">{scanStatusLabel(entry.status)}</span>{entry.path && <span className="metadata-item">{entry.path}</span>}</span></span><HistoryLogStatusIndicator status={entry.status} />
                 </button>)}
               </div>

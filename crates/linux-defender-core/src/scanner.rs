@@ -2160,43 +2160,62 @@ fn localize_result(ctx: &Context, result: &mut ScanResult) {
 }
 
 fn glob_matches(value: &str, pattern: &str) -> bool {
-    fn matches(value: &[char], pattern: &[char], value_index: usize, pattern_index: usize) -> bool {
-        if pattern_index == pattern.len() {
-            return value_index == value.len();
+    // Memoized so a pattern such as `*a*a*a*...` cannot explode exponentially
+    // while exclusion rules are evaluated for every scanned path.
+    fn matches(
+        value: &[char],
+        pattern: &[char],
+        value_index: usize,
+        pattern_index: usize,
+        memo: &mut [Vec<Option<bool>>],
+    ) -> bool {
+        if let Some(cached) = memo[value_index][pattern_index] {
+            return cached;
         }
-        match pattern[pattern_index] {
-            '*' => {
-                let mut next = pattern_index + 1;
-                while next < pattern.len() && pattern[next] == '*' {
-                    next += 1;
+        let result = if pattern_index == pattern.len() {
+            value_index == value.len()
+        } else {
+            match pattern[pattern_index] {
+                '*' => {
+                    let mut next = pattern_index + 1;
+                    while next < pattern.len() && pattern[next] == '*' {
+                        next += 1;
+                    }
+                    let mut found = false;
+                    for index in value_index..=value.len() {
+                        if matches(value, pattern, index, next, memo) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    found
                 }
-                (value_index..=value.len()).any(|index| matches(value, pattern, index, next))
-            }
-            '?' => {
-                value_index < value.len()
-                    && matches(value, pattern, value_index + 1, pattern_index + 1)
-            }
-            '[' => match class_match(pattern, pattern_index, value.get(value_index).copied()) {
-                Some((next, true)) => matches(value, pattern, value_index + 1, next),
-                Some((_, false)) => false,
-                None => {
-                    value.get(value_index) == Some(&'[')
-                        && matches(value, pattern, value_index + 1, pattern_index + 1)
+                '?' => {
+                    value_index < value.len()
+                        && matches(value, pattern, value_index + 1, pattern_index + 1, memo)
                 }
-            },
-            literal => {
-                value.get(value_index) == Some(&literal)
-                    && matches(value, pattern, value_index + 1, pattern_index + 1)
+                '[' => match class_match(pattern, pattern_index, value.get(value_index).copied()) {
+                    Some((next, true)) => matches(value, pattern, value_index + 1, next, memo),
+                    Some((_, false)) => false,
+                    None => {
+                        value.get(value_index) == Some(&'[')
+                            && matches(value, pattern, value_index + 1, pattern_index + 1, memo)
+                    }
+                },
+                literal => {
+                    value.get(value_index) == Some(&literal)
+                        && matches(value, pattern, value_index + 1, pattern_index + 1, memo)
+                }
             }
-        }
+        };
+        memo[value_index][pattern_index] = Some(result);
+        result
     }
 
-    matches(
-        &value.chars().collect::<Vec<_>>(),
-        &pattern.chars().collect::<Vec<_>>(),
-        0,
-        0,
-    )
+    let chars = value.chars().collect::<Vec<_>>();
+    let pattern = pattern.chars().collect::<Vec<_>>();
+    let mut memo = vec![vec![None; pattern.len() + 1]; chars.len() + 1];
+    matches(&chars, &pattern, 0, 0, &mut memo)
 }
 
 fn class_end(pattern: &[char], open: usize) -> Option<usize> {
@@ -2489,6 +2508,14 @@ mod tests {
             );
             assert_eq!(expression.is_match(name), expected, "clamscan: {name}");
         }
+    }
+
+    #[test]
+    fn adversarial_glob_pattern_does_not_need_exponential_work() {
+        let value = "a".repeat(80);
+        let pattern = format!("{}b", "*a".repeat(14));
+        assert!(!glob_matches(&value, &pattern));
+        assert!(glob_matches("aaaaaaaaaaaaaaaaaaaa", "*a*a*a*a*a*a"));
     }
 
     fn capture_fixture(
