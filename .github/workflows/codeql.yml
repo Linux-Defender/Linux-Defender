@@ -65,8 +65,11 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
-          languages: rust,javascript-typescript
+          languages: actions,javascript-typescript,python,rust
           build-mode: none
+          # Equivalent of upstream's dynamic "CodeQL - Code Quality" run for
+          # the languages we actually ship: workflows, frontend, scripts, core.
+          queries: +security-and-quality
 
       - name: Install frontend dependencies
         working-directory: desktop

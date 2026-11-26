@@ -134,6 +134,7 @@ Do not use `-g` or bulk-install an upstream repository. Imported payloads belong
 - `bash scripts/audit-consistency.sh` adds the heavy builds, tests, clippy, git sync, and CI status.
 - `./scripts/hooks/install-hooks.sh` installs a pre-commit hook (all static checks plus Rust format and TypeScript type-check) and a pre-push hook (the full audit).
 - Consistency Audit CI runs both scripts on every push and pull request, and weekly on `main`.
+- CodeQL CI analyzes all shipped languages with security and quality queries: GitHub Actions workflows, TypeScript, Python maintenance scripts, and Rust. This is the checked-in equivalent of the dynamic "CodeQL - Code Quality" analysis; `check-source-invariants.py` enforces the language set.
 
 Cross-layer features are declared in `scripts/cross-layer-contracts.json`. Add an entry whenever a feature spans two or more layers (core, native runtime, frontend, website docs, packaging); `scripts/check-cross-layer.py` also derives Tauri commands, CLI subcommands, and active locales from source so a feature cannot land in only one layer.
 

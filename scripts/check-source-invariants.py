@@ -43,6 +43,7 @@ FORBIDDEN = (
 # The Tauri CSP must stay restrictive; these substrings are the reviewed policy.
 CSP_FILE = ROOT / "desktop/src-tauri/tauri.conf.json"
 PROOF_WORKFLOW = ROOT / ".github/workflows/proof-html.yml"
+CODEQL_WORKFLOW = ROOT / ".github/workflows/codeql.yml"
 
 # proof-html v2 renamed inputs and the old broad base-path rewrite also broke
 # absolute GitHub repository URLs. A Dependabot action bump silently changed
@@ -125,6 +126,14 @@ def main() -> int:
             failures.append(
                 f"{PROOF_WORKFLOW.relative_to(ROOT)} lost '{required}' "
                 "(reviewed proof-html v2 configuration)"
+            )
+
+    codeql = CODEQL_WORKFLOW.read_text(encoding="utf-8")
+    for required in ("languages: actions,javascript-typescript,python,rust", "queries: +security-and-quality"):
+        if required not in codeql:
+            failures.append(
+                f"{CODEQL_WORKFLOW.relative_to(ROOT)} lost '{required}' "
+                "(CodeQL must cover workflows, frontend, scripts, and core with quality queries)"
             )
 
     if failures:
