@@ -33,7 +33,7 @@ jobs:
       options: --privileged
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Install pinned Flatpak SDK extensions
         run: |
@@ -47,7 +47,7 @@ jobs:
 
 
       - name: Build Flatpak
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        uses: flatpak/flatpak-github-actions/flatpak-builder@79327416609af08178ad73b352877e51450790b3 # v6
         with:
           manifest-path: flathub/io.github.linuxdefender.linuxdefender.local.yml
           bundle: linux-defender-${{ matrix.arch }}.flatpak
@@ -55,7 +55,7 @@ jobs:
           cache-key: flatpak-builder-${{ matrix.runner }}-${{ matrix.arch }}
 
       - name: Upload Flatpak bundle artifact
-        uses: actions/upload-artifact@v7.0.2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: linux-defender-flatpak-${{ matrix.arch }}
           path: linux-defender-${{ matrix.arch }}.flatpak

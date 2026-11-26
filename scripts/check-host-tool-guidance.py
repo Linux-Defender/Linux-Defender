@@ -2,7 +2,6 @@
 """Keep app and website host-ClamAV setup guidance identical and upstream-synced."""
 from __future__ import annotations
 
-import re
 import sys
 from pathlib import Path
 

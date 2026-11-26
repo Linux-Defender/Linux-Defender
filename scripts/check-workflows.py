@@ -7,6 +7,7 @@ every workflow and require a name plus a recognizable trigger.
 """
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -26,6 +27,8 @@ TRIGGERS = {
 # impossible; dependabot-refresh has a dedicated per-PR group with
 # cancel-in-progress: false so its guarded generation is never interrupted.
 CONCURRENCY_EXEMPT = {"auto-assign.yml", "dependabot-refresh.yml"}
+EXTERNAL_USE = re.compile(r"uses:\s*[A-Za-z0-9._-]+/[A-Za-z0-9._/-]+@([^\s#]+)")
+PINNED = re.compile(r"^[0-9a-f]{40}$")
 
 
 def main() -> int:
@@ -58,6 +61,12 @@ def main() -> int:
                 failures.append(
                     f"{path.name}: PR trigger without PR-scoped concurrency; "
                     "a newer push must cancel stale runs"
+                )
+        for ref in EXTERNAL_USE.findall(path.read_text(encoding="utf-8")):
+            if not PINNED.match(ref):
+                failures.append(
+                    f"{path.name}: external action pinned to mutable ref '{ref}'; "
+                    "use a 40-hex commit SHA (CodeQL actions/unpinned-tag)"
                 )
     if failures:
         print("Workflow failures:", file=sys.stderr)

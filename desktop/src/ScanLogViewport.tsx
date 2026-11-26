@@ -59,7 +59,7 @@ export function ScanLogViewport({ chunks, label, className }: ScanLogViewportPro
     const viewport = event.currentTarget;
     const maximumScrollTop = Math.max(0, totalHeight - viewport.clientHeight);
     const pageStep = Math.max(ROW_HEIGHT, viewport.clientHeight - ROW_HEIGHT);
-    let nextScrollTop = viewport.scrollTop;
+    let nextScrollTop: number;
 
     switch (event.key) {
       case "ArrowDown":

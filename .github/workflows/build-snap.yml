@@ -41,11 +41,11 @@ jobs:
             runner: ubuntu-22.04-arm
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Build snap
         id: snapcraft
-        uses: snapcore/action-build@v1
+        uses: snapcore/action-build@3bdaa03e1ba6bf59a65f84a751d943d549a54e79 # v1
 
       - name: Check snap contents
         run: |
@@ -61,7 +61,7 @@ jobs:
           /snap/bin/linux-defender --help >/dev/null
 
       - name: Upload snap artifact
-        uses: actions/upload-artifact@v7.0.2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: snap-${{ matrix.architecture }}
           path: ${{ steps.snapcraft.outputs.snap }}

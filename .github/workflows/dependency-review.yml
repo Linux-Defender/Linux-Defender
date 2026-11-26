@@ -35,10 +35,10 @@ jobs:
         run: test -n "$EXPECTED_SHA" && test "$EXPECTED_SHA" = "$ACTUAL_SHA"
 
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Dependency review
-        uses: actions/dependency-review-action@v5
+        uses: actions/dependency-review-action@bbc44d14a204704ccc493733616cd1e93a0321ec # v5
         with:
           base-ref: ${{ inputs.base_ref }}
           head-ref: ${{ inputs.head_ref }}
