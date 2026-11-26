@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-25 19:51-0500\n"
+"POT-Creation-Date: 2026-11-26 03:09-0500\n"
 "PO-Revision-Date: 2026-10-20 10:21+0200\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: German\n"
@@ -1471,7 +1471,7 @@ msgstr ""
 "weniger sicher)"
 
 #. Translators: replace with your name(s) and optionally <email> or a URL, one translator per line. Leave untranslated if you do not want to be credited.
-#: crates/linux-defender-core/src/credits.rs:15
+#: crates/linux-defender-core/src/credits.rs:27
 msgid "translator-credits"
 msgstr "translator-credits"
 
@@ -2360,43 +2360,43 @@ msgstr "Gerät wird gescannt"
 msgid "Device Scan Complete"
 msgstr "Gerätescan abgeschlossen"
 
-#: desktop/src-tauri/src/runtime.rs:203
+#: desktop/src-tauri/src/runtime.rs:204
 msgid "Quick Scan"
 msgstr "Schnellscan"
 
-#: desktop/src-tauri/src/runtime.rs:204
+#: desktop/src-tauri/src/runtime.rs:205
 msgid "Full Scan"
 msgstr "Vollständiger Scan"
 
-#: desktop/src-tauri/src/runtime.rs:205
+#: desktop/src-tauri/src/runtime.rs:206
 msgid "Home Folder"
 msgstr "Home-Verzeichnis"
 
-#: desktop/src-tauri/src/runtime.rs:206
+#: desktop/src-tauri/src/runtime.rs:207
 msgid "Update Database"
 msgstr "Datenbank aktualisieren"
 
-#: desktop/src-tauri/src/runtime.rs:207
+#: desktop/src-tauri/src/runtime.rs:208
 msgid "Scan Profile"
 msgstr "Scan-Profil"
 
-#: desktop/src-tauri/src/runtime.rs:208
+#: desktop/src-tauri/src/runtime.rs:209
 msgid "Quit"
 msgstr "Beenden"
 
-#: desktop/src-tauri/src/runtime.rs:412
+#: desktop/src-tauri/src/runtime.rs:437
 msgid "Add Folders"
 msgstr "Ordner hinzufügen"
 
-#: desktop/src-tauri/src/runtime.rs:414
+#: desktop/src-tauri/src/runtime.rs:439
 msgid "Add Files"
 msgstr "Dateien hinzufügen"
 
-#: desktop/src-tauri/src/runtime.rs:458
+#: desktop/src-tauri/src/runtime.rs:483
 msgid "Export"
 msgstr "Exportieren"
 
-#: desktop/src-tauri/src/runtime.rs:617
+#: desktop/src-tauri/src/runtime.rs:642
 msgid "Open"
 msgstr "Öffnen"
 
@@ -2435,7 +2435,7 @@ msgstr "Prüfung"
 msgid "Network"
 msgstr "Netzwerk"
 
-#: desktop/src/App.tsx:130 desktop/src/App.tsx:888 desktop/src/App.tsx:976
+#: desktop/src/App.tsx:130 desktop/src/App.tsx:894 desktop/src/App.tsx:982
 #: desktop/src/pages/Preferences.tsx:119
 msgid "Preferences"
 msgstr "Einstellungen"
@@ -2477,117 +2477,117 @@ msgstr ""
 "Der privilegierte Helfer ist weiterhin nicht verfügbar. Versuchen Sie es "
 "erneut oder installieren Sie ihn manuell."
 
-#: desktop/src/App.tsx:780
+#: desktop/src/App.tsx:786
 msgid "The privileged-helper status returned an invalid response."
 msgstr ""
 "Der Status des privilegierten Helfers gab eine ungültige Antwort zurück."
 
-#: desktop/src/App.tsx:881
+#: desktop/src/App.tsx:887
 msgid "Linux Defender"
 msgstr "Linux Defender"
 
-#: desktop/src/App.tsx:886
+#: desktop/src/App.tsx:892
 msgid "Back"
 msgstr "Zurück"
 
-#: desktop/src/App.tsx:911
+#: desktop/src/App.tsx:917
 msgid "Scan File or Folder"
 msgstr "Datei oder Ordner scannen"
 
-#: desktop/src/App.tsx:918
+#: desktop/src/App.tsx:924
 msgid "Choose scan targets"
 msgstr "Scan-Ziele auswählen"
 
-#: desktop/src/App.tsx:928
+#: desktop/src/App.tsx:934
 msgid "Scan Files"
 msgstr "Dateien scannen"
 
-#: desktop/src/App.tsx:932
+#: desktop/src/App.tsx:938
 msgid "Scan Folders"
 msgstr "Ordner scannen"
 
-#: desktop/src/App.tsx:939
+#: desktop/src/App.tsx:945
 msgid "Scan System (Quick Scan)"
 msgstr "System scannen (Schnellscan)"
 
-#: desktop/src/App.tsx:946 desktop/src/App.tsx:947
+#: desktop/src/App.tsx:952 desktop/src/App.tsx:953
 msgid "Menu"
 msgstr "Menü"
 
-#: desktop/src/App.tsx:966
+#: desktop/src/App.tsx:972
 msgid "Application menu"
 msgstr "Anwendungsmenü"
 
-#: desktop/src/App.tsx:979
+#: desktop/src/App.tsx:985
 msgid "About"
 msgstr "Info"
 
-#: desktop/src/App.tsx:992
+#: desktop/src/App.tsx:998
 msgid "Main navigation"
 msgstr "Hauptnavigation"
 
-#: desktop/src/App.tsx:993
+#: desktop/src/App.tsx:999
 msgid "Views"
 msgstr "Ansichten"
 
-#: desktop/src/App.tsx:1013 desktop/src/pages/Quarantine.tsx:339
+#: desktop/src/App.tsx:1019 desktop/src/pages/Quarantine.tsx:339
 msgid "Dismiss"
 msgstr "Schließen"
 
-#: desktop/src/App.tsx:1035
+#: desktop/src/App.tsx:1041
 msgid "About Linux Defender"
 msgstr "About Linux Defender"
 
-#: desktop/src/App.tsx:1036
+#: desktop/src/App.tsx:1042
 msgid "An on-demand Linux security scanner using your system's ClamAV tools."
 msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 
-#: desktop/src/App.tsx:1038
+#: desktop/src/App.tsx:1044
 msgid "Version"
 msgstr "Version"
 
-#: desktop/src/App.tsx:1039 desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/App.tsx:1045 desktop/src/pages/SettingsPreferences.tsx:270
 #: desktop/src/pages/SettingsPreferences.tsx:271
 msgid "Language"
 msgstr "Sprache"
 
-#: desktop/src/App.tsx:1040
+#: desktop/src/App.tsx:1046
 msgid "License"
 msgstr "Lizenz"
 
-#: desktop/src/App.tsx:1043
+#: desktop/src/App.tsx:1049
 msgid "Project website"
 msgstr "Projektwebsite"
 
-#: desktop/src/App.tsx:1044 desktop/src/pages/ConfigPreferences.tsx:827
+#: desktop/src/App.tsx:1050 desktop/src/pages/ConfigPreferences.tsx:827
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: desktop/src/App.tsx:1045
+#: desktop/src/App.tsx:1051
 msgid "Issue tracker"
 msgstr "Fehlerverfolgung"
 
-#: desktop/src/App.tsx:1047
+#: desktop/src/App.tsx:1053
 msgid "Could not load contributor credits: {error}"
 msgstr "Die Angaben zu den Mitwirkenden konnten nicht geladen werden: {error}"
 
-#: desktop/src/App.tsx:1052
+#: desktop/src/App.tsx:1058
 msgid "Contributors"
 msgstr "Mitwirkende"
 
-#: desktop/src/App.tsx:1061
+#: desktop/src/App.tsx:1067
 msgid "Translator credits"
 msgstr "Übersetzung"
 
-#: desktop/src/App.tsx:1064
+#: desktop/src/App.tsx:1070
 msgid "Loading contributor credits…"
 msgstr "Mitwirkende werden geladen…"
 
-#: desktop/src/App.tsx:1066
+#: desktop/src/App.tsx:1072
 msgid "Close Linux Defender?"
 msgstr "Close Linux Defender?"
 
-#: desktop/src/App.tsx:1067
+#: desktop/src/App.tsx:1073
 msgid ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
@@ -2595,11 +2595,11 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1068 desktop/src/pages/Scan.tsx:262
+#: desktop/src/App.tsx:1074 desktop/src/pages/Scan.tsx:262
 msgid "Remember my choice"
 msgstr "Auswahl merken"
 
-#: desktop/src/App.tsx:1069 desktop/src/App.tsx:1073
+#: desktop/src/App.tsx:1075 desktop/src/App.tsx:1079
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:412
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
@@ -2612,40 +2612,40 @@ msgstr "Auswahl merken"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: desktop/src/App.tsx:1069
+#: desktop/src/App.tsx:1075
 msgid "Minimize to tray"
 msgstr "In Systemleiste minimieren"
 
-#: desktop/src/App.tsx:1071
+#: desktop/src/App.tsx:1077
 msgid "Scan in Progress"
 msgstr "Scan läuft"
 
-#: desktop/src/App.tsx:1072
+#: desktop/src/App.tsx:1078
 msgid "A scan is still running. Cancelling it may leave partial results."
 msgstr ""
 "Ein Scan läuft noch. Beim Abbrechen können unvollständige Ergebnisse "
 "verbleiben."
 
-#: desktop/src/App.tsx:1073
+#: desktop/src/App.tsx:1079
 msgid "Keep Scanning"
 msgstr "Weiter scannen"
 
-#: desktop/src/App.tsx:1073
+#: desktop/src/App.tsx:1079
 msgid "Cancel Scan and Close"
 msgstr "Scan abbrechen und schließen"
 
-#: desktop/src/App.tsx:1073 desktop/src/ConfigurationRecovery.tsx:94
+#: desktop/src/App.tsx:1079 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:346 desktop/src/pages/Scan.tsx:352
 #: desktop/src/pages/Scan.tsx:364 desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Close"
 msgstr "Schließen"
 
-#: desktop/src/App.tsx:1075
+#: desktop/src/App.tsx:1081
 msgid "Install Privileged Helper"
 msgstr "Privilegierten Helfer installieren"
 
-#: desktop/src/App.tsx:1076
+#: desktop/src/App.tsx:1082
 msgid ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
@@ -2653,13 +2653,13 @@ msgstr ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
 
-#: desktop/src/App.tsx:1078 desktop/src/HelperTrustErrorDialog.tsx:52
+#: desktop/src/App.tsx:1084 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr ""
 "Die Installation des Hilfsprogramms erfordert eine Administratorfreigabe."
 
 #. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1079
+#: desktop/src/App.tsx:1085
 msgid ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
@@ -2667,27 +2667,27 @@ msgstr ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
 
-#: desktop/src/App.tsx:1084 desktop/src/HelperTrustErrorDialog.tsx:78
+#: desktop/src/App.tsx:1090 desktop/src/HelperTrustErrorDialog.tsx:78
 msgid "Installing privileged helper…"
 msgstr "Privilegierter Helfer wird installiert …"
 
-#: desktop/src/App.tsx:1086
+#: desktop/src/App.tsx:1092
 msgid "Not now"
 msgstr "Nicht jetzt"
 
-#: desktop/src/App.tsx:1086 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1092 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Installing…"
 msgstr "Wird installiert …"
 
-#: desktop/src/App.tsx:1086 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1092 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Try Again"
 msgstr "Erneut versuchen"
 
-#: desktop/src/App.tsx:1086 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1092 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Install Helper"
 msgstr "Helfer installieren"
 
-#: desktop/src/App.tsx:1086
+#: desktop/src/App.tsx:1092
 msgid "Open Preferences"
 msgstr "Einstellungen öffnen"
 

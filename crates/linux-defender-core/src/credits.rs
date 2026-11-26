@@ -5,6 +5,18 @@ const AUTHORS: &str = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/../../A
 
 /// Routes the static About-dialog credits without exposing filesystem access.
 pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
+    if action == "startup_ready" {
+        if !args.as_object().is_some_and(|object| object.is_empty()) {
+            return Err("app.startup_ready accepts no arguments".to_owned());
+        }
+        let _ = crate::logs::write_debug(
+            ctx,
+            "INFO",
+            "native-runtime",
+            "frontend mounted; the startup watchdog is satisfied",
+        );
+        return Ok(json!({ "ready": true }));
+    }
     if action != "credits" {
         return Err(format!("Unknown app action: {action}"));
     }

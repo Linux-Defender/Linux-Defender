@@ -45,6 +45,8 @@ WEBKIT_DISABLE_DMABUF_RENDERER=1 bun run --cwd desktop tauri dev
 
 An explicit `WEBKIT_DISABLE_DMABUF_RENDERER` value in the environment is never overridden. The workaround may reduce hardware acceleration. If it fixes startup, report the desktop session, GPU driver, and exact error.
 
+If the window still opens blank, the native runtime writes one warning to the debug log after ten seconds if React has not reported that it mounted (`frontend did not mount within 10s`). The frontend sends the existing `app.startup_ready` operation once it mounts, so the warning narrows the failure to the WebView bundle, the React error boundary, catalog loading, or an IPC reply. A caught render error is shown in the window with a **Retry** button instead of leaving it blank. Include that log line and the desktop session in a report.
+
 ## Daemon backend is unavailable
 
 The daemon backend needs host `clamd` and `clamdscan`, a running daemon, and a socket accessible to the current user. Select **Auto** or **Clamscan** if you do not need the daemon. Check the service name and socket from your distribution; Fedora commonly uses `clamd@scan` and `/etc/clamd.d/scan.conf`. See the [backend guide](/Linux-Defender/docs/reference/scan-backends/).

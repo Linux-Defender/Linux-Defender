@@ -38,6 +38,7 @@ pub struct AppState {
     active_jobs: RunningJobs,
     scan_progress: Mutex<ScanProgressCoalescer>,
     start_minimized_pending: AtomicBool,
+    frontend_ready: Arc<AtomicBool>,
     tray: Arc<TrayController>,
     monitor: Mutex<Option<linux_defender_core::platform::MonitorHandle>>,
     notifications: Notifications,
@@ -230,6 +231,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
         },
         scan_progress: Mutex::new(ScanProgressCoalescer::new(Duration::from_millis(50))),
         start_minimized_pending: AtomicBool::new(false),
+        frontend_ready: Arc::new(AtomicBool::new(false)),
         tray,
         monitor: Mutex::new(None),
         notifications: Notifications::new(),
@@ -299,6 +301,26 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                 "native-runtime",
                 "native runtime startup completed",
             );
+            // Upstream ClamUI #361: a blank window can hide several unrelated
+            // failures. One debug warning names the unmounted stage without
+            // touching the filesystem, network, or any new IPC capability.
+            let frontend_ready = Arc::clone(&state.frontend_ready);
+            let watchdog_ctx = state.ctx.clone();
+            tauri::async_runtime::spawn(async move {
+                tokio::time::sleep(Duration::from_secs(10)).await;
+                if !frontend_ready.load(Ordering::Acquire) {
+                    let _ = linux_defender_core::logs::write_debug(
+                        &watchdog_ctx,
+                        "WARNING",
+                        "native-runtime",
+                        concat!(
+                            "frontend did not mount within 10s: check the WebView bundle, ",
+                            "the React error boundary, catalog load, and the ",
+                            "app.startup_ready IPC reply"
+                        ),
+                    );
+                }
+            });
             install_notification_actions(app.handle(), &state.ctx);
             match linux_defender_core::platform::start_monitor(state.ctx.clone()) {
                 Ok(handle) => *state.monitor.lock().expect("monitor state poisoned") = Some(handle),
@@ -357,6 +379,9 @@ async fn request(
     args: Value,
 ) -> Result<Value, String> {
     let _operation = state.active_jobs.register(action.clone())?;
+    if action == "app.startup_ready" {
+        state.frontend_ready.store(true, Ordering::Release);
+    }
     let progress_registration = if action == "scanner.scan" {
         match args.get("id").and_then(Value::as_str) {
             Some(operation_id) => state

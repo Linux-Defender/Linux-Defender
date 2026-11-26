@@ -605,6 +605,12 @@ export default function App(): ReactNode {
     };
   }, [selectPage, showToast]);
 
+  // Tells the native startup watchdog that React actually mounted. Upstream
+  // ClamUI #361 showed that a blank window can have several invisible causes.
+  useEffect(() => {
+    void request("app.startup_ready", {}).catch(() => {});
+  }, []);
+
   useEffect(() => {
     let disposed = false;
     let stopEvents: (() => void) | undefined;
