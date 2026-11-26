@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 06:50-0500\n"
+"POT-Creation-Date: 2026-11-26 08:49-0500\n"
 "PO-Revision-Date: 2026-11-03 21:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -1446,14 +1446,14 @@ msgid "{key}: size must start with a number: {value}"
 msgstr "{key}: kích thước phải bắt đầu bằng một số: {value}"
 
 #: crates/linux-defender-core/src/config.rs:1050
-msgid "{key}: path cannot be empty"
-msgstr "{key}: đường dẫn không được để trống"
+msgid "{key}: path must be non-empty and cannot traverse with '..'"
+msgstr "{key}: path must be non-empty and cannot traverse with '..'"
 
-#: crates/linux-defender-core/src/config.rs:1065
+#: crates/linux-defender-core/src/config.rs:1069
 msgid "{key}: string value cannot be empty"
 msgstr "{key}: giá trị chuỗi không được để trống"
 
-#: crates/linux-defender-core/src/config.rs:1076
+#: crates/linux-defender-core/src/config.rs:1080
 msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}: URL phải bắt đầu bằng http(s)://, ftp(s):// hoặc file://"
 
@@ -2144,12 +2144,12 @@ msgid "Update failed with an unknown error. Check the logs for details."
 msgstr "Update failed with an unknown error. Check the logs for details."
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:526
+#: crates/linux-defender-core/src/updater.rs:535
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr "Đã gửi tín hiệu cập nhật đến dịch vụ freshclam (PID {pid})"
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:816
+#: crates/linux-defender-core/src/updater.rs:825
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2157,7 +2157,7 @@ msgstr ""
 "Một tiến trình freshclam khác đang chạy (PID {pid}). Hãy dừng nó trước: sudo "
 "systemctl stop clamav-freshclam"
 
-#: crates/linux-defender-core/src/updater.rs:846
+#: crates/linux-defender-core/src/updater.rs:855
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] ""
@@ -2165,28 +2165,28 @@ msgstr[0] ""
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/updater.rs:985
+#: crates/linux-defender-core/src/updater.rs:994
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] ""
 "Cập nhật cơ sở dữ liệu đã hoàn tất — đã cập nhật {count} cơ sở dữ liệu"
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/linux-defender-core/src/updater.rs:995
+#: crates/linux-defender-core/src/updater.rs:1004
 msgid "Database update completed — Already up to date"
 msgstr "Cập nhật cơ sở dữ liệu đã hoàn tất — đã là phiên bản mới nhất"
 
-#: crates/linux-defender-core/src/updater.rs:1062
+#: crates/linux-defender-core/src/updater.rs:1071
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "Tệp cấu hình freshclam đã chọn không tồn tại: {path}"
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/linux-defender-core/src/updater.rs:1094
+#: crates/linux-defender-core/src/updater.rs:1103
 msgid "Could not determine freshclam PID"
 msgstr "Không thể xác định PID của freshclam"
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/linux-defender-core/src/updater.rs:1104
+#: crates/linux-defender-core/src/updater.rs:1113
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
@@ -6847,6 +6847,9 @@ msgstr "Cơ sở dữ liệu virus đã cũ hơn 1 ngày"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "Hệ thống đang được bảo vệ"
+
+#~ msgid "{key}: path cannot be empty"
+#~ msgstr "{key}: đường dẫn không được để trống"
 
 #~ msgid "URLhaus feed added to the draft and applied automatically."
 #~ msgstr "Đã thêm feed URLhaus vào bản nháp và tự động áp dụng."

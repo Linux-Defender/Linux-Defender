@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 06:50-0500\n"
+"POT-Creation-Date: 2026-11-26 08:49-0500\n"
 "PO-Revision-Date: 2026-08-09 00:00-0300\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -1437,14 +1437,14 @@ msgid "{key}: size must start with a number: {value}"
 msgstr "{key}: o tamanho deve começar com um número: {value}"
 
 #: crates/linux-defender-core/src/config.rs:1050
-msgid "{key}: path cannot be empty"
-msgstr "{key}: o caminho não pode estar vazio"
+msgid "{key}: path must be non-empty and cannot traverse with '..'"
+msgstr "{key}: path must be non-empty and cannot traverse with '..'"
 
-#: crates/linux-defender-core/src/config.rs:1065
+#: crates/linux-defender-core/src/config.rs:1069
 msgid "{key}: string value cannot be empty"
 msgstr "{key}: o valor da string não pode estar vazio"
 
-#: crates/linux-defender-core/src/config.rs:1076
+#: crates/linux-defender-core/src/config.rs:1080
 msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}: a URL deve começar com http(s)://, ftp(s):// ou file://"
 
@@ -2165,12 +2165,12 @@ msgid "Update failed with an unknown error. Check the logs for details."
 msgstr "Update failed with an unknown error. Check the logs for details."
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:526
+#: crates/linux-defender-core/src/updater.rs:535
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr "Sinal de atualização enviado ao serviço Freshclam (PID {pid})"
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:816
+#: crates/linux-defender-core/src/updater.rs:825
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2178,7 +2178,7 @@ msgstr ""
 "Outra instância do freshclam está em execução (PID {pid}). Pare-a primeiro: "
 "sudo systemctl stop clamav-freshclam"
 
-#: crates/linux-defender-core/src/updater.rs:846
+#: crates/linux-defender-core/src/updater.rs:855
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] "Update timed out after {minutes} minutes without output"
@@ -2186,7 +2186,7 @@ msgstr[1] "Update timed out after {minutes} minutes without output"
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/updater.rs:985
+#: crates/linux-defender-core/src/updater.rs:994
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] ""
@@ -2195,21 +2195,21 @@ msgstr[1] ""
 "Atualização do banco de dados concluída — {count} bancos de dados atualizados"
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/linux-defender-core/src/updater.rs:995
+#: crates/linux-defender-core/src/updater.rs:1004
 msgid "Database update completed — Already up to date"
 msgstr "Atualização do banco de dados concluída — já está atualizado"
 
-#: crates/linux-defender-core/src/updater.rs:1062
+#: crates/linux-defender-core/src/updater.rs:1071
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "A configuração freshclam selecionada não existe: {path}"
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/linux-defender-core/src/updater.rs:1094
+#: crates/linux-defender-core/src/updater.rs:1103
 msgid "Could not determine freshclam PID"
 msgstr "Não foi possível determinar o PID do Freshclam"
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/linux-defender-core/src/updater.rs:1104
+#: crates/linux-defender-core/src/updater.rs:1113
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
@@ -6951,6 +6951,9 @@ msgstr "As definições de vírus estão desatualizadas há mais de 1 dia"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "O sistema está protegido"
+
+#~ msgid "{key}: path cannot be empty"
+#~ msgstr "{key}: o caminho não pode estar vazio"
 
 #~ msgid "URLhaus feed added to the draft and applied automatically."
 #~ msgstr "Feed URLhaus adicionado ao rascunho e aplicado automaticamente."

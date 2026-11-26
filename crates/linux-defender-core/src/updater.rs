@@ -204,7 +204,16 @@ fn database_in(line: &str) -> Option<String> {
     })
     .find(|word| {
         let lower = word.to_ascii_lowercase();
-        lower.ends_with(".cvd") || lower.ends_with(".cld") || lower.ends_with(".cud")
+        lower.ends_with(".cvd")
+            || lower.ends_with(".cld")
+            || lower.ends_with(".cud")
+            // Custom signature feeds (including the product-default URLhaus
+            // .ndb) report "updated (version: custom database, ...)".
+            || lower.ends_with(".hdb")
+            || lower.ends_with(".ndb")
+            || lower.ends_with(".ftm")
+            || lower.ends_with(".idb")
+            || lower.ends_with(".ldb")
     })
     .map(str::to_owned)
 }
@@ -1131,7 +1140,10 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
 
 #[cfg(test)]
 mod tests {
-    use super::{pipe_output, run_update_command, UpdateOutputBuffer, UpdateStatus};
+    use super::{
+        database_in, parse_output, pipe_output, run_update_command, UpdateOutputBuffer,
+        UpdateStatus,
+    };
     use crate::{Context, Paths};
     use std::io::Cursor;
     use std::process::Command;
@@ -1146,6 +1158,24 @@ mod tests {
             data_dir: root.join("data"),
         })
         .unwrap()
+    }
+
+    #[test]
+    fn custom_signature_databases_are_recorded_as_updated() {
+        let line = "urlhaus.ndb updated (version: custom database, sig: 1)";
+        assert_eq!(database_in(line).as_deref(), Some("urlhaus.ndb"));
+        let (updated, up_to_date, rate_limited) = parse_output(line, "");
+        assert_eq!(updated, vec!["urlhaus.ndb".to_owned()]);
+        assert!(up_to_date.is_empty() && rate_limited.is_empty());
+    }
+
+    #[test]
+    fn canonical_databases_still_parse_after_custom_extensions() {
+        assert_eq!(
+            database_in("daily.cvd is up-to-date").as_deref(),
+            Some("daily.cvd")
+        );
+        assert_eq!(database_in("main.hdb updated").as_deref(), Some("main.hdb"));
     }
 
     #[test]

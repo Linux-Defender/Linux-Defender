@@ -234,6 +234,15 @@ Two old personal sources were scanned in full at the user's request: the Sololea
 
 A repo-wide grep confirms none of those markers exist in Linux Defender source, docs, or built site. This record exists so a future sweep does not treat the old projects as unported parity work.
 
+### Lazaret fork review (2026-11-26)
+
+`wvhulle/lazaret` is an MIT-licensed GTK4/Rust hard fork of ClamUI (`linx-systems/clamui`, also MIT) at `9829dde`. Its fork branch `Linux-Defender:patch-1` adds only a generic GitHub Security Policy template, so there was no code patch to import. Three read-only agents reviewed its docs/features, Rust crates, and all GitHub tabs; dispositions:
+
+- **Ported:** FreshClam output now recognises custom signature databases (`.hdb`, `.ndb`, `.ftm`, `.idb`, `.ldb`) as updates — this covers the product-default URLhaus `.ndb` feed, which previously could be recorded as "no result". Path-valued ClamAV directives now reject `..` traversal. Both have regression tests.
+- **Checked, already correct here:** file-manager/CLI handover replaces target lists (no duplicate rescan), and config overrides clear stale repeated directive lines. No change needed.
+- **Deferred deliberately:** per-user trust-by-hash store, automatic quarantine re-verification after signature updates, CIRCL hashlookup, MalwareBazaar and Talos sample reporting, live clamd tuning with expiring protection reductions, setting provenance UI, and structured admin audit journal. Each needs new UI/privacy/state decisions or a privileged-service redesign; none is an unreviewed upstream fix we are ignoring. Their upstream commits and privacy implications are recorded here so they are not treated as forgotten parity work.
+- **GitHub tabs:** issues disabled, PRs and code scanning inaccessible with this token, no Actions runs (CI is Woodpecker/Forgejo/Nix), no releases on GitHub. License obligation is only to retain the MIT notice; no GPL code was copied.
+
 ### ClamAV Bytecode Compiler reference (2026-11-25)
 
 Reviewed `Cisco-Talos/clamav-bytecode-compiler` at `a1830a442110325d04708145437a5312fc6ab6f9` (GPL-2.0, latest release `clambc-1.4.0`). It compiles cross-platform ClamAV bytecode signatures for advanced detection. **Disposition: reference only, not adopted.** Linux Defender never bundles an engine or signature database, uses the host `clamscan`/`freshclam`/`clamd` boundary, and implements local `.yar`/`.yara` support independently under MIT. Its GPL-2.0 code cannot be copied into this repository without an explicit licensing decision. Its head is pinned in `parity-lock.json` and watched by `Upstream Freshness`.

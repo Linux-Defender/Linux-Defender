@@ -241,6 +241,19 @@ fn clamd_load_marks_only_positive_bare_size_limits_for_repair() {
 }
 
 #[test]
+fn validation_rejects_path_traversal_in_directive_values() {
+    let fixture = TestContext::new();
+    let result = dispatch(
+        &fixture.context,
+        "validate",
+        json!({ "kind": "freshclam", "values": { "DatabaseDirectory": ["/var/lib/clamav/../etc"] } }),
+    )
+    .expect("validation response");
+    assert_eq!(result["valid"], false);
+    assert!(result["errors"].to_string().contains("cannot traverse"));
+}
+
+#[test]
 fn validation_rejects_control_characters_in_directive_values() {
     let fixture = TestContext::new();
     let result = dispatch(

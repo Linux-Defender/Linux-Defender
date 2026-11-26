@@ -10,16 +10,16 @@ translator decides. No machine translation is applied.
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1459 translated messages. | 32 |
+| de | 1459 translated messages. | 33 |
 | en | 1459 translated messages. | baseline |
-| es | 1459 translated messages. | 35 |
-| fr | 1459 translated messages. | 35 |
-| hu | 1459 translated messages. | 35 |
-| it | 1459 translated messages. | 35 |
-| nb | 1459 translated messages. | 35 |
-| pt_BR | 1459 translated messages. | 35 |
-| vi | 1459 translated messages. | 34 |
-| zh_CN | 1459 translated messages. | 35 |
+| es | 1459 translated messages. | 36 |
+| fr | 1459 translated messages. | 36 |
+| hu | 1459 translated messages. | 36 |
+| it | 1459 translated messages. | 36 |
+| nb | 1459 translated messages. | 36 |
+| pt_BR | 1459 translated messages. | 36 |
+| vi | 1459 translated messages. | 35 |
+| zh_CN | 1459 translated messages. | 36 |
 
 ## de
 
@@ -54,6 +54,7 @@ translator decides. No machine translation is applied.
 - `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
 - `{detections} of {total} URL engines reported suspicious or malicious`
+- `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
 
 ## es
@@ -92,6 +93,7 @@ translator decides. No machine translation is applied.
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
+- `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
 
 ## fr
@@ -130,6 +132,7 @@ translator decides. No machine translation is applied.
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
+- `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
 
 ## hu
@@ -168,6 +171,7 @@ translator decides. No machine translation is applied.
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
+- `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
 
 ## it
@@ -206,6 +210,7 @@ translator decides. No machine translation is applied.
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
+- `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
 
 ## nb
@@ -244,6 +249,7 @@ translator decides. No machine translation is applied.
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
+- `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
 
 ## pt_BR
@@ -282,6 +288,7 @@ translator decides. No machine translation is applied.
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
+- `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
 
 ## vi
@@ -319,6 +326,7 @@ translator decides. No machine translation is applied.
 - `Update failed with an unknown error. Check the logs for details.`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
+- `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
 
 ## zh_CN
@@ -357,6 +365,7 @@ translator decides. No machine translation is applied.
 - `Update inactivity timeout (minutes)`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
+- `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
 
 ## Review procedure

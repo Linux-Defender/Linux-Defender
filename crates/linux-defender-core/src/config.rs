@@ -1044,10 +1044,14 @@ fn validate_option(ctx: &Context, key: &str, value: &str) -> Option<String> {
             | "PidFile"
             | "LocalSocket"
             | "TemporaryDirectory"
-    ) && value.trim().is_empty()
+    ) && (value.trim().is_empty() || value.split('/').any(|part| part == ".."))
     {
         return Some(
-            crate::i18n::translate(ctx, "{key}: path cannot be empty").replace("{key}", key),
+            crate::i18n::translate(
+                ctx,
+                "{key}: path must be non-empty and cannot traverse with '..'",
+            )
+            .replace("{key}", key),
         );
     }
     if matches!(
