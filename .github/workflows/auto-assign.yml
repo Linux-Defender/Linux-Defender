@@ -24,7 +24,7 @@ jobs:
 
       - name: Auto-assign new issues and pull requests to the maintainer
         if: github.event_name == 'issues' || github.event_name == 'pull_request'
-        uses: pozil/auto-assign-issue@v1
+        uses: pozil/auto-assign-issue@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           assignees: Linux-Defender
