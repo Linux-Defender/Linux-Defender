@@ -29,9 +29,9 @@ apt_options=(
   -o "Dir::State::lists=$apt_dir/lists"
   -o "Dir::Cache=$apt_dir/cache"
   -o "Acquire::Languages=none"
-  -o "Acquire::Retries=0"
-  -o "Acquire::http::Timeout=30"
-  -o "Acquire::https::Timeout=30"
+  -o "Acquire::Retries=3"
+  -o "Acquire::http::Timeout=60"
+  -o "Acquire::https::Timeout=60"
   -o "APT::Update::Error-Mode=any"
 )
 apt-get "${apt_options[@]}" update
