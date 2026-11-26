@@ -42,6 +42,16 @@ FORBIDDEN = (
 
 # The Tauri CSP must stay restrictive; these substrings are the reviewed policy.
 CSP_FILE = ROOT / "desktop/src-tauri/tauri.conf.json"
+PROOF_WORKFLOW = ROOT / ".github/workflows/proof-html.yml"
+
+# proof-html v2 renamed inputs and the old broad base-path rewrite also broke
+# absolute GitHub repository URLs. A Dependabot action bump silently changed
+# both, so keep the reviewed configuration explicit.
+PROOF_FORBIDDEN = (
+    (re.compile(r"url_ignore_re"), "v2 uses ignore_url_re / disable_external"),
+    (re.compile(r"empty_alt_ignore"), "v2 uses ignore_empty_alt"),
+    (re.compile(r"s\|/Linux-Defender/\|/\|g"), "the broad rewrite corrupts github.com/Linux-Defender/... URLs"),
+)
 CSP_REQUIRED = (
     "default-src 'self'",
     "script-src 'self'",
@@ -97,6 +107,13 @@ def main() -> int:
                 "(inline/eval script is never permitted)"
             )
 
+    proof = PROOF_WORKFLOW.read_text(encoding="utf-8")
+    for pattern, reason in PROOF_FORBIDDEN:
+        if pattern.search(proof):
+            failures.append(
+                f"{PROOF_WORKFLOW.relative_to(ROOT)} uses {pattern.pattern!r}: {reason}"
+            )
+
     if failures:
         print("Source invariant failures:", file=sys.stderr)
         for failure in failures:
@@ -105,7 +122,7 @@ def main() -> int:
 
     print(
         f"Source invariants OK: {len(FORBIDDEN)} behavior rules, "
-        f"{len(CSP_REQUIRED)} CSP rules"
+        f"{len(CSP_REQUIRED)} CSP rules, {len(PROOF_FORBIDDEN)} workflow rules"
     )
     return 0
 
