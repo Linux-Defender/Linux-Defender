@@ -6,10 +6,15 @@
     <meta name="color-scheme" content="light dark" />
     <title>Linux Defender (visual harness)</title>
     <script>
+      window.__TAURI_EVENT_PLUGIN_INTERNALS__ = {
+        registerListener: () => "harness-event",
+        unregisterListener: () => {},
+      };
       window.__TAURI_INTERNALS__ = {
         invoke: async (cmd, args) => {
           if (cmd === "startup_state") return { version: "0.6.0", tray_available: false, active_jobs: [], accent: null };
-          if (cmd === "plugin:event|listen" || cmd === "plugin:event|unlisten") return () => {};
+          if (cmd === "plugin:event|listen") return "harness-event";
+          if (cmd === "plugin:event|unlisten") return null;
           if (cmd === "request") {
             const a = args && args.action;
             if (a === "i18n.catalog") return { language: "en", messages: {}, languages: [{ code: "en", name: "English" }] };
@@ -19,6 +24,11 @@
               id: "quick", name: "Quick Scan", targets: [], exclusions: { paths: [], patterns: [] },
               is_default: true, description: "Fast scan of the Downloads folder for quick threat detection", options: {}
             }] };
+            if (a === "logs.statistics") return {
+              total_scans: 12, files_scanned: 340, threats_detected: 0, clean_scans: 12,
+              average_duration: 1.2, trends: [],
+              protection_status: { level: "protected", message: "No threats found", last_scan_timestamp: "2026-11-25T09:00:00Z" }
+            };
             if (a === "scanner.status") return {
               available: true, backend: "clamscan", active_backend: "clamscan",
               configured_backend: "auto", database_available: true,
