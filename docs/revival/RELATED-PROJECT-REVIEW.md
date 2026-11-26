@@ -220,13 +220,13 @@ All five upstream tabs were reviewed from the GitHub API: repository branches/co
 
 Two old personal sources were scanned in full at the user's request: the Sololearn playground `WQMCKCuGYHMa` and `CherrieFurry/LizXRown-Eipril-Animations` (default branch `main`: `LICENSE`, `README.md`, a 101 KB `index.html`, a 95 KB `script.js`, and a 1.2 KB `style.css`; the deployed GitHub Pages file is byte-identical to the repo's `index.html`).
 
-**Disposition: nothing copied.** Reasons, verified from the files rather than assumed:
+**Disposition: no source copied; one safe metadata pattern adapted.** The only useful piece here was `<meta name="author">`, now present in our own site layout as `<meta name="author" content="Linux Defender contributors">` — a SFW adaptation, not the old project's text or attributes. Everything else was left out after a piece-by-piece review:
 
 - The repository declares **EPL-2.0** (weak copyleft), not MIT. Moving its source verbatim into this MIT-licensed project would need an explicit relicensing decision. Independently implemented behavior is allowed, but none of the behavior here is worth reimplementing.
 - The HTML is invalid: `<title title=... value=...>`, a `link:` pseudo-attribute, `<link>`/`<script>` with both `href` and `src`, closing `</link>`, two elements with `id="middle"`, `<br></br>`, and obsolete `align`/`font-size` attributes. Our `check-built-links.py` rejects duplicate IDs, and Starlight/HTML-Proofer would reject the rest; Lighthouse would lose accessibility/SEO points.
 - It embeds third-party adult-content iframes plus `trafficjunky` and `api.hubtraffic.com` tracking, and loads old jQuery 3.2.1 and PrefixFree 1.0.7 from CDNs. Those conflict with the strict Tauri CSP, privacy guarantees, and the product's purpose.
-- `<grammarly-desktop-integration>` / `<grammarly-mirror>` are injected by a browser extension (the deployed page carries Grammarly's `data-gr-ext-installed` marker); they are not application markup and do nothing in WebKitGTK.
-- StyleFix/PrefixFree (Lea Verou, MIT) was a 2013 vendor-prefix helper. Modern WebKitGTK and our Vite build already handle prefixes; adding it would be dead weight. The CSS is a table-cell centering layout already superseded by the Guardian flex/grid system.
+- `<grammarly-desktop-integration>` / `<grammarly-mirror>` are injected by a browser extension (the deployed page carries Grammarly's `data-gr-ext-installed` marker); they are not application markup, do nothing in WebKitGTK, and adding inert custom elements would be misleading. The SFW equivalent in Linux Defender is the real native clipboard/export boundary plus the retryable React error boundary, both already implemented.
+- StyleFix/PrefixFree (Lea Verou, MIT) was a 2013 vendor-prefix helper. Its license would allow copying with notice, but the behavior is obsolete on modern WebKitGTK and our Vite build; bundling the minified library would add dead weight and a second JS library. Its only useful idea — declaring who made the page — is adapted via our new `author` meta tag. The CSS is a table-cell centering layout already superseded by the Guardian flex/grid system.
 
 A repo-wide grep confirms none of those markers exist in Linux Defender source, docs, or built site. This record exists so a future sweep does not treat the old projects as unported parity work.
 
