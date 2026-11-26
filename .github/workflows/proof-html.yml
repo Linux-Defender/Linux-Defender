@@ -60,7 +60,10 @@ jobs:
         uses: anishathalye/proof-html@v2.2.5
         with:
           directory: ./website/proof
-          check_html: true
+          # v2's Nu validator rejects Starlight/Shiki generated inline custom
+          # properties and markup. Astro's build, the browser, and HTML-Proofer
+          # below cover structure; proof-html runs its link/asset checks only.
+          check_html: false
           check_css: false
           ignore_empty_alt: true
           # External links are validated by scripts/check-external-links.py;

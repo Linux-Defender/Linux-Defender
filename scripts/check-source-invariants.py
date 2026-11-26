@@ -54,6 +54,7 @@ PROOF_FORBIDDEN = (
     (re.compile(r"check_css:\s*true"), "v2's CSS validator rejects modern @property syntax"),
 )
 PROOF_REQUIRED = (
+    "check_html: false",
     "check_css: false",
     "ignore_empty_alt: true",
     "disable_external: true",
