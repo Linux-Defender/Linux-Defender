@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 09:35-0500\n"
+"POT-Creation-Date: 2026-11-26 10:46-0500\n"
 "PO-Revision-Date: 2026-08-09 00:00-0300\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -1012,7 +1012,7 @@ msgstr ""
 "Falha na quarentena:"
 
 #: crates/linux-defender-core/src/cli.rs:784
-#: crates/linux-defender-core/src/logs.rs:1406
+#: crates/linux-defender-core/src/logs.rs:1407
 msgid "Threats Detected"
 msgstr "Ameaças detectadas"
 
@@ -1054,7 +1054,7 @@ msgid "No quarantined files."
 msgstr "Nenhum arquivo em quarentena."
 
 #: crates/linux-defender-core/src/cli.rs:871
-#: crates/linux-defender-core/src/logs.rs:1108
+#: crates/linux-defender-core/src/logs.rs:1109
 msgid "ID"
 msgstr "ID"
 
@@ -1112,8 +1112,8 @@ msgid "{prefix}: {error}"
 msgstr "{prefix}: {error}"
 
 #: crates/linux-defender-core/src/cli.rs:1064
-#: crates/linux-defender-core/src/quarantine.rs:443
-#: crates/linux-defender-core/src/quarantine.rs:480
+#: crates/linux-defender-core/src/quarantine.rs:464
+#: crates/linux-defender-core/src/quarantine.rs:501
 msgid "Quarantine entry not found: {id}"
 msgstr "Entrada de quarentena não encontrada: {id}"
 
@@ -1314,17 +1314,17 @@ msgid "No scan history found."
 msgstr "Nenhum histórico de verificação encontrado."
 
 #: crates/linux-defender-core/src/cli.rs:1669
-#: crates/linux-defender-core/src/logs.rs:1118
+#: crates/linux-defender-core/src/logs.rs:1119
 msgid "Type"
 msgstr "Tipo"
 
 #: crates/linux-defender-core/src/cli.rs:1670
-#: crates/linux-defender-core/src/logs.rs:1123
+#: crates/linux-defender-core/src/logs.rs:1124
 msgid "Status"
 msgstr "Status"
 
 #: crates/linux-defender-core/src/cli.rs:1671
-#: crates/linux-defender-core/src/logs.rs:1142
+#: crates/linux-defender-core/src/logs.rs:1143
 msgid "Summary"
 msgstr "Resumo"
 
@@ -1449,7 +1449,7 @@ msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}: a URL deve começar com http(s)://, ftp(s):// ou file://"
 
 #. Translators: The em dash separates the fallback state from its security warning.
-#: crates/linux-defender-core/src/credentials.rs:203
+#: crates/linux-defender-core/src/credentials.rs:211
 msgid "Stored in settings file (keyring unavailable — less secure)"
 msgstr ""
 "Armazenada no arquivo de configurações (chaveiro indisponível — menos seguro)"
@@ -1459,31 +1459,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr "translator-credits"
 
-#: crates/linux-defender-core/src/host.rs:997
+#: crates/linux-defender-core/src/host.rs:1011
 msgid "Daemon not responding: {error}"
 msgstr "Daemon não responde: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1000
+#: crates/linux-defender-core/src/host.rs:1014
 msgid "{binary} found but returned error: {error}"
 msgstr "{binary} encontrado, mas retornou erro: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1005
+#: crates/linux-defender-core/src/host.rs:1019
 msgid "{service} is active"
 msgstr "{service} está ativo"
 
-#: crates/linux-defender-core/src/host.rs:1008
+#: crates/linux-defender-core/src/host.rs:1022
 msgid "No virus database files found in {path}"
 msgstr "Nenhum arquivo de banco de dados de vírus encontrado em {path}"
 
-#: crates/linux-defender-core/src/host.rs:1014
+#: crates/linux-defender-core/src/host.rs:1028
 msgid "Error accessing database {path}: {error}"
 msgstr "Erro ao acessar o banco de dados {path}: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1020
+#: crates/linux-defender-core/src/host.rs:1034
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "{binary} não está instalado. Instale-o com: {command}"
 
-#: crates/linux-defender-core/src/host.rs:1030
+#: crates/linux-defender-core/src/host.rs:1044
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
@@ -1491,66 +1491,66 @@ msgstr ""
 "{binary} não está instalado. Instale o pacote ClamAV necessário para sua "
 "distribuição."
 
-#: crates/linux-defender-core/src/logs.rs:1101
+#: crates/linux-defender-core/src/logs.rs:1102
 msgid "SCAN LOG"
 msgstr "REGISTRO DE VERIFICAÇÃO"
 
-#: crates/linux-defender-core/src/logs.rs:1103
+#: crates/linux-defender-core/src/logs.rs:1104
 msgid "UPDATE LOG"
 msgstr "REGISTRO DE ATUALIZAÇÃO"
 
-#: crates/linux-defender-core/src/logs.rs:1113
+#: crates/linux-defender-core/src/logs.rs:1114
 msgid "Timestamp"
 msgstr "Carimbo de data e hora"
 
-#: crates/linux-defender-core/src/logs.rs:1128
+#: crates/linux-defender-core/src/logs.rs:1129
 msgid "Duration"
 msgstr "Duração"
 
-#: crates/linux-defender-core/src/logs.rs:1136
+#: crates/linux-defender-core/src/logs.rs:1137
 msgid "Full Output"
 msgstr "Saída completa"
 
-#: crates/linux-defender-core/src/logs.rs:1167
+#: crates/linux-defender-core/src/logs.rs:1168
 msgid "{count} second"
 msgid_plural "{count} seconds"
 msgstr[0] "{count} segundo"
 msgstr[1] "{count} segundos"
 
-#: crates/linux-defender-core/src/logs.rs:1393
+#: crates/linux-defender-core/src/logs.rs:1394
 #: desktop/src-tauri/src/notifications.rs:92
 msgid "Scan Complete"
 msgstr "Verificação concluída"
 
-#: crates/linux-defender-core/src/logs.rs:1396
+#: crates/linux-defender-core/src/logs.rs:1397
 msgid "Found {count} threat{suffix}"
 msgid_plural "Found {count} threats{suffix}"
 msgstr[0] "Encontrada {count} ameaça{suffix}"
 msgstr[1] "Encontradas {count} ameaças{suffix}"
 
-#: crates/linux-defender-core/src/logs.rs:1411
+#: crates/linux-defender-core/src/logs.rs:1412
 #: desktop/src-tauri/src/notifications.rs:94
 msgid "Scan Cancelled"
 msgstr "Verificação cancelada"
 
-#: crates/linux-defender-core/src/logs.rs:1414
+#: crates/linux-defender-core/src/logs.rs:1415
 #: desktop/src-tauri/src/notifications.rs:96
 msgid "Scan Error"
 msgstr "Erro de verificação"
 
-#: crates/linux-defender-core/src/logs.rs:1425
+#: crates/linux-defender-core/src/logs.rs:1426
 msgid "Scanned: {count} file"
 msgid_plural "Scanned: {count} files"
 msgstr[0] "Verificado: {count} arquivo"
 msgstr[1] "Verificados: {count} arquivos"
 
-#: crates/linux-defender-core/src/logs.rs:1432
+#: crates/linux-defender-core/src/logs.rs:1433
 msgid "{count} directory"
 msgid_plural "{count} directories"
 msgstr[0] "{count} diretório"
 msgstr[1] "{count} diretórios"
 
-#: crates/linux-defender-core/src/logs.rs:1443
+#: crates/linux-defender-core/src/logs.rs:1444
 msgid "Threat found: {count}"
 msgid_plural "Threats found: {count}"
 msgstr[0] "Ameaça encontrada: {count}"
@@ -1639,60 +1639,60 @@ msgid "Failed to remove {path}: {error}"
 msgstr "Failed to remove {path}: {error}"
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1118
+#: crates/linux-defender-core/src/privileged.rs:1119
 msgid "Authorization was cancelled while {operation}."
 msgstr "A autorização foi cancelada durante {operation}."
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1124
+#: crates/linux-defender-core/src/privileged.rs:1125
 msgid "The privileged helper is unavailable while {operation}."
 msgstr "O auxiliar com privilégios não está disponível durante {operation}."
 
 #. Translators: PKEXEC_UID is a technical environment-variable name; keep it unchanged.
-#: crates/linux-defender-core/src/privileged.rs:1130
+#: crates/linux-defender-core/src/privileged.rs:1131
 msgid "The privileged helper rejected PKEXEC_UID while {operation}."
 msgstr "O auxiliar com privilégios rejeitou PKEXEC_UID durante {operation}."
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1136
+#: crates/linux-defender-core/src/privileged.rs:1137
 msgid "The privileged helper reported a protocol mismatch while {operation}."
 msgstr ""
 "O auxiliar com privilégios relatou uma incompatibilidade de protocolo "
 "durante {operation}."
 
 #. Translators: keep {operation}, numeric {code}, and sanitized diagnostic {detail}.
-#: crates/linux-defender-core/src/privileged.rs:1142
+#: crates/linux-defender-core/src/privileged.rs:1143
 msgid "The privileged helper failed while {operation} (exit {code}): {detail}."
 msgstr ""
 "O auxiliar com privilégios falhou durante {operation} (saída {code}): "
 "{detail}."
 
 #. Translators: keep the {operation} and numeric {code} placeholders.
-#: crates/linux-defender-core/src/privileged.rs:1150
+#: crates/linux-defender-core/src/privileged.rs:1151
 msgid "The privileged helper failed while {operation} (exit {code})."
 msgstr "O auxiliar com privilégios falhou durante {operation} (saída {code})."
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1157
+#: crates/linux-defender-core/src/privileged.rs:1158
 msgid "The privileged helper was terminated while {operation}."
 msgstr "O auxiliar com privilégios foi encerrado durante {operation}."
 
-#: crates/linux-defender-core/src/privileged.rs:1216
+#: crates/linux-defender-core/src/privileged.rs:1217
 msgid "Applying configuration"
 msgstr "Aplicando configuração"
 
 #. Translators: keep {message}; it is the complete preceding helper error.
-#: crates/linux-defender-core/src/privileged.rs:1218
+#: crates/linux-defender-core/src/privileged.rs:1219
 msgid "{message} One or more earlier replacements may have succeeded."
 msgstr ""
 "{message} Uma ou mais substituições anteriores podem ter sido bem-sucedidas."
 
-#: crates/linux-defender-core/src/privileged.rs:1460
+#: crates/linux-defender-core/src/privileged.rs:1461
 msgid "Reading configuration"
 msgstr "Lendo configuração"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3103
+#: crates/linux-defender-core/src/privileged.rs:3104
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -1816,11 +1816,11 @@ msgstr "Formato de caminho inválido para {kind}: {path}"
 msgid "Could not generate unique name for '{name}'"
 msgstr "Não foi possível gerar um nome exclusivo para '{name}'"
 
-#: crates/linux-defender-core/src/quarantine.rs:395
+#: crates/linux-defender-core/src/quarantine.rs:416
 msgid "Quarantine metadata was written but could not be read"
 msgstr "Os metadados da quarentena foram gravados, mas não puderam ser lidos"
 
-#: crates/linux-defender-core/src/quarantine.rs:417
+#: crates/linux-defender-core/src/quarantine.rs:438
 msgid ""
 "Failed to record quarantine entry in database. File has been restored to "
 "original location."
@@ -1829,7 +1829,7 @@ msgstr ""
 "restaurado para o local original."
 
 #. Translators: Preserve `{error}` as a localized failure description and `{path}` as a user-provided file path.
-#: crates/linux-defender-core/src/quarantine.rs:420
+#: crates/linux-defender-core/src/quarantine.rs:441
 msgid ""
 "Failed to record quarantine entry in database. Rollback also failed: "
 "{error}. File may be orphaned at: {path}"
@@ -1837,7 +1837,7 @@ msgstr ""
 "Falha ao registrar a entrada de quarentena no banco de dados. A reversão "
 "também falhou: {error}. O arquivo pode ficar órfão em: {path}"
 
-#: crates/linux-defender-core/src/quarantine.rs:468
+#: crates/linux-defender-core/src/quarantine.rs:489
 msgid ""
 "File restored successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1845,7 +1845,7 @@ msgstr ""
 "Arquivo restaurado com êxito, mas não foi possível remover a entrada do "
 "banco de dados. Ele ainda pode aparecer na lista até ser limpo."
 
-#: crates/linux-defender-core/src/quarantine.rs:495
+#: crates/linux-defender-core/src/quarantine.rs:516
 msgid ""
 "File deleted successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1854,12 +1854,12 @@ msgstr ""
 "de dados. Ele ainda pode aparecer na lista até ser limpo."
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/linux-defender-core/src/quarantine.rs:1503
+#: crates/linux-defender-core/src/quarantine.rs:1524
 msgid "Cannot quarantine {path}: {error}"
 msgstr "Não foi possível colocar {path} em quarentena: {error}"
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/linux-defender-core/src/quarantine.rs:1521
+#: crates/linux-defender-core/src/quarantine.rs:1542
 msgid "File hash mismatch — file may be corrupted"
 msgstr "Hash do arquivo não corresponde — o arquivo pode estar corrompido"
 
@@ -1877,39 +1877,39 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2079
+#: crates/linux-defender-core/src/scanner.rs:2094
 msgid "Scan cancelled by user"
 msgstr "Verificação cancelada pelo usuário"
 
-#: crates/linux-defender-core/src/scanner.rs:2086
+#: crates/linux-defender-core/src/scanner.rs:2101
 msgid "No files could be scanned"
 msgstr "Nenhum arquivo pôde ser verificado"
 
-#: crates/linux-defender-core/src/scanner.rs:2092
+#: crates/linux-defender-core/src/scanner.rs:2107
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "O alvo da verificação não existe ou contém um byte NUL inválido"
 
-#: crates/linux-defender-core/src/scanner.rs:2099
+#: crates/linux-defender-core/src/scanner.rs:2114
 msgid "Scan target is not a regular file or directory"
 msgstr "O alvo da verificação não é um arquivo regular nem um diretório"
 
-#: crates/linux-defender-core/src/scanner.rs:2108
+#: crates/linux-defender-core/src/scanner.rs:2123
 msgid "Threats were detected, but details are unavailable."
 msgstr "Ameaças foram detectadas, mas os detalhes não estão disponíveis."
 
-#: crates/linux-defender-core/src/scanner.rs:2120
+#: crates/linux-defender-core/src/scanner.rs:2135
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "Não foi possível acessar {count} arquivo"
 msgstr[1] "Não foi possível acessar {count} arquivos"
 
-#: crates/linux-defender-core/src/scanner.rs:2133
+#: crates/linux-defender-core/src/scanner.rs:2148
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "Não foi possível ler {count} arquivo"
 msgstr[1] "Não foi possível ler {count} arquivos"
 
-#: crates/linux-defender-core/src/scanner.rs:2152
+#: crates/linux-defender-core/src/scanner.rs:2167
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -2090,12 +2090,12 @@ msgstr ""
 msgid "Skipping scan: running on battery power"
 msgstr "Ignorando verificação: usando energia da bateria"
 
-#: crates/linux-defender-core/src/updater.rs:131
-#: crates/linux-defender-core/src/updater.rs:177
+#: crates/linux-defender-core/src/updater.rs:143
+#: crates/linux-defender-core/src/updater.rs:189
 msgid "Update cancelled by user"
 msgstr "Atualização cancelada pelo usuário"
 
-#: crates/linux-defender-core/src/updater.rs:136
+#: crates/linux-defender-core/src/updater.rs:148
 msgid ""
 "Update process output did not close after cleanup; result cannot be "
 "classified."
@@ -2103,22 +2103,22 @@ msgstr ""
 "A saída do processo de atualização não foi encerrada após a limpeza; não é "
 "possível classificar o resultado."
 
-#: crates/linux-defender-core/src/updater.rs:139
+#: crates/linux-defender-core/src/updater.rs:151
 msgid ""
 "Authentication cancelled. Database update requires administrator privileges."
 msgstr ""
 "Authentication cancelled. Database update requires administrator privileges."
 
-#: crates/linux-defender-core/src/updater.rs:142
+#: crates/linux-defender-core/src/updater.rs:154
 msgid "Authorization failed. You are not authorized to update the database."
 msgstr "Authorization failed. You are not authorized to update the database."
 
-#: crates/linux-defender-core/src/updater.rs:145
+#: crates/linux-defender-core/src/updater.rs:157
 msgid "Update rate limited by mirror. Please wait a few minutes and try again."
 msgstr ""
 "Update rate limited by mirror. Please wait a few minutes and try again."
 
-#: crates/linux-defender-core/src/updater.rs:148
+#: crates/linux-defender-core/src/updater.rs:160
 msgid ""
 "Update blocked by CDN. This may be due to rate limiting. Please wait and try "
 "again later."
@@ -2126,51 +2126,51 @@ msgstr ""
 "Update blocked by CDN. This may be due to rate limiting. Please wait and try "
 "again later."
 
-#: crates/linux-defender-core/src/updater.rs:151
+#: crates/linux-defender-core/src/updater.rs:163
 msgid "ClamAV mirror is currently unavailable. Please try again later."
 msgstr "ClamAV mirror is currently unavailable. Please try again later."
 
-#: crates/linux-defender-core/src/updater.rs:154
+#: crates/linux-defender-core/src/updater.rs:166
 msgid "SSL/TLS certificate error. The mirror may have configuration issues."
 msgstr "SSL/TLS certificate error. The mirror may have configuration issues."
 
-#: crates/linux-defender-core/src/updater.rs:157
+#: crates/linux-defender-core/src/updater.rs:169
 msgid "Connection timed out. Please check your network connection."
 msgstr "Connection timed out. Please check your network connection."
 
-#: crates/linux-defender-core/src/updater.rs:160
+#: crates/linux-defender-core/src/updater.rs:172
 msgid "Authorization failed. Please try again and enter your password."
 msgstr "Authorization failed. Please try again and enter your password."
 
-#: crates/linux-defender-core/src/updater.rs:163
+#: crates/linux-defender-core/src/updater.rs:175
 msgid "Database is locked. Another freshclam instance may be running."
 msgstr "Database is locked. Another freshclam instance may be running."
 
-#: crates/linux-defender-core/src/updater.rs:166
+#: crates/linux-defender-core/src/updater.rs:178
 msgid ""
 "Permission denied. You may need elevated privileges to update the database."
 msgstr ""
 "Permission denied. You may need elevated privileges to update the database."
 
-#: crates/linux-defender-core/src/updater.rs:169
+#: crates/linux-defender-core/src/updater.rs:181
 msgid "Connection error. Please check your network connection."
 msgstr "Connection error. Please check your network connection."
 
-#: crates/linux-defender-core/src/updater.rs:172
+#: crates/linux-defender-core/src/updater.rs:184
 msgid "DNS resolution failed. Please check your network settings."
 msgstr "DNS resolution failed. Please check your network settings."
 
-#: crates/linux-defender-core/src/updater.rs:175
+#: crates/linux-defender-core/src/updater.rs:187
 msgid "Update failed with an unknown error. Check the logs for details."
 msgstr "Update failed with an unknown error. Check the logs for details."
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:535
+#: crates/linux-defender-core/src/updater.rs:547
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr "Sinal de atualização enviado ao serviço Freshclam (PID {pid})"
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:837
+#: crates/linux-defender-core/src/updater.rs:854
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2178,7 +2178,7 @@ msgstr ""
 "Outra instância do freshclam está em execução (PID {pid}). Pare-a primeiro: "
 "sudo systemctl stop clamav-freshclam"
 
-#: crates/linux-defender-core/src/updater.rs:867
+#: crates/linux-defender-core/src/updater.rs:884
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] "Update timed out after {minutes} minutes without output"
@@ -2186,7 +2186,7 @@ msgstr[1] "Update timed out after {minutes} minutes without output"
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/updater.rs:1006
+#: crates/linux-defender-core/src/updater.rs:1023
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] ""
@@ -2195,21 +2195,21 @@ msgstr[1] ""
 "Atualização do banco de dados concluída — {count} bancos de dados atualizados"
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/linux-defender-core/src/updater.rs:1016
+#: crates/linux-defender-core/src/updater.rs:1033
 msgid "Database update completed — Already up to date"
 msgstr "Atualização do banco de dados concluída — já está atualizado"
 
-#: crates/linux-defender-core/src/updater.rs:1083
+#: crates/linux-defender-core/src/updater.rs:1100
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "A configuração freshclam selecionada não existe: {path}"
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/linux-defender-core/src/updater.rs:1120
+#: crates/linux-defender-core/src/updater.rs:1138
 msgid "Could not determine freshclam PID"
 msgstr "Não foi possível determinar o PID do Freshclam"
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/linux-defender-core/src/updater.rs:1130
+#: crates/linux-defender-core/src/updater.rs:1148
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
@@ -2320,19 +2320,19 @@ msgstr "As definições de vírus já estão atualizadas"
 msgid "Database Update Cancelled"
 msgstr "Atualização do banco de dados cancelada"
 
-#: desktop/src-tauri/src/notifications.rs:151
+#: desktop/src-tauri/src/notifications.rs:152
 msgid "Database Update Failed"
 msgstr "Falha na atualização do banco de dados"
 
-#: desktop/src-tauri/src/notifications.rs:163
+#: desktop/src-tauri/src/notifications.rs:165
 msgid "VirusTotal Analysis Complete"
 msgstr "Análise do VirusTotal concluída"
 
-#: desktop/src-tauri/src/notifications.rs:170
+#: desktop/src-tauri/src/notifications.rs:172
 msgid "Scanning Device"
 msgstr "Verificando dispositivo"
 
-#: desktop/src-tauri/src/notifications.rs:177
+#: desktop/src-tauri/src/notifications.rs:179
 msgid "Device Scan Complete"
 msgstr "Verificação do dispositivo concluída"
 
@@ -2360,19 +2360,19 @@ msgstr "Perfil de verificação"
 msgid "Quit"
 msgstr "Sair"
 
-#: desktop/src-tauri/src/runtime.rs:438
+#: desktop/src-tauri/src/runtime.rs:445
 msgid "Add Folders"
 msgstr "Adicionar pastas"
 
-#: desktop/src-tauri/src/runtime.rs:440
+#: desktop/src-tauri/src/runtime.rs:447
 msgid "Add Files"
 msgstr "Adicionar arquivos"
 
-#: desktop/src-tauri/src/runtime.rs:492
+#: desktop/src-tauri/src/runtime.rs:519
 msgid "Export"
 msgstr "Exportar"
 
-#: desktop/src-tauri/src/runtime.rs:651
+#: desktop/src-tauri/src/runtime.rs:678
 msgid "Open"
 msgstr "Abrir"
 
@@ -2412,7 +2412,7 @@ msgid "Network"
 msgstr "Rede"
 
 #: desktop/src/App.tsx:130 desktop/src/App.tsx:894 desktop/src/App.tsx:982
-#: desktop/src/pages/Preferences.tsx:119
+#: desktop/src/pages/Preferences.tsx:120
 msgid "Preferences"
 msgstr "Preferências"
 
@@ -4797,16 +4797,16 @@ msgstr "Salvar"
 msgid "Unable to load preferences: {error}"
 msgstr "Não foi possível carregar as preferências: {error}"
 
-#: desktop/src/pages/Preferences.tsx:97
+#: desktop/src/pages/Preferences.tsx:98
 #: desktop/src/pages/SettingsPreferences.tsx:161
 msgid "Could not save preference: {error}"
 msgstr "Não foi possível salvar a preferência: {error}"
 
-#: desktop/src/pages/Preferences.tsx:114
+#: desktop/src/pages/Preferences.tsx:115
 msgid "Loading preferences…"
 msgstr "Carregando preferências…"
 
-#: desktop/src/pages/Preferences.tsx:121
+#: desktop/src/pages/Preferences.tsx:122
 msgid "Preference categories"
 msgstr "Categorias de preferências"
 

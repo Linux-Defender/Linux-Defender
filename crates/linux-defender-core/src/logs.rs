@@ -9,7 +9,7 @@ use std::{
     collections::BTreeMap,
     fs,
     io::{Cursor, Write},
-    os::unix::fs::MetadataExt,
+    os::unix::fs::{MetadataExt, OpenOptionsExt},
     path::{Component, Path, PathBuf},
     sync::LazyLock,
     time::UNIX_EPOCH,
@@ -241,6 +241,7 @@ pub fn write_debug(ctx: &Context, level: &str, target: &str, message: &str) -> A
     let mut file = fs::OpenOptions::new()
         .create(true)
         .append(true)
+        .mode(0o600)
         .open(&path)
         .map_err(|error| format!("opening debug log: {error}"))?;
     file.write_all(line.as_bytes())
@@ -1594,7 +1595,7 @@ fn private_line(value: &str) -> String {
 fn private_text(value: &str) -> String {
     redact(&crate::common::sanitize_text(value))
 }
-fn redact(value: &str) -> String {
+pub(crate) fn redact(value: &str) -> String {
     let output = URL.replace_all(value, "[REDACTED_URL]");
     let output = HASH.replace_all(&output, "[REDACTED_HASH]");
     let mut output = redact_paths(&output);

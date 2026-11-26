@@ -5,6 +5,7 @@
   id="theme-toggle"
   type="button"
   aria-label="Toggle color theme"
+  aria-pressed="false"
   class="relative h-9 w-9 grid place-items-center rounded-md border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06] transition"
 >
   <svg
@@ -47,6 +48,7 @@
         localStorage.setItem("linux-defender-site-theme", isLight ? "light" : "dark");
         localStorage.setItem("starlight-theme", isLight ? "light" : "dark");
         document.documentElement.dataset.theme = isLight ? "light" : "dark";
+        btn.setAttribute("aria-pressed", isLight ? "true" : "false");
       } catch (_) {}
     });
   };

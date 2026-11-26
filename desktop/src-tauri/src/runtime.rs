@@ -433,6 +433,13 @@ async fn choose_paths(
     } = options;
     let directory = directory.unwrap_or(false);
     let multiple = multiple.unwrap_or(true);
+    if title.as_deref().is_some_and(|value| {
+        value.chars().count() > 200 || value.chars().any(|character| character.is_control())
+    }) {
+        return Err("invalid file dialog title".into());
+    }
+    let filters = filters.unwrap_or_default();
+    validate_filters(&filters)?;
     let title = title.unwrap_or_else(|| {
         if directory {
             translate(&state.ctx, "Add Folders")
@@ -441,7 +448,7 @@ async fn choose_paths(
         }
     });
     let mut dialog = rfd::FileDialog::new().set_parent(&window).set_title(title);
-    for filter in filters.unwrap_or_default() {
+    for filter in filters {
         dialog = dialog.add_filter(filter.name, &filter.extensions);
     }
     tauri::async_runtime::spawn_blocking(move || {
@@ -457,6 +464,24 @@ async fn choose_paths(
     })
     .await
     .map_err(|error| error.to_string())?
+}
+
+fn validate_filters(filters: &[crate::model::FileFilter]) -> Result<(), String> {
+    if filters.len() > 16
+        || filters.iter().any(|filter| {
+            filter.name.chars().count() > 128
+                || filter.name.chars().any(|character| character.is_control())
+                || filter.extensions.len() > 32
+                || filter.extensions.iter().any(|extension| {
+                    extension.is_empty()
+                        || extension.len() > 32
+                        || extension.chars().any(|character| character.is_control())
+                })
+        })
+    {
+        return Err("invalid file dialog filters".into());
+    }
+    Ok(())
 }
 
 #[tauri::command]
@@ -487,11 +512,13 @@ async fn save_export(
     if bytes.len() > MAX_EXPORT_BYTES {
         return Err("export payload is too large".into());
     }
+    let filters = filters.unwrap_or_default();
+    validate_filters(&filters)?;
     let mut dialog = rfd::FileDialog::new()
         .set_parent(&window)
         .set_title(translate(&state.ctx, "Export"))
         .set_file_name(&default_name);
-    for filter in filters.unwrap_or_default() {
+    for filter in filters {
         dialog = dialog.add_filter(filter.name, &filter.extensions);
     }
     tauri::async_runtime::spawn_blocking(move || {

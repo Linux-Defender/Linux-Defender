@@ -53,7 +53,7 @@ sudo pacman -S --needed rust bun webkit2gtk-4.1 base-devel curl wget file openss
 From the Linux Defender checkout:
 
 ```bash
-cd /home/kiras/Linux-Defender
+cd Linux-Defender
 git switch main
 cargo test --workspace --locked
 cd desktop

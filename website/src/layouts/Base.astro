@@ -72,6 +72,28 @@ const ogImage = new URL(`${base}/og-image.png`, siteUrl).toString();
     </script>
 
     <ClientRouter />
+    <script>
+      // ClientRouter swaps <html> attributes from the target document; restore
+      // the saved theme after each navigation so docs pages do not flip dark.
+      function syncThemeAfterSwap() {
+        try {
+          const stored =
+            localStorage.getItem("linux-defender-site-theme") ||
+            localStorage.getItem("starlight-theme");
+          const light =
+            stored === "light" ||
+            ((!stored || stored === "auto") &&
+              window.matchMedia("(prefers-color-scheme: light)").matches);
+          document.documentElement.classList.toggle("light", light);
+          document.documentElement.classList.toggle("dark", !light);
+          document.documentElement.dataset.theme = light ? "light" : "dark";
+          document
+            .getElementById("theme-toggle")
+            ?.setAttribute("aria-pressed", light ? "true" : "false");
+        } catch (_) {}
+      }
+      document.addEventListener("astro:after-swap", syncThemeAfterSwap);
+    </script>
   </head>
   <body class="min-h-screen antialiased">
     <a

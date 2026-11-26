@@ -68,7 +68,11 @@ def main() -> int:
                 parts.append(re.match(r'"(.*)"$', lines[cursor]).group(1))
                 cursor += 1
             msgid = unquote("".join(parts))
-            if msgid not in new or cursor >= len(lines) or not lines[cursor].startswith("msgstr"):
+            if msgid not in new:
+                continue
+            while cursor < len(lines) and not lines[cursor].startswith("msgstr"):
+                cursor += 1
+            if cursor >= len(lines):
                 continue
             start = cursor + 1
             end = start

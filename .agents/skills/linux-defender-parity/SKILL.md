@@ -81,8 +81,8 @@ ClamUI/ClamTk/Lenspect behavior, or before saying a task is done.
    URL in `docs/revival/UPSTREAM-REPOSITORIES.md`; a 404 fails the check. Fix
    dead links at the source and keep the inventory the single canonical list.
    `scripts/check-external-links.py` extends this to every external link in all
-   tracked Markdown/MDX (code examples and imported skills excluded; 403 and all
-   other 4xx/5xx fail); it runs in the full audit and in the weekly `Doc Links`
+   tracked Markdown/MDX (code examples and imported skills excluded; 403 fails; repeated 429/5xx are
+   retried then skipped); it runs in the full audit and in the weekly `Doc Links`
    workflow. `scripts/check-stale-phrases.py` fails when any of the stale
    claims listed in that script (wrong translation status, a misspelled
    project name, the old repository-inventory path) reappear in live docs.

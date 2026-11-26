@@ -375,8 +375,8 @@ export default function Logs({ active }: { active: boolean }) {
           document.getElementById(ids[next])?.focus();
         }}
       >
-        <button className="button" id="history-tab" type="button" role="tab" tabIndex={tab === "history" ? 0 : -1} aria-controls="history-panel" aria-selected={tab === "history"} onClick={() => setTab("history")}>{_("Historical Logs")}</button>
-        <button className="button" id="daemon-tab" type="button" role="tab" tabIndex={tab === "daemon" ? 0 : -1} aria-controls="daemon-panel" aria-selected={tab === "daemon"} onClick={() => setTab("daemon")}>{_("ClamAV Daemon")}</button>
+        <button className="button" id="history-tab" type="button" role="tab" tabIndex={tab === "history" ? 0 : -1} aria-selected={tab === "history"} onClick={() => setTab("history")}>{_("Historical Logs")}</button>
+        <button className="button" id="daemon-tab" type="button" role="tab" tabIndex={tab === "daemon" ? 0 : -1} aria-selected={tab === "daemon"} onClick={() => setTab("daemon")}>{_("ClamAV Daemon")}</button>
       </div>
 
       {tab === "history" ? <div id="history-panel" role="tabpanel" aria-labelledby="history-tab">

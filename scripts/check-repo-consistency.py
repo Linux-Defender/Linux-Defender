@@ -33,7 +33,9 @@ EXPECTED_CHECKS = {
     "check-signature-feeds.py", "check-signatures.py", "check-stale-phrases.py",
     "check-sway-integration.py", "check-translations.sh",
     "check-scripts-index.py", "check-watchers.py", "check-upstream-freshness.py", "check-upstream-urls.py", "check-workflows.py",
-    "generate-doc-map.py", "generate-translation-review.py",
+    "generate-doc-map.py", "generate-translation-review.py", "release-readiness.py",
+    "check-compiled-catalogs.ts", "check-file-modes.py", "check-gate-wiring.py",
+    "check-ipc-operations.py", "check-source-invariants.py",
 }
 
 

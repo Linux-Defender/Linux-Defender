@@ -458,8 +458,12 @@ mv "$CANONICAL_POT" "$TMPDIR/linux-defender.pot"
 if [ "$MODE" = "--check" ]; then
     # xgettext refreshes this timestamp on every invocation. It does not change
     # translator-visible source strings, so exclude it from freshness comparison.
-    grep -v '^"POT-Creation-Date:' "$TMPDIR/linux-defender.pot" > "$TMPDIR/generated-normalized.pot"
-    grep -v '^"POT-Creation-Date:' "$OUTPUT" > "$TMPDIR/current-normalized.pot"
+    # Also normalize `#: file.rs:123` source references: moving a string in a
+    # source file does not change any translator-visible message.
+    grep -v '^"POT-Creation-Date:' "$TMPDIR/linux-defender.pot" \
+        | sed -E 's/([^[:space:]:]+):[0-9]+/\1/g' > "$TMPDIR/generated-normalized.pot"
+    grep -v '^"POT-Creation-Date:' "$OUTPUT" \
+        | sed -E 's/([^[:space:]:]+):[0-9]+/\1/g' > "$TMPDIR/current-normalized.pot"
     if ! cmp -s "$TMPDIR/generated-normalized.pot" "$TMPDIR/current-normalized.pot"; then
         echo "::error file=$OUTPUT::Translation template is stale; run ./scripts/update-pot.sh" >&2
         exit 1

@@ -20,9 +20,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WORKFLOW_DIR = ROOT / ".github/workflows"
-GATES = (ROOT / "scripts/check-all.sh", ROOT / "scripts/audit-consistency.sh")
+GATES = (
+    ROOT / "scripts/check-all.sh",
+    ROOT / "scripts/audit-consistency.sh",
+    ROOT / "scripts/check-translations.sh",
+)
 CHECKER = re.compile(r"^scripts/check-[A-Za-z0-9_.-]+\.(?:py|sh|ts)$")
-REFERENCE = re.compile(r"scripts/([A-Za-z0-9_.\-/]+\.(?:py|sh|ts))")
+INVOCATION = re.compile(
+    r"(?:python3?|bun|node|sh|bash)?\s*(?:\.?/scripts/|scripts/|\$SCRIPT_DIR/)"
+    r"([A-Za-z0-9_.\-/]+\.(?:py|sh|ts))"
+)
 
 
 def tracked_files() -> list[str]:
@@ -44,10 +51,15 @@ def main() -> int:
 
     referenced: dict[str, set[str]] = {}
     for gate in gate_paths:
-        for match in REFERENCE.finditer(gate.read_text(encoding="utf-8")):
-            referenced.setdefault(f"scripts/{match.group(1)}", set()).add(
-                str(gate.relative_to(ROOT))
-            )
+        for line in gate.read_text(encoding="utf-8").splitlines():
+            stripped = line.strip()
+            if not stripped or stripped.startswith(("#", '"', "- \"")):
+                continue
+            for match in INVOCATION.finditer(line):
+                name = match.group(1) or match.group(2)
+                referenced.setdefault(f"scripts/{name}", set()).add(
+                    str(gate.relative_to(ROOT))
+                )
 
     failures: list[str] = []
     for missing in sorted(set(referenced) - tracked):

@@ -8,7 +8,8 @@
 
 # Enable logging for debugging
 LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/linux-defender/scan-nautilus.log"
-mkdir -p "$(dirname "$LOG_FILE")"
+mkdir -p -m 700 "$(dirname "$LOG_FILE")"
+chmod 600 "$LOG_FILE" 2>/dev/null || :
 
 log() {
 	echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >>"$LOG_FILE"
@@ -41,8 +42,8 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
 	# Launch Linux Defender with all selected files
 	if [[ ${#files[@]} -gt 0 ]]; then
 		log "Launching Linux Defender for ${#files[@]} selected path(s)"
-		flatpak run io.github.linuxdefender.linuxdefender "${files[@]}" 2>&1 | tee -a "$LOG_FILE"
-		log "Linux Defender exited with code: ${PIPESTATUS[0]}"
+		flatpak run io.github.linuxdefender.linuxdefender "${files[@]}" >/dev/null 2>&1
+		log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files in array"
 	fi
@@ -51,8 +52,8 @@ else
 	if [[ $# -gt 0 ]]; then
 		log "Using $# positional argument(s)"
 		log "Launching Linux Defender for $# positional argument(s)"
-		flatpak run io.github.linuxdefender.linuxdefender "$@" 2>&1 | tee -a "$LOG_FILE"
-		log "Linux Defender exited with code: ${PIPESTATUS[0]}"
+		flatpak run io.github.linuxdefender.linuxdefender "$@" >/dev/null 2>&1
+		log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files provided (neither env var nor arguments)"
 		if command -v notify-send &>/dev/null; then

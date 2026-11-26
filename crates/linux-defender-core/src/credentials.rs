@@ -191,10 +191,18 @@ impl CredentialStore {
         }
 
         match keyring_set(account, secret) {
-            Ok(()) => Ok(CredentialWrite {
-                backend: CredentialBackend::Keyring,
-                warning: None,
-            }),
+            Ok(()) => {
+                // A previously stored plaintext fallback must not survive a
+                // successful keyring write; otherwise the stale secret is
+                // silently reused whenever the keyring is unavailable again.
+                if self.fallback_get(account)?.is_some() {
+                    self.clear_fallback(account)?;
+                }
+                Ok(CredentialWrite {
+                    backend: CredentialBackend::Keyring,
+                    warning: None,
+                })
+            }
             Err(KeyringFailure::Locked) => Err("System keyring is locked".into()),
             Err(KeyringFailure::Unavailable) if self.plaintext_fallback_allowed()? => {
                 self.ctx.update_settings(json!({account.fallback_setting(): secret}))?;

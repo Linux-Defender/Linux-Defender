@@ -1,7 +1,8 @@
 use crate::common::{host_command, sanitize_line, sanitize_text, Context};
 use crate::host::{
     check_tool, config_file_exists, database_status, detect_freshclam_conf_path,
-    freshclam_database_dir, host_binary, resolve_freshclam_conf_path, run_host,
+    freshclam_database_dir, host_binary, is_allowed_database_dir, resolve_freshclam_conf_path,
+    run_host,
 };
 use crate::AppResult;
 use serde::Serialize;
@@ -123,6 +124,17 @@ impl UpdateResult {
             up_to_date_databases: Vec::new(),
             rate_limited_databases: BTreeMap::new(),
         }
+    }
+}
+
+/// External freshclam output can contain the URLhaus Auth-Key embedded in a
+/// custom feed URL. Persisted logs are redacted separately; live IPC replies
+/// and notifications must be redacted too.
+fn redact_result(result: &mut UpdateResult) {
+    result.stdout = crate::logs::redact(&result.stdout);
+    result.stderr = crate::logs::redact(&result.stderr);
+    if let Some(message) = result.error_message.take() {
+        result.error_message = Some(crate::logs::redact(&message));
     }
 }
 
@@ -619,6 +631,11 @@ fn update_command(force: bool, config_path: Option<&str>) -> AppResult<Command> 
     let config = config_path.map(|path| format!("--config-file={path}"));
     if force {
         let database_dir = freshclam_database_dir(config_path);
+        if !is_allowed_database_dir(&database_dir) {
+            return Err(format!(
+                "Refusing to force-update into unapproved database directory: {database_dir}"
+            ));
+        }
         let mut args = vec![
             "-c".to_owned(),
             force_update_script().to_owned(),
@@ -1097,6 +1114,7 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                         .unwrap_or_else(|| "freshclam not installed".to_owned()),
                 );
                 localize_result(ctx, &mut result);
+                redact_result(&mut result);
                 save_log(ctx, &result, started.elapsed());
                 let value = serde_json::to_value(&result)
                     .map_err(|error| format!("Cannot serialize update result: {error}"))?;
@@ -1145,6 +1163,7 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 result.databases_updated = 0;
             }
             localize_result(ctx, &mut result);
+            redact_result(&mut result);
             save_log(ctx, &result, started.elapsed());
             let value = serde_json::to_value(&result)
                 .map_err(|error| format!("Cannot serialize update result: {error}"))?;
@@ -1158,8 +1177,8 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
 #[cfg(test)]
 mod tests {
     use super::{
-        database_in, parse_output, pipe_output, run_update_command, use_service_for_update,
-        UpdateOutputBuffer, UpdateStatus,
+        database_in, parse_output, pipe_output, redact_result, run_update_command,
+        use_service_for_update, UpdateOutputBuffer, UpdateResult, UpdateStatus,
     };
     use crate::{Context, Paths};
     use std::io::Cursor;
@@ -1175,6 +1194,17 @@ mod tests {
             data_dir: root.join("data"),
         })
         .unwrap()
+    }
+
+    #[test]
+    fn live_update_result_is_redacted_before_notifications() {
+        let secret = "4bf8c78f1e2c86892a179019b21653d9c6f8469596e87501";
+        let mut result = UpdateResult::error(format!(
+            "download https://urlhaus-api.abuse.ch/v2/files/exports/{secret}/urlhaus_clamav.ndb failed"
+        ));
+        redact_result(&mut result);
+        assert!(!result.stderr.contains(secret));
+        assert!(!result.error_message.unwrap_or_default().contains(secret));
     }
 
     #[test]

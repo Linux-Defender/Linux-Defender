@@ -1084,6 +1084,7 @@ fn host_bounded_output(
 fn sanitized_helper_stderr(stderr: &[u8]) -> String {
     let mut detail = crate::common::sanitize_line(&String::from_utf8_lossy(stderr));
     crate::logs::redact_secrets(&mut detail);
+    let mut detail = crate::logs::redact(&detail);
     detail.truncate(detail.trim_end().len());
     let leading = detail.len() - detail.trim_start().len();
     if leading > 0 {

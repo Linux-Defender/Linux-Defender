@@ -8,7 +8,8 @@
 
 # Enable logging for debugging
 LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/linux-defender/virustotal-nautilus.log"
-mkdir -p "$(dirname "$LOG_FILE")"
+mkdir -p -m 700 "$(dirname "$LOG_FILE")"
+chmod 600 "$LOG_FILE" 2>/dev/null || :
 
 log() {
 	echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >>"$LOG_FILE"
@@ -42,8 +43,8 @@ if [[ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]]; then
 	# (VirusTotal only supports single file scanning)
 	if [[ ${#files[@]} -gt 0 ]]; then
 		log "Launching VirusTotal check for the selected path"
-		flatpak run io.github.linuxdefender.linuxdefender --virustotal "${files[0]}" 2>&1 | tee -a "$LOG_FILE"
-		log "Linux Defender exited with code: ${PIPESTATUS[0]}"
+		flatpak run io.github.linuxdefender.linuxdefender --virustotal "${files[0]}" >/dev/null 2>&1
+		log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files in array"
 	fi
@@ -51,8 +52,8 @@ else
 	# Fallback: try to use positional arguments
 	if [[ $# -gt 0 ]]; then
 		log "Launching VirusTotal check for the selected path"
-		flatpak run io.github.linuxdefender.linuxdefender --virustotal "$1" 2>&1 | tee -a "$LOG_FILE"
-		log "Linux Defender exited with code: ${PIPESTATUS[0]}"
+		flatpak run io.github.linuxdefender.linuxdefender --virustotal "$1" >/dev/null 2>&1
+		log "Linux Defender exited with code: $?"
 	else
 		log "ERROR: No files provided (neither env var nor arguments)"
 		if command -v notify-send &>/dev/null; then

@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 09:35-0500\n"
+"POT-Creation-Date: 2026-11-26 10:46-0500\n"
 "PO-Revision-Date: 2026-11-03 21:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -1026,7 +1026,7 @@ msgstr ""
 "Không thể cách ly:"
 
 #: crates/linux-defender-core/src/cli.rs:784
-#: crates/linux-defender-core/src/logs.rs:1406
+#: crates/linux-defender-core/src/logs.rs:1407
 msgid "Threats Detected"
 msgstr "Phát hiện mối đe dọa"
 
@@ -1068,7 +1068,7 @@ msgid "No quarantined files."
 msgstr "Không có tệp nào đã cách ly."
 
 #: crates/linux-defender-core/src/cli.rs:871
-#: crates/linux-defender-core/src/logs.rs:1108
+#: crates/linux-defender-core/src/logs.rs:1109
 msgid "ID"
 msgstr "ID"
 
@@ -1125,8 +1125,8 @@ msgid "{prefix}: {error}"
 msgstr "{prefix}: {error}"
 
 #: crates/linux-defender-core/src/cli.rs:1064
-#: crates/linux-defender-core/src/quarantine.rs:443
-#: crates/linux-defender-core/src/quarantine.rs:480
+#: crates/linux-defender-core/src/quarantine.rs:464
+#: crates/linux-defender-core/src/quarantine.rs:501
 msgid "Quarantine entry not found: {id}"
 msgstr "Không tìm thấy mục trong khu cách ly: {id}"
 
@@ -1326,17 +1326,17 @@ msgid "No scan history found."
 msgstr "Không tìm thấy lịch sử quét."
 
 #: crates/linux-defender-core/src/cli.rs:1669
-#: crates/linux-defender-core/src/logs.rs:1118
+#: crates/linux-defender-core/src/logs.rs:1119
 msgid "Type"
 msgstr "Loại"
 
 #: crates/linux-defender-core/src/cli.rs:1670
-#: crates/linux-defender-core/src/logs.rs:1123
+#: crates/linux-defender-core/src/logs.rs:1124
 msgid "Status"
 msgstr "Trạng thái"
 
 #: crates/linux-defender-core/src/cli.rs:1671
-#: crates/linux-defender-core/src/logs.rs:1142
+#: crates/linux-defender-core/src/logs.rs:1143
 msgid "Summary"
 msgstr "Tóm tắt"
 
@@ -1458,7 +1458,7 @@ msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}: URL phải bắt đầu bằng http(s)://, ftp(s):// hoặc file://"
 
 #. Translators: The em dash separates the fallback state from its security warning.
-#: crates/linux-defender-core/src/credentials.rs:203
+#: crates/linux-defender-core/src/credentials.rs:211
 msgid "Stored in settings file (keyring unavailable — less secure)"
 msgstr "Lưu trong tệp cài đặt (kho khóa không khả dụng — kém an toàn hơn)"
 
@@ -1467,31 +1467,31 @@ msgstr "Lưu trong tệp cài đặt (kho khóa không khả dụng — kém an 
 msgid "translator-credits"
 msgstr "dinhkarate"
 
-#: crates/linux-defender-core/src/host.rs:997
+#: crates/linux-defender-core/src/host.rs:1011
 msgid "Daemon not responding: {error}"
 msgstr "Dịch vụ không phản hồi: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1000
+#: crates/linux-defender-core/src/host.rs:1014
 msgid "{binary} found but returned error: {error}"
 msgstr "Đã tìm thấy {binary} nhưng chương trình trả về lỗi: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1005
+#: crates/linux-defender-core/src/host.rs:1019
 msgid "{service} is active"
 msgstr "{service} đang hoạt động"
 
-#: crates/linux-defender-core/src/host.rs:1008
+#: crates/linux-defender-core/src/host.rs:1022
 msgid "No virus database files found in {path}"
 msgstr "Không tìm thấy tệp cơ sở dữ liệu virus nào trong {path}"
 
-#: crates/linux-defender-core/src/host.rs:1014
+#: crates/linux-defender-core/src/host.rs:1028
 msgid "Error accessing database {path}: {error}"
 msgstr "Lỗi khi truy cập cơ sở dữ liệu {path}: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1020
+#: crates/linux-defender-core/src/host.rs:1034
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "{binary} chưa được cài đặt. Hãy cài đặt bằng lệnh: {command}"
 
-#: crates/linux-defender-core/src/host.rs:1030
+#: crates/linux-defender-core/src/host.rs:1044
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
@@ -1499,62 +1499,62 @@ msgstr ""
 "{binary} chưa được cài đặt. Hãy cài đặt gói ClamAV cần thiết cho bản phân "
 "phối đang dùng."
 
-#: crates/linux-defender-core/src/logs.rs:1101
+#: crates/linux-defender-core/src/logs.rs:1102
 msgid "SCAN LOG"
 msgstr "NHẬT KÝ QUÉT"
 
-#: crates/linux-defender-core/src/logs.rs:1103
+#: crates/linux-defender-core/src/logs.rs:1104
 msgid "UPDATE LOG"
 msgstr "NHẬT KÝ CẬP NHẬT"
 
-#: crates/linux-defender-core/src/logs.rs:1113
+#: crates/linux-defender-core/src/logs.rs:1114
 msgid "Timestamp"
 msgstr "Thời điểm"
 
-#: crates/linux-defender-core/src/logs.rs:1128
+#: crates/linux-defender-core/src/logs.rs:1129
 msgid "Duration"
 msgstr "Thời lượng"
 
-#: crates/linux-defender-core/src/logs.rs:1136
+#: crates/linux-defender-core/src/logs.rs:1137
 msgid "Full Output"
 msgstr "Toàn bộ đầu ra"
 
-#: crates/linux-defender-core/src/logs.rs:1167
+#: crates/linux-defender-core/src/logs.rs:1168
 msgid "{count} second"
 msgid_plural "{count} seconds"
 msgstr[0] "{count} giây"
 
-#: crates/linux-defender-core/src/logs.rs:1393
+#: crates/linux-defender-core/src/logs.rs:1394
 #: desktop/src-tauri/src/notifications.rs:92
 msgid "Scan Complete"
 msgstr "Quét hoàn tất"
 
-#: crates/linux-defender-core/src/logs.rs:1396
+#: crates/linux-defender-core/src/logs.rs:1397
 msgid "Found {count} threat{suffix}"
 msgid_plural "Found {count} threats{suffix}"
 msgstr[0] "Tìm thấy {count} mối đe dọa{suffix}"
 
-#: crates/linux-defender-core/src/logs.rs:1411
+#: crates/linux-defender-core/src/logs.rs:1412
 #: desktop/src-tauri/src/notifications.rs:94
 msgid "Scan Cancelled"
 msgstr "Đã hủy quét"
 
-#: crates/linux-defender-core/src/logs.rs:1414
+#: crates/linux-defender-core/src/logs.rs:1415
 #: desktop/src-tauri/src/notifications.rs:96
 msgid "Scan Error"
 msgstr "Lỗi quét"
 
-#: crates/linux-defender-core/src/logs.rs:1425
+#: crates/linux-defender-core/src/logs.rs:1426
 msgid "Scanned: {count} file"
 msgid_plural "Scanned: {count} files"
 msgstr[0] "Đã quét: {count} tệp"
 
-#: crates/linux-defender-core/src/logs.rs:1432
+#: crates/linux-defender-core/src/logs.rs:1433
 msgid "{count} directory"
 msgid_plural "{count} directories"
 msgstr[0] "{count} thư mục"
 
-#: crates/linux-defender-core/src/logs.rs:1443
+#: crates/linux-defender-core/src/logs.rs:1444
 msgid "Threat found: {count}"
 msgid_plural "Threats found: {count}"
 msgstr[0] "Số mối đe dọa tìm thấy: {count}"
@@ -1640,56 +1640,56 @@ msgid "Failed to remove {path}: {error}"
 msgstr "Failed to remove {path}: {error}"
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1118
+#: crates/linux-defender-core/src/privileged.rs:1119
 msgid "Authorization was cancelled while {operation}."
 msgstr "Đã hủy cấp quyền khi {operation}."
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1124
+#: crates/linux-defender-core/src/privileged.rs:1125
 msgid "The privileged helper is unavailable while {operation}."
 msgstr "Trình trợ giúp đặc quyền không khả dụng khi {operation}."
 
 #. Translators: PKEXEC_UID is a technical environment-variable name; keep it unchanged.
-#: crates/linux-defender-core/src/privileged.rs:1130
+#: crates/linux-defender-core/src/privileged.rs:1131
 msgid "The privileged helper rejected PKEXEC_UID while {operation}."
 msgstr "Trình trợ giúp đặc quyền đã từ chối PKEXEC_UID khi {operation}."
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1136
+#: crates/linux-defender-core/src/privileged.rs:1137
 msgid "The privileged helper reported a protocol mismatch while {operation}."
 msgstr "Trình trợ giúp đặc quyền báo không khớp giao thức khi {operation}."
 
 #. Translators: keep {operation}, numeric {code}, and sanitized diagnostic {detail}.
-#: crates/linux-defender-core/src/privileged.rs:1142
+#: crates/linux-defender-core/src/privileged.rs:1143
 msgid "The privileged helper failed while {operation} (exit {code}): {detail}."
 msgstr ""
 "Trình trợ giúp đặc quyền gặp lỗi khi {operation} (mã thoát {code}): {detail}."
 
 #. Translators: keep the {operation} and numeric {code} placeholders.
-#: crates/linux-defender-core/src/privileged.rs:1150
+#: crates/linux-defender-core/src/privileged.rs:1151
 msgid "The privileged helper failed while {operation} (exit {code})."
 msgstr "Trình trợ giúp đặc quyền gặp lỗi khi {operation} (mã thoát {code})."
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1157
+#: crates/linux-defender-core/src/privileged.rs:1158
 msgid "The privileged helper was terminated while {operation}."
 msgstr "Trình trợ giúp đặc quyền đã bị buộc dừng khi {operation}."
 
-#: crates/linux-defender-core/src/privileged.rs:1216
+#: crates/linux-defender-core/src/privileged.rs:1217
 msgid "Applying configuration"
 msgstr "đang áp dụng cấu hình"
 
 #. Translators: keep {message}; it is the complete preceding helper error.
-#: crates/linux-defender-core/src/privileged.rs:1218
+#: crates/linux-defender-core/src/privileged.rs:1219
 msgid "{message} One or more earlier replacements may have succeeded."
 msgstr "{message} Một hoặc nhiều lần thay thế trước đó có thể đã thành công."
 
-#: crates/linux-defender-core/src/privileged.rs:1460
+#: crates/linux-defender-core/src/privileged.rs:1461
 msgid "Reading configuration"
 msgstr "đang đọc cấu hình"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3103
+#: crates/linux-defender-core/src/privileged.rs:3104
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -1812,11 +1812,11 @@ msgstr "Định dạng đường dẫn {kind} không hợp lệ: {path}"
 msgid "Could not generate unique name for '{name}'"
 msgstr "Không thể tạo tên duy nhất cho “{name}”"
 
-#: crates/linux-defender-core/src/quarantine.rs:395
+#: crates/linux-defender-core/src/quarantine.rs:416
 msgid "Quarantine metadata was written but could not be read"
 msgstr "Đã ghi siêu dữ liệu cách ly nhưng không thể đọc lại"
 
-#: crates/linux-defender-core/src/quarantine.rs:417
+#: crates/linux-defender-core/src/quarantine.rs:438
 msgid ""
 "Failed to record quarantine entry in database. File has been restored to "
 "original location."
@@ -1825,7 +1825,7 @@ msgstr ""
 "ban đầu."
 
 #. Translators: Preserve `{error}` as a localized failure description and `{path}` as a user-provided file path.
-#: crates/linux-defender-core/src/quarantine.rs:420
+#: crates/linux-defender-core/src/quarantine.rs:441
 msgid ""
 "Failed to record quarantine entry in database. Rollback also failed: "
 "{error}. File may be orphaned at: {path}"
@@ -1833,7 +1833,7 @@ msgstr ""
 "Không thể ghi mục cách ly vào cơ sở dữ liệu. Hoàn tác cũng thất bại: "
 "{error}. Tệp có thể bị bỏ lại tại: {path}"
 
-#: crates/linux-defender-core/src/quarantine.rs:468
+#: crates/linux-defender-core/src/quarantine.rs:489
 msgid ""
 "File restored successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1841,7 +1841,7 @@ msgstr ""
 "Đã khôi phục tệp thành công nhưng không thể xóa mục tương ứng trong cơ sở dữ "
 "liệu. Mục này có thể vẫn hiển thị trong danh sách cho đến khi được dọn dẹp."
 
-#: crates/linux-defender-core/src/quarantine.rs:495
+#: crates/linux-defender-core/src/quarantine.rs:516
 msgid ""
 "File deleted successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1850,12 +1850,12 @@ msgstr ""
 "Mục này có thể vẫn hiển thị trong danh sách cho đến khi được dọn dẹp."
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/linux-defender-core/src/quarantine.rs:1503
+#: crates/linux-defender-core/src/quarantine.rs:1524
 msgid "Cannot quarantine {path}: {error}"
 msgstr "Không thể cách ly {path}: {error}"
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/linux-defender-core/src/quarantine.rs:1521
+#: crates/linux-defender-core/src/quarantine.rs:1542
 msgid "File hash mismatch — file may be corrupted"
 msgstr "Mã băm của tệp không khớp — tệp có thể đã bị hỏng"
 
@@ -1873,37 +1873,37 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2079
+#: crates/linux-defender-core/src/scanner.rs:2094
 msgid "Scan cancelled by user"
 msgstr "Người dùng đã hủy quá trình quét"
 
-#: crates/linux-defender-core/src/scanner.rs:2086
+#: crates/linux-defender-core/src/scanner.rs:2101
 msgid "No files could be scanned"
 msgstr "Không thể quét tệp nào"
 
-#: crates/linux-defender-core/src/scanner.rs:2092
+#: crates/linux-defender-core/src/scanner.rs:2107
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "Mục tiêu quét không tồn tại hoặc chứa byte NUL không hợp lệ"
 
-#: crates/linux-defender-core/src/scanner.rs:2099
+#: crates/linux-defender-core/src/scanner.rs:2114
 msgid "Scan target is not a regular file or directory"
 msgstr "Mục tiêu quét không phải là tệp hoặc thư mục thông thường"
 
-#: crates/linux-defender-core/src/scanner.rs:2108
+#: crates/linux-defender-core/src/scanner.rs:2123
 msgid "Threats were detected, but details are unavailable."
 msgstr "Đã phát hiện các mối đe dọa, nhưng không có thông tin chi tiết."
 
-#: crates/linux-defender-core/src/scanner.rs:2120
+#: crates/linux-defender-core/src/scanner.rs:2135
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "Không thể truy cập {count} tệp"
 
-#: crates/linux-defender-core/src/scanner.rs:2133
+#: crates/linux-defender-core/src/scanner.rs:2148
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "Không thể đọc {count} tệp"
 
-#: crates/linux-defender-core/src/scanner.rs:2152
+#: crates/linux-defender-core/src/scanner.rs:2167
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -2069,12 +2069,12 @@ msgstr "Bỏ qua lượt quét: đang dùng pin ({percent:.0f}%)"
 msgid "Skipping scan: running on battery power"
 msgstr "Bỏ qua lượt quét: đang dùng pin"
 
-#: crates/linux-defender-core/src/updater.rs:131
-#: crates/linux-defender-core/src/updater.rs:177
+#: crates/linux-defender-core/src/updater.rs:143
+#: crates/linux-defender-core/src/updater.rs:189
 msgid "Update cancelled by user"
 msgstr "Người dùng đã hủy cập nhật"
 
-#: crates/linux-defender-core/src/updater.rs:136
+#: crates/linux-defender-core/src/updater.rs:148
 msgid ""
 "Update process output did not close after cleanup; result cannot be "
 "classified."
@@ -2082,22 +2082,22 @@ msgstr ""
 "Đầu ra của tiến trình cập nhật không đóng sau khi dọn dẹp; không thể xác "
 "định kết quả."
 
-#: crates/linux-defender-core/src/updater.rs:139
+#: crates/linux-defender-core/src/updater.rs:151
 msgid ""
 "Authentication cancelled. Database update requires administrator privileges."
 msgstr ""
 "Authentication cancelled. Database update requires administrator privileges."
 
-#: crates/linux-defender-core/src/updater.rs:142
+#: crates/linux-defender-core/src/updater.rs:154
 msgid "Authorization failed. You are not authorized to update the database."
 msgstr "Authorization failed. You are not authorized to update the database."
 
-#: crates/linux-defender-core/src/updater.rs:145
+#: crates/linux-defender-core/src/updater.rs:157
 msgid "Update rate limited by mirror. Please wait a few minutes and try again."
 msgstr ""
 "Update rate limited by mirror. Please wait a few minutes and try again."
 
-#: crates/linux-defender-core/src/updater.rs:148
+#: crates/linux-defender-core/src/updater.rs:160
 msgid ""
 "Update blocked by CDN. This may be due to rate limiting. Please wait and try "
 "again later."
@@ -2105,51 +2105,51 @@ msgstr ""
 "Update blocked by CDN. This may be due to rate limiting. Please wait and try "
 "again later."
 
-#: crates/linux-defender-core/src/updater.rs:151
+#: crates/linux-defender-core/src/updater.rs:163
 msgid "ClamAV mirror is currently unavailable. Please try again later."
 msgstr "ClamAV mirror is currently unavailable. Please try again later."
 
-#: crates/linux-defender-core/src/updater.rs:154
+#: crates/linux-defender-core/src/updater.rs:166
 msgid "SSL/TLS certificate error. The mirror may have configuration issues."
 msgstr "SSL/TLS certificate error. The mirror may have configuration issues."
 
-#: crates/linux-defender-core/src/updater.rs:157
+#: crates/linux-defender-core/src/updater.rs:169
 msgid "Connection timed out. Please check your network connection."
 msgstr "Connection timed out. Please check your network connection."
 
-#: crates/linux-defender-core/src/updater.rs:160
+#: crates/linux-defender-core/src/updater.rs:172
 msgid "Authorization failed. Please try again and enter your password."
 msgstr "Authorization failed. Please try again and enter your password."
 
-#: crates/linux-defender-core/src/updater.rs:163
+#: crates/linux-defender-core/src/updater.rs:175
 msgid "Database is locked. Another freshclam instance may be running."
 msgstr "Database is locked. Another freshclam instance may be running."
 
-#: crates/linux-defender-core/src/updater.rs:166
+#: crates/linux-defender-core/src/updater.rs:178
 msgid ""
 "Permission denied. You may need elevated privileges to update the database."
 msgstr ""
 "Permission denied. You may need elevated privileges to update the database."
 
-#: crates/linux-defender-core/src/updater.rs:169
+#: crates/linux-defender-core/src/updater.rs:181
 msgid "Connection error. Please check your network connection."
 msgstr "Connection error. Please check your network connection."
 
-#: crates/linux-defender-core/src/updater.rs:172
+#: crates/linux-defender-core/src/updater.rs:184
 msgid "DNS resolution failed. Please check your network settings."
 msgstr "DNS resolution failed. Please check your network settings."
 
-#: crates/linux-defender-core/src/updater.rs:175
+#: crates/linux-defender-core/src/updater.rs:187
 msgid "Update failed with an unknown error. Check the logs for details."
 msgstr "Update failed with an unknown error. Check the logs for details."
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:535
+#: crates/linux-defender-core/src/updater.rs:547
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr "Đã gửi tín hiệu cập nhật đến dịch vụ freshclam (PID {pid})"
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:837
+#: crates/linux-defender-core/src/updater.rs:854
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2157,7 +2157,7 @@ msgstr ""
 "Một tiến trình freshclam khác đang chạy (PID {pid}). Hãy dừng nó trước: sudo "
 "systemctl stop clamav-freshclam"
 
-#: crates/linux-defender-core/src/updater.rs:867
+#: crates/linux-defender-core/src/updater.rs:884
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] ""
@@ -2165,28 +2165,28 @@ msgstr[0] ""
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/updater.rs:1006
+#: crates/linux-defender-core/src/updater.rs:1023
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] ""
 "Cập nhật cơ sở dữ liệu đã hoàn tất — đã cập nhật {count} cơ sở dữ liệu"
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/linux-defender-core/src/updater.rs:1016
+#: crates/linux-defender-core/src/updater.rs:1033
 msgid "Database update completed — Already up to date"
 msgstr "Cập nhật cơ sở dữ liệu đã hoàn tất — đã là phiên bản mới nhất"
 
-#: crates/linux-defender-core/src/updater.rs:1083
+#: crates/linux-defender-core/src/updater.rs:1100
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "Tệp cấu hình freshclam đã chọn không tồn tại: {path}"
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/linux-defender-core/src/updater.rs:1120
+#: crates/linux-defender-core/src/updater.rs:1138
 msgid "Could not determine freshclam PID"
 msgstr "Không thể xác định PID của freshclam"
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/linux-defender-core/src/updater.rs:1130
+#: crates/linux-defender-core/src/updater.rs:1148
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
@@ -2296,19 +2296,19 @@ msgstr "Cơ sở dữ liệu virus đã được cập nhật đầy đủ"
 msgid "Database Update Cancelled"
 msgstr "Đã hủy cập nhật cơ sở dữ liệu"
 
-#: desktop/src-tauri/src/notifications.rs:151
+#: desktop/src-tauri/src/notifications.rs:152
 msgid "Database Update Failed"
 msgstr "Cập nhật cơ sở dữ liệu thất bại"
 
-#: desktop/src-tauri/src/notifications.rs:163
+#: desktop/src-tauri/src/notifications.rs:165
 msgid "VirusTotal Analysis Complete"
 msgstr "Đã hoàn tất phân tích VirusTotal"
 
-#: desktop/src-tauri/src/notifications.rs:170
+#: desktop/src-tauri/src/notifications.rs:172
 msgid "Scanning Device"
 msgstr "Đang quét thiết bị"
 
-#: desktop/src-tauri/src/notifications.rs:177
+#: desktop/src-tauri/src/notifications.rs:179
 msgid "Device Scan Complete"
 msgstr "Đã quét xong thiết bị"
 
@@ -2336,19 +2336,19 @@ msgstr "Quét theo hồ sơ"
 msgid "Quit"
 msgstr "Thoát"
 
-#: desktop/src-tauri/src/runtime.rs:438
+#: desktop/src-tauri/src/runtime.rs:445
 msgid "Add Folders"
 msgstr "Thêm thư mục"
 
-#: desktop/src-tauri/src/runtime.rs:440
+#: desktop/src-tauri/src/runtime.rs:447
 msgid "Add Files"
 msgstr "Thêm tệp"
 
-#: desktop/src-tauri/src/runtime.rs:492
+#: desktop/src-tauri/src/runtime.rs:519
 msgid "Export"
 msgstr "Xuất"
 
-#: desktop/src-tauri/src/runtime.rs:651
+#: desktop/src-tauri/src/runtime.rs:678
 msgid "Open"
 msgstr "Mở"
 
@@ -2388,7 +2388,7 @@ msgid "Network"
 msgstr "Mạng"
 
 #: desktop/src/App.tsx:130 desktop/src/App.tsx:894 desktop/src/App.tsx:982
-#: desktop/src/pages/Preferences.tsx:119
+#: desktop/src/pages/Preferences.tsx:120
 msgid "Preferences"
 msgstr "Tùy chọn"
 
@@ -4743,16 +4743,16 @@ msgstr "Lưu"
 msgid "Unable to load preferences: {error}"
 msgstr "Không tải được tùy chọn: {error}"
 
-#: desktop/src/pages/Preferences.tsx:97
+#: desktop/src/pages/Preferences.tsx:98
 #: desktop/src/pages/SettingsPreferences.tsx:161
 msgid "Could not save preference: {error}"
 msgstr "Không lưu được tùy chọn: {error}"
 
-#: desktop/src/pages/Preferences.tsx:114
+#: desktop/src/pages/Preferences.tsx:115
 msgid "Loading preferences…"
 msgstr "Đang tải tùy chọn…"
 
-#: desktop/src/pages/Preferences.tsx:121
+#: desktop/src/pages/Preferences.tsx:122
 msgid "Preference categories"
 msgstr "Danh mục tùy chọn"
 

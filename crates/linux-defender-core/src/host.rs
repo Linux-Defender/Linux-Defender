@@ -231,6 +231,20 @@ pub fn resolve_freshclam_conf_path(configured: Option<&str>) -> Option<String> {
         .or_else(detect_freshclam_conf_path)
 }
 
+pub fn is_allowed_database_dir(path: &str) -> bool {
+    if path.is_empty()
+        || path.chars().any(|character| character.is_control())
+        || Path::new(path)
+            .components()
+            .any(|component| matches!(component, std::path::Component::ParentDir))
+    {
+        return false;
+    }
+    DEFAULT_DATABASE_DIRS
+        .iter()
+        .any(|allowed| Path::new(path) == Path::new(allowed))
+}
+
 pub fn freshclam_database_dir(config_path: Option<&str>) -> String {
     config_path
         .and_then(|path| directive(path, "DatabaseDirectory"))
@@ -1100,6 +1114,17 @@ mod tests {
     use std::fs;
     use std::os::unix::fs::symlink;
     use std::time::{Duration, UNIX_EPOCH};
+
+    #[test]
+    fn force_update_accepts_only_approved_database_directories() {
+        assert!(is_allowed_database_dir("/var/lib/clamav"));
+        assert!(is_allowed_database_dir("/usr/local/share/clamav"));
+        assert!(!is_allowed_database_dir("/etc"));
+        assert!(!is_allowed_database_dir("/var/lib/clamav/../../etc"));
+        assert!(!is_allowed_database_dir(
+            "/var/lib/clamav\nDatabaseCustomURL file:///x"
+        ));
+    }
 
     #[test]
     fn classifies_official_and_custom_signature_files() {

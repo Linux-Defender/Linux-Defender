@@ -52,3 +52,7 @@
     font-size: var(--sl-text-base);
   }
 }
+
+/* Canonical Markdown pages render their own H1 inside a Starlight wrapper;
+   the page title already supplies the document H1. */
+.canonical-doc .sl-heading-wrapper > h1:first-child { display: none; }

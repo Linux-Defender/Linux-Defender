@@ -16,8 +16,7 @@ def main() -> int:
     files = [rel for rel in out.stdout.splitlines()
              if Path(rel).suffix in {".py", ".sh", ".ts"}]
     text = INDEX.read_text(encoding="utf-8") if INDEX.exists() else ""
-    missing = [rel for rel in files
-               if Path(rel).name not in text and Path(rel).stem not in text]
+    missing = [rel for rel in files if rel not in text]
     if missing:
         print("Scripts missing from docs/documentation/SCRIPTS.md:", file=sys.stderr)
         for rel in missing:

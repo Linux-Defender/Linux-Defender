@@ -202,6 +202,18 @@ struct QuarantineManager {
     quarantine_dir: PathBuf,
 }
 
+fn is_within_directory(path: &std::path::Path, root: &std::path::Path) -> bool {
+    if path == root {
+        return false;
+    }
+    if !path.starts_with(root) {
+        return false;
+    }
+    !path
+        .components()
+        .any(|component| matches!(component, std::path::Component::ParentDir))
+}
+
 #[derive(Default)]
 struct QuarantineDatabaseState {
     initialized: Mutex<bool>,
@@ -215,7 +227,16 @@ impl QuarantineManager {
             .and_then(Value::as_str)
             .filter(|value| !value.is_empty())
             .map(expand_path);
-        let quarantine_dir = configured.unwrap_or_else(|| ctx.paths.data_dir.join("quarantine"));
+        let quarantine_dir = match configured {
+            Some(path) if is_within_directory(&path, &ctx.paths.data_dir) => path,
+            Some(_) => {
+                return Err(
+                    "Quarantine directory must be inside the Linux Defender data directory"
+                        .to_owned(),
+                )
+            }
+            None => ctx.paths.data_dir.join("quarantine"),
+        };
         let manager = Self {
             db_path: ctx.paths.data_dir.join("quarantine.db"),
             quarantine_dir,
@@ -1562,6 +1583,18 @@ fn restore_error_status(error: &io::Error) -> Status {
 mod tests {
     use super::*;
     use std::os::unix::fs::symlink;
+
+    #[test]
+    fn quarantine_directory_must_stay_inside_the_data_directory() {
+        let root = std::path::Path::new("/home/user/.local/share/linux-defender");
+        assert!(is_within_directory(&root.join("quarantine"), root));
+        assert!(!is_within_directory(root, root));
+        assert!(!is_within_directory(std::path::Path::new("/etc"), root));
+        assert!(!is_within_directory(
+            &root.join("quarantine/../../etc"),
+            root
+        ));
+    }
 
     #[test]
     fn pinned_payload_parent_cannot_be_redirected_before_unlink() {

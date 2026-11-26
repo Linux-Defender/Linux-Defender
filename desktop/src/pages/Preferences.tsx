@@ -64,8 +64,9 @@ export default function Preferences() {
         if (typeof data.available === "boolean") setTrayAvailable(data.available);
       }
     }).then((stop) => {
-      unlisten = stop;
-    });
+      if (active) unlisten = stop;
+      else stop();
+    }).catch(() => undefined);
     return () => {
       active = false;
       unlisten?.();

@@ -141,19 +141,21 @@ fn notification_for(
                 ),
                 ("cancelled", _, _) => (
                     tr("Database Update Cancelled"),
-                    result
-                        .get("error_message")
-                        .and_then(Value::as_str)
-                        .unwrap_or_default()
-                        .to_owned(),
+                    linux_defender_core::common::sanitize_line(
+                        result
+                            .get("error_message")
+                            .and_then(Value::as_str)
+                            .unwrap_or_default(),
+                    ),
                 ),
                 _ => (
                     tr("Database Update Failed"),
-                    result
-                        .get("error_message")
-                        .and_then(Value::as_str)
-                        .unwrap_or_default()
-                        .to_owned(),
+                    linux_defender_core::common::sanitize_line(
+                        result
+                            .get("error_message")
+                            .and_then(Value::as_str)
+                            .unwrap_or_default(),
+                    ),
                 ),
             };
             Some(("update-complete", title, body, "show-update", false))

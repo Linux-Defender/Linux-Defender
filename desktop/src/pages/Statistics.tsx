@@ -24,12 +24,12 @@ function readableError(error: unknown): string {
 function TrendChart({ points }: { points: TrendPoint[] }) {
   if (points.length === 0) return <p className="empty-state">{_("No scan activity in this timeframe.")}</p>;
   const maximum = Math.max(1, ...points.map((point) => Math.max(point.scans, point.threats)));
-  return <div className="trend-chart" role="img" aria-label={_("Scan activity trend")}>
+  return <div className="trend-chart" role="list" aria-label={_("Scan activity trend")}>
     {points.map((point) => {
       const scans = ngettext("{count} scan", "{count} scans", point.scans, { count: point.scans });
       const threats = ngettext("{count} threat", "{count} threats", point.threats, { count: point.threats });
-      return <div className="trend-column" key={`${point.label}-${point.scans}-${point.threats}`}>
-        <div className="trend-bars" aria-label={`${formatDate(point.label)}: ${scans}, ${threats}`}>
+      return <div className="trend-column" role="listitem" aria-label={`${formatDate(point.label)}: ${scans}, ${threats}`} key={`${point.label}-${point.scans}-${point.threats}`}>
+        <div className="trend-bars">
           <span className="trend-bar scans" style={{ height: `${(point.scans / maximum) * 100}%` }} title={scans} />
           <span className="trend-bar threats" style={{ height: `${(point.threats / maximum) * 100}%` }} title={threats} />
         </div>

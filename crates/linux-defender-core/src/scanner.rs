@@ -542,7 +542,16 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
         }
     }
     let aggregate = aggregate_result(&id, results, started.elapsed(), request.scheduled);
-    save_result(ctx, &aggregate, request.scheduled)?;
+    // History persistence is best-effort: a full log directory or disk failure
+    // must never erase a completed scan verdict from the caller.
+    if let Err(error) = save_result(ctx, &aggregate, request.scheduled) {
+        let _ = crate::logs::write_debug(
+            ctx,
+            "WARNING",
+            "scanner",
+            &format!("scan result could not be saved to history: {error}"),
+        );
+    }
     let value = serde_json::to_value(&aggregate).map_err(|error| error.to_string())?;
     ctx.emit("scan-complete", json!({"id": id, "result": value}));
     Ok(value)
@@ -556,8 +565,14 @@ fn eicar(ctx: &Context, args: Value) -> AppResult<Value> {
         .unwrap_or_else(new_scan_id);
     fs::create_dir_all(&ctx.paths.data_dir)
         .map_err(|error| format!("Unable to create EICAR temporary directory: {error}"))?;
+    let unique = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|elapsed| elapsed.as_nanos())
+        .unwrap_or(0);
     let filename = ctx.paths.data_dir.join(format!(
-        ".linux-defender-eicar-{}",
+        ".linux-defender-eicar-{}-{}-{}",
+        std::process::id(),
+        unique,
         REQUEST_SEQUENCE.fetch_add(1, Ordering::Relaxed)
     ));
     let mut file = OpenOptions::new()

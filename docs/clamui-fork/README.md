@@ -3,7 +3,7 @@
 Linux Defender is a rebranded fork of [ClamUI](https://github.com/linx-systems/clamui),
 a ClamAV-based desktop frontend. This folder documents the fork itself: why it
 exists, what was ported from the ClamUI upstream, the rebrand state, and the
-parity matrix.
+parity matrix in `../revival/RELATED-PROJECT-REVIEW.md`.
 
 - The upstream repository: <https://github.com/linx-systems/clamui>
 - This product: <https://github.com/Linux-Defender/Linux-Defender>
