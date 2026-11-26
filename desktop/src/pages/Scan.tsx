@@ -730,7 +730,7 @@ export default function Scan() {
         const ids = ["scan-files-tab", "scan-website-tab"];
         const index = ids.indexOf((event.target as HTMLElement).id);
         if (index < 0) return;
-        let next = index;
+        let next: number;
         if (event.key === "ArrowRight") next = (index + 1) % ids.length;
         else if (event.key === "ArrowLeft") next = (index - 1 + ids.length) % ids.length;
         else if (event.key === "Home") next = 0;
