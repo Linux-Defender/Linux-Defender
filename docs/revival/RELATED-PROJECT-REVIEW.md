@@ -216,6 +216,20 @@ All five upstream tabs were reviewed from the GitHub API: repository branches/co
 - **Upstream Actions:** every failure in the last 100 runs belongs to unmerged branches (`fix/285-truncated-infection-count`, `ci-demo/*`, `ci/optimize-workflows`, `fix/audit-cookie-url`); the default branch is green. Their path-filter/concurrency work was already reviewed and adopted in the previous pass.
 - **Security tab:** the API returned HTTP 403 for upstream Dependabot/code-scanning alerts and 404 for secret scanning, so alert contents could not be inspected. This is an access limitation, not a clean bill of health; our own repositories report zero alerts.
 
+### Legacy personal projects reviewed (2026-11-26)
+
+Two old personal sources were scanned in full at the user's request: the Sololearn playground `WQMCKCuGYHMa` and `CherrieFurry/LizXRown-Eipril-Animations` (default branch `main`: `LICENSE`, `README.md`, a 101 KB `index.html`, a 95 KB `script.js`, and a 1.2 KB `style.css`; the deployed GitHub Pages file is byte-identical to the repo's `index.html`).
+
+**Disposition: nothing copied.** Reasons, verified from the files rather than assumed:
+
+- The repository declares **EPL-2.0** (weak copyleft), not MIT. Moving its source verbatim into this MIT-licensed project would need an explicit relicensing decision. Independently implemented behavior is allowed, but none of the behavior here is worth reimplementing.
+- The HTML is invalid: `<title title=... value=...>`, a `link:` pseudo-attribute, `<link>`/`<script>` with both `href` and `src`, closing `</link>`, two elements with `id="middle"`, `<br></br>`, and obsolete `align`/`font-size` attributes. Our `check-built-links.py` rejects duplicate IDs, and Starlight/HTML-Proofer would reject the rest; Lighthouse would lose accessibility/SEO points.
+- It embeds third-party adult-content iframes plus `trafficjunky` and `api.hubtraffic.com` tracking, and loads old jQuery 3.2.1 and PrefixFree 1.0.7 from CDNs. Those conflict with the strict Tauri CSP, privacy guarantees, and the product's purpose.
+- `<grammarly-desktop-integration>` / `<grammarly-mirror>` are injected by a browser extension (the deployed page carries Grammarly's `data-gr-ext-installed` marker); they are not application markup and do nothing in WebKitGTK.
+- StyleFix/PrefixFree (Lea Verou, MIT) was a 2013 vendor-prefix helper. Modern WebKitGTK and our Vite build already handle prefixes; adding it would be dead weight. The CSS is a table-cell centering layout already superseded by the Guardian flex/grid system.
+
+A repo-wide grep confirms none of those markers exist in Linux Defender source, docs, or built site. This record exists so a future sweep does not treat the old projects as unported parity work.
+
 ### ClamAV Bytecode Compiler reference (2026-11-25)
 
 Reviewed `Cisco-Talos/clamav-bytecode-compiler` at `a1830a442110325d04708145437a5312fc6ab6f9` (GPL-2.0, latest release `clambc-1.4.0`). It compiles cross-platform ClamAV bytecode signatures for advanced detection. **Disposition: reference only, not adopted.** Linux Defender never bundles an engine or signature database, uses the host `clamscan`/`freshclam`/`clamd` boundary, and implements local `.yar`/`.yara` support independently under MIT. Its GPL-2.0 code cannot be copied into this repository without an explicit licensing decision. Its head is pinned in `parity-lock.json` and watched by `Upstream Freshness`.
