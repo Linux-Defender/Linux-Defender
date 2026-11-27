@@ -24,8 +24,9 @@ PolicyKit policy for applying authorized host ClamAV configuration from Linux De
 %install
 install -Dpm 0755 %{SOURCE0} %{buildroot}%{_bindir}/linux-defender-apply-preferences
 install -Dpm 0644 %{SOURCE1} %{buildroot}%{_datadir}/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy
+install -Dpm 0644 %{SOURCE2} %{buildroot}%{_datadir}/licenses/linux-defender-privileged-helper/LICENSE
 
 %files
 %attr(0755,root,root) %{_bindir}/linux-defender-apply-preferences
 %attr(0644,root,root) %{_datadir}/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy
-%license %{SOURCE2}
+%license %{_datadir}/licenses/linux-defender-privileged-helper/LICENSE
