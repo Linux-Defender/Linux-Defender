@@ -40,7 +40,7 @@ For an eligible public, unscoped IP address, the VirusTotal icon opens that IP's
 
 ## Deep scans
 
-The opt-in deep scans run [Lynis](https://cisofy.com/lynis/) or `chkrootkit` only after you explicitly select the requested tool. Install the selected tool first, expect an administrator prompt where the host requires one and several minutes of run time, and run them only on systems you are authorized to assess. Cancelled authorization reports **Skipped**.
+The **Run all security scans** button performs [Lynis](https://cisofy.com/lynis/), `chkrootkit`, and [rkhunter](https://rkhunter.sourceforge.io/) in sequence; nothing runs automatically. Install the host tools first, expect an administrator prompt where the host requires one and several minutes of run time, and run them only on systems you are authorized to assess. Cancelled authorization reports **Skipped**. These are complementary checks, not replacements for host ClamAV, and their results are not a security guarantee.
 
 | Status | Meaning |
 | --- | --- |

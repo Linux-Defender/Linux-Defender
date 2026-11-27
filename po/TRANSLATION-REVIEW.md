@@ -10,16 +10,16 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1473 translated messages. | 34 |
-| en | 1473 translated messages. | baseline |
-| es | 1473 translated messages. | 35 |
-| fr | 1473 translated messages. | 35 |
-| hu | 1473 translated messages. | 35 |
-| it | 1473 translated messages. | 35 |
-| nb | 1473 translated messages. | 35 |
-| pt_BR | 1473 translated messages. | 35 |
-| vi | 1473 translated messages. | 35 |
-| zh_CN | 1473 translated messages. | 35 |
+| de | 1472 translated messages. | 35 |
+| en | 1472 translated messages. | baseline |
+| es | 1472 translated messages. | 36 |
+| fr | 1472 translated messages. | 36 |
+| hu | 1472 translated messages. | 36 |
+| it | 1472 translated messages. | 36 |
+| nb | 1472 translated messages. | 36 |
+| pt_BR | 1472 translated messages. | 36 |
+| vi | 1472 translated messages. | 36 |
+| zh_CN | 1472 translated messages. | 36 |
 
 ## de
 
@@ -37,6 +37,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Failed to set permissions on {path}: {error}`
 - `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
@@ -74,6 +75,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Failed to set permissions on {path}: {error}`
 - `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
@@ -112,6 +114,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Failed to set permissions on {path}: {error}`
 - `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
@@ -150,6 +153,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Failed to set permissions on {path}: {error}`
 - `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
@@ -188,6 +192,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Failed to set permissions on {path}: {error}`
 - `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
@@ -226,6 +231,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Failed to set permissions on {path}: {error}`
 - `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
@@ -264,6 +270,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Failed to set permissions on {path}: {error}`
 - `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
@@ -302,6 +309,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Failed to set permissions on {path}: {error}`
 - `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
@@ -340,6 +348,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Failed to set permissions on {path}: {error}`
 - `Failed to write {path}: {error}`
 - `File {current} of {total}: {stage}`
+- `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`

@@ -437,3 +437,13 @@ Upstream PR #366 also added a bounded native milestone timeline, `CLAMUI_STARTUP
 
 ### Upstream PR #374 / commit 3960c74 (merged 2026-11-27)
 Ported the two behavioral refinements to the #368 access-control fix: a SELinux mode is now trusted only when `getenforce` exits 0, and a `disabled` SELinux row is skipped when AppArmor is already enabled (only one major LSM is active). The upstream split of probing from decision and its catalog churn are diagnostic/testing structure only; local audit tests already cover the parsers. Reviewed pin bumped to `3960c74`; freshness check is green.
+
+### ClamAV alternative-tool sweep (2026-11-27)
+
+Sources reviewed: `https://cybersectools.com/alternatives/clamav` (34 commercial EPP products), `https://www.reddit.com/r/linuxmint/comments/1qc1bof/clamtkclamav_alternatives/` (19 comments), and `https://linuxsecurity.expert/tools/clamav/alternatives/` (full open-source list and licenses).
+
+- **Adopted:** rkhunter (GPLv3 host binary, invoked only through the existing explicit `pkexec` deep-scan path; no code vendored) as a third deep scan alongside Lynis and chkrootkit, combined into one "Run all security scans" action.
+- **Already satisfied:** chkrootkit (existing deep scan), YARA (local `.yar`/`.yara` rules through ClamAV), LMD/RFXN signatures (`rfxn.hdb`/`rfxn.ndb` suggested feeds), PHP web-shell coverage (InterServer `shell.ldb`), and safe-browsing/firewall guidance in the docs.
+- **Documented/deferred:** Malscan (old, web-server focused; automatic feed fetching would violate the explicit-apply boundary), hBlock/Maltrail (network/hosts-level, different category), MultiScanner/Malice/Maltrail/SSMA/Loki/Dagda/BANG/Cuckoo/Mal Tindex/YaraGuardian/yarGen/Viper/bingrep/uitkyk (analyst/lab tools, sandboxes, or rule generators — out of category for a desktop frontend and some require daemons), yarGen/YARA library and ClamAV bytecode compiler (reference-only to avoid vendoring), and commercial EPP/AV (ESET, Microsoft Defender, McAfee, Bitdefender, Avast, Avira, etc.; proprietary licences, cloud submission, and multi-engine conflict with the host-ClamAV boundary).
+- **Rejected outright:** EvilAbigail, WeBaCoo, sshLooter, Diamorphine (offensive/attack or rootkit samples), and USB kill switches — no place in a protective desktop scanner.
+- The Reddit thread also confirmed ClamAV itself is still maintained and that ClamTk was the retired component; occasional scanning of Windows email attachments remains a valid host-ClamAV use case.

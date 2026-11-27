@@ -112,3 +112,18 @@ fn lsm_list_identifies_active_major_module() {
     assert!(other_major_lsm_active(smack));
     assert!(!other_major_lsm_active(None));
 }
+
+#[test]
+fn rkhunter_findings_are_bounded_and_sanitized() {
+    let output = [
+        "Checking system commands...",
+        "Warning: Command '/usr/bin/foo' has been replaced by a script",
+        "Warning: Account 'root' has shell access",
+        "0 warnings found",
+    ]
+    .join("\n");
+    let findings = super::rkhunter_findings(&output);
+    assert_eq!(findings.len(), 2);
+    assert!(findings[0].starts_with("Warning:"));
+    assert!(findings.iter().all(|line| !line.contains("\u{202e}")));
+}

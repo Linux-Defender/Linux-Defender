@@ -5,7 +5,7 @@ import { Icon } from "../Icon";
 import { _, ngettext } from "../i18n";
 
 type AuditStatus = "pass" | "warning" | "fail" | "unknown" | "skipped" | "checking";
-type AuditCategory = "clamav_health" | "firewall" | "mac_framework" | "auto_updates" | "intrusion_detection" | "ssh_hardening" | "portmaster" | "deep_scan_lynis" | "deep_scan_rootkit";
+type AuditCategory = "clamav_health" | "firewall" | "mac_framework" | "auto_updates" | "intrusion_detection" | "ssh_hardening" | "portmaster" | "deep_scan_lynis" | "deep_scan_rootkit" | "deep_scan_rkhunter";
 
 type AuditCheck = {
   name: string;
@@ -112,7 +112,8 @@ function parseAuditProgress(value: unknown): AuditSection | null {
     (
       !(CATEGORY_ORDER as readonly AuditCategory[]).includes(section.category as AuditCategory) &&
       section.category !== "deep_scan_lynis" &&
-      section.category !== "deep_scan_rootkit"
+      section.category !== "deep_scan_rootkit" &&
+      section.category !== "deep_scan_rkhunter"
     ) ||
     !["pass", "warning", "fail", "unknown", "skipped", "checking"].includes(section.overall_status)
   ) return null;
@@ -140,7 +141,7 @@ function parseAuditProgress(value: unknown): AuditSection | null {
 export default function Audit(): JSX.Element {
   const [sections, setSections] = useState<AuditSection[]>([]);
   const [running, setRunning] = useState(false);
-  const [deepRunning, setDeepRunning] = useState<"lynis" | "chkrootkit" | null>(null);
+  const [deepRunning, setDeepRunning] = useState<"lynis" | "chkrootkit" | "rkhunter" | "all" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [authorizationRunning, setAuthorizationRunning] = useState(false);
   const runSequence = useRef(0);
@@ -198,7 +199,7 @@ export default function Audit(): JSX.Element {
 
   
 
-  const runDeep = async (tool: "lynis" | "chkrootkit"): Promise<void> => {
+  const runDeep = async (tool: "lynis" | "chkrootkit" | "rkhunter"): Promise<void> => {
     if (running || deepRunning) return;
     setDeepRunning(tool);
     setError(null);
@@ -208,6 +209,22 @@ export default function Audit(): JSX.Element {
       notify(_("{tool} check completed", { tool: tool === "lynis" ? "Lynis" : "chkrootkit" }), section.overall_status === "fail" ? "warning" : "info");
     } catch (requestError) {
       setError(errorText(requestError));
+    } finally {
+      setDeepRunning(null);
+    }
+  };
+
+  const runAllDeep = async (): Promise<void> => {
+    if (running || deepRunning) return;
+    setDeepRunning("all");
+    setError(null);
+    try {
+      for (const tool of ["lynis", "chkrootkit", "rkhunter"] as const) {
+        const section = await request<AuditSection>("audit.deep", { tool });
+        applySection(section);
+      }
+    } catch (reason) {
+      setError(String(reason));
     } finally {
       setDeepRunning(null);
     }
@@ -249,7 +266,7 @@ export default function Audit(): JSX.Element {
 
   const summary = countSummary(sections);
   const tierSections = CATEGORY_ORDER.map((category) => sections.find((section) => section.category === category)).filter((section): section is AuditSection => section !== undefined);
-  const deepSections = sections.filter((section) => section.category === "deep_scan_lynis" || section.category === "deep_scan_rootkit");
+  const deepSections = sections.filter((section) => section.category.startsWith("deep_scan_"));
 
   return (
     <main className="page audit-page" aria-labelledby="audit-title">
@@ -269,12 +286,11 @@ export default function Audit(): JSX.Element {
 
       <section className="audit-category" aria-labelledby="deep-scans-heading">
         <header className="section-header"><div><h2 id="deep-scans-heading">{_("Deep scans")}</h2><p>{_(
-          // Translators: Keep Lynis and chkrootkit unchanged; they are tool names.
-          "Lynis and chkrootkit are never run automatically. Each check may request administrator authorization only after you explicitly start that check.",
+          // Translators: Keep Lynis, chkrootkit, and rkhunter unchanged; they are tool names.
+          "Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.",
         )}</p></div></header>
         <div className="actions">
-          <button className="button primary" disabled={running || deepRunning !== null} onClick={() => void runDeep("lynis")} type="button">{deepRunning === "lynis" ? _("Running Lynis…") : _("Run Lynis security audit")}</button>
-          <button className="button primary" disabled={running || deepRunning !== null} onClick={() => void runDeep("chkrootkit")} type="button">{deepRunning === "chkrootkit" ? _("Running chkrootkit…") : _("Run rootkit detection")}</button>
+          <button className="button primary" disabled={running || deepRunning !== null} onClick={() => void runAllDeep()} type="button">{deepRunning === "all" ? _("Running all security scans…") : _("Run all security scans")}</button>
         </div>
       </section>
       {deepSections.map((section) => <SectionView authorizationRunning={authorizationRunning} key={section.category} onAuthorize={authorizePortmaster} onLaunch={launch} section={section} />)}

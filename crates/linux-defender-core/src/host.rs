@@ -893,6 +893,7 @@ pub(crate) fn install_command_for(distro: Distro, target: &str) -> Option<String
         (Distro::Debian, "intrusion_prevention") => "sudo apt install fail2ban",
         (Distro::Debian, "lynis") => "sudo apt install lynis",
         (Distro::Debian, "chkrootkit") => "sudo apt install chkrootkit",
+        (Distro::Debian, "rkhunter") => "sudo apt install rkhunter",
         (Distro::Fedora, "clamav" | "clamscan") => "sudo dnf install clamav clamd",
         (Distro::Fedora, "freshclam") => "sudo dnf install clamav-freshclam",
         (Distro::Fedora, "clamdscan" | "clamd") => "sudo dnf install clamd",
@@ -904,6 +905,7 @@ pub(crate) fn install_command_for(distro: Distro, target: &str) -> Option<String
         (Distro::Fedora, "intrusion_prevention") => "sudo dnf install fail2ban",
         (Distro::Fedora, "lynis") => "sudo dnf install lynis",
         (Distro::Fedora, "chkrootkit") => "sudo dnf install chkrootkit",
+        (Distro::Fedora, "rkhunter") => "sudo dnf install rkhunter",
         (Distro::Arch, "clamav" | "clamscan" | "freshclam" | "clamdscan" | "clamd") => {
             "sudo pacman -S clamav"
         }
@@ -913,6 +915,7 @@ pub(crate) fn install_command_for(distro: Distro, target: &str) -> Option<String
         (Distro::Arch, "firewall_gui") => "sudo pacman -S firewall-config",
         (Distro::Arch, "intrusion_prevention") => "sudo pacman -S fail2ban",
         (Distro::Arch, "lynis") => "sudo pacman -S lynis",
+        (Distro::Arch, "rkhunter") => "sudo pacman -S rkhunter",
         (Distro::FedoraAtomic, "clamav" | "clamscan") => {
             "sudo rpm-ostree install clamav clamd\nsudo systemctl reboot"
         }
@@ -926,6 +929,9 @@ pub(crate) fn install_command_for(distro: Distro, target: &str) -> Option<String
         (Distro::FedoraAtomic, "chkrootkit") => {
             "sudo rpm-ostree install chkrootkit\nsudo systemctl reboot"
         }
+        (Distro::FedoraAtomic, "rkhunter") => {
+            "sudo rpm-ostree install rkhunter\nsudo systemctl reboot"
+        }
         (Distro::Suse, "clamav" | "clamscan" | "freshclam" | "clamdscan" | "clamd") => {
             "sudo zypper install clamav"
         }
@@ -938,6 +944,7 @@ pub(crate) fn install_command_for(distro: Distro, target: &str) -> Option<String
         }
         (Distro::Suse, "intrusion_prevention") => "sudo zypper install fail2ban",
         (Distro::Suse, "lynis") => "sudo zypper install lynis",
+        (Distro::Suse, "rkhunter") => "sudo zypper install rkhunter",
         _ => return None,
     };
     Some(command.to_owned())
@@ -1131,6 +1138,7 @@ pub fn dispatch(ctx: &crate::common::Context, action: &str, args: Value) -> AppR
                 "intrusion_prevention",
                 "lynis",
                 "chkrootkit",
+                "rkhunter",
             ]
             .into_iter()
             .filter_map(|target| install_command(target).map(|command| (target, command)))

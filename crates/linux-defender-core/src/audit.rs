@@ -38,6 +38,7 @@ const URL_SSH: &str = "https://wiki.archlinux.org/title/OpenSSH#Protection";
 const URL_SSH_ROOT: &str = "https://man7.org/linux/man-pages/man5/sshd_config.5.html";
 const URL_LYNIS: &str = "https://cisofy.com/lynis/";
 const URL_CHKROOTKIT: &str = "https://www.chkrootkit.org/";
+const URL_RKHUNTER: &str = "https://rkhunter.sourceforge.io/";
 const URL_PORTS: &str = "https://wiki.archlinux.org/title/Security#Network_and_firewalls";
 const URL_PORTMASTER: &str = "https://safing.io/portmaster/";
 const URL_PORTMASTER_INSTALL: &str = "https://docs.safing.io/portmaster/install/linux";
@@ -66,6 +67,7 @@ pub enum AuditCategory {
     ApplicationFirewalls,
     DeepScanLynis,
     DeepScanRootkit,
+    DeepScanRkhunter,
 }
 
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
@@ -1450,6 +1452,15 @@ fn run_deep(ctx: &Context, tool: &str) -> AuditSection {
             "chkrootkit",
             URL_CHKROOTKIT,
         ),
+        "rkhunter" => (
+            AuditCategory::DeepScanRkhunter,
+            "Rootkit Detection",
+            "rkhunter",
+            "rkhunter",
+            vec!["--check", "--sk", "--nocolors", "--rwo"],
+            "rkhunter",
+            URL_RKHUNTER,
+        ),
         _ => return unknown_deep(ctx, tool),
     };
     let mut section = AuditSection::new(ctx, category, title, "system-run-symbolic");
@@ -1473,6 +1484,9 @@ fn run_deep(ctx: &Context, tool: &str) -> AuditSection {
         ));
         if tool == "chkrootkit" {
             row.recommendation = Some(tr(ctx, "Install chkrootkit for rootkit detection"));
+        } else if tool == "rkhunter" {
+            // Translators: Keep `rkhunter` unchanged; it is a tool name.
+            row.recommendation = Some(tr(ctx, "Install rkhunter for rootkit detection"));
         }
         row.install_command = install_command(target);
         row.info_url = Some(url.to_owned());
@@ -1529,8 +1543,9 @@ fn run_deep(ctx: &Context, tool: &str) -> AuditSection {
         } else {
             text(
                 ctx,
-                "Failed to run chkrootkit: {error}",
-                &[("{error}", output.stderr)],
+                // Translators: Keep `{name}` and `{error}` unchanged; they are placeholders.
+                "Failed to run {name}: {error}",
+                &[("{name}", name.to_owned()), ("{error}", output.stderr)],
             )
         };
         let mut row = check(
@@ -1551,7 +1566,7 @@ fn run_deep(ctx: &Context, tool: &str) -> AuditSection {
     if tool == "lynis" {
         deep_lynis(ctx, section, output, url)
     } else {
-        deep_rootkit(ctx, section, output, url)
+        deep_rootkit(ctx, section, output, url, name)
     }
 }
 
@@ -1646,11 +1661,27 @@ fn lynis_score() -> Option<i32> {
         .find_map(|line| line.strip_prefix("hardening_index=")?.trim().parse().ok())
 }
 
+/// Parse rkhunter's warnings-only output. Bounded to the first 20 findings so a
+/// hostile transcript cannot flood the UI with rows.
+fn rkhunter_findings(stdout: &str) -> Vec<String> {
+    stdout
+        .lines()
+        .filter(|line| {
+            let trimmed = line.trim();
+            (trimmed.starts_with("Warning:") || trimmed.contains("Warning:"))
+                && !trimmed.contains("warnings found")
+        })
+        .take(20)
+        .map(sanitize_line)
+        .collect()
+}
+
 fn deep_rootkit(
     ctx: &Context,
     mut section: AuditSection,
     output: CommandOutput,
     url: &str,
+    tool: &str,
 ) -> AuditSection {
     if output.code != Some(0) {
         let detail = if output.stderr.is_empty() {
@@ -1682,27 +1713,25 @@ fn deep_rootkit(
                 output.stderr
             )
         };
-        let mut row = check(
-            ctx,
-            "chkrootkit",
-            "Rootkit Scan",
-            AuditStatus::Unknown,
-            detail,
-        );
+        let mut row = check(ctx, tool, "Rootkit Scan", AuditStatus::Unknown, detail);
         row.info_url = Some(url.to_owned());
         section.push(row);
         return section;
     }
-    let findings = output
-        .stdout
-        .lines()
-        .filter(|line| line.contains("INFECTED"))
-        .map(sanitize_line)
-        .collect::<Vec<_>>();
+    let findings = if tool == "rkhunter" {
+        rkhunter_findings(&output.stdout)
+    } else {
+        output
+            .stdout
+            .lines()
+            .filter(|line| line.contains("INFECTED"))
+            .map(sanitize_line)
+            .collect::<Vec<_>>()
+    };
     if findings.is_empty() {
         let mut row = check(
             ctx,
-            "chkrootkit",
+            tool,
             "Rootkit Scan",
             AuditStatus::Pass,
             tr(ctx, "No rootkits detected"),
@@ -1714,7 +1743,7 @@ fn deep_rootkit(
     let count = findings.len() as u64;
     let mut row = check(
         ctx,
-        "chkrootkit",
+        tool,
         "Rootkit Scan",
         AuditStatus::Fail,
         trnf(
@@ -1731,7 +1760,7 @@ fn deep_rootkit(
     for finding in findings.into_iter().take(5) {
         let mut row = check(
             ctx,
-            &format!("rootkit_finding_{}", hex::encode(finding.as_bytes())),
+            &format!("{tool}_finding_{}", hex::encode(finding.as_bytes())),
             "Finding",
             AuditStatus::Fail,
             finding,
@@ -1795,12 +1824,13 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
         "acknowledge" | "revoke" => acknowledgements::dispatch(ctx, action, &args),
         "ufw_status" => firewall::request_ufw_status(ctx),
         "deep" => {
-            let tool = args
-                .get("tool")
-                .and_then(Value::as_str)
-                .ok_or_else(|| "audit.deep requires tool 'lynis' or 'chkrootkit'".to_owned())?;
-            if !matches!(tool, "lynis" | "chkrootkit") {
-                return Err("audit.deep requires tool 'lynis' or 'chkrootkit'".to_owned());
+            let tool = args.get("tool").and_then(Value::as_str).ok_or_else(|| {
+                "audit.deep requires tool 'lynis', 'chkrootkit', or 'rkhunter'".to_owned()
+            })?;
+            if !matches!(tool, "lynis" | "chkrootkit" | "rkhunter") {
+                return Err(
+                    "audit.deep requires tool 'lynis', 'chkrootkit', or 'rkhunter'".to_owned(),
+                );
             }
             let mut section = run_deep(ctx, tool);
             acknowledgements::apply(ctx, &mut section);
