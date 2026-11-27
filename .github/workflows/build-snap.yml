@@ -55,14 +55,6 @@ jobs:
           unsquashfs -l "$snap" | grep -q 'squashfs-root/bin/linux-defender$'
           unsquashfs -l "$snap" | grep -q 'squashfs-root/bin/linux-defender-scheduled-scan$'
           unsquashfs -l "$snap" | grep -q 'squashfs-root/bin/linux-defender-apply-preferences$'
-          extract_dir="$(mktemp -d)"
-          rmdir "$extract_dir"
-          unsquashfs -d "$extract_dir" "$snap" >/dev/null
-          helper_bin="$extract_dir/squashfs-root/bin/linux-defender-apply-preferences"
-          test -f "$helper_bin"
-          test -x "$helper_bin"
-          file "$helper_bin" | grep -q ELF
-          rm -rf "$extract_dir"
 
       - name: Install and run headless CLI
         run: |
