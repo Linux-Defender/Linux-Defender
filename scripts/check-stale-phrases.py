@@ -38,6 +38,7 @@ STALE = {
     "blocked by sandbox filesystem/tool assumptions": "the full Rust workspace suite now passes",
     "1,434": "catalog size is checked against the real catalogs in docs/translations/README.md",
     "URLhaus feed added to the draft and applied automatically": "the URLhaus feed is written only by an explicit Save & Apply",
+    "Suggested adds the RFXN signatures": "Suggested only reveals provider rows; it does not change the draft",
     "4 existing helper tests": "the full Rust workspace suite now passes",
     "stalled in CLI subprocess tests": "the full Rust workspace suite now passes",
     "tests were stopped": "the full Rust workspace suite now passes",

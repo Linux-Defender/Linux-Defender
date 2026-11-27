@@ -782,8 +782,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
         <CustomUrlListField values={freshclamValues.DatabaseCustomURL ?? []} showSuggested={showSuggested} onChange={(next) => updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", next))} />
         <div className="toolbar actions"><button className="button" type="button" onClick={toggleSuggested} aria-pressed={showSuggested}>{_("Suggested")}</button></div>
         <p className="muted">{_(
-          // Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
-          "Suggested adds the RFXN signatures and three InterServer databases to this draft. Save & Apply is still required.",
+          // Translators: Keep the button labels Suggested and Save & Apply translated, and keep RFXN and InterServer unchanged.
+          "Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.",
         )}</p>
         <p className="muted">{_(
           // Translators: Keep the URI schemes unchanged.

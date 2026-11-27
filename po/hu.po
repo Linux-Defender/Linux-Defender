@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 08:39-0500\n"
+"POT-Creation-Date: 2026-11-27 09:42-0500\n"
 "PO-Revision-Date: 2026-09-13 09:59+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Hungarian\n"
@@ -1880,12 +1880,12 @@ msgstr "A(z) {path} nem helyezhető karanténba: {error}"
 msgid "File hash mismatch — file may be corrupted"
 msgstr "A fájl kivonata nem egyezik — a fájl sérült lehet"
 
-#: crates/linux-defender-core/src/scanner.rs:441
+#: crates/linux-defender-core/src/scanner.rs:490
 msgid "No ClamAV database files were found in standard host locations"
 msgstr ""
 "Nem találhatók ClamAV-adatbázisfájlok a szokásos gazdarendszerbeli helyeken"
 
-#: crates/linux-defender-core/src/scanner.rs:512
+#: crates/linux-defender-core/src/scanner.rs:561
 msgid ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
@@ -1893,39 +1893,39 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2096
+#: crates/linux-defender-core/src/scanner.rs:2199
 msgid "Scan cancelled by user"
 msgstr "A felhasználó megszakította a vizsgálatot"
 
-#: crates/linux-defender-core/src/scanner.rs:2103
+#: crates/linux-defender-core/src/scanner.rs:2206
 msgid "No files could be scanned"
 msgstr "Egyetlen fájl sem volt megvizsgálható"
 
-#: crates/linux-defender-core/src/scanner.rs:2109
+#: crates/linux-defender-core/src/scanner.rs:2212
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "A vizsgálati cél nem létezik, vagy érvénytelen NUL bájtot tartalmaz"
 
-#: crates/linux-defender-core/src/scanner.rs:2116
+#: crates/linux-defender-core/src/scanner.rs:2219
 msgid "Scan target is not a regular file or directory"
 msgstr "A vizsgálati cél nem szabályos fájl vagy könyvtár"
 
-#: crates/linux-defender-core/src/scanner.rs:2125
+#: crates/linux-defender-core/src/scanner.rs:2228
 msgid "Threats were detected, but details are unavailable."
 msgstr "Fenyegetéseket észleltünk, de a részletek nem érhetők el."
 
-#: crates/linux-defender-core/src/scanner.rs:2137
+#: crates/linux-defender-core/src/scanner.rs:2240
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "{count} fájl nem volt elérhető"
 msgstr[1] "{count} fájl nem volt elérhető"
 
-#: crates/linux-defender-core/src/scanner.rs:2150
+#: crates/linux-defender-core/src/scanner.rs:2253
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "{count} fájl nem volt olvasható"
 msgstr[1] "{count} fájl nem volt olvasható"
 
-#: crates/linux-defender-core/src/scanner.rs:2169
+#: crates/linux-defender-core/src/scanner.rs:2272
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -2116,7 +2116,9 @@ msgctxt "updater-custom-database-failure"
 msgid ""
 "Custom database {file} from {host} failed to update. Later custom databases "
 "may not have been attempted."
-msgstr "Custom database {file} from {host} failed to update. Later custom databases may not have been attempted."
+msgstr ""
+"Custom database {file} from {host} failed to update. Later custom databases "
+"may not have been attempted."
 
 #: crates/linux-defender-core/src/updater.rs:157
 msgid ""
@@ -2134,7 +2136,8 @@ msgstr ""
 
 #: crates/linux-defender-core/src/updater.rs:163
 msgid "Authorization failed. You are not authorized to update the database."
-msgstr "A hitelesítés sikertelen. Nincs jogosultsága az adatbázis frissítéséhez."
+msgstr ""
+"A hitelesítés sikertelen. Nincs jogosultsága az adatbázis frissítéséhez."
 
 #: crates/linux-defender-core/src/updater.rs:166
 msgid "Update rate limited by mirror. Please wait a few minutes and try again."
@@ -2155,7 +2158,9 @@ msgstr "ClamAV mirror is currently unavailable. Please try again later."
 
 #: crates/linux-defender-core/src/updater.rs:175
 msgid "SSL/TLS certificate error. The mirror may have configuration issues."
-msgstr "SSL/TLS tanúsítványhiba. Előfordulhat, hogy a tükörkiszolgáló hibásan van beállítva."
+msgstr ""
+"SSL/TLS tanúsítványhiba. Előfordulhat, hogy a tükörkiszolgáló hibásan van "
+"beállítva."
 
 #: crates/linux-defender-core/src/updater.rs:178
 msgid "Connection timed out. Please check your network connection."
@@ -2167,7 +2172,8 @@ msgstr "A hitelesítés sikertelen. Próbálja újra, és adja meg a jelszavát.
 
 #: crates/linux-defender-core/src/updater.rs:184
 msgid "Database is locked. Another freshclam instance may be running."
-msgstr "Az adatbázis zárolva van. Előfordulhat, hogy egy másik freshclam példány fut."
+msgstr ""
+"Az adatbázis zárolva van. Előfordulhat, hogy egy másik freshclam példány fut."
 
 #: crates/linux-defender-core/src/updater.rs:187
 msgid ""
@@ -2185,7 +2191,9 @@ msgstr "A DNS-feloldás sikertelen. Ellenőrizze a hálózati beállításokat."
 
 #: crates/linux-defender-core/src/updater.rs:196
 msgid "Update failed with an unknown error. Check the logs for details."
-msgstr "A frissítés ismeretlen hibával meghiúsult. A részletekért nézze meg a naplókat."
+msgstr ""
+"A frissítés ismeretlen hibával meghiúsult. A részletekért nézze meg a "
+"naplókat."
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
 #: crates/linux-defender-core/src/updater.rs:591
@@ -2397,43 +2405,43 @@ msgstr "Eszköz vizsgálata"
 msgid "Device Scan Complete"
 msgstr "Eszközvizsgálat befejezve"
 
-#: desktop/src-tauri/src/runtime.rs:205
+#: desktop/src-tauri/src/runtime.rs:208
 msgid "Quick Scan"
 msgstr "Gyors vizsgálat"
 
-#: desktop/src-tauri/src/runtime.rs:206
+#: desktop/src-tauri/src/runtime.rs:209
 msgid "Full Scan"
 msgstr "Teljes vizsgálat"
 
-#: desktop/src-tauri/src/runtime.rs:207
+#: desktop/src-tauri/src/runtime.rs:210
 msgid "Home Folder"
 msgstr "Saját mappa"
 
-#: desktop/src-tauri/src/runtime.rs:208
+#: desktop/src-tauri/src/runtime.rs:211
 msgid "Update Database"
 msgstr "Adatbázis frissítése"
 
-#: desktop/src-tauri/src/runtime.rs:209
+#: desktop/src-tauri/src/runtime.rs:212
 msgid "Scan Profile"
 msgstr "Vizsgálati profil"
 
-#: desktop/src-tauri/src/runtime.rs:210
+#: desktop/src-tauri/src/runtime.rs:213
 msgid "Quit"
 msgstr "Kilépés"
 
-#: desktop/src-tauri/src/runtime.rs:463
+#: desktop/src-tauri/src/runtime.rs:504
 msgid "Add Folders"
 msgstr "Mappák hozzáadása"
 
-#: desktop/src-tauri/src/runtime.rs:465
+#: desktop/src-tauri/src/runtime.rs:506
 msgid "Add Files"
 msgstr "Fájlok hozzáadása"
 
-#: desktop/src-tauri/src/runtime.rs:537
+#: desktop/src-tauri/src/runtime.rs:578
 msgid "Export"
 msgstr "Exportálás"
 
-#: desktop/src-tauri/src/runtime.rs:714
+#: desktop/src-tauri/src/runtime.rs:755
 msgid "Open"
 msgstr "Megnyitás"
 
@@ -3588,14 +3596,12 @@ msgstr "Egyéni aláírás-adatbázisok"
 msgid "Suggested"
 msgstr "Javasolt"
 
-#. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
+#. Translators: Keep the button labels Suggested and Save & Apply translated, and keep RFXN and InterServer unchanged.
 #: desktop/src/pages/ConfigPreferences.tsx:784
 msgid ""
-"Suggested adds the RFXN signatures and three InterServer databases to this "
-"draft. Save & Apply is still required."
-msgstr ""
-"Javasolt: az RFXN-aláírásokat és három InterServer-adatbázist ezzel a "
-"piszkozattal egyesíti. A Mentés és alkalmazás továbbra is szükséges."
+"Suggested reveals the RFXN and InterServer entries already in this draft. "
+"Remove any entry you do not want, then use Save & Apply to write the draft."
+msgstr "Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft."
 
 #. Translators: Keep the URI schemes unchanged.
 #: desktop/src/pages/ConfigPreferences.tsx:788
@@ -7026,6 +7032,13 @@ msgstr "A vírusdefiníciók több mint 1 naposak"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "A rendszer védett"
+
+#~ msgid ""
+#~ "Suggested adds the RFXN signatures and three InterServer databases to "
+#~ "this draft. Save & Apply is still required."
+#~ msgstr ""
+#~ "Javasolt: az RFXN-aláírásokat és három InterServer-adatbázist ezzel a "
+#~ "piszkozattal egyesíti. A Mentés és alkalmazás továbbra is szükséges."
 
 #~ msgid "{tool} check completed"
 #~ msgstr "A(z) {tool} ellenőrzése befejeződött"

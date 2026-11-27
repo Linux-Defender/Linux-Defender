@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 08:39-0500\n"
+"POT-Creation-Date: 2026-11-27 09:42-0500\n"
 "PO-Revision-Date: 2026-10-20 10:21+0200\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: German\n"
@@ -1902,12 +1902,12 @@ msgstr ""
 "Datei-Prüfsumme stimmt nicht überein – die Datei ist möglicherweise "
 "beschädigt"
 
-#: crates/linux-defender-core/src/scanner.rs:441
+#: crates/linux-defender-core/src/scanner.rs:490
 msgid "No ClamAV database files were found in standard host locations"
 msgstr ""
 "An den Standardorten des Hosts wurden keine ClamAV-Datenbankdateien gefunden"
 
-#: crates/linux-defender-core/src/scanner.rs:512
+#: crates/linux-defender-core/src/scanner.rs:561
 msgid ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
@@ -1915,39 +1915,39 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2096
+#: crates/linux-defender-core/src/scanner.rs:2199
 msgid "Scan cancelled by user"
 msgstr "Scan vom Benutzer abgebrochen"
 
-#: crates/linux-defender-core/src/scanner.rs:2103
+#: crates/linux-defender-core/src/scanner.rs:2206
 msgid "No files could be scanned"
 msgstr "Keine Dateien konnten gescannt werden"
 
-#: crates/linux-defender-core/src/scanner.rs:2109
+#: crates/linux-defender-core/src/scanner.rs:2212
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "Scan-Ziel existiert nicht oder enthält ein ungültiges NUL-Byte"
 
-#: crates/linux-defender-core/src/scanner.rs:2116
+#: crates/linux-defender-core/src/scanner.rs:2219
 msgid "Scan target is not a regular file or directory"
 msgstr "Scan-Ziel ist keine reguläre Datei oder kein Verzeichnis"
 
-#: crates/linux-defender-core/src/scanner.rs:2125
+#: crates/linux-defender-core/src/scanner.rs:2228
 msgid "Threats were detected, but details are unavailable."
 msgstr "Bedrohungen wurden erkannt, aber es sind keine Details verfügbar."
 
-#: crates/linux-defender-core/src/scanner.rs:2137
+#: crates/linux-defender-core/src/scanner.rs:2240
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "Auf {count} Datei konnte nicht zugegriffen werden"
 msgstr[1] "Auf {count} Dateien konnte nicht zugegriffen werden"
 
-#: crates/linux-defender-core/src/scanner.rs:2150
+#: crates/linux-defender-core/src/scanner.rs:2253
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "{count} Datei konnte nicht gelesen werden"
 msgstr[1] "{count} Dateien konnten nicht gelesen werden"
 
-#: crates/linux-defender-core/src/scanner.rs:2169
+#: crates/linux-defender-core/src/scanner.rs:2272
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -2134,7 +2134,9 @@ msgctxt "updater-custom-database-failure"
 msgid ""
 "Custom database {file} from {host} failed to update. Later custom databases "
 "may not have been attempted."
-msgstr "Custom database {file} from {host} failed to update. Later custom databases may not have been attempted."
+msgstr ""
+"Custom database {file} from {host} failed to update. Later custom databases "
+"may not have been attempted."
 
 #: crates/linux-defender-core/src/updater.rs:157
 msgid ""
@@ -2152,7 +2154,9 @@ msgstr ""
 
 #: crates/linux-defender-core/src/updater.rs:163
 msgid "Authorization failed. You are not authorized to update the database."
-msgstr "Autorisierung fehlgeschlagen. Sie sind nicht berechtigt, die Datenbank zu aktualisieren."
+msgstr ""
+"Autorisierung fehlgeschlagen. Sie sind nicht berechtigt, die Datenbank zu "
+"aktualisieren."
 
 #: crates/linux-defender-core/src/updater.rs:166
 msgid "Update rate limited by mirror. Please wait a few minutes and try again."
@@ -2173,19 +2177,26 @@ msgstr "ClamAV mirror is currently unavailable. Please try again later."
 
 #: crates/linux-defender-core/src/updater.rs:175
 msgid "SSL/TLS certificate error. The mirror may have configuration issues."
-msgstr "SSL/TLS-Zertifikatfehler. Der Mirror hat möglicherweise Konfigurationsprobleme."
+msgstr ""
+"SSL/TLS-Zertifikatfehler. Der Mirror hat möglicherweise "
+"Konfigurationsprobleme."
 
 #: crates/linux-defender-core/src/updater.rs:178
 msgid "Connection timed out. Please check your network connection."
-msgstr "Verbindung hat Zeitlimit überschritten. Bitte überprüfen Sie Ihre Netzwerkverbindung."
+msgstr ""
+"Verbindung hat Zeitlimit überschritten. Bitte überprüfen Sie Ihre "
+"Netzwerkverbindung."
 
 #: crates/linux-defender-core/src/updater.rs:181
 msgid "Authorization failed. Please try again and enter your password."
-msgstr "Autorisierung fehlgeschlagen. Bitte versuchen Sie es erneut und geben Sie Ihr Passwort ein."
+msgstr ""
+"Autorisierung fehlgeschlagen. Bitte versuchen Sie es erneut und geben Sie "
+"Ihr Passwort ein."
 
 #: crates/linux-defender-core/src/updater.rs:184
 msgid "Database is locked. Another freshclam instance may be running."
-msgstr "Datenbank ist gesperrt. Möglicherweise läuft eine andere freshclam-Instanz."
+msgstr ""
+"Datenbank ist gesperrt. Möglicherweise läuft eine andere freshclam-Instanz."
 
 #: crates/linux-defender-core/src/updater.rs:187
 msgid ""
@@ -2199,11 +2210,15 @@ msgstr "Verbindungsfehler. Bitte überprüfen Sie Ihre Netzwerkverbindung."
 
 #: crates/linux-defender-core/src/updater.rs:193
 msgid "DNS resolution failed. Please check your network settings."
-msgstr "DNS-Auflösung fehlgeschlagen. Bitte überprüfen Sie Ihre Netzwerkeinstellungen."
+msgstr ""
+"DNS-Auflösung fehlgeschlagen. Bitte überprüfen Sie Ihre "
+"Netzwerkeinstellungen."
 
 #: crates/linux-defender-core/src/updater.rs:196
 msgid "Update failed with an unknown error. Check the logs for details."
-msgstr "Aktualisierung mit unbekanntem Fehler fehlgeschlagen. Details finden Sie in den Protokollen."
+msgstr ""
+"Aktualisierung mit unbekanntem Fehler fehlgeschlagen. Details finden Sie in "
+"den Protokollen."
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
 #: crates/linux-defender-core/src/updater.rs:591
@@ -2419,43 +2434,43 @@ msgstr "Gerät wird gescannt"
 msgid "Device Scan Complete"
 msgstr "Gerätescan abgeschlossen"
 
-#: desktop/src-tauri/src/runtime.rs:205
+#: desktop/src-tauri/src/runtime.rs:208
 msgid "Quick Scan"
 msgstr "Schnellscan"
 
-#: desktop/src-tauri/src/runtime.rs:206
+#: desktop/src-tauri/src/runtime.rs:209
 msgid "Full Scan"
 msgstr "Vollständiger Scan"
 
-#: desktop/src-tauri/src/runtime.rs:207
+#: desktop/src-tauri/src/runtime.rs:210
 msgid "Home Folder"
 msgstr "Home-Verzeichnis"
 
-#: desktop/src-tauri/src/runtime.rs:208
+#: desktop/src-tauri/src/runtime.rs:211
 msgid "Update Database"
 msgstr "Datenbank aktualisieren"
 
-#: desktop/src-tauri/src/runtime.rs:209
+#: desktop/src-tauri/src/runtime.rs:212
 msgid "Scan Profile"
 msgstr "Scan-Profil"
 
-#: desktop/src-tauri/src/runtime.rs:210
+#: desktop/src-tauri/src/runtime.rs:213
 msgid "Quit"
 msgstr "Beenden"
 
-#: desktop/src-tauri/src/runtime.rs:463
+#: desktop/src-tauri/src/runtime.rs:504
 msgid "Add Folders"
 msgstr "Ordner hinzufügen"
 
-#: desktop/src-tauri/src/runtime.rs:465
+#: desktop/src-tauri/src/runtime.rs:506
 msgid "Add Files"
 msgstr "Dateien hinzufügen"
 
-#: desktop/src-tauri/src/runtime.rs:537
+#: desktop/src-tauri/src/runtime.rs:578
 msgid "Export"
 msgstr "Exportieren"
 
-#: desktop/src-tauri/src/runtime.rs:714
+#: desktop/src-tauri/src/runtime.rs:755
 msgid "Open"
 msgstr "Öffnen"
 
@@ -3614,15 +3629,12 @@ msgstr "Benutzerdefinierte Signaturdatenbanken"
 msgid "Suggested"
 msgstr "Vorgeschlagen"
 
-#. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
+#. Translators: Keep the button labels Suggested and Save & Apply translated, and keep RFXN and InterServer unchanged.
 #: desktop/src/pages/ConfigPreferences.tsx:784
 msgid ""
-"Suggested adds the RFXN signatures and three InterServer databases to this "
-"draft. Save & Apply is still required."
-msgstr ""
-"Vorgeschlagen: die RFXN-Signaturen und drei InterServer-Datenbanken werden "
-"in dieser Entwurfsliste ergänzt. Speichern und anwenden ist noch "
-"erforderlich."
+"Suggested reveals the RFXN and InterServer entries already in this draft. "
+"Remove any entry you do not want, then use Save & Apply to write the draft."
+msgstr "Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft."
 
 #. Translators: Keep the URI schemes unchanged.
 #: desktop/src/pages/ConfigPreferences.tsx:788
@@ -7076,6 +7088,14 @@ msgstr "Virendefinitionen sind älter als 1 Tag"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "System ist geschützt"
+
+#~ msgid ""
+#~ "Suggested adds the RFXN signatures and three InterServer databases to "
+#~ "this draft. Save & Apply is still required."
+#~ msgstr ""
+#~ "Vorgeschlagen: die RFXN-Signaturen und drei InterServer-Datenbanken "
+#~ "werden in dieser Entwurfsliste ergänzt. Speichern und anwenden ist noch "
+#~ "erforderlich."
 
 #~ msgid "{tool} check completed"
 #~ msgstr "{tool}-Prüfung abgeschlossen"

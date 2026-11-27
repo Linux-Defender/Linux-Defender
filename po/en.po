@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 08:39-0500\n"
+"POT-Creation-Date: 2026-11-27 09:42-0500\n"
 "PO-Revision-Date: 2026-10-20 10:21+0200\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: English\n"
@@ -1834,11 +1834,11 @@ msgstr "Cannot quarantine {path}: {error}"
 msgid "File hash mismatch — file may be corrupted"
 msgstr "File hash mismatch — file may be corrupted"
 
-#: crates/linux-defender-core/src/scanner.rs:441
+#: crates/linux-defender-core/src/scanner.rs:490
 msgid "No ClamAV database files were found in standard host locations"
 msgstr "No ClamAV database files were found in standard host locations"
 
-#: crates/linux-defender-core/src/scanner.rs:512
+#: crates/linux-defender-core/src/scanner.rs:561
 msgid ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
@@ -1846,39 +1846,39 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2096
+#: crates/linux-defender-core/src/scanner.rs:2199
 msgid "Scan cancelled by user"
 msgstr "Scan cancelled by user"
 
-#: crates/linux-defender-core/src/scanner.rs:2103
+#: crates/linux-defender-core/src/scanner.rs:2206
 msgid "No files could be scanned"
 msgstr "No files could be scanned"
 
-#: crates/linux-defender-core/src/scanner.rs:2109
+#: crates/linux-defender-core/src/scanner.rs:2212
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "Scan target does not exist or contains an invalid NUL byte"
 
-#: crates/linux-defender-core/src/scanner.rs:2116
+#: crates/linux-defender-core/src/scanner.rs:2219
 msgid "Scan target is not a regular file or directory"
 msgstr "Scan target is not a regular file or directory"
 
-#: crates/linux-defender-core/src/scanner.rs:2125
+#: crates/linux-defender-core/src/scanner.rs:2228
 msgid "Threats were detected, but details are unavailable."
 msgstr "Threats were detected, but details are unavailable."
 
-#: crates/linux-defender-core/src/scanner.rs:2137
+#: crates/linux-defender-core/src/scanner.rs:2240
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "{count} file could not be accessed"
 msgstr[1] "{count} files could not be accessed"
 
-#: crates/linux-defender-core/src/scanner.rs:2150
+#: crates/linux-defender-core/src/scanner.rs:2253
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "{count} file could not be read"
 msgstr[1] "{count} files could not be read"
 
-#: crates/linux-defender-core/src/scanner.rs:2169
+#: crates/linux-defender-core/src/scanner.rs:2272
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -2059,7 +2059,9 @@ msgctxt "updater-custom-database-failure"
 msgid ""
 "Custom database {file} from {host} failed to update. Later custom databases "
 "may not have been attempted."
-msgstr "Custom database {file} from {host} failed to update. Later custom databases may not have been attempted."
+msgstr ""
+"Custom database {file} from {host} failed to update. Later custom databases "
+"may not have been attempted."
 
 #: crates/linux-defender-core/src/updater.rs:157
 msgid ""
@@ -2340,43 +2342,43 @@ msgstr "Scanning Device"
 msgid "Device Scan Complete"
 msgstr "Device Scan Complete"
 
-#: desktop/src-tauri/src/runtime.rs:205
+#: desktop/src-tauri/src/runtime.rs:208
 msgid "Quick Scan"
 msgstr "Quick Scan"
 
-#: desktop/src-tauri/src/runtime.rs:206
+#: desktop/src-tauri/src/runtime.rs:209
 msgid "Full Scan"
 msgstr "Full Scan"
 
-#: desktop/src-tauri/src/runtime.rs:207
+#: desktop/src-tauri/src/runtime.rs:210
 msgid "Home Folder"
 msgstr "Home Folder"
 
-#: desktop/src-tauri/src/runtime.rs:208
+#: desktop/src-tauri/src/runtime.rs:211
 msgid "Update Database"
 msgstr "Update Database"
 
-#: desktop/src-tauri/src/runtime.rs:209
+#: desktop/src-tauri/src/runtime.rs:212
 msgid "Scan Profile"
 msgstr "Scan Profile"
 
-#: desktop/src-tauri/src/runtime.rs:210
+#: desktop/src-tauri/src/runtime.rs:213
 msgid "Quit"
 msgstr "Quit"
 
-#: desktop/src-tauri/src/runtime.rs:463
+#: desktop/src-tauri/src/runtime.rs:504
 msgid "Add Folders"
 msgstr "Add Folders"
 
-#: desktop/src-tauri/src/runtime.rs:465
+#: desktop/src-tauri/src/runtime.rs:506
 msgid "Add Files"
 msgstr "Add Files"
 
-#: desktop/src-tauri/src/runtime.rs:537
+#: desktop/src-tauri/src/runtime.rs:578
 msgid "Export"
 msgstr "Export"
 
-#: desktop/src-tauri/src/runtime.rs:714
+#: desktop/src-tauri/src/runtime.rs:755
 msgid "Open"
 msgstr "Open"
 
@@ -3517,14 +3519,12 @@ msgstr "Custom Signature Databases"
 msgid "Suggested"
 msgstr "Suggested"
 
-#. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
+#. Translators: Keep the button labels Suggested and Save & Apply translated, and keep RFXN and InterServer unchanged.
 #: desktop/src/pages/ConfigPreferences.tsx:784
 msgid ""
-"Suggested adds the RFXN signatures and three InterServer databases to this "
-"draft. Save & Apply is still required."
-msgstr ""
-"Suggested adds the RFXN signatures and three InterServer databases to this "
-"draft. Save & Apply is still required."
+"Suggested reveals the RFXN and InterServer entries already in this draft. "
+"Remove any entry you do not want, then use Save & Apply to write the draft."
+msgstr "Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft."
 
 #. Translators: Keep the URI schemes unchanged.
 #: desktop/src/pages/ConfigPreferences.tsx:788
@@ -6921,6 +6921,13 @@ msgstr "Virus definitions are over 1 day old"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "System is protected"
+
+#~ msgid ""
+#~ "Suggested adds the RFXN signatures and three InterServer databases to "
+#~ "this draft. Save & Apply is still required."
+#~ msgstr ""
+#~ "Suggested adds the RFXN signatures and three InterServer databases to "
+#~ "this draft. Save & Apply is still required."
 
 #~ msgid "{tool} check completed"
 #~ msgstr "{tool} check completed"
