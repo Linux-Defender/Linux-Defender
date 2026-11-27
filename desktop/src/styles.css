@@ -2607,3 +2607,10 @@ pre.notice {
 }
 
 .compact-list > li { min-width: 0; overflow-wrap: anywhere; }
+
+/* Provider URL rows must span the form grid so long URLs wrap as whole
+   lines and the Remove buttons cannot be squeezed. */
+.url-list { grid-column: 1 / -1; width: 100%; }
+.url-list .row { min-height: 0; gap: 12px; }
+.url-list .row > code { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.url-list .row > .button { flex: 0 0 auto; white-space: nowrap; }

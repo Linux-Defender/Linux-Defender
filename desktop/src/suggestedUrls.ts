@@ -1,5 +1,6 @@
-/** All provider feeds (URLhaus included) are added to the draft config by
- * default. Suggested only reveals or hides their rows; it never removes data. */
+/** Provider feeds are added to the draft once, idempotently. Suggested only
+ * reveals or hides their rows; it never changes data. Pure helpers make the
+ * no-duplicate / no-repeated-toast rules regression-tested. */
 export const SUGGESTED_SIGNATURE_URLS = [
   "https://www.rfxn.com/downloads/rfxn.hdb",
   "https://www.rfxn.com/downloads/rfxn.ndb",
@@ -18,12 +19,22 @@ export function isProviderUrl(url: string): boolean {
     || (SUGGESTED_SIGNATURE_URLS as readonly string[]).includes(url);
 }
 
-export function addSuggestedUrls(current: readonly string[]): string[] {
-  const merged = [...current];
-  for (const url of SUGGESTED_SIGNATURE_URLS) {
-    if (!merged.includes(url)) merged.push(url);
+/** Ensure every provider is present exactly once. Returns changed=false when
+ * nothing was added, so the UI never shows a redundant Save & Apply toast. */
+export function ensureProviderUrls(
+  current: readonly string[],
+  urlhausUrl: string,
+): { values: string[]; changed: boolean } {
+  const values: string[] = [];
+  for (const url of [...current, urlhausUrl, ...SUGGESTED_SIGNATURE_URLS]) {
+    if (!values.includes(url)) values.push(url);
   }
-  return merged;
+  const normalized = [...new Set(current)];
+  return {
+    values,
+    changed: normalized.length !== values.length
+      || normalized.some((url, index) => url !== values[index]),
+  };
 }
 
 /** Nothing provider-related is visible by default; Suggested reveals all. */

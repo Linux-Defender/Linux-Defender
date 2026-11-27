@@ -3,7 +3,7 @@ import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } fro
 import { notify, openExternal, openPaths, request } from "../api";
 import { type ManualConfiguration, useConfigurationRecovery } from "../ConfigurationRecovery";
 import { cloneValues, mergeAuthorizedConfig } from "../configAuthorize";
-import { addSuggestedUrls, visibleCustomUrls } from "../suggestedUrls";
+import { ensureProviderUrls, visibleCustomUrls } from "../suggestedUrls";
 import { isHelperTrustError } from "../helperTrustError";
 import { _ } from "../i18n";
 import { addNewestFirst, parseListDraft } from "../pathList";
@@ -297,7 +297,7 @@ function StringListField({ label, field, values, onChange, placeholder }: {
       }} />
       <button className="button" type="button" onClick={add}>{_("Add")}</button>
     </div>
-    {values.length > 0 && <ul className="table">
+    {values.length > 0 && <ul className="table url-list">
       {values.map((item) => <li className="row setting-row" key={item}>
         <code className="monospace">{item}</code>
         <button className="button danger" type="button" onClick={() => onChange(values.filter((valueItem) => valueItem !== item))}>{_("Remove")}</button>
@@ -344,7 +344,7 @@ function CustomUrlListField({ values, onChange, showSuggested }: { values: strin
     <label className="field field-control" htmlFor="config-databasecustomurl">{_("Add URLs")}</label>
     <textarea id="config-databasecustomurl" value={draft} rows={3} placeholder={"DatabaseCustomURL https://example.invalid/signatures.ndb"} onChange={(event) => setDraft(event.target.value)} />
     <div className="toolbar actions"><button className="button" type="button" onClick={add}>{_("Add")}</button></div>
-    {visible.length > 0 && <ul className="table">
+    {visible.length > 0 && <ul className="table url-list">
       {visible.map((item) => <li className="row setting-row" key={item}>
         <code className="monospace">{displayCustomUrl(item)}</code>
         <button className="button danger" type="button" onClick={() => onChange(values.filter((valueItem) => valueItem !== item))}>{_("Remove")}</button>
@@ -542,12 +542,11 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const autoAddedPaths = useRef(new Set<string>());
   useEffect(() => {
     if (!freshclam || !urlhausFeedUrl || autoAddedPaths.current.has(freshclam.path)) return;
+    const current = freshclam.values.DatabaseCustomURL ?? [];
+    const ensured = ensureProviderUrls(current, urlhausFeedUrl);
     autoAddedPaths.current.add(freshclam.path);
-    updateConfig("freshclam", (values) => valuesForMany(
-      values,
-      "DatabaseCustomURL",
-      addSuggestedUrls([...(values.DatabaseCustomURL ?? []), urlhausFeedUrl]),
-    ));
+    if (!ensured.changed) return;
+    updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", ensured.values));
     // Translators: Save & Apply is a button label; use its translation.
     notify(_("URLhaus feed added to the draft. Save & Apply to write it."), "success");
   }, [freshclam?.path, urlhausFeedUrl, updateConfig]);
