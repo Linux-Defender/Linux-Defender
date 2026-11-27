@@ -102,11 +102,11 @@ msgstr "Scheduled scans are enabled"
 
 #: crates/linux-defender-core/src/audit.rs:551
 msgid "Scheduled scans are not enabled"
-msgstr "Scheduled scans are not enabled"
+msgstr "Los análisis programados no están activados"
 
 #: crates/linux-defender-core/src/audit.rs:553
 msgid "Enable scheduled scans in Preferences → Schedule"
-msgstr "Enable scheduled scans in Preferences → Schedule"
+msgstr "Active los análisis programados en Preferencias → Programación"
 
 #: crates/linux-defender-core/src/audit.rs:561
 msgid "No scheduling backend is available on this system"
@@ -647,7 +647,7 @@ msgstr "Active UFW o Firewalld para proteger el sistema."
 
 #: crates/linux-defender-core/src/audit/firewall.rs:813
 msgid "The active firewall manager could not be verified."
-msgstr "The active firewall manager could not be verified."
+msgstr "No se pudo verificar el gestor de cortafuegos activo."
 
 #: crates/linux-defender-core/src/audit/firewall.rs:829
 msgid "Gufw"
@@ -742,7 +742,7 @@ msgstr ""
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:206
 msgid "OpenSnitch system service status could not be determined."
-msgstr "OpenSnitch system service status could not be determined."
+msgstr "No se pudo determinar el estado del servicio de sistema de OpenSnitch."
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:216
@@ -769,7 +769,7 @@ msgstr ""
 #: crates/linux-defender-core/src/audit/opensnitch.rs:228
 #: crates/linux-defender-core/src/audit/opensnitch.rs:257
 msgid "OpenSnitch graphical interface availability could not be determined."
-msgstr "OpenSnitch graphical interface availability could not be determined."
+msgstr "No se pudo determinar la disponibilidad de la interfaz gráfica de OpenSnitch."
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:236
@@ -784,7 +784,7 @@ msgstr "La interfaz gráfica de OpenSnitch no está disponible."
 #. Translators: Keep the product name OpenSnitch and the {error} placeholder unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:271
 msgid "Could not launch OpenSnitch graphical interface: {error}"
-msgstr "Could not launch OpenSnitch graphical interface: {error}"
+msgstr "No se pudo iniciar la interfaz gráfica de OpenSnitch: {error}"
 
 #: crates/linux-defender-core/src/cli.rs:72
 #: crates/linux-defender-core/src/cli.rs:266
@@ -3811,7 +3811,7 @@ msgstr "Denegar en caso de error"
 
 #: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "Block file access if scanning fails or encounters an error."
-msgstr "Block file access if scanning fails or encounters an error."
+msgstr "Bloquear el acceso a los archivos si el análisis falla o encuentra un error."
 
 #: desktop/src/pages/ConfigPreferences.tsx:873
 msgid "Disable DDD"
@@ -6076,7 +6076,7 @@ msgstr ""
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid "Update inactivity timeout (minutes)"
-msgstr "Update inactivity timeout (minutes)"
+msgstr "Tiempo límite de inactividad de actualización (minutos)"
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid ""

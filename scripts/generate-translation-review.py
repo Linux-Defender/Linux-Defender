@@ -55,7 +55,10 @@ def generate() -> str:
         "`check-translations.sh`, `msgfmt -c`, `msgcmp`) passes for all active",
         "catalogs. This report lists long English strings that are still identical",
         "in a non-English catalog. Some are legitimate protected literals; a human",
-        "translator decides. No machine translation is applied.",
+        "translator decides. No machine translation is applied by this script. "
+        "Where an msgid matches an upstream MIT ClamUI catalog exactly, the human "
+        "translation from that catalog is adopted and recorded in the audit ledger; "
+        "the remaining candidates are new Linux Defender strings with no upstream source.",
         "",
         "| Locale | msgfmt statistics | Long identical strings |",
         "| --- | --- | ---: |",

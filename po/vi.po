@@ -123,11 +123,11 @@ msgstr "Scheduled scans are enabled"
 
 #: crates/linux-defender-core/src/audit.rs:551
 msgid "Scheduled scans are not enabled"
-msgstr "Scheduled scans are not enabled"
+msgstr "Quét theo lịch chưa được bật"
 
 #: crates/linux-defender-core/src/audit.rs:553
 msgid "Enable scheduled scans in Preferences → Schedule"
-msgstr "Enable scheduled scans in Preferences → Schedule"
+msgstr "Hãy bật quét theo lịch trong Tùy chọn → Lịch quét"
 
 #: crates/linux-defender-core/src/audit.rs:561
 msgid "No scheduling backend is available on this system"
@@ -655,7 +655,7 @@ msgstr "Bật UFW hoặc Firewalld để bảo vệ hệ thống."
 
 #: crates/linux-defender-core/src/audit/firewall.rs:813
 msgid "The active firewall manager could not be verified."
-msgstr "The active firewall manager could not be verified."
+msgstr "Không thể xác minh trình quản lý tường lửa đang hoạt động."
 
 #: crates/linux-defender-core/src/audit/firewall.rs:829
 msgid "Gufw"
@@ -750,7 +750,7 @@ msgstr ""
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:206
 msgid "OpenSnitch system service status could not be determined."
-msgstr "OpenSnitch system service status could not be determined."
+msgstr "Không thể xác định trạng thái dịch vụ hệ thống OpenSnitch."
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:216
@@ -776,7 +776,7 @@ msgstr ""
 #: crates/linux-defender-core/src/audit/opensnitch.rs:228
 #: crates/linux-defender-core/src/audit/opensnitch.rs:257
 msgid "OpenSnitch graphical interface availability could not be determined."
-msgstr "OpenSnitch graphical interface availability could not be determined."
+msgstr "Không thể xác định giao diện đồ họa OpenSnitch có khả dụng hay không."
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:236
@@ -791,7 +791,7 @@ msgstr "Giao diện đồ họa OpenSnitch không có sẵn."
 #. Translators: Keep the product name OpenSnitch and the {error} placeholder unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:271
 msgid "Could not launch OpenSnitch graphical interface: {error}"
-msgstr "Could not launch OpenSnitch graphical interface: {error}"
+msgstr "Không thể khởi chạy giao diện đồ họa OpenSnitch: {error}"
 
 #: crates/linux-defender-core/src/cli.rs:72
 #: crates/linux-defender-core/src/cli.rs:266
@@ -3747,7 +3747,7 @@ msgstr "Chặn truy cập khi gặp lỗi"
 
 #: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "Block file access if scanning fails or encounters an error."
-msgstr "Block file access if scanning fails or encounters an error."
+msgstr "Chặn quyền truy cập tệp nếu quá trình quét thất bại hoặc gặp lỗi."
 
 #: desktop/src/pages/ConfigPreferences.tsx:873
 msgid "Disable DDD"
@@ -5959,7 +5959,7 @@ msgstr "Cho phép thông báo về quét, cập nhật, thiết bị và VirusTo
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid "Update inactivity timeout (minutes)"
-msgstr "Thời gian chờ cập nhật (phút)"
+msgstr "Thời gian chờ khi cập nhật không hoạt động (phút)"
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid ""

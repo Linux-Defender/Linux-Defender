@@ -96,11 +96,11 @@ msgstr "Scheduled scans are enabled"
 
 #: crates/linux-defender-core/src/audit.rs:551
 msgid "Scheduled scans are not enabled"
-msgstr "Scheduled scans are not enabled"
+msgstr "Geplante Scans sind nicht aktiviert"
 
 #: crates/linux-defender-core/src/audit.rs:553
 msgid "Enable scheduled scans in Preferences → Schedule"
-msgstr "Geplante Scans in Einstellungen → Zeitplan aktivieren"
+msgstr "Aktivieren Sie geplante Scans unter Einstellungen → Zeitplan"
 
 #: crates/linux-defender-core/src/audit.rs:561
 msgid "No scheduling backend is available on this system"
@@ -641,7 +641,7 @@ msgstr "Aktivieren Sie UFW oder Firewalld, um das System zu schützen."
 
 #: crates/linux-defender-core/src/audit/firewall.rs:813
 msgid "The active firewall manager could not be verified."
-msgstr "Der aktive Firewall-Manager konnte nicht überprüft werden."
+msgstr "Der aktive Firewall-Manager konnte nicht ermittelt werden."
 
 #: crates/linux-defender-core/src/audit/firewall.rs:829
 msgid "Gufw"
@@ -736,7 +736,7 @@ msgstr ""
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:206
 msgid "OpenSnitch system service status could not be determined."
-msgstr "OpenSnitch system service status could not be determined."
+msgstr "Der Status des OpenSnitch-Systemdienstes konnte nicht ermittelt werden."
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:216
@@ -761,7 +761,7 @@ msgstr "Kein Startziel für die grafische OpenSnitch-Oberfläche lokal erkannt."
 #: crates/linux-defender-core/src/audit/opensnitch.rs:228
 #: crates/linux-defender-core/src/audit/opensnitch.rs:257
 msgid "OpenSnitch graphical interface availability could not be determined."
-msgstr "OpenSnitch graphical interface availability could not be determined."
+msgstr "Die Verfügbarkeit der grafischen Oberfläche von OpenSnitch konnte nicht ermittelt werden."
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:236
@@ -776,7 +776,7 @@ msgstr "Die grafische OpenSnitch-Oberfläche ist nicht verfügbar."
 #. Translators: Keep the product name OpenSnitch and the {error} placeholder unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:271
 msgid "Could not launch OpenSnitch graphical interface: {error}"
-msgstr "Could not launch OpenSnitch graphical interface: {error}"
+msgstr "Die grafische Oberfläche von OpenSnitch konnte nicht gestartet werden: {error}"
 
 #: crates/linux-defender-core/src/cli.rs:72
 #: crates/linux-defender-core/src/cli.rs:266
@@ -3818,7 +3818,7 @@ msgstr "Bei Fehler verweigern"
 
 #: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "Block file access if scanning fails or encounters an error."
-msgstr "Block file access if scanning fails or encounters an error."
+msgstr "Dateizugriff blockieren, wenn der Scan fehlschlägt oder ein Fehler auftritt."
 
 #: desktop/src/pages/ConfigPreferences.tsx:873
 msgid "Disable DDD"
@@ -6091,7 +6091,7 @@ msgstr ""
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid "Update inactivity timeout (minutes)"
-msgstr "Update inactivity timeout (minutes)"
+msgstr "Zeitlimit für Inaktivität bei Aktualisierungen (Minuten)"
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid ""

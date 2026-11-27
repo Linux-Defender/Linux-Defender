@@ -95,11 +95,11 @@ msgstr "Scheduled scans are enabled"
 
 #: crates/linux-defender-core/src/audit.rs:551
 msgid "Scheduled scans are not enabled"
-msgstr "Scheduled scans are not enabled"
+msgstr "尚未启用定时扫描"
 
 #: crates/linux-defender-core/src/audit.rs:553
 msgid "Enable scheduled scans in Preferences → Schedule"
-msgstr "Enable scheduled scans in Preferences → Schedule"
+msgstr "请在“首选项 → 计划”中启用定时扫描"
 
 #: crates/linux-defender-core/src/audit.rs:561
 msgid "No scheduling backend is available on this system"
@@ -602,7 +602,7 @@ msgstr "启用 UFW 或 Firewalld 以保护系统。"
 
 #: crates/linux-defender-core/src/audit/firewall.rs:813
 msgid "The active firewall manager could not be verified."
-msgstr "The active firewall manager could not be verified."
+msgstr "无法验证当前活动的防火墙管理程序。"
 
 #: crates/linux-defender-core/src/audit/firewall.rs:829
 msgid "Gufw"
@@ -689,7 +689,7 @@ msgstr ""
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:206
 msgid "OpenSnitch system service status could not be determined."
-msgstr "OpenSnitch system service status could not be determined."
+msgstr "无法确定 OpenSnitch 系统服务的状态。"
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:216
@@ -714,7 +714,7 @@ msgstr "未检测到本地 OpenSnitch 图形界面启动目标。"
 #: crates/linux-defender-core/src/audit/opensnitch.rs:228
 #: crates/linux-defender-core/src/audit/opensnitch.rs:257
 msgid "OpenSnitch graphical interface availability could not be determined."
-msgstr "OpenSnitch graphical interface availability could not be determined."
+msgstr "无法确定 OpenSnitch 图形界面是否可用。"
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:236
@@ -729,7 +729,7 @@ msgstr "OpenSnitch 图形界面不可用。"
 #. Translators: Keep the product name OpenSnitch and the {error} placeholder unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:271
 msgid "Could not launch OpenSnitch graphical interface: {error}"
-msgstr "Could not launch OpenSnitch graphical interface: {error}"
+msgstr "无法启动 OpenSnitch 图形界面：{error}"
 
 #: crates/linux-defender-core/src/cli.rs:72
 #: crates/linux-defender-core/src/cli.rs:266
@@ -3629,7 +3629,7 @@ msgstr "出错时拒绝访问"
 
 #: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "Block file access if scanning fails or encounters an error."
-msgstr "Block file access if scanning fails or encounters an error."
+msgstr "如果扫描失败或遇到错误，则阻止文件访问。"
 
 #: desktop/src/pages/ConfigPreferences.tsx:873
 msgid "Disable DDD"
@@ -5810,7 +5810,7 @@ msgstr "允许发送扫描、更新、设备和 VirusTotal 通知。"
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid "Update inactivity timeout (minutes)"
-msgstr "Update inactivity timeout (minutes)"
+msgstr "更新无输出超时（分钟）"
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid ""

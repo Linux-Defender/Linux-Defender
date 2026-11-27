@@ -6,30 +6,28 @@ Automated validation (`update-pot.sh --check`, `check-potfiles.sh`,
 `check-translations.sh`, `msgfmt -c`, `msgcmp`) passes for all active
 catalogs. This report lists long English strings that are still identical
 in a non-English catalog. Some are legitimate protected literals; a human
-translator decides. No machine translation is applied.
+translator decides. No machine translation is applied by this script. Where an msgid matches an upstream MIT ClamUI catalog exactly, the human translation from that catalog is adopted and recorded in the audit ledger; the remaining candidates are new Linux Defender strings with no upstream source.
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1469 translated messages. | 37 |
+| de | 1469 translated messages. | 31 |
 | en | 1469 translated messages. | baseline |
-| es | 1469 translated messages. | 40 |
-| fr | 1469 translated messages. | 40 |
-| hu | 1469 translated messages. | 40 |
-| it | 1469 translated messages. | 40 |
-| nb | 1469 translated messages. | 40 |
-| pt_BR | 1469 translated messages. | 40 |
-| vi | 1469 translated messages. | 39 |
-| zh_CN | 1469 translated messages. | 40 |
+| es | 1469 translated messages. | 32 |
+| fr | 1469 translated messages. | 32 |
+| hu | 1469 translated messages. | 32 |
+| it | 1469 translated messages. | 32 |
+| nb | 1469 translated messages. | 32 |
+| pt_BR | 1469 translated messages. | 32 |
+| vi | 1469 translated messages. | 32 |
+| zh_CN | 1469 translated messages. | 32 |
 
 ## de
 
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
-- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
-- `Could not launch OpenSnitch graphical interface: {error}`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
 - `Failed to create {path}: {error}`
@@ -42,12 +40,9 @@ translator decides. No machine translation is applied.
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
-- `OpenSnitch graphical interface availability could not be determined.`
-- `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
@@ -55,7 +50,6 @@ translator decides. No machine translation is applied.
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
-- `Update inactivity timeout (minutes)`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
@@ -66,13 +60,10 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
-- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
-- `Could not launch OpenSnitch graphical interface: {error}`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
-- `Enable scheduled scans in Preferences → Schedule`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -83,21 +74,16 @@ translator decides. No machine translation is applied.
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
-- `OpenSnitch graphical interface availability could not be determined.`
-- `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Scheduled scans are not enabled`
 - `Submit a website for inspection`
-- `The active firewall manager could not be verified.`
 - `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
-- `Update inactivity timeout (minutes)`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -109,13 +95,10 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
-- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
-- `Could not launch OpenSnitch graphical interface: {error}`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
-- `Enable scheduled scans in Preferences → Schedule`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -126,21 +109,16 @@ translator decides. No machine translation is applied.
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
-- `OpenSnitch graphical interface availability could not be determined.`
-- `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Scheduled scans are not enabled`
 - `Submit a website for inspection`
-- `The active firewall manager could not be verified.`
 - `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
-- `Update inactivity timeout (minutes)`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -152,13 +130,10 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
-- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
-- `Could not launch OpenSnitch graphical interface: {error}`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
-- `Enable scheduled scans in Preferences → Schedule`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -169,21 +144,16 @@ translator decides. No machine translation is applied.
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
-- `OpenSnitch graphical interface availability could not be determined.`
-- `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Scheduled scans are not enabled`
 - `Submit a website for inspection`
-- `The active firewall manager could not be verified.`
 - `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
-- `Update inactivity timeout (minutes)`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -195,13 +165,10 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
-- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
-- `Could not launch OpenSnitch graphical interface: {error}`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
-- `Enable scheduled scans in Preferences → Schedule`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -212,21 +179,16 @@ translator decides. No machine translation is applied.
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
-- `OpenSnitch graphical interface availability could not be determined.`
-- `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Scheduled scans are not enabled`
 - `Submit a website for inspection`
-- `The active firewall manager could not be verified.`
 - `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
-- `Update inactivity timeout (minutes)`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -238,13 +200,10 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
-- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
-- `Could not launch OpenSnitch graphical interface: {error}`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
-- `Enable scheduled scans in Preferences → Schedule`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -255,21 +214,16 @@ translator decides. No machine translation is applied.
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
-- `OpenSnitch graphical interface availability could not be determined.`
-- `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Scheduled scans are not enabled`
 - `Submit a website for inspection`
-- `The active firewall manager could not be verified.`
 - `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
-- `Update inactivity timeout (minutes)`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -281,13 +235,10 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
-- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
-- `Could not launch OpenSnitch graphical interface: {error}`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
-- `Enable scheduled scans in Preferences → Schedule`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -298,21 +249,16 @@ translator decides. No machine translation is applied.
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
-- `OpenSnitch graphical interface availability could not be determined.`
-- `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Scheduled scans are not enabled`
 - `Submit a website for inspection`
-- `The active firewall manager could not be verified.`
 - `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
-- `Update inactivity timeout (minutes)`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -324,13 +270,10 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
-- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
-- `Could not launch OpenSnitch graphical interface: {error}`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
-- `Enable scheduled scans in Preferences → Schedule`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -341,14 +284,10 @@ translator decides. No machine translation is applied.
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
-- `OpenSnitch graphical interface availability could not be determined.`
-- `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Scheduled scans are not enabled`
 - `Submit a website for inspection`
-- `The active firewall manager could not be verified.`
 - `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
@@ -366,13 +305,10 @@ translator decides. No machine translation is applied.
 - `Analysis complete — no detections reported`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
-- `Block file access if scanning fails or encounters an error.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
-- `Could not launch OpenSnitch graphical interface: {error}`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
-- `Enable scheduled scans in Preferences → Schedule`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -383,21 +319,16 @@ translator decides. No machine translation is applied.
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
-- `OpenSnitch graphical interface availability could not be determined.`
-- `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Scheduled scans are not enabled`
 - `Submit a website for inspection`
-- `The active firewall manager could not be verified.`
 - `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
-- `Update inactivity timeout (minutes)`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`

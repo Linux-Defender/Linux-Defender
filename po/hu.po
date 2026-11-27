@@ -97,11 +97,11 @@ msgstr "Scheduled scans are enabled"
 
 #: crates/linux-defender-core/src/audit.rs:551
 msgid "Scheduled scans are not enabled"
-msgstr "Scheduled scans are not enabled"
+msgstr "Az ütemezett vizsgálatok nincsenek engedélyezve"
 
 #: crates/linux-defender-core/src/audit.rs:553
 msgid "Enable scheduled scans in Preferences → Schedule"
-msgstr "Enable scheduled scans in Preferences → Schedule"
+msgstr "Engedélyezze az ütemezett vizsgálatokat itt: Beállítások → Ütemezés"
 
 #: crates/linux-defender-core/src/audit.rs:561
 msgid "No scheduling backend is available on this system"
@@ -636,7 +636,7 @@ msgstr "Engedélyezze az UFW-t vagy Firewalld-t a rendszer védelméhez."
 
 #: crates/linux-defender-core/src/audit/firewall.rs:813
 msgid "The active firewall manager could not be verified."
-msgstr "The active firewall manager could not be verified."
+msgstr "Az aktív tűzfalkezelő nem ellenőrizhető."
 
 #: crates/linux-defender-core/src/audit/firewall.rs:829
 msgid "Gufw"
@@ -729,7 +729,7 @@ msgstr ""
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:206
 msgid "OpenSnitch system service status could not be determined."
-msgstr "OpenSnitch system service status could not be determined."
+msgstr "Az OpenSnitch rendszerszolgáltatás állapotát nem sikerült megállapítani."
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:216
@@ -754,7 +754,7 @@ msgstr "Nem található helyi OpenSnitch grafikus felület indítási cél."
 #: crates/linux-defender-core/src/audit/opensnitch.rs:228
 #: crates/linux-defender-core/src/audit/opensnitch.rs:257
 msgid "OpenSnitch graphical interface availability could not be determined."
-msgstr "OpenSnitch graphical interface availability could not be determined."
+msgstr "Nem sikerült megállapítani, hogy az OpenSnitch grafikus felülete elérhető-e."
 
 #. Translators: Keep the product name OpenSnitch unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:236
@@ -769,7 +769,7 @@ msgstr "Az OpenSnitch grafikus felület nem elérhető."
 #. Translators: Keep the product name OpenSnitch and the {error} placeholder unchanged.
 #: crates/linux-defender-core/src/audit/opensnitch.rs:271
 msgid "Could not launch OpenSnitch graphical interface: {error}"
-msgstr "Could not launch OpenSnitch graphical interface: {error}"
+msgstr "Az OpenSnitch grafikus felületét nem sikerült elindítani: {error}"
 
 #: crates/linux-defender-core/src/cli.rs:72
 #: crates/linux-defender-core/src/cli.rs:266
@@ -3789,7 +3789,7 @@ msgstr "Hiba esetén tiltás"
 
 #: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "Block file access if scanning fails or encounters an error."
-msgstr "Block file access if scanning fails or encounters an error."
+msgstr "Fájlhozzáférés blokkolása, ha a vizsgálat sikertelen vagy hibába ütközik."
 
 #: desktop/src/pages/ConfigPreferences.tsx:873
 msgid "Disable DDD"
@@ -6044,7 +6044,7 @@ msgstr ""
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid "Update inactivity timeout (minutes)"
-msgstr "Update inactivity timeout (minutes)"
+msgstr "Frissítés tétlenségi időkorlátja (perc)"
 
 #: desktop/src/pages/SettingsPreferences.tsx:284
 msgid ""
