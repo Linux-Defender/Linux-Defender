@@ -5,13 +5,13 @@ use crate::scan_parser::{detection, wire_path, BackendEvidence, StreamEvidence};
 use crate::AppResult;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
-use std::collections::{BTreeMap, HashSet};
+use std::collections::{BTreeMap, HashMap, HashSet};
 #[cfg(test)]
 use std::ffi::OsStr;
 use std::fs::{self, File, OpenOptions};
 use std::io::{BufReader, Read, Write};
 use std::os::unix::ffi::{OsStrExt, OsStringExt};
-use std::os::unix::fs::OpenOptionsExt;
+use std::os::unix::fs::{MetadataExt, OpenOptionsExt};
 use std::os::unix::process::CommandExt;
 use std::path::{Path, PathBuf};
 use std::process::{Child, Stdio};
@@ -209,6 +209,55 @@ struct TargetCount {
     files: u64,
     directories: u64,
     file_paths: Vec<PathBuf>,
+    /// Files on FUSE mounts, which clamd cannot inspect through a passed
+    /// descriptor; they are scanned in a separate `--stream` phase.
+    stream_paths: Vec<PathBuf>,
+    fuse: FuseDetector,
+}
+
+const FUSE_SUPER_MAGIC: u64 = 0x6573_5546;
+
+fn is_fuse_magic(f_type: u64) -> bool {
+    f_type == FUSE_SUPER_MAGIC
+}
+
+/// `statfs` probe for a single path. Filesystems are remembered per `st_dev`
+/// by `FuseDetector` so large trees cost one probe per mount.
+fn statfs_is_fuse(path: &Path) -> bool {
+    let Ok(c_path) = std::ffi::CString::new(path.as_os_str().as_bytes()) else {
+        return false;
+    };
+    let mut buffer = std::mem::MaybeUninit::<libc::statfs>::zeroed();
+    // SAFETY: c_path is NUL-terminated and buffer is writable; it is read only
+    // after the call reports success.
+    if unsafe { libc::statfs(c_path.as_ptr(), buffer.as_mut_ptr()) } != 0 {
+        return false;
+    }
+    // SAFETY: statfs returned 0, so the buffer is initialised.
+    let buffer = unsafe { buffer.assume_init() };
+    #[allow(clippy::unnecessary_cast, clippy::cast_sign_loss)]
+    let f_type = buffer.f_type as u64;
+    is_fuse_magic(f_type)
+}
+
+#[derive(Default)]
+struct FuseDetector {
+    devices: HashMap<u64, bool>,
+    /// Injected probe for tests; no real FUSE mount is needed.
+    probe: Option<fn(&Path) -> bool>,
+}
+
+impl FuseDetector {
+    fn is_fuse(&mut self, path: &Path) -> bool {
+        let Ok(metadata) = fs::metadata(path) else {
+            return false;
+        };
+        let probe = self.probe.unwrap_or(statfs_is_fuse);
+        *self
+            .devices
+            .entry(metadata.dev())
+            .or_insert_with(|| probe(path))
+    }
 }
 
 #[derive(Clone, Copy)]
@@ -718,6 +767,20 @@ fn finalize_clamscan(raw_path: &str, output: CapturedOutput, scanned_files: u64)
     result
 }
 
+/// Replace only the descriptor-passing flag. `force_stream` already emits
+/// `--stream`, so this is a no-op in that mode and both flags never coexist.
+fn stream_transport_arguments(arguments: &[String]) -> Vec<String> {
+    let mut result = arguments.to_vec();
+    if let Some(index) = result.iter().position(|argument| argument == "--fdpass") {
+        result[index] = "--stream".into();
+    }
+    result
+}
+
+fn split_daemon_stdin_paths(paths: &[PathBuf]) -> (Vec<&PathBuf>, Vec<&PathBuf>) {
+    paths.iter().partition(|path| !requires_daemon_stdin(path))
+}
+
 fn scan_daemon_target(
     ctx: &Context,
     job: &Job,
@@ -732,36 +795,49 @@ fn scan_daemon_target(
     if job.cancelled.load(Ordering::Acquire) {
         return ScanResult::cancelled(raw_path, "daemon");
     }
-    let stdin_files = count
-        .file_paths
-        .iter()
-        .filter(|path| requires_daemon_stdin(path))
-        .count() as u64;
-    let safe_files = count.files - stdin_files;
+    let stream_arguments = stream_transport_arguments(&base_arguments);
+    let (fd_list, fd_stdin) = split_daemon_stdin_paths(&count.file_paths);
+    let (stream_list, stream_stdin) = split_daemon_stdin_paths(&count.stream_paths);
+    let stdin_count = (fd_stdin.len() + stream_stdin.len()) as u64;
+    let safe_files = count.files.saturating_sub(stdin_count);
     let mut progress = ProgressState::default();
-    if stdin_files == 0 {
-        let list = match write_private_file_list(ctx, &count.file_paths) {
-            Ok(list) => list,
-            Err(error) => return ScanResult::error(raw_path, error, "daemon"),
-        };
-        let mut arguments = base_arguments;
-        arguments.extend(["--file-list".into(), list.to_string_lossy().into_owned()]);
-        let result = run_daemon_phase(
-            ctx,
-            job,
-            raw_path,
-            DaemonPhase {
-                arguments: &arguments,
-                stdin: None,
-                files: safe_files,
-                directories: count.directories,
-                stdin_path: None,
-            },
-            count.files,
-            &mut progress,
-        );
-        let _ = fs::remove_file(list);
-        return result;
+
+    if fd_stdin.is_empty() && stream_stdin.is_empty() {
+        let mut accumulator = DaemonResultAccumulator::new(raw_path);
+        for (arguments, paths, files) in [
+            (&base_arguments, &fd_list, fd_list.len() as u64),
+            (&stream_arguments, &stream_list, stream_list.len() as u64),
+        ] {
+            if paths.is_empty() {
+                continue;
+            }
+            let list = match write_private_file_list(ctx, paths.iter().copied()) {
+                Ok(list) => list,
+                Err(error) => {
+                    accumulator.add(ScanResult::error(raw_path, error, "daemon"));
+                    continue;
+                }
+            };
+            let mut arguments = arguments.clone();
+            arguments.extend(["--file-list".into(), list.to_string_lossy().into_owned()]);
+            let phase = run_daemon_phase(
+                ctx,
+                job,
+                raw_path,
+                DaemonPhase {
+                    arguments: &arguments,
+                    stdin: None,
+                    files,
+                    directories: count.directories,
+                    stdin_path: None,
+                },
+                count.files,
+                &mut progress,
+            );
+            let _ = fs::remove_file(list);
+            accumulator.add(phase);
+        }
+        return accumulator.finish();
     }
 
     let mut accumulator = DaemonResultAccumulator::new(raw_path);
@@ -771,81 +847,90 @@ fn scan_daemon_target(
     } else {
         0
     };
-    if safe_files > 0 {
-        let list = write_private_file_list(
-            ctx,
-            count
-                .file_paths
-                .iter()
-                .filter(|path| !requires_daemon_stdin(path)),
-        );
-        match list {
-            Ok(list) => {
-                let mut arguments = base_arguments.clone();
-                arguments.extend(["--file-list".into(), list.to_string_lossy().into_owned()]);
-                let phase = run_daemon_phase(
-                    ctx,
-                    job,
-                    raw_path,
-                    DaemonPhase {
-                        arguments: &arguments,
-                        stdin: None,
-                        files: safe_files,
-                        directories: count.directories,
-                        stdin_path: None,
-                    },
-                    count.files,
-                    &mut progress,
-                );
-                let _ = fs::remove_file(list);
-                accumulator.add(phase);
-            }
-            Err(error) => accumulator.add(ScanResult::error(raw_path, error, "daemon")),
+    for (arguments, paths, files) in [
+        (&base_arguments, &fd_list, fd_list.len() as u64),
+        (&stream_arguments, &stream_list, stream_list.len() as u64),
+    ] {
+        if paths.is_empty() {
+            continue;
         }
-    }
-
-    for path in count
-        .file_paths
-        .iter()
-        .filter(|path| requires_daemon_stdin(path))
-    {
         if job.cancelled.load(Ordering::Acquire) {
             stopped_for_cancellation = true;
             break;
         }
-        let wire_path = path_to_wire(path);
-        let file = match open_daemon_stdin_file(path) {
-            Ok(file) => file,
+        let list = match write_private_file_list(ctx, paths.iter().copied()) {
+            Ok(list) => list,
             Err(error) => {
-                let mut result = ScanResult::error(raw_path, error, "daemon");
-                result.skipped_files.push(wire_path);
-                result.skipped_count = 1;
-                accumulator.add(result);
+                accumulator.add(ScanResult::error(raw_path, error, "daemon"));
                 continue;
             }
         };
-        let mut arguments = base_arguments.clone();
-        arguments.push("-".into());
+        let mut arguments = arguments.clone();
+        arguments.extend(["--file-list".into(), list.to_string_lossy().into_owned()]);
         let phase = run_daemon_phase(
             ctx,
             job,
             raw_path,
             DaemonPhase {
                 arguments: &arguments,
-                stdin: Some(file),
-                files: 1,
-                directories: stdin_directories,
-                stdin_path: Some(&wire_path),
+                stdin: None,
+                files,
+                directories: count.directories,
+                stdin_path: None,
             },
             count.files,
             &mut progress,
         );
-        if phase.status != ScanStatus::Cancelled && phase.exit_code != -1 {
-            stdin_directories = 0;
-        }
+        let _ = fs::remove_file(list);
         accumulator.add(phase);
-        if job.cancelled.load(Ordering::Acquire) {
-            stopped_for_cancellation = true;
+    }
+
+    for (arguments, paths) in [
+        (&base_arguments, &fd_stdin),
+        (&stream_arguments, &stream_stdin),
+    ] {
+        for path in paths {
+            if job.cancelled.load(Ordering::Acquire) {
+                stopped_for_cancellation = true;
+                break;
+            }
+            let wire_path = path_to_wire(path);
+            let file = match open_daemon_stdin_file(path) {
+                Ok(file) => file,
+                Err(error) => {
+                    let mut result = ScanResult::error(raw_path, error, "daemon");
+                    result.skipped_files.push(wire_path);
+                    result.skipped_count = 1;
+                    accumulator.add(result);
+                    continue;
+                }
+            };
+            let mut arguments = arguments.clone();
+            arguments.push("-".into());
+            let phase = run_daemon_phase(
+                ctx,
+                job,
+                raw_path,
+                DaemonPhase {
+                    arguments: &arguments,
+                    stdin: Some(file),
+                    files: 1,
+                    directories: stdin_directories,
+                    stdin_path: Some(&wire_path),
+                },
+                count.files,
+                &mut progress,
+            );
+            if phase.status != ScanStatus::Cancelled && phase.exit_code != -1 {
+                stdin_directories = 0;
+            }
+            accumulator.add(phase);
+            if job.cancelled.load(Ordering::Acquire) {
+                stopped_for_cancellation = true;
+                break;
+            }
+        }
+        if stopped_for_cancellation {
             break;
         }
     }
@@ -948,6 +1033,16 @@ fn open_daemon_stdin_file(path: &Path) -> AppResult<File> {
 }
 
 fn restore_stdin_paths(result: &mut ScanResult, path: &str) {
+    // clamd names the descriptor rather than the file for errors on stdin
+    // paths. The evidence is attributed separately; rewrite the displayed
+    // transcript as well so both surfaces name the real file.
+    use crate::scan_parser::attribute_anonymous_error;
+    result.stdout = result
+        .stdout
+        .split_inclusive('\n')
+        .map(|line| attribute_anonymous_error(line.trim_end_matches('\n'), path))
+        .collect::<Vec<_>>()
+        .join("\n");
     for threat in &mut result.threat_details {
         threat.file_path = path.into();
     }
@@ -1504,11 +1599,14 @@ fn count_targets(
         }
         let mut count = TargetCount {
             files: 1,
-            directories: 0,
-            file_paths: Vec::new(),
+            ..TargetCount::default()
         };
         if matches!(mode, TraversalMode::CollectPaths) {
-            count.file_paths.push(path.to_path_buf());
+            if count.fuse.is_fuse(path) {
+                count.stream_paths.push(path.to_path_buf());
+            } else {
+                count.file_paths.push(path.to_path_buf());
+            }
         }
         return Ok(count);
     }
@@ -1547,6 +1645,7 @@ fn walk_targets(
         }
         Err(_) => return Ok(()),
     };
+    let on_fuse = matches!(mode, TraversalMode::CollectPaths) && count.fuse.is_fuse(path);
     for entry in entries {
         if cancelled.load(Ordering::Acquire) {
             return Ok(());
@@ -1570,7 +1669,11 @@ fn walk_targets(
         } else if kind.is_file() && !is_excluded(&entry_path, &name, &exclusions.patterns) {
             count.files += 1;
             if matches!(mode, TraversalMode::CollectPaths) {
-                count.file_paths.push(entry_path);
+                if on_fuse {
+                    count.stream_paths.push(entry_path);
+                } else {
+                    count.file_paths.push(entry_path);
+                }
             }
         }
     }
@@ -3079,5 +3182,69 @@ mod tests {
         let result = accumulator.finish();
         assert_eq!(result.status, ScanStatus::Infected);
         assert_eq!(result.exit_code, -1);
+    }
+
+    #[test]
+    fn fuse_magic_is_recognised() {
+        assert!(is_fuse_magic(FUSE_SUPER_MAGIC));
+        // ext4, tmpfs, btrfs, overlayfs and nfs magic values.
+        for other in [0xEF53, 0x858458F6, 0x9123683E, 0x794C7630, 0x6969] {
+            assert!(!is_fuse_magic(other));
+        }
+    }
+
+    #[test]
+    fn fuse_detector_caches_one_probe_per_device() {
+        use std::sync::atomic::{AtomicUsize, Ordering};
+        static PROBES: AtomicUsize = AtomicUsize::new(0);
+        fn counting_probe(_: &Path) -> bool {
+            PROBES.fetch_add(1, Ordering::AcqRel);
+            true
+        }
+        let root = tempfile::tempdir().expect("temp dir");
+        let file = root.path().join("payload");
+        std::fs::write(&file, b"payload").expect("write payload");
+        let mut detector = FuseDetector {
+            probe: Some(counting_probe),
+            ..FuseDetector::default()
+        };
+        assert!(detector.is_fuse(&file));
+        assert!(detector.is_fuse(&file));
+        assert_eq!(PROBES.load(Ordering::Acquire), 1);
+    }
+
+    #[test]
+    fn stream_transport_arguments_replaces_only_fdpass() {
+        let args = vec![
+            "--scan-daemon".into(),
+            "--fdpass".into(),
+            "--no-summary".into(),
+        ];
+        assert_eq!(
+            stream_transport_arguments(&args),
+            vec!["--scan-daemon", "--stream", "--no-summary"]
+        );
+        let already = vec!["--stream".into()];
+        assert_eq!(stream_transport_arguments(&already), already);
+    }
+
+    #[test]
+    fn daemon_stdin_paths_are_partitioned() {
+        let long = std::path::PathBuf::from(format!("/tmp/{}", "x".repeat(1100)));
+        let short = std::path::PathBuf::from("/tmp/short");
+        let paths = [short.clone(), long.clone()];
+        let (safe, stdin) = split_daemon_stdin_paths(&paths);
+        assert_eq!(safe, vec![&short]);
+        assert_eq!(stdin, vec![&long]);
+    }
+
+    #[test]
+    fn stdin_transcript_errors_name_the_real_file() {
+        let mut result = ScanResult::error("/tmp", "ok", "daemon");
+        result.stdout = "fd[10]: Not a regular file ERROR\n/tmp/ok: OK\n".into();
+        restore_stdin_paths(&mut result, "/tmp/fuse-file");
+        assert!(result
+            .stdout
+            .contains("/tmp/fuse-file: Not a regular file ERROR"));
     }
 }

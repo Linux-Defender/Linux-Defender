@@ -1,3 +1,4 @@
+use crate::startup_trace::{self, StartupTrace};
 use crate::{
     model::{ChoosePathsOptions, ChosenPaths, CloseResult, SavedExport, StartupState},
     notifications::Notifications,
@@ -139,6 +140,7 @@ impl AppState {
 }
 
 pub fn run(arguments: Vec<String>) -> Result<(), String> {
+    let trace = StartupTrace::new();
     let targets = parse_startup_targets(
         &arguments,
         &env::current_dir().map_err(|error| error.to_string())?,
@@ -148,6 +150,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
     tauri_context.config_mut().identifier = CANONICAL_LINUX_APPLICATION_ID.into();
     let app_slot: Arc<Mutex<Option<AppHandle>>> = Arc::new(Mutex::new(None));
     let slot_for_events = app_slot.clone();
+    trace.mark("core context created");
     let ctx = Context::new()?.with_emitter(move |event: Event| {
         if let Some(app) = slot_for_events
             .lock()
@@ -214,6 +217,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
             .default_window_icon()
             .expect("Tauri context must contain the bundled application icon"),
     );
+    trace.mark("tray requested");
     let state = AppState {
         ctx: ctx.clone(),
         initial: Mutex::new(StartupState {
@@ -258,6 +262,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_notification::init())
         .manage(state)
+        .manage(trace.clone())
         .manage(crate::accent_color::AccentColor::default())
         .invoke_handler(tauri::generate_handler![
             request,
@@ -283,7 +288,10 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
             }
             _ => {}
         })
-        .setup(move |app| {
+        .setup({
+            let trace = trace.clone();
+            move |app| {
+            trace.mark("setup entered");
             WebviewWindowBuilder::new(app, "main", WebviewUrl::App("index.html".into()))
                 .title("Linux Defender")
                 .inner_size(900.0, 700.0)
@@ -293,35 +301,61 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                 .on_new_window(|_, _| NewWindowResponse::Deny)
                 .build()
                 .map_err(|error| error.to_string())?;
+            trace.mark("main window created");
             *app_slot.lock().expect("app handle poisoned") = Some(app.handle().clone());
             let state = app.state::<AppState>();
             crate::accent_color::init(app.handle().clone(), state.ctx.clone());
+            trace.mark("accent colour initialised");
             let _ = linux_defender_core::logs::write_debug(
                 &state.ctx,
                 "INFO",
                 "native-runtime",
                 "native runtime startup completed",
             );
-            // Upstream ClamUI #361: a blank window can hide several unrelated
-            // failures. One debug warning names the unmounted stage without
-            // touching the filesystem, network, or any new IPC capability.
+            // Upstream ClamUI #361/#366: a blank window can hide several
+            // unrelated failures. One debug warning names the stuck stage and
+            // the milestone timeline; no new IPC, capability, or boot script.
             let frontend_ready = Arc::clone(&state.frontend_ready);
             let watchdog_ctx = state.ctx.clone();
-            tauri::async_runtime::spawn(async move {
-                tokio::time::sleep(Duration::from_secs(10)).await;
-                if !frontend_ready.load(Ordering::Acquire) {
+            let watchdog_trace = trace.clone();
+            let watchdog_app = app.handle().clone();
+            std::thread::Builder::new()
+                .name("startup-watchdog".into())
+                .spawn(move || {
+                    std::thread::sleep(startup_trace::WATCHDOG_DELAY);
+                    if frontend_ready.load(Ordering::Acquire) {
+                        return;
+                    }
+                    let (tx, rx) = std::sync::mpsc::channel();
+                    let probe = if watchdog_app.run_on_main_thread(move || {
+                        let _ = tx.send(());
+                    }).is_err() {
+                        startup_trace::ProbeResult::Failed
+                    } else {
+                        match rx.recv_timeout(startup_trace::MAIN_THREAD_PROBE) {
+                            Ok(()) => startup_trace::ProbeResult::Responded,
+                            Err(std::sync::mpsc::RecvTimeoutError::Timeout) => {
+                                startup_trace::ProbeResult::TimedOut
+                            }
+                            Err(std::sync::mpsc::RecvTimeoutError::Disconnected) => {
+                                startup_trace::ProbeResult::Failed
+                            }
+                        }
+                    };
+                    let verdict = startup_trace::pick_verdict(
+                        watchdog_trace.is_setup_finished(),
+                        probe,
+                    );
+                    let message = startup_trace::describe(verdict, &watchdog_trace.summary());
+                    eprintln!("{message}");
                     let _ = linux_defender_core::logs::write_debug(
                         &watchdog_ctx,
                         "WARNING",
-                        "native-runtime",
-                        concat!(
-                            "frontend did not mount within 10s: check the WebView bundle, ",
-                            "the React error boundary, catalog load, and the ",
-                            "app.startup_ready IPC reply"
-                        ),
+                        "startup-watchdog",
+                        &message,
                     );
-                }
-            });
+                })
+                .expect("spawn startup watchdog");
             install_notification_actions(app.handle(), &state.ctx);
             match linux_defender_core::platform::start_monitor(state.ctx.clone()) {
                 Ok(handle) => *state.monitor.lock().expect("monitor state poisoned") = Some(handle),
@@ -358,7 +392,9 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                 Ordering::Release,
             );
             apply_start_minimize(app.handle());
+            trace.setup_finished();
             Ok(())
+            }
         });
 
     let app = builder
@@ -396,9 +432,12 @@ async fn request(
     if estimated_args > 4 * 1024 * 1024 {
         return Err("operation arguments are too large".into());
     }
+    app.state::<StartupTrace>().note_request(&action);
     let _operation = state.active_jobs.register(action.clone())?;
     if action == "app.startup_ready" {
         state.frontend_ready.store(true, Ordering::Release);
+        app.state::<StartupTrace>()
+            .mark("frontend mounted (app.startup_ready)");
     }
     let progress_registration = if action == "scanner.scan" {
         match args.get("id").and_then(Value::as_str) {
@@ -420,6 +459,8 @@ async fn request(
         tauri::async_runtime::spawn_blocking(move || dispatch(&ctx, &action_for_work, args))
             .await
             .map_err(|error| format!("operation task failed: {error}"));
+    app.state::<StartupTrace>()
+        .note_response(&action, matches!(&result, Ok(Ok(_))));
     if let Some((operation_id, registration)) = progress_registration {
         state
             .scan_progress

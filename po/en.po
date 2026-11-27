@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 07:47-0500\n"
+"POT-Creation-Date: 2026-11-27 08:39-0500\n"
 "PO-Revision-Date: 2026-10-20 10:21+0200\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: English\n"
@@ -2050,11 +2050,18 @@ msgid "Skipping scan: running on battery power"
 msgstr "Skipping scan: running on battery power"
 
 #: crates/linux-defender-core/src/updater.rs:143
-#: crates/linux-defender-core/src/updater.rs:189
+#: crates/linux-defender-core/src/updater.rs:198
 msgid "Update cancelled by user"
 msgstr "Update cancelled by user"
 
 #: crates/linux-defender-core/src/updater.rs:148
+msgctxt "updater-custom-database-failure"
+msgid ""
+"Custom database {file} from {host} failed to update. Later custom databases "
+"may not have been attempted."
+msgstr "Custom database {file} from {host} failed to update. Later custom databases may not have been attempted."
+
+#: crates/linux-defender-core/src/updater.rs:157
 msgid ""
 "Update process output did not close after cleanup; result cannot be "
 "classified."
@@ -2062,22 +2069,22 @@ msgstr ""
 "Update process output did not close after cleanup; result cannot be "
 "classified."
 
-#: crates/linux-defender-core/src/updater.rs:151
+#: crates/linux-defender-core/src/updater.rs:160
 msgid ""
 "Authentication cancelled. Database update requires administrator privileges."
 msgstr ""
 "Authentication cancelled. Database update requires administrator privileges."
 
-#: crates/linux-defender-core/src/updater.rs:154
+#: crates/linux-defender-core/src/updater.rs:163
 msgid "Authorization failed. You are not authorized to update the database."
 msgstr "Authorization failed. You are not authorized to update the database."
 
-#: crates/linux-defender-core/src/updater.rs:157
+#: crates/linux-defender-core/src/updater.rs:166
 msgid "Update rate limited by mirror. Please wait a few minutes and try again."
 msgstr ""
 "Update rate limited by mirror. Please wait a few minutes and try again."
 
-#: crates/linux-defender-core/src/updater.rs:160
+#: crates/linux-defender-core/src/updater.rs:169
 msgid ""
 "Update blocked by CDN. This may be due to rate limiting. Please wait and try "
 "again later."
@@ -2085,51 +2092,51 @@ msgstr ""
 "Update blocked by CDN. This may be due to rate limiting. Please wait and try "
 "again later."
 
-#: crates/linux-defender-core/src/updater.rs:163
+#: crates/linux-defender-core/src/updater.rs:172
 msgid "ClamAV mirror is currently unavailable. Please try again later."
 msgstr "ClamAV mirror is currently unavailable. Please try again later."
 
-#: crates/linux-defender-core/src/updater.rs:166
+#: crates/linux-defender-core/src/updater.rs:175
 msgid "SSL/TLS certificate error. The mirror may have configuration issues."
 msgstr "SSL/TLS certificate error. The mirror may have configuration issues."
 
-#: crates/linux-defender-core/src/updater.rs:169
+#: crates/linux-defender-core/src/updater.rs:178
 msgid "Connection timed out. Please check your network connection."
 msgstr "Connection timed out. Please check your network connection."
 
-#: crates/linux-defender-core/src/updater.rs:172
+#: crates/linux-defender-core/src/updater.rs:181
 msgid "Authorization failed. Please try again and enter your password."
 msgstr "Authorization failed. Please try again and enter your password."
 
-#: crates/linux-defender-core/src/updater.rs:175
+#: crates/linux-defender-core/src/updater.rs:184
 msgid "Database is locked. Another freshclam instance may be running."
 msgstr "Database is locked. Another freshclam instance may be running."
 
-#: crates/linux-defender-core/src/updater.rs:178
+#: crates/linux-defender-core/src/updater.rs:187
 msgid ""
 "Permission denied. You may need elevated privileges to update the database."
 msgstr ""
 "Permission denied. You may need elevated privileges to update the database."
 
-#: crates/linux-defender-core/src/updater.rs:181
+#: crates/linux-defender-core/src/updater.rs:190
 msgid "Connection error. Please check your network connection."
 msgstr "Connection error. Please check your network connection."
 
-#: crates/linux-defender-core/src/updater.rs:184
+#: crates/linux-defender-core/src/updater.rs:193
 msgid "DNS resolution failed. Please check your network settings."
 msgstr "DNS resolution failed. Please check your network settings."
 
-#: crates/linux-defender-core/src/updater.rs:187
+#: crates/linux-defender-core/src/updater.rs:196
 msgid "Update failed with an unknown error. Check the logs for details."
 msgstr "Update failed with an unknown error. Check the logs for details."
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:547
+#: crates/linux-defender-core/src/updater.rs:591
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr "Update signal sent to freshclam service (PID {pid})"
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:854
+#: crates/linux-defender-core/src/updater.rs:898
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2137,7 +2144,7 @@ msgstr ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
 
-#: crates/linux-defender-core/src/updater.rs:884
+#: crates/linux-defender-core/src/updater.rs:928
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] "Update timed out after {minutes} minute without output"
@@ -2145,28 +2152,28 @@ msgstr[1] "Update timed out after {minutes} minutes without output"
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/updater.rs:1023
+#: crates/linux-defender-core/src/updater.rs:1067
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] "Database update completed — {count} database updated"
 msgstr[1] "Database update completed — {count} databases updated"
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/linux-defender-core/src/updater.rs:1033
+#: crates/linux-defender-core/src/updater.rs:1077
 msgid "Database update completed — Already up to date"
 msgstr "Database update completed — Already up to date"
 
-#: crates/linux-defender-core/src/updater.rs:1100
+#: crates/linux-defender-core/src/updater.rs:1144
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "Selected freshclam config does not exist: {path}"
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/linux-defender-core/src/updater.rs:1138
+#: crates/linux-defender-core/src/updater.rs:1182
 msgid "Could not determine freshclam PID"
 msgstr "Could not determine freshclam PID"
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/linux-defender-core/src/updater.rs:1148
+#: crates/linux-defender-core/src/updater.rs:1192
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"

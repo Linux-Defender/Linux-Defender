@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Protection and diagnosability (2026-11-27)
+
+- Added rkhunter as a third explicit system deep scan; one "Run all security scans" action runs Lynis, chkrootkit, and rkhunter in sequence.
+- FUSE-mounted files are now classified via `statfs` and scanned through a separate clamd `--stream` phase instead of failing as "Not a regular file".
+- Startup diagnosis records bounded native milestones and reports whether setup, the main thread, or page mounting is stuck.
+- Failed custom signature database updates now name the provider host and file; the key-bearing URL path is never shown.
+- Added rkhunter/alt-security documentation and many more human translations from upstream MIT catalogs.
+
 ### Security and parity hardening (2026-11-27)
 
 - Hardened the privileged-helper and Tauri trust boundaries: pinned `pkexec` to an absolute host path, rejected local/internal hostnames in external URLs, bounded staged pair/byte counts, and kept least-privilege capabilities.

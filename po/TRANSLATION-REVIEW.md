@@ -10,26 +10,20 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1474 translated messages. | 35 |
-| en | 1474 translated messages. | baseline |
-| es | 1474 translated messages. | 36 |
-| fr | 1474 translated messages. | 36 |
-| hu | 1474 translated messages. | 36 |
-| it | 1474 translated messages. | 36 |
-| nb | 1474 translated messages. | 36 |
-| pt_BR | 1474 translated messages. | 36 |
-| vi | 1474 translated messages. | 36 |
-| zh_CN | 1474 translated messages. | 36 |
+| de | 1475 translated messages. | 27 |
+| en | 1475 translated messages. | baseline |
+| es | 1475 translated messages. | 28 |
+| fr | 1475 translated messages. | 28 |
+| hu | 1475 translated messages. | 28 |
+| it | 1475 translated messages. | 28 |
+| nb | 1475 translated messages. | 28 |
+| pt_BR | 1475 translated messages. | 28 |
+| vi | 1475 translated messages. | 36 |
+| zh_CN | 1475 translated messages. | 28 |
 
 ## de
 
 - `Analysis complete — no detections reported`
-- `Authorization failed. Please try again and enter your password.`
-- `Authorization failed. You are not authorized to update the database.`
-- `Connection error. Please check your network connection.`
-- `Connection timed out. Please check your network connection.`
-- `DNS resolution failed. Please check your network settings.`
-- `Database is locked. Another freshclam instance may be running.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -45,7 +39,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
-- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
@@ -53,7 +46,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
-- `Update failed with an unknown error. Check the logs for details.`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
@@ -62,12 +54,6 @@ translator decides. No machine translation is applied by this script. Where an m
 ## es
 
 - `Analysis complete — no detections reported`
-- `Authorization failed. Please try again and enter your password.`
-- `Authorization failed. You are not authorized to update the database.`
-- `Connection error. Please check your network connection.`
-- `Connection timed out. Please check your network connection.`
-- `DNS resolution failed. Please check your network settings.`
-- `Database is locked. Another freshclam instance may be running.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -83,7 +69,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
-- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
@@ -91,7 +76,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
-- `Update failed with an unknown error. Check the logs for details.`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -101,12 +85,6 @@ translator decides. No machine translation is applied by this script. Where an m
 ## fr
 
 - `Analysis complete — no detections reported`
-- `Authorization failed. Please try again and enter your password.`
-- `Authorization failed. You are not authorized to update the database.`
-- `Connection error. Please check your network connection.`
-- `Connection timed out. Please check your network connection.`
-- `DNS resolution failed. Please check your network settings.`
-- `Database is locked. Another freshclam instance may be running.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -122,7 +100,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
-- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
@@ -130,7 +107,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
-- `Update failed with an unknown error. Check the logs for details.`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -140,12 +116,6 @@ translator decides. No machine translation is applied by this script. Where an m
 ## hu
 
 - `Analysis complete — no detections reported`
-- `Authorization failed. Please try again and enter your password.`
-- `Authorization failed. You are not authorized to update the database.`
-- `Connection error. Please check your network connection.`
-- `Connection timed out. Please check your network connection.`
-- `DNS resolution failed. Please check your network settings.`
-- `Database is locked. Another freshclam instance may be running.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -161,7 +131,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
-- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
@@ -169,7 +138,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
-- `Update failed with an unknown error. Check the logs for details.`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -179,12 +147,6 @@ translator decides. No machine translation is applied by this script. Where an m
 ## it
 
 - `Analysis complete — no detections reported`
-- `Authorization failed. Please try again and enter your password.`
-- `Authorization failed. You are not authorized to update the database.`
-- `Connection error. Please check your network connection.`
-- `Connection timed out. Please check your network connection.`
-- `DNS resolution failed. Please check your network settings.`
-- `Database is locked. Another freshclam instance may be running.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -200,7 +162,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
-- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
@@ -208,7 +169,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
-- `Update failed with an unknown error. Check the logs for details.`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -218,12 +178,6 @@ translator decides. No machine translation is applied by this script. Where an m
 ## nb
 
 - `Analysis complete — no detections reported`
-- `Authorization failed. Please try again and enter your password.`
-- `Authorization failed. You are not authorized to update the database.`
-- `Connection error. Please check your network connection.`
-- `Connection timed out. Please check your network connection.`
-- `DNS resolution failed. Please check your network settings.`
-- `Database is locked. Another freshclam instance may be running.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -239,7 +193,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
-- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
@@ -247,7 +200,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
-- `Update failed with an unknown error. Check the logs for details.`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -257,12 +209,6 @@ translator decides. No machine translation is applied by this script. Where an m
 ## pt_BR
 
 - `Analysis complete — no detections reported`
-- `Authorization failed. Please try again and enter your password.`
-- `Authorization failed. You are not authorized to update the database.`
-- `Connection error. Please check your network connection.`
-- `Connection timed out. Please check your network connection.`
-- `DNS resolution failed. Please check your network settings.`
-- `Database is locked. Another freshclam instance may be running.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -278,7 +224,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
-- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
@@ -286,7 +231,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
-- `Update failed with an unknown error. Check the logs for details.`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
@@ -335,12 +279,6 @@ translator decides. No machine translation is applied by this script. Where an m
 ## zh_CN
 
 - `Analysis complete — no detections reported`
-- `Authorization failed. Please try again and enter your password.`
-- `Authorization failed. You are not authorized to update the database.`
-- `Connection error. Please check your network connection.`
-- `Connection timed out. Please check your network connection.`
-- `DNS resolution failed. Please check your network settings.`
-- `Database is locked. Another freshclam instance may be running.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -356,7 +294,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
-- `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
@@ -364,7 +301,6 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
-- `Update failed with an unknown error. Check the logs for details.`
 - `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`

@@ -143,6 +143,15 @@ fn localize_result(ctx: &Context, result: &mut UpdateResult) {
         result.error_message = Some(crate::i18n::translate(ctx, "Update cancelled by user"));
     }
     if let Some(message) = result.error_message.as_deref() {
+        if let Some(rest) = message.strip_prefix("Custom database update failed: ") {
+            let (host, file) = rest.split_once('|').unwrap_or((rest, "unknown database"));
+            result.error_message = Some(crate::i18n::translate_context(
+                ctx,
+                "updater-custom-database-failure",
+                "Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.",
+            ).replace("{host}", host).replace("{file}", file));
+            return;
+        }
         let translated = Some(match message {
             "Update process output did not close after cleanup; result cannot be classified." => {
                 crate::i18n::translate(ctx, "Update process output did not close after cleanup; result cannot be classified.")
@@ -332,6 +341,38 @@ pub fn parse_output(
     (parsed.updated, parsed.up_to_date, parsed.rate_limited)
 }
 
+/// Extract host and file name from freshclam's "Update failed for custom
+/// database URL" line. The key-bearing path is deliberately discarded: only
+/// the host and final file name are safe to show and log.
+fn failed_custom_database(stdout: &str, stderr: &str) -> Option<(String, String)> {
+    for line in format!("{stdout}\n{stderr}").lines() {
+        let Some(rest) = line
+            .trim()
+            .strip_prefix("Update failed for custom database URL: ")
+        else {
+            continue;
+        };
+        let after_scheme = rest
+            .strip_prefix("https://")
+            .or_else(|| rest.strip_prefix("http://"))
+            .unwrap_or(rest);
+        let (host, path) = after_scheme.split_once('/').unwrap_or((after_scheme, ""));
+        let file = path
+            .rsplit('/')
+            .next()
+            .unwrap_or("")
+            .split('?')
+            .next()
+            .unwrap_or("");
+        let host = crate::common::sanitize_line(host);
+        let file = crate::common::sanitize_line(file);
+        if !host.is_empty() && !file.is_empty() {
+            return Some((host, file));
+        }
+    }
+    None
+}
+
 fn error_message(
     stdout: &str,
     stderr: &str,
@@ -421,6 +462,9 @@ fn error_message(
     }
     if lower.contains("can't resolve") || lower.contains("host not found") {
         return "DNS resolution failed. Please check your network settings.".to_owned();
+    }
+    if let Some((host, file)) = failed_custom_database(stdout, stderr) {
+        return format!("Custom database update failed: {host}|{file}");
     }
     if !stderr.trim().is_empty() {
         return stderr.trim().to_owned();

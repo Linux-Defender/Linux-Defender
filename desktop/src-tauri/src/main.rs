@@ -5,6 +5,7 @@ mod notifications;
 mod policy;
 mod runtime;
 mod scan_progress;
+mod startup_trace;
 mod tray;
 
 use linux_defender_core::common::path_to_wire;
