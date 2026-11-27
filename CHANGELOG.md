@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### Security and parity hardening (2026-11-27)
+
+- Hardened the privileged-helper and Tauri trust boundaries: pinned `pkexec` to an absolute host path, rejected local/internal hostnames in external URLs, bounded staged pair/byte counts, and kept least-privilege capabilities.
+- Hardened credential and online-service handling: the VirusTotal key is never sent to third-party upload hosts or across redirects, urlscan/URLhaus tokens are validated and masked safely, and plaintext fallbacks are purged when disabled.
+- Hardened quarantine and scheduler: canonical path confinement, no-follow/atomic operations, a `0700` restore directory, fail-closed SQLite sidecars, and dual-backend cleanup that cannot leave two schedules active.
+- Hardened host ClamAV URL validation and untrusted text sanitization across scan results, update output, notifications, and native menus.
+- AppArmor/SELinux audit now uses authoritative LSM detection (`/sys/kernel/security/lsm`, securityfs interface, `getenforce` exit codes, `/sys/fs/selinux/enforce` fallback) and avoids contradictory recommendations.
+- Ported upstream ClamUI openSUSE detection/zypper guidance, pathless clamd error attribution, a bounded in-memory result store, and PR #374 LSM refinements; refreshed the reviewed pin to `3960c74`.
+- Custom Signature Databases: provider feeds are added once (no duplicates or repeated toast), hidden by default, and Suggested only reveals/hides rows; long URLs wrap without squeezing Remove buttons.
+
 ### Added
 
 - Security Audit now reports the three official ClamAV base databases (`main`, `daily`, `bytecode`) separately from custom signature files. The updater status payload exposes the same split, so a missing base database is visible instead of being folded into a generic freshness result.

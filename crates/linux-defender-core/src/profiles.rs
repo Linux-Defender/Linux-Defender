@@ -468,7 +468,12 @@ fn load_profiles(path: &Path) -> AppResult<(Vec<Profile>, bool)> {
                     normalized_descriptions = true;
                 }
             }
-            serde_json::from_value::<Profile>(entry).ok()
+            serde_json::from_value::<Profile>(entry)
+                .ok()
+                .map(|mut profile| {
+                    profile.name = normalized_name(std::mem::take(&mut profile.name));
+                    profile
+                })
         })
         .collect();
     Ok((profiles, normalized_descriptions))

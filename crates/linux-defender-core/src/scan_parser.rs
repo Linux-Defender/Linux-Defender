@@ -172,14 +172,18 @@ impl StreamEvidence {
                 .any(|marker| lower.contains(marker))
         }) || line.contains(": Time limit reached")
         {
-            self.warnings.nonfatal_warnings.push(line.to_owned());
+            self.warnings
+                .nonfatal_warnings
+                .push(crate::common::sanitize_line(line));
         } else if line.starts_with("WARNING:")
             || line.starts_with("ERROR:")
             || line.starts_with("LibClamAV Error:")
             || line.starts_with("LibClamAV Warning:")
             || line.ends_with("ERROR")
         {
-            self.warnings.hard_errors.push((line.to_owned(), displayed));
+            self.warnings
+                .hard_errors
+                .push((crate::common::sanitize_line(line), displayed));
         }
     }
 
@@ -462,7 +466,7 @@ fn interpret(scan: ScanEvidence<'_>) -> ScanResult {
         error_message = nonempty(&stderr).map(crate::common::sanitize_text);
         if error_message.is_none() {
             if let Some((line, _)) = evidence.hard_errors.first() {
-                error_message = Some(line.clone());
+                error_message = Some(crate::common::sanitize_line(line));
                 used_first_hard_error = true;
             }
         }
@@ -480,7 +484,11 @@ fn interpret(scan: ScanEvidence<'_>) -> ScanResult {
         .map(|(_, (line, _))| line.as_str())
         .collect::<Vec<_>>();
     if !omitted_errors.is_empty() {
-        let omitted = omitted_errors.join("\n");
+        let omitted = omitted_errors
+            .iter()
+            .map(|line| crate::common::sanitize_line(line))
+            .collect::<Vec<_>>()
+            .join("\n");
         if error_message.is_none() {
             error_message = Some(omitted);
         } else if let Some(message) = &mut error_message {

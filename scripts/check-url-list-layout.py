@@ -2,13 +2,16 @@
 """Fail when the custom-signature URL list regresses to a squeezed layout."""
 from __future__ import annotations
 
+import os
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CSS = ROOT / "desktop/src/styles.css"
-TSX = ROOT / "desktop/src/pages/ConfigPreferences.tsx"
+CSS = Path(os.environ.get("URL_LIST_CSS", ROOT / "desktop/src/styles.css"))
+TSX = Path(
+    os.environ.get("URL_LIST_TSX", ROOT / "desktop/src/pages/ConfigPreferences.tsx")
+)
 RULES = {
     ".url-list": ["grid-column: 1 / -1", "width: 100%"],
     ".url-list .row > code": ["min-width: 0", "overflow-wrap: anywhere"],

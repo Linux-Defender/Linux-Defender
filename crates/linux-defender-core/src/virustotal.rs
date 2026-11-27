@@ -1085,12 +1085,12 @@ impl VirusTotalClient {
                     .filter_map(|(engine_name, detail)| {
                         let category = detail.get("category")?.as_str()?;
                         (category == "malicious" || category == "suspicious").then(|| VTDetection {
-                            engine_name: engine_name.clone(),
-                            category: category.into(),
+                            engine_name: crate::common::sanitize_line(engine_name),
+                            category: crate::common::sanitize_line(category),
                             result: detail
                                 .get("result")
                                 .and_then(Value::as_str)
-                                .map(str::to_owned),
+                                .map(crate::common::sanitize_line),
                         })
                     })
                     .collect()
@@ -1410,12 +1410,12 @@ fn parse_url_analysis(
                 .filter_map(|(engine_name, detail)| {
                     let category = detail.get("category")?.as_str()?;
                     (category == "malicious" || category == "suspicious").then(|| VTDetection {
-                        engine_name: engine_name.clone(),
-                        category: category.to_owned(),
+                        engine_name: crate::common::sanitize_line(engine_name),
+                        category: crate::common::sanitize_line(category),
                         result: detail
                             .get("result")
                             .and_then(Value::as_str)
-                            .map(str::to_owned),
+                            .map(crate::common::sanitize_line),
                     })
                 })
                 .collect()

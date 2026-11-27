@@ -54,6 +54,15 @@ pub fn is_safe_external_url(input: &str) -> Result<Url, String> {
     ) {
         return Err("external URLs must use a hostname".to_owned());
     }
+    let host = url.host_str().unwrap_or_default().to_ascii_lowercase();
+    if host == "localhost"
+        || host.ends_with(".localhost")
+        || host.ends_with(".internal")
+        || host.ends_with(".local")
+        || host.ends_with(".localdomain")
+    {
+        return Err("external URLs to local or internal hosts are not allowed".to_owned());
+    }
     Ok(url)
 }
 

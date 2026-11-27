@@ -147,14 +147,13 @@ GitHub REST API snapshot: 61 open issues and 2 open pull requests. The 61st open
 
 The post-release updater fix from upstream commit `30a72f0` (#307) is ported locally. Existing open issue reports remain tracked whether or not source fixes are present.
 
-### Current upstream recheck (2026-11-25, post-compaction)
+### Dated upstream snapshot (2026-11-25; superseded by the 2026-11-27 sweeps below)
 
-Live GitHub API counts at the final recheck, which supersede the older
-point-in-time counts elsewhere in this review:
+Snapshot GitHub API counts from that date; the 2026-11-27 sweeps and the reviewed pin in `parity-lock.json` are authoritative for current state:
 
 | Repository | Open issues | Open PRs | Default-branch head |
 |---|---|---|---|
-| `linx-systems/clamui` | 57 | 7 | `e26e1e40dbfcdacfa32bed85343367913f50b966` (2026-11-26 refresh below) |
+| `linx-systems/clamui` | 57 | 7 | `3960c74503b03c84cae48336936d4c94c10981cc` (reviewed 2026-11-27) |
 | `vmkspv/lenspect` | 0 | 0 | `a5507a6c8ec1bdf1f2222e7397d053ff365b3d70` |
 | `dave-theunsub/clamtk` | 23 | 4 (#168, #169, #170, #141) | `694833d27c800e7c3ac4ff6dd44f0b2e65025260` |
 | `Linux-Defender/Linux-Defender` | 0 | 0 | local `main` (checked at recheck time) |

@@ -634,12 +634,13 @@ impl QuarantineManager {
                                 detected += 1;
                                 (
                                     "detected",
-                                    stdout
-                                        .lines()
-                                        .find(|line| line.contains("FOUND"))
-                                        .map(str::trim)
-                                        .unwrap_or("Threat still detected")
-                                        .to_owned(),
+                                    crate::common::sanitize_line(
+                                        stdout
+                                            .lines()
+                                            .find(|line| line.contains("FOUND"))
+                                            .map(str::trim)
+                                            .unwrap_or("Threat still detected"),
+                                    ),
                                 )
                             } else if output.status.success() {
                                 clean += 1;
@@ -648,7 +649,9 @@ impl QuarantineManager {
                                 errors += 1;
                                 (
                                     "error",
-                                    String::from_utf8_lossy(&output.stderr).trim().to_owned(),
+                                    crate::common::sanitize_line(
+                                        String::from_utf8_lossy(&output.stderr).trim(),
+                                    ),
                                 )
                             }
                         }

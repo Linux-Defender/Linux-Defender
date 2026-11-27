@@ -372,6 +372,14 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
     Ok(())
 }
 
+fn valid_operation_id(id: &str) -> bool {
+    !id.is_empty()
+        && id.len() <= 128
+        && id
+            .bytes()
+            .all(|byte| byte.is_ascii_alphanumeric() || byte == b'-' || byte == b'_')
+}
+
 #[tauri::command]
 async fn request(
     app: AppHandle,
@@ -379,18 +387,28 @@ async fn request(
     action: String,
     args: Value,
 ) -> Result<Value, String> {
+    if action.chars().count() > 128 || action.is_empty() {
+        return Err("invalid operation identifier".into());
+    }
+    let estimated_args = serde_json::to_string(&args)
+        .map(|value| value.len())
+        .unwrap_or(usize::MAX);
+    if estimated_args > 4 * 1024 * 1024 {
+        return Err("operation arguments are too large".into());
+    }
     let _operation = state.active_jobs.register(action.clone())?;
     if action == "app.startup_ready" {
         state.frontend_ready.store(true, Ordering::Release);
     }
     let progress_registration = if action == "scanner.scan" {
         match args.get("id").and_then(Value::as_str) {
-            Some(operation_id) => state
+            Some(operation_id) if valid_operation_id(operation_id) => state
                 .scan_progress
                 .lock()
                 .expect("scan progress state poisoned")
                 .register(operation_id)
                 .map(|registration| (operation_id.to_owned(), registration)),
+            Some(_) => return Err("invalid scan operation identifier".into()),
             None => None,
         }
     } else {
@@ -602,6 +620,21 @@ async fn open_path(state: State<'_, AppState>, path: String) -> Result<(), Strin
         std::fs::symlink_metadata(&path).map_err(|_| "requested path does not exist".to_owned())?;
     if !metadata.file_type().is_file() && !metadata.file_type().is_dir() {
         return Err("requested path is not a regular file or directory".into());
+    }
+    if metadata.file_type().is_file() {
+        use std::os::unix::fs::PermissionsExt;
+        let launcher = path
+            .extension()
+            .and_then(|extension| extension.to_str())
+            .is_some_and(|extension| {
+                matches!(
+                    extension.to_ascii_lowercase().as_str(),
+                    "desktop" | "service" | "sh" | "desktop~"
+                )
+            });
+        if launcher || metadata.permissions().mode() & 0o111 != 0 {
+            return Err("executable and launcher files cannot be opened by the app".into());
+        }
     }
     tauri::async_runtime::spawn_blocking(move || open_with_desktop(path.as_os_str()))
         .await

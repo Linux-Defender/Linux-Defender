@@ -1062,10 +1062,11 @@ pub fn stage_config(bytes: &[u8], destination: &Path) -> AppResult<StagedConfig>
 fn helper_command(helper: &Path) -> Command {
     if flatpak() {
         let mut command = Command::new("flatpak-spawn");
-        command.arg("--host").arg("pkexec").arg(helper);
+        command.args(["--host", "/usr/bin/pkexec"]);
+        command.arg(helper);
         command
     } else {
-        let mut command = Command::new("pkexec");
+        let mut command = Command::new("/usr/bin/pkexec");
         command.arg(helper);
         command
     }

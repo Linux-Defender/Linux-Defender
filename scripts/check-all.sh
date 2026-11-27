@@ -23,6 +23,8 @@ python3 scripts/check-dead-files.py || fail "dead files"
 step "Cross-layer contracts (IPC / CLI / locales / feature matrix)"
 python3 scripts/check-cross-layer.py || fail "cross-layer parity"
 python3 scripts/check-support-parity.py || fail "cross-service support parity"
+python3 scripts/tests/test_support_parity.py >/dev/null || fail "support parity checker tests"
+python3 scripts/tests/test_url_list_layout.py >/dev/null || fail "URL list layout checker tests"
 python3 scripts/check-ipc-operations.py || fail "frontend calls an IPC action the core cannot serve"
 
 step "Repo-wide consistency (versions, app id, workflow/script inventory)"
