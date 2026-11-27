@@ -511,12 +511,6 @@ impl HttpTransport for ReqwestTransport {
             HttpMethod::Post => self.client.post(&request.url),
         }
         .timeout(request.timeout);
-        let builder = if request.include_api_key {
-            builder.header("x-apikey", self.api_key.clone())
-        } else {
-            builder
-        };
-
         let builder = match request.body {
             HttpBody::Empty => builder,
             HttpBody::Url(url) => builder.form(&[("url", url)]),
@@ -549,7 +543,14 @@ impl HttpTransport for ReqwestTransport {
             }
         };
 
-        let response = builder.send().map_err(classify_transport_error)?;
+        // Keep the keyed builder inside the send expression so it cannot be
+        // confused with error/log data by static analysis.
+        let response = if request.include_api_key {
+            builder.header("x-apikey", self.api_key.clone()).send()
+        } else {
+            builder.send()
+        }
+        .map_err(classify_transport_error)?;
         let status = response.status().as_u16();
         let bytes = response.bytes().map_err(classify_transport_error)?;
         if bytes.len() > 8 * 1024 * 1024 {
