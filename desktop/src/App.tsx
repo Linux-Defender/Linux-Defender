@@ -233,6 +233,7 @@ export default function App(): ReactNode {
   const [aboutCredits, setAboutCredits] = useState<Credits | null>(null);
   const [aboutCreditsError, setAboutCreditsError] = useState<string | null>(null);
   const [closeOpen, setCloseOpen] = useState(false);
+  const [nativeScanActive, setNativeScanActive] = useState(false);
   const [scanCloseOpen, setScanCloseOpen] = useState(false);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [activity, setActivity] = useState<string | null>(null);
@@ -464,7 +465,7 @@ export default function App(): ReactNode {
     }
     if (event.key === "ArrowDown" || event.key === "ArrowUp") {
       event.preventDefault();
-      focusMenuItem(menu, currentIndex + (event.key === "ArrowDown" ? 1 : -1));
+      focusMenuItem(menu, currentIndex < 0 && event.key !== "ArrowDown" ? -1 : currentIndex + (event.key === "ArrowDown" ? 1 : -1));
     }
   }, [focusMenuItem]);
 
@@ -689,6 +690,7 @@ export default function App(): ReactNode {
           "scan_active" in data &&
           data.scan_active === true
         ) {
+          setNativeScanActive(true);
           setScanCloseOpen(true);
         } else if (trayAvailable) {
           setRememberCloseChoice(false);
@@ -1088,9 +1090,9 @@ export default function App(): ReactNode {
         <label className="check-row"><input type="checkbox" checked={rememberCloseChoice} onChange={(event) => setRememberCloseChoice(event.currentTarget.checked)} />{_("Remember my choice")}</label>
         <div className="dialog-actions"><button className="button" type="button" onClick={() => setCloseOpen(false)}>{_("Cancel")}</button>{startupInfo.trayAvailable ? <button className="button" type="button" onClick={() => void completeClose("minimize", rememberCloseChoice)}>{_("Minimize to tray")}</button> : null}<button className="button danger" type="button" onClick={() => void completeClose("quit", rememberCloseChoice)}>{_("Quit")}</button></div>
       </Modal> : null}
-      {scanCloseOpen ? <Modal title={scanJobIdRef.current ? _("Scan in Progress") : _("Scan Complete")} onClose={() => setScanCloseOpen(false)}>
-        {scanJobIdRef.current ? <p>{_("A scan is still running. Cancelling it may leave partial results.")}</p> : null}
-        <div className="dialog-actions"><button className="button" type="button" onClick={() => setScanCloseOpen(false)}>{scanJobIdRef.current ? _("Keep Scanning") : _("Cancel")}</button><button className={scanJobId ? "button danger" : "button"} type="button" onClick={() => void cancelScanAndClose()}>{scanJobIdRef.current ? _("Cancel Scan and Close") : _("Close")}</button></div>
+      {scanCloseOpen ? <Modal title={scanJobIdRef.current || nativeScanActive ? _("Scan in Progress") : _("Scan Complete")} onClose={() => setScanCloseOpen(false)}>
+        {scanJobIdRef.current || nativeScanActive ? <p>{_("A scan is still running. Cancelling it may leave partial results.")}</p> : null}
+        <div className="dialog-actions"><button className="button" type="button" onClick={() => setScanCloseOpen(false)}>{scanJobIdRef.current || nativeScanActive ? _("Keep Scanning") : _("Cancel")}</button><button className={scanJobId ? "button danger" : "button"} type="button" onClick={() => void cancelScanAndClose()}>{scanJobIdRef.current || nativeScanActive ? _("Cancel Scan and Close") : _("Close")}</button></div>
       </Modal> : null}
       {onboardingOpen && !helperTrustError ? <Modal title={_("Install Privileged Helper")} busy={helperInstalling} onClose={() => void dismissOnboarding()}>
         <p>{helperStatus?.detail ?? _("Linux Defender needs its matching privileged helper to save system configuration.")}</p>

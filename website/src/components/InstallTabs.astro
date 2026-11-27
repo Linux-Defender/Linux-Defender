@@ -53,6 +53,12 @@ bun run tauri dev`;
 <script>
   // Bundled by Astro: works with the site's CSP and client-side navigation.
   function bindCopyButtons() {
+    const status = document.createElement("span");
+    status.className = "sr-only";
+    status.setAttribute("role", "status");
+    status.setAttribute("aria-live", "polite");
+    status.id = "copy-status";
+    document.body.appendChild(status);
     document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) => {
       if (button.dataset.bound) return;
       button.dataset.bound = "1";
@@ -61,9 +67,11 @@ bun run tauri dev`;
           await navigator.clipboard.writeText(button.dataset.copyText ?? "");
           const original = button.textContent;
           button.textContent = "Copied";
+          status.textContent = "Command copied to clipboard";
           setTimeout(() => { button.textContent = original; }, 1500);
         } catch {
           button.textContent = "Copy failed";
+          status.textContent = "Could not copy command";
         }
       });
     });

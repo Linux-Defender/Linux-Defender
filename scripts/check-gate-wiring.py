@@ -25,7 +25,7 @@ GATES = (
     ROOT / "scripts/audit-consistency.sh",
     ROOT / "scripts/check-translations.sh",
 )
-CHECKER = re.compile(r"^scripts/check-[A-Za-z0-9_.-]+\.(?:py|sh|ts)$")
+CHECKER = re.compile(r"^scripts/(?:check-[A-Za-z0-9_.-]+|tests/test_[A-Za-z0-9_.-]+)\.(?:py|sh|ts)$")
 INVOCATION = re.compile(
     r"(?:python3?|bun|node|sh|bash)?\s*(?:\.?/scripts/|scripts/|\$SCRIPT_DIR/)"
     r"([A-Za-z0-9_.\-/]+\.(?:py|sh|ts))"
@@ -55,7 +55,11 @@ def main() -> int:
             stripped = line.strip()
             if not stripped or stripped.startswith(("#", '"', "- \"")):
                 continue
-            for match in INVOCATION.finditer(line):
+            command = stripped.lstrip("!")
+            command = re.sub(
+                r"^(?:if\s+[^;]+;\s+then\s+|then\s+|else\s+|fi\s*;?\s*)", "", command
+            )
+            for match in INVOCATION.finditer(command):
                 name = match.group(1) or match.group(2)
                 referenced.setdefault(f"scripts/{name}", set()).add(
                     str(gate.relative_to(ROOT))

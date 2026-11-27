@@ -199,8 +199,16 @@ pub fn apply(ctx: &Context, schedule: &ScheduleConfig) -> AppResult<Value> {
     }
     // A previous backend may still be active; clean both before provisioning
     // so a backend switch cannot leave two scans scheduled.
-    let _ = disable_systemd(ctx);
-    let _ = disable_cron();
+    let cleanup_systemd = disable_systemd(ctx);
+    let cleanup_cron = disable_cron();
+    let cleanup_error = match (cleanup_systemd, cleanup_cron) {
+        (Err(a), Err(b)) => Some(format!("{a}; {b}")),
+        (Err(error), Ok(())) | (Ok(()), Err(error)) => Some(error),
+        (Ok(()), Ok(())) => None,
+    };
+    if let Some(error) = cleanup_error {
+        return Ok(provision_result(false, false, true, backend, Some(&error)));
+    }
     let result = match backend {
         SchedulerBackend::Systemd => enable_systemd(ctx, schedule),
         SchedulerBackend::Cron => enable_cron(schedule),
@@ -306,19 +314,22 @@ fn enable_systemd(ctx: &Context, schedule: &ScheduleConfig) -> AppResult<()> {
     );
     let _ = remove_systemd_units(&dir, LEGACY_SERVICE_NAME, LEGACY_TIMER_NAME);
     fs::create_dir_all(&dir).map_err(|error| format!("Error creating systemd files: {error}"))?;
-    fs::write(
-        dir.join(format!("{SERVICE_NAME}.service")),
-        service_file(&command, schedule),
+    crate::common::atomic_write(
+        &dir.join(format!("{SERVICE_NAME}.service")),
+        service_file(&command, schedule).as_bytes(),
+        0o644,
     )
     .map_err(|error| format!("Error creating systemd files: {error}"))?;
-    fs::write(
-        dir.join(format!("{TIMER_NAME}.timer")),
+    crate::common::atomic_write(
+        &dir.join(format!("{TIMER_NAME}.timer")),
         timer_file(&on_calendar(
             schedule.frequency,
             &schedule.time,
             schedule.day_of_week,
             schedule.day_of_month,
-        )),
+        ))
+        .as_bytes(),
+        0o644,
     )
     .map_err(|error| format!("Error creating systemd files: {error}"))?;
     let _ = run_host("systemctl", &["--user", "daemon-reload"])?;
@@ -449,10 +460,17 @@ fn enable_cron(schedule: &ScheduleConfig) -> AppResult<()> {
 
 fn disable_cron() -> AppResult<()> {
     let output = run_host("crontab", &["-l"])?;
-    if !output.status.success() {
-        return Ok(());
-    }
-    let existing = String::from_utf8_lossy(&output.stdout);
+    let existing = if output.status.success() {
+        String::from_utf8_lossy(&output.stdout).into_owned()
+    } else {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        if stderr.contains("no crontab for")
+            || (output.stdout.is_empty() && stderr.trim().is_empty())
+        {
+            return Ok(());
+        }
+        return Err(format!("Could not read crontab: {}", stderr.trim()));
+    };
     let lines = remove_our_cron_lines(&existing);
     // Never invoke `crontab -r`: an unrelated/user-owned crontab must not be deleted.
     install_crontab(&format!("{}\n", lines.join("\n")))
@@ -671,7 +689,7 @@ pub fn is_scheduled_scan_command(line: &str) -> bool {
     {
         return true;
     }
-    if is_our_program {
+    if !is_appimage && is_our_program {
         return true;
     }
     if command
@@ -1093,11 +1111,17 @@ fn run_scheduled_inner(args: &[String], ctx: Context) -> AppResult<i32> {
             let Some(threat_name) = threat.get("threat_name").and_then(Value::as_str) else {
                 continue;
             };
-            let response = quarantine::dispatch(
+            let response = match quarantine::dispatch(
                 &ctx,
                 "quarantine",
                 json!({"path":path, "threat_name":threat_name}),
-            )?;
+            ) {
+                Ok(value) => value,
+                Err(error) => {
+                    quarantine_failures.push(format!("{path}: {error}"));
+                    continue;
+                }
+            };
             if response.get("status").and_then(Value::as_str) == Some("success") {
                 quarantined += 1;
             } else {

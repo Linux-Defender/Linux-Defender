@@ -54,7 +54,20 @@ pub fn is_safe_external_url(input: &str) -> Result<Url, String> {
     ) {
         return Err("external URLs must use a hostname".to_owned());
     }
-    let host = url.host_str().unwrap_or_default().to_ascii_lowercase();
+    let mut host = url.host_str().unwrap_or_default().to_ascii_lowercase();
+    while host.ends_with('.') {
+        host.pop();
+    }
+    // Numeric, octal, and hexadecimal IP spellings can bypass textual checks.
+    let numeric_ip = host.parse::<std::net::IpAddr>().is_ok()
+        || (host.chars().all(|c| c.is_ascii_digit() || c == '.')
+            && host
+                .split('.')
+                .all(|part| !part.is_empty() && part.len() <= 3))
+        || host.starts_with("0x");
+    if numeric_ip {
+        return Err("external URLs must use a hostname".to_owned());
+    }
     if host == "localhost"
         || host.ends_with(".localhost")
         || host.ends_with(".internal")

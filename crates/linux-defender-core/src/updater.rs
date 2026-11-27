@@ -236,7 +236,26 @@ fn database_in(line: &str) -> Option<String> {
             || lower.ends_with(".idb")
             || lower.ends_with(".ldb")
     })
-    .map(str::to_owned)
+    .map(|word| {
+        // FreshClam reports versioned files (daily-27001.cvd); canonicalize
+        // them so status/error messages name the database, not one snapshot.
+        let lower = word.to_ascii_lowercase();
+        for suffix in [
+            ".cvd", ".cld", ".cud", ".hdb", ".ndb", ".ftm", ".idb", ".ldb",
+        ] {
+            if let Some(stem) = lower.strip_suffix(suffix) {
+                if let Some((base, version)) = stem.rsplit_once('-') {
+                    if !base.is_empty()
+                        && !version.is_empty()
+                        && version.bytes().all(|byte| byte.is_ascii_digit())
+                    {
+                        return format!("{base}{suffix}");
+                    }
+                }
+            }
+        }
+        word.to_owned()
+    })
 }
 
 pub fn parse_output(

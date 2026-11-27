@@ -68,12 +68,7 @@ const ogImage = new URL(`${base}/og-image.png`, siteUrl).toString();
         {
           "@type": "WebSite",
           name: "Linux Defender",
-          url: siteUrl,
-          potentialAction: {
-            "@type": "SearchAction",
-            target: `${canonical}?q={search_term_string}`,
-            "query-input": "required name=search_term_string",
-          },
+          url: canonical,
         },
       ],
     })} />

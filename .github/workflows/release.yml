@@ -11,30 +11,43 @@ on:
         required: true
         type: string
 
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build-deb:
+    environment: release
     uses: ./.github/workflows/build-deb.yml
     permissions:
       contents: read
     with:
       sign: true
-    secrets: inherit
+    secrets:
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
   build-rpm:
+    environment: release
     uses: ./.github/workflows/build-rpm.yml
     permissions:
       contents: read
     with:
       sign: true
-    secrets: inherit
+    secrets:
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
   build-appimage:
+    environment: release
     uses: ./.github/workflows/build-appimage.yml
     permissions:
       contents: read
     with:
       sign: true
-    secrets: inherit
+    secrets:
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
   release:
     needs: [build-deb, build-rpm, build-appimage]
@@ -69,7 +82,7 @@ jobs:
 
       - name: Verify release tag
         env:
-          REQUESTED_TAG: ${{ inputs.tag }}
+          REQUESTED_TAG: ${{ inputs.tag || github.ref_name }}
         run: |
           set -euo pipefail
           case "$REQUESTED_TAG" in

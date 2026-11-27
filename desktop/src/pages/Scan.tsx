@@ -596,7 +596,7 @@ export default function Scan() {
         const data = progressEvent(event.data);
         if (data?.id === activeIdRef.current) {
           setProgress(data);
-          if (data.new_threats?.length) setLiveThreats((current) => [...current, ...data.new_threats!]);
+          if (data.new_threats?.length) setLiveThreats((current) => [...current, ...data.new_threats!].slice(-50));
         }
       } else if (event.event === "scan-complete") {
         const data = eventRecord(event.data);

@@ -85,8 +85,7 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
             let key = required_string(&args, "key")?;
             let store = CredentialStore::new(ctx);
             let write = store.set(Account::UrlhausAuthKey, key)?;
-            // A saved key replaces the product default.
-            ctx.update_settings(json!({ URLHAUS_DEFAULT_KEY_DISABLED_SETTING: false }))?;
+
             let info = status_info(ctx)?;
             Ok(json!({
                 "present": info.present,
@@ -110,6 +109,8 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                                 "message": if deleted {
                     // Translators: Keep `URLhaus` and `Auth-Key` unchanged; they are product/protocol names.
                     tr(ctx, "URLhaus Auth-Key deleted")
+                } else if matches!(info.status, CredentialStatus::Locked | CredentialStatus::Unavailable) {
+                    tr(ctx, "Keyring is unavailable; the stored key could not be checked")
                 } else {
                     tr(ctx, "No URLhaus Auth-Key was configured")
                 },

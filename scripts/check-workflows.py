@@ -62,6 +62,11 @@ def main() -> int:
                     f"{path.name}: PR trigger without PR-scoped concurrency; "
                     "a newer push must cancel stale runs"
                 )
+        for job_name, job in (data.get("jobs") or {}).items():
+            if not isinstance(job, dict):
+                continue
+            if "runs-on" in job and "timeout-minutes" not in job:
+                failures.append(f"{path.name}: job '{job_name}' has no timeout-minutes")
         for ref in EXTERNAL_USE.findall(path.read_text(encoding="utf-8")):
             if not PINNED.match(ref):
                 failures.append(

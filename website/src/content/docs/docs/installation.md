@@ -25,7 +25,7 @@ On openSUSE Tumbleweed or Leap, the package is also `clamav`:
 sudo zypper install clamav
 ```
 
-If you already enabled `clamav-freshclam-once.timer`, leave updates to that timer. You can confirm its status and check the ClamAV database version from the Linux Defender Database page.
+If you already enabled `clamav-freshclam-once.timer`, leave updates to that timer. You can check the ClamAV database version and update-service status from the Linux Defender Database page; to inspect that one-shot timer specifically, run `systemctl status clamav-freshclam-once.timer`.
 
 ## Software updates
 

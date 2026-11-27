@@ -415,7 +415,9 @@ export default function ConfigPreferences({ section }: { section: string }) {
     try {
       const status = await request<ScannerStatus>("scanner.status");
       setScanner(status);
-      setBackend(status.configured_backend);
+      // The save flow owns the dropdown value; a late status response must
+      // not overwrite a newer user selection.
+      setBackend((current) => current);
     } catch (error) {
       notify(String(error), "error");
     }
@@ -731,7 +733,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
       setReport({ tone: "error", message, technicalDetails });
       notify(isHelperTrustError(technicalDetails) ? technicalDetails : `${message}: ${technicalDetails.split("\n", 1)[0]}`, "error");
     } finally {
-      setBusy(false);
+      if (isCurrentAttempt()) setBusy(false);
     }
   }, [clamd, clearRecovery, configLoadCount, freshclam, helperFailed, schedule, scheduleBaseline]);
 

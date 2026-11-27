@@ -34,7 +34,10 @@ def main() -> int:
         print(f"cannot read support parity contracts: {exc}", file=sys.stderr)
         return 1
 
-    for rule in data.get("rules", []):
+    rules = data.get("rules", [])
+    if len(rules) < 10:
+        failures.append(f"support-parity contract has only {len(rules)} rules (expected at least 10)")
+    for rule in rules:
         name = rule.get("name", "<unnamed>")
         files = rule.get("files", [])
         patterns = rule.get("patterns", [])

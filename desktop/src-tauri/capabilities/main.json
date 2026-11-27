@@ -8,12 +8,6 @@
   "permissions": [
     "core:event:allow-listen",
     "core:event:allow-unlisten",
-    "core:window:allow-hide",
-    "core:window:allow-show",
-    "core:window:allow-close",
-    "core:window:allow-set-focus",
-    "clipboard-manager:allow-write-text",
-    "notification:allow-is-permission-granted",
     "allow-request",
     "allow-choose-paths",
     "allow-save-export",

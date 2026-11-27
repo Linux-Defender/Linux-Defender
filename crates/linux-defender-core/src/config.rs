@@ -139,17 +139,10 @@ impl ConfigDocument {
     }
 
     fn replace_values(&self, proposed: BTreeMap<String, Vec<String>>) -> Self {
+        // Only submitted directives change. Unmentioned keys (including
+        // unknown/future directives) are preserved; removal is expressed by
+        // sending an empty array for a key.
         let mut updated = self.clone();
-        let existing = updated.values.keys().cloned().collect::<Vec<_>>();
-        for key in existing {
-            if !proposed.contains_key(&key) {
-                for line in updated.line_numbers.get(&key).into_iter().flatten() {
-                    updated.raw_lines[*line].clear();
-                }
-                updated.values.remove(&key);
-                updated.line_numbers.remove(&key);
-            }
-        }
         for (key, entries) in proposed {
             let old_lines = updated.line_numbers.remove(&key).unwrap_or_default();
             if entries.is_empty() {
@@ -905,7 +898,10 @@ fn values(arguments: &Map<String, Value>) -> AppResult<BTreeMap<String, Vec<Stri
     source
         .iter()
         .map(|(key, value)| {
-            if key.trim().is_empty() || key.chars().any(char::is_whitespace) {
+            if key.trim().is_empty()
+                || key.chars().any(char::is_whitespace)
+                || key.chars().any(char::is_control)
+            {
                 return Err(format!("Invalid configuration directive: {key}"));
             }
             let entries = value

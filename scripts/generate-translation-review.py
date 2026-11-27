@@ -34,14 +34,43 @@ def statistics(locale: str) -> str:
     return (result.stdout + result.stderr).strip().splitlines()[-1] if result.returncode == 0 else "msgfmt failed"
 
 
+def po_string(lines: list[str], index: int, prefix: str) -> tuple[str, int]:
+    """Decode one msgid/msgstr value, including multi-line continuations."""
+    first = lines[index][len(prefix):]
+    parts: list[str] = []
+    if first.startswith('"'):
+        parts.append(first[1:-1])
+        index += 1
+        while index < len(lines) and lines[index].startswith('"'):
+            parts.append(lines[index][1:-1])
+            index += 1
+    return "".join(parts), index
+
+
 def identical_candidates(locale: str) -> list[str]:
     text = (PO / f"{locale}.po").read_text(encoding="utf-8", errors="replace")
-    pairs = re.findall(r'^msgid "((?:[^"\\]|\\.)*)"\nmsgstr "((?:[^"\\]|\\.)*)"$', text, re.M)
-    identical = []
-    for msgid, msgstr in pairs:
-        if msgid != msgstr or len(msgid) < 30 or PROTECTED.search(msgid):
+    lines = text.split("\n")
+    identical: list[str] = []
+    index = 0
+    while index < len(lines):
+        line = lines[index]
+        if line.startswith("msgid "):
+            msgid, index = po_string(lines, index, "msgid ")
+            # Skip msgctxt and msgid_plural blocks safely.
+            while index < len(lines) and not lines[index].startswith("msgstr"):
+                index += 1
+            if index >= len(lines):
+                break
+            msgstr, index = po_string(lines, index, "msgstr ")
+            if (
+                msgid
+                and msgid == msgstr
+                and len(msgid) >= 30
+                and not PROTECTED.search(msgid)
+            ):
+                identical.append(msgid.replace('\\"', '"'))
             continue
-        identical.append(msgid.replace('\\"', '"'))
+        index += 1
     return sorted(set(identical))
 
 

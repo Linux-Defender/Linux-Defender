@@ -1,4 +1,4 @@
-use crate::credentials::{Account, CredentialStore};
+use crate::credentials::{Account, CredentialStatus, CredentialStore};
 use crate::i18n::translate as tr;
 use crate::{AppResult, Context};
 use reqwest::blocking::Client;
@@ -92,15 +92,18 @@ impl HttpTransport for ReqwestTransport {
                 }
             })?;
         let status = response.status().as_u16();
-        let bytes = response
-            .bytes()
+        use std::io::Read;
+        let mut bytes = Vec::new();
+        response
+            .take((1024 * 1024 + 1) as u64)
+            .read_to_end(&mut bytes)
             .map_err(|_| "Unable to read urlscan response")?;
         if bytes.len() > 1024 * 1024 {
             return Err("urlscan response is too large".to_owned());
         }
         Ok(HttpResponse {
             status,
-            body: bytes.to_vec(),
+            body: bytes,
         })
     }
 }
@@ -192,7 +195,16 @@ pub fn validate_url(input: &str) -> AppResult<Url> {
                 v4.is_loopback() || v4.is_private() || v4.is_link_local() || v4.is_unspecified()
             }
             std::net::IpAddr::V6(v6) => {
-                v6.is_loopback() || v6.is_unspecified() || v6.is_unique_local()
+                v6.is_loopback()
+                    || v6.is_unspecified()
+                    || v6.is_unique_local()
+                    || v6.is_unicast_link_local()
+                    || v6.to_ipv4().is_some_and(|mapped| {
+                        mapped.is_loopback()
+                            || mapped.is_private()
+                            || mapped.is_link_local()
+                            || mapped.is_unspecified()
+                    })
             }
         };
         if local {
@@ -237,7 +249,11 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                     tr(ctx, "urlscan API key deleted")
                 } else {
                     // Translators: Keep `urlscan` unchanged; it is a product name.
-                    tr(ctx, "No urlscan API key was configured")
+                    if matches!(info.status, CredentialStatus::Locked | CredentialStatus::Unavailable) {
+                        tr(ctx, "Keyring is unavailable; the stored key could not be checked")
+                    } else {
+                        tr(ctx, "No urlscan API key was configured")
+                    }
                 },
             }))
         }

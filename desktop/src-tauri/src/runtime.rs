@@ -423,7 +423,12 @@ async fn request(
     action: String,
     args: Value,
 ) -> Result<Value, String> {
-    if action.chars().count() > 128 || action.is_empty() {
+    if action.is_empty()
+        || action.chars().count() > 128
+        || !action.bytes().all(|byte| {
+            byte.is_ascii_alphanumeric() || byte == b'_' || byte == b'-' || byte == b'.'
+        })
+    {
         return Err("invalid operation identifier".into());
     }
     let estimated_args = serde_json::to_string(&args)
@@ -441,12 +446,17 @@ async fn request(
     }
     let progress_registration = if action == "scanner.scan" {
         match args.get("id").and_then(Value::as_str) {
-            Some(operation_id) if valid_operation_id(operation_id) => state
-                .scan_progress
-                .lock()
-                .expect("scan progress state poisoned")
-                .register(operation_id)
-                .map(|registration| (operation_id.to_owned(), registration)),
+            Some(operation_id) if valid_operation_id(operation_id) => {
+                let registration = state
+                    .scan_progress
+                    .lock()
+                    .expect("scan progress state poisoned")
+                    .register(operation_id);
+                match registration {
+                    Some(registration) => Some((operation_id.to_owned(), registration)),
+                    None => return Err("scan operation id already in use".into()),
+                }
+            }
             Some(_) => return Err("invalid scan operation identifier".into()),
             None => None,
         }
@@ -553,7 +563,13 @@ async fn save_export(
     encoding: Option<String>,
 ) -> Result<SavedExport, String> {
     let _operation = state.active_jobs.register("native.save_export".into())?;
-    if Path::new(&default_name).components().count() != 1 || default_name.is_empty() {
+    if default_name.is_empty()
+        || default_name.chars().any(char::is_control)
+        || !Path::new(&default_name)
+            .components()
+            .all(|component| matches!(component, std::path::Component::Normal(_)))
+        || Path::new(&default_name).components().count() != 1
+    {
         return Err("default export name must be a filename".into());
     }
     let bytes = match encoding.as_deref().unwrap_or("utf8") {
@@ -604,21 +620,28 @@ async fn copy_text(state: State<'_, AppState>, app: AppHandle, text: String) -> 
         return Err("clipboard payload is too large".to_owned());
     }
     let _operation = state.active_jobs.register("native.copy_text".into())?;
-    tauri::async_runtime::spawn_blocking(move || {
-        #[cfg(target_os = "linux")]
-        {
-            let _ = &app;
-            crate::clipboard::write_text(&text)
-        }
-        #[cfg(not(target_os = "linux"))]
-        {
+    #[cfg(target_os = "linux")]
+    {
+        let (tx, rx) = std::sync::mpsc::channel();
+        app.run_on_main_thread(move || {
+            let _ = tx.send(crate::clipboard::write_text(&text));
+        })
+        .map_err(|error| error.to_string())?;
+        tauri::async_runtime::spawn_blocking(move || rx.recv_timeout(Duration::from_secs(10)))
+            .await
+            .map_err(|error| error.to_string())?
+            .map_err(|error| error.to_string())?
+    }
+    #[cfg(not(target_os = "linux"))]
+    {
+        tauri::async_runtime::spawn_blocking(move || {
             app.clipboard()
                 .write_text(text)
                 .map_err(|error| error.to_string())
-        }
-    })
-    .await
-    .map_err(|error| error.to_string())?
+        })
+        .await
+        .map_err(|error| error.to_string())?
+    }
 }
 
 /// Open a target with the desktop's default handler. Under a classic snap,

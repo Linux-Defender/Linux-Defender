@@ -165,7 +165,7 @@ export default function Database({ startRequest }: DatabaseProps): JSX.Element {
           ? data.line
           : null;
         if (updateId !== currentOperationId.current || line === null) return;
-        setProgress((lines) => [...lines, line]);
+        setProgress((lines) => [...lines, line].slice(-500));
       }
       if (event.event === "update-complete") {
         const data = event.data;

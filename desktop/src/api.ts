@@ -17,6 +17,12 @@ export function isPublicHttpUrl(value: string): boolean {
       if (a === 0 || a === 10 || a === 127 || (a === 169 && b === 254)
         || (a === 192 && b === 168) || a >= 224) return false;
     }
+    const mapped = host.match(/^::ffff:(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+    if (mapped) {
+      const [a, b] = mapped.slice(1).map(Number);
+      if (a === 0 || a === 10 || a === 127 || (a === 169 && b === 254)
+        || (a === 192 && b === 168) || a >= 224) return false;
+    }
     if (host === "localhost" || host.endsWith(".localhost") || host === "::1"
       || host.startsWith("fc") || host.startsWith("fd") || host.startsWith("fe80:")) return false;
     return true;

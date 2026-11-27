@@ -11,7 +11,6 @@ if (!rootElement) {
   throw new Error("Linux Defender could not find its application root");
 }
 
-document.getElementById("boot-fallback")?.remove();
 const root = createRoot(rootElement);
 void loadCatalog()
   .then(() => {

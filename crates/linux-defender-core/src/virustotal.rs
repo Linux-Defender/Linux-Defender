@@ -552,13 +552,18 @@ impl HttpTransport for ReqwestTransport {
         }
         .map_err(classify_transport_error)?;
         let status = response.status().as_u16();
-        let bytes = response.bytes().map_err(classify_transport_error)?;
+        use std::io::Read;
+        let mut bytes = Vec::new();
+        response
+            .take((8 * 1024 * 1024 + 1) as u64)
+            .read_to_end(&mut bytes)
+            .map_err(|_error| TransportError::Other)?;
         if bytes.len() > 8 * 1024 * 1024 {
             return Err(TransportError::Other);
         }
         Ok(HttpResponse {
             status,
-            body: bytes.to_vec(),
+            body: bytes,
         })
     }
 }
@@ -933,10 +938,32 @@ impl VirusTotalClient {
                 .ok()
                 .and_then(|value| value.get("data").and_then(Value::as_str).map(str::to_owned))
             {
-                Some(url)
-                    if url.starts_with("https://") || self.base_url.starts_with("http://") =>
-                {
-                    url
+                Some(raw_url) => {
+                    let Ok(parsed) = Url::parse(&raw_url) else {
+                        return VTScanResult::error(
+                            file_path,
+                            sha256,
+                            "Failed to obtain upload URL for large file",
+                        );
+                    };
+                    let host = parsed.host_str().unwrap_or_default();
+                    let official_host =
+                        host == "www.virustotal.com" || host.ends_with(".virustotal.com");
+                    // A non-official base_url is the test transport override;
+                    // it never receives the API key (include_api_key: false).
+                    let allowed = parsed.username().is_empty()
+                        && parsed.password().is_none()
+                        && !host.is_empty()
+                        && (parsed.scheme() == "https" && official_host
+                            || self.base_url.starts_with("http://"));
+                    if !allowed {
+                        return VTScanResult::error(
+                            file_path,
+                            sha256,
+                            "Failed to obtain upload URL for large file",
+                        );
+                    }
+                    raw_url
                 }
                 _ => {
                     return VTScanResult::error(
@@ -1041,11 +1068,30 @@ impl VirusTotalClient {
                         return result;
                     }
                 }
-                Ok(_) | Err(_) => {
+                Ok(_response) => {
+                    // A non-200/parse failure is not a "clean" verdict. Only
+                    // a genuine not-found hash lookup is a safe fallback.
                     let mut result = self.check_file_hash(sha256, cancelled);
                     result.file_path = file_path.into();
+                    if result.status == VTScanStatus::NotFound {
+                        result.status = VTScanStatus::Pending;
+                        result.error_message = Some("Analysis still in progress".into());
+                    }
                     return result;
                 }
+                Err(RequestFailure::RateLimited) => {
+                    let mut result =
+                        VTScanResult::error(file_path, sha256, "API rate limit exceeded");
+                    result.status = VTScanStatus::RateLimited;
+                    return result;
+                }
+                Err(RequestFailure::Authentication | RequestFailure::Permission) => {
+                    return VTScanResult::error(file_path, sha256, "Invalid API key")
+                }
+                Err(RequestFailure::Cancelled) => {
+                    return VTScanResult::error(file_path, sha256, "Scan cancelled")
+                }
+                Err(_) => return VTScanResult::error(file_path, sha256, "Request failed"),
             }
             if !interruptible_sleep(ANALYSIS_POLL_INTERVAL, cancelled) {
                 return VTScanResult::error(file_path, sha256, "Scan cancelled");
@@ -1128,6 +1174,7 @@ impl VirusTotalClient {
             if cancelled.load(Ordering::Relaxed) {
                 return Err(RequestFailure::Cancelled);
             }
+            let file_upload = matches!(request.body, HttpBody::File { .. });
             match self.transport.execute(request.clone()) {
                 Ok(response) if response.status == 429 => return Err(RequestFailure::RateLimited),
                 Ok(response) if response.status == 401 => {
@@ -1142,6 +1189,9 @@ impl VirusTotalClient {
                     return Err(RequestFailure::Connection);
                 }
                 Err(TransportError::Other) => return Err(RequestFailure::Other),
+                Err(TransportError::Timeout | TransportError::Connection) if file_upload => {
+                    return Err(RequestFailure::Timeout);
+                }
                 Err(TransportError::Timeout | TransportError::Connection) => {
                     let delay = VT_RETRY_BASE_DELAY.saturating_mul(1u32 << attempt);
                     if !interruptible_sleep(delay, cancelled) {
@@ -1335,7 +1385,16 @@ fn validate_scan_url(input: &str) -> Result<String, &'static str> {
                 v4.is_loopback() || v4.is_private() || v4.is_link_local() || v4.is_unspecified()
             }
             std::net::IpAddr::V6(v6) => {
-                v6.is_loopback() || v6.is_unspecified() || v6.is_unique_local()
+                v6.is_loopback()
+                    || v6.is_unspecified()
+                    || v6.is_unique_local()
+                    || v6.is_unicast_link_local()
+                    || v6.to_ipv4().is_some_and(|mapped| {
+                        mapped.is_loopback()
+                            || mapped.is_private()
+                            || mapped.is_link_local()
+                            || mapped.is_unspecified()
+                    })
             }
         };
         if local {

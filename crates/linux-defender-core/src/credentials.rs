@@ -221,6 +221,8 @@ impl CredentialStore {
             }
             Err(KeyringFailure::Locked) => Err("System keyring is locked".into()),
             Err(KeyringFailure::Unavailable) if self.plaintext_fallback_allowed()? => {
+                // A returning keyring must not shadow a newer fallback secret.
+                let _ = keyring_delete(account);
                 self.ctx.update_settings(json!({account.fallback_setting(): secret}))?;
                 Ok(CredentialWrite {
                     backend: CredentialBackend::PlaintextFallback,

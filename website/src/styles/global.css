@@ -46,7 +46,7 @@
    The .btn-primary / .btn-ghost rules below @apply btn, so btn must be a
    real utility, not a @layer components class. */
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-150 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-guard-sage/60;
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-150 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-guard-forest;
 }
 
 @layer base {
@@ -326,4 +326,4 @@ html.light [data-copy]:hover[class~="text-white"] {
 }
 
 /* Canonical Markdown docs supply their own H1; Starlight already rendered the page title. */
-.canonical-doc > h1:first-child { display: none; }
+.canonical-doc > .sl-heading-wrapper > h1:first-child { display: none; }

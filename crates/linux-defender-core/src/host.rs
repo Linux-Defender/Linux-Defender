@@ -6,6 +6,7 @@ use serde_json::{json, Value};
 use std::collections::BTreeMap;
 use std::ffi::OsString;
 use std::fs;
+use std::io::Read;
 use std::path::Path;
 use std::process::Stdio;
 use std::time::{Duration, Instant};
@@ -90,15 +91,28 @@ fn run_host_command(
         .spawn()
         .map_err(|error| format!("Unable to run {program}: {error}"))?;
     let deadline = timeout.map(|seconds| Instant::now() + Duration::from_secs(seconds));
-    loop {
-        if child
+    // Drain both pipes while polling: wait_with_output() after try_wait()
+    // deadlocks when the child fills a pipe buffer before exiting.
+    let stdout_handle = child.stdout.take().map(|mut pipe| {
+        std::thread::spawn(move || {
+            let mut bytes = Vec::new();
+            let _ = pipe.read_to_end(&mut bytes);
+            bytes
+        })
+    });
+    let stderr_handle = child.stderr.take().map(|mut pipe| {
+        std::thread::spawn(move || {
+            let mut bytes = Vec::new();
+            let _ = pipe.read_to_end(&mut bytes);
+            bytes
+        })
+    });
+    let status = loop {
+        if let Some(status) = child
             .try_wait()
             .map_err(|error| format!("Unable to wait for {program}: {error}"))?
-            .is_some()
         {
-            return child
-                .wait_with_output()
-                .map_err(|error| format!("Unable to read {program} output: {error}"));
+            break status;
         }
         if deadline.is_some_and(|deadline| Instant::now() >= deadline) {
             let _ = child.kill();
@@ -106,7 +120,18 @@ fn run_host_command(
             return Err(format!("{program} timed out"));
         }
         std::thread::sleep(Duration::from_millis(10));
-    }
+    };
+    let stdout = stdout_handle
+        .and_then(|handle| handle.join().ok())
+        .unwrap_or_default();
+    let stderr = stderr_handle
+        .and_then(|handle| handle.join().ok())
+        .unwrap_or_default();
+    Ok(std::process::Output {
+        status,
+        stdout,
+        stderr,
+    })
 }
 
 pub fn host_binary(binary: &str) -> Option<String> {

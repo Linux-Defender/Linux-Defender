@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 09:42-0500\n"
+"POT-Creation-Date: 2026-11-27 15:16-0500\n"
 "PO-Revision-Date: 2026-06-30 13:00+0200\n"
 "Last-Translator: Robin GUY <contact@robinguy.fr>\n"
 "Language-Team: French\n"
@@ -1368,71 +1368,71 @@ msgstr[1] ""
 msgid "Usage: linux-defender install-privileged-helper [--prefix PATH]"
 msgstr "Usage: linux-defender install-privileged-helper [--prefix PATH]"
 
-#: crates/linux-defender-core/src/config.rs:326
-#: crates/linux-defender-core/src/config.rs:345
+#: crates/linux-defender-core/src/config.rs:319
+#: crates/linux-defender-core/src/config.rs:338
 msgid "Configuration file not found"
 msgstr "Fichier de configuration introuvable"
 
-#: crates/linux-defender-core/src/config.rs:410
+#: crates/linux-defender-core/src/config.rs:403
 msgid "Invalid scheduled scan configuration: {error}"
 msgstr "Configuration d’analyse planifiée non valide : {error}"
 
-#: crates/linux-defender-core/src/config.rs:469
-#: crates/linux-defender-core/src/config.rs:527
+#: crates/linux-defender-core/src/config.rs:462
+#: crates/linux-defender-core/src/config.rs:520
 msgid "Not attempted because an earlier direct configuration write failed"
 msgstr ""
 "Non tenté car une écriture directe précédente de la configuration a échoué"
 
-#: crates/linux-defender-core/src/config.rs:507
+#: crates/linux-defender-core/src/config.rs:500
 msgid "Protected configuration write failed"
 msgstr "Échec de l’écriture de la configuration protégée"
 
-#: crates/linux-defender-core/src/config.rs:582
+#: crates/linux-defender-core/src/config.rs:575
 msgid "Cannot save configuration paths: {error}"
 msgstr "Impossible d’enregistrer les chemins de configuration : {error}"
 
-#: crates/linux-defender-core/src/config.rs:612
-#: crates/linux-defender-core/src/config.rs:646
+#: crates/linux-defender-core/src/config.rs:605
+#: crates/linux-defender-core/src/config.rs:639
 msgid "Cannot save scheduled scan preferences: {error}"
 msgstr "Impossible d’enregistrer les préférences d’analyse planifiée : {error}"
 
-#: crates/linux-defender-core/src/config.rs:625
-#: crates/linux-defender-core/src/config.rs:634
+#: crates/linux-defender-core/src/config.rs:618
+#: crates/linux-defender-core/src/config.rs:627
 msgid "Failed to apply scheduled scan configuration: {error}"
 msgstr ""
 "Échec de l’application de la configuration de l’analyse planifiée : {error}"
 
-#: crates/linux-defender-core/src/config.rs:708
+#: crates/linux-defender-core/src/config.rs:701
 msgid "Configuration path appears more than once: {path}"
 msgstr "Le chemin de configuration apparaît plusieurs fois : {path}"
 
-#: crates/linux-defender-core/src/config.rs:716
+#: crates/linux-defender-core/src/config.rs:709
 msgid "Configuration kinds sharing {setting} must use the same path"
 msgstr ""
 "Les types de configuration partageant {setting} doivent utiliser le même "
 "chemin"
 
-#: crates/linux-defender-core/src/config.rs:727
+#: crates/linux-defender-core/src/config.rs:720
 msgid "Cannot prepare {path}: {error}"
 msgstr "Impossible de préparer {path} : {error}"
 
-#: crates/linux-defender-core/src/config.rs:817
+#: crates/linux-defender-core/src/config.rs:810
 msgid "Cannot read {path}: {error}"
 msgstr "Impossible de lire {path} : {error}"
 
-#: crates/linux-defender-core/src/config.rs:827
+#: crates/linux-defender-core/src/config.rs:820
 msgid "Configuration is not a regular file: {path}"
 msgstr "La configuration n’est pas un fichier ordinaire : {path}"
 
-#: crates/linux-defender-core/src/config.rs:833
+#: crates/linux-defender-core/src/config.rs:826
 msgid "Cannot create {path}: {error}"
 msgstr "Impossible de créer {path} : {error}"
 
-#: crates/linux-defender-core/src/config.rs:842
+#: crates/linux-defender-core/src/config.rs:835
 msgid "Cannot write {path}: {error}"
 msgstr "Impossible d’écrire dans {path} : {error}"
 
-#: crates/linux-defender-core/src/config.rs:945
+#: crates/linux-defender-core/src/config.rs:941
 msgid ""
 "On-Access scanning requires at least one loop-prevention exclusion: Exclude "
 "Username, Exclude User ID, or Exclude Root User"
@@ -1441,44 +1441,44 @@ msgstr ""
 "Exclure le nom d’utilisateur, Exclure l’identifiant utilisateur ou Exclure "
 "l’utilisateur root"
 
-#: crates/linux-defender-core/src/config.rs:972
+#: crates/linux-defender-core/src/config.rs:968
 msgid "{key}: value contains a control character"
 msgstr "{key}: value contains a control character"
 
-#: crates/linux-defender-core/src/config.rs:978
+#: crates/linux-defender-core/src/config.rs:974
 msgid "{key}: invalid boolean value: {value}"
 msgstr "{key} : valeur booléenne non valide : {value}"
 
-#: crates/linux-defender-core/src/config.rs:1007
+#: crates/linux-defender-core/src/config.rs:1003
 msgid "{key}: value {value} is below minimum {minimum}"
 msgstr "{key} : la valeur {value} est inférieure au minimum de {minimum}"
 
-#: crates/linux-defender-core/src/config.rs:1015
+#: crates/linux-defender-core/src/config.rs:1011
 msgid "{key}: value {value} exceeds maximum {maximum}"
 msgstr "{key} : la valeur {value} dépasse le maximum de {maximum}"
 
-#: crates/linux-defender-core/src/config.rs:1024
+#: crates/linux-defender-core/src/config.rs:1020
 msgid "{key}: not a valid integer: {value}"
 msgstr "{key} : entier non valide : {value}"
 
-#: crates/linux-defender-core/src/config.rs:1033
+#: crates/linux-defender-core/src/config.rs:1029
 msgid "{key}: size must start with a number: {value}"
 msgstr "{key} : la taille doit commencer par un nombre : {value}"
 
-#: crates/linux-defender-core/src/config.rs:1050
+#: crates/linux-defender-core/src/config.rs:1046
 msgid "{key}: path must be non-empty and cannot traverse with '..'"
 msgstr "{key}: path must be non-empty and cannot traverse with '..'"
 
-#: crates/linux-defender-core/src/config.rs:1069
+#: crates/linux-defender-core/src/config.rs:1065
 msgid "{key}: string value cannot be empty"
 msgstr "{key} : la valeur de la chaîne ne peut pas être vide"
 
-#: crates/linux-defender-core/src/config.rs:1080
+#: crates/linux-defender-core/src/config.rs:1076
 msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key} : l’URL doit commencer par http(s)://, ftp(s):// ou file://"
 
 #. Translators: The em dash separates the fallback state from its security warning.
-#: crates/linux-defender-core/src/credentials.rs:227
+#: crates/linux-defender-core/src/credentials.rs:229
 msgid "Stored in settings file (keyring unavailable — less secure)"
 msgstr ""
 "Enregistré dans le fichier de paramètres (trousseau de clés indisponible — "
@@ -1489,31 +1489,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr "Robin GUY"
 
-#: crates/linux-defender-core/src/host.rs:1058
+#: crates/linux-defender-core/src/host.rs:1083
 msgid "Daemon not responding: {error}"
 msgstr "Le service ne répond pas : {error}"
 
-#: crates/linux-defender-core/src/host.rs:1061
+#: crates/linux-defender-core/src/host.rs:1086
 msgid "{binary} found but returned error: {error}"
 msgstr "{binary} a été trouvé mais a renvoyé une erreur : {error}"
 
-#: crates/linux-defender-core/src/host.rs:1066
+#: crates/linux-defender-core/src/host.rs:1091
 msgid "{service} is active"
 msgstr "{service} est actif"
 
-#: crates/linux-defender-core/src/host.rs:1069
+#: crates/linux-defender-core/src/host.rs:1094
 msgid "No virus database files found in {path}"
 msgstr "Aucun fichier de base de données virale trouvé dans {path}"
 
-#: crates/linux-defender-core/src/host.rs:1075
+#: crates/linux-defender-core/src/host.rs:1100
 msgid "Error accessing database {path}: {error}"
 msgstr "Erreur lors de l’accès à la base de données {path} : {error}"
 
-#: crates/linux-defender-core/src/host.rs:1081
+#: crates/linux-defender-core/src/host.rs:1106
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "{binary} n’est pas installé. Veuillez l’installer avec : {command}"
 
-#: crates/linux-defender-core/src/host.rs:1091
+#: crates/linux-defender-core/src/host.rs:1116
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
@@ -1672,59 +1672,59 @@ msgid "Failed to remove {path}: {error}"
 msgstr "Failed to remove {path}: {error}"
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1135
+#: crates/linux-defender-core/src/privileged.rs:1142
 msgid "Authorization was cancelled while {operation}."
 msgstr "L’autorisation a été annulée lors de {operation}."
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1141
+#: crates/linux-defender-core/src/privileged.rs:1148
 msgid "The privileged helper is unavailable while {operation}."
 msgstr "Le helper privilégié n’est pas disponible lors de {operation}."
 
 #. Translators: PKEXEC_UID is a technical environment-variable name; keep it unchanged.
-#: crates/linux-defender-core/src/privileged.rs:1147
+#: crates/linux-defender-core/src/privileged.rs:1154
 msgid "The privileged helper rejected PKEXEC_UID while {operation}."
 msgstr "Le helper privilégié a rejeté PKEXEC_UID lors de {operation}."
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1153
+#: crates/linux-defender-core/src/privileged.rs:1160
 msgid "The privileged helper reported a protocol mismatch while {operation}."
 msgstr ""
 "Le helper privilégié a signalé une incompatibilité de protocole lors de "
 "{operation}."
 
 #. Translators: keep {operation}, numeric {code}, and sanitized diagnostic {detail}.
-#: crates/linux-defender-core/src/privileged.rs:1159
+#: crates/linux-defender-core/src/privileged.rs:1166
 msgid "The privileged helper failed while {operation} (exit {code}): {detail}."
 msgstr ""
 "Le helper privilégié a échoué lors de {operation} (sortie {code}) : {detail}."
 
 #. Translators: keep the {operation} and numeric {code} placeholders.
-#: crates/linux-defender-core/src/privileged.rs:1167
+#: crates/linux-defender-core/src/privileged.rs:1174
 msgid "The privileged helper failed while {operation} (exit {code})."
 msgstr "Le helper privilégié a échoué lors de {operation} (sortie {code})."
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1174
+#: crates/linux-defender-core/src/privileged.rs:1181
 msgid "The privileged helper was terminated while {operation}."
 msgstr "Le helper privilégié a été arrêté lors de {operation}."
 
-#: crates/linux-defender-core/src/privileged.rs:1238
+#: crates/linux-defender-core/src/privileged.rs:1244
 msgid "Applying configuration"
 msgstr "Application de la configuration"
 
 #. Translators: keep {message}; it is the complete preceding helper error.
-#: crates/linux-defender-core/src/privileged.rs:1240
+#: crates/linux-defender-core/src/privileged.rs:1246
 msgid "{message} One or more earlier replacements may have succeeded."
 msgstr ""
 "{message} Un ou plusieurs remplacements antérieurs ont peut-être réussi."
 
-#: crates/linux-defender-core/src/privileged.rs:1482
+#: crates/linux-defender-core/src/privileged.rs:1488
 msgid "Reading configuration"
 msgstr "Lecture de la configuration"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3138
+#: crates/linux-defender-core/src/privileged.rs:3149
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -1914,39 +1914,39 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2199
+#: crates/linux-defender-core/src/scanner.rs:2251
 msgid "Scan cancelled by user"
 msgstr "Analyse interrompue par l'utilisateur"
 
-#: crates/linux-defender-core/src/scanner.rs:2206
+#: crates/linux-defender-core/src/scanner.rs:2258
 msgid "No files could be scanned"
 msgstr "Aucun fichier n’a pu être analysé"
 
-#: crates/linux-defender-core/src/scanner.rs:2212
+#: crates/linux-defender-core/src/scanner.rs:2264
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "La cible d’analyse n’existe pas ou contient un octet NUL non valide"
 
-#: crates/linux-defender-core/src/scanner.rs:2219
+#: crates/linux-defender-core/src/scanner.rs:2271
 msgid "Scan target is not a regular file or directory"
 msgstr "La cible d’analyse n’est ni un fichier ordinaire ni un dossier"
 
-#: crates/linux-defender-core/src/scanner.rs:2228
+#: crates/linux-defender-core/src/scanner.rs:2280
 msgid "Threats were detected, but details are unavailable."
 msgstr "Des menaces ont été détectées, mais aucun détail n’est disponible."
 
-#: crates/linux-defender-core/src/scanner.rs:2240
+#: crates/linux-defender-core/src/scanner.rs:2292
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "Impossible d’accéder à {count} fichier"
 msgstr[1] "Impossible d’accéder à {count} fichiers"
 
-#: crates/linux-defender-core/src/scanner.rs:2253
+#: crates/linux-defender-core/src/scanner.rs:2305
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "Impossible de lire {count} fichier"
 msgstr[1] "Impossible de lire {count} fichiers"
 
-#: crates/linux-defender-core/src/scanner.rs:2272
+#: crates/linux-defender-core/src/scanner.rs:2324
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -1960,12 +1960,12 @@ msgstr[1] ""
 "{count} avertissements non fatals pendant l’analyse ; certains fichiers "
 "n’ont peut-être été analysés que partiellement"
 
-#: crates/linux-defender-core/src/scheduler.rs:892
+#: crates/linux-defender-core/src/scheduler.rs:910
 msgid "Scheduled scan cancelled"
 msgstr "Analyse planifiée annulée"
 
 #. Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/scheduler.rs:911
+#: crates/linux-defender-core/src/scheduler.rs:929
 msgid ""
 "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] "
 "[--target PATH] [--dry-run] [--verbose|-v]"
@@ -1974,59 +1974,59 @@ msgstr ""
 "quarantine] [--target PATH] [--dry-run] [--verbose|-v]"
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/linux-defender-core/src/scheduler.rs:952
+#: crates/linux-defender-core/src/scheduler.rs:970
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
-#: crates/linux-defender-core/src/scheduler.rs:961
+#: crates/linux-defender-core/src/scheduler.rs:979
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "Analyse planifiée ignorée (fonctionne sur batterie)"
 
-#: crates/linux-defender-core/src/scheduler.rs:978
+#: crates/linux-defender-core/src/scheduler.rs:996
 msgid "Warning: Target does not exist: {target}"
 msgstr "Avertissement : la cible n'existe pas : {target}"
 
-#: crates/linux-defender-core/src/scheduler.rs:990
+#: crates/linux-defender-core/src/scheduler.rs:1008
 msgid "Error: No valid scan targets found"
 msgstr "Erreur : aucune cible d'analyse valide trouvée"
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/linux-defender-core/src/scheduler.rs:994
+#: crates/linux-defender-core/src/scheduler.rs:1012
 msgid "Dry run mode — scan not executed"
 msgstr "Mode simulation — analyse non exécutée"
 
-#: crates/linux-defender-core/src/scheduler.rs:1002
+#: crates/linux-defender-core/src/scheduler.rs:1020
 msgid "  Skip on battery: {value}"
 msgstr "  Ignorer sur batterie : {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1007
+#: crates/linux-defender-core/src/scheduler.rs:1025
 msgid "  Auto quarantine: {value}"
 msgstr "  Auto-quarantaine : {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1015
+#: crates/linux-defender-core/src/scheduler.rs:1033
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} cible : {targets:?}"
 msgstr[1] "  {count} cibles : {targets:?}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1039
+#: crates/linux-defender-core/src/scheduler.rs:1057
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "Échec de l'analyse planifiée : ClamAV n'est pas disponible"
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/linux-defender-core/src/scheduler.rs:1049
+#: crates/linux-defender-core/src/scheduler.rs:1067
 msgid "Error: ClamAV not available — {error}"
 msgstr "Erreur : ClamAV indisponible — {error}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1058
+#: crates/linux-defender-core/src/scheduler.rs:1076
 msgid "Scheduled Scan Failed"
 msgstr "Échec de l'analyse planifiée"
 
-#: crates/linux-defender-core/src/scheduler.rs:1059
+#: crates/linux-defender-core/src/scheduler.rs:1077
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "ClamAV n'est pas disponible. Veuillez installer ClamAV."
 
-#: crates/linux-defender-core/src/scheduler.rs:1122
+#: crates/linux-defender-core/src/scheduler.rs:1146
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
@@ -2037,73 +2037,73 @@ msgstr[1] ""
 "L’analyse planifiée a détecté {infected} menaces, dont {quarantined} mises "
 "en quarantaine"
 
-#: crates/linux-defender-core/src/scheduler.rs:1133
+#: crates/linux-defender-core/src/scheduler.rs:1157
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "L’analyse planifiée a détecté {count} menace"
 msgstr[1] "L’analyse planifiée a détecté {count} menaces"
 
-#: crates/linux-defender-core/src/scheduler.rs:1142
+#: crates/linux-defender-core/src/scheduler.rs:1166
 msgid "Scheduled scan completed with errors"
 msgstr "Analyse planifiée terminée avec des erreurs"
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/scheduler.rs:1145
+#: crates/linux-defender-core/src/scheduler.rs:1169
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] "Analyse planifiée terminée — {count} fichier analysé, aucune menace"
 msgstr[1] ""
 "Analyse planifiée terminée — {count} fichiers analysés, aucune menace"
 
-#: crates/linux-defender-core/src/scheduler.rs:1160
+#: crates/linux-defender-core/src/scheduler.rs:1184
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "Durée de l'analyse : {duration:.1f} secondes"
 
-#: crates/linux-defender-core/src/scheduler.rs:1162
+#: crates/linux-defender-core/src/scheduler.rs:1186
 msgid "Files Scanned: {count}"
 msgstr "Fichiers analysés : {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1163
+#: crates/linux-defender-core/src/scheduler.rs:1187
 msgid "Threats Found: {count}"
 msgstr "Menaces détectées : {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1164
+#: crates/linux-defender-core/src/scheduler.rs:1188
 msgid "Targets: {targets}"
 msgstr "Cibles : {targets}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1168
+#: crates/linux-defender-core/src/scheduler.rs:1192
 msgid "Quarantined: {count}"
 msgstr "Mis en quarantaine : {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1173
+#: crates/linux-defender-core/src/scheduler.rs:1197
 msgid "Quarantine Failed: {count}"
 msgstr "Échec de la quarantaine : {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1201
+#: crates/linux-defender-core/src/scheduler.rs:1225
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "Analyse planifiée : menaces détectées !"
 
-#: crates/linux-defender-core/src/scheduler.rs:1207
+#: crates/linux-defender-core/src/scheduler.rs:1231
 msgid "Scheduled Scan Completed"
 msgstr "Analyse planifiée terminée"
 
-#: crates/linux-defender-core/src/scheduler.rs:1208
+#: crates/linux-defender-core/src/scheduler.rs:1232
 msgid "Scan completed with some errors. Check logs for details."
 msgstr ""
 "Analyse terminée avec des erreurs. Consultez les journaux pour les détails."
 
-#: crates/linux-defender-core/src/scheduler.rs:1216
+#: crates/linux-defender-core/src/scheduler.rs:1240
 msgid "Scheduled Scan Complete"
 msgstr "Analyse planifiée terminée"
 
-#: crates/linux-defender-core/src/scheduler.rs:1229
+#: crates/linux-defender-core/src/scheduler.rs:1253
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "Échec de la mise en quarantaine : {count} fichier"
 msgstr[1] "Échec de la mise en quarantaine : {count} fichiers"
 
-#: crates/linux-defender-core/src/scheduler.rs:1255
+#: crates/linux-defender-core/src/scheduler.rs:1279
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -2111,15 +2111,15 @@ msgstr ""
 "Niveau de batterie : {percent:.0f}%\n"
 "Analyse ignorée en raison des paramètres liés à la batterie."
 
-#: crates/linux-defender-core/src/scheduler.rs:1260
+#: crates/linux-defender-core/src/scheduler.rs:1284
 msgid "Scan skipped due to battery-aware settings."
 msgstr "Analyse ignorée en raison des paramètres tenant compte de la batterie."
 
-#: crates/linux-defender-core/src/scheduler.rs:1266
+#: crates/linux-defender-core/src/scheduler.rs:1290
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "Analyse ignorée : l'appareil fonctionne sur batterie ({percent:.0f}%)"
 
-#: crates/linux-defender-core/src/scheduler.rs:1271
+#: crates/linux-defender-core/src/scheduler.rs:1295
 msgid "Skipping scan: running on battery power"
 msgstr "Analyse ignorée : fonctionnement sur batterie"
 
@@ -2214,12 +2214,12 @@ msgstr ""
 "journaux pour plus de détails."
 
 #. Translators: Keep `freshclam` and `PID` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:591
+#: crates/linux-defender-core/src/updater.rs:610
 msgid "Update signal sent to freshclam service (PID {pid})"
 msgstr "Signal de mise à jour envoyé au service freshclam (PID {pid})"
 
 #. Translators: Keep `freshclam`, `PID`, and `sudo systemctl stop clamav-freshclam` unchanged; preserve `{pid}` as the process identifier.
-#: crates/linux-defender-core/src/updater.rs:898
+#: crates/linux-defender-core/src/updater.rs:917
 msgid ""
 "Another freshclam instance is running (PID {pid}). Stop it first: sudo "
 "systemctl stop clamav-freshclam"
@@ -2227,7 +2227,7 @@ msgstr ""
 "Une autre instance de freshclam est en cours d’exécution (PID {pid}). "
 "Arrêtez-la d’abord : sudo systemctl stop clamav-freshclam"
 
-#: crates/linux-defender-core/src/updater.rs:928
+#: crates/linux-defender-core/src/updater.rs:947
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
 msgstr[0] "Update timed out after {minutes} minute without output"
@@ -2235,7 +2235,7 @@ msgstr[1] "Update timed out after {minutes} minutes without output"
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/updater.rs:1067
+#: crates/linux-defender-core/src/updater.rs:1086
 msgid "Database update completed — {count} database updated"
 msgid_plural "Database update completed — {count} databases updated"
 msgstr[0] ""
@@ -2246,21 +2246,21 @@ msgstr[1] ""
 "jour"
 
 #. Translators: The em dash separates the completion state from the result.
-#: crates/linux-defender-core/src/updater.rs:1077
+#: crates/linux-defender-core/src/updater.rs:1096
 msgid "Database update completed — Already up to date"
 msgstr "Mise à jour des bases de données terminée — déjà à jour"
 
-#: crates/linux-defender-core/src/updater.rs:1144
+#: crates/linux-defender-core/src/updater.rs:1163
 msgid "Selected freshclam config does not exist: {path}"
 msgstr "La configuration freshclam sélectionnée n’existe pas : {path}"
 
 #. Translators: Keep `freshclam` and `PID` unchanged; they name the service and its process identifier.
-#: crates/linux-defender-core/src/updater.rs:1182
+#: crates/linux-defender-core/src/updater.rs:1201
 msgid "Could not determine freshclam PID"
 msgstr "Impossible de déterminer le PID de freshclam"
 
 #. Translators: Keep `sudo systemctl restart clamav-freshclam` unchanged and preserve `{error}` as the raw diagnostic.
-#: crates/linux-defender-core/src/updater.rs:1192
+#: crates/linux-defender-core/src/updater.rs:1211
 msgid ""
 "Could not trigger freshclam service update. Try restarting the service: sudo "
 "systemctl restart clamav-freshclam ({error})"
@@ -2268,112 +2268,117 @@ msgstr ""
 "Impossible de déclencher la mise à jour du service freshclam. Essayez de "
 "redémarrer le service : sudo systemctl restart clamav-freshclam ({error})"
 
-#: crates/linux-defender-core/src/urlhaus.rs:97
+#: crates/linux-defender-core/src/urlhaus.rs:96
 msgid "URLhaus Auth-Key saved"
 msgstr "URLhaus Auth-Key saved"
 
-#: crates/linux-defender-core/src/urlhaus.rs:112
+#: crates/linux-defender-core/src/urlhaus.rs:111
 msgid "URLhaus Auth-Key deleted"
 msgstr "URLhaus Auth-Key deleted"
 
-#: crates/linux-defender-core/src/urlhaus.rs:114
+#: crates/linux-defender-core/src/urlhaus.rs:113
+#: crates/linux-defender-core/src/urlscan.rs:253
+msgid "Keyring is unavailable; the stored key could not be checked"
+msgstr "Keyring is unavailable; the stored key could not be checked"
+
+#: crates/linux-defender-core/src/urlhaus.rs:115
 msgid "No URLhaus Auth-Key was configured"
 msgstr "No URLhaus Auth-Key was configured"
 
-#: crates/linux-defender-core/src/urlscan.rs:223
+#: crates/linux-defender-core/src/urlscan.rs:235
 msgid "urlscan API key saved"
 msgstr "urlscan API key saved"
 
-#: crates/linux-defender-core/src/urlscan.rs:237
+#: crates/linux-defender-core/src/urlscan.rs:249
 msgid "urlscan API key deleted"
 msgstr "urlscan API key deleted"
 
-#: crates/linux-defender-core/src/urlscan.rs:240
+#: crates/linux-defender-core/src/urlscan.rs:255
 msgid "No urlscan API key was configured"
 msgstr "No urlscan API key was configured"
 
-#: crates/linux-defender-core/src/urlscan.rs:269
+#: crates/linux-defender-core/src/urlscan.rs:285
 msgid "Enter a valid HTTP or HTTPS URL"
 msgstr "Enter a valid HTTP or HTTPS URL"
 
-#: crates/linux-defender-core/src/urlscan.rs:273
+#: crates/linux-defender-core/src/urlscan.rs:289
 msgid "URL must use HTTP or HTTPS and cannot contain login credentials"
 msgstr "URL must use HTTP or HTTPS and cannot contain login credentials"
 
-#: crates/linux-defender-core/src/urlscan.rs:278
+#: crates/linux-defender-core/src/urlscan.rs:294
 msgid "Private and local network addresses cannot be submitted"
 msgstr "Private and local network addresses cannot be submitted"
 
-#: crates/linux-defender-core/src/urlscan.rs:282
+#: crates/linux-defender-core/src/urlscan.rs:298
 msgid "urlscan response is too large"
 msgstr "urlscan response is too large"
 
-#: crates/linux-defender-core/src/virustotal.rs:1217
+#: crates/linux-defender-core/src/virustotal.rs:1267
 msgid "File too large ({size}MB). Maximum size is {max}MB"
 msgstr "Fichier trop gros ({size} Mo). La taille maximum est de {max} Mo"
 
-#: crates/linux-defender-core/src/virustotal.rs:1221
+#: crates/linux-defender-core/src/virustotal.rs:1271
 msgid "Invalid file path"
 msgstr "Chemin de fichier non valide"
 
-#: crates/linux-defender-core/src/virustotal.rs:1223
+#: crates/linux-defender-core/src/virustotal.rs:1273
 msgid "Path is not a regular file"
 msgstr "Le chemin n’est pas un fichier ordinaire"
 
-#: crates/linux-defender-core/src/virustotal.rs:1225
+#: crates/linux-defender-core/src/virustotal.rs:1275
 msgid "File changed while hashing"
 msgstr "Le fichier a été modifié lors du calcul du hachage"
 
-#: crates/linux-defender-core/src/virustotal.rs:1227
+#: crates/linux-defender-core/src/virustotal.rs:1277
 msgid "File changed before upload"
 msgstr "Le fichier a été modifié avant le téléversement"
 
-#: crates/linux-defender-core/src/virustotal.rs:1229
+#: crates/linux-defender-core/src/virustotal.rs:1279
 msgid "File changed during upload"
 msgstr "Le fichier a été modifié pendant le téléversement"
 
-#: crates/linux-defender-core/src/virustotal.rs:1238
+#: crates/linux-defender-core/src/virustotal.rs:1288
 msgid "VirusTotal: Clean scan"
 msgstr "VirusTotal : analyse sans menace détectée"
 
-#: crates/linux-defender-core/src/virustotal.rs:1241
+#: crates/linux-defender-core/src/virustotal.rs:1291
 msgid "VirusTotal: {detections}/{total} engines detected threats"
 msgstr "VirusTotal : {detections}/{total} moteurs ont détecté des menaces"
 
-#: crates/linux-defender-core/src/virustotal.rs:1248
+#: crates/linux-defender-core/src/virustotal.rs:1298
 msgid "VirusTotal: Threats detected"
 msgstr "VirusTotal : menaces détectées"
 
-#: crates/linux-defender-core/src/virustotal.rs:1249
+#: crates/linux-defender-core/src/virustotal.rs:1299
 msgid "VirusTotal: Rate limit exceeded"
 msgstr "VirusTotal : limite de débit dépassée"
 
-#: crates/linux-defender-core/src/virustotal.rs:1250
+#: crates/linux-defender-core/src/virustotal.rs:1300
 msgid "VirusTotal: Analysis pending"
 msgstr "VirusTotal : analyse en attente"
 
-#: crates/linux-defender-core/src/virustotal.rs:1253
+#: crates/linux-defender-core/src/virustotal.rs:1303
 msgid "VirusTotal: File not previously analyzed"
 msgstr "VirusTotal : fichier non analysé auparavant"
 
-#: crates/linux-defender-core/src/virustotal.rs:1255
+#: crates/linux-defender-core/src/virustotal.rs:1305
 msgid "VirusTotal: File too large for upload"
 msgstr "VirusTotal : fichier trop volumineux pour le téléversement"
 
-#: crates/linux-defender-core/src/virustotal.rs:1256
+#: crates/linux-defender-core/src/virustotal.rs:1306
 msgid "VirusTotal: Scan error"
 msgstr "VirusTotal : erreur d’analyse"
 
-#: crates/linux-defender-core/src/virustotal.rs:1261
+#: crates/linux-defender-core/src/virustotal.rs:1311
 msgid "Detections: {detections}/{total}"
 msgstr "Détections : {detections}/{total}"
 
-#: crates/linux-defender-core/src/virustotal.rs:1275
+#: crates/linux-defender-core/src/virustotal.rs:1325
 msgid "Error: {error}"
 msgstr "Erreur : {error}"
 
 #. Translators: Keep `API` unchanged as the abbreviation for application programming interface.
-#: crates/linux-defender-core/src/virustotal.rs:1516
+#: crates/linux-defender-core/src/virustotal.rs:1575
 msgid "API key saved"
 msgstr "Clef API enregistrée"
 
@@ -2452,19 +2457,19 @@ msgstr "Profil d’analyse"
 msgid "Quit"
 msgstr "Quitter"
 
-#: desktop/src-tauri/src/runtime.rs:504
+#: desktop/src-tauri/src/runtime.rs:514
 msgid "Add Folders"
 msgstr "Ajouter des dossiers"
 
-#: desktop/src-tauri/src/runtime.rs:506
+#: desktop/src-tauri/src/runtime.rs:516
 msgid "Add Files"
 msgstr "Ajouter des fichiers"
 
-#: desktop/src-tauri/src/runtime.rs:578
+#: desktop/src-tauri/src/runtime.rs:594
 msgid "Export"
 msgstr "Exporter"
 
-#: desktop/src-tauri/src/runtime.rs:755
+#: desktop/src-tauri/src/runtime.rs:778
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -2503,7 +2508,7 @@ msgstr "Audit"
 msgid "Network"
 msgstr "Réseau"
 
-#: desktop/src/App.tsx:130 desktop/src/App.tsx:908 desktop/src/App.tsx:996
+#: desktop/src/App.tsx:130 desktop/src/App.tsx:910 desktop/src/App.tsx:998
 #: desktop/src/pages/Preferences.tsx:120
 msgid "Preferences"
 msgstr "Préférences"
@@ -2517,143 +2522,143 @@ msgstr "Profils"
 msgid "Results"
 msgstr "Résultats"
 
-#: desktop/src/App.tsx:307 desktop/src/pages/ConfigPreferences.tsx:558
+#: desktop/src/App.tsx:308 desktop/src/pages/ConfigPreferences.tsx:560
 msgid "Could not open link"
 msgstr "Impossible d’ouvrir le lien"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/App.tsx:402 desktop/src/App.tsx:417 desktop/src/App.tsx:435
+#: desktop/src/App.tsx:403 desktop/src/App.tsx:418 desktop/src/App.tsx:436
 #: desktop/src/pages/Scan.tsx:507
 msgid "Scan in progress — wait for it to finish before changing targets"
 msgstr ""
 "Analyse en cours — attendez qu’elle soit terminée avant de modifier les "
 "cibles"
 
-#: desktop/src/App.tsx:481
+#: desktop/src/App.tsx:482
 msgid "The privileged-helper installation returned an invalid status."
 msgstr "L’installation du helper privilégié a renvoyé un état non valide."
 
-#: desktop/src/App.tsx:488
+#: desktop/src/App.tsx:489
 msgid "The privileged helper was installed successfully."
 msgstr "Le helper privilégié a été installé avec succès."
 
-#: desktop/src/App.tsx:490
+#: desktop/src/App.tsx:491
 msgid ""
 "The privileged helper is still unavailable. Try again or install it manually."
 msgstr ""
 "Le helper privilégié n’est toujours pas disponible. Réessayez ou installez-"
 "le manuellement."
 
-#: desktop/src/App.tsx:800
+#: desktop/src/App.tsx:802
 msgid "The privileged-helper status returned an invalid response."
 msgstr "L’état du helper privilégié a renvoyé une réponse non valide."
 
-#: desktop/src/App.tsx:901
+#: desktop/src/App.tsx:903
 msgid "Linux Defender"
 msgstr "Linux Defender"
 
-#: desktop/src/App.tsx:906
+#: desktop/src/App.tsx:908
 msgid "Back"
 msgstr "Retour"
 
-#: desktop/src/App.tsx:931
+#: desktop/src/App.tsx:933
 msgid "Scan File or Folder"
 msgstr "Analyser un fichier ou un dossier"
 
-#: desktop/src/App.tsx:938
+#: desktop/src/App.tsx:940
 msgid "Choose scan targets"
 msgstr "Choisir les cibles de l’analyse"
 
-#: desktop/src/App.tsx:948
+#: desktop/src/App.tsx:950
 msgid "Scan Files"
 msgstr "Analyser des fichiers"
 
-#: desktop/src/App.tsx:952
+#: desktop/src/App.tsx:954
 msgid "Scan Folders"
 msgstr "Analyser des dossiers"
 
-#: desktop/src/App.tsx:959
+#: desktop/src/App.tsx:961
 msgid "Scan System (Quick Scan)"
 msgstr "Analyser le système (analyse rapide)"
 
-#: desktop/src/App.tsx:966 desktop/src/App.tsx:967
+#: desktop/src/App.tsx:968 desktop/src/App.tsx:969
 msgid "Menu"
 msgstr "Menu"
 
-#: desktop/src/App.tsx:986
+#: desktop/src/App.tsx:988
 msgid "Application menu"
 msgstr "Menu de l’application"
 
-#: desktop/src/App.tsx:999
+#: desktop/src/App.tsx:1001
 msgid "About"
 msgstr "À propos"
 
-#: desktop/src/App.tsx:1012
+#: desktop/src/App.tsx:1014
 msgid "Main navigation"
 msgstr "Navigation principale"
 
-#: desktop/src/App.tsx:1013
+#: desktop/src/App.tsx:1015
 msgid "Views"
 msgstr "Vues"
 
-#: desktop/src/App.tsx:1033 desktop/src/pages/Quarantine.tsx:341
+#: desktop/src/App.tsx:1035 desktop/src/pages/Quarantine.tsx:341
 msgid "Dismiss"
 msgstr "Ignorer"
 
-#: desktop/src/App.tsx:1055
+#: desktop/src/App.tsx:1057
 msgid "About Linux Defender"
 msgstr "About Linux Defender"
 
-#: desktop/src/App.tsx:1056
+#: desktop/src/App.tsx:1058
 msgid "An on-demand Linux security scanner using your system's ClamAV tools."
 msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 
-#: desktop/src/App.tsx:1058
+#: desktop/src/App.tsx:1060
 msgid "Version"
 msgstr "Version"
 
-#: desktop/src/App.tsx:1059 desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/App.tsx:1061 desktop/src/pages/SettingsPreferences.tsx:270
 #: desktop/src/pages/SettingsPreferences.tsx:271
 msgid "Language"
 msgstr "Langue"
 
-#: desktop/src/App.tsx:1060
+#: desktop/src/App.tsx:1062
 msgid "License"
 msgstr "Licence"
 
-#: desktop/src/App.tsx:1063
+#: desktop/src/App.tsx:1065
 msgid "Project website"
 msgstr "Site web du projet"
 
-#: desktop/src/App.tsx:1064 desktop/src/pages/ConfigPreferences.tsx:822
+#: desktop/src/App.tsx:1066 desktop/src/pages/ConfigPreferences.tsx:824
 msgid "Documentation"
 msgstr "Documentation"
 
-#: desktop/src/App.tsx:1065
+#: desktop/src/App.tsx:1067
 msgid "Issue tracker"
 msgstr "Suivi des problèmes"
 
-#: desktop/src/App.tsx:1067
+#: desktop/src/App.tsx:1069
 msgid "Could not load contributor credits: {error}"
 msgstr "Impossible de charger les crédits des contributeurs : {error}"
 
-#: desktop/src/App.tsx:1072
+#: desktop/src/App.tsx:1074
 msgid "Contributors"
 msgstr "Contributeurs"
 
-#: desktop/src/App.tsx:1081
+#: desktop/src/App.tsx:1083
 msgid "Translator credits"
 msgstr "Crédits de traduction"
 
-#: desktop/src/App.tsx:1084
+#: desktop/src/App.tsx:1086
 msgid "Loading contributor credits…"
 msgstr "Chargement des crédits des contributeurs…"
 
-#: desktop/src/App.tsx:1086
+#: desktop/src/App.tsx:1088
 msgid "Close Linux Defender?"
 msgstr "Close Linux Defender?"
 
-#: desktop/src/App.tsx:1087
+#: desktop/src/App.tsx:1089
 msgid ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
@@ -2661,11 +2666,11 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1088 desktop/src/pages/Scan.tsx:263
+#: desktop/src/App.tsx:1090 desktop/src/pages/Scan.tsx:263
 msgid "Remember my choice"
 msgstr "Se souvenir de mon choix"
 
-#: desktop/src/App.tsx:1089 desktop/src/App.tsx:1093
+#: desktop/src/App.tsx:1091 desktop/src/App.tsx:1095
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
@@ -2678,40 +2683,40 @@ msgstr "Se souvenir de mon choix"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: desktop/src/App.tsx:1089
+#: desktop/src/App.tsx:1091
 msgid "Minimize to tray"
 msgstr "Réduire dans la zone de notification"
 
-#: desktop/src/App.tsx:1091
+#: desktop/src/App.tsx:1093
 msgid "Scan in Progress"
 msgstr "Analyse en cours"
 
-#: desktop/src/App.tsx:1092
+#: desktop/src/App.tsx:1094
 msgid "A scan is still running. Cancelling it may leave partial results."
 msgstr ""
 "Une analyse est toujours en cours. Son annulation peut laisser des résultats "
 "partiels."
 
-#: desktop/src/App.tsx:1093
+#: desktop/src/App.tsx:1095
 msgid "Keep Scanning"
 msgstr "Continuer l'analyse"
 
-#: desktop/src/App.tsx:1093
+#: desktop/src/App.tsx:1095
 msgid "Cancel Scan and Close"
 msgstr "Annuler l'analyse et fermer"
 
-#: desktop/src/App.tsx:1093 desktop/src/ConfigurationRecovery.tsx:94
+#: desktop/src/App.tsx:1095 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:356 desktop/src/pages/Scan.tsx:362
 #: desktop/src/pages/Scan.tsx:374 desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Close"
 msgstr "Fermer"
 
-#: desktop/src/App.tsx:1095
+#: desktop/src/App.tsx:1097
 msgid "Install Privileged Helper"
 msgstr "Installer le helper privilégié"
 
-#: desktop/src/App.tsx:1096
+#: desktop/src/App.tsx:1098
 msgid ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
@@ -2719,13 +2724,13 @@ msgstr ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
 
-#: desktop/src/App.tsx:1098 desktop/src/HelperTrustErrorDialog.tsx:52
+#: desktop/src/App.tsx:1100 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr ""
 "L’installation de l’utilitaire requiert une autorisation de l’administrateur."
 
 #. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1099
+#: desktop/src/App.tsx:1101
 msgid ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
@@ -2733,27 +2738,27 @@ msgstr ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
 
-#: desktop/src/App.tsx:1104 desktop/src/HelperTrustErrorDialog.tsx:78
+#: desktop/src/App.tsx:1106 desktop/src/HelperTrustErrorDialog.tsx:78
 msgid "Installing privileged helper…"
 msgstr "Installation du helper privilégié…"
 
-#: desktop/src/App.tsx:1106
+#: desktop/src/App.tsx:1108
 msgid "Not now"
 msgstr "Pas maintenant"
 
-#: desktop/src/App.tsx:1106 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1108 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Installing…"
 msgstr "Installation…"
 
-#: desktop/src/App.tsx:1106 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1108 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Try Again"
 msgstr "Réessayer"
 
-#: desktop/src/App.tsx:1106 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1108 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Install Helper"
 msgstr "Installer le helper"
 
-#: desktop/src/App.tsx:1106
+#: desktop/src/App.tsx:1108
 msgid "Open Preferences"
 msgstr "Ouvrir les préférences"
 
@@ -2898,7 +2903,7 @@ msgstr ""
 "cette vérification."
 
 #: desktop/src/HelperTrustErrorDialog.tsx:74 desktop/src/UiErrorBoundary.tsx:36
-#: desktop/src/pages/ConfigPreferences.tsx:915
+#: desktop/src/pages/ConfigPreferences.tsx:917
 msgid "Technical details"
 msgstr "Détails techniques"
 
@@ -2908,7 +2913,7 @@ msgstr "Ouvrir les instructions de réparation"
 
 #. Translators: This button opens the failed native configuration snapshot.
 #: desktop/src/HelperTrustErrorDialog.tsx:82
-#: desktop/src/pages/ConfigPreferences.tsx:919
+#: desktop/src/pages/ConfigPreferences.tsx:921
 msgid "See Configuration"
 msgstr "Voir la configuration"
 
@@ -2973,26 +2978,26 @@ msgstr "Tout annuler"
 msgid "Error"
 msgstr "Erreur"
 
-#: desktop/src/UiErrorBoundary.tsx:40 desktop/src/main.tsx:34
+#: desktop/src/UiErrorBoundary.tsx:40 desktop/src/main.tsx:33
 #: desktop/src/pages/Network.tsx:402 desktop/src/pages/Network.tsx:403
 msgid "Retry"
 msgstr "Réessayer"
 
-#: desktop/src/api.ts:104
+#: desktop/src/api.ts:110
 msgid "The contributor credits response was invalid."
 msgstr "La réponse des crédits des contributeurs n’est pas valide."
 
-#: desktop/src/api.ts:207
+#: desktop/src/api.ts:213
 msgid "Enter a valid HTTP(S) address"
 msgstr "Saisissez une adresse HTTP(S) valide"
 
-#: desktop/src/api.ts:210
+#: desktop/src/api.ts:216
 msgid "Only HTTP(S) addresses may be opened externally"
 msgstr ""
 "Seules les adresses HTTP(S) peuvent être ouvertes dans une application "
 "externe"
 
-#: desktop/src/api.ts:219
+#: desktop/src/api.ts:225
 msgid "Choose a file or folder first"
 msgstr "Choisissez d’abord un fichier ou un dossier"
 
@@ -3018,7 +3023,7 @@ msgstr "Annulé"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: desktop/src/main.tsx:31
+#: desktop/src/main.tsx:30
 msgid "Linux Defender could not start"
 msgstr "Linux Defender could not start"
 
@@ -3458,38 +3463,38 @@ msgid "Add URLs"
 msgstr "Ajouter des URL"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:453
+#: desktop/src/pages/ConfigPreferences.tsx:455
 msgid "Configuration file selection is pending Save & Apply."
 msgstr ""
 "Le choix du fichier de configuration ne prendra effet qu’après un clic sur "
 "« Enregistrer et appliquer »."
 
-#: desktop/src/pages/ConfigPreferences.tsx:465
+#: desktop/src/pages/ConfigPreferences.tsx:467
 msgid "No configuration file was found."
 msgstr "Aucun fichier de configuration n’a été trouvé."
 
-#: desktop/src/pages/ConfigPreferences.tsx:479
+#: desktop/src/pages/ConfigPreferences.tsx:481
 msgid "Select a .conf configuration file."
 msgstr "Sélectionnez un fichier de configuration .conf."
 
-#: desktop/src/pages/ConfigPreferences.tsx:512
+#: desktop/src/pages/ConfigPreferences.tsx:514
 msgid "Configuration loaded with administrator authorization."
 msgstr "Configuration chargée avec l’autorisation d’un administrateur."
 
-#: desktop/src/pages/ConfigPreferences.tsx:551
+#: desktop/src/pages/ConfigPreferences.tsx:553
 msgid "URLhaus feed added to the draft. Save & Apply to write it."
 msgstr "URLhaus feed added to the draft. Save & Apply to write it."
 
-#: desktop/src/pages/ConfigPreferences.tsx:570
+#: desktop/src/pages/ConfigPreferences.tsx:572
 msgid "Scan backend saved."
 msgstr "Moteur d’analyse enregistré."
 
-#: desktop/src/pages/ConfigPreferences.tsx:601
+#: desktop/src/pages/ConfigPreferences.tsx:603
 msgid "Choose a configuration file before applying its changes."
 msgstr ""
 "Choisissez un fichier de configuration avant d’y appliquer les modifications."
 
-#: desktop/src/pages/ConfigPreferences.tsx:613
+#: desktop/src/pages/ConfigPreferences.tsx:615
 msgid ""
 "On-Access scanning requires an excluded username, UID, or root user to "
 "prevent scan loops."
@@ -3497,143 +3502,145 @@ msgstr ""
 "L’analyse à l’accès nécessite d’exclure un nom d’utilisateur, un UID ou le "
 "superutilisateur afin d’éviter les boucles d’analyse."
 
-#: desktop/src/pages/ConfigPreferences.tsx:620
-#: desktop/src/pages/ConfigPreferences.tsx:710
+#: desktop/src/pages/ConfigPreferences.tsx:622
+#: desktop/src/pages/ConfigPreferences.tsx:712
 msgid "No changes to apply."
 msgstr "Aucune modification à appliquer."
 
-#: desktop/src/pages/ConfigPreferences.tsx:635
+#: desktop/src/pages/ConfigPreferences.tsx:637
 msgid "Configuration validation failed."
 msgstr "Échec de la validation de la configuration."
 
-#: desktop/src/pages/ConfigPreferences.tsx:710
+#: desktop/src/pages/ConfigPreferences.tsx:712
 msgid "Configuration saved and applied."
 msgstr "Configuration enregistrée et appliquée."
 
-#: desktop/src/pages/ConfigPreferences.tsx:710
-#: desktop/src/pages/ConfigPreferences.tsx:730
+#: desktop/src/pages/ConfigPreferences.tsx:712
+#: desktop/src/pages/ConfigPreferences.tsx:732
 msgid "Some changes could not be applied."
 msgstr "Certaines modifications n’ont pas pu être appliquées."
 
-#: desktop/src/pages/ConfigPreferences.tsx:711
+#: desktop/src/pages/ConfigPreferences.tsx:713
 msgid "Saved groups"
 msgstr "Groupes enregistrés"
 
-#: desktop/src/pages/ConfigPreferences.tsx:739
+#: desktop/src/pages/ConfigPreferences.tsx:741
 msgid "Checking scanner status…"
 msgstr "Vérification de l’état du moteur d’analyse…"
 
-#: desktop/src/pages/ConfigPreferences.tsx:741
+#: desktop/src/pages/ConfigPreferences.tsx:743
 msgid "Daemon connected"
 msgstr "Démon connecté"
 
-#: desktop/src/pages/ConfigPreferences.tsx:742
+#: desktop/src/pages/ConfigPreferences.tsx:744
 msgid "Scanner available"
 msgstr "Moteur d’analyse disponible"
 
-#: desktop/src/pages/ConfigPreferences.tsx:742
+#: desktop/src/pages/ConfigPreferences.tsx:744
 msgid "Scanner unavailable"
 msgstr "Moteur d’analyse indisponible"
 
-#: desktop/src/pages/ConfigPreferences.tsx:752
+#: desktop/src/pages/ConfigPreferences.tsx:754
 msgid "Scan PE Files"
 msgstr "Analyser les fichiers PE"
 
-#: desktop/src/pages/ConfigPreferences.tsx:753
+#: desktop/src/pages/ConfigPreferences.tsx:755
 msgid "Scan ELF Files"
 msgstr "Analyser les fichiers ELF"
 
-#: desktop/src/pages/ConfigPreferences.tsx:754
+#: desktop/src/pages/ConfigPreferences.tsx:756
 msgid "Scan OLE2 Files"
 msgstr "Analyser les fichiers OLE2"
 
-#: desktop/src/pages/ConfigPreferences.tsx:755
+#: desktop/src/pages/ConfigPreferences.tsx:757
 msgid "Scan PDF Files"
 msgstr "Analyser les fichiers PDF"
 
-#: desktop/src/pages/ConfigPreferences.tsx:756
+#: desktop/src/pages/ConfigPreferences.tsx:758
 msgid "Scan HTML Files"
 msgstr "Analyser les fichiers HTML"
 
-#: desktop/src/pages/ConfigPreferences.tsx:757
+#: desktop/src/pages/ConfigPreferences.tsx:759
 msgid "Scan Archive Files"
 msgstr "Analyser les archives"
 
-#: desktop/src/pages/ConfigPreferences.tsx:763
+#: desktop/src/pages/ConfigPreferences.tsx:765
 #: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Database Updates"
 msgstr "Mises à jour des bases de données"
 
 #. Translators: Keep freshclam.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:764
+#: desktop/src/pages/ConfigPreferences.tsx:766
 msgid "freshclam.conf"
 msgstr "freshclam.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:768
+#: desktop/src/pages/ConfigPreferences.tsx:770
 msgid "Paths"
 msgstr "Chemins d’accès"
 
-#: desktop/src/pages/ConfigPreferences.tsx:769
+#: desktop/src/pages/ConfigPreferences.tsx:771
 msgid "Database Directory"
 msgstr "Répertoire des bases de données"
 
-#: desktop/src/pages/ConfigPreferences.tsx:770
+#: desktop/src/pages/ConfigPreferences.tsx:772
 msgid "Update Log File"
 msgstr "Fichier journal des mises à jour"
 
-#: desktop/src/pages/ConfigPreferences.tsx:771
+#: desktop/src/pages/ConfigPreferences.tsx:773
 msgid "PID File"
 msgstr "Fichier PID"
 
-#: desktop/src/pages/ConfigPreferences.tsx:772
+#: desktop/src/pages/ConfigPreferences.tsx:774
 msgid "Notify ClamD Config"
 msgstr "Configuration du démon ClamD à notifier"
 
-#: desktop/src/pages/ConfigPreferences.tsx:773
+#: desktop/src/pages/ConfigPreferences.tsx:775
 msgid "Log timestamps"
 msgstr "Horodatage des journaux"
 
-#: desktop/src/pages/ConfigPreferences.tsx:774
+#: desktop/src/pages/ConfigPreferences.tsx:776
 msgid "Verbose logging"
 msgstr "Journalisation détaillée"
 
-#: desktop/src/pages/ConfigPreferences.tsx:775
+#: desktop/src/pages/ConfigPreferences.tsx:777
 msgid "Syslog logging"
 msgstr "Journalisation via Syslog"
 
-#: desktop/src/pages/ConfigPreferences.tsx:777
+#: desktop/src/pages/ConfigPreferences.tsx:779
 msgid "Update Behavior"
 msgstr "Comportement des mises à jour"
 
-#: desktop/src/pages/ConfigPreferences.tsx:778
+#: desktop/src/pages/ConfigPreferences.tsx:780
 msgid "Checks per day"
 msgstr "Vérifications par jour"
 
-#: desktop/src/pages/ConfigPreferences.tsx:778
+#: desktop/src/pages/ConfigPreferences.tsx:780
 msgid "0 disables automatic checks."
 msgstr "0 désactive les vérifications automatiques."
 
-#: desktop/src/pages/ConfigPreferences.tsx:779
+#: desktop/src/pages/ConfigPreferences.tsx:781
 msgid "Database Mirror"
 msgstr "Miroir des bases de données"
 
-#: desktop/src/pages/ConfigPreferences.tsx:781
+#: desktop/src/pages/ConfigPreferences.tsx:783
 msgid "Custom Signature Databases"
 msgstr "Bases de signatures personnalisées"
 
-#: desktop/src/pages/ConfigPreferences.tsx:783
+#: desktop/src/pages/ConfigPreferences.tsx:785
 msgid "Suggested"
 msgstr "Suggestions"
 
 #. Translators: Keep the button labels Suggested and Save & Apply translated, and keep RFXN and InterServer unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:784
+#: desktop/src/pages/ConfigPreferences.tsx:786
 msgid ""
 "Suggested reveals the RFXN and InterServer entries already in this draft. "
 "Remove any entry you do not want, then use Save & Apply to write the draft."
-msgstr "Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft."
+msgstr ""
+"Suggested reveals the RFXN and InterServer entries already in this draft. "
+"Remove any entry you do not want, then use Save & Apply to write the draft."
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:788
+#: desktop/src/pages/ConfigPreferences.tsx:790
 msgid ""
 "Supported URL schemes: http, https, ftp, ftps, and file. Paste each provider "
 "URL as a separate entry."
@@ -3641,26 +3648,26 @@ msgstr ""
 "Schémas d’URL pris en charge : http, https, ftp, ftps et file. Collez chaque "
 "URL de fournisseur dans une entrée distincte."
 
-#: desktop/src/pages/ConfigPreferences.tsx:793
+#: desktop/src/pages/ConfigPreferences.tsx:795
 msgid "Signature Providers"
 msgstr "Fournisseurs de signatures"
 
-#: desktop/src/pages/ConfigPreferences.tsx:794
+#: desktop/src/pages/ConfigPreferences.tsx:796
 msgid "Registration is required; URLs include your personal API key."
 msgstr ""
 "Une inscription est requise ; les URL contiennent votre clé d’API "
 "personnelle."
 
-#: desktop/src/pages/ConfigPreferences.tsx:794
-#: desktop/src/pages/ConfigPreferences.tsx:798
-#: desktop/src/pages/ConfigPreferences.tsx:799
+#: desktop/src/pages/ConfigPreferences.tsx:796
 #: desktop/src/pages/ConfigPreferences.tsx:800
 #: desktop/src/pages/ConfigPreferences.tsx:801
+#: desktop/src/pages/ConfigPreferences.tsx:802
+#: desktop/src/pages/ConfigPreferences.tsx:803
 msgid "Open provider"
 msgstr "Ouvrir le site du fournisseur"
 
 #. Translators: Keep fangfrisch and clamav-unofficial-sigs unchanged; they are tool names.
-#: desktop/src/pages/ConfigPreferences.tsx:795
+#: desktop/src/pages/ConfigPreferences.tsx:797
 msgid ""
 "Use fangfrisch or clamav-unofficial-sigs; it is not a direct custom URL "
 "provider."
@@ -3668,7 +3675,7 @@ msgstr ""
 "Utilisez fangfrisch ou clamav-unofficial-sigs ; ce fournisseur ne propose "
 "pas directement d’URL personnalisées."
 
-#: desktop/src/pages/ConfigPreferences.tsx:799
+#: desktop/src/pages/ConfigPreferences.tsx:801
 msgid ""
 "Free Linux malware and web-shell hash and heuristic signatures from Linux "
 "Malware Detect."
@@ -3676,13 +3683,13 @@ msgstr ""
 "Signatures de hachage et heuristiques gratuites pour les logiciels "
 "malveillants Linux et les shells web, fournies par Linux Malware Detect."
 
-#: desktop/src/pages/ConfigPreferences.tsx:800
+#: desktop/src/pages/ConfigPreferences.tsx:802
 msgid "Community hash, web-shell, and general malware signature databases."
 msgstr ""
 "Bases de signatures communautaires : empreintes numériques, portes dérobées "
 "web et logiciels malveillants en général."
 
-#: desktop/src/pages/ConfigPreferences.tsx:801
+#: desktop/src/pages/ConfigPreferences.tsx:803
 msgid ""
 "Free malware URL blocklist, enabled by default. Added to Custom Signature "
 "Databases automatically."
@@ -3691,140 +3698,140 @@ msgstr ""
 "défaut. Ajoutée automatiquement aux bases de données de signatures "
 "personnalisées."
 
-#: desktop/src/pages/ConfigPreferences.tsx:803
+#: desktop/src/pages/ConfigPreferences.tsx:805
 msgid "Proxy Settings"
 msgstr "Paramètres du serveur mandataire"
 
-#: desktop/src/pages/ConfigPreferences.tsx:804
+#: desktop/src/pages/ConfigPreferences.tsx:806
 msgid "Proxy Server"
 msgstr "Serveur mandataire"
 
-#: desktop/src/pages/ConfigPreferences.tsx:805
+#: desktop/src/pages/ConfigPreferences.tsx:807
 msgid "Proxy Port"
 msgstr "Port du serveur mandataire"
 
-#: desktop/src/pages/ConfigPreferences.tsx:805
+#: desktop/src/pages/ConfigPreferences.tsx:807
 msgid "0 disables the proxy port."
 msgstr "0 désactive le port du serveur mandataire."
 
-#: desktop/src/pages/ConfigPreferences.tsx:806
+#: desktop/src/pages/ConfigPreferences.tsx:808
 msgid "Proxy Username"
 msgstr "Nom d’utilisateur du serveur mandataire"
 
-#: desktop/src/pages/ConfigPreferences.tsx:807
+#: desktop/src/pages/ConfigPreferences.tsx:809
 msgid "Proxy Password"
 msgstr "Mot de passe du serveur mandataire"
 
-#: desktop/src/pages/ConfigPreferences.tsx:812
+#: desktop/src/pages/ConfigPreferences.tsx:814
 msgid "Scanner Settings"
 msgstr "Paramètres du moteur d’analyse"
 
-#: desktop/src/pages/ConfigPreferences.tsx:814
+#: desktop/src/pages/ConfigPreferences.tsx:816
 msgid "Scan Backend"
 msgstr "Moteur d’analyse"
 
-#: desktop/src/pages/ConfigPreferences.tsx:814
+#: desktop/src/pages/ConfigPreferences.tsx:816
 msgid "Auto (prefer daemon)"
 msgstr "Automatique (priorité au démon)"
 
 #. Translators: Keep clamd unchanged; it is the daemon command and service name.
-#: desktop/src/pages/ConfigPreferences.tsx:814
+#: desktop/src/pages/ConfigPreferences.tsx:816
 msgid "ClamAV Daemon (clamd)"
 msgstr "Démon ClamAV (clamd)"
 
 #. Translators: Keep clamscan unchanged; it is the scanner command name.
-#: desktop/src/pages/ConfigPreferences.tsx:817
+#: desktop/src/pages/ConfigPreferences.tsx:819
 msgid "Standalone Scanner (clamscan)"
 msgstr "Moteur d’analyse autonome (clamscan)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:821
+#: desktop/src/pages/ConfigPreferences.tsx:823
 msgid "Daemon Status"
 msgstr "État du démon"
 
-#: desktop/src/pages/ConfigPreferences.tsx:821
+#: desktop/src/pages/ConfigPreferences.tsx:823
 msgid "Refresh Status"
 msgstr "Actualiser l’état"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:824
-#: desktop/src/pages/ConfigPreferences.tsx:845
+#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:847
 msgid "clamd.conf"
 msgstr "clamd.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:828
+#: desktop/src/pages/ConfigPreferences.tsx:830
 msgid "File Type Scanning"
 msgstr "Analyse par type de fichier"
 
-#: desktop/src/pages/ConfigPreferences.tsx:831
+#: desktop/src/pages/ConfigPreferences.tsx:833
 msgid "Performance and Limits"
 msgstr "Performances et limites"
 
-#: desktop/src/pages/ConfigPreferences.tsx:832
-#: desktop/src/pages/ConfigPreferences.tsx:871
+#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:873
 msgid "Max File Size (MB)"
 msgstr "Taille maximale d’un fichier (Mo)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:832
-#: desktop/src/pages/ConfigPreferences.tsx:833
+#: desktop/src/pages/ConfigPreferences.tsx:834
 #: desktop/src/pages/ConfigPreferences.tsx:835
-#: desktop/src/pages/ConfigPreferences.tsx:871
+#: desktop/src/pages/ConfigPreferences.tsx:837
+#: desktop/src/pages/ConfigPreferences.tsx:873
 msgid "0 means unlimited."
 msgstr "0 signifie « illimité »."
 
-#: desktop/src/pages/ConfigPreferences.tsx:833
+#: desktop/src/pages/ConfigPreferences.tsx:835
 msgid "Max Scan Size (MB)"
 msgstr "Taille maximale d’une analyse (Mo)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:834
+#: desktop/src/pages/ConfigPreferences.tsx:836
 msgid "Max Archive Recursion"
 msgstr "Profondeur maximale de récursion dans les archives"
 
-#: desktop/src/pages/ConfigPreferences.tsx:835
+#: desktop/src/pages/ConfigPreferences.tsx:837
 msgid "Max Files in Archive"
 msgstr "Nombre maximal de fichiers par archive"
 
-#: desktop/src/pages/ConfigPreferences.tsx:837
+#: desktop/src/pages/ConfigPreferences.tsx:839
 msgid "Logging"
 msgstr "Journalisation"
 
-#: desktop/src/pages/ConfigPreferences.tsx:838
+#: desktop/src/pages/ConfigPreferences.tsx:840
 msgid "Log File Path"
 msgstr "Chemin du fichier journal"
 
-#: desktop/src/pages/ConfigPreferences.tsx:839
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "Verbose Logging"
 msgstr "Journalisation détaillée"
 
-#: desktop/src/pages/ConfigPreferences.tsx:839
+#: desktop/src/pages/ConfigPreferences.tsx:841
 msgid "Syslog Logging"
 msgstr "Journalisation via Syslog"
 
-#: desktop/src/pages/ConfigPreferences.tsx:844
+#: desktop/src/pages/ConfigPreferences.tsx:846
 msgid "On-Access Scanning"
 msgstr "Analyse à l’accès"
 
-#: desktop/src/pages/ConfigPreferences.tsx:849
+#: desktop/src/pages/ConfigPreferences.tsx:851
 msgid "Monitored Paths"
 msgstr "Chemins surveillés"
 
-#: desktop/src/pages/ConfigPreferences.tsx:850
+#: desktop/src/pages/ConfigPreferences.tsx:852
 msgid "Include Paths"
 msgstr "Chemins à inclure"
 
-#: desktop/src/pages/ConfigPreferences.tsx:851
+#: desktop/src/pages/ConfigPreferences.tsx:853
 msgid "Exclude Paths"
 msgstr "Chemins à exclure"
 
-#: desktop/src/pages/ConfigPreferences.tsx:854
+#: desktop/src/pages/ConfigPreferences.tsx:856
 msgid "Behavior Settings"
 msgstr "Paramètres de comportement"
 
-#: desktop/src/pages/ConfigPreferences.tsx:855
+#: desktop/src/pages/ConfigPreferences.tsx:857
 msgid "Prevention Mode"
 msgstr "Mode de prévention"
 
 #. Translators: Keep fanotify unchanged; it is a Linux kernel API name.
-#: desktop/src/pages/ConfigPreferences.tsx:855
+#: desktop/src/pages/ConfigPreferences.tsx:857
 msgid ""
 "Block access to infected files instead of only reporting them. Denies file "
 "opens via fanotify."
@@ -3832,32 +3839,32 @@ msgstr ""
 "Block access to infected files instead of only reporting them. Denies file "
 "opens via fanotify."
 
-#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:861
 msgid "Extra Scanning"
 msgstr "Analyses supplémentaires"
 
 #. Translators: Keep inotify unchanged; it is a Linux kernel API name.
-#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:861
 msgid ""
 "Also scan newly created or moved files in monitored directories via inotify."
 msgstr ""
 "Also scan newly created or moved files in monitored directories via inotify."
 
-#: desktop/src/pages/ConfigPreferences.tsx:863
+#: desktop/src/pages/ConfigPreferences.tsx:865
 msgid "Deny on Error"
 msgstr "Refuser l’accès en cas d’erreur"
 
-#: desktop/src/pages/ConfigPreferences.tsx:863
+#: desktop/src/pages/ConfigPreferences.tsx:865
 msgid "Block file access if scanning fails or encounters an error."
 msgstr ""
 "Bloquer l’accès aux fichiers si l’analyse échoue ou rencontre une erreur."
 
-#: desktop/src/pages/ConfigPreferences.tsx:864
+#: desktop/src/pages/ConfigPreferences.tsx:866
 msgid "Disable DDD"
 msgstr "Désactiver DDD"
 
 #. Translators: Keep DDD and inotify unchanged; they are ClamAV and Linux kernel terms.
-#: desktop/src/pages/ConfigPreferences.tsx:864
+#: desktop/src/pages/ConfigPreferences.tsx:866
 msgid ""
 "Disable Dynamic Directory Determination for recursive subdirectory tracking. "
 "Useful if large directory trees hit inotify watch limits."
@@ -3865,31 +3872,31 @@ msgstr ""
 "Disable Dynamic Directory Determination for recursive subdirectory tracking. "
 "Useful if large directory trees hit inotify watch limits."
 
-#: desktop/src/pages/ConfigPreferences.tsx:869
+#: desktop/src/pages/ConfigPreferences.tsx:871
 msgid "Performance Settings"
 msgstr "Paramètres de performance"
 
-#: desktop/src/pages/ConfigPreferences.tsx:870
+#: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "Max Threads"
 msgstr "Nombre maximal de fils d’exécution"
 
-#: desktop/src/pages/ConfigPreferences.tsx:872
+#: desktop/src/pages/ConfigPreferences.tsx:874
 msgid "Curl Timeout (seconds)"
 msgstr "Délai d’expiration de Curl (secondes)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:872
+#: desktop/src/pages/ConfigPreferences.tsx:874
 msgid "0 disables the timeout."
 msgstr "0 désactive le délai d’expiration."
 
-#: desktop/src/pages/ConfigPreferences.tsx:873
+#: desktop/src/pages/ConfigPreferences.tsx:875
 msgid "Retry Attempts"
 msgstr "Nombre de nouvelles tentatives"
 
-#: desktop/src/pages/ConfigPreferences.tsx:875
+#: desktop/src/pages/ConfigPreferences.tsx:877
 msgid "Scan Loop Prevention"
 msgstr "Prévention des boucles d’analyse"
 
-#: desktop/src/pages/ConfigPreferences.tsx:876
+#: desktop/src/pages/ConfigPreferences.tsx:878
 msgid ""
 "At least one loop-prevention exclusion is required. Exclude the clamav "
 "service account, its UID, or root to prevent recursive scans."
@@ -3898,60 +3905,60 @@ msgstr ""
 "Excluez le compte de service clamav, son UID ou root pour éviter les "
 "analyses récursives."
 
-#: desktop/src/pages/ConfigPreferences.tsx:877
+#: desktop/src/pages/ConfigPreferences.tsx:879
 msgid "Exclude Username"
 msgstr "Nom d’utilisateur à exclure"
 
-#: desktop/src/pages/ConfigPreferences.tsx:878
+#: desktop/src/pages/ConfigPreferences.tsx:880
 msgid "Exclude User ID"
 msgstr "Identifiant utilisateur à exclure"
 
-#: desktop/src/pages/ConfigPreferences.tsx:879
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Exclude Root User"
 msgstr "Exclure l’utilisateur root"
 
-#: desktop/src/pages/ConfigPreferences.tsx:884
+#: desktop/src/pages/ConfigPreferences.tsx:886
 msgid "Scheduled Scans"
 msgstr "Analyses planifiées"
 
-#: desktop/src/pages/ConfigPreferences.tsx:885
+#: desktop/src/pages/ConfigPreferences.tsx:887
 msgid "Schedule"
 msgstr "Planification"
 
-#: desktop/src/pages/ConfigPreferences.tsx:886
+#: desktop/src/pages/ConfigPreferences.tsx:888
 msgid "Enable Scheduled Scans"
 msgstr "Activer les analyses planifiées"
 
-#: desktop/src/pages/ConfigPreferences.tsx:887
+#: desktop/src/pages/ConfigPreferences.tsx:889
 msgid "Scan Frequency"
 msgstr "Fréquence des analyses"
 
-#: desktop/src/pages/ConfigPreferences.tsx:888
+#: desktop/src/pages/ConfigPreferences.tsx:890
 msgid "Scan Time (24-hour)"
 msgstr "Heure de l’analyse (format 24 heures)"
 
-#: desktop/src/pages/ConfigPreferences.tsx:889
+#: desktop/src/pages/ConfigPreferences.tsx:891
 msgid "Day of Week"
 msgstr "Jour de la semaine"
 
-#: desktop/src/pages/ConfigPreferences.tsx:889
+#: desktop/src/pages/ConfigPreferences.tsx:891
 msgid "Used for weekly scans."
 msgstr "Utilisé pour les analyses hebdomadaires."
 
-#: desktop/src/pages/ConfigPreferences.tsx:890
+#: desktop/src/pages/ConfigPreferences.tsx:892
 msgid "Day of Month"
 msgstr "Jour du mois"
 
-#: desktop/src/pages/ConfigPreferences.tsx:890
+#: desktop/src/pages/ConfigPreferences.tsx:892
 msgid "Used for monthly scans."
 msgstr "Utilisé pour les analyses mensuelles."
 
-#: desktop/src/pages/ConfigPreferences.tsx:891
+#: desktop/src/pages/ConfigPreferences.tsx:893
 #: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:772
 msgid "Scan Targets"
 msgstr "Cibles de l'analyse"
 
-#: desktop/src/pages/ConfigPreferences.tsx:892
+#: desktop/src/pages/ConfigPreferences.tsx:894
 msgid ""
 "No targets are configured. The scheduled scan will use your home directory "
 "without saving it as an explicit target."
@@ -3959,38 +3966,38 @@ msgstr ""
 "Aucune cible n’est configurée. L’analyse planifiée utilisera votre dossier "
 "personnel sans l’enregistrer comme cible explicite."
 
-#: desktop/src/pages/ConfigPreferences.tsx:893
+#: desktop/src/pages/ConfigPreferences.tsx:895
 #: desktop/src/pages/SettingsPreferences.tsx:403
 msgid "Skip on Battery"
 msgstr "Ne pas lancer sur batterie"
 
-#: desktop/src/pages/ConfigPreferences.tsx:893
+#: desktop/src/pages/ConfigPreferences.tsx:895
 msgid "Do not start scheduled scans while on battery power."
 msgstr ""
 "Ne pas lancer d’analyses planifiées lorsque l’appareil fonctionne sur "
 "batterie."
 
-#: desktop/src/pages/ConfigPreferences.tsx:894
+#: desktop/src/pages/ConfigPreferences.tsx:896
 msgid "Auto-Quarantine"
 msgstr "Mise en quarantaine automatique"
 
-#: desktop/src/pages/ConfigPreferences.tsx:894
+#: desktop/src/pages/ConfigPreferences.tsx:896
 msgid "Automatically quarantine threats found by scheduled scans."
 msgstr ""
 "Mettre automatiquement en quarantaine les menaces détectées lors des "
 "analyses planifiées."
 
-#: desktop/src/pages/ConfigPreferences.tsx:899
-#: desktop/src/pages/ConfigPreferences.tsx:909
+#: desktop/src/pages/ConfigPreferences.tsx:901
+#: desktop/src/pages/ConfigPreferences.tsx:911
 msgid "Save & Apply"
 msgstr "Enregistrer et appliquer"
 
-#: desktop/src/pages/ConfigPreferences.tsx:900
+#: desktop/src/pages/ConfigPreferences.tsx:902
 msgid "Apply Configuration"
 msgstr "Appliquer la configuration"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:901
+#: desktop/src/pages/ConfigPreferences.tsx:903
 msgid ""
 "All edited forms are captured at the moment you click Save & Apply. Every "
 "configured file is validated before any write or authorization request."
@@ -4000,7 +4007,7 @@ msgstr ""
 "avant toute écriture ou demande d’autorisation."
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:905
+#: desktop/src/pages/ConfigPreferences.tsx:907
 msgid ""
 "Scanner and On-Access changes share one clamd.conf proposal; neither form "
 "can overwrite the other's detached changes."
@@ -4010,7 +4017,7 @@ msgstr ""
 "formulaires ne peut écraser les modifications conservées séparément par "
 "l’autre."
 
-#: desktop/src/pages/ConfigPreferences.tsx:909
+#: desktop/src/pages/ConfigPreferences.tsx:911
 #: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:262
 msgid "Saving…"
 msgstr "Enregistrement…"

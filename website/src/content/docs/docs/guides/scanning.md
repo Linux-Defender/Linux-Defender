@@ -33,11 +33,11 @@ Linux Defender displays clean, infected, error, or cancelled results with a file
 
 **Quarantine** copies the file to owner-only storage, hashes it with SHA-256, and verifies that hash when restoring. It is safer than deleting immediately. See [quarantine](/Linux-Defender/docs/guides/quarantine/).
 
-Open **Scan Details** for an expanded result view. Choose **Copy** to place the displayed details on the clipboard.
+Open **Fullscreen** for an expanded result view. In the **Scan details** dialog, choose **Copy or Export** to place the displayed details on the clipboard.
 
-The **Scan Details** dialog keeps focus inside it: use `Tab` and `Shift+Tab` to move between **Copy** and **Close**. `Escape` closes it and returns focus to its **Fullscreen** opener.
+The **Scan details** dialog keeps focus inside it: use `Tab` and `Shift+Tab` to move between **Copy or Export** and **Close**. `Escape` closes it and returns focus to its **Fullscreen** opener.
 
-When notifications are enabled and permitted by the desktop, a completed scan sends a native notification. Use its **Show Scan** action to return to the scan results.
+When notifications are enabled and permitted by the desktop, a completed scan sends a native notification. Use its **Open** action to return to the scan results.
 
 ## Optional online reputation checks
 

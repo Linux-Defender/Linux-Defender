@@ -36,6 +36,8 @@ EXPECTED_CHECKS = {
     "generate-doc-map.py", "generate-translation-review.py", "release-readiness.py",
     "check-compiled-catalogs.ts", "check-file-modes.py", "check-gate-wiring.py",
     "check-ipc-operations.py", "check-source-invariants.py",
+    "check-support-parity.py", "check-url-list-layout.py", "check-repo-state.py",
+    "check-unused-code-guard.py", "check-install-guidance.py", "check-packaging-license.py",
 }
 
 

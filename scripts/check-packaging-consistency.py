@@ -82,7 +82,10 @@ def verify_aur_tarball_hash(failures: list[str]) -> None:
             digest = hashlib.sha256()
             for chunk in iter(lambda: response.read(1 << 20), b""):
                 digest.update(chunk)
-    except Exception as exc:  # network unreachable is not a packaging drift
+    except urllib.error.HTTPError as exc:
+        failures.append(f"AUR tarball URL returned HTTP {exc.code}: {url}")
+        return
+    except (urllib.error.URLError, TimeoutError) as exc:  # network unreachable is not drift
         print(f"note: could not verify AUR tarball hash ({exc}); skipped")
         return
     if digest.hexdigest() != checksum.group(1):

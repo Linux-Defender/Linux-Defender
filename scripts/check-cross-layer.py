@@ -109,8 +109,13 @@ def main() -> int:
     # 4. Declarative cross-layer feature matrix.
     cfg = json.loads(CONTRACTS.read_text(encoding="utf-8"))
     layers = cfg["layers"]
+    features = cfg["features"]
+    if not layers or len(features) < 10:
+        failures.append(
+            f"cross-layer contracts are too small: {len(layers)} layers, {len(features)} features"
+        )
     caches: dict[str, str] = {}
-    for feature in cfg["features"]:
+    for feature in features:
         for layer, patterns in feature["layers"].items():
             if layer not in layers:
                 failures.append(f"unknown layer '{layer}' in feature '{feature['id']}'")

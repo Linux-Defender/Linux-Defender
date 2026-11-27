@@ -804,6 +804,7 @@ fn scan_daemon_target(
 
     if fd_stdin.is_empty() && stream_stdin.is_empty() {
         let mut accumulator = DaemonResultAccumulator::new(raw_path);
+        let mut directories_left = count.directories;
         for (arguments, paths, files) in [
             (&base_arguments, &fd_list, fd_list.len() as u64),
             (&stream_arguments, &stream_list, stream_list.len() as u64),
@@ -828,12 +829,13 @@ fn scan_daemon_target(
                     arguments: &arguments,
                     stdin: None,
                     files,
-                    directories: count.directories,
+                    directories: directories_left,
                     stdin_path: None,
                 },
                 count.files,
                 &mut progress,
             );
+            directories_left = 0;
             let _ = fs::remove_file(list);
             accumulator.add(phase);
         }
@@ -842,6 +844,7 @@ fn scan_daemon_target(
 
     let mut accumulator = DaemonResultAccumulator::new(raw_path);
     let mut stopped_for_cancellation = false;
+    let mut directories_left = count.directories;
     let mut stdin_directories = if safe_files == 0 {
         count.directories
     } else {
@@ -875,12 +878,13 @@ fn scan_daemon_target(
                 arguments: &arguments,
                 stdin: None,
                 files,
-                directories: count.directories,
+                directories: directories_left,
                 stdin_path: None,
             },
             count.files,
             &mut progress,
         );
+        directories_left = 0;
         let _ = fs::remove_file(list);
         accumulator.add(phase);
     }
@@ -1920,6 +1924,10 @@ fn wait_with_cancel(
             .map_err(|error| format!("Unable to wait for scanner: {error}"))?
             .is_some()
         {
+            // A cancel arriving between child exit and this check must win.
+            if cancelled.load(Ordering::Acquire) && !terminated {
+                return Ok(true);
+            }
             return Ok(terminated);
         }
         if cancelled.load(Ordering::Acquire) && !terminated {
@@ -2060,6 +2068,49 @@ impl ProgramProbe {
         }
     }
 }
+fn bounded_command_output(
+    command: &mut std::process::Command,
+    timeout: Duration,
+) -> std::io::Result<std::process::Output> {
+    command.stdout(Stdio::piped()).stderr(Stdio::piped());
+    let mut child = command.spawn()?;
+    let deadline = Instant::now() + timeout;
+    let stdout = child.stdout.take();
+    let stderr = child.stderr.take();
+    let out = stdout.map(|mut pipe| {
+        std::thread::spawn(move || {
+            let mut bytes = Vec::new();
+            let _ = pipe.read_to_end(&mut bytes);
+            bytes
+        })
+    });
+    let err = stderr.map(|mut pipe| {
+        std::thread::spawn(move || {
+            let mut bytes = Vec::new();
+            let _ = pipe.read_to_end(&mut bytes);
+            bytes
+        })
+    });
+    loop {
+        if let Some(status) = child.try_wait()? {
+            return Ok(std::process::Output {
+                status,
+                stdout: out.and_then(|h| h.join().ok()).unwrap_or_default(),
+                stderr: err.and_then(|h| h.join().ok()).unwrap_or_default(),
+            });
+        }
+        if Instant::now() >= deadline {
+            let _ = child.kill();
+            let _ = child.wait();
+            return Err(std::io::Error::new(
+                std::io::ErrorKind::TimedOut,
+                "command timed out",
+            ));
+        }
+        std::thread::sleep(Duration::from_millis(10));
+    }
+}
+
 fn probe_program(program: &str, arguments: &[&str]) -> ProgramProbe {
     let args = arguments
         .iter()
@@ -2069,8 +2120,9 @@ fn probe_program(program: &str, arguments: &[&str]) -> ProgramProbe {
 }
 
 fn probe_program_owned(program: &str, arguments: &[String]) -> ProgramProbe {
+    // A wedged clamdscan must not freeze scanner.status or backend selection.
     let mut command = host_command(program, arguments);
-    match command.output() {
+    match bounded_command_output(&mut command, Duration::from_secs(10)) {
         Ok(output) if output.status.success() => ProgramProbe {
             available: true,
             version: String::from_utf8_lossy(&output.stdout)

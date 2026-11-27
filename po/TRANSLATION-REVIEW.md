@@ -10,20 +10,30 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1475 translated messages. | 27 |
-| en | 1475 translated messages. | baseline |
-| es | 1475 translated messages. | 28 |
-| fr | 1475 translated messages. | 28 |
-| hu | 1475 translated messages. | 28 |
-| it | 1475 translated messages. | 28 |
-| nb | 1475 translated messages. | 28 |
-| pt_BR | 1475 translated messages. | 28 |
-| vi | 1475 translated messages. | 36 |
-| zh_CN | 1475 translated messages. | 28 |
+| de | 1476 translated messages. | 51 |
+| en | 1476 translated messages. | baseline |
+| es | 1476 translated messages. | 52 |
+| fr | 1476 translated messages. | 52 |
+| hu | 1476 translated messages. | 52 |
+| it | 1476 translated messages. | 52 |
+| nb | 1476 translated messages. | 52 |
+| pt_BR | 1476 translated messages. | 52 |
+| vi | 1476 translated messages. | 60 |
+| zh_CN | 1476 translated messages. | 52 |
 
 ## de
 
+- `API keys are stored in the operating system keyring when available and are never sent to the interface.`
+- `Administrator access may be required to read UFW status. This check does not change firewall settings.`
+- `Administrator authorization for the UFW status check was denied or unavailable.`
+- `Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. Runs in sequence with administrator authorization and takes several minutes.`
+- `Also scan newly created or moved files in monitored directories via inotify.`
+- `An OpenSnitch system service is active and running. This does not verify filtering.`
 - `Analysis complete — no detections reported`
+- `Authentication cancelled. Database update requires administrator privileges.`
+- `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
+- `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -35,25 +45,39 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
+- `Keyring is unavailable; the stored key could not be checked`
+- `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
+- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
+- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
+- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
 - `The scan had already finished; no cancellation was needed.`
+- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
+- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
+- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
+- `UFW is inactive, but another firewall manager is active and protecting the system.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
-- `Unable to delete the API key: {error}`
-- `Unable to load quarantine entries.`
-- `Unable to open the folder picker`
-- `Unable to save the API key: {error}`
-- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
-- `{detections} of {total} URL engines reported suspicious or malicious`
-- `{key}: path must be non-empty and cannot traverse with '..'`
-- `{key}: value contains a control character`
+- … 11 more
 
 ## es
 
+- `API keys are stored in the operating system keyring when available and are never sent to the interface.`
+- `Administrator access may be required to read UFW status. This check does not change firewall settings.`
+- `Administrator authorization for the UFW status check was denied or unavailable.`
+- `Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. Runs in sequence with administrator authorization and takes several minutes.`
+- `Also scan newly created or moved files in monitored directories via inotify.`
+- `An OpenSnitch system service is active and running. This does not verify filtering.`
 - `Analysis complete — no detections reported`
+- `Authentication cancelled. Database update requires administrator privileges.`
+- `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
+- `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -65,26 +89,39 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
+- `Keyring is unavailable; the stored key could not be checked`
+- `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
+- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
+- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
+- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
 - `The scan had already finished; no cancellation was needed.`
+- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
+- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
+- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
+- `UFW is inactive, but another firewall manager is active and protecting the system.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
-- `Unable to delete the API key: {error}`
-- `Unable to load quarantine entries.`
-- `Unable to open the folder picker`
-- `Unable to save the API key: {error}`
-- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
-- `linux-defender {name} — {summary}\n`
-- `{detections} of {total} URL engines reported suspicious or malicious`
-- `{key}: path must be non-empty and cannot traverse with '..'`
-- `{key}: value contains a control character`
+- … 12 more
 
 ## fr
 
+- `API keys are stored in the operating system keyring when available and are never sent to the interface.`
+- `Administrator access may be required to read UFW status. This check does not change firewall settings.`
+- `Administrator authorization for the UFW status check was denied or unavailable.`
+- `Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. Runs in sequence with administrator authorization and takes several minutes.`
+- `Also scan newly created or moved files in monitored directories via inotify.`
+- `An OpenSnitch system service is active and running. This does not verify filtering.`
 - `Analysis complete — no detections reported`
+- `Authentication cancelled. Database update requires administrator privileges.`
+- `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
+- `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -96,26 +133,39 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
+- `Keyring is unavailable; the stored key could not be checked`
+- `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
+- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
+- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
+- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
 - `The scan had already finished; no cancellation was needed.`
+- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
+- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
+- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
+- `UFW is inactive, but another firewall manager is active and protecting the system.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
-- `Unable to delete the API key: {error}`
-- `Unable to load quarantine entries.`
-- `Unable to open the folder picker`
-- `Unable to save the API key: {error}`
-- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
-- `linux-defender {name} — {summary}\n`
-- `{detections} of {total} URL engines reported suspicious or malicious`
-- `{key}: path must be non-empty and cannot traverse with '..'`
-- `{key}: value contains a control character`
+- … 12 more
 
 ## hu
 
+- `API keys are stored in the operating system keyring when available and are never sent to the interface.`
+- `Administrator access may be required to read UFW status. This check does not change firewall settings.`
+- `Administrator authorization for the UFW status check was denied or unavailable.`
+- `Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. Runs in sequence with administrator authorization and takes several minutes.`
+- `Also scan newly created or moved files in monitored directories via inotify.`
+- `An OpenSnitch system service is active and running. This does not verify filtering.`
 - `Analysis complete — no detections reported`
+- `Authentication cancelled. Database update requires administrator privileges.`
+- `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
+- `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -127,26 +177,39 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
+- `Keyring is unavailable; the stored key could not be checked`
+- `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
+- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
+- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
+- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
 - `The scan had already finished; no cancellation was needed.`
+- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
+- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
+- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
+- `UFW is inactive, but another firewall manager is active and protecting the system.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
-- `Unable to delete the API key: {error}`
-- `Unable to load quarantine entries.`
-- `Unable to open the folder picker`
-- `Unable to save the API key: {error}`
-- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
-- `linux-defender {name} — {summary}\n`
-- `{detections} of {total} URL engines reported suspicious or malicious`
-- `{key}: path must be non-empty and cannot traverse with '..'`
-- `{key}: value contains a control character`
+- … 12 more
 
 ## it
 
+- `API keys are stored in the operating system keyring when available and are never sent to the interface.`
+- `Administrator access may be required to read UFW status. This check does not change firewall settings.`
+- `Administrator authorization for the UFW status check was denied or unavailable.`
+- `Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. Runs in sequence with administrator authorization and takes several minutes.`
+- `Also scan newly created or moved files in monitored directories via inotify.`
+- `An OpenSnitch system service is active and running. This does not verify filtering.`
 - `Analysis complete — no detections reported`
+- `Authentication cancelled. Database update requires administrator privileges.`
+- `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
+- `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -158,26 +221,39 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
+- `Keyring is unavailable; the stored key could not be checked`
+- `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
+- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
+- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
+- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
 - `The scan had already finished; no cancellation was needed.`
+- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
+- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
+- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
+- `UFW is inactive, but another firewall manager is active and protecting the system.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
-- `Unable to delete the API key: {error}`
-- `Unable to load quarantine entries.`
-- `Unable to open the folder picker`
-- `Unable to save the API key: {error}`
-- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
-- `linux-defender {name} — {summary}\n`
-- `{detections} of {total} URL engines reported suspicious or malicious`
-- `{key}: path must be non-empty and cannot traverse with '..'`
-- `{key}: value contains a control character`
+- … 12 more
 
 ## nb
 
+- `API keys are stored in the operating system keyring when available and are never sent to the interface.`
+- `Administrator access may be required to read UFW status. This check does not change firewall settings.`
+- `Administrator authorization for the UFW status check was denied or unavailable.`
+- `Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. Runs in sequence with administrator authorization and takes several minutes.`
+- `Also scan newly created or moved files in monitored directories via inotify.`
+- `An OpenSnitch system service is active and running. This does not verify filtering.`
 - `Analysis complete — no detections reported`
+- `Authentication cancelled. Database update requires administrator privileges.`
+- `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
+- `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -189,26 +265,39 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
+- `Keyring is unavailable; the stored key could not be checked`
+- `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
+- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
+- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
+- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
 - `The scan had already finished; no cancellation was needed.`
+- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
+- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
+- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
+- `UFW is inactive, but another firewall manager is active and protecting the system.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
-- `Unable to delete the API key: {error}`
-- `Unable to load quarantine entries.`
-- `Unable to open the folder picker`
-- `Unable to save the API key: {error}`
-- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
-- `linux-defender {name} — {summary}\n`
-- `{detections} of {total} URL engines reported suspicious or malicious`
-- `{key}: path must be non-empty and cannot traverse with '..'`
-- `{key}: value contains a control character`
+- … 12 more
 
 ## pt_BR
 
+- `API keys are stored in the operating system keyring when available and are never sent to the interface.`
+- `Administrator access may be required to read UFW status. This check does not change firewall settings.`
+- `Administrator authorization for the UFW status check was denied or unavailable.`
+- `Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. Runs in sequence with administrator authorization and takes several minutes.`
+- `Also scan newly created or moved files in monitored directories via inotify.`
+- `An OpenSnitch system service is active and running. This does not verify filtering.`
 - `Analysis complete — no detections reported`
+- `Authentication cancelled. Database update requires administrator privileges.`
+- `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
+- `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -220,32 +309,45 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
+- `Keyring is unavailable; the stored key could not be checked`
+- `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
+- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
+- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
+- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
 - `The scan had already finished; no cancellation was needed.`
+- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
+- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
+- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
+- `UFW is inactive, but another firewall manager is active and protecting the system.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
-- `Unable to delete the API key: {error}`
-- `Unable to load quarantine entries.`
-- `Unable to open the folder picker`
-- `Unable to save the API key: {error}`
-- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
-- `linux-defender {name} — {summary}\n`
-- `{detections} of {total} URL engines reported suspicious or malicious`
-- `{key}: path must be non-empty and cannot traverse with '..'`
-- `{key}: value contains a control character`
+- … 12 more
 
 ## vi
 
+- `API keys are stored in the operating system keyring when available and are never sent to the interface.`
+- `Administrator access may be required to read UFW status. This check does not change firewall settings.`
+- `Administrator authorization for the UFW status check was denied or unavailable.`
+- `Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. Runs in sequence with administrator authorization and takes several minutes.`
+- `Also scan newly created or moved files in monitored directories via inotify.`
+- `An OpenSnitch system service is active and running. This does not verify filtering.`
 - `Analysis complete — no detections reported`
+- `Authentication cancelled. Database update requires administrator privileges.`
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
+- `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
+- `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -257,28 +359,33 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
+- `Keyring is unavailable; the stored key could not be checked`
+- `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
-- `The scan had already finished; no cancellation was needed.`
-- `URL must use HTTP or HTTPS and cannot contain login credentials`
-- `Unable to delete the API key: {error}`
-- `Unable to load quarantine entries.`
-- `Unable to open the folder picker`
-- `Unable to save the API key: {error}`
-- `Update failed with an unknown error. Check the logs for details.`
-- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
-- `linux-defender {name} — {summary}\n`
-- `{detections} of {total} URL engines reported suspicious or malicious`
-- `{key}: path must be non-empty and cannot traverse with '..'`
-- `{key}: value contains a control character`
+- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
+- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
+- … 20 more
 
 ## zh_CN
 
+- `API keys are stored in the operating system keyring when available and are never sent to the interface.`
+- `Administrator access may be required to read UFW status. This check does not change firewall settings.`
+- `Administrator authorization for the UFW status check was denied or unavailable.`
+- `Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. Runs in sequence with administrator authorization and takes several minutes.`
+- `Also scan newly created or moved files in monitored directories via inotify.`
+- `An OpenSnitch system service is active and running. This does not verify filtering.`
 - `Analysis complete — no detections reported`
+- `Authentication cancelled. Database update requires administrator privileges.`
+- `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
+- `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
@@ -290,22 +397,25 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
+- `Keyring is unavailable; the stored key could not be checked`
+- `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
+- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
+- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
+- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
 - `The scan had already finished; no cancellation was needed.`
+- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
+- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
+- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
+- `UFW is inactive, but another firewall manager is active and protecting the system.`
 - `URL must use HTTP or HTTPS and cannot contain login credentials`
-- `Unable to delete the API key: {error}`
-- `Unable to load quarantine entries.`
-- `Unable to open the folder picker`
-- `Unable to save the API key: {error}`
-- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
-- `linux-defender {name} — {summary}\n`
-- `{detections} of {total} URL engines reported suspicious or malicious`
-- `{key}: path must be non-empty and cannot traverse with '..'`
-- `{key}: value contains a control character`
+- … 12 more
 
 ## Review procedure
 

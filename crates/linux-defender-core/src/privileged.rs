@@ -88,6 +88,13 @@ fields=$(/usr/bin/timeout 300 /usr/bin/dpkg-deb --show '--showformat=${Package}\
 [ "$fields" = "linux-defender-privileged-helper
 $version
 $arch" ] || exit 5
+# Caller-supplied digest/NEVRA are not an authenticity boundary. Verify the
+# Debian builder signature against the pinned release key before root install.
+key=$(/usr/bin/mktemp /var/tmp/linux-defender-key.XXXXXX) || exit 4
+trap '/usr/bin/rm -rf -- "$stage"; /usr/bin/rm -f -- "$key"' EXIT HUP INT TERM
+printf '%s\n' "$SIGNING_KEY" > "$key" || exit 4
+sig=$(/usr/bin/dpkg-sig --verify "$target") || exit 5
+printf '%s\n' "$sig" | /usr/bin/grep -q '^GOODSIG _gpgbuilder 28CA212A766A6D51273EBBD277B8EC8622C91282 ' || exit 5
 set +e
 /usr/bin/timeout 300 /usr/bin/apt-get install -y -- "$target"
 status=$?
@@ -1223,10 +1230,9 @@ pub fn write_staged_configs(
         for config in configs {
             command.arg(&config.staged_source).arg(&config.destination);
         }
-        let output = command
-            .output()
-            .map_err(|error| format!("cannot start privileged helper: {error}"))?;
-        if output.status.success() {
+        let (status, _stdout, stderr) =
+            bounded_child_output(command, MAX_HELPER_METADATA_BYTES, Duration::from_secs(300))?;
+        if status.success() {
             return Ok(PrivilegedWriteResult {
                 applied_paths: configs
                     .iter()
@@ -1236,7 +1242,7 @@ pub fn write_staged_configs(
             });
         }
         let operation = crate::i18n::translate(ctx, "Applying configuration");
-        let message = client_helper_failure(ctx, output.status.code(), &output.stderr, &operation);
+        let message = client_helper_failure(ctx, status.code(), &stderr, &operation);
         let partial_message = crate::i18n::translate(
             ctx,
             // Translators: keep {message}; it is the complete preceding helper error.
@@ -3037,14 +3043,19 @@ fn install_matching_helper() -> AppResult<PrivilegedHelperStatus> {
                 } else {
                     Command::new("/usr/bin/pkexec")
                 };
-                command.arg(&executable).arg("install-privileged-helper");
-                let output = command.output().map_err(|error| {
-                    format!("cannot launch pkexec for the local helper install: {error}")
-                })?;
-                if output.status.success() {
+                command
+                    .env("SIGNING_KEY", include_str!("../../../signing-key.asc"))
+                    .arg(&executable)
+                    .arg("install-privileged-helper");
+                let (exit_status, _stdout, stderr) = bounded_child_output(
+                    command,
+                    MAX_HELPER_METADATA_BYTES,
+                    Duration::from_secs(300),
+                )?;
+                if exit_status.success() {
                     return Ok(status());
                 }
-                let detail = String::from_utf8_lossy(&output.stderr).trim().to_owned();
+                let detail = String::from_utf8_lossy(&stderr).trim().to_owned();
                 if !detail.is_empty() {
                     return Err(detail);
                 }
