@@ -179,6 +179,25 @@ pub fn validate_url(input: &str) -> AppResult<Url> {
     {
         return Err("URL must use HTTP or HTTPS and cannot contain login credentials".into());
     }
+    // The remote service fetches this URL from its own network; a literal
+    // private address would disclose an internal endpoint (VirusTotal parity).
+    if let Some(ip) = match url.host() {
+        Some(url::Host::Ipv4(ip)) => Some(std::net::IpAddr::V4(ip)),
+        Some(url::Host::Ipv6(ip)) => Some(std::net::IpAddr::V6(ip)),
+        _ => None,
+    } {
+        let local = match ip {
+            std::net::IpAddr::V4(v4) => {
+                v4.is_loopback() || v4.is_private() || v4.is_link_local() || v4.is_unspecified()
+            }
+            std::net::IpAddr::V6(v6) => {
+                v6.is_loopback() || v6.is_unspecified() || v6.is_unique_local()
+            }
+        };
+        if local {
+            return Err("Private and local network addresses cannot be submitted".into());
+        }
+    }
     Ok(url)
 }
 

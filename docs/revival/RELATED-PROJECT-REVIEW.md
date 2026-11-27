@@ -236,7 +236,7 @@ A repo-wide grep confirms none of those markers exist in Linux Defender source, 
 
 ### Lazaret fork review (2026-11-26)
 
-`wvhulle/lazaret` is an MIT-licensed GTK4/Rust hard fork of ClamUI (`linx-systems/clamui`, also MIT) at `9829dde`. Its fork branch `Linux-Defender:patch-1` adds only a generic GitHub Security Policy template, so there was no code patch to import. Three read-only agents reviewed its docs/features, Rust crates, and all GitHub tabs; dispositions:
+`wvhulle/lazaret` is an MIT-licensed GTK4/Rust hard fork of ClamUI (`linx-systems/clamui`, also MIT) at `9829dde`. Its fork branch `Linux-Defender:patch-1` (since deleted) added only a generic GitHub Security Policy template, so there was no code patch to import. Linux Defender already ships an equivalent, project-specific policy: `SECURITY.md` (private advisory reporting), `SECURITY.txt` (RFC 9116), the published `contributing/security` guide, and links from the README and website footer. The generic template's link-only behavior is therefore already covered; no template text was copied. Three read-only agents reviewed its docs/features, Rust crates, and all GitHub tabs; dispositions:
 
 - **Ported:** FreshClam output now recognises custom signature databases (`.hdb`, `.ndb`, `.ftm`, `.idb`, `.ldb`) as updates — this covers the product-default URLhaus `.ndb` feed, which previously could be recorded as "no result". Path-valued ClamAV directives now reject `..` traversal. Both have regression tests.
 - **Checked, already correct here:** file-manager/CLI handover replaces target lists (no duplicate rescan), and config overrides clear stale repeated directive lines. No change needed.
