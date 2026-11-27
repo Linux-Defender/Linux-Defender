@@ -524,7 +524,7 @@ fn persistent_cli_json_contracts_are_machine_readable() {
 
 #[test]
 fn privileged_helper_rejects_root_missing_and_non_numeric_pkexec_uid() {
-    for uid in [Some("0"), None, Some("not-a-uid")] {
+    for (case, uid) in [Some("0"), None, Some("not-a-uid")].into_iter().enumerate() {
         let mut command = preferences_helper();
         command.arg("--protocol=4");
         match uid {
@@ -539,7 +539,9 @@ fn privileged_helper_rejects_root_missing_and_non_numeric_pkexec_uid() {
         assert_eq!(
             output.status.code(),
             Some(3),
-            "PKEXEC_UID={uid:?}: {}",
+            // Never put the uid value in assertion text: CodeQL treats log
+            // messages as sinks and flags it as cleartext logging.
+            "PKEXEC_UID rejection case {case}: {}",
             stderr(&output)
         );
     }
