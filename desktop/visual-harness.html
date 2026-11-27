@@ -35,15 +35,6 @@
               daemon_status: { available: false, connected: false, clamdscan_available: false, message: "Daemon not running" }
             };
             if (a === "config.needs_elevation") return {};
-            if (a === "config.load") return {
-              kind: args && args.kind ? args.kind : "freshclam",
-              path: "/etc/clamav/freshclam.conf",
-              readable: true,
-              values: { DatabaseCustomURL: [] },
-              needs_size_unit_migration: false,
-              error: null,
-            };
-            if (a === "urlhaus.feed_url") return { url: "https://urlhaus-api.abuse.ch/v2/files/exports/harness-key/urlhaus_clamav.ndb" };
             if (a === "virustotal.key_status") return { present: false, status: "not_configured" };
             if (a === "urlhaus.key_status") return { present: true, status: "configured", masked: "4bf8***" };
             return {};
