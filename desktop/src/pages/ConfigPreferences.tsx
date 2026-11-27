@@ -3,7 +3,6 @@ import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } fro
 import { notify, openExternal, openPaths, request } from "../api";
 import { type ManualConfiguration, useConfigurationRecovery } from "../ConfigurationRecovery";
 import { cloneValues, mergeAuthorizedConfig } from "../configAuthorize";
-import { visibleCustomUrls } from "../suggestedUrls";
 import { isHelperTrustError } from "../helperTrustError";
 import { _ } from "../i18n";
 import { addNewestFirst, parseListDraft } from "../pathList";
@@ -330,9 +329,8 @@ function parseCustomUrls(raw: string): string[] {
   return parsed;
 }
 
-function CustomUrlListField({ values, onChange, showSuggested }: { values: string[]; onChange: (next: string[]) => void; showSuggested: boolean }) {
+function CustomUrlListField({ values, onChange }: { values: string[]; onChange: (next: string[]) => void }) {
   const [draft, setDraft] = useState("");
-  const visible = visibleCustomUrls(values, showSuggested);
   const add = () => {
     const candidates = parseCustomUrls(draft);
     if (candidates.length === 0) {
@@ -372,7 +370,6 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const [report, setReport] = useState<SaveReport>(null);
   const [manualConfigurations, setManualConfigurations] = useState<readonly ManualConfiguration[]>([]);
   const [configLoadCount, setConfigLoadCount] = useState(0);
-  const [showSuggested, setShowSuggested] = useState(false);
   const [busy, setBusy] = useState(false);
   const [urlhausFeedUrl, setUrlhausFeedUrl] = useState<string | null>(null);
   const loadRequests = useRef<Record<ConfigKind, number>>({ freshclam: 0, clamd: 0 });
@@ -532,7 +529,13 @@ export default function ConfigPreferences({ section }: { section: string }) {
     setDocument((current) => current ? { ...current, values: updater(current.values) } : current);
   }, []);
 
-  const addSuggestedUrls = () => setShowSuggested((shown) => !shown);
+  const addSuggestedUrls = () => {
+    updateConfig("freshclam", (values) => valuesForMany(
+      values,
+      "DatabaseCustomURL",
+      [...(values.DatabaseCustomURL ?? []), ...SUGGESTED_SIGNATURE_URLS].filter((url) => !values.DatabaseCustomURL?.includes(url)),
+    ));
+  };
 
   const refreshUrlhausFeed = useCallback(async () => {
     try {
@@ -785,8 +788,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
         <TextField label={_("Database Mirror")} field="DatabaseMirror" value={value(freshclamValues, "DatabaseMirror")} onChange={(next) => setFreshclamField("DatabaseMirror", next)} />
       </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("Custom Signature Databases")}</h3>
-        <CustomUrlListField values={freshclamValues.DatabaseCustomURL ?? []} showSuggested={showSuggested} onChange={(next) => updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", next))} />
-        <div className="toolbar actions"><button className="button" type="button" onClick={addSuggestedUrls} aria-pressed={showSuggested}>{_("Suggested")}</button></div>
+        <CustomUrlListField values={freshclamValues.DatabaseCustomURL ?? []} onChange={(next) => updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", next))} />
+        <div className="toolbar actions"><button className="button" type="button" onClick={addSuggestedUrls}>{_("Suggested")}</button></div>
         <p className="muted">{_(
           // Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
           "Suggested adds the RFXN signatures and three InterServer databases to this draft. Save & Apply is still required.",
