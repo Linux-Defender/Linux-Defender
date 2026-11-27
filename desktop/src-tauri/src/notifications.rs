@@ -96,12 +96,12 @@ fn notification_for(
                     tr("Scan Error"),
                     // Host process text is untrusted: sanitize before showing it
                     // in a native notification, as the persistence path does.
-                    linux_defender_core::common::sanitize_line(
+                    linux_defender_core::logs::redact(&linux_defender_core::common::sanitize_line(
                         result
                             .get("error_message")
                             .and_then(Value::as_str)
                             .unwrap_or_default(),
-                    ),
+                    )),
                 ),
             };
             Some(("scan-complete", title, body, "show-scan", false))
@@ -141,21 +141,21 @@ fn notification_for(
                 ),
                 ("cancelled", _, _) => (
                     tr("Database Update Cancelled"),
-                    linux_defender_core::common::sanitize_line(
+                    linux_defender_core::logs::redact(&linux_defender_core::common::sanitize_line(
                         result
                             .get("error_message")
                             .and_then(Value::as_str)
                             .unwrap_or_default(),
-                    ),
+                    )),
                 ),
                 _ => (
                     tr("Database Update Failed"),
-                    linux_defender_core::common::sanitize_line(
+                    linux_defender_core::logs::redact(&linux_defender_core::common::sanitize_line(
                         result
                             .get("error_message")
                             .and_then(Value::as_str)
                             .unwrap_or_default(),
-                    ),
+                    )),
                 ),
             };
             Some(("update-complete", title, body, "show-update", false))

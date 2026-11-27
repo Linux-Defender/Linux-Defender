@@ -24,9 +24,11 @@ pub(super) fn check_firewall(ctx: &Context) -> AuditSection {
 /// `/etc/ufw/ufw.conf`'s `ENABLED=` line are both world-readable.
 fn ufw_unprivileged_signal() -> bool {
     systemctl_reports_active(&probe("systemctl", &["is-active", "ufw"]))
-        || ufw_conf_reports_enabled(
-            &std::fs::read_to_string("/etc/ufw/ufw.conf").unwrap_or_default(),
-        )
+        || ufw_conf_reports_enabled(&if crate::common::is_flatpak() {
+            crate::host::read_host_file("/etc/ufw/ufw.conf").unwrap_or_default()
+        } else {
+            std::fs::read_to_string("/etc/ufw/ufw.conf").unwrap_or_default()
+        })
 }
 
 fn systemctl_reports_active(output: &LimitedCommandOutput) -> bool {

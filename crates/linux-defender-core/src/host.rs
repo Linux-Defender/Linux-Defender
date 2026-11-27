@@ -124,9 +124,14 @@ pub fn host_binary(binary: &str) -> Option<String> {
             return Some(path);
         }
     }
-    [format!("/usr/sbin/{binary}"), format!("/sbin/{binary}")]
-        .into_iter()
-        .find(|candidate| host_regular_executable(candidate))
+    [
+        format!("/usr/sbin/{binary}"),
+        format!("/sbin/{binary}"),
+        format!("/usr/bin/{binary}"),
+        format!("/bin/{binary}"),
+    ]
+    .into_iter()
+    .find(|candidate| host_regular_executable(candidate))
 }
 
 fn host_regular_executable(path: &str) -> bool {
@@ -815,10 +820,17 @@ pub(crate) enum Distro {
     Fedora,
     FedoraAtomic,
     Arch,
+    Suse,
 }
 
 pub(crate) fn distro() -> Option<Distro> {
-    let source = read_host_file("/etc/os-release").ok()?;
+    parse_distro(&read_host_file("/etc/os-release").ok()?)
+}
+
+/// Resolve a distribution family from an os-release document. Only the exact
+/// `ID` is authoritative: derivatives sharing `ID_LIKE` use different package
+/// managers (for example openSUSE MicroOS uses transactional-update).
+pub(crate) fn parse_distro(source: &str) -> Option<Distro> {
     let values = source
         .lines()
         .filter_map(|line| {
@@ -850,12 +862,17 @@ pub(crate) fn distro() -> Option<Distro> {
         }
         Some("fedora") => Some(Distro::Fedora),
         Some("arch" | "manjaro") => Some(Distro::Arch),
+        Some("opensuse-tumbleweed" | "opensuse-leap") => Some(Distro::Suse),
         _ => None,
     }
 }
 
 pub fn install_command(target: &str) -> Option<String> {
-    let command = match (distro()?, target) {
+    install_command_for(distro()?, target)
+}
+
+pub(crate) fn install_command_for(distro: Distro, target: &str) -> Option<String> {
+    let command = match (distro, target) {
         (Distro::Debian, "clamav" | "clamscan") => "sudo apt install clamav clamav-daemon",
         (Distro::Debian, "freshclam") => "sudo apt install clamav-freshclam",
         (Distro::Debian, "clamdscan" | "clamd") => "sudo apt install clamav-daemon",
@@ -898,6 +915,18 @@ pub fn install_command(target: &str) -> Option<String> {
         (Distro::FedoraAtomic, "chkrootkit") => {
             "sudo rpm-ostree install chkrootkit\nsudo systemctl reboot"
         }
+        (Distro::Suse, "clamav" | "clamscan" | "freshclam" | "clamdscan" | "clamd") => {
+            "sudo zypper install clamav"
+        }
+        (Distro::Suse, "firewall") => {
+            "sudo zypper install firewalld && sudo systemctl enable --now firewalld"
+        }
+        (Distro::Suse, "firewall_gui") => "sudo zypper install firewall-config",
+        (Distro::Suse, "automatic_updates") => {
+            "sudo zypper install os-update && sudo systemctl enable --now os-update.timer"
+        }
+        (Distro::Suse, "intrusion_prevention") => "sudo zypper install fail2ban",
+        (Distro::Suse, "lynis") => "sudo zypper install lynis",
         _ => return None,
     };
     Some(command.to_owned())
@@ -1100,6 +1129,7 @@ pub fn dispatch(ctx: &crate::common::Context, action: &str, args: Value) -> AppR
                 Some(Distro::Fedora) => "fedora",
                 Some(Distro::FedoraAtomic) => "fedora_atomic",
                 Some(Distro::Arch) => "arch",
+                Some(Distro::Suse) => "suse",
                 None => "unknown",
             };
             Ok(json!({"distro":distro,"commands":commands}))
@@ -1114,6 +1144,23 @@ mod tests {
     use std::fs;
     use std::os::unix::fs::symlink;
     use std::time::{Duration, UNIX_EPOCH};
+
+    #[test]
+    fn opensuse_ids_resolve_to_suse_family_and_commands() {
+        let tumbleweed = "ID=\"opensuse-tumbleweed\"\nID_LIKE=\"opensuse suse\"\n";
+        let leap = "ID=\"opensuse-leap\"\nID_LIKE=\"suse opensuse\"\n";
+        let microos = "ID=\"opensuse-microos\"\nID_LIKE=\"suse opensuse\"\n";
+        assert_eq!(parse_distro(tumbleweed), Some(Distro::Suse));
+        assert_eq!(parse_distro(leap), Some(Distro::Suse));
+        assert_eq!(parse_distro(microos), None);
+        assert_eq!(
+            install_command_for(Distro::Suse, "freshclam").as_deref(),
+            Some("sudo zypper install clamav")
+        );
+        assert!(install_command_for(Distro::Suse, "automatic_updates")
+            .is_some_and(|command| command.contains("os-update.timer")));
+        assert_eq!(install_command_for(Distro::Suse, "chkrootkit"), None);
+    }
 
     #[test]
     fn force_update_accepts_only_approved_database_directories() {

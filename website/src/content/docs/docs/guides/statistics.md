@@ -12,7 +12,7 @@ Protection status combines scan recency with the age of the virus definitions Li
 - **Protected:** the last scan is within seven days and the known definitions are at most one day old.
 - **At risk:** the last scan is more than seven days ago, or the known definitions are more than one day old. A definition age above seven days keeps the same badge with a more urgent message.
 - **Unprotected:** no recorded scan, or the last scan is more than 30 days ago.
-- **Unknown:** Linux Defender cannot determine status, or ClamAV is unavailable.
+- **At risk / Protected:** the last scan found threats or was clean. A load failure is reported as an error, not an Unknown status.
 
 When no definition timestamp is available, status falls back to scan recency alone. Neither case is a real-time endpoint-protection guarantee; ClamAV is not watching every file operation.
 

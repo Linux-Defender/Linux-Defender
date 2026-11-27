@@ -2559,3 +2559,12 @@ dialog.modal-dialog.about-dialog { width: min(720px, calc(100vw - 32px)); }
   .network-endpoints { grid-template-columns: minmax(0, 1fr); }
   .network-search { flex-basis: 100%; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

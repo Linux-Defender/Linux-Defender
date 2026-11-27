@@ -10,16 +10,16 @@ translator decides. No machine translation is applied.
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1459 translated messages. | 33 |
-| en | 1459 translated messages. | baseline |
-| es | 1459 translated messages. | 36 |
-| fr | 1459 translated messages. | 36 |
-| hu | 1459 translated messages. | 36 |
-| it | 1459 translated messages. | 36 |
-| nb | 1459 translated messages. | 36 |
-| pt_BR | 1459 translated messages. | 36 |
-| vi | 1459 translated messages. | 35 |
-| zh_CN | 1459 translated messages. | 36 |
+| de | 1462 translated messages. | 36 |
+| en | 1462 translated messages. | baseline |
+| es | 1462 translated messages. | 39 |
+| fr | 1462 translated messages. | 39 |
+| hu | 1462 translated messages. | 39 |
+| it | 1462 translated messages. | 39 |
+| nb | 1462 translated messages. | 39 |
+| pt_BR | 1462 translated messages. | 39 |
+| vi | 1462 translated messages. | 38 |
+| zh_CN | 1462 translated messages. | 39 |
 
 ## de
 
@@ -45,10 +45,13 @@ translator decides. No machine translation is applied.
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
+- `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
+- `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
@@ -82,11 +85,14 @@ translator decides. No machine translation is applied.
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
+- `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
+- `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
@@ -121,11 +127,14 @@ translator decides. No machine translation is applied.
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
+- `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
+- `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
@@ -160,11 +169,14 @@ translator decides. No machine translation is applied.
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
+- `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
+- `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
@@ -199,11 +211,14 @@ translator decides. No machine translation is applied.
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
+- `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
+- `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
@@ -238,11 +253,14 @@ translator decides. No machine translation is applied.
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
+- `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
+- `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
@@ -277,11 +295,14 @@ translator decides. No machine translation is applied.
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
+- `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
+- `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
@@ -316,11 +337,14 @@ translator decides. No machine translation is applied.
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
+- `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
+- `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
@@ -354,11 +378,14 @@ translator decides. No machine translation is applied.
 - `OpenSnitch graphical interface availability could not be determined.`
 - `OpenSnitch system service status could not be determined.`
 - `Recognized database and signature files`
+- `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Scheduled scans are not enabled`
 - `Submit a website for inspection`
 - `The active firewall manager could not be verified.`
+- `The scan had already finished; no cancellation was needed.`
 - `Unable to delete the API key: {error}`
+- `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`

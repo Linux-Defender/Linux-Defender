@@ -1595,7 +1595,7 @@ fn private_line(value: &str) -> String {
 fn private_text(value: &str) -> String {
     redact(&crate::common::sanitize_text(value))
 }
-pub(crate) fn redact(value: &str) -> String {
+pub fn redact(value: &str) -> String {
     let output = URL.replace_all(value, "[REDACTED_URL]");
     let output = HASH.replace_all(&output, "[REDACTED_HASH]");
     let mut output = redact_paths(&output);

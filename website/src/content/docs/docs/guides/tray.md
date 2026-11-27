@@ -11,7 +11,7 @@ In **Preferences → Behavior**:
 
 - **When closing window:** choose minimize to tray, quit, or ask. Without a tray, closing quits.
 - **Start in System Tray:** hides ordinary launches after the native SNI item is accepted. Launches with a scan target stay visible.
-- `minimize_to_tray` is a JSON-only setting for the window-manager minimize button.
+- `start_minimized` controls launching with the window hidden and `close_behavior: "minimize"` controls the close button; both live in `settings.json`.
 
 Verify that your desktop actually shows the icon before relying on background startup. A tray failure does not prevent normal GUI use.
 

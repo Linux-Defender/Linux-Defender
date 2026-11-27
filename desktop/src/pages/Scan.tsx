@@ -240,7 +240,11 @@ function VirusTotalDialog({ path, onClose }: { path: string; onClose: () => void
   };
 
   const cancel = async () => {
-    if (operationId.current) await request("virustotal.cancel", { id: operationId.current }).catch(() => undefined);
+    if (!operationId.current) return;
+    try {
+      const response = await request<{ cancelled?: boolean }>("virustotal.cancel", { id: operationId.current });
+      if (response.cancelled === false) notify(_("VirusTotal cancellation did not take effect"), "warning");
+    } catch (reason) { notify(_("Unable to cancel VirusTotal scan"), "error"); }
   };
 
   return <Modal title={_("VirusTotal Scan")} busy={busy} onClose={onClose}>
@@ -333,7 +337,11 @@ function VirusTotalFolderDialog({ path, onClose }: { path: string; onClose: () =
   };
 
   const cancel = async () => {
-    if (operationId.current) await request("virustotal.cancel", { id: operationId.current }).catch(() => undefined);
+    if (!operationId.current) return;
+    try {
+      const response = await request<{ cancelled?: boolean }>("virustotal.cancel", { id: operationId.current });
+      if (response.cancelled === false) notify(_("VirusTotal cancellation did not take effect"), "warning");
+    } catch (reason) { notify(_("Unable to cancel VirusTotal scan"), "error"); }
   };
   const totalDetections = result?.results.reduce((sum, item) => sum + item.detections, 0) ?? 0;
 
@@ -658,8 +666,10 @@ export default function Scan() {
   const cancel = async () => {
     if (!activeIdRef.current) return;
     try {
-      await request("scanner.cancel", { id: activeIdRef.current });
-      setNotice({ kind: "warning", message: _("Cancelling scan…") });
+      const response = await request<{ cancelled?: boolean }>("scanner.cancel", { id: activeIdRef.current });
+      setNotice(response.cancelled === false
+        ? { kind: "warning", message: _("The scan had already finished; no cancellation was needed.") }
+        : { kind: "warning", message: _("Cancelling scan…") });
     } catch (reason) {
       setNotice({ kind: "error", message: _("Unable to cancel scan"), detail: String(reason) });
     }

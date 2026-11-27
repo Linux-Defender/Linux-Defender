@@ -64,6 +64,86 @@ BADGES = [
 ]
 
 
+def verify_aur_tarball_hash(failures: list[str]) -> None:
+    """Confirm the AUR sha256sum matches the pinned GitHub source archive."""
+    import hashlib
+    import urllib.request
+
+    pkgbuild = read(ROOT / "aur/PKGBUILD")
+    commit = re.search(r"^_commit=([0-9a-f]+)$", pkgbuild, re.M)
+    checksum = re.search(r"^sha256sums=\('([0-9a-f]+)'\)", pkgbuild, re.M)
+    if not commit or not checksum:
+        failures.append("AUR PKGBUILD commit pin or sha256sum is missing")
+        return
+    url = f"https://github.com/Linux-Defender/Linux-Defender/archive/{commit.group(1)}.tar.gz"
+    try:
+        request = urllib.request.Request(url, headers={"User-Agent": "linux-defender-check"})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            digest = hashlib.sha256()
+            for chunk in iter(lambda: response.read(1 << 20), b""):
+                digest.update(chunk)
+    except Exception as exc:  # network unreachable is not a packaging drift
+        print(f"note: could not verify AUR tarball hash ({exc}); skipped")
+        return
+    if digest.hexdigest() != checksum.group(1):
+        failures.append("AUR sha256sum does not match the pinned source tarball")
+
+
+def verify_flatpak_sources(failures: list[str]) -> None:
+    """Offline Flatpak sources must match the locked Cargo and Bun inputs."""
+    import base64
+    import json
+
+    try:
+        cargo_sources = json.loads(read(ROOT / "flathub/cargo-sources.json"))
+        bun_sources = json.loads(read(ROOT / "flathub/bun-sources.json"))
+    except json.JSONDecodeError as exc:
+        failures.append(f"invalid Flatpak source manifest JSON: {exc}")
+        return
+
+    expected_crates: dict[str, str] = {}
+    for block in read(ROOT / "Cargo.lock").split("\n\n"):
+        name = re.search(r'^name = "([^"]+)"', block, re.M)
+        version = re.search(r'^version = "([^"]+)"', block, re.M)
+        checksum = re.search(r'^checksum = "([^"]+)"', block, re.M)
+        source = re.search(r'^source = "registry\+https://github\.com/rust-lang/crates\.io-index"', block, re.M)
+        if name and version and checksum and source:
+            expected_crates[f"{name.group(1)}-{version.group(1)}"] = checksum.group(1)
+    actual_crates: dict[str, str] = {}
+    for entry in cargo_sources:
+        if entry.get("type") != "archive":
+            continue
+        match = re.search(r"/crates/([^/]+)/([^/]+)\.crate$", entry.get("url", ""))
+        if match:
+            actual_crates[match.group(2)] = entry.get("sha256", "")
+    for crate, checksum in expected_crates.items():
+        if actual_crates.get(crate) != checksum:
+            failures.append(f"flathub/cargo-sources.json missing or wrong checksum for {crate}")
+    for crate in set(actual_crates) - set(expected_crates):
+        failures.append(f"flathub/cargo-sources.json has stale crate source {crate}")
+
+    expected_bun: dict[str, str] = {}
+    pending_url: str | None = None
+    for line in read(ROOT / "desktop/yarn.lock").splitlines():
+        resolved = re.match(r'^\s+resolved "([^"]+)"', line)
+        if resolved:
+            pending_url = resolved.group(1)
+            expected_bun[pending_url] = ""
+        integrity = re.match(r'^\s+integrity sha512-([^\s]+)', line)
+        if integrity and pending_url:
+            expected_bun[pending_url] = base64.b64decode(integrity.group(1)).hex()
+            pending_url = None
+    actual_bun: dict[str, str] = {}
+    for entry in bun_sources:
+        if entry.get("type") == "file" and entry.get("url"):
+            actual_bun[entry["url"]] = entry.get("sha512", "")
+    for url, digest in expected_bun.items():
+        if actual_bun.get(url) != digest:
+            failures.append(f"flathub/bun-sources.json missing or wrong checksum for {url}")
+    for url in set(actual_bun) - set(expected_bun):
+        failures.append(f"flathub/bun-sources.json has stale package source {url}")
+
+
 def read(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="replace") if path.exists() else ""
 
@@ -178,6 +258,9 @@ def main() -> int:
                 f"AUR source pin {pin[:12]} is not an ancestor of HEAD "
                 "(mistyped or unreviewed commit)"
             )
+
+    verify_flatpak_sources(failures)
+    verify_aur_tarball_hash(failures)
 
     if failures:
         print("Packaging consistency failures:", file=sys.stderr)

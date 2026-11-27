@@ -7,12 +7,17 @@ patched vendored glib crate, and the crate manifests referenced by the audit.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+# Hash of every tracked file in the vendored glib crate (sorted path + content).
+# Any change to the reviewed upstream tree must be deliberate and refresh this.
+VENDORED_GLIB_HASH = "da550349cdb9cb7ece3942c9f31aba7ec4af1b5e5d968ed8ba6b92cf9011e6f8"
 
 
 def read(rel: str) -> str:
@@ -69,6 +74,23 @@ def main() -> int:
     source = (vendored / "src/collections/ptr_slice.rs").read_text(errors="replace") if (vendored / "src/collections/ptr_slice.rs").exists() else ""
     if "ptr::read" not in source:
         failures.append("vendored glib PtrSlice soundness fix (ptr::read) is missing")
+    tracked = subprocess.run(
+        ["git", "ls-files", "vendor/glib-0.18.5"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout.splitlines()
+    digest = hashlib.sha256()
+    for rel in sorted(tracked):
+        digest.update(rel.encode())
+        digest.update(b"\0")
+        digest.update((ROOT / rel).read_bytes())
+        digest.update(b"\0")
+    if digest.hexdigest() != VENDORED_GLIB_HASH:
+        failures.append(
+            "vendored glib tree changed; review the upstream patch and refresh VENDORED_GLIB_HASH"
+        )
 
     # Lockfile must still contain the patched glib and every workspace crate.
     lock = read("Cargo.lock")

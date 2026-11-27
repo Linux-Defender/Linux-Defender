@@ -222,6 +222,7 @@ function helperStatusFrom(value: unknown): HelperStatus | null {
 export default function App(): ReactNode {
   const [activePage, setActivePage] = useState<PageId>("overview");
   const activePageRef = useRef<PageId>("overview");
+  const initialPageRender = useRef(true);
   const [previousPage, setPreviousPage] = useState<Exclude<PageId, "preferences">>("overview");
   const [mountedPages, setMountedPages] = useState<Set<PageId>>(() => new Set(INITIAL_MOUNTED_PAGES));
   const [toasts, setToasts] = useState<Toast[]>([]);
@@ -326,6 +327,20 @@ export default function App(): ReactNode {
       window.dispatchEvent(new CustomEvent("linux-defender-quick-scan"));
     }
   }, []);
+
+  // Keyboard and native-event navigation can leave focus inside a page that
+  // has just been hidden. Move focus to the newly shown page on real changes
+  // (not on the first render, so the browser keeps its initial focus).
+  useEffect(() => {
+    if (initialPageRender.current) {
+      initialPageRender.current = false;
+      return;
+    }
+    const section = document.querySelector<HTMLElement>(
+      `section.content-page[data-page="${activePage}"]`,
+    );
+    section?.focus();
+  }, [activePage]);
 
 
   const requestQuit = useCallback(async (): Promise<void> => {
@@ -863,14 +878,14 @@ export default function App(): ReactNode {
       const selected = page === activePage;
       if (page === "database") {
         return (
-          <section className="content-page" key={page} hidden={!selected} aria-hidden={!selected} aria-label={pageLabel(page)}>
+          <section className="content-page" key={page} data-page={page} tabIndex={-1} hidden={!selected} aria-hidden={!selected} aria-label={pageLabel(page)}>
             <Database startRequest={updateStartRequest} />
           </section>
         );
       }
       const Page = pageComponents[page];
       return (
-        <section className="content-page" key={page} hidden={!selected} aria-hidden={!selected} aria-label={pageLabel(page)}>
+        <section className="content-page" key={page} data-page={page} tabIndex={-1} hidden={!selected} aria-hidden={!selected} aria-label={pageLabel(page)}>
           <Page active={selected} />
         </section>
       );

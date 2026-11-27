@@ -1830,6 +1830,8 @@ fn helper_backend() -> Option<HelperBackend> {
         Some(crate::host::Distro::Fedora) => Some(HelperBackend::FedoraDnf),
         Some(crate::host::Distro::FedoraAtomic) => Some(HelperBackend::FedoraAtomic),
         Some(crate::host::Distro::Arch) => None,
+        // No privileged helper package is shipped for openSUSE.
+        Some(crate::host::Distro::Suse) => None,
         None => debian_host().then_some(HelperBackend::Debian),
     }
 }

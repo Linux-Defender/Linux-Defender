@@ -36,6 +36,27 @@ def corpus(paths: list[str], exts: list[str]) -> str:
     return "\n".join(chunks).lower()
 
 
+def startup_state_fields() -> tuple[set[str], set[str]]:
+    """Field names of the Rust and TypeScript StartupState contracts."""
+    rust = read("desktop/src-tauri/src/model.rs")
+    ts = read("desktop/src/api.ts")
+    rust_block = re.search(r"pub struct StartupState\s*\{(.*?)\n\}", rust, re.S)
+    ts_block = re.search(r"(?:export\s+)?type StartupState\s*=\s*\{(.*?)\n\};", ts, re.S)
+
+    def names(body: str) -> set[str]:
+        result: set[str] = set()
+        for line in body.splitlines():
+            match = re.match(r"\s*(?:pub\s+)?([A-Za-z_][A-Za-z0-9_]*)\??\s*:", line)
+            if match:
+                result.add(match.group(1))
+        return result
+
+    return (
+        names(rust_block.group(1)) if rust_block else set(),
+        names(ts_block.group(1)) if ts_block else set(),
+    )
+
+
 def main() -> int:
     failures: list[str] = []
 
@@ -58,6 +79,16 @@ def main() -> int:
     for cmd in sorted(cli_cmds):
         if cmd not in site:
             failures.append(f"CLI subcommand '{cmd}' is not documented on the website")
+
+    # 1b. StartupState fields must exist on both sides of the IPC boundary.
+    rust_fields, ts_fields = startup_state_fields()
+    if not rust_fields or not ts_fields:
+        failures.append("cannot derive StartupState fields from Rust/TypeScript")
+    else:
+        for field in sorted(rust_fields - ts_fields):
+            failures.append(f"StartupState field '{field}' is missing from desktop/src/api.ts")
+        for field in sorted(ts_fields - rust_fields):
+            failures.append(f"StartupState field '{field}' is missing from Rust model.rs")
 
     # 2b. The in-app documentation link must be allowlisted and use an existing
     # translated label, so it cannot open arbitrary URLs or add an untranslated ID.

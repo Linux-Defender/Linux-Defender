@@ -91,8 +91,14 @@ jobs:
 
       - name: Sign Debian packages
         if: startsWith(github.ref, 'refs/tags/') || inputs.sign == true
+        env:
+          EXPECTED_FINGERPRINT: 28CA212A766A6D51273EBBD277B8EC8622C91282
         run: |
           set -euo pipefail
+          public_fingerprint="$(gpg --batch --show-keys --with-colons signing-key.asc | grep '^fpr:' | head -n 1 | cut -d: -f10)"
+          test "$public_fingerprint" = "$EXPECTED_FINGERPRINT"
+          imported_fingerprint="$(gpg --batch --with-colons --fingerprint "$EXPECTED_FINGERPRINT" | grep '^fpr:' | head -n 1 | cut -d: -f10)"
+          test "$imported_fingerprint" = "$EXPECTED_FINGERPRINT"
           shopt -s nullglob
           arch="${{ matrix.architecture }}"
           debs=()
@@ -106,7 +112,7 @@ jobs:
             debs+=( "${matches[0]}" )
           done
 
-          dpkg-sig --sign builder -k "${{ steps.gpg.outputs.fingerprint }}" "${debs[@]}"
+          dpkg-sig --sign builder -k "$EXPECTED_FINGERPRINT" "${debs[@]}"
 
           for deb in "${debs[@]}"; do
             verification="$(dpkg-sig --verify "$deb")" || {
@@ -114,7 +120,7 @@ jobs:
               exit 1
             }
             printf '%s\n' "$verification"
-            grep -q "^GOODSIG _gpgbuilder ${{ steps.gpg.outputs.fingerprint }} " <<< "$verification"
+            grep -q "^GOODSIG _gpgbuilder $EXPECTED_FINGERPRINT " <<< "$verification"
           done
 
       - name: Upload Debian package artifacts

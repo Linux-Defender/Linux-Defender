@@ -332,10 +332,15 @@ fn disable_systemd(ctx: &Context) -> AppResult<()> {
         (SERVICE_NAME, TIMER_NAME),
         (LEGACY_SERVICE_NAME, LEGACY_TIMER_NAME),
     ] {
-        let _ = run_host(
-            "systemctl",
-            &["--user", "disable", "--now", &format!("{timer}.timer")],
-        );
+        if dir.join(format!("{timer}.timer")).exists() {
+            let output = run_host(
+                "systemctl",
+                &["--user", "disable", "--now", &format!("{timer}.timer")],
+            )?;
+            if !output.status.success() {
+                return Err(format!("Could not disable {timer}.timer"));
+            }
+        }
         remove_systemd_units(&dir, service, timer)?;
     }
     let _ = run_host("systemctl", &["--user", "daemon-reload"])?;
@@ -399,7 +404,7 @@ fn cron_status() -> AppResult<Value> {
     let active = output.status.success()
         && String::from_utf8_lossy(&output.stdout)
             .lines()
-            .any(|line| line.trim() == CRON_MARKER);
+            .any(is_our_cron_marker);
     Ok(json!({"backend":"cron", "available":true, "active":active, "next_run":Value::Null}))
 }
 
@@ -622,13 +627,18 @@ pub fn remove_our_cron_lines(existing: &str) -> Vec<String> {
             }
             continue;
         }
-        if matches!(line.trim(), CRON_MARKER | "# ClamUI Scheduled Scan") {
+        if is_our_cron_marker(line) {
             next_is_paired = true;
         } else {
             lines.push(line.to_owned());
         }
     }
     lines
+}
+
+/// True for either the current or the pre-rename scheduled-scan marker.
+fn is_our_cron_marker(line: &str) -> bool {
+    matches!(line.trim(), CRON_MARKER | "# ClamUI Scheduled Scan")
 }
 
 pub fn is_scheduled_scan_command(line: &str) -> bool {
@@ -1405,9 +1415,18 @@ fn value_strings(
 #[cfg(test)]
 mod tests {
     use super::battery_skip_details;
+    use super::{is_our_cron_marker, CRON_MARKER};
     use crate::common::{Context, Paths};
     use std::fs;
     use std::time::{SystemTime, UNIX_EPOCH};
+
+    #[test]
+    fn cron_status_recognizes_the_pre_rename_marker() {
+        assert!(is_our_cron_marker(CRON_MARKER));
+        assert!(is_our_cron_marker("# ClamUI Scheduled Scan"));
+        assert!(!is_our_cron_marker("# some other job"));
+        assert!(is_our_cron_marker("   # ClamUI Scheduled Scan  "));
+    }
 
     #[test]
     fn battery_skip_detail_retains_an_observed_percentage_unit() {

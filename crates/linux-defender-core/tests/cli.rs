@@ -523,6 +523,29 @@ fn persistent_cli_json_contracts_are_machine_readable() {
 }
 
 #[test]
+fn privileged_helper_rejects_root_missing_and_non_numeric_pkexec_uid() {
+    for uid in [Some("0"), None, Some("not-a-uid")] {
+        let mut command = preferences_helper();
+        command.arg("--protocol=4");
+        match uid {
+            Some(value) => {
+                command.env("PKEXEC_UID", value);
+            }
+            None => {
+                command.env_remove("PKEXEC_UID");
+            }
+        }
+        let output = command.output().expect("run preferences helper");
+        assert_eq!(
+            output.status.code(),
+            Some(3),
+            "PKEXEC_UID={uid:?}: {}",
+            stderr(&output)
+        );
+    }
+}
+
+#[test]
 fn privileged_helper_wrapper_keeps_protocol_mismatch_exit_code() {
     let output = preferences_helper()
         .env("PKEXEC_UID", "1000")

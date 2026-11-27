@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 10:46-0500\n"
+"POT-Creation-Date: 2026-11-26 19:18-0500\n"
 "PO-Revision-Date: 2026-04-03 19:20+0200\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -163,275 +163,272 @@ msgstr "Impossibile leggere alcune righe dei socket di rete."
 msgid "No open ports detected"
 msgstr "Nessuna porta aperta rilevata"
 
-#: crates/linux-defender-core/src/audit.rs:832
+#: crates/linux-defender-core/src/audit.rs:841
 msgid "AppArmor is enabled"
 msgstr "AppArmor è abilitato"
 
-#: crates/linux-defender-core/src/audit.rs:840
+#: crates/linux-defender-core/src/audit.rs:851
 msgid "AppArmor module is loaded but not enabled"
 msgstr "Il modulo AppArmor è caricato ma non abilitato"
 
-#: crates/linux-defender-core/src/audit.rs:842
+#: crates/linux-defender-core/src/audit.rs:853
 msgid "Enable AppArmor for application sandboxing"
 msgstr "Abilita AppArmor per il sandboxing delle applicazioni"
 
-#: crates/linux-defender-core/src/audit.rs:858
+#: crates/linux-defender-core/src/audit.rs:868
 msgid "SELinux is enforcing"
 msgstr "SELinux è in modalità di applicazione forzata"
 
-#: crates/linux-defender-core/src/audit.rs:866
+#: crates/linux-defender-core/src/audit.rs:876
 msgid "SELinux is in permissive mode"
 msgstr "SELinux è in modalità permissiva"
 
-#: crates/linux-defender-core/src/audit.rs:868
+#: crates/linux-defender-core/src/audit.rs:878
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr ""
 "Valutare il passaggio alla modalità di applicazione per una protezione più "
 "efficace"
 
-#: crates/linux-defender-core/src/audit.rs:880
+#: crates/linux-defender-core/src/audit.rs:890
 msgid "SELinux is disabled"
 msgstr "SELinux è disabilitato"
 
-#: crates/linux-defender-core/src/audit.rs:882
+#: crates/linux-defender-core/src/audit.rs:892
 msgid "Enable SELinux for mandatory access control"
 msgstr "Abilita SELinux per il controllo degli accessi obbligatorio"
 
-#: crates/linux-defender-core/src/audit.rs:897
-msgid "No mandatory access control framework detected"
-msgstr "Nessun framework di controllo degli accessi obbligatorio rilevato"
+#: crates/linux-defender-core/src/audit.rs:900
+#: crates/linux-defender-core/src/audit.rs:911
+msgid "SELinux status could not be determined"
+msgstr "SELinux status could not be determined"
 
-#: crates/linux-defender-core/src/audit.rs:899
-msgid "Consider enabling AppArmor or SELinux"
-msgstr "Valuta di abilitare AppArmor o SELinux"
-
-#: crates/linux-defender-core/src/audit.rs:925
+#: crates/linux-defender-core/src/audit.rs:938
 msgid "Automatic security updates are enabled"
 msgstr "Gli aggiornamenti automatici di sicurezza sono abilitati"
 
-#: crates/linux-defender-core/src/audit.rs:936
+#: crates/linux-defender-core/src/audit.rs:949
 msgid "Unattended upgrades is installed but disabled"
 msgstr "Gli aggiornamenti automatici sono installati ma disabilitati"
 
-#: crates/linux-defender-core/src/audit.rs:938
+#: crates/linux-defender-core/src/audit.rs:951
 msgid "Enable automatic security updates"
 msgstr "Abilita gli aggiornamenti automatici di sicurezza"
 
-#: crates/linux-defender-core/src/audit.rs:952
+#: crates/linux-defender-core/src/audit.rs:965
 msgid "DNF automatic updates are enabled"
 msgstr "Gli aggiornamenti automatici DNF sono abilitati"
 
 #
-#: crates/linux-defender-core/src/audit.rs:963
+#: crates/linux-defender-core/src/audit.rs:976
 msgid "DNF automatic is installed but timer is not active"
 msgstr "DNF Automatic è installato ma il timer non è attivo"
 
-#: crates/linux-defender-core/src/audit.rs:965
+#: crates/linux-defender-core/src/audit.rs:978
 msgid "Enable automatic updates"
 msgstr "Abilita gli aggiornamenti automatici"
 
 #
-#: crates/linux-defender-core/src/audit.rs:979
+#: crates/linux-defender-core/src/audit.rs:992
 msgid "Could not determine automatic update status"
 msgstr "Impossibile determinare lo stato degli aggiornamenti automatici"
 
-#: crates/linux-defender-core/src/audit.rs:981
+#: crates/linux-defender-core/src/audit.rs:994
 msgid "Configure automatic security updates"
 msgstr "Configura gli aggiornamenti automatici di sicurezza"
 
-#: crates/linux-defender-core/src/audit.rs:996
+#: crates/linux-defender-core/src/audit.rs:1009
 msgid "System reboot required to apply updates"
 msgstr "È necessario riavviare il sistema per applicare gli aggiornamenti"
 
-#: crates/linux-defender-core/src/audit.rs:998
+#: crates/linux-defender-core/src/audit.rs:1011
 msgid "Reboot the system to apply pending security updates"
 msgstr ""
 "Riavviare il sistema per applicare gli aggiornamenti di sicurezza in sospeso"
 
 #
 #
-#: crates/linux-defender-core/src/audit.rs:1044
+#: crates/linux-defender-core/src/audit.rs:1057
 msgid "{name} is installed but not running"
 msgstr "{name} è installato ma non è in esecuzione"
 
-#: crates/linux-defender-core/src/audit.rs:1063
+#: crates/linux-defender-core/src/audit.rs:1076
 msgid "No intrusion detection system found"
 msgstr "Nessun sistema di rilevamento delle intrusioni trovato"
 
-#: crates/linux-defender-core/src/audit.rs:1065
+#: crates/linux-defender-core/src/audit.rs:1078
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr "Installa fail2ban o CrowdSec per proteggerti dagli attacchi"
 
-#: crates/linux-defender-core/src/audit.rs:1092
+#: crates/linux-defender-core/src/audit.rs:1105
 msgid "SSH server is not running (no remote attack surface)"
 msgstr ""
 "Il server SSH non è in esecuzione (nessuna superficie di attacco remota)"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1103
+#: crates/linux-defender-core/src/audit.rs:1116
 msgid "SSH server is running"
 msgstr "Il server SSH è in esecuzione"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1113
+#: crates/linux-defender-core/src/audit.rs:1126
 msgid "Could not read SSH configuration"
 msgstr "Impossibile leggere la configurazione SSH"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1132
+#: crates/linux-defender-core/src/audit.rs:1145
 msgid "Root login: {value}"
 msgstr "Accesso root: {value}"
 
 #
 #
-#: crates/linux-defender-core/src/audit.rs:1140
+#: crates/linux-defender-core/src/audit.rs:1153
 msgid "Root login is allowed ({value})"
 msgstr "L’accesso come root è consentito ({value})"
 
-#: crates/linux-defender-core/src/audit.rs:1146
+#: crates/linux-defender-core/src/audit.rs:1159
 msgid "Disable root SSH login for security"
 msgstr "Disabilita l'accesso SSH come root per maggiore sicurezza"
 
-#: crates/linux-defender-core/src/audit.rs:1161
+#: crates/linux-defender-core/src/audit.rs:1174
 msgid "Password authentication is disabled (key-only)"
 msgstr "L'autenticazione tramite password è disabilitata (solo chiave)"
 
-#: crates/linux-defender-core/src/audit.rs:1169
+#: crates/linux-defender-core/src/audit.rs:1182
 msgid "Password authentication is enabled"
 msgstr "L'autenticazione tramite password è abilitata"
 
-#: crates/linux-defender-core/src/audit.rs:1171
+#: crates/linux-defender-core/src/audit.rs:1184
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr ""
 "Valutare la disabilitazione dell'autenticazione tramite password a favore "
 "delle chiavi SSH"
 
-#: crates/linux-defender-core/src/audit.rs:1189
+#: crates/linux-defender-core/src/audit.rs:1202
 msgid "X11 forwarding is disabled"
 msgstr "L'inoltro X11 è disabilitato"
 
-#: crates/linux-defender-core/src/audit.rs:1197
+#: crates/linux-defender-core/src/audit.rs:1210
 msgid "X11 forwarding is enabled"
 msgstr "L'inoltro X11 è abilitato"
 
-#: crates/linux-defender-core/src/audit.rs:1199
+#: crates/linux-defender-core/src/audit.rs:1212
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr "Disabilita l'inoltro X11 per ridurre la superficie di attacco"
 
-#: crates/linux-defender-core/src/audit.rs:1259
+#: crates/linux-defender-core/src/audit.rs:1272
 msgid "Application firewalls"
 msgstr "Application firewalls"
 
-#: crates/linux-defender-core/src/audit.rs:1282
+#: crates/linux-defender-core/src/audit.rs:1295
 msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster è in esecuzione e protegge le connessioni"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1305
+#: crates/linux-defender-core/src/audit.rs:1318
 msgid "Authorize Linux Defender in Portmaster for per-module health"
 msgstr ""
 "Autorizza Linux Defender in Portmaster per consultare lo stato di ogni modulo"
 
-#: crates/linux-defender-core/src/audit.rs:1311
+#: crates/linux-defender-core/src/audit.rs:1324
 msgid "Authorize"
 msgstr "Autorizza"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1322
+#: crates/linux-defender-core/src/audit.rs:1335
 msgid "Portmaster is installed but not running"
 msgstr "Portmaster è installato ma non è in esecuzione"
 
-#: crates/linux-defender-core/src/audit.rs:1324
+#: crates/linux-defender-core/src/audit.rs:1337
 msgid "Start the Portmaster service to enable network protection"
 msgstr "Avvia il servizio Portmaster per abilitare la protezione della rete"
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/linux-defender-core/src/audit.rs:1338
+#: crates/linux-defender-core/src/audit.rs:1351
 msgid "Not detected — optional network monitor and application firewall"
 msgstr "Non rilevato — monitor di rete e firewall applicativo facoltativi"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1354
+#: crates/linux-defender-core/src/audit.rs:1367
 msgid "Could not probe Portmaster: {error}"
 msgstr "Impossibile analizzare Portmaster: {error}"
 
 #
 #
-#: crates/linux-defender-core/src/audit.rs:1404
+#: crates/linux-defender-core/src/audit.rs:1417
 msgid "{name} is not installed"
 msgstr "{name} non è installato"
 
-#: crates/linux-defender-core/src/audit.rs:1411
+#: crates/linux-defender-core/src/audit.rs:1424
 msgid "Install {name} for comprehensive security auditing"
 msgstr "Installa {name} per una verifica completa della sicurezza"
 
-#: crates/linux-defender-core/src/audit.rs:1417
+#: crates/linux-defender-core/src/audit.rs:1430
 msgid "Install chkrootkit for rootkit detection"
 msgstr "Installa chkrootkit per rilevare i rootkit"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1437
+#: crates/linux-defender-core/src/audit.rs:1450
 msgid "Authentication was cancelled"
 msgstr "L'autenticazione è stata annullata"
 
-#: crates/linux-defender-core/src/audit.rs:1445
+#: crates/linux-defender-core/src/audit.rs:1458
 msgid "Lynis audit timed out after 5 minutes"
 msgstr "La verifica Lynis ha superato il limite di 5 minuti"
 
-#: crates/linux-defender-core/src/audit.rs:1447
+#: crates/linux-defender-core/src/audit.rs:1460
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr "La scansione dei rootkit ha superato il limite di 5 minuti"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1466
-#: crates/linux-defender-core/src/audit.rs:1512
+#: crates/linux-defender-core/src/audit.rs:1479
+#: crates/linux-defender-core/src/audit.rs:1525
 msgid "Failed to run Lynis: {error}"
 msgstr "Impossibile eseguire Lynis: {error}"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1472
+#: crates/linux-defender-core/src/audit.rs:1485
 msgid "Failed to run chkrootkit: {error}"
 msgstr "Impossibile eseguire chkrootkit: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1541
+#: crates/linux-defender-core/src/audit.rs:1554
 msgid "Score: {score}/100"
 msgstr "Punteggio: {score}/100"
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/linux-defender-core/src/audit.rs:1544
+#: crates/linux-defender-core/src/audit.rs:1557
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr "Esegui 'sudo lynis audit system' per raccomandazioni dettagliate"
 
-#: crates/linux-defender-core/src/audit.rs:1561
+#: crates/linux-defender-core/src/audit.rs:1574
 msgid "Audit completed (exit code {code})"
 msgstr "Verifica completata (codice di uscita {code})"
 
-#: crates/linux-defender-core/src/audit.rs:1599
-#: crates/linux-defender-core/src/audit.rs:1613
+#: crates/linux-defender-core/src/audit.rs:1612
+#: crates/linux-defender-core/src/audit.rs:1626
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr "Impossibile completare la scansione dei rootkit (uscita {code})"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1650
+#: crates/linux-defender-core/src/audit.rs:1663
 msgid "No rootkits detected"
 msgstr "Nessun rootkit rilevato"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1662
+#: crates/linux-defender-core/src/audit.rs:1675
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] "Rilevato {count} potenziale rootkit"
 msgstr[1] "Rilevati {count} potenziali rootkit"
 
-#: crates/linux-defender-core/src/audit.rs:1670
+#: crates/linux-defender-core/src/audit.rs:1683
 msgid "Investigate the detected threats immediately"
 msgstr "Esamina immediatamente le minacce rilevate"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:88
+#: crates/linux-defender-core/src/audit/firewall.rs:90
 msgid "Firewall manager overlap"
 msgstr "Sovrapposizione dei gestori firewall"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:89
+#: crates/linux-defender-core/src/audit/firewall.rs:91
 msgid ""
 "UFW is active while Firewalld owns its D-Bus name; their rule interaction "
 "was not evaluated."
@@ -439,13 +436,13 @@ msgstr ""
 "UFW è attivo mentre Firewalld possiede il proprio nome D-Bus; l'interazione "
 "delle relative regole non è stata valutata."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:207
+#: crates/linux-defender-core/src/audit/firewall.rs:209
 msgid "UFW was not found at a trusted system path."
 msgstr "UFW non è stato trovato in un percorso di sistema affidabile."
 
 #. Translators: UFW is the name of the firewall application.
-#: crates/linux-defender-core/src/audit/firewall.rs:210
-#: crates/linux-defender-core/src/audit/firewall.rs:244
+#: crates/linux-defender-core/src/audit/firewall.rs:212
+#: crates/linux-defender-core/src/audit/firewall.rs:246
 msgid ""
 "Administrator authorization for the UFW status check was denied or "
 "unavailable."
@@ -453,22 +450,22 @@ msgstr ""
 "Administrator authorization for the UFW status check was denied or "
 "unavailable."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:232
+#: crates/linux-defender-core/src/audit/firewall.rs:234
 msgid "The UFW status check timed out."
 msgstr "Il controllo dello stato UFW ha raggiunto il timeout."
 
 #. Translators: UFW is the name of the firewall application.
-#: crates/linux-defender-core/src/audit/firewall.rs:235
-#: crates/linux-defender-core/src/audit/firewall.rs:265
+#: crates/linux-defender-core/src/audit/firewall.rs:237
+#: crates/linux-defender-core/src/audit/firewall.rs:267
 msgid "The UFW status check returned incomplete or invalid output."
 msgstr ""
 "Il controllo dello stato UFW ha restituito un output incompleto o non valido."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:253
+#: crates/linux-defender-core/src/audit/firewall.rs:255
 msgid "The UFW status check failed."
 msgstr "The UFW status check failed."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:382
+#: crates/linux-defender-core/src/audit/firewall.rs:384
 msgid ""
 "UFW is active; the default incoming policy is deny. Listed rules may allow "
 "exceptions."
@@ -476,7 +473,7 @@ msgstr ""
 "UFW è attivo; la politica predefinita per le connessioni in ingresso è di "
 "negazione. Le regole elencate potrebbero consentire eccezioni."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:389
+#: crates/linux-defender-core/src/audit/firewall.rs:391
 msgid ""
 "UFW is active; the default incoming policy is reject. Listed rules may allow "
 "exceptions."
@@ -484,31 +481,31 @@ msgstr ""
 "UFW è attivo; la politica predefinita per le connessioni in ingresso è di "
 "rifiuto. Le regole elencate potrebbero consentire eccezioni."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:396
+#: crates/linux-defender-core/src/audit/firewall.rs:398
 msgid "UFW is active; the default incoming policy is deny."
 msgstr ""
 "UFW è attivo; la politica predefinita per le connessioni in ingresso è di "
 "negazione."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:400
+#: crates/linux-defender-core/src/audit/firewall.rs:402
 msgid "UFW is active; the default incoming policy is reject."
 msgstr ""
 "UFW è attivo; la politica predefinita per le connessioni in ingresso è di "
 "rifiuto."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:404
+#: crates/linux-defender-core/src/audit/firewall.rs:406
 msgid "UFW is active, but the default incoming policy allows traffic."
 msgstr ""
 "UFW è attivo, ma il suo criterio predefinito per le connessioni in ingresso "
 "consente il traffico."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:411
+#: crates/linux-defender-core/src/audit/firewall.rs:413
 msgid "UFW is active, but its default incoming policy could not be verified."
 msgstr ""
 "UFW è attivo, ma non è stato possibile verificare il suo criterio "
 "predefinito per le connessioni in ingresso."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:415
+#: crates/linux-defender-core/src/audit/firewall.rs:417
 msgid ""
 "UFW is inactive, but another firewall manager is active and protecting the "
 "system."
@@ -516,11 +513,11 @@ msgstr ""
 "UFW is inactive, but another firewall manager is active and protecting the "
 "system."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:419
+#: crates/linux-defender-core/src/audit/firewall.rs:421
 msgid "UFW reports inactive."
 msgstr "UFW segnala di essere inattivo."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:420
+#: crates/linux-defender-core/src/audit/firewall.rs:422
 msgid ""
 "UFW's service is active, but its default firewall policy could not be "
 "verified without administrator access."
@@ -528,19 +525,19 @@ msgstr ""
 "UFW è attivo, ma non è stato possibile verificare il suo criterio "
 "predefinito per le connessioni in ingresso."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:424
+#: crates/linux-defender-core/src/audit/firewall.rs:426
 msgid "UFW status could not be inspected safely."
 msgstr "Non è stato possibile esaminare in sicurezza lo stato di UFW."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:436
+#: crates/linux-defender-core/src/audit/firewall.rs:438
 msgid "UFW Firewall"
 msgstr "Firewall UFW"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:441
+#: crates/linux-defender-core/src/audit/firewall.rs:443
 msgid "Check UFW with administrator access"
 msgstr "Verifica UFW con accesso amministratore"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:443
+#: crates/linux-defender-core/src/audit/firewall.rs:445
 msgid ""
 "Administrator access may be required to read UFW status. This check does not "
 "change firewall settings."
@@ -548,11 +545,11 @@ msgstr ""
 "Administrator access may be required to read UFW status. This check does not "
 "change firewall settings."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:481
+#: crates/linux-defender-core/src/audit/firewall.rs:483
 msgid "Firewalld"
 msgstr "Firewalld"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:483
+#: crates/linux-defender-core/src/audit/firewall.rs:485
 msgid ""
 "Firewalld owns its D-Bus name; readiness and firewall policy were not "
 "queried."
@@ -560,7 +557,7 @@ msgstr ""
 "Firewalld possiede il proprio nome D-Bus; non sono stati interrogati lo "
 "stato di disponibilità e il criterio del firewall."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:487
+#: crates/linux-defender-core/src/audit/firewall.rs:489
 msgid ""
 "No Firewalld D-Bus owner was observed; this does not establish kernel "
 "firewall policy."
@@ -568,7 +565,7 @@ msgstr ""
 "Non è stato rilevato alcun proprietario D-Bus di Firewalld; ciò non "
 "stabilisce il criterio del firewall del kernel."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:491
+#: crates/linux-defender-core/src/audit/firewall.rs:493
 msgid ""
 "Firewalld ownership could not be verified; readiness and firewall policy "
 "were not queried."
@@ -576,23 +573,23 @@ msgstr ""
 "Non è stato possibile verificare la proprietà di Firewalld; non sono stati "
 "interrogati lo stato di disponibilità e il criterio del firewall."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:506
+#: crates/linux-defender-core/src/audit/firewall.rs:508
 msgid "firewall-cmd"
 msgstr "firewall-cmd"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:512
+#: crates/linux-defender-core/src/audit/firewall.rs:514
 msgid "firewall-cmd is installed; it was not executed."
 msgstr "firewall-cmd è installato; non è stato eseguito."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:519
+#: crates/linux-defender-core/src/audit/firewall.rs:521
 msgid "firewall-cmd could not be confirmed without executing it."
 msgstr "Non è stato possibile confermare firewall-cmd senza eseguirlo."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:657
+#: crates/linux-defender-core/src/audit/firewall.rs:659
 msgid "nftables (native rules)"
 msgstr "nftables (regole native)"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:659
+#: crates/linux-defender-core/src/audit/firewall.rs:661
 msgid ""
 "nftables has restrictive default input policies for IPv4 and IPv6; "
 "individual rules may allow exceptions."
@@ -600,7 +597,7 @@ msgstr ""
 "nftables dispone di criteri predefiniti restrittivi per l'input IPv4 e IPv6; "
 "singole regole potrebbero consentire eccezioni."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:663
+#: crates/linux-defender-core/src/audit/firewall.rs:665
 msgid ""
 "nftables reports a permissive default input policy; remaining coverage may "
 "be incomplete"
@@ -608,18 +605,18 @@ msgstr ""
 "nftables segnala un criterio predefinito permissivo per l'input; la "
 "copertura rimanente potrebbe essere incompleta"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:667
+#: crates/linux-defender-core/src/audit/firewall.rs:669
 msgid ""
 "nftables input policy coverage could not be verified for both IPv4 and IPv6"
 msgstr ""
 "Non è stato possibile verificare la copertura del criterio di input di "
 "nftables sia per IPv4 sia per IPv6"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:727
+#: crates/linux-defender-core/src/audit/firewall.rs:729
 msgid "iptables (IPv4)"
 msgstr "iptables (IPv4)"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:729
+#: crates/linux-defender-core/src/audit/firewall.rs:731
 msgid ""
 "iptables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
@@ -627,19 +624,19 @@ msgstr ""
 "iptables dispone di un criterio predefinito INPUT restrittivo; singole "
 "regole potrebbero consentire eccezioni."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:733
+#: crates/linux-defender-core/src/audit/firewall.rs:735
 msgid "iptables has a permissive INPUT default policy"
 msgstr "iptables dispone di un criterio predefinito INPUT permissivo"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:734
+#: crates/linux-defender-core/src/audit/firewall.rs:736
 msgid "iptables INPUT policy could not be verified"
 msgstr "Impossibile verificare la policy INPUT di iptables"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:740
+#: crates/linux-defender-core/src/audit/firewall.rs:742
 msgid "iptables (IPv6)"
 msgstr "iptables (IPv6)"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:742
+#: crates/linux-defender-core/src/audit/firewall.rs:744
 msgid ""
 "ip6tables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
@@ -647,19 +644,19 @@ msgstr ""
 "ip6tables ha una policy INPUT predefinita restrittiva; singole regole "
 "possono consentire eccezioni."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:746
+#: crates/linux-defender-core/src/audit/firewall.rs:748
 msgid "ip6tables has a permissive INPUT default policy"
 msgstr "ip6tables ha una policy INPUT predefinita permissiva"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:747
+#: crates/linux-defender-core/src/audit/firewall.rs:749
 msgid "ip6tables INPUT policy could not be verified"
 msgstr "Impossibile verificare la policy INPUT di ip6tables"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:791
+#: crates/linux-defender-core/src/audit/firewall.rs:793
 msgid "Firewall"
 msgstr "Firewall"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:794
+#: crates/linux-defender-core/src/audit/firewall.rs:796
 msgid ""
 "UFW and Firewalld are both active; review which one is meant to control your "
 "firewall rules."
@@ -667,31 +664,31 @@ msgstr ""
 "UFW and Firewalld are both active; review which one is meant to control your "
 "firewall rules."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:799
+#: crates/linux-defender-core/src/audit/firewall.rs:801
 msgid "Firewalld is active and managing the firewall."
 msgstr "Firewalld è attivo e gestisce il firewall."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:804
+#: crates/linux-defender-core/src/audit/firewall.rs:806
 msgid "No active firewall manager was detected."
 msgstr "Nessun gestore di firewall attivo rilevato."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:808
+#: crates/linux-defender-core/src/audit/firewall.rs:810
 msgid "Enable UFW or Firewalld to protect the system."
 msgstr "Abilita UFW o Firewalld per proteggere il sistema."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:811
+#: crates/linux-defender-core/src/audit/firewall.rs:813
 msgid "The active firewall manager could not be verified."
 msgstr "The active firewall manager could not be verified."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:827
+#: crates/linux-defender-core/src/audit/firewall.rs:829
 msgid "Gufw"
 msgstr "Gufw"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:833
+#: crates/linux-defender-core/src/audit/firewall.rs:835
 msgid "Gufw is available."
 msgstr "Gufw è disponibile."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:836
+#: crates/linux-defender-core/src/audit/firewall.rs:838
 msgid ""
 "Gufw was not confirmed; this optional inventory does not affect firewall "
 "policy analysis."
@@ -699,19 +696,19 @@ msgstr ""
 "Gufw non è stato confermato; questo inventario facoltativo non influisce "
 "sull'analisi della policy del firewall."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:844
+#: crates/linux-defender-core/src/audit/firewall.rs:846
 msgid "Open Gufw"
 msgstr "Apri Gufw"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:850
+#: crates/linux-defender-core/src/audit/firewall.rs:852
 msgid "Firewall Config"
 msgstr "Configurazione firewall"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:856
+#: crates/linux-defender-core/src/audit/firewall.rs:858
 msgid "Firewall Config is available."
 msgstr "Configurazione firewall è disponibile."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:859
+#: crates/linux-defender-core/src/audit/firewall.rs:861
 msgid ""
 "Firewall Config was not confirmed; this optional inventory does not affect "
 "firewall policy analysis."
@@ -719,19 +716,19 @@ msgstr ""
 "Configurazione firewall non è stata confermata; questo inventario "
 "facoltativo non influisce sull'analisi della policy del firewall."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:867
+#: crates/linux-defender-core/src/audit/firewall.rs:869
 msgid "Open Firewall Config"
 msgstr "Apri Configurazione firewall"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:905
+#: crates/linux-defender-core/src/audit/firewall.rs:907
 msgid "Plasma Firewall"
 msgstr "Firewall Plasma"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:911
+#: crates/linux-defender-core/src/audit/firewall.rs:913
 msgid "Plasma Firewall is installed; it manages an existing firewall backend."
 msgstr "Firewall Plasma è installato; gestisce un backend firewall esistente."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:921
+#: crates/linux-defender-core/src/audit/firewall.rs:923
 msgid "Plasma Firewall was not confirmed; it is only a management module."
 msgstr "Firewall Plasma non è stato confermato; è solo un modulo di gestione."
 
@@ -1166,8 +1163,8 @@ msgid "{prefix}: {error}"
 msgstr "{prefix}: {error}"
 
 #: crates/linux-defender-core/src/cli.rs:1064
-#: crates/linux-defender-core/src/quarantine.rs:464
-#: crates/linux-defender-core/src/quarantine.rs:501
+#: crates/linux-defender-core/src/quarantine.rs:483
+#: crates/linux-defender-core/src/quarantine.rs:520
 msgid "Quarantine entry not found: {id}"
 msgstr "Voce quarantena non trovata: {id}"
 
@@ -1531,31 +1528,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr "Albano Battistella <albanobattistella@gmail.com>"
 
-#: crates/linux-defender-core/src/host.rs:1011
+#: crates/linux-defender-core/src/host.rs:1040
 msgid "Daemon not responding: {error}"
 msgstr "Demone non risponde: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1014
+#: crates/linux-defender-core/src/host.rs:1043
 msgid "{binary} found but returned error: {error}"
 msgstr "{binary} trovato ma ha restituito un errore: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1019
+#: crates/linux-defender-core/src/host.rs:1048
 msgid "{service} is active"
 msgstr "{service} è attivo"
 
-#: crates/linux-defender-core/src/host.rs:1022
+#: crates/linux-defender-core/src/host.rs:1051
 msgid "No virus database files found in {path}"
 msgstr "Nessun file di database antivirus trovato in {path}"
 
-#: crates/linux-defender-core/src/host.rs:1028
+#: crates/linux-defender-core/src/host.rs:1057
 msgid "Error accessing database {path}: {error}"
 msgstr "Errore nell'accesso al database {path}: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1034
+#: crates/linux-defender-core/src/host.rs:1063
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "{binary} non è installato. Installalo con: {command}"
 
-#: crates/linux-defender-core/src/host.rs:1044
+#: crates/linux-defender-core/src/host.rs:1073
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
@@ -1679,39 +1676,39 @@ msgstr ""
 "L'elenco dei socket di rete non è disponibile. Verifica che lo strumento di "
 "sistema per i socket sia installato e riprova."
 
-#: crates/linux-defender-core/src/platform.rs:491
+#: crates/linux-defender-core/src/platform.rs:497
 msgid "Not running as Flatpak"
 msgstr "Non in esecuzione come Flatpak"
 
-#: crates/linux-defender-core/src/platform.rs:527
+#: crates/linux-defender-core/src/platform.rs:533
 msgid "Invalid integration destination: {path}"
 msgstr "Invalid integration destination: {path}"
 
-#: crates/linux-defender-core/src/platform.rs:531
+#: crates/linux-defender-core/src/platform.rs:537
 msgid "Integration destination escapes {path}"
 msgstr "Integration destination escapes {path}"
 
-#: crates/linux-defender-core/src/platform.rs:535
+#: crates/linux-defender-core/src/platform.rs:541
 msgid "Integration destination contains a symlink: {path}"
 msgstr "Integration destination contains a symlink: {path}"
 
-#: crates/linux-defender-core/src/platform.rs:552
+#: crates/linux-defender-core/src/platform.rs:558
 msgid "Failed to create {path}: {error}"
 msgstr "Failed to create {path}: {error}"
 
-#: crates/linux-defender-core/src/platform.rs:555
+#: crates/linux-defender-core/src/platform.rs:561
 msgid "Failed to write {path}: {error}"
 msgstr "Failed to write {path}: {error}"
 
-#: crates/linux-defender-core/src/platform.rs:558
+#: crates/linux-defender-core/src/platform.rs:564
 msgid "Failed to inspect {path}: {error}"
 msgstr "Failed to inspect {path}: {error}"
 
-#: crates/linux-defender-core/src/platform.rs:561
+#: crates/linux-defender-core/src/platform.rs:567
 msgid "Failed to set permissions on {path}: {error}"
 msgstr "Failed to set permissions on {path}: {error}"
 
-#: crates/linux-defender-core/src/platform.rs:564
+#: crates/linux-defender-core/src/platform.rs:570
 msgid "Failed to remove {path}: {error}"
 msgstr "Failed to remove {path}: {error}"
 
@@ -1770,7 +1767,7 @@ msgid "Reading configuration"
 msgstr "Lettura della configurazione"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3104
+#: crates/linux-defender-core/src/privileged.rs:3106
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -1898,13 +1895,13 @@ msgstr "Formato del percorso {kind} non valido: {path}"
 msgid "Could not generate unique name for '{name}'"
 msgstr "Impossibile generare un nome univoco per '{name}'"
 
-#: crates/linux-defender-core/src/quarantine.rs:416
+#: crates/linux-defender-core/src/quarantine.rs:435
 msgid "Quarantine metadata was written but could not be read"
 msgstr ""
 "I metadati della quarantena sono stati scritti ma non è stato possibile "
 "leggerli"
 
-#: crates/linux-defender-core/src/quarantine.rs:438
+#: crates/linux-defender-core/src/quarantine.rs:457
 msgid ""
 "Failed to record quarantine entry in database. File has been restored to "
 "original location."
@@ -1913,7 +1910,7 @@ msgstr ""
 "ripristinato nella posizione originale."
 
 #. Translators: Preserve `{error}` as a localized failure description and `{path}` as a user-provided file path.
-#: crates/linux-defender-core/src/quarantine.rs:441
+#: crates/linux-defender-core/src/quarantine.rs:460
 msgid ""
 "Failed to record quarantine entry in database. Rollback also failed: "
 "{error}. File may be orphaned at: {path}"
@@ -1921,7 +1918,7 @@ msgstr ""
 "Impossibile registrare la voce di quarantena nel database. Anche il rollback "
 "non è riuscito: {error}. Il file potrebbe essere orfano in: {path}"
 
-#: crates/linux-defender-core/src/quarantine.rs:489
+#: crates/linux-defender-core/src/quarantine.rs:508
 msgid ""
 "File restored successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1929,7 +1926,7 @@ msgstr ""
 "File ripristinato correttamente, ma non è stato possibile rimuovere la voce "
 "dal database. Potrebbe ancora apparire nell'elenco finché non verrà ripulito."
 
-#: crates/linux-defender-core/src/quarantine.rs:516
+#: crates/linux-defender-core/src/quarantine.rs:535
 msgid ""
 "File deleted successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1938,12 +1935,12 @@ msgstr ""
 "database. Potrebbe ancora apparire nell'elenco finché non verrà ripulito."
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/linux-defender-core/src/quarantine.rs:1524
+#: crates/linux-defender-core/src/quarantine.rs:1543
 msgid "Cannot quarantine {path}: {error}"
 msgstr "Impossibile mettere in quarantena {path}: {error}"
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/linux-defender-core/src/quarantine.rs:1542
+#: crates/linux-defender-core/src/quarantine.rs:1561
 msgid "File hash mismatch — file may be corrupted"
 msgstr "Hash del file non corrispondente — il file potrebbe essere danneggiato"
 
@@ -2014,12 +2011,12 @@ msgstr[1] ""
 "essere stati sottoposti solo a una scansione parziale"
 
 #
-#: crates/linux-defender-core/src/scheduler.rs:871
+#: crates/linux-defender-core/src/scheduler.rs:881
 msgid "Scheduled scan cancelled"
 msgstr "Scansione pianificata annullata"
 
 #. Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/scheduler.rs:890
+#: crates/linux-defender-core/src/scheduler.rs:900
 msgid ""
 "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] "
 "[--target PATH] [--dry-run] [--verbose|-v]"
@@ -2028,62 +2025,62 @@ msgstr ""
 "[--target PATH] [--dry-run] [--verbose|-v]"
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/linux-defender-core/src/scheduler.rs:931
+#: crates/linux-defender-core/src/scheduler.rs:941
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
-#: crates/linux-defender-core/src/scheduler.rs:940
+#: crates/linux-defender-core/src/scheduler.rs:950
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "Scansione programmata saltata (su batteria)"
 
-#: crates/linux-defender-core/src/scheduler.rs:957
+#: crates/linux-defender-core/src/scheduler.rs:967
 msgid "Warning: Target does not exist: {target}"
 msgstr "Avviso: La destinazione non esiste: {target}"
 
-#: crates/linux-defender-core/src/scheduler.rs:969
+#: crates/linux-defender-core/src/scheduler.rs:979
 msgid "Error: No valid scan targets found"
 msgstr "Errore: Nessuna destinazione di scansione valida trovata"
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/linux-defender-core/src/scheduler.rs:973
+#: crates/linux-defender-core/src/scheduler.rs:983
 msgid "Dry run mode — scan not executed"
 msgstr "Modalità di prova — scansione non eseguita"
 
-#: crates/linux-defender-core/src/scheduler.rs:981
+#: crates/linux-defender-core/src/scheduler.rs:991
 msgid "  Skip on battery: {value}"
 msgstr "  Salta su batteria: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:986
+#: crates/linux-defender-core/src/scheduler.rs:996
 msgid "  Auto quarantine: {value}"
 msgstr "  Quarantena automatica: {value}"
 
 #
 #
-#: crates/linux-defender-core/src/scheduler.rs:994
+#: crates/linux-defender-core/src/scheduler.rs:1004
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} destinazione: {targets:?}"
 msgstr[1] "  {count} destinazioni: {targets:?}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1018
+#: crates/linux-defender-core/src/scheduler.rs:1028
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "Scansione programmata fallita: ClamAV non disponibile"
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/linux-defender-core/src/scheduler.rs:1028
+#: crates/linux-defender-core/src/scheduler.rs:1038
 msgid "Error: ClamAV not available — {error}"
 msgstr "Errore: ClamAV non disponibile — {error}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1037
+#: crates/linux-defender-core/src/scheduler.rs:1047
 msgid "Scheduled Scan Failed"
 msgstr "Scansione Programmata Fallita"
 
-#: crates/linux-defender-core/src/scheduler.rs:1038
+#: crates/linux-defender-core/src/scheduler.rs:1048
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "ClamAV non è disponibile. Installa ClamAV."
 
 #
-#: crates/linux-defender-core/src/scheduler.rs:1101
+#: crates/linux-defender-core/src/scheduler.rs:1111
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
@@ -2095,19 +2092,19 @@ msgstr[1] ""
 "quarantena"
 
 #
-#: crates/linux-defender-core/src/scheduler.rs:1112
+#: crates/linux-defender-core/src/scheduler.rs:1122
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "La scansione pianificata ha rilevato {count} minaccia"
 msgstr[1] "La scansione pianificata ha rilevato {count} minacce"
 
-#: crates/linux-defender-core/src/scheduler.rs:1121
+#: crates/linux-defender-core/src/scheduler.rs:1131
 msgid "Scheduled scan completed with errors"
 msgstr "Scansione programmata completata con errori"
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/scheduler.rs:1124
+#: crates/linux-defender-core/src/scheduler.rs:1134
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] ""
@@ -2117,55 +2114,55 @@ msgstr[1] ""
 "Scansione pianificata completata — {count} file sottoposti a scansione, "
 "nessuna minaccia"
 
-#: crates/linux-defender-core/src/scheduler.rs:1139
+#: crates/linux-defender-core/src/scheduler.rs:1149
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "Durata scansione: {duration:.1f} secondi"
 
-#: crates/linux-defender-core/src/scheduler.rs:1141
+#: crates/linux-defender-core/src/scheduler.rs:1151
 msgid "Files Scanned: {count}"
 msgstr "File Scansionati: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1142
+#: crates/linux-defender-core/src/scheduler.rs:1152
 msgid "Threats Found: {count}"
 msgstr "Minacce Trovate: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1143
+#: crates/linux-defender-core/src/scheduler.rs:1153
 msgid "Targets: {targets}"
 msgstr "Destinazioni: {targets}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1147
+#: crates/linux-defender-core/src/scheduler.rs:1157
 msgid "Quarantined: {count}"
 msgstr "In Quarantena: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1152
+#: crates/linux-defender-core/src/scheduler.rs:1162
 msgid "Quarantine Failed: {count}"
 msgstr "Quarantena Fallita: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1180
+#: crates/linux-defender-core/src/scheduler.rs:1190
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "Scansione Programmata: Minacce Rilevate!"
 
-#: crates/linux-defender-core/src/scheduler.rs:1186
+#: crates/linux-defender-core/src/scheduler.rs:1196
 msgid "Scheduled Scan Completed"
 msgstr "Scansione Programmata Completata"
 
-#: crates/linux-defender-core/src/scheduler.rs:1187
+#: crates/linux-defender-core/src/scheduler.rs:1197
 msgid "Scan completed with some errors. Check logs for details."
 msgstr ""
 "Scansione completata con alcuni errori. Controlla i registri per i dettagli."
 
-#: crates/linux-defender-core/src/scheduler.rs:1195
+#: crates/linux-defender-core/src/scheduler.rs:1205
 msgid "Scheduled Scan Complete"
 msgstr "Scansione Programmata Completata"
 
 #
-#: crates/linux-defender-core/src/scheduler.rs:1208
+#: crates/linux-defender-core/src/scheduler.rs:1218
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "Impossibile mettere in quarantena: {count} file"
 msgstr[1] "Impossibile mettere in quarantena: {count} file"
 
-#: crates/linux-defender-core/src/scheduler.rs:1234
+#: crates/linux-defender-core/src/scheduler.rs:1244
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -2174,16 +2171,16 @@ msgstr ""
 "Scansione saltata in base alle impostazioni della batteria."
 
 #
-#: crates/linux-defender-core/src/scheduler.rs:1239
+#: crates/linux-defender-core/src/scheduler.rs:1249
 msgid "Scan skipped due to battery-aware settings."
 msgstr "Scansione ignorata a causa delle impostazioni relative alla batteria."
 
-#: crates/linux-defender-core/src/scheduler.rs:1245
+#: crates/linux-defender-core/src/scheduler.rs:1255
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "Scansione saltata: in esecuzione con batteria ({percent:.0f}%)"
 
 #
-#: crates/linux-defender-core/src/scheduler.rs:1250
+#: crates/linux-defender-core/src/scheduler.rs:1260
 msgid "Skipping scan: running on battery power"
 msgstr "Scansione ignorata: esecuzione con alimentazione a batteria"
 
@@ -2488,8 +2485,8 @@ msgstr "Apri"
 msgid "Overview"
 msgstr "Panoramica"
 
-#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:720
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:730
+#: desktop/src/pages/Scan.tsx:732
 msgid "Scan"
 msgstr "Scansione"
 
@@ -2519,7 +2516,7 @@ msgstr "Audit"
 msgid "Network"
 msgstr "Rete"
 
-#: desktop/src/App.tsx:130 desktop/src/App.tsx:894 desktop/src/App.tsx:982
+#: desktop/src/App.tsx:130 desktop/src/App.tsx:909 desktop/src/App.tsx:997
 #: desktop/src/pages/Preferences.tsx:120
 msgid "Preferences"
 msgstr "Preferenze"
@@ -2534,31 +2531,31 @@ msgid "Results"
 msgstr "Risultati"
 
 #
-#: desktop/src/App.tsx:306 desktop/src/pages/ConfigPreferences.tsx:567
+#: desktop/src/App.tsx:307 desktop/src/pages/ConfigPreferences.tsx:567
 msgid "Could not open link"
 msgstr "Impossibile aprire il collegamento"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/App.tsx:386 desktop/src/App.tsx:401 desktop/src/App.tsx:419
-#: desktop/src/pages/Scan.tsx:501
+#: desktop/src/App.tsx:401 desktop/src/App.tsx:416 desktop/src/App.tsx:434
+#: desktop/src/pages/Scan.tsx:509
 msgid "Scan in progress — wait for it to finish before changing targets"
 msgstr ""
 "Scansione in corso — attendere il completamento prima di modificare le "
 "destinazioni"
 
 #
-#: desktop/src/App.tsx:465
+#: desktop/src/App.tsx:480
 msgid "The privileged-helper installation returned an invalid status."
 msgstr ""
 "L'installazione dell'helper con privilegi ha restituito uno stato non valido."
 
 #
-#: desktop/src/App.tsx:472
+#: desktop/src/App.tsx:487
 msgid "The privileged helper was installed successfully."
 msgstr "L'helper con privilegi è stato installato correttamente."
 
 #
-#: desktop/src/App.tsx:474
+#: desktop/src/App.tsx:489
 msgid ""
 "The privileged helper is still unavailable. Try again or install it manually."
 msgstr ""
@@ -2566,117 +2563,117 @@ msgstr ""
 "manualmente."
 
 #
-#: desktop/src/App.tsx:786
+#: desktop/src/App.tsx:801
 msgid "The privileged-helper status returned an invalid response."
 msgstr ""
 "Lo stato dell'helper con privilegi ha restituito una risposta non valida."
 
-#: desktop/src/App.tsx:887
+#: desktop/src/App.tsx:902
 msgid "Linux Defender"
 msgstr "Linux Defender"
 
-#: desktop/src/App.tsx:892
+#: desktop/src/App.tsx:907
 msgid "Back"
 msgstr "Indietro"
 
-#: desktop/src/App.tsx:917
+#: desktop/src/App.tsx:932
 msgid "Scan File or Folder"
 msgstr "Scansiona file o cartella"
 
-#: desktop/src/App.tsx:924
+#: desktop/src/App.tsx:939
 msgid "Choose scan targets"
 msgstr "Scegli le destinazioni della scansione"
 
-#: desktop/src/App.tsx:934
+#: desktop/src/App.tsx:949
 msgid "Scan Files"
 msgstr "Scansiona file"
 
-#: desktop/src/App.tsx:938
+#: desktop/src/App.tsx:953
 msgid "Scan Folders"
 msgstr "Scansiona cartelle"
 
-#: desktop/src/App.tsx:945
+#: desktop/src/App.tsx:960
 msgid "Scan System (Quick Scan)"
 msgstr "Scansiona il sistema (scansione rapida)"
 
-#: desktop/src/App.tsx:952 desktop/src/App.tsx:953
+#: desktop/src/App.tsx:967 desktop/src/App.tsx:968
 msgid "Menu"
 msgstr "Menu"
 
-#: desktop/src/App.tsx:972
+#: desktop/src/App.tsx:987
 msgid "Application menu"
 msgstr "Menu dell'applicazione"
 
-#: desktop/src/App.tsx:985
+#: desktop/src/App.tsx:1000
 msgid "About"
 msgstr "Informazioni"
 
-#: desktop/src/App.tsx:998
+#: desktop/src/App.tsx:1013
 msgid "Main navigation"
 msgstr "Navigazione principale"
 
-#: desktop/src/App.tsx:999
+#: desktop/src/App.tsx:1014
 msgid "Views"
 msgstr "Viste"
 
-#: desktop/src/App.tsx:1019 desktop/src/pages/Quarantine.tsx:339
+#: desktop/src/App.tsx:1034 desktop/src/pages/Quarantine.tsx:341
 msgid "Dismiss"
 msgstr "Chiudi"
 
-#: desktop/src/App.tsx:1041
+#: desktop/src/App.tsx:1056
 msgid "About Linux Defender"
 msgstr "About Linux Defender"
 
-#: desktop/src/App.tsx:1042
+#: desktop/src/App.tsx:1057
 msgid "An on-demand Linux security scanner using your system's ClamAV tools."
 msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 
-#: desktop/src/App.tsx:1044
+#: desktop/src/App.tsx:1059
 msgid "Version"
 msgstr "Versione"
 
-#: desktop/src/App.tsx:1045 desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/App.tsx:1060 desktop/src/pages/SettingsPreferences.tsx:270
 #: desktop/src/pages/SettingsPreferences.tsx:271
 msgid "Language"
 msgstr "Lingua"
 
-#: desktop/src/App.tsx:1046
+#: desktop/src/App.tsx:1061
 msgid "License"
 msgstr "Licenza"
 
-#: desktop/src/App.tsx:1049
+#: desktop/src/App.tsx:1064
 msgid "Project website"
 msgstr "Sito web del progetto"
 
-#: desktop/src/App.tsx:1050 desktop/src/pages/ConfigPreferences.tsx:827
+#: desktop/src/App.tsx:1065 desktop/src/pages/ConfigPreferences.tsx:827
 msgid "Documentation"
 msgstr "Documentazione"
 
-#: desktop/src/App.tsx:1051
+#: desktop/src/App.tsx:1066
 msgid "Issue tracker"
 msgstr "Segnalazione problemi"
 
-#: desktop/src/App.tsx:1053
+#: desktop/src/App.tsx:1068
 msgid "Could not load contributor credits: {error}"
 msgstr "Impossibile caricare i riconoscimenti dei collaboratori: {error}"
 
-#: desktop/src/App.tsx:1058
+#: desktop/src/App.tsx:1073
 msgid "Contributors"
 msgstr "Collaboratori"
 
-#: desktop/src/App.tsx:1067
+#: desktop/src/App.tsx:1082
 msgid "Translator credits"
 msgstr "Riconoscimenti dei traduttori"
 
-#: desktop/src/App.tsx:1070
+#: desktop/src/App.tsx:1085
 msgid "Loading contributor credits…"
 msgstr "Caricamento dei riconoscimenti dei collaboratori…"
 
-#: desktop/src/App.tsx:1072
+#: desktop/src/App.tsx:1087
 msgid "Close Linux Defender?"
 msgstr "Close Linux Defender?"
 
-#: desktop/src/App.tsx:1073
+#: desktop/src/App.tsx:1088
 msgid ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
@@ -2684,58 +2681,58 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1074 desktop/src/pages/Scan.tsx:262
+#: desktop/src/App.tsx:1089 desktop/src/pages/Scan.tsx:266
 msgid "Remember my choice"
 msgstr "Ricorda la mia scelta"
 
-#: desktop/src/App.tsx:1075 desktop/src/App.tsx:1079
+#: desktop/src/App.tsx:1090 desktop/src/App.tsx:1094
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
-#: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:377
-#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:774
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
-#: desktop/src/pages/SettingsPreferences.tsx:538
-#: desktop/src/pages/Urlscan.tsx:244
+#: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
+#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:784
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/Urlscan.tsx:246
 msgid "Cancel"
 msgstr "Annulla"
 
-#: desktop/src/App.tsx:1075
+#: desktop/src/App.tsx:1090
 msgid "Minimize to tray"
 msgstr "Minimizza nell'area di notifica"
 
-#: desktop/src/App.tsx:1077
+#: desktop/src/App.tsx:1092
 msgid "Scan in Progress"
 msgstr "Scansione in corso"
 
-#: desktop/src/App.tsx:1078
+#: desktop/src/App.tsx:1093
 msgid "A scan is still running. Cancelling it may leave partial results."
 msgstr ""
 "Una scansione è ancora in corso. Annullarla potrebbe lasciare risultati "
 "parziali."
 
-#: desktop/src/App.tsx:1079
+#: desktop/src/App.tsx:1094
 msgid "Keep Scanning"
 msgstr "Continua scansione"
 
-#: desktop/src/App.tsx:1079
+#: desktop/src/App.tsx:1094
 msgid "Cancel Scan and Close"
 msgstr "Annulla scansione e chiudi"
 
-#: desktop/src/App.tsx:1079 desktop/src/ConfigurationRecovery.tsx:94
+#: desktop/src/App.tsx:1094 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
-#: desktop/src/pages/Scan.tsx:346 desktop/src/pages/Scan.tsx:352
-#: desktop/src/pages/Scan.tsx:364 desktop/src/pages/SettingsPreferences.tsx:314
+#: desktop/src/pages/Scan.tsx:354 desktop/src/pages/Scan.tsx:360
+#: desktop/src/pages/Scan.tsx:372 desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Close"
 msgstr "Chiudi"
 
 #
-#: desktop/src/App.tsx:1081
+#: desktop/src/App.tsx:1096
 msgid "Install Privileged Helper"
 msgstr "Installa l’helper con privilegi"
 
-#: desktop/src/App.tsx:1082
+#: desktop/src/App.tsx:1097
 msgid ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
@@ -2743,13 +2740,13 @@ msgstr ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
 
-#: desktop/src/App.tsx:1084 desktop/src/HelperTrustErrorDialog.tsx:52
+#: desktop/src/App.tsx:1099 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr ""
 "L'installazione dell'helper richiede l'autorizzazione dell'amministratore."
 
 #. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1085
+#: desktop/src/App.tsx:1100
 msgid ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
@@ -2758,29 +2755,29 @@ msgstr ""
 "build to the system RPM keyring."
 
 #
-#: desktop/src/App.tsx:1090 desktop/src/HelperTrustErrorDialog.tsx:78
+#: desktop/src/App.tsx:1105 desktop/src/HelperTrustErrorDialog.tsx:78
 msgid "Installing privileged helper…"
 msgstr "Installazione dell’helper con privilegi…"
 
-#: desktop/src/App.tsx:1092
+#: desktop/src/App.tsx:1107
 msgid "Not now"
 msgstr "Non ora"
 
 #
-#: desktop/src/App.tsx:1092 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1107 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Installing…"
 msgstr "Installazione in corso…"
 
-#: desktop/src/App.tsx:1092 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1107 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Try Again"
 msgstr "Riprova"
 
 #
-#: desktop/src/App.tsx:1092 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1107 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Install Helper"
 msgstr "Installa helper"
 
-#: desktop/src/App.tsx:1092
+#: desktop/src/App.tsx:1107
 msgid "Open Preferences"
 msgstr "Apri preferenze"
 
@@ -2946,7 +2943,7 @@ msgstr "Destinazione {index}/{count}: {path}"
 
 #
 #: desktop/src/ScanProgressPanel.tsx:19 desktop/src/pages/Results.tsx:110
-#: desktop/src/pages/Scan.tsx:711
+#: desktop/src/pages/Scan.tsx:721
 msgid "Scan target"
 msgstr "Destinazione della scansione"
 
@@ -2968,14 +2965,14 @@ msgstr "In attesa dei dati della scansione…"
 msgid "Scan progress"
 msgstr "Avanzamento della scansione"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:782
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "{count} file analizzato"
 msgstr[1] "{count} file analizzati"
 
 #
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:782
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
@@ -3041,8 +3038,8 @@ msgstr "Annullato"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
-#: desktop/src/pages/SettingsPreferences.tsx:512
-#: desktop/src/pages/SettingsPreferences.tsx:536 desktop/src/protection.ts:131
+#: desktop/src/pages/SettingsPreferences.tsx:518
+#: desktop/src/pages/SettingsPreferences.tsx:542 desktop/src/protection.ts:131
 msgid "Unknown"
 msgstr "Sconosciuto"
 
@@ -3225,8 +3222,8 @@ msgstr "Impossibile copiare il comando: {error}"
 
 #: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
-#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/Scan.tsx:782 desktop/src/pages/Scan.tsx:787
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy"
 msgstr "Copia"
 
@@ -3345,7 +3342,7 @@ msgid "Checking…"
 msgstr "Controllo in corso…"
 
 #: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:283
-#: desktop/src/pages/Scan.tsx:723
+#: desktop/src/pages/Scan.tsx:733
 msgid "Refresh status"
 msgstr "Aggiorna stato"
 
@@ -3482,7 +3479,7 @@ msgstr "Aggiungi"
 #: desktop/src/pages/ConfigPreferences.tsx:310
 #: desktop/src/pages/ConfigPreferences.tsx:356
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:765
+#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:775
 #: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Remove"
 msgstr "Rimuovi"
@@ -3982,7 +3979,7 @@ msgid "Used for monthly scans."
 msgstr "Utilizzato per le scansioni mensili."
 
 #: desktop/src/pages/ConfigPreferences.tsx:896
-#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:764
+#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:774
 msgid "Scan Targets"
 msgstr "Target di scansione"
 
@@ -4045,7 +4042,7 @@ msgstr ""
 "modifiche non salvate dell'altro."
 
 #: desktop/src/pages/ConfigPreferences.tsx:914
-#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:261
+#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:265
 msgid "Saving…"
 msgstr "Salvataggio…"
 
@@ -4315,7 +4312,7 @@ msgstr "Installa freshclam prima di richiedere aggiornamenti del database."
 msgid "Preparing the update progress listener…"
 msgstr "Preparazione del listener per l'avanzamento dell'aggiornamento…"
 
-#: desktop/src/pages/Database.tsx:360
+#: desktop/src/pages/Database.tsx:360 desktop/src/pages/Database.tsx:363
 msgid "Update log"
 msgstr "Registro aggiornamenti"
 
@@ -4345,7 +4342,7 @@ msgstr[0] "{seconds} secondo"
 msgstr[1] "{seconds} secondi"
 
 #: desktop/src/pages/Logs.tsx:89 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Quarantine.tsx:362
+#: desktop/src/pages/Quarantine.tsx:364
 msgid "Path"
 msgstr "Percorso"
 
@@ -4486,11 +4483,11 @@ msgstr "Operazioni di scansione e aggiornamento precedenti"
 
 #: desktop/src/pages/Logs.tsx:385 desktop/src/pages/Logs.tsx:418
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
-#: desktop/src/pages/Quarantine.tsx:354
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
-#: desktop/src/pages/SettingsPreferences.tsx:531
-#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:215
+#: desktop/src/pages/Quarantine.tsx:356
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:217
 msgid "Refresh"
 msgstr "Aggiorna"
 
@@ -4504,7 +4501,7 @@ msgid "Export JSON"
 msgstr "Esporta JSON"
 
 #: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:430
-#: desktop/src/pages/Scan.tsx:764
+#: desktop/src/pages/Scan.tsx:774
 msgid "Clear All"
 msgstr "Cancella tutto"
 
@@ -4539,7 +4536,7 @@ msgid "Export Text"
 msgstr "Esporta testo"
 
 #: desktop/src/pages/Logs.tsx:410 desktop/src/pages/Logs.tsx:420
-#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:772
+#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:782
 msgid "Fullscreen"
 msgstr "Schermo intero"
 
@@ -4685,8 +4682,8 @@ msgstr "Aggiornamento…"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
 #: desktop/src/pages/Overview.tsx:153
-#: desktop/src/pages/SettingsPreferences.tsx:528
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:537
 msgid "Loading…"
 msgstr "Caricamento…"
 
@@ -4847,7 +4844,7 @@ msgstr "Stato della protezione"
 msgid "Last Scan"
 msgstr "Ultima scansione"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:780
 msgid "Start Scan"
 msgstr "Avvia scansione"
 
@@ -4864,7 +4861,7 @@ msgid "Scanner engine"
 msgstr "Motore di scansione"
 
 #: desktop/src/pages/Overview.tsx:192
-#: desktop/src/pages/SettingsPreferences.tsx:457
+#: desktop/src/pages/SettingsPreferences.tsx:463
 msgid "{count} file"
 msgid_plural "{count} files"
 msgstr[0] "{count} file"
@@ -4894,8 +4891,8 @@ msgid "See detailed scan history"
 msgstr "Visualizza la cronologia dettagliata delle scansioni"
 
 #: desktop/src/pages/Preferences.tsx:13
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Behavior"
 msgstr "Comportamento"
 
@@ -4924,11 +4921,11 @@ msgstr "Accesso in tempo reale"
 msgid "YARA Rules"
 msgstr "Regole YARA"
 
-#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:209
+#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:211
 msgid "VirusTotal"
 msgstr "VirusTotal"
 
-#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:208
+#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:210
 msgid "urlscan.io"
 msgstr "urlscan.io"
 
@@ -4989,7 +4986,7 @@ msgstr "I nomi dei profili predefiniti sono protetti"
 msgid "Description"
 msgstr "Descrizione"
 
-#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:765
+#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:775
 msgid "No targets added"
 msgstr "Nessun target aggiunto"
 
@@ -5107,9 +5104,9 @@ msgid "Duplicate"
 msgstr "Duplica"
 
 #: desktop/src/pages/Profiles.tsx:234 desktop/src/pages/Profiles.tsx:242
-#: desktop/src/pages/Quarantine.tsx:365 desktop/src/pages/Quarantine.tsx:377
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Quarantine.tsx:367 desktop/src/pages/Quarantine.tsx:379
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Delete"
 msgstr "Elimina"
 
@@ -5159,227 +5156,231 @@ msgstr "Verifica dell'integrità non riuscita"
 msgid "Rescan failed"
 msgstr "Nuova analisi non riuscita"
 
-#: desktop/src/pages/Quarantine.tsx:163 desktop/src/pages/Quarantine.tsx:201
+#: desktop/src/pages/Quarantine.tsx:164 desktop/src/pages/Quarantine.tsx:202
 msgid "Linux Defender returned invalid quarantine data."
 msgstr "Linux Defender returned invalid quarantine data."
 
-#: desktop/src/pages/Quarantine.tsx:171 desktop/src/pages/Quarantine.tsx:208
+#: desktop/src/pages/Quarantine.tsx:172 desktop/src/pages/Quarantine.tsx:209
 msgid "Failed to load quarantine: {error}"
 msgstr "Impossibile caricare la quarantena: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:237
+#: desktop/src/pages/Quarantine.tsx:238
 msgid "Quarantine updates are unavailable: {error}"
 msgstr "Gli aggiornamenti della quarantena non sono disponibili: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:259
+#: desktop/src/pages/Quarantine.tsx:260
 msgid "Linux Defender returned an invalid cleanup result."
 msgstr "Linux Defender returned an invalid cleanup result."
 
 #
-#: desktop/src/pages/Quarantine.tsx:264
+#: desktop/src/pages/Quarantine.tsx:265
 msgid "Removed {count} old quarantine entry."
 msgid_plural "Removed {count} old quarantine entries."
 msgstr[0] "Rimossa {count} vecchia voce di quarantena."
 msgstr[1] "Rimosse {count} vecchie voci di quarantena."
 
-#: desktop/src/pages/Quarantine.tsx:270
+#: desktop/src/pages/Quarantine.tsx:271
 msgid "No old entries found to remove."
 msgstr "Nessuna vecchia voce trovata da rimuovere."
 
-#: desktop/src/pages/Quarantine.tsx:276
+#: desktop/src/pages/Quarantine.tsx:277
 msgid "Failed to clear old items: {error}"
 msgstr "Impossibile eliminare i vecchi elementi: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:277
+#: desktop/src/pages/Quarantine.tsx:278
 msgid "Failed to clear old quarantine items: {error}"
 msgstr "Impossibile eliminare i vecchi elementi in quarantena: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:286
+#: desktop/src/pages/Quarantine.tsx:287
 msgid "Linux Defender returned an invalid rescan result."
 msgstr ""
 "Linux Defender ha restituito un risultato della nuova analisi non valido."
 
-#: desktop/src/pages/Quarantine.tsx:289
+#: desktop/src/pages/Quarantine.tsx:290
 msgid "{count} item is still detected."
 msgid_plural "{count} items are still detected."
 msgstr[0] "{count} elemento è ancora rilevato."
 msgstr[1] "{count} elementi sono ancora rilevati."
 
-#: desktop/src/pages/Quarantine.tsx:290
+#: desktop/src/pages/Quarantine.tsx:291
 msgid "{count} item is no longer detected."
 msgid_plural "{count} items are no longer detected."
 msgstr[0] "{count} elemento non è più rilevato."
 msgstr[1] "{count} elementi non sono più rilevati."
 
-#: desktop/src/pages/Quarantine.tsx:290
+#: desktop/src/pages/Quarantine.tsx:291
 msgid "Consider restoring it."
 msgstr "Valuta di ripristinarlo."
 
-#: desktop/src/pages/Quarantine.tsx:291
+#: desktop/src/pages/Quarantine.tsx:292
 msgid "{count} item could not be rescanned."
 msgid_plural "{count} items could not be rescanned."
 msgstr[0] "Impossibile riesaminare {count} elemento."
 msgstr[1] "Impossibile riesaminare {count} elementi."
 
-#: desktop/src/pages/Quarantine.tsx:295 desktop/src/pages/Quarantine.tsx:296
+#: desktop/src/pages/Quarantine.tsx:296 desktop/src/pages/Quarantine.tsx:297
 msgid "Failed to rescan quarantined files: {error}"
 msgstr "Impossibile riesaminare i file in quarantena: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:308
+#: desktop/src/pages/Quarantine.tsx:309
 msgid "Linux Defender returned an invalid quarantine result."
 msgstr "Linux Defender returned an invalid quarantine result."
 
-#: desktop/src/pages/Quarantine.tsx:311
+#: desktop/src/pages/Quarantine.tsx:312
 msgid "File restored successfully."
 msgstr "File ripristinato correttamente."
 
-#: desktop/src/pages/Quarantine.tsx:311
+#: desktop/src/pages/Quarantine.tsx:312
 msgid "File deleted successfully."
 msgstr "File eliminato correttamente."
 
-#: desktop/src/pages/Quarantine.tsx:316
+#: desktop/src/pages/Quarantine.tsx:318
 msgid "File restored, but the database entry could not be removed."
 msgstr ""
 "File ripristinato, ma non è stato possibile rimuovere la voce dal database."
 
-#: desktop/src/pages/Quarantine.tsx:316
+#: desktop/src/pages/Quarantine.tsx:318
 msgid "File deleted, but the database entry could not be removed."
 msgstr ""
 "File eliminato, ma non è stato possibile rimuovere la voce dal database."
 
-#: desktop/src/pages/Quarantine.tsx:320
+#: desktop/src/pages/Quarantine.tsx:322
 msgid "Failed to restore quarantined file ({status})."
 msgstr "Impossibile ripristinare il file in quarantena ({status})."
 
-#: desktop/src/pages/Quarantine.tsx:320
+#: desktop/src/pages/Quarantine.tsx:322
 msgid "Failed to delete quarantined file ({status})."
 msgstr "Impossibile eliminare il file in quarantena ({status})."
 
-#: desktop/src/pages/Quarantine.tsx:324
+#: desktop/src/pages/Quarantine.tsx:326
 msgid "Failed to restore quarantined file: {error}"
 msgstr "Impossibile ripristinare il file in quarantena: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:325
+#: desktop/src/pages/Quarantine.tsx:327
 msgid "Failed to delete quarantined file: {error}"
 msgstr "Impossibile eliminare il file in quarantena: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:336
+#: desktop/src/pages/Quarantine.tsx:338
 msgid "Secure storage for isolated threats."
 msgstr "Archiviazione sicura per le minacce isolate."
 
-#: desktop/src/pages/Quarantine.tsx:341
+#: desktop/src/pages/Quarantine.tsx:343
 msgid "Quarantine Storage"
 msgstr "Archivio della quarantena"
 
-#: desktop/src/pages/Quarantine.tsx:343
+#: desktop/src/pages/Quarantine.tsx:345
 msgid "Total Size"
 msgstr "Dimensione totale"
 
-#: desktop/src/pages/Quarantine.tsx:343
+#: desktop/src/pages/Quarantine.tsx:345
 msgid "Calculating…"
 msgstr "Calcolo…"
 
-#: desktop/src/pages/Quarantine.tsx:344
+#: desktop/src/pages/Quarantine.tsx:346
 msgid "Items"
 msgstr "Elementi"
 
-#: desktop/src/pages/Quarantine.tsx:345
+#: desktop/src/pages/Quarantine.tsx:347
 msgid "{filtered} of {total} item"
 msgid_plural "{filtered} of {total} items"
 msgstr[0] "{filtered} di {total} elemento"
 msgstr[1] "{filtered} di {total} elementi"
 
-#: desktop/src/pages/Quarantine.tsx:346
+#: desktop/src/pages/Quarantine.tsx:348
 msgid "{count} item"
 msgid_plural "{count} items"
 msgstr[0] "{count} elemento"
 msgstr[1] "{count} elementi"
 
-#: desktop/src/pages/Quarantine.tsx:351
+#: desktop/src/pages/Quarantine.tsx:353
 msgid "Quarantined Files"
 msgstr "File in quarantena"
 
-#: desktop/src/pages/Quarantine.tsx:351
+#: desktop/src/pages/Quarantine.tsx:353
 msgid "Detected threats isolated from your system."
 msgstr "Minacce rilevate isolate dal sistema."
 
-#: desktop/src/pages/Quarantine.tsx:353
+#: desktop/src/pages/Quarantine.tsx:355
 msgid "Rescanning…"
 msgstr "Nuova analisi…"
 
-#: desktop/src/pages/Quarantine.tsx:353
+#: desktop/src/pages/Quarantine.tsx:355
 msgid "Rescan"
 msgstr "Nuova analisi"
 
-#: desktop/src/pages/Quarantine.tsx:355
+#: desktop/src/pages/Quarantine.tsx:357
 msgid "Clear Old Items"
 msgstr "Elimina vecchi elementi"
 
-#: desktop/src/pages/Quarantine.tsx:358
+#: desktop/src/pages/Quarantine.tsx:360
 msgid "Search by threat name or path"
 msgstr "Cerca per nome della minaccia o percorso"
 
-#: desktop/src/pages/Quarantine.tsx:358
+#: desktop/src/pages/Quarantine.tsx:360
 msgid "Search by threat name or path…"
 msgstr "Cerca per nome della minaccia o percorso…"
 
-#: desktop/src/pages/Quarantine.tsx:359
+#: desktop/src/pages/Quarantine.tsx:361
 msgid "Loading quarantine entries…"
 msgstr "Caricamento delle voci di quarantena…"
 
-#: desktop/src/pages/Quarantine.tsx:359
+#: desktop/src/pages/Quarantine.tsx:361
+msgid "Unable to load quarantine entries."
+msgstr "Unable to load quarantine entries."
+
+#: desktop/src/pages/Quarantine.tsx:361
 msgid ""
 "No Quarantined Files. Detected threats will be isolated here for review."
 msgstr ""
 "Nessun file in quarantena. Le minacce rilevate verranno isolate qui per la "
 "revisione."
 
-#: desktop/src/pages/Quarantine.tsx:359
+#: desktop/src/pages/Quarantine.tsx:361
 msgid "No matching entries. Try a different search term."
 msgstr "Nessuna voce corrispondente. Provare un termine di ricerca diverso."
 
-#: desktop/src/pages/Quarantine.tsx:359
+#: desktop/src/pages/Quarantine.tsx:361
 msgid "No entries on this page."
 msgstr "Nessuna voce in questa pagina."
 
-#: desktop/src/pages/Quarantine.tsx:361 desktop/src/pages/Quarantine.tsx:372
-#: desktop/src/pages/Quarantine.tsx:376
+#: desktop/src/pages/Quarantine.tsx:363 desktop/src/pages/Quarantine.tsx:374
+#: desktop/src/pages/Quarantine.tsx:378
 msgid "Unknown Threat"
 msgstr "Minaccia sconosciuta"
 
-#: desktop/src/pages/Quarantine.tsx:361 desktop/src/pages/Quarantine.tsx:363
+#: desktop/src/pages/Quarantine.tsx:363 desktop/src/pages/Quarantine.tsx:365
 #: desktop/src/pages/Results.tsx:196
 msgid "Quarantined"
 msgstr "In quarantena"
 
-#: desktop/src/pages/Quarantine.tsx:365
+#: desktop/src/pages/Quarantine.tsx:367
 msgid "Restore"
 msgstr "Ripristina"
 
-#: desktop/src/pages/Quarantine.tsx:367
+#: desktop/src/pages/Quarantine.tsx:369
 msgid "Previous"
 msgstr "Precedente"
 
-#: desktop/src/pages/Quarantine.tsx:367
+#: desktop/src/pages/Quarantine.tsx:369
 msgid "Next"
 msgstr "Successivo"
 
-#: desktop/src/pages/Quarantine.tsx:369
+#: desktop/src/pages/Quarantine.tsx:371
 msgid "Restore Quarantined File?"
 msgstr "Ripristinare il file in quarantena?"
 
-#: desktop/src/pages/Quarantine.tsx:369
+#: desktop/src/pages/Quarantine.tsx:371
 msgid "Permanently Delete File?"
 msgstr "Eliminare definitivamente il file?"
 
 #. Translators: Preserve the {threat} and {path} placeholders; they are runtime threat and file-path values. Use quotation marks appropriate for your language.
-#: desktop/src/pages/Quarantine.tsx:369
+#: desktop/src/pages/Quarantine.tsx:371
 msgid "This file was detected as '{threat}'. It will be restored to {path}."
 msgstr ""
 "Questo file è stato rilevato come '{threat}'. Verrà ripristinato in {path}."
 
 #. Translators: Preserve the {path} and {threat} placeholders; they are runtime file-path and threat values. Use quotation marks appropriate for your language.
-#: desktop/src/pages/Quarantine.tsx:373
+#: desktop/src/pages/Quarantine.tsx:375
 msgid ""
 "The quarantined file from {path} ('{threat}') will be permanently deleted. "
 "This action cannot be undone."
@@ -5387,7 +5388,7 @@ msgstr ""
 "Il file in quarantena da {path} ('{threat}') verrà eliminato "
 "definitivamente. L'operazione non può essere annullata."
 
-#: desktop/src/pages/Quarantine.tsx:377
+#: desktop/src/pages/Quarantine.tsx:379
 msgid "Restore Anyway"
 msgstr "Ripristina comunque"
 
@@ -5558,7 +5559,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "Altri file inaccessibili sono omessi da questa visualizzazione."
 
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Results.tsx:201
-#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
+#: desktop/src/pages/Scan.tsx:782 desktop/src/pages/Scan.tsx:787
 msgid "Scan details"
 msgstr "Dettagli della scansione"
 
@@ -5610,7 +5611,7 @@ msgstr "Copia JSON"
 msgid "Copy Hash"
 msgstr "Copia hash"
 
-#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:363
+#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:371
 msgid "View on VirusTotal"
 msgstr "Visualizza su VirusTotal"
 
@@ -5667,7 +5668,7 @@ msgstr[1] "Scansione completata — rilevate {count} minacce"
 msgid "Scan cancelled — partial results are available"
 msgstr "Scansione annullata — sono disponibili risultati parziali"
 
-#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:713
+#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:723
 msgid "Scan error"
 msgstr "Errore di scansione"
 
@@ -5675,12 +5676,12 @@ msgstr "Errore di scansione"
 msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
-#: desktop/src/pages/Scan.tsx:176 desktop/src/pages/Urlscan.tsx:190
+#: desktop/src/pages/Scan.tsx:176 desktop/src/pages/Urlscan.tsx:192
 msgid "Opened the VirusTotal upload page in your browser"
 msgstr "Pagina di caricamento di VirusTotal aperta nel browser"
 
-#: desktop/src/pages/Scan.tsx:183 desktop/src/pages/Scan.tsx:351
-#: desktop/src/pages/Urlscan.tsx:197
+#: desktop/src/pages/Scan.tsx:183 desktop/src/pages/Scan.tsx:359
+#: desktop/src/pages/Urlscan.tsx:199
 msgid ""
 "Configure a VirusTotal API key in Preferences before starting this scan."
 msgstr ""
@@ -5690,11 +5691,19 @@ msgstr ""
 msgid "API key must contain exactly 64 hexadecimal characters"
 msgstr "La chiave API deve contenere esattamente 64 caratteri esadecimali"
 
-#: desktop/src/pages/Scan.tsx:246
+#: desktop/src/pages/Scan.tsx:246 desktop/src/pages/Scan.tsx:343
+msgid "VirusTotal cancellation did not take effect"
+msgstr "VirusTotal cancellation did not take effect"
+
+#: desktop/src/pages/Scan.tsx:247 desktop/src/pages/Scan.tsx:344
+msgid "Unable to cancel VirusTotal scan"
+msgstr "Unable to cancel VirusTotal scan"
+
+#: desktop/src/pages/Scan.tsx:250
 msgid "VirusTotal Scan"
 msgstr "Scansione VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:247
+#: desktop/src/pages/Scan.tsx:251
 msgid ""
 "VirusTotal uploads one file at a time. Only send files you are authorized to "
 "share."
@@ -5702,61 +5711,61 @@ msgstr ""
 "VirusTotal carica un file alla volta. Inviare solo file che si è autorizzati "
 "a condividere."
 
-#: desktop/src/pages/Scan.tsx:250
+#: desktop/src/pages/Scan.tsx:254
 msgid "Calculating file hash…"
 msgstr "Calculating file hash…"
 
-#: desktop/src/pages/Scan.tsx:250
+#: desktop/src/pages/Scan.tsx:254
 msgid "Checking the VirusTotal file report…"
 msgstr "Checking the VirusTotal file report…"
 
-#: desktop/src/pages/Scan.tsx:250
+#: desktop/src/pages/Scan.tsx:254
 msgid "Uploading file to VirusTotal…"
 msgstr "Uploading file to VirusTotal…"
 
-#: desktop/src/pages/Scan.tsx:250
+#: desktop/src/pages/Scan.tsx:254
 msgid "VirusTotal is analyzing the file…"
 msgstr "VirusTotal is analyzing the file…"
 
-#: desktop/src/pages/Scan.tsx:252 desktop/src/pages/Scan.tsx:358
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Scan.tsx:256 desktop/src/pages/Scan.tsx:366
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "Open VirusTotal analysis"
 msgstr "Open VirusTotal analysis"
 
-#: desktop/src/pages/Scan.tsx:253 desktop/src/pages/Scan.tsx:359
+#: desktop/src/pages/Scan.tsx:257 desktop/src/pages/Scan.tsx:367
 msgid "Cancel scan"
 msgstr "Cancel scan"
 
-#: desktop/src/pages/Scan.tsx:257
+#: desktop/src/pages/Scan.tsx:261
 msgid "API key available"
 msgstr "Chiave API disponibile"
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/Scan.tsx:780
 msgid "Scanning…"
 msgstr "Scansione in corso…"
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/Scan.tsx:780
 msgid "Scan with VirusTotal"
 msgstr "Scansiona con VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:260 desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Scan.tsx:264 desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "API Key"
 msgstr "Chiave API"
 
-#: desktop/src/pages/Scan.tsx:261
+#: desktop/src/pages/Scan.tsx:265
 msgid "Save & Scan"
 msgstr "Salva e scansiona"
 
-#: desktop/src/pages/Scan.tsx:263
+#: desktop/src/pages/Scan.tsx:267
 msgid "Upload file manually"
 msgstr "Carica file manualmente"
 
-#: desktop/src/pages/Scan.tsx:340
+#: desktop/src/pages/Scan.tsx:348
 msgid "VirusTotal Folder Scan"
 msgstr "VirusTotal Folder Scan"
 
-#: desktop/src/pages/Scan.tsx:341
+#: desktop/src/pages/Scan.tsx:349
 msgid ""
 "Review the folder contents before any files are sent. VirusTotal receives "
 "each file hash and filename; files without an existing report may be "
@@ -5766,7 +5775,7 @@ msgstr ""
 "each file hash and filename; files without an existing report may be "
 "uploaded and shared with its security partners."
 
-#: desktop/src/pages/Scan.tsx:342
+#: desktop/src/pages/Scan.tsx:350
 msgid ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
@@ -5774,91 +5783,91 @@ msgstr ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
 
-#: desktop/src/pages/Scan.tsx:345
+#: desktop/src/pages/Scan.tsx:353
 msgid "Preparing folder preview…"
 msgstr "Preparing folder preview…"
 
-#: desktop/src/pages/Scan.tsx:348
+#: desktop/src/pages/Scan.tsx:356
 msgid "{count} file, {size} MiB total"
 msgid_plural "{count} files, {size} MiB total"
 msgstr[0] "{count} file, {size} MiB total"
 msgstr[1] "{count} files, {size} MiB total"
 
-#: desktop/src/pages/Scan.tsx:349
+#: desktop/src/pages/Scan.tsx:357
 msgid "{count} unreadable entry will be skipped."
 msgid_plural "{count} unreadable entries will be skipped."
 msgstr[0] "{count} unreadable entry will be skipped."
 msgstr[1] "{count} unreadable entries will be skipped."
 
-#: desktop/src/pages/Scan.tsx:350
+#: desktop/src/pages/Scan.tsx:358
 msgid "No readable files were found in this folder."
 msgstr "No readable files were found in this folder."
 
-#: desktop/src/pages/Scan.tsx:352
+#: desktop/src/pages/Scan.tsx:360
 msgid "Upload and scan folder"
 msgstr "Upload and scan folder"
 
-#: desktop/src/pages/Scan.tsx:355
+#: desktop/src/pages/Scan.tsx:363
 msgid "File {current} of {total}: {stage}"
 msgstr "File {current} of {total}: {stage}"
 
-#: desktop/src/pages/Scan.tsx:355
+#: desktop/src/pages/Scan.tsx:363
 msgid "hashing"
 msgstr "hashing"
 
-#: desktop/src/pages/Scan.tsx:355
+#: desktop/src/pages/Scan.tsx:363
 msgid "uploading"
 msgstr "uploading"
 
-#: desktop/src/pages/Scan.tsx:355
+#: desktop/src/pages/Scan.tsx:363
 msgid "analyzing"
 msgstr "analyzing"
 
-#: desktop/src/pages/Scan.tsx:362
+#: desktop/src/pages/Scan.tsx:370
 msgid "{count} of {total} file scanned"
 msgid_plural "{count} of {total} files scanned"
 msgstr[0] "{count} of {total} file scanned"
 msgstr[1] "{count} of {total} files scanned"
 
-#: desktop/src/pages/Scan.tsx:362
+#: desktop/src/pages/Scan.tsx:370
 msgid "{count} detection reported"
 msgid_plural "{count} detections reported"
 msgstr[0] "{count} detection reported"
 msgstr[1] "{count} detections reported"
 
-#: desktop/src/pages/Scan.tsx:362
+#: desktop/src/pages/Scan.tsx:370
 msgid "cancelled"
 msgstr "cancelled"
 
-#: desktop/src/pages/Scan.tsx:397
+#: desktop/src/pages/Scan.tsx:405
 msgid "Unable to load scan profiles"
 msgstr "Impossibile caricare i profili di scansione"
 
-#: desktop/src/pages/Scan.tsx:404
+#: desktop/src/pages/Scan.tsx:412
 msgid "Unable to check scanner status"
 msgstr "Impossibile verificare lo stato dello scanner"
 
-#: desktop/src/pages/Scan.tsx:438 desktop/src/pages/Scan.tsx:519
+#: desktop/src/pages/Scan.tsx:446 desktop/src/pages/Scan.tsx:527
 msgid "Please select a file or folder to scan"
 msgstr "Selezionare un file o una cartella da scansionare"
 
-#: desktop/src/pages/Scan.tsx:452
+#: desktop/src/pages/Scan.tsx:460
 msgid "Starting scan…"
 msgstr "Avvio della scansione…"
 
-#: desktop/src/pages/Scan.tsx:519
+#: desktop/src/pages/Scan.tsx:527
 msgid "Quick Scan profile has no valid targets"
 msgstr "Il profilo Scansione rapida non contiene destinazioni valide"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:533 desktop/src/pages/Scan.tsx:637
-#: desktop/src/pages/Scan.tsx:697
+#: desktop/src/pages/Scan.tsx:541 desktop/src/pages/Scan.tsx:645
+#: desktop/src/pages/Scan.tsx:707
 msgid "Scan in progress — wait for it to finish before adding targets"
 msgstr ""
 "Scansione in corso — attendere il completamento prima di aggiungere "
 "destinazioni"
 
-#: desktop/src/pages/Scan.tsx:553
+#: desktop/src/pages/Scan.tsx:561
 msgid "VirusTotal scans one file at a time; {count} selection was ignored."
 msgid_plural ""
 "VirusTotal scans one file at a time; {count} selections were ignored."
@@ -5869,96 +5878,100 @@ msgstr[1] ""
 "VirusTotal esegue la scansione di un file alla volta; {count} selezioni sono "
 "state ignorate."
 
-#: desktop/src/pages/Scan.tsx:568 desktop/src/pages/Scan.tsx:706
+#: desktop/src/pages/Scan.tsx:576 desktop/src/pages/Scan.tsx:716
 msgid "Only local files and folders can be scanned"
 msgstr "È possibile eseguire la scansione solo di file e cartelle locali"
 
-#: desktop/src/pages/Scan.tsx:646
+#: desktop/src/pages/Scan.tsx:654
 msgid "Unable to choose scan targets"
 msgstr "Impossibile scegliere le destinazioni della scansione"
 
-#: desktop/src/pages/Scan.tsx:655
+#: desktop/src/pages/Scan.tsx:663
 msgid "Unable to open the folder picker"
 msgstr "Unable to open the folder picker"
 
-#: desktop/src/pages/Scan.tsx:662
+#: desktop/src/pages/Scan.tsx:671
+msgid "The scan had already finished; no cancellation was needed."
+msgstr "The scan had already finished; no cancellation was needed."
+
+#: desktop/src/pages/Scan.tsx:672
 msgid "Cancelling scan…"
 msgstr "Annullamento della scansione…"
 
-#: desktop/src/pages/Scan.tsx:664
+#: desktop/src/pages/Scan.tsx:674
 msgid "Unable to cancel scan"
 msgstr "Impossibile annullare la scansione"
 
-#: desktop/src/pages/Scan.tsx:680
+#: desktop/src/pages/Scan.tsx:690
 msgid "Running EICAR test…"
 msgstr "Esecuzione del test EICAR…"
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:732
 msgid "Backend"
 msgstr "Backend"
 
-#: desktop/src/pages/Scan.tsx:723
+#: desktop/src/pages/Scan.tsx:733
 msgid "Manage Profiles"
 msgstr "Gestisci profili"
 
 #
-#: desktop/src/pages/Scan.tsx:728
+#: desktop/src/pages/Scan.tsx:738
 msgid "Scan type"
 msgstr "Scan type"
 
-#: desktop/src/pages/Scan.tsx:746
+#: desktop/src/pages/Scan.tsx:756
 msgid "Files & Folders"
 msgstr "Files & Folders"
 
-#: desktop/src/pages/Scan.tsx:747 desktop/src/pages/Urlscan.tsx:228
+#: desktop/src/pages/Scan.tsx:757 desktop/src/pages/Urlscan.tsx:230
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:750 desktop/src/pages/Scan.tsx:772
+#: desktop/src/pages/Scan.tsx:760 desktop/src/pages/Scan.tsx:782
 msgid "Details"
 msgstr "Dettagli"
 
-#: desktop/src/pages/Scan.tsx:754
+#: desktop/src/pages/Scan.tsx:764
 msgid "Profile"
 msgstr "Profilo"
 
-#: desktop/src/pages/Scan.tsx:760
+#: desktop/src/pages/Scan.tsx:770
 msgid "No Profile (Manual)"
 msgstr "Nessun profilo (manuale)"
 
-#: desktop/src/pages/Scan.tsx:764
+#: desktop/src/pages/Scan.tsx:774
 msgid "Drop local files or folders here, or add them below."
 msgstr "Trascinare qui file o cartelle locali, oppure aggiungerli di seguito."
 
-#: desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:780
 msgid "Run EICAR Test"
 msgstr "Esegui test EICAR"
 
-#: desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:780
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:780
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:772
+#: desktop/src/pages/Scan.tsx:782
 msgid "Latest scan"
 msgstr "Ultima scansione"
 
-#: desktop/src/pages/Scan.tsx:772
+#: desktop/src/pages/Scan.tsx:782
 msgid "View Results"
 msgstr "Visualizza risultati"
 
-#: desktop/src/pages/Scan.tsx:774
+#: desktop/src/pages/Scan.tsx:784
 msgid "Virus database is not available"
 msgstr "Il database dei virus non è disponibile"
 
-#: desktop/src/pages/Scan.tsx:774
+#: desktop/src/pages/Scan.tsx:784
 msgid "Update the database before starting a scan."
 msgstr "Aggiornare il database prima di avviare una scansione."
 
-#: desktop/src/pages/Scan.tsx:774
+#: desktop/src/pages/Scan.tsx:784
 msgid "Open Database Updates"
 msgstr "Apri aggiornamenti del database"
 
@@ -6325,24 +6338,24 @@ msgstr ""
 "Le chiavi API VirusTotal devono contenere esattamente 64 caratteri "
 "esadecimali"
 
-#: desktop/src/pages/SettingsPreferences.tsx:418
-#: desktop/src/pages/SettingsPreferences.tsx:442
+#: desktop/src/pages/SettingsPreferences.tsx:419
+#: desktop/src/pages/SettingsPreferences.tsx:446
 msgid "Unable to save the API key"
 msgstr "Impossibile salvare la chiave API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:422
-#: desktop/src/pages/SettingsPreferences.tsx:446
-#: desktop/src/pages/Urlscan.tsx:132
+#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:452
+#: desktop/src/pages/Urlscan.tsx:134
 msgid "API key deleted"
 msgstr "Chiave API eliminata"
 
-#: desktop/src/pages/SettingsPreferences.tsx:422
-#: desktop/src/pages/SettingsPreferences.tsx:446
+#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:452
 msgid "Unable to delete the API key"
 msgstr "Impossibile eliminare la chiave API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid ""
 "Keys are stored in the operating system keyring or the explicitly enabled "
 "compatibility fallback; they are never returned to the interface."
@@ -6351,77 +6364,77 @@ msgstr ""
 "fallback di compatibilità esplicitamente abilitato; non vengono mai "
 "restituite all'interfaccia."
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/Urlscan.tsx:50
 msgid "Configured ({masked}) using {backend}"
 msgstr "Configurata ({masked}) tramite {backend}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/Urlscan.tsx:51
 msgid "masked"
 msgstr "mascherata"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Keyring is locked"
 msgstr "Il portachiavi è bloccato"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Keyring unavailable"
 msgstr "Portachiavi non disponibile"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/Urlscan.tsx:57
 msgid "Not configured"
 msgstr "Non configurata"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid "Exactly 64 hexadecimal characters."
 msgstr "Esattamente 64 caratteri esadecimali."
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Save Key"
 msgstr "Salva chiave"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid "Get a free API key"
 msgstr "Ottieni una chiave API gratuita"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Delete Key"
 msgstr "Elimina chiave"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "When API key is missing"
 msgstr "Quando manca la chiave API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Always ask"
 msgstr "Chiedi sempre"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid "Open VirusTotal website"
 msgstr "Apri il sito web di VirusTotal"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Show notification only"
 msgstr "Mostra solo una notifica"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Information"
 msgstr "Informazioni"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid ""
 "Free tier: 4 requests per minute, 500 per day. Files up to 650 MB can be "
 "scanned."
@@ -6429,11 +6442,11 @@ msgstr ""
 "Piano gratuito: 4 richieste al minuto, 500 al giorno. È possibile sottoporre "
 "a scansione file fino a 650 MB."
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid "Delete VirusTotal API key"
 msgstr "Elimina la chiave API VirusTotal"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "use VirusTotal scanning."
@@ -6441,29 +6454,29 @@ msgstr ""
 "Questa operazione rimuove la chiave dall'archiviazione sicura. Sarà "
 "necessario immetterla nuovamente per utilizzare la scansione VirusTotal."
 
-#: desktop/src/pages/SettingsPreferences.tsx:439
+#: desktop/src/pages/SettingsPreferences.tsx:442
 #: desktop/src/pages/Urlscan.tsx:103
 msgid "Enter your urlscan API key."
 msgstr "Enter your urlscan API key."
 
-#: desktop/src/pages/SettingsPreferences.tsx:440
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "The urlscan API key cannot contain spaces."
 msgstr "The urlscan API key cannot contain spaces."
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Paste the API key from your urlscan.io account settings."
 msgstr "Paste the API key from your urlscan.io account settings."
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
-#: desktop/src/pages/Urlscan.tsx:219
+#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/Urlscan.tsx:221
 msgid "Get an API key"
 msgstr "Get an API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Open urlscan.io website"
 msgstr "Apri il sito web di urlscan.io"
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
@@ -6471,7 +6484,7 @@ msgstr ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid ""
 "Submitting a URL shares it with urlscan.io, including its query string, and "
 "can expose private or internal addresses. Never submit login links, session "
@@ -6481,11 +6494,11 @@ msgstr ""
 "can expose private or internal addresses. Never submit login links, session "
 "tokens, or confidential information."
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Delete urlscan.io API key"
 msgstr "Delete urlscan.io API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
@@ -6493,187 +6506,187 @@ msgstr ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
 
-#: desktop/src/pages/SettingsPreferences.tsx:464
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Unable to read debug logs: {error}"
 msgstr "Impossibile leggere i registri di debug: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:472
+#: desktop/src/pages/SettingsPreferences.tsx:478
 msgid "Unable to read system information: {error}"
 msgstr "Impossibile leggere le informazioni di sistema: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:479
+#: desktop/src/pages/SettingsPreferences.tsx:485
 msgid "ZIP archives"
 msgstr "Archivi ZIP"
 
-#: desktop/src/pages/SettingsPreferences.tsx:480
+#: desktop/src/pages/SettingsPreferences.tsx:486
 msgid "All files"
 msgstr "Tutti i file"
 
-#: desktop/src/pages/SettingsPreferences.tsx:482
+#: desktop/src/pages/SettingsPreferences.tsx:488
 msgid "Logs exported successfully"
 msgstr "Registri esportati correttamente"
 
-#: desktop/src/pages/SettingsPreferences.tsx:484
+#: desktop/src/pages/SettingsPreferences.tsx:490
 msgid "Unable to export logs: {error}"
 msgstr "Impossibile esportare i registri: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:496
+#: desktop/src/pages/SettingsPreferences.tsx:502
 msgid "{count} log file cleared"
 msgid_plural "{count} log files cleared"
 msgstr[0] "{count} file di registro cancellato"
 msgstr[1] "{count} file di registro cancellati"
 
-#: desktop/src/pages/SettingsPreferences.tsx:499
+#: desktop/src/pages/SettingsPreferences.tsx:505
 msgid "Unable to clear logs: {error}"
 msgstr "Impossibile cancellare i registri: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:506
+#: desktop/src/pages/SettingsPreferences.tsx:512
 msgid "Linux Defender System Information"
 msgstr "Linux Defender System Information"
 
-#: desktop/src/pages/SettingsPreferences.tsx:508
+#: desktop/src/pages/SettingsPreferences.tsx:514
 msgid "Installation Type: {value}"
 msgstr "Tipo di installazione: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:509
+#: desktop/src/pages/SettingsPreferences.tsx:515
 msgid "Distribution: {value}"
 msgstr "Distribuzione: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:510
+#: desktop/src/pages/SettingsPreferences.tsx:516
 msgid "Desktop Environment: {value}"
 msgstr "Ambiente desktop: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:511
+#: desktop/src/pages/SettingsPreferences.tsx:517
 msgid "Rust Runtime: {value}"
 msgstr "Runtime Rust: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:512
+#: desktop/src/pages/SettingsPreferences.tsx:518
 msgid "Tauri Runtime: {value}"
 msgstr "Runtime Tauri: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:513
+#: desktop/src/pages/SettingsPreferences.tsx:519
 msgid "Platform: {value}"
 msgstr "Piattaforma: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:514
+#: desktop/src/pages/SettingsPreferences.tsx:520
 msgid "Architecture: {value}"
 msgstr "Architettura: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:515
+#: desktop/src/pages/SettingsPreferences.tsx:521
 msgid "Version: {value}"
 msgstr "Versione: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:519
+#: desktop/src/pages/SettingsPreferences.tsx:525
 msgid "System information copied to clipboard"
 msgstr "Informazioni di sistema copiate negli appunti"
 
-#: desktop/src/pages/SettingsPreferences.tsx:521
+#: desktop/src/pages/SettingsPreferences.tsx:527
 msgid "Unable to copy system information: {error}"
 msgstr "Impossibile copiare le informazioni di sistema: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:526
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Logging Settings"
 msgstr "Impostazioni dei registri"
 
-#: desktop/src/pages/SettingsPreferences.tsx:526
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Higher levels produce more detailed logs and apply immediately."
 msgstr ""
 "I livelli più elevati producono registri più dettagliati e si applicano "
 "immediatamente."
 
-#: desktop/src/pages/SettingsPreferences.tsx:527
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Log Level"
 msgstr "Livello di registro"
 
-#: desktop/src/pages/SettingsPreferences.tsx:528
+#: desktop/src/pages/SettingsPreferences.tsx:534
 msgid "Log File Location"
 msgstr "Posizione del file di registro"
 
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Log Management"
 msgstr "Gestione dei registri"
 
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid ""
 "Export a ZIP archive for support or permanently clear the application logs."
 msgstr ""
 "Esportare un archivio ZIP per il supporto o cancellare definitivamente i "
 "registri dell'applicazione."
 
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:537
 msgid "Current Log Size"
 msgstr "Dimensione attuale dei registri"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Export Logs"
 msgstr "Esporta registri"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Save all sanitized debug logs to a ZIP archive."
 msgstr "Salva tutti i registri di debug sanitizzati in un archivio ZIP."
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:539
 msgid "Clear Logs"
 msgstr "Cancella registri"
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:539
 msgid "This permanently deletes all debug log files."
 msgstr ""
 "Questa operazione elimina definitivamente tutti i file di registro di debug."
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:539
 msgid "Clear"
 msgstr "Cancella"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:541
 msgid "System Information"
 msgstr "Informazioni di sistema"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:541
 msgid "Useful for troubleshooting and bug reports."
 msgstr "Utile per la risoluzione dei problemi e le segnalazioni di bug."
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Installation Type"
 msgstr "Tipo di installazione"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Distribution"
 msgstr "Distribuzione"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Desktop Environment"
 msgstr "Ambiente desktop"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Rust Runtime"
 msgstr "Runtime Rust"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Tauri Runtime"
 msgstr "Runtime Tauri"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Platform"
 msgstr "Piattaforma"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy System Info"
 msgstr "Copia informazioni di sistema"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy all system information to the clipboard."
 msgstr "Copia tutte le informazioni di sistema negli appunti."
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Loading system information…"
 msgstr "Caricamento delle informazioni di sistema…"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid "Clear logs"
 msgstr "Cancella registri"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid ""
 "This permanently deletes {count} log file totaling {size}. This action "
 "cannot be undone."
@@ -6687,7 +6700,7 @@ msgstr[1] ""
 "Questa operazione elimina definitivamente {count} file di registro per un "
 "totale di {size}. Non può essere annullata."
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid "Delete Logs"
 msgstr "Elimina registri"
 
@@ -6815,39 +6828,39 @@ msgstr "System keyring is unavailable"
 msgid "Enter your VirusTotal API key."
 msgstr "Enter your VirusTotal API key."
 
-#: desktop/src/pages/Urlscan.tsx:115
+#: desktop/src/pages/Urlscan.tsx:116
 msgid "Unable to save the API key: {error}"
 msgstr "Unable to save the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:134
+#: desktop/src/pages/Urlscan.tsx:136
 msgid "Unable to delete the API key: {error}"
 msgstr "Unable to delete the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:148
+#: desktop/src/pages/Urlscan.tsx:150
 msgid "URL submitted to urlscan"
 msgstr "URL submitted to urlscan"
 
-#: desktop/src/pages/Urlscan.tsx:156
+#: desktop/src/pages/Urlscan.tsx:158
 msgid "URL analysis submitted to VirusTotal"
 msgstr "URL analysis submitted to VirusTotal"
 
-#: desktop/src/pages/Urlscan.tsx:166
-msgid ""
-"Private scans are visible only to you unless you share the result; urlscan "
-"retains them for a limited period."
-msgstr ""
-"Private scans are visible only to you unless you share the result; urlscan "
-"retains them for a limited period."
-
 #: desktop/src/pages/Urlscan.tsx:168
 msgid ""
+"Private scans are visible only to you unless you share the result; urlscan "
+"retains them for a limited period."
+msgstr ""
+"Private scans are visible only to you unless you share the result; urlscan "
+"retains them for a limited period."
+
+#: desktop/src/pages/Urlscan.tsx:170
+msgid ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
 msgstr ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
 
-#: desktop/src/pages/Urlscan.tsx:169
+#: desktop/src/pages/Urlscan.tsx:171
 msgid ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
@@ -6855,40 +6868,40 @@ msgstr ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
 
-#: desktop/src/pages/Urlscan.tsx:181 desktop/src/pages/Urlscan.tsx:201
+#: desktop/src/pages/Urlscan.tsx:183 desktop/src/pages/Urlscan.tsx:203
 msgid "Enter your urlscan API key before submitting a URL."
 msgstr "Inserisci la chiave API di urlscan prima di inviare un URL."
 
-#: desktop/src/pages/Urlscan.tsx:182 desktop/src/pages/Urlscan.tsx:202
+#: desktop/src/pages/Urlscan.tsx:184 desktop/src/pages/Urlscan.tsx:204
 msgid "Enter your VirusTotal API key before submitting a URL."
 msgstr "Inserisci la chiave API di VirusTotal prima di inviare un URL."
 
-#: desktop/src/pages/Urlscan.tsx:189
+#: desktop/src/pages/Urlscan.tsx:191
 msgid "Opened the urlscan.io website in your browser"
 msgstr "Sito web di urlscan.io aperto nel browser"
 
-#: desktop/src/pages/Urlscan.tsx:196
+#: desktop/src/pages/Urlscan.tsx:198
 msgid "Configure a urlscan API key in Preferences before submitting a URL."
 msgstr ""
 "Configura una chiave API di urlscan nelle Preferenze prima di inviare un URL."
 
-#: desktop/src/pages/Urlscan.tsx:206
+#: desktop/src/pages/Urlscan.tsx:208
 msgid "Website URL inspection"
 msgstr "Website URL inspection"
 
-#: desktop/src/pages/Urlscan.tsx:207
+#: desktop/src/pages/Urlscan.tsx:209
 msgid "URL scan service"
 msgstr "URL scan service"
 
-#: desktop/src/pages/Urlscan.tsx:213
+#: desktop/src/pages/Urlscan.tsx:215
 msgid "urlscan.io account"
 msgstr "urlscan.io account"
 
-#: desktop/src/pages/Urlscan.tsx:213
+#: desktop/src/pages/Urlscan.tsx:215
 msgid "VirusTotal account"
 msgstr "VirusTotal account"
 
-#: desktop/src/pages/Urlscan.tsx:214
+#: desktop/src/pages/Urlscan.tsx:216
 msgid ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
@@ -6896,55 +6909,55 @@ msgstr ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
 
-#: desktop/src/pages/Urlscan.tsx:215
+#: desktop/src/pages/Urlscan.tsx:217
 msgid "Key status"
 msgstr "Key status"
 
-#: desktop/src/pages/Urlscan.tsx:216
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Personal API key"
 msgstr "Personal API key"
 
-#: desktop/src/pages/Urlscan.tsx:216
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Paste your urlscan API key"
 msgstr "Paste your urlscan API key"
 
-#: desktop/src/pages/Urlscan.tsx:216
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Paste your VirusTotal API key"
 msgstr "Paste your VirusTotal API key"
 
-#: desktop/src/pages/Urlscan.tsx:218
+#: desktop/src/pages/Urlscan.tsx:220
 msgid "Save key"
 msgstr "Save key"
 
-#: desktop/src/pages/Urlscan.tsx:218
+#: desktop/src/pages/Urlscan.tsx:220
 msgid "Delete key"
 msgstr "Delete key"
 
-#: desktop/src/pages/Urlscan.tsx:224
+#: desktop/src/pages/Urlscan.tsx:226
 msgid "Submit a website for inspection"
 msgstr "Submit a website for inspection"
 
-#: desktop/src/pages/Urlscan.tsx:226
+#: desktop/src/pages/Urlscan.tsx:228
 msgid ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
 msgstr ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
-
-#: desktop/src/pages/Urlscan.tsx:227
-msgid ""
-"VirusTotal checks the URL with multiple security engines and blocklists. "
-"This is a remote reputation analysis, not a local file scan."
-msgstr ""
-"VirusTotal checks the URL with multiple security engines and blocklists. "
-"This is a remote reputation analysis, not a local file scan."
 
 #: desktop/src/pages/Urlscan.tsx:229
+msgid ""
+"VirusTotal checks the URL with multiple security engines and blocklists. "
+"This is a remote reputation analysis, not a local file scan."
+msgstr ""
+"VirusTotal checks the URL with multiple security engines and blocklists. "
+"This is a remote reputation analysis, not a local file scan."
+
+#: desktop/src/pages/Urlscan.tsx:231
 msgid "Result visibility"
 msgstr "Result visibility"
 
-#: desktop/src/pages/Urlscan.tsx:231
+#: desktop/src/pages/Urlscan.tsx:233
 msgid ""
 "urlscan receives the complete URL, including its query string, and visits "
 "it. Never submit login links, session tokens, private/internal URLs, or "
@@ -6953,95 +6966,95 @@ msgstr ""
 "urlscan receives the complete URL, including its query string, and visits "
 "it. Never submit login links, session tokens, private/internal URLs, or "
 "confidential information."
-
-#: desktop/src/pages/Urlscan.tsx:232
-msgid ""
-"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
-"shared with its community and security partners. Never submit login links, "
-"session tokens, private/internal URLs, or confidential information."
-msgstr ""
-"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
-"shared with its community and security partners. Never submit login links, "
-"session tokens, private/internal URLs, or confidential information."
 
 #: desktop/src/pages/Urlscan.tsx:234
+msgid ""
+"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
+"shared with its community and security partners. Never submit login links, "
+"session tokens, private/internal URLs, or confidential information."
+msgstr ""
+"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
+"shared with its community and security partners. Never submit login links, "
+"session tokens, private/internal URLs, or confidential information."
+
+#: desktop/src/pages/Urlscan.tsx:236
 msgid "Submission accepted"
 msgstr "Submission accepted"
 
-#: desktop/src/pages/Urlscan.tsx:234
+#: desktop/src/pages/Urlscan.tsx:236
 msgid "Visibility: {visibility}"
 msgstr "Visibility: {visibility}"
 
-#: desktop/src/pages/Urlscan.tsx:234
+#: desktop/src/pages/Urlscan.tsx:236
 msgid "Open urlscan result"
 msgstr "Open urlscan result"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "VirusTotal reported detections"
 msgstr "VirusTotal reported detections"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "Analysis complete — no detections reported"
 msgstr "Analysis complete — no detections reported"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "Analysis is still processing"
 msgstr "Analysis is still processing"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "VirusTotal rate limit reached"
 msgstr "VirusTotal rate limit reached"
 
 #
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "VirusTotal analysis failed"
 msgstr "VirusTotal analysis failed"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "{detections} of {total} URL engines reported suspicious or malicious"
 msgstr "{detections} of {total} URL engines reported suspicious or malicious"
 
-#: desktop/src/pages/Urlscan.tsx:236 desktop/src/pages/Urlscan.tsx:244
+#: desktop/src/pages/Urlscan.tsx:238 desktop/src/pages/Urlscan.tsx:246
 msgid "Submitting…"
 msgstr "Submitting…"
 
-#: desktop/src/pages/Urlscan.tsx:236
+#: desktop/src/pages/Urlscan.tsx:238
 msgid "Review submission"
 msgstr "Review submission"
 
-#: desktop/src/pages/Urlscan.tsx:238
+#: desktop/src/pages/Urlscan.tsx:240
 msgid "Confirm urlscan submission"
 msgstr "Confirm urlscan submission"
 
-#: desktop/src/pages/Urlscan.tsx:238
+#: desktop/src/pages/Urlscan.tsx:240
 msgid "Confirm VirusTotal URL submission"
 msgstr "Confirm VirusTotal URL submission"
 
-#: desktop/src/pages/Urlscan.tsx:240
-msgid ""
-"urlscan will visit this URL and store page activity. The service receives "
-"the full URL, including its query string."
-msgstr ""
-"urlscan will visit this URL and store page activity. The service receives "
-"the full URL, including its query string."
-
-#: desktop/src/pages/Urlscan.tsx:241
-msgid ""
-"VirusTotal will submit this URL for analysis and add it to its dataset, "
-"where it may be shared with its community and security partners."
-msgstr ""
-"VirusTotal will submit this URL for analysis and add it to its dataset, "
-"where it may be shared with its community and security partners."
-
 #: desktop/src/pages/Urlscan.tsx:242
+msgid ""
+"urlscan will visit this URL and store page activity. The service receives "
+"the full URL, including its query string."
+msgstr ""
+"urlscan will visit this URL and store page activity. The service receives "
+"the full URL, including its query string."
+
+#: desktop/src/pages/Urlscan.tsx:243
+msgid ""
+"VirusTotal will submit this URL for analysis and add it to its dataset, "
+"where it may be shared with its community and security partners."
+msgstr ""
+"VirusTotal will submit this URL for analysis and add it to its dataset, "
+"where it may be shared with its community and security partners."
+
+#: desktop/src/pages/Urlscan.tsx:244
 msgid "URL"
 msgstr "URL"
 
-#: desktop/src/pages/Urlscan.tsx:242
+#: desktop/src/pages/Urlscan.tsx:244
 msgid "Visibility"
 msgstr "Visibility"
 
-#: desktop/src/pages/Urlscan.tsx:244
+#: desktop/src/pages/Urlscan.tsx:246
 msgid "Submit URL"
 msgstr "Submit URL"
 
@@ -7122,6 +7135,12 @@ msgstr "Le definizioni dei virus risalgono a oltre 1 giorno fa"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "Il sistema è protetto"
+
+#~ msgid "No mandatory access control framework detected"
+#~ msgstr "Nessun framework di controllo degli accessi obbligatorio rilevato"
+
+#~ msgid "Consider enabling AppArmor or SELinux"
+#~ msgstr "Valuta di abilitare AppArmor o SELinux"
 
 #~ msgid "{key}: path cannot be empty"
 #~ msgstr "{key}: il percorso non può essere vuoto"

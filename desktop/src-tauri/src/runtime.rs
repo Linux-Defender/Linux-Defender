@@ -746,6 +746,11 @@ fn parse_startup_targets(args: &[String], cwd: &Path) -> Result<Targets, String>
 }
 
 fn allow_navigation(url: &url::Url) -> bool {
+    // Credentials in an "allowed" origin are a spoofing vector; never trust
+    // userinfo even when the parsed host matches an allowed origin.
+    if !url.username().is_empty() || url.password().is_some() {
+        return false;
+    }
     let production_origin =
         (url.scheme() == "tauri" && url.host_str() == Some("localhost") && url.port().is_none())
             || (url.scheme() == "http"
@@ -760,6 +765,10 @@ fn allow_navigation(url: &url::Url) -> bool {
 
 fn sync_profiles(ctx: &Context, tray: &TrayController) {
     let Ok(value) = dispatch(ctx, "profiles.list", json!({})) else {
+        ctx.emit(
+            "linux-defender-event",
+            json!({"event": "runtime-error", "data": {"component": "tray-profiles", "message": "Could not refresh tray profiles"}}),
+        );
         return;
     };
     let profiles = value
@@ -807,6 +816,37 @@ fn toggle_window(app: &AppHandle) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn navigation_allowlist_rejects_untrusted_origins() {
+        let allowed = [
+            "tauri://localhost",
+            "http://tauri.localhost",
+            "http://tauri.localhost:80",
+        ];
+        let rejected = [
+            "https://tauri.localhost",
+            "file:///etc/passwd",
+            "data:text/html,<script>alert(1)</script>",
+            "http://tauri.localhost.evil.com",
+            "http://user@tauri.localhost",
+        ];
+        for value in allowed {
+            assert!(
+                allow_navigation(&url::Url::parse(value).unwrap()),
+                "{value}"
+            );
+        }
+        for value in rejected {
+            assert!(
+                !allow_navigation(&url::Url::parse(value).unwrap()),
+                "{value}"
+            );
+        }
+        // The dev origin is only allowed in debug builds.
+        let dev = url::Url::parse("http://127.0.0.1:1420").unwrap();
+        assert_eq!(allow_navigation(&dev), cfg!(debug_assertions));
+    }
 
     #[test]
     fn startup_arguments_keep_every_clamav_target() {

@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 10:46-0500\n"
+"POT-Creation-Date: 2026-11-26 19:18-0500\n"
 "PO-Revision-Date: 2026-10-17 12:00+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmål\n"
@@ -159,7 +159,7 @@ msgstr "Enable scheduled scans in Preferences → Schedule"
 
 #: crates/linux-defender-core/src/audit.rs:561
 msgid "No scheduling backend is available on this system"
-msgstr "Ingen planleggingsbakvrende er tilgjengelig på dette systemet"
+msgstr "Ingen planleggingsbackend er tilgjengelig på dette systemet"
 
 #: crates/linux-defender-core/src/audit.rs:563
 msgid "Scheduled scans require a systemd user session or cron"
@@ -198,253 +198,250 @@ msgstr "Noen nettverkssokkelrader kunne ikke leses."
 msgid "No open ports detected"
 msgstr "Fant ingen åpne porter"
 
-#: crates/linux-defender-core/src/audit.rs:832
+#: crates/linux-defender-core/src/audit.rs:841
 msgid "AppArmor is enabled"
 msgstr "AppArmor er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:840
+#: crates/linux-defender-core/src/audit.rs:851
 msgid "AppArmor module is loaded but not enabled"
 msgstr "AppArmor-modulen er lastet, men ikke slått på"
 
-#: crates/linux-defender-core/src/audit.rs:842
+#: crates/linux-defender-core/src/audit.rs:853
 msgid "Enable AppArmor for application sandboxing"
 msgstr "Slå på AppArmor for å isolere programmer"
 
-#: crates/linux-defender-core/src/audit.rs:858
+#: crates/linux-defender-core/src/audit.rs:868
 msgid "SELinux is enforcing"
 msgstr "SELinux håndhever reglene (enforcing)"
 
-#: crates/linux-defender-core/src/audit.rs:866
+#: crates/linux-defender-core/src/audit.rs:876
 msgid "SELinux is in permissive mode"
 msgstr "SELinux er i tillatende modus (permissive)"
 
-#: crates/linux-defender-core/src/audit.rs:868
+#: crates/linux-defender-core/src/audit.rs:878
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr ""
 "Vurder å bytte til håndhevende modus (enforcing) for sterkere beskyttelse"
 
-#: crates/linux-defender-core/src/audit.rs:880
+#: crates/linux-defender-core/src/audit.rs:890
 msgid "SELinux is disabled"
 msgstr "SELinux er slått av"
 
-#: crates/linux-defender-core/src/audit.rs:882
+#: crates/linux-defender-core/src/audit.rs:892
 msgid "Enable SELinux for mandatory access control"
 msgstr "Slå på SELinux for obligatorisk tilgangskontroll"
 
-#: crates/linux-defender-core/src/audit.rs:897
-msgid "No mandatory access control framework detected"
-msgstr "Fant ikke noe rammeverk for obligatorisk tilgangskontroll (MAC)"
+#: crates/linux-defender-core/src/audit.rs:900
+#: crates/linux-defender-core/src/audit.rs:911
+msgid "SELinux status could not be determined"
+msgstr "SELinux status could not be determined"
 
-#: crates/linux-defender-core/src/audit.rs:899
-msgid "Consider enabling AppArmor or SELinux"
-msgstr "Vurder å slå på AppArmor eller SELinux"
-
-#: crates/linux-defender-core/src/audit.rs:925
+#: crates/linux-defender-core/src/audit.rs:938
 msgid "Automatic security updates are enabled"
 msgstr "Automatiske sikkerhetsoppdateringer er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:936
+#: crates/linux-defender-core/src/audit.rs:949
 msgid "Unattended upgrades is installed but disabled"
 msgstr "Unattended Upgrades er installert, men slått av"
 
-#: crates/linux-defender-core/src/audit.rs:938
+#: crates/linux-defender-core/src/audit.rs:951
 msgid "Enable automatic security updates"
 msgstr "Slå på automatiske sikkerhetsoppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:952
+#: crates/linux-defender-core/src/audit.rs:965
 msgid "DNF automatic updates are enabled"
 msgstr "Automatiske oppdateringer med DNF er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:963
+#: crates/linux-defender-core/src/audit.rs:976
 msgid "DNF automatic is installed but timer is not active"
 msgstr "DNF Automatic er installert, men tidsuret er ikke aktivt"
 
-#: crates/linux-defender-core/src/audit.rs:965
+#: crates/linux-defender-core/src/audit.rs:978
 msgid "Enable automatic updates"
 msgstr "Slå på automatiske oppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:979
+#: crates/linux-defender-core/src/audit.rs:992
 msgid "Could not determine automatic update status"
 msgstr "Kunne ikke fastslå status for automatiske oppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:981
+#: crates/linux-defender-core/src/audit.rs:994
 msgid "Configure automatic security updates"
 msgstr "Sett opp automatiske sikkerhetsoppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:996
+#: crates/linux-defender-core/src/audit.rs:1009
 msgid "System reboot required to apply updates"
 msgstr "Systemet må startes på nytt for å ta i bruk oppdateringene"
 
-#: crates/linux-defender-core/src/audit.rs:998
+#: crates/linux-defender-core/src/audit.rs:1011
 msgid "Reboot the system to apply pending security updates"
 msgstr ""
 "Start systemet på nytt for å ta i bruk ventende sikkerhetsoppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:1044
+#: crates/linux-defender-core/src/audit.rs:1057
 msgid "{name} is installed but not running"
 msgstr "{name} er installert, men kjører ikke"
 
-#: crates/linux-defender-core/src/audit.rs:1063
+#: crates/linux-defender-core/src/audit.rs:1076
 msgid "No intrusion detection system found"
 msgstr "Fant ikke noe system for inntrengingsdeteksjon"
 
-#: crates/linux-defender-core/src/audit.rs:1065
+#: crates/linux-defender-core/src/audit.rs:1078
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr "Installer fail2ban eller CrowdSec for å beskytte mot angrep"
 
-#: crates/linux-defender-core/src/audit.rs:1092
+#: crates/linux-defender-core/src/audit.rs:1105
 msgid "SSH server is not running (no remote attack surface)"
 msgstr "SSH-serveren kjører ikke (ingen angrepsflate utenfra)"
 
-#: crates/linux-defender-core/src/audit.rs:1103
+#: crates/linux-defender-core/src/audit.rs:1116
 msgid "SSH server is running"
 msgstr "SSH-serveren kjører"
 
-#: crates/linux-defender-core/src/audit.rs:1113
+#: crates/linux-defender-core/src/audit.rs:1126
 msgid "Could not read SSH configuration"
 msgstr "Kunne ikke lese SSH-konfigurasjonen"
 
-#: crates/linux-defender-core/src/audit.rs:1132
+#: crates/linux-defender-core/src/audit.rs:1145
 msgid "Root login: {value}"
 msgstr "Innlogging som root: {value}"
 
-#: crates/linux-defender-core/src/audit.rs:1140
+#: crates/linux-defender-core/src/audit.rs:1153
 msgid "Root login is allowed ({value})"
 msgstr "Innlogging som root er tillatt ({value})"
 
-#: crates/linux-defender-core/src/audit.rs:1146
+#: crates/linux-defender-core/src/audit.rs:1159
 msgid "Disable root SSH login for security"
 msgstr "Slå av innlogging som root over SSH av hensyn til sikkerheten"
 
-#: crates/linux-defender-core/src/audit.rs:1161
+#: crates/linux-defender-core/src/audit.rs:1174
 msgid "Password authentication is disabled (key-only)"
 msgstr "Passordautentisering er slått av (bare nøkler)"
 
-#: crates/linux-defender-core/src/audit.rs:1169
+#: crates/linux-defender-core/src/audit.rs:1182
 msgid "Password authentication is enabled"
 msgstr "Passordautentisering er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:1171
+#: crates/linux-defender-core/src/audit.rs:1184
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr "Vurder å slå av passordautentisering og bruke SSH-nøkler i stedet"
 
-#: crates/linux-defender-core/src/audit.rs:1189
+#: crates/linux-defender-core/src/audit.rs:1202
 msgid "X11 forwarding is disabled"
 msgstr "X11-videresending er slått av"
 
-#: crates/linux-defender-core/src/audit.rs:1197
+#: crates/linux-defender-core/src/audit.rs:1210
 msgid "X11 forwarding is enabled"
 msgstr "X11-videresending er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:1199
+#: crates/linux-defender-core/src/audit.rs:1212
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr "Slå av X11-videresending for å redusere angrepsflaten"
 
-#: crates/linux-defender-core/src/audit.rs:1259
+#: crates/linux-defender-core/src/audit.rs:1272
 msgid "Application firewalls"
 msgstr "Application firewalls"
 
-#: crates/linux-defender-core/src/audit.rs:1282
+#: crates/linux-defender-core/src/audit.rs:1295
 msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster kjører og beskytter tilkoblingene"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1305
+#: crates/linux-defender-core/src/audit.rs:1318
 msgid "Authorize Linux Defender in Portmaster for per-module health"
 msgstr "Gi Linux Defender tilgang i Portmaster for å se status for hver modul"
 
-#: crates/linux-defender-core/src/audit.rs:1311
+#: crates/linux-defender-core/src/audit.rs:1324
 msgid "Authorize"
 msgstr "Gi tilgang"
 
-#: crates/linux-defender-core/src/audit.rs:1322
+#: crates/linux-defender-core/src/audit.rs:1335
 msgid "Portmaster is installed but not running"
 msgstr "Portmaster er installert, men kjører ikke"
 
-#: crates/linux-defender-core/src/audit.rs:1324
+#: crates/linux-defender-core/src/audit.rs:1337
 msgid "Start the Portmaster service to enable network protection"
 msgstr "Start Portmaster-tjenesten for å slå på nettverksbeskyttelsen"
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/linux-defender-core/src/audit.rs:1338
+#: crates/linux-defender-core/src/audit.rs:1351
 msgid "Not detected — optional network monitor and application firewall"
 msgstr "Ikke funnet – valgfri nettverksovervåking og programbrannmur"
 
-#: crates/linux-defender-core/src/audit.rs:1354
+#: crates/linux-defender-core/src/audit.rs:1367
 msgid "Could not probe Portmaster: {error}"
 msgstr "Kunne ikke undersøke Portmaster: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1404
+#: crates/linux-defender-core/src/audit.rs:1417
 msgid "{name} is not installed"
 msgstr "{name} er ikke installert"
 
-#: crates/linux-defender-core/src/audit.rs:1411
+#: crates/linux-defender-core/src/audit.rs:1424
 msgid "Install {name} for comprehensive security auditing"
 msgstr "Installer {name} for omfattende sikkerhetsrevisjon"
 
-#: crates/linux-defender-core/src/audit.rs:1417
+#: crates/linux-defender-core/src/audit.rs:1430
 msgid "Install chkrootkit for rootkit detection"
 msgstr "Installer chkrootkit for å oppdage rootkits"
 
-#: crates/linux-defender-core/src/audit.rs:1437
+#: crates/linux-defender-core/src/audit.rs:1450
 msgid "Authentication was cancelled"
 msgstr "Autentisering avbrutt"
 
-#: crates/linux-defender-core/src/audit.rs:1445
+#: crates/linux-defender-core/src/audit.rs:1458
 msgid "Lynis audit timed out after 5 minutes"
 msgstr "Lynis-revisjon avbrutt etter 5 minutter"
 
-#: crates/linux-defender-core/src/audit.rs:1447
+#: crates/linux-defender-core/src/audit.rs:1460
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr "Skanningen etter rootkits ble avbrutt etter 5 minutter"
 
-#: crates/linux-defender-core/src/audit.rs:1466
-#: crates/linux-defender-core/src/audit.rs:1512
+#: crates/linux-defender-core/src/audit.rs:1479
+#: crates/linux-defender-core/src/audit.rs:1525
 msgid "Failed to run Lynis: {error}"
 msgstr "Kunne ikke kjøre Lynis: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1472
+#: crates/linux-defender-core/src/audit.rs:1485
 msgid "Failed to run chkrootkit: {error}"
 msgstr "Kunne ikke kjøre chkrootkit: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1541
+#: crates/linux-defender-core/src/audit.rs:1554
 msgid "Score: {score}/100"
 msgstr "Poengsum: {score}/100"
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/linux-defender-core/src/audit.rs:1544
+#: crates/linux-defender-core/src/audit.rs:1557
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr "Kjør «sudo lynis audit system» for detaljerte anbefalinger"
 
-#: crates/linux-defender-core/src/audit.rs:1561
+#: crates/linux-defender-core/src/audit.rs:1574
 msgid "Audit completed (exit code {code})"
 msgstr "Revisjon fullført (statuskode {code})"
 
-#: crates/linux-defender-core/src/audit.rs:1599
-#: crates/linux-defender-core/src/audit.rs:1613
+#: crates/linux-defender-core/src/audit.rs:1612
+#: crates/linux-defender-core/src/audit.rs:1626
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr ""
 "Skanningen etter rootkits kunne ikke fullføres (avslutningskode {code})"
 
-#: crates/linux-defender-core/src/audit.rs:1650
+#: crates/linux-defender-core/src/audit.rs:1663
 msgid "No rootkits detected"
 msgstr "Ingen rootkits oppdaget"
 
-#: crates/linux-defender-core/src/audit.rs:1662
+#: crates/linux-defender-core/src/audit.rs:1675
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] "{count} mulig rootkit oppdaget"
 msgstr[1] "{count} mulige rootkits oppdaget"
 
-#: crates/linux-defender-core/src/audit.rs:1670
+#: crates/linux-defender-core/src/audit.rs:1683
 msgid "Investigate the detected threats immediately"
 msgstr "Undersøk de oppdagede truslene med en gang"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:88
+#: crates/linux-defender-core/src/audit/firewall.rs:90
 msgid "Firewall manager overlap"
 msgstr "Overlapp mellom brannmurbehandlere"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:89
+#: crates/linux-defender-core/src/audit/firewall.rs:91
 msgid ""
 "UFW is active while Firewalld owns its D-Bus name; their rule interaction "
 "was not evaluated."
@@ -452,13 +449,13 @@ msgstr ""
 "UFW er aktiv mens Firewalld eier D-Bus-navnet; samspillet mellom reglene "
 "deres ble ikke vurdert."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:207
+#: crates/linux-defender-core/src/audit/firewall.rs:209
 msgid "UFW was not found at a trusted system path."
 msgstr "UFW ble ikke funnet på en pålitelig systemsti."
 
 #. Translators: UFW is the name of the firewall application.
-#: crates/linux-defender-core/src/audit/firewall.rs:210
-#: crates/linux-defender-core/src/audit/firewall.rs:244
+#: crates/linux-defender-core/src/audit/firewall.rs:212
+#: crates/linux-defender-core/src/audit/firewall.rs:246
 msgid ""
 "Administrator authorization for the UFW status check was denied or "
 "unavailable."
@@ -466,21 +463,21 @@ msgstr ""
 "Administrator authorization for the UFW status check was denied or "
 "unavailable."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:232
+#: crates/linux-defender-core/src/audit/firewall.rs:234
 msgid "The UFW status check timed out."
 msgstr "UFW statuskontroll ble tidsavbrutt."
 
 #. Translators: UFW is the name of the firewall application.
-#: crates/linux-defender-core/src/audit/firewall.rs:235
-#: crates/linux-defender-core/src/audit/firewall.rs:265
+#: crates/linux-defender-core/src/audit/firewall.rs:237
+#: crates/linux-defender-core/src/audit/firewall.rs:267
 msgid "The UFW status check returned incomplete or invalid output."
 msgstr "UFW statuskontroll returnerte ufullstendig eller ugyldig utgang."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:253
+#: crates/linux-defender-core/src/audit/firewall.rs:255
 msgid "The UFW status check failed."
 msgstr "The UFW status check failed."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:382
+#: crates/linux-defender-core/src/audit/firewall.rs:384
 msgid ""
 "UFW is active; the default incoming policy is deny. Listed rules may allow "
 "exceptions."
@@ -488,7 +485,7 @@ msgstr ""
 "UFW er aktiv; standardregelen for innkommende trafikk er avvisning. Oppførte "
 "regler kan tillate unntak."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:389
+#: crates/linux-defender-core/src/audit/firewall.rs:391
 msgid ""
 "UFW is active; the default incoming policy is reject. Listed rules may allow "
 "exceptions."
@@ -496,28 +493,28 @@ msgstr ""
 "UFW er aktiv; standardregelen for innkommende trafikk er avvisning med "
 "avslag. Oppførte regler kan tillate unntak."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:396
+#: crates/linux-defender-core/src/audit/firewall.rs:398
 msgid "UFW is active; the default incoming policy is deny."
 msgstr "UFW er aktiv; standardregelen for innkommende trafikk er avvisning."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:400
+#: crates/linux-defender-core/src/audit/firewall.rs:402
 msgid "UFW is active; the default incoming policy is reject."
 msgstr ""
 "UFW er aktiv; standardregelen for innkommende trafikk er avvisning med "
 "avslag."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:404
+#: crates/linux-defender-core/src/audit/firewall.rs:406
 msgid "UFW is active, but the default incoming policy allows traffic."
 msgstr ""
 "UFW er aktiv, men standardregelen for innkommende trafikk tillater trafikk."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:411
+#: crates/linux-defender-core/src/audit/firewall.rs:413
 msgid "UFW is active, but its default incoming policy could not be verified."
 msgstr ""
 "UFW er aktiv, men standardregelen for innkommende trafikk kunne ikke "
 "bekreftes."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:415
+#: crates/linux-defender-core/src/audit/firewall.rs:417
 msgid ""
 "UFW is inactive, but another firewall manager is active and protecting the "
 "system."
@@ -525,11 +522,11 @@ msgstr ""
 "UFW is inactive, but another firewall manager is active and protecting the "
 "system."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:419
+#: crates/linux-defender-core/src/audit/firewall.rs:421
 msgid "UFW reports inactive."
 msgstr "UFW rapporterer at den er inaktiv."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:420
+#: crates/linux-defender-core/src/audit/firewall.rs:422
 msgid ""
 "UFW's service is active, but its default firewall policy could not be "
 "verified without administrator access."
@@ -537,19 +534,19 @@ msgstr ""
 "UFW er aktiv, men standardregelen for innkommende trafikk kunne ikke "
 "bekreftes."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:424
+#: crates/linux-defender-core/src/audit/firewall.rs:426
 msgid "UFW status could not be inspected safely."
 msgstr "UFW-statusen kunne ikke undersøkes på en sikker måte."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:436
+#: crates/linux-defender-core/src/audit/firewall.rs:438
 msgid "UFW Firewall"
 msgstr "UFW-brannmur"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:441
+#: crates/linux-defender-core/src/audit/firewall.rs:443
 msgid "Check UFW with administrator access"
 msgstr "Sjekk UFW med administrator tilgang"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:443
+#: crates/linux-defender-core/src/audit/firewall.rs:445
 msgid ""
 "Administrator access may be required to read UFW status. This check does not "
 "change firewall settings."
@@ -557,18 +554,18 @@ msgstr ""
 "Administrator access may be required to read UFW status. This check does not "
 "change firewall settings."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:481
+#: crates/linux-defender-core/src/audit/firewall.rs:483
 msgid "Firewalld"
 msgstr "firewalld"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:483
+#: crates/linux-defender-core/src/audit/firewall.rs:485
 msgid ""
 "Firewalld owns its D-Bus name; readiness and firewall policy were not "
 "queried."
 msgstr ""
 "Firewalld eier D-Bus-navnet; beredskap og brannmurregler ble ikke spurt om."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:487
+#: crates/linux-defender-core/src/audit/firewall.rs:489
 msgid ""
 "No Firewalld D-Bus owner was observed; this does not establish kernel "
 "firewall policy."
@@ -576,7 +573,7 @@ msgstr ""
 "Ingen eier av Firewallds D-Bus-navn ble observert; dette fastslår ikke "
 "kjernens brannmurregler."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:491
+#: crates/linux-defender-core/src/audit/firewall.rs:493
 msgid ""
 "Firewalld ownership could not be verified; readiness and firewall policy "
 "were not queried."
@@ -584,23 +581,23 @@ msgstr ""
 "Eierskapet til Firewalld kunne ikke bekreftes; beredskap og brannmurregler "
 "ble ikke spurt om."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:506
+#: crates/linux-defender-core/src/audit/firewall.rs:508
 msgid "firewall-cmd"
 msgstr "firewall-cmd"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:512
+#: crates/linux-defender-core/src/audit/firewall.rs:514
 msgid "firewall-cmd is installed; it was not executed."
 msgstr "firewall-cmd er installert; den ble ikke kjørt."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:519
+#: crates/linux-defender-core/src/audit/firewall.rs:521
 msgid "firewall-cmd could not be confirmed without executing it."
 msgstr "firewall-cmd kunne ikke bekreftes uten å kjøre den."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:657
+#: crates/linux-defender-core/src/audit/firewall.rs:659
 msgid "nftables (native rules)"
 msgstr "nftables (innebygde regler)"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:659
+#: crates/linux-defender-core/src/audit/firewall.rs:661
 msgid ""
 "nftables has restrictive default input policies for IPv4 and IPv6; "
 "individual rules may allow exceptions."
@@ -608,7 +605,7 @@ msgstr ""
 "nftables har restriktive standardregler for innkommende IPv4- og IPv6-"
 "trafikk; enkeltregler kan tillate unntak."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:663
+#: crates/linux-defender-core/src/audit/firewall.rs:665
 msgid ""
 "nftables reports a permissive default input policy; remaining coverage may "
 "be incomplete"
@@ -616,18 +613,18 @@ msgstr ""
 "nftables rapporterer en tillatende standardregel for innkommende trafikk; "
 "den øvrige dekningen kan være ufullstendig."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:667
+#: crates/linux-defender-core/src/audit/firewall.rs:669
 msgid ""
 "nftables input policy coverage could not be verified for both IPv4 and IPv6"
 msgstr ""
 "Dekningen av nftables-regler for innkommende IPv4- og IPv6-trafikk kunne "
 "ikke bekreftes."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:727
+#: crates/linux-defender-core/src/audit/firewall.rs:729
 msgid "iptables (IPv4)"
 msgstr "iptables (IPv4)"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:729
+#: crates/linux-defender-core/src/audit/firewall.rs:731
 msgid ""
 "iptables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
@@ -635,19 +632,19 @@ msgstr ""
 "iptables har en restriktiv standardregel for INPUT; enkeltregler kan tillate "
 "unntak."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:733
+#: crates/linux-defender-core/src/audit/firewall.rs:735
 msgid "iptables has a permissive INPUT default policy"
 msgstr "iptables har en tillatende standardregel for INPUT."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:734
+#: crates/linux-defender-core/src/audit/firewall.rs:736
 msgid "iptables INPUT policy could not be verified"
 msgstr "iptables-regelen for INPUT kunne ikke bekreftes."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:740
+#: crates/linux-defender-core/src/audit/firewall.rs:742
 msgid "iptables (IPv6)"
 msgstr "iptables (IPv6)"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:742
+#: crates/linux-defender-core/src/audit/firewall.rs:744
 msgid ""
 "ip6tables has a restrictive INPUT default policy; individual rules may allow "
 "exceptions."
@@ -655,19 +652,19 @@ msgstr ""
 "ip6tables har en restriktiv standardregel for INPUT; enkeltregler kan "
 "tillate unntak."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:746
+#: crates/linux-defender-core/src/audit/firewall.rs:748
 msgid "ip6tables has a permissive INPUT default policy"
 msgstr "ip6tables har en tillatende standardregel for INPUT."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:747
+#: crates/linux-defender-core/src/audit/firewall.rs:749
 msgid "ip6tables INPUT policy could not be verified"
 msgstr "ip6tables-regelen for INPUT kunne ikke bekreftes."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:791
+#: crates/linux-defender-core/src/audit/firewall.rs:793
 msgid "Firewall"
 msgstr "Brannmur"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:794
+#: crates/linux-defender-core/src/audit/firewall.rs:796
 msgid ""
 "UFW and Firewalld are both active; review which one is meant to control your "
 "firewall rules."
@@ -675,31 +672,31 @@ msgstr ""
 "UFW and Firewalld are both active; review which one is meant to control your "
 "firewall rules."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:799
+#: crates/linux-defender-core/src/audit/firewall.rs:801
 msgid "Firewalld is active and managing the firewall."
 msgstr "Firewalld er aktiv og forvalter brannmuren."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:804
+#: crates/linux-defender-core/src/audit/firewall.rs:806
 msgid "No active firewall manager was detected."
 msgstr "Ingen aktiv brannmurforvalter ble oppdaget."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:808
+#: crates/linux-defender-core/src/audit/firewall.rs:810
 msgid "Enable UFW or Firewalld to protect the system."
 msgstr "Aktiver UFW eller Firewalld for å beskytte systemet."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:811
+#: crates/linux-defender-core/src/audit/firewall.rs:813
 msgid "The active firewall manager could not be verified."
 msgstr "The active firewall manager could not be verified."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:827
+#: crates/linux-defender-core/src/audit/firewall.rs:829
 msgid "Gufw"
 msgstr "Gufw"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:833
+#: crates/linux-defender-core/src/audit/firewall.rs:835
 msgid "Gufw is available."
 msgstr "Gufw er tilgjengelig."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:836
+#: crates/linux-defender-core/src/audit/firewall.rs:838
 msgid ""
 "Gufw was not confirmed; this optional inventory does not affect firewall "
 "policy analysis."
@@ -707,19 +704,19 @@ msgstr ""
 "Gufw ble ikke bekreftet; denne valgfrie inventaroppføringen påvirker ikke "
 "analysen av brannmurregler."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:844
+#: crates/linux-defender-core/src/audit/firewall.rs:846
 msgid "Open Gufw"
 msgstr "Åpne Gufw"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:850
+#: crates/linux-defender-core/src/audit/firewall.rs:852
 msgid "Firewall Config"
 msgstr "Firewall Config"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:856
+#: crates/linux-defender-core/src/audit/firewall.rs:858
 msgid "Firewall Config is available."
 msgstr "Firewall Config er tilgjengelig."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:859
+#: crates/linux-defender-core/src/audit/firewall.rs:861
 msgid ""
 "Firewall Config was not confirmed; this optional inventory does not affect "
 "firewall policy analysis."
@@ -727,20 +724,20 @@ msgstr ""
 "Firewall Config ble ikke bekreftet; denne valgfrie inventaroppføringen "
 "påvirker ikke analysen av brannmurregler."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:867
+#: crates/linux-defender-core/src/audit/firewall.rs:869
 msgid "Open Firewall Config"
 msgstr "Åpne Firewall Config"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:905
+#: crates/linux-defender-core/src/audit/firewall.rs:907
 msgid "Plasma Firewall"
 msgstr "Plasma Firewall"
 
-#: crates/linux-defender-core/src/audit/firewall.rs:911
+#: crates/linux-defender-core/src/audit/firewall.rs:913
 msgid "Plasma Firewall is installed; it manages an existing firewall backend."
 msgstr ""
 "Plasma Firewall er installert; den styrer en eksisterende brannmurkomponent."
 
-#: crates/linux-defender-core/src/audit/firewall.rs:921
+#: crates/linux-defender-core/src/audit/firewall.rs:923
 msgid "Plasma Firewall was not confirmed; it is only a management module."
 msgstr ""
 "Plasma Firewall ble ikke bekreftet; den er bare en administrasjonsmodul."
@@ -1162,8 +1159,8 @@ msgid "{prefix}: {error}"
 msgstr "{prefix}: {error}"
 
 #: crates/linux-defender-core/src/cli.rs:1064
-#: crates/linux-defender-core/src/quarantine.rs:464
-#: crates/linux-defender-core/src/quarantine.rs:501
+#: crates/linux-defender-core/src/quarantine.rs:483
+#: crates/linux-defender-core/src/quarantine.rs:520
 msgid "Quarantine entry not found: {id}"
 msgstr "Fant ikke karanteneoppføringen: {id}"
 
@@ -1507,31 +1504,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr "John Erling Blad https://github.com/jeblad"
 
-#: crates/linux-defender-core/src/host.rs:1011
+#: crates/linux-defender-core/src/host.rs:1040
 msgid "Daemon not responding: {error}"
 msgstr "Tjenesten svarer ikke: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1014
+#: crates/linux-defender-core/src/host.rs:1043
 msgid "{binary} found but returned error: {error}"
 msgstr "{binary} ble funnet, men returnerte feil: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1019
+#: crates/linux-defender-core/src/host.rs:1048
 msgid "{service} is active"
 msgstr "{service} er aktiv"
 
-#: crates/linux-defender-core/src/host.rs:1022
+#: crates/linux-defender-core/src/host.rs:1051
 msgid "No virus database files found in {path}"
 msgstr "Ingen virusdatabasefiler funnet i {path}"
 
-#: crates/linux-defender-core/src/host.rs:1028
+#: crates/linux-defender-core/src/host.rs:1057
 msgid "Error accessing database {path}: {error}"
 msgstr "Feil ved tilgang til databasen {path}: {error}"
 
-#: crates/linux-defender-core/src/host.rs:1034
+#: crates/linux-defender-core/src/host.rs:1063
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "{binary} er ikke installert. Installer den med: {command}"
 
-#: crates/linux-defender-core/src/host.rs:1044
+#: crates/linux-defender-core/src/host.rs:1073
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
@@ -1646,39 +1643,39 @@ msgstr ""
 "Nettverkssokkellisten er utilgjengelig. Kontroller at systemets "
 "sokkelverktøy er installert, og prøv igjen."
 
-#: crates/linux-defender-core/src/platform.rs:491
+#: crates/linux-defender-core/src/platform.rs:497
 msgid "Not running as Flatpak"
 msgstr "Kjører ikke som Flatpak"
 
-#: crates/linux-defender-core/src/platform.rs:527
+#: crates/linux-defender-core/src/platform.rs:533
 msgid "Invalid integration destination: {path}"
 msgstr "Invalid integration destination: {path}"
 
-#: crates/linux-defender-core/src/platform.rs:531
+#: crates/linux-defender-core/src/platform.rs:537
 msgid "Integration destination escapes {path}"
 msgstr "Integration destination escapes {path}"
 
-#: crates/linux-defender-core/src/platform.rs:535
+#: crates/linux-defender-core/src/platform.rs:541
 msgid "Integration destination contains a symlink: {path}"
 msgstr "Integration destination contains a symlink: {path}"
 
-#: crates/linux-defender-core/src/platform.rs:552
+#: crates/linux-defender-core/src/platform.rs:558
 msgid "Failed to create {path}: {error}"
 msgstr "Failed to create {path}: {error}"
 
-#: crates/linux-defender-core/src/platform.rs:555
+#: crates/linux-defender-core/src/platform.rs:561
 msgid "Failed to write {path}: {error}"
 msgstr "Failed to write {path}: {error}"
 
-#: crates/linux-defender-core/src/platform.rs:558
+#: crates/linux-defender-core/src/platform.rs:564
 msgid "Failed to inspect {path}: {error}"
 msgstr "Failed to inspect {path}: {error}"
 
-#: crates/linux-defender-core/src/platform.rs:561
+#: crates/linux-defender-core/src/platform.rs:567
 msgid "Failed to set permissions on {path}: {error}"
 msgstr "Failed to set permissions on {path}: {error}"
 
-#: crates/linux-defender-core/src/platform.rs:564
+#: crates/linux-defender-core/src/platform.rs:570
 msgid "Failed to remove {path}: {error}"
 msgstr "Failed to remove {path}: {error}"
 
@@ -1736,7 +1733,7 @@ msgid "Reading configuration"
 msgstr "Leser konfigurasjon"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3104
+#: crates/linux-defender-core/src/privileged.rs:3106
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -1860,11 +1857,11 @@ msgstr "Ugyldig {kind} baneformat: {path}"
 msgid "Could not generate unique name for '{name}'"
 msgstr "Kunne ikke generere unikt navn for '{name}'"
 
-#: crates/linux-defender-core/src/quarantine.rs:416
+#: crates/linux-defender-core/src/quarantine.rs:435
 msgid "Quarantine metadata was written but could not be read"
 msgstr "Karantenemetadata ble skrevet, men kunne ikke leses"
 
-#: crates/linux-defender-core/src/quarantine.rs:438
+#: crates/linux-defender-core/src/quarantine.rs:457
 msgid ""
 "Failed to record quarantine entry in database. File has been restored to "
 "original location."
@@ -1873,7 +1870,7 @@ msgstr ""
 "gjenopprettet til den opprinnelige plasseringen."
 
 #. Translators: Preserve `{error}` as a localized failure description and `{path}` as a user-provided file path.
-#: crates/linux-defender-core/src/quarantine.rs:441
+#: crates/linux-defender-core/src/quarantine.rs:460
 msgid ""
 "Failed to record quarantine entry in database. Rollback also failed: "
 "{error}. File may be orphaned at: {path}"
@@ -1881,7 +1878,7 @@ msgstr ""
 "Kunne ikke registrere karanteneoppføringen i databasen. Tilbakestillingen "
 "mislyktes også: {error}. Filen kan ligge igjen uten oppføring på: {path}"
 
-#: crates/linux-defender-core/src/quarantine.rs:489
+#: crates/linux-defender-core/src/quarantine.rs:508
 msgid ""
 "File restored successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1889,7 +1886,7 @@ msgstr ""
 "Filen er gjenopprettet, men oppføringen i databasen kunne ikke fjernes. Den "
 "kan fortsatt vises i listen til den er ryddet bort."
 
-#: crates/linux-defender-core/src/quarantine.rs:516
+#: crates/linux-defender-core/src/quarantine.rs:535
 msgid ""
 "File deleted successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1898,12 +1895,12 @@ msgstr ""
 "fortsatt vises i listen til den er ryddet bort."
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/linux-defender-core/src/quarantine.rs:1524
+#: crates/linux-defender-core/src/quarantine.rs:1543
 msgid "Cannot quarantine {path}: {error}"
 msgstr "Kan ikke sette {path} i karantene: {error}"
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/linux-defender-core/src/quarantine.rs:1542
+#: crates/linux-defender-core/src/quarantine.rs:1561
 msgid "File hash mismatch — file may be corrupted"
 msgstr "Filhash samsvarer ikke — filen kan være ødelagt"
 
@@ -1965,12 +1962,12 @@ msgstr[1] ""
 "{count} ikke-dødelige advarsler under skanning; noen filer kan bare ha blitt "
 "skannet delvis"
 
-#: crates/linux-defender-core/src/scheduler.rs:871
+#: crates/linux-defender-core/src/scheduler.rs:881
 msgid "Scheduled scan cancelled"
 msgstr "Planlagt skanning avbrutt"
 
 #. Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/scheduler.rs:890
+#: crates/linux-defender-core/src/scheduler.rs:900
 msgid ""
 "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] "
 "[--target PATH] [--dry-run] [--verbose|-v]"
@@ -1979,59 +1976,59 @@ msgstr ""
 "[--target PATH] [--dry-run] [--verbose|-v]"
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/linux-defender-core/src/scheduler.rs:931
+#: crates/linux-defender-core/src/scheduler.rs:941
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
-#: crates/linux-defender-core/src/scheduler.rs:940
+#: crates/linux-defender-core/src/scheduler.rs:950
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "Planlagt skanning ble hoppet over (går på batteri)"
 
-#: crates/linux-defender-core/src/scheduler.rs:957
+#: crates/linux-defender-core/src/scheduler.rs:967
 msgid "Warning: Target does not exist: {target}"
 msgstr "Advarsel: Målet finnes ikke: {target}"
 
-#: crates/linux-defender-core/src/scheduler.rs:969
+#: crates/linux-defender-core/src/scheduler.rs:979
 msgid "Error: No valid scan targets found"
 msgstr "Feil: Fant ingen gyldig mål for skanning"
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/linux-defender-core/src/scheduler.rs:973
+#: crates/linux-defender-core/src/scheduler.rs:983
 msgid "Dry run mode — scan not executed"
 msgstr "Tørrkjøringsmodus — skanning ikke utført"
 
-#: crates/linux-defender-core/src/scheduler.rs:981
+#: crates/linux-defender-core/src/scheduler.rs:991
 msgid "  Skip on battery: {value}"
 msgstr "  Hopp over på batteri: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:986
+#: crates/linux-defender-core/src/scheduler.rs:996
 msgid "  Auto quarantine: {value}"
 msgstr "  Automatisk karantene: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:994
+#: crates/linux-defender-core/src/scheduler.rs:1004
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} mål: {targets:?}"
 msgstr[1] "  {count} mål: {targets:?}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1018
+#: crates/linux-defender-core/src/scheduler.rs:1028
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "Planlagt skanning mislyktes: ClamAV er utilgjengelig"
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/linux-defender-core/src/scheduler.rs:1028
+#: crates/linux-defender-core/src/scheduler.rs:1038
 msgid "Error: ClamAV not available — {error}"
 msgstr "Feil: ClamAV er ikke tilgjengelig — {error}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1037
+#: crates/linux-defender-core/src/scheduler.rs:1047
 msgid "Scheduled Scan Failed"
 msgstr "Planlagt skanning mislyktes"
 
-#: crates/linux-defender-core/src/scheduler.rs:1038
+#: crates/linux-defender-core/src/scheduler.rs:1048
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "ClamAV er utilgjengelig. Installer ClamAV."
 
-#: crates/linux-defender-core/src/scheduler.rs:1101
+#: crates/linux-defender-core/src/scheduler.rs:1111
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
@@ -2040,71 +2037,71 @@ msgstr[0] ""
 msgstr[1] ""
 "Planlagt skanning fant {infected} trusler, {quarantined} satt i karantene"
 
-#: crates/linux-defender-core/src/scheduler.rs:1112
+#: crates/linux-defender-core/src/scheduler.rs:1122
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "Planlagt skanning fant {count} trussel"
 msgstr[1] "Planlagt skanning fant {count} trusler"
 
-#: crates/linux-defender-core/src/scheduler.rs:1121
+#: crates/linux-defender-core/src/scheduler.rs:1131
 msgid "Scheduled scan completed with errors"
 msgstr "Planlagt skanning ble fullført med feil"
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/scheduler.rs:1124
+#: crates/linux-defender-core/src/scheduler.rs:1134
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] "Planlagt skanning fullført – {count} fil skannet, ingen trusler"
 msgstr[1] "Planlagt skanning fullført – {count} filer skannet, ingen trusler"
 
-#: crates/linux-defender-core/src/scheduler.rs:1139
+#: crates/linux-defender-core/src/scheduler.rs:1149
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "Skannetid: {duration:.1f} sekunder"
 
-#: crates/linux-defender-core/src/scheduler.rs:1141
+#: crates/linux-defender-core/src/scheduler.rs:1151
 msgid "Files Scanned: {count}"
 msgstr "Filer skannet: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1142
+#: crates/linux-defender-core/src/scheduler.rs:1152
 msgid "Threats Found: {count}"
 msgstr "Trusler funnet: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1143
+#: crates/linux-defender-core/src/scheduler.rs:1153
 msgid "Targets: {targets}"
 msgstr "Mål: {targets}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1147
+#: crates/linux-defender-core/src/scheduler.rs:1157
 msgid "Quarantined: {count}"
 msgstr "Satt i karantene: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1152
+#: crates/linux-defender-core/src/scheduler.rs:1162
 msgid "Quarantine Failed: {count}"
 msgstr "Mislykket karantene: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1180
+#: crates/linux-defender-core/src/scheduler.rs:1190
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "Planlagt skanning: trusler oppdaget!"
 
-#: crates/linux-defender-core/src/scheduler.rs:1186
+#: crates/linux-defender-core/src/scheduler.rs:1196
 msgid "Scheduled Scan Completed"
 msgstr "Planlagt skanning er fullført"
 
-#: crates/linux-defender-core/src/scheduler.rs:1187
+#: crates/linux-defender-core/src/scheduler.rs:1197
 msgid "Scan completed with some errors. Check logs for details."
 msgstr "Skanning fullført med noen feil. Se loggene for detaljer."
 
-#: crates/linux-defender-core/src/scheduler.rs:1195
+#: crates/linux-defender-core/src/scheduler.rs:1205
 msgid "Scheduled Scan Complete"
 msgstr "Planlagt skanning fullført"
 
-#: crates/linux-defender-core/src/scheduler.rs:1208
+#: crates/linux-defender-core/src/scheduler.rs:1218
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "Kunne ikke sette i karantene: {count} fil"
 msgstr[1] "Kunne ikke sette i karantene: {count} filer"
 
-#: crates/linux-defender-core/src/scheduler.rs:1234
+#: crates/linux-defender-core/src/scheduler.rs:1244
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -2112,15 +2109,15 @@ msgstr ""
 "Batterinivå: {percent:.0f} %\n"
 "Skanningen ble hoppet over på grunn av batteriinnstillingene."
 
-#: crates/linux-defender-core/src/scheduler.rs:1239
+#: crates/linux-defender-core/src/scheduler.rs:1249
 msgid "Scan skipped due to battery-aware settings."
 msgstr "Skanning hoppet over på grunn av batteribevisste innstillinger."
 
-#: crates/linux-defender-core/src/scheduler.rs:1245
+#: crates/linux-defender-core/src/scheduler.rs:1255
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "Hopper over skanningen: maskinen går på batteri ({percent:.0f} %)"
 
-#: crates/linux-defender-core/src/scheduler.rs:1250
+#: crates/linux-defender-core/src/scheduler.rs:1260
 msgid "Skipping scan: running on battery power"
 msgstr "Hopper over skanning: kjører på batteristrøm"
 
@@ -2412,8 +2409,8 @@ msgstr "Åpne"
 msgid "Overview"
 msgstr "Oversikt"
 
-#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:720
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:730
+#: desktop/src/pages/Scan.tsx:732
 msgid "Scan"
 msgstr "Skanning"
 
@@ -2443,7 +2440,7 @@ msgstr "Revisjon"
 msgid "Network"
 msgstr "Nettverk"
 
-#: desktop/src/App.tsx:130 desktop/src/App.tsx:894 desktop/src/App.tsx:982
+#: desktop/src/App.tsx:130 desktop/src/App.tsx:909 desktop/src/App.tsx:997
 #: desktop/src/pages/Preferences.tsx:120
 msgid "Preferences"
 msgstr "Brukervalg"
@@ -2457,142 +2454,142 @@ msgstr "Profiler"
 msgid "Results"
 msgstr "Resultater"
 
-#: desktop/src/App.tsx:306 desktop/src/pages/ConfigPreferences.tsx:567
+#: desktop/src/App.tsx:307 desktop/src/pages/ConfigPreferences.tsx:567
 msgid "Could not open link"
 msgstr "Kunne ikke åpne linken"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/App.tsx:386 desktop/src/App.tsx:401 desktop/src/App.tsx:419
-#: desktop/src/pages/Scan.tsx:501
+#: desktop/src/App.tsx:401 desktop/src/App.tsx:416 desktop/src/App.tsx:434
+#: desktop/src/pages/Scan.tsx:509
 msgid "Scan in progress — wait for it to finish before changing targets"
 msgstr "Skanning pågår – vent til den er ferdig før du endrer mål"
 
-#: desktop/src/App.tsx:465
+#: desktop/src/App.tsx:480
 msgid "The privileged-helper installation returned an invalid status."
 msgstr ""
 "Installasjonen av den privilegerte hjelperen returnerte en ugyldig status."
 
-#: desktop/src/App.tsx:472
+#: desktop/src/App.tsx:487
 msgid "The privileged helper was installed successfully."
 msgstr "Den privilegerte hjelperen er installert."
 
-#: desktop/src/App.tsx:474
+#: desktop/src/App.tsx:489
 msgid ""
 "The privileged helper is still unavailable. Try again or install it manually."
 msgstr ""
 "Den privilegerte hjelperen er fortsatt utilgjengelig. Prøv på nytt eller "
 "installer den manuelt."
 
-#: desktop/src/App.tsx:786
+#: desktop/src/App.tsx:801
 msgid "The privileged-helper status returned an invalid response."
 msgstr "Statusen for den privilegerte hjelperen returnerte et ugyldig svar."
 
-#: desktop/src/App.tsx:887
+#: desktop/src/App.tsx:902
 msgid "Linux Defender"
 msgstr "Linux Defender"
 
-#: desktop/src/App.tsx:892
+#: desktop/src/App.tsx:907
 msgid "Back"
 msgstr "Tilbake"
 
-#: desktop/src/App.tsx:917
+#: desktop/src/App.tsx:932
 msgid "Scan File or Folder"
 msgstr "Skann fil eller mappe"
 
-#: desktop/src/App.tsx:924
+#: desktop/src/App.tsx:939
 msgid "Choose scan targets"
 msgstr "Velg skannemål"
 
-#: desktop/src/App.tsx:934
+#: desktop/src/App.tsx:949
 msgid "Scan Files"
 msgstr "Skann filer"
 
-#: desktop/src/App.tsx:938
+#: desktop/src/App.tsx:953
 msgid "Scan Folders"
 msgstr "Skann mapper"
 
-#: desktop/src/App.tsx:945
+#: desktop/src/App.tsx:960
 msgid "Scan System (Quick Scan)"
 msgstr "Skann systemet (rask skanning)"
 
-#: desktop/src/App.tsx:952 desktop/src/App.tsx:953
+#: desktop/src/App.tsx:967 desktop/src/App.tsx:968
 msgid "Menu"
 msgstr "Meny"
 
-#: desktop/src/App.tsx:972
+#: desktop/src/App.tsx:987
 msgid "Application menu"
 msgstr "Applikasjonsmeny"
 
-#: desktop/src/App.tsx:985
+#: desktop/src/App.tsx:1000
 msgid "About"
 msgstr "Om"
 
-#: desktop/src/App.tsx:998
+#: desktop/src/App.tsx:1013
 msgid "Main navigation"
 msgstr "Hovednavigasjon"
 
-#: desktop/src/App.tsx:999
+#: desktop/src/App.tsx:1014
 msgid "Views"
 msgstr "Visninger"
 
-#: desktop/src/App.tsx:1019 desktop/src/pages/Quarantine.tsx:339
+#: desktop/src/App.tsx:1034 desktop/src/pages/Quarantine.tsx:341
 msgid "Dismiss"
 msgstr "Lukk"
 
-#: desktop/src/App.tsx:1041
+#: desktop/src/App.tsx:1056
 msgid "About Linux Defender"
 msgstr "About Linux Defender"
 
-#: desktop/src/App.tsx:1042
+#: desktop/src/App.tsx:1057
 msgid "An on-demand Linux security scanner using your system's ClamAV tools."
 msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 
-#: desktop/src/App.tsx:1044
+#: desktop/src/App.tsx:1059
 msgid "Version"
 msgstr "Versjon"
 
-#: desktop/src/App.tsx:1045 desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/App.tsx:1060 desktop/src/pages/SettingsPreferences.tsx:270
 #: desktop/src/pages/SettingsPreferences.tsx:271
 msgid "Language"
 msgstr "Språk"
 
-#: desktop/src/App.tsx:1046
+#: desktop/src/App.tsx:1061
 msgid "License"
 msgstr "Lisens"
 
-#: desktop/src/App.tsx:1049
+#: desktop/src/App.tsx:1064
 msgid "Project website"
 msgstr "Prosjektets nettside"
 
-#: desktop/src/App.tsx:1050 desktop/src/pages/ConfigPreferences.tsx:827
+#: desktop/src/App.tsx:1065 desktop/src/pages/ConfigPreferences.tsx:827
 msgid "Documentation"
 msgstr "Dokumentasjon"
 
-#: desktop/src/App.tsx:1051
+#: desktop/src/App.tsx:1066
 msgid "Issue tracker"
 msgstr "Problemsporing"
 
-#: desktop/src/App.tsx:1053
+#: desktop/src/App.tsx:1068
 msgid "Could not load contributor credits: {error}"
 msgstr "Kunne ikke laste inn bidragsyterkrediteringer: {error}"
 
-#: desktop/src/App.tsx:1058
+#: desktop/src/App.tsx:1073
 msgid "Contributors"
 msgstr "Bidragsytere"
 
-#: desktop/src/App.tsx:1067
+#: desktop/src/App.tsx:1082
 msgid "Translator credits"
 msgstr "Oversetterkrediteringer"
 
-#: desktop/src/App.tsx:1070
+#: desktop/src/App.tsx:1085
 msgid "Loading contributor credits…"
 msgstr "Laster inn bidragsyterkrediteringer…"
 
-#: desktop/src/App.tsx:1072
+#: desktop/src/App.tsx:1087
 msgid "Close Linux Defender?"
 msgstr "Close Linux Defender?"
 
-#: desktop/src/App.tsx:1073
+#: desktop/src/App.tsx:1088
 msgid ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
@@ -2600,55 +2597,55 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1074 desktop/src/pages/Scan.tsx:262
+#: desktop/src/App.tsx:1089 desktop/src/pages/Scan.tsx:266
 msgid "Remember my choice"
 msgstr "Husk valget mitt"
 
-#: desktop/src/App.tsx:1075 desktop/src/App.tsx:1079
+#: desktop/src/App.tsx:1090 desktop/src/App.tsx:1094
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
-#: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:377
-#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:774
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
-#: desktop/src/pages/SettingsPreferences.tsx:538
-#: desktop/src/pages/Urlscan.tsx:244
+#: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
+#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:784
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/Urlscan.tsx:246
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: desktop/src/App.tsx:1075
+#: desktop/src/App.tsx:1090
 msgid "Minimize to tray"
 msgstr "Minimer til varslingsområdet"
 
-#: desktop/src/App.tsx:1077
+#: desktop/src/App.tsx:1092
 msgid "Scan in Progress"
 msgstr "Skanning pågår"
 
-#: desktop/src/App.tsx:1078
+#: desktop/src/App.tsx:1093
 msgid "A scan is still running. Cancelling it may leave partial results."
 msgstr "En skanning kjører fortsatt. Avbryting kan gi delvise resultater."
 
-#: desktop/src/App.tsx:1079
+#: desktop/src/App.tsx:1094
 msgid "Keep Scanning"
 msgstr "Fortsett skanningen"
 
-#: desktop/src/App.tsx:1079
+#: desktop/src/App.tsx:1094
 msgid "Cancel Scan and Close"
 msgstr "Avbryt skanningen og lukk"
 
-#: desktop/src/App.tsx:1079 desktop/src/ConfigurationRecovery.tsx:94
+#: desktop/src/App.tsx:1094 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
-#: desktop/src/pages/Scan.tsx:346 desktop/src/pages/Scan.tsx:352
-#: desktop/src/pages/Scan.tsx:364 desktop/src/pages/SettingsPreferences.tsx:314
+#: desktop/src/pages/Scan.tsx:354 desktop/src/pages/Scan.tsx:360
+#: desktop/src/pages/Scan.tsx:372 desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Close"
 msgstr "Lukk"
 
-#: desktop/src/App.tsx:1081
+#: desktop/src/App.tsx:1096
 msgid "Install Privileged Helper"
 msgstr "Installer privilegert hjelper"
 
-#: desktop/src/App.tsx:1082
+#: desktop/src/App.tsx:1097
 msgid ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
@@ -2656,12 +2653,12 @@ msgstr ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
 
-#: desktop/src/App.tsx:1084 desktop/src/HelperTrustErrorDialog.tsx:52
+#: desktop/src/App.tsx:1099 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr "Installasjon av hjelperen krever administratorautorisasjon."
 
 #. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1085
+#: desktop/src/App.tsx:1100
 msgid ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
@@ -2669,27 +2666,27 @@ msgstr ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
 
-#: desktop/src/App.tsx:1090 desktop/src/HelperTrustErrorDialog.tsx:78
+#: desktop/src/App.tsx:1105 desktop/src/HelperTrustErrorDialog.tsx:78
 msgid "Installing privileged helper…"
 msgstr "Installerer privilegert hjelper …"
 
-#: desktop/src/App.tsx:1092
+#: desktop/src/App.tsx:1107
 msgid "Not now"
 msgstr "Ikke nå"
 
-#: desktop/src/App.tsx:1092 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1107 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Installing…"
 msgstr "Installerer …"
 
-#: desktop/src/App.tsx:1092 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1107 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Try Again"
 msgstr "Prøv igjen"
 
-#: desktop/src/App.tsx:1092 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1107 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Install Helper"
 msgstr "Installer hjelper"
 
-#: desktop/src/App.tsx:1092
+#: desktop/src/App.tsx:1107
 msgid "Open Preferences"
 msgstr "Åpne Brukervalg"
 
@@ -2852,7 +2849,7 @@ msgid "Target {index}/{count}: {path}"
 msgstr "Mål {index}/{count}: {path}"
 
 #: desktop/src/ScanProgressPanel.tsx:19 desktop/src/pages/Results.tsx:110
-#: desktop/src/pages/Scan.tsx:711
+#: desktop/src/pages/Scan.tsx:721
 msgid "Scan target"
 msgstr "Skannemål"
 
@@ -2874,13 +2871,13 @@ msgstr "Venter på skannedata …"
 msgid "Scan progress"
 msgstr "Skannefremdrift"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:782
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "{count} fil skannet"
 msgstr[1] "{count} filer skannet"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:772
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:782
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
@@ -2889,7 +2886,7 @@ msgstr[1] "{count} trusler"
 
 #: desktop/src/ScanProgressPanel.tsx:29
 msgid "File estimate is approximate; progress is indeterminate."
-msgstr "Filestimat er grosett; fremdrpen er ubestemt."
+msgstr "Filestimatet er omtrentlig; fremdriften er ubestemmelig."
 
 #: desktop/src/ScanProgressPanel.tsx:31
 msgid ""
@@ -2945,8 +2942,8 @@ msgstr "Kansellert"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
-#: desktop/src/pages/SettingsPreferences.tsx:512
-#: desktop/src/pages/SettingsPreferences.tsx:536 desktop/src/protection.ts:131
+#: desktop/src/pages/SettingsPreferences.tsx:518
+#: desktop/src/pages/SettingsPreferences.tsx:542 desktop/src/protection.ts:131
 msgid "Unknown"
 msgstr "Ukjent"
 
@@ -3126,8 +3123,8 @@ msgstr "Kunne ikke kopiere kommandoen: {error}"
 
 #: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
-#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/Scan.tsx:782 desktop/src/pages/Scan.tsx:787
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy"
 msgstr "Kopier"
 
@@ -3246,7 +3243,7 @@ msgid "Checking…"
 msgstr "Sjekker …"
 
 #: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:283
-#: desktop/src/pages/Scan.tsx:723
+#: desktop/src/pages/Scan.tsx:733
 msgid "Refresh status"
 msgstr "Oppdater status"
 
@@ -3382,7 +3379,7 @@ msgstr "Legg til"
 #: desktop/src/pages/ConfigPreferences.tsx:310
 #: desktop/src/pages/ConfigPreferences.tsx:356
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:765
+#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:775
 #: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Remove"
 msgstr "Fjern"
@@ -3881,7 +3878,7 @@ msgid "Used for monthly scans."
 msgstr "Brukes til månedlige skanninger."
 
 #: desktop/src/pages/ConfigPreferences.tsx:896
-#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:764
+#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:774
 msgid "Scan Targets"
 msgstr "Skannemål"
 
@@ -3939,7 +3936,7 @@ msgstr ""
 "ingen av skjemaene kan overskrive den andres løsrevne endringer."
 
 #: desktop/src/pages/ConfigPreferences.tsx:914
-#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:261
+#: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:265
 msgid "Saving…"
 msgstr "Lagrer …"
 
@@ -4201,7 +4198,7 @@ msgstr "Installer freshclam før du ber om databaseoppdateringer."
 msgid "Preparing the update progress listener…"
 msgstr "Forbereder oppdateringsfremdriftslytteren …"
 
-#: desktop/src/pages/Database.tsx:360
+#: desktop/src/pages/Database.tsx:360 desktop/src/pages/Database.tsx:363
 msgid "Update log"
 msgstr "Oppdateringslogg"
 
@@ -4230,7 +4227,7 @@ msgstr[0] "{seconds} sekund"
 msgstr[1] "{seconds} sekunder"
 
 #: desktop/src/pages/Logs.tsx:89 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Quarantine.tsx:362
+#: desktop/src/pages/Quarantine.tsx:364
 msgid "Path"
 msgstr "Sti"
 
@@ -4363,11 +4360,11 @@ msgstr "Tidligere skanninger og oppdateringer"
 
 #: desktop/src/pages/Logs.tsx:385 desktop/src/pages/Logs.tsx:418
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
-#: desktop/src/pages/Quarantine.tsx:354
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
-#: desktop/src/pages/SettingsPreferences.tsx:531
-#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:215
+#: desktop/src/pages/Quarantine.tsx:356
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:217
 msgid "Refresh"
 msgstr "Oppdater"
 
@@ -4381,7 +4378,7 @@ msgid "Export JSON"
 msgstr "Eksporter JSON"
 
 #: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:430
-#: desktop/src/pages/Scan.tsx:764
+#: desktop/src/pages/Scan.tsx:774
 msgid "Clear All"
 msgstr "Tøm alle"
 
@@ -4416,7 +4413,7 @@ msgid "Export Text"
 msgstr "Eksporter tekst"
 
 #: desktop/src/pages/Logs.tsx:410 desktop/src/pages/Logs.tsx:420
-#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:772
+#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:782
 msgid "Fullscreen"
 msgstr "Fullskjerm"
 
@@ -4558,8 +4555,8 @@ msgstr "Oppdaterer …"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
 #: desktop/src/pages/Overview.tsx:153
-#: desktop/src/pages/SettingsPreferences.tsx:528
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:537
 msgid "Loading…"
 msgstr "Laster inn …"
 
@@ -4717,7 +4714,7 @@ msgstr "Beskyttelsesstatus"
 msgid "Last Scan"
 msgstr "Siste skanning"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:780
 msgid "Start Scan"
 msgstr "Start skanning"
 
@@ -4734,7 +4731,7 @@ msgid "Scanner engine"
 msgstr "Skannemotor"
 
 #: desktop/src/pages/Overview.tsx:192
-#: desktop/src/pages/SettingsPreferences.tsx:457
+#: desktop/src/pages/SettingsPreferences.tsx:463
 msgid "{count} file"
 msgid_plural "{count} files"
 msgstr[0] "{count} fil"
@@ -4762,8 +4759,8 @@ msgid "See detailed scan history"
 msgstr "Se detaljert skannehistorikk"
 
 #: desktop/src/pages/Preferences.tsx:13
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Behavior"
 msgstr "Oppførsel"
 
@@ -4792,11 +4789,11 @@ msgstr "Sanntidsskanning"
 msgid "YARA Rules"
 msgstr "YARA-regler"
 
-#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:209
+#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:211
 msgid "VirusTotal"
 msgstr "VirusTotal"
 
-#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:208
+#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:210
 msgid "urlscan.io"
 msgstr "urlscan.io"
 
@@ -4854,7 +4851,7 @@ msgstr "Standard profilnavn er beskyttet"
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:765
+#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:775
 msgid "No targets added"
 msgstr "Ingen mål er lagt til"
 
@@ -4971,9 +4968,9 @@ msgid "Duplicate"
 msgstr "Kopiere"
 
 #: desktop/src/pages/Profiles.tsx:234 desktop/src/pages/Profiles.tsx:242
-#: desktop/src/pages/Quarantine.tsx:365 desktop/src/pages/Quarantine.tsx:377
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Quarantine.tsx:367 desktop/src/pages/Quarantine.tsx:379
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Delete"
 msgstr "Slett"
 
@@ -5022,224 +5019,228 @@ msgstr "Integritetskontrollen mislyktes"
 msgid "Rescan failed"
 msgstr "Ny skanning mislyktes"
 
-#: desktop/src/pages/Quarantine.tsx:163 desktop/src/pages/Quarantine.tsx:201
+#: desktop/src/pages/Quarantine.tsx:164 desktop/src/pages/Quarantine.tsx:202
 msgid "Linux Defender returned invalid quarantine data."
 msgstr "Linux Defender returned invalid quarantine data."
 
-#: desktop/src/pages/Quarantine.tsx:171 desktop/src/pages/Quarantine.tsx:208
+#: desktop/src/pages/Quarantine.tsx:172 desktop/src/pages/Quarantine.tsx:209
 msgid "Failed to load quarantine: {error}"
 msgstr "Kunne ikke laste inn karantene: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:237
+#: desktop/src/pages/Quarantine.tsx:238
 msgid "Quarantine updates are unavailable: {error}"
 msgstr "Karanteneoppdateringer er utilgjengelige: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:259
+#: desktop/src/pages/Quarantine.tsx:260
 msgid "Linux Defender returned an invalid cleanup result."
 msgstr "Linux Defender returned an invalid cleanup result."
 
-#: desktop/src/pages/Quarantine.tsx:264
+#: desktop/src/pages/Quarantine.tsx:265
 msgid "Removed {count} old quarantine entry."
 msgid_plural "Removed {count} old quarantine entries."
 msgstr[0] "Fjernet {count} gammel karanteneoppføring."
 msgstr[1] "Fjernet {count} gamle karanteneoppføringer."
 
-#: desktop/src/pages/Quarantine.tsx:270
+#: desktop/src/pages/Quarantine.tsx:271
 msgid "No old entries found to remove."
 msgstr "Ingen gamle oppføringer ble funnet for fjerning."
 
-#: desktop/src/pages/Quarantine.tsx:276
+#: desktop/src/pages/Quarantine.tsx:277
 msgid "Failed to clear old items: {error}"
 msgstr "Kunne ikke slette gamle elementer: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:277
+#: desktop/src/pages/Quarantine.tsx:278
 msgid "Failed to clear old quarantine items: {error}"
 msgstr "Kunne ikke fjerne gamle karanteneelementer: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:286
+#: desktop/src/pages/Quarantine.tsx:287
 msgid "Linux Defender returned an invalid rescan result."
 msgstr "Linux Defender returnerte et ugyldig resultat for ny skanning."
 
-#: desktop/src/pages/Quarantine.tsx:289
+#: desktop/src/pages/Quarantine.tsx:290
 msgid "{count} item is still detected."
 msgid_plural "{count} items are still detected."
 msgstr[0] "{count} element oppdages fortsatt."
 msgstr[1] "{count} elementer oppdages fortsatt."
 
-#: desktop/src/pages/Quarantine.tsx:290
+#: desktop/src/pages/Quarantine.tsx:291
 msgid "{count} item is no longer detected."
 msgid_plural "{count} items are no longer detected."
 msgstr[0] "{count} element oppdages ikke lenger."
 msgstr[1] "{count} elementer oppdages ikke lenger."
 
-#: desktop/src/pages/Quarantine.tsx:290
+#: desktop/src/pages/Quarantine.tsx:291
 msgid "Consider restoring it."
 msgstr "Vurder å gjenopprette den."
 
-#: desktop/src/pages/Quarantine.tsx:291
+#: desktop/src/pages/Quarantine.tsx:292
 msgid "{count} item could not be rescanned."
 msgid_plural "{count} items could not be rescanned."
 msgstr[0] "{count} element kunne ikke skannes på nytt."
 msgstr[1] "{count} elementer kunne ikke skannes på nytt."
 
-#: desktop/src/pages/Quarantine.tsx:295 desktop/src/pages/Quarantine.tsx:296
+#: desktop/src/pages/Quarantine.tsx:296 desktop/src/pages/Quarantine.tsx:297
 msgid "Failed to rescan quarantined files: {error}"
 msgstr "Kunne ikke skanne karantenesatte filer på nytt: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:308
+#: desktop/src/pages/Quarantine.tsx:309
 msgid "Linux Defender returned an invalid quarantine result."
 msgstr "Linux Defender returned an invalid quarantine result."
 
-#: desktop/src/pages/Quarantine.tsx:311
+#: desktop/src/pages/Quarantine.tsx:312
 msgid "File restored successfully."
 msgstr "Filen ble gjenopprettet."
 
-#: desktop/src/pages/Quarantine.tsx:311
+#: desktop/src/pages/Quarantine.tsx:312
 msgid "File deleted successfully."
 msgstr "Filen ble slettet."
 
-#: desktop/src/pages/Quarantine.tsx:316
+#: desktop/src/pages/Quarantine.tsx:318
 msgid "File restored, but the database entry could not be removed."
 msgstr "Filen ble gjenopprettet, men databaseoppføringen kunne ikke fjernes."
 
-#: desktop/src/pages/Quarantine.tsx:316
+#: desktop/src/pages/Quarantine.tsx:318
 msgid "File deleted, but the database entry could not be removed."
 msgstr "Filen ble slettet, men databaseoppføringen kunne ikke fjernes."
 
-#: desktop/src/pages/Quarantine.tsx:320
+#: desktop/src/pages/Quarantine.tsx:322
 msgid "Failed to restore quarantined file ({status})."
 msgstr "Kunne ikke gjenopprette filen i karantene ({status})."
 
-#: desktop/src/pages/Quarantine.tsx:320
+#: desktop/src/pages/Quarantine.tsx:322
 msgid "Failed to delete quarantined file ({status})."
 msgstr "Kunne ikke slette filen i karantene ({status})."
 
-#: desktop/src/pages/Quarantine.tsx:324
+#: desktop/src/pages/Quarantine.tsx:326
 msgid "Failed to restore quarantined file: {error}"
 msgstr "Kunne ikke gjenopprette filen i karantene: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:325
+#: desktop/src/pages/Quarantine.tsx:327
 msgid "Failed to delete quarantined file: {error}"
 msgstr "Kunne ikke slette filen i karantene: {error}"
 
-#: desktop/src/pages/Quarantine.tsx:336
+#: desktop/src/pages/Quarantine.tsx:338
 msgid "Secure storage for isolated threats."
 msgstr "Sikker lagring for isolerte trusler."
 
-#: desktop/src/pages/Quarantine.tsx:341
+#: desktop/src/pages/Quarantine.tsx:343
 msgid "Quarantine Storage"
 msgstr "Karantenelager"
 
-#: desktop/src/pages/Quarantine.tsx:343
+#: desktop/src/pages/Quarantine.tsx:345
 msgid "Total Size"
 msgstr "Total størrelse"
 
-#: desktop/src/pages/Quarantine.tsx:343
+#: desktop/src/pages/Quarantine.tsx:345
 msgid "Calculating…"
 msgstr "Beregner …"
 
-#: desktop/src/pages/Quarantine.tsx:344
+#: desktop/src/pages/Quarantine.tsx:346
 msgid "Items"
 msgstr "Elementer"
 
-#: desktop/src/pages/Quarantine.tsx:345
+#: desktop/src/pages/Quarantine.tsx:347
 msgid "{filtered} of {total} item"
 msgid_plural "{filtered} of {total} items"
 msgstr[0] "{filtered} av {total} element"
 msgstr[1] "{filtered} av {total} elementer"
 
-#: desktop/src/pages/Quarantine.tsx:346
+#: desktop/src/pages/Quarantine.tsx:348
 msgid "{count} item"
 msgid_plural "{count} items"
 msgstr[0] "{count} element"
 msgstr[1] "{count} elementer"
 
-#: desktop/src/pages/Quarantine.tsx:351
+#: desktop/src/pages/Quarantine.tsx:353
 msgid "Quarantined Files"
 msgstr "Filer i karantene"
 
-#: desktop/src/pages/Quarantine.tsx:351
+#: desktop/src/pages/Quarantine.tsx:353
 msgid "Detected threats isolated from your system."
 msgstr "Oppdaget trusler isolert fra systemet ditt."
 
-#: desktop/src/pages/Quarantine.tsx:353
+#: desktop/src/pages/Quarantine.tsx:355
 msgid "Rescanning…"
 msgstr "Skanner på nytt…"
 
-#: desktop/src/pages/Quarantine.tsx:353
+#: desktop/src/pages/Quarantine.tsx:355
 msgid "Rescan"
 msgstr "Skann på nytt"
 
-#: desktop/src/pages/Quarantine.tsx:355
+#: desktop/src/pages/Quarantine.tsx:357
 msgid "Clear Old Items"
 msgstr "Fjern gamle elementer"
 
-#: desktop/src/pages/Quarantine.tsx:358
+#: desktop/src/pages/Quarantine.tsx:360
 msgid "Search by threat name or path"
 msgstr "Søk etter trusselnavn eller bane"
 
-#: desktop/src/pages/Quarantine.tsx:358
+#: desktop/src/pages/Quarantine.tsx:360
 msgid "Search by threat name or path…"
 msgstr "Søk etter trusselnavn eller bane..."
 
-#: desktop/src/pages/Quarantine.tsx:359
+#: desktop/src/pages/Quarantine.tsx:361
 msgid "Loading quarantine entries…"
 msgstr "Laster inn karanteneoppføringer …"
 
-#: desktop/src/pages/Quarantine.tsx:359
+#: desktop/src/pages/Quarantine.tsx:361
+msgid "Unable to load quarantine entries."
+msgstr "Unable to load quarantine entries."
+
+#: desktop/src/pages/Quarantine.tsx:361
 msgid ""
 "No Quarantined Files. Detected threats will be isolated here for review."
 msgstr ""
 "Ingen filer i karantene. Oppdagede trusler vil bli isolert her for "
 "gjennomgang."
 
-#: desktop/src/pages/Quarantine.tsx:359
+#: desktop/src/pages/Quarantine.tsx:361
 msgid "No matching entries. Try a different search term."
 msgstr "Ingen samsvarende oppføringer. Prøv et annet søkeord."
 
-#: desktop/src/pages/Quarantine.tsx:359
+#: desktop/src/pages/Quarantine.tsx:361
 msgid "No entries on this page."
 msgstr "Ingen oppføringer på denne siden."
 
-#: desktop/src/pages/Quarantine.tsx:361 desktop/src/pages/Quarantine.tsx:372
-#: desktop/src/pages/Quarantine.tsx:376
+#: desktop/src/pages/Quarantine.tsx:363 desktop/src/pages/Quarantine.tsx:374
+#: desktop/src/pages/Quarantine.tsx:378
 msgid "Unknown Threat"
 msgstr "Ukjent trussel"
 
-#: desktop/src/pages/Quarantine.tsx:361 desktop/src/pages/Quarantine.tsx:363
+#: desktop/src/pages/Quarantine.tsx:363 desktop/src/pages/Quarantine.tsx:365
 #: desktop/src/pages/Results.tsx:196
 msgid "Quarantined"
 msgstr "Satt i karantene"
 
-#: desktop/src/pages/Quarantine.tsx:365
+#: desktop/src/pages/Quarantine.tsx:367
 msgid "Restore"
 msgstr "Gjenopprett"
 
-#: desktop/src/pages/Quarantine.tsx:367
+#: desktop/src/pages/Quarantine.tsx:369
 msgid "Previous"
 msgstr "Forrige"
 
-#: desktop/src/pages/Quarantine.tsx:367
+#: desktop/src/pages/Quarantine.tsx:369
 msgid "Next"
 msgstr "Neste"
 
-#: desktop/src/pages/Quarantine.tsx:369
+#: desktop/src/pages/Quarantine.tsx:371
 msgid "Restore Quarantined File?"
 msgstr "Gjenopprette filen fra karantene?"
 
-#: desktop/src/pages/Quarantine.tsx:369
+#: desktop/src/pages/Quarantine.tsx:371
 msgid "Permanently Delete File?"
 msgstr "Slette filen permanent?"
 
 #. Translators: Preserve the {threat} and {path} placeholders; they are runtime threat and file-path values. Use quotation marks appropriate for your language.
-#: desktop/src/pages/Quarantine.tsx:369
+#: desktop/src/pages/Quarantine.tsx:371
 msgid "This file was detected as '{threat}'. It will be restored to {path}."
 msgstr ""
 "Denne filen ble oppdaget som '{threat}'. Den vil bli gjenopprettet til "
 "{path}."
 
 #. Translators: Preserve the {path} and {threat} placeholders; they are runtime file-path and threat values. Use quotation marks appropriate for your language.
-#: desktop/src/pages/Quarantine.tsx:373
+#: desktop/src/pages/Quarantine.tsx:375
 msgid ""
 "The quarantined file from {path} ('{threat}') will be permanently deleted. "
 "This action cannot be undone."
@@ -5247,7 +5248,7 @@ msgstr ""
 "Filen i karantene fra {path} ('{threat}') vil bli permanent slettet. Denne "
 "handlingen kan ikke angres."
 
-#: desktop/src/pages/Quarantine.tsx:377
+#: desktop/src/pages/Quarantine.tsx:379
 msgid "Restore Anyway"
 msgstr "Gjenopprett likevel"
 
@@ -5416,7 +5417,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "Ytterligere utilgjengelige filer er utelatt fra denne visningen."
 
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Results.tsx:201
-#: desktop/src/pages/Scan.tsx:772 desktop/src/pages/Scan.tsx:777
+#: desktop/src/pages/Scan.tsx:782 desktop/src/pages/Scan.tsx:787
 msgid "Scan details"
 msgstr "Skannedetaljer"
 
@@ -5467,7 +5468,7 @@ msgstr "Kopier JSON"
 msgid "Copy Hash"
 msgstr "Kopier Hash"
 
-#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:363
+#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:371
 msgid "View on VirusTotal"
 msgstr "Vis på VirusTotal"
 
@@ -5520,7 +5521,7 @@ msgstr[1] "Skanning fullført – {count} trusler oppdaget"
 msgid "Scan cancelled — partial results are available"
 msgstr "Skanning avbrutt — delvise resultater er tilgjengelige"
 
-#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:713
+#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:723
 msgid "Scan error"
 msgstr "Skannefeil"
 
@@ -5528,12 +5529,12 @@ msgstr "Skannefeil"
 msgid "Unknown error"
 msgstr "Ukjent feil"
 
-#: desktop/src/pages/Scan.tsx:176 desktop/src/pages/Urlscan.tsx:190
+#: desktop/src/pages/Scan.tsx:176 desktop/src/pages/Urlscan.tsx:192
 msgid "Opened the VirusTotal upload page in your browser"
 msgstr "VirusTotal-opplastingssiden ble åpnet i nettleseren"
 
-#: desktop/src/pages/Scan.tsx:183 desktop/src/pages/Scan.tsx:351
-#: desktop/src/pages/Urlscan.tsx:197
+#: desktop/src/pages/Scan.tsx:183 desktop/src/pages/Scan.tsx:359
+#: desktop/src/pages/Urlscan.tsx:199
 msgid ""
 "Configure a VirusTotal API key in Preferences before starting this scan."
 msgstr ""
@@ -5543,11 +5544,19 @@ msgstr ""
 msgid "API key must contain exactly 64 hexadecimal characters"
 msgstr "API-nøkkelen må inneholde nøyaktig 64 heksadesimale tegn"
 
-#: desktop/src/pages/Scan.tsx:246
+#: desktop/src/pages/Scan.tsx:246 desktop/src/pages/Scan.tsx:343
+msgid "VirusTotal cancellation did not take effect"
+msgstr "VirusTotal cancellation did not take effect"
+
+#: desktop/src/pages/Scan.tsx:247 desktop/src/pages/Scan.tsx:344
+msgid "Unable to cancel VirusTotal scan"
+msgstr "Unable to cancel VirusTotal scan"
+
+#: desktop/src/pages/Scan.tsx:250
 msgid "VirusTotal Scan"
 msgstr "VirusTotal skanning"
 
-#: desktop/src/pages/Scan.tsx:247
+#: desktop/src/pages/Scan.tsx:251
 msgid ""
 "VirusTotal uploads one file at a time. Only send files you are authorized to "
 "share."
@@ -5555,61 +5564,61 @@ msgstr ""
 "VirusTotal laster opp én fil om gangen. Send kun filer du er autorisert til "
 "å dele."
 
-#: desktop/src/pages/Scan.tsx:250
+#: desktop/src/pages/Scan.tsx:254
 msgid "Calculating file hash…"
 msgstr "Calculating file hash…"
 
-#: desktop/src/pages/Scan.tsx:250
+#: desktop/src/pages/Scan.tsx:254
 msgid "Checking the VirusTotal file report…"
 msgstr "Checking the VirusTotal file report…"
 
-#: desktop/src/pages/Scan.tsx:250
+#: desktop/src/pages/Scan.tsx:254
 msgid "Uploading file to VirusTotal…"
 msgstr "Uploading file to VirusTotal…"
 
-#: desktop/src/pages/Scan.tsx:250
+#: desktop/src/pages/Scan.tsx:254
 msgid "VirusTotal is analyzing the file…"
 msgstr "VirusTotal is analyzing the file…"
 
-#: desktop/src/pages/Scan.tsx:252 desktop/src/pages/Scan.tsx:358
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Scan.tsx:256 desktop/src/pages/Scan.tsx:366
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "Open VirusTotal analysis"
 msgstr "Open VirusTotal analysis"
 
-#: desktop/src/pages/Scan.tsx:253 desktop/src/pages/Scan.tsx:359
+#: desktop/src/pages/Scan.tsx:257 desktop/src/pages/Scan.tsx:367
 msgid "Cancel scan"
 msgstr "Cancel scan"
 
-#: desktop/src/pages/Scan.tsx:257
+#: desktop/src/pages/Scan.tsx:261
 msgid "API key available"
 msgstr "API-nøkkel tilgjengelig"
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/Scan.tsx:780
 msgid "Scanning…"
 msgstr "Skanner …"
 
-#: desktop/src/pages/Scan.tsx:258 desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/Scan.tsx:780
 msgid "Scan with VirusTotal"
 msgstr "Skann med VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:260 desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/Scan.tsx:264 desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "API Key"
 msgstr "API-nøkkel"
 
-#: desktop/src/pages/Scan.tsx:261
+#: desktop/src/pages/Scan.tsx:265
 msgid "Save & Scan"
 msgstr "Lagre og skann"
 
-#: desktop/src/pages/Scan.tsx:263
+#: desktop/src/pages/Scan.tsx:267
 msgid "Upload file manually"
 msgstr "Last opp filen manuelt"
 
-#: desktop/src/pages/Scan.tsx:340
+#: desktop/src/pages/Scan.tsx:348
 msgid "VirusTotal Folder Scan"
 msgstr "VirusTotal Folder Scan"
 
-#: desktop/src/pages/Scan.tsx:341
+#: desktop/src/pages/Scan.tsx:349
 msgid ""
 "Review the folder contents before any files are sent. VirusTotal receives "
 "each file hash and filename; files without an existing report may be "
@@ -5619,7 +5628,7 @@ msgstr ""
 "each file hash and filename; files without an existing report may be "
 "uploaded and shared with its security partners."
 
-#: desktop/src/pages/Scan.tsx:342
+#: desktop/src/pages/Scan.tsx:350
 msgid ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
@@ -5627,89 +5636,89 @@ msgstr ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
 
-#: desktop/src/pages/Scan.tsx:345
+#: desktop/src/pages/Scan.tsx:353
 msgid "Preparing folder preview…"
 msgstr "Preparing folder preview…"
 
-#: desktop/src/pages/Scan.tsx:348
+#: desktop/src/pages/Scan.tsx:356
 msgid "{count} file, {size} MiB total"
 msgid_plural "{count} files, {size} MiB total"
 msgstr[0] "{count} file, {size} MiB total"
 msgstr[1] "{count} files, {size} MiB total"
 
-#: desktop/src/pages/Scan.tsx:349
+#: desktop/src/pages/Scan.tsx:357
 msgid "{count} unreadable entry will be skipped."
 msgid_plural "{count} unreadable entries will be skipped."
 msgstr[0] "{count} unreadable entry will be skipped."
 msgstr[1] "{count} unreadable entries will be skipped."
 
-#: desktop/src/pages/Scan.tsx:350
+#: desktop/src/pages/Scan.tsx:358
 msgid "No readable files were found in this folder."
 msgstr "No readable files were found in this folder."
 
-#: desktop/src/pages/Scan.tsx:352
+#: desktop/src/pages/Scan.tsx:360
 msgid "Upload and scan folder"
 msgstr "Upload and scan folder"
 
-#: desktop/src/pages/Scan.tsx:355
+#: desktop/src/pages/Scan.tsx:363
 msgid "File {current} of {total}: {stage}"
 msgstr "File {current} of {total}: {stage}"
 
-#: desktop/src/pages/Scan.tsx:355
+#: desktop/src/pages/Scan.tsx:363
 msgid "hashing"
 msgstr "hashing"
 
-#: desktop/src/pages/Scan.tsx:355
+#: desktop/src/pages/Scan.tsx:363
 msgid "uploading"
 msgstr "uploading"
 
-#: desktop/src/pages/Scan.tsx:355
+#: desktop/src/pages/Scan.tsx:363
 msgid "analyzing"
 msgstr "analyzing"
 
-#: desktop/src/pages/Scan.tsx:362
+#: desktop/src/pages/Scan.tsx:370
 msgid "{count} of {total} file scanned"
 msgid_plural "{count} of {total} files scanned"
 msgstr[0] "{count} of {total} file scanned"
 msgstr[1] "{count} of {total} files scanned"
 
-#: desktop/src/pages/Scan.tsx:362
+#: desktop/src/pages/Scan.tsx:370
 msgid "{count} detection reported"
 msgid_plural "{count} detections reported"
 msgstr[0] "{count} detection reported"
 msgstr[1] "{count} detections reported"
 
-#: desktop/src/pages/Scan.tsx:362
+#: desktop/src/pages/Scan.tsx:370
 msgid "cancelled"
 msgstr "cancelled"
 
-#: desktop/src/pages/Scan.tsx:397
+#: desktop/src/pages/Scan.tsx:405
 msgid "Unable to load scan profiles"
 msgstr "Kan ikke laste inn skanneprofiler"
 
-#: desktop/src/pages/Scan.tsx:404
+#: desktop/src/pages/Scan.tsx:412
 msgid "Unable to check scanner status"
 msgstr "Kan ikke sjekke skannerstatus"
 
-#: desktop/src/pages/Scan.tsx:438 desktop/src/pages/Scan.tsx:519
+#: desktop/src/pages/Scan.tsx:446 desktop/src/pages/Scan.tsx:527
 msgid "Please select a file or folder to scan"
 msgstr "Velg en fil eller mappe som skal skannes"
 
-#: desktop/src/pages/Scan.tsx:452
+#: desktop/src/pages/Scan.tsx:460
 msgid "Starting scan…"
 msgstr "Starter skanning …"
 
-#: desktop/src/pages/Scan.tsx:519
+#: desktop/src/pages/Scan.tsx:527
 msgid "Quick Scan profile has no valid targets"
 msgstr "Hurtigskanningsprofilen har ingen gyldige mål"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:533 desktop/src/pages/Scan.tsx:637
-#: desktop/src/pages/Scan.tsx:697
+#: desktop/src/pages/Scan.tsx:541 desktop/src/pages/Scan.tsx:645
+#: desktop/src/pages/Scan.tsx:707
 msgid "Scan in progress — wait for it to finish before adding targets"
 msgstr "Skanning pågår – vent til den er ferdig før du legger til mål"
 
-#: desktop/src/pages/Scan.tsx:553
+#: desktop/src/pages/Scan.tsx:561
 msgid "VirusTotal scans one file at a time; {count} selection was ignored."
 msgid_plural ""
 "VirusTotal scans one file at a time; {count} selections were ignored."
@@ -5718,95 +5727,99 @@ msgstr[0] ""
 msgstr[1] ""
 "VirusTotal skanner én fil om gangen; {count} valgte elementer ble ignorert."
 
-#: desktop/src/pages/Scan.tsx:568 desktop/src/pages/Scan.tsx:706
+#: desktop/src/pages/Scan.tsx:576 desktop/src/pages/Scan.tsx:716
 msgid "Only local files and folders can be scanned"
 msgstr "Bare lokale filer og mapper kan skannes"
 
-#: desktop/src/pages/Scan.tsx:646
+#: desktop/src/pages/Scan.tsx:654
 msgid "Unable to choose scan targets"
 msgstr "Kan ikke velge skannemål"
 
-#: desktop/src/pages/Scan.tsx:655
+#: desktop/src/pages/Scan.tsx:663
 msgid "Unable to open the folder picker"
 msgstr "Unable to open the folder picker"
 
-#: desktop/src/pages/Scan.tsx:662
+#: desktop/src/pages/Scan.tsx:671
+msgid "The scan had already finished; no cancellation was needed."
+msgstr "The scan had already finished; no cancellation was needed."
+
+#: desktop/src/pages/Scan.tsx:672
 msgid "Cancelling scan…"
 msgstr "Avbryter skanning …"
 
-#: desktop/src/pages/Scan.tsx:664
+#: desktop/src/pages/Scan.tsx:674
 msgid "Unable to cancel scan"
 msgstr "Kan ikke avbryte skanningen"
 
-#: desktop/src/pages/Scan.tsx:680
+#: desktop/src/pages/Scan.tsx:690
 msgid "Running EICAR test…"
 msgstr "Kjører EICAR-test..."
 
-#: desktop/src/pages/Scan.tsx:722
+#: desktop/src/pages/Scan.tsx:732
 msgid "Backend"
 msgstr "Backend"
 
-#: desktop/src/pages/Scan.tsx:723
+#: desktop/src/pages/Scan.tsx:733
 msgid "Manage Profiles"
 msgstr "Administrer profiler"
 
-#: desktop/src/pages/Scan.tsx:728
+#: desktop/src/pages/Scan.tsx:738
 msgid "Scan type"
 msgstr "Scan type"
 
-#: desktop/src/pages/Scan.tsx:746
+#: desktop/src/pages/Scan.tsx:756
 msgid "Files & Folders"
 msgstr "Files & Folders"
 
-#: desktop/src/pages/Scan.tsx:747 desktop/src/pages/Urlscan.tsx:228
+#: desktop/src/pages/Scan.tsx:757 desktop/src/pages/Urlscan.tsx:230
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:750 desktop/src/pages/Scan.tsx:772
+#: desktop/src/pages/Scan.tsx:760 desktop/src/pages/Scan.tsx:782
 msgid "Details"
 msgstr "Detaljer"
 
-#: desktop/src/pages/Scan.tsx:754
+#: desktop/src/pages/Scan.tsx:764
 msgid "Profile"
 msgstr "Profil"
 
-#: desktop/src/pages/Scan.tsx:760
+#: desktop/src/pages/Scan.tsx:770
 msgid "No Profile (Manual)"
 msgstr "Ingen profil (manuelt)"
 
-#: desktop/src/pages/Scan.tsx:764
+#: desktop/src/pages/Scan.tsx:774
 msgid "Drop local files or folders here, or add them below."
 msgstr "Slipp lokale filer eller mapper her, eller legg dem til nedenfor."
 
-#: desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:780
 msgid "Run EICAR Test"
 msgstr "Kjør EICAR Test"
 
-#: desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:780
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:780
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:772
+#: desktop/src/pages/Scan.tsx:782
 msgid "Latest scan"
 msgstr "Siste skanning"
 
-#: desktop/src/pages/Scan.tsx:772
+#: desktop/src/pages/Scan.tsx:782
 msgid "View Results"
 msgstr "Vis resultater"
 
-#: desktop/src/pages/Scan.tsx:774
+#: desktop/src/pages/Scan.tsx:784
 msgid "Virus database is not available"
 msgstr "Virusdatabasen er utilgjengelig"
 
-#: desktop/src/pages/Scan.tsx:774
+#: desktop/src/pages/Scan.tsx:784
 msgid "Update the database before starting a scan."
 msgstr "Oppdater databasen før du starter en skanning."
 
-#: desktop/src/pages/Scan.tsx:774
+#: desktop/src/pages/Scan.tsx:784
 msgid "Open Database Updates"
 msgstr "Åpne Databaseoppdateringer"
 
@@ -6154,24 +6167,24 @@ msgstr "Skrivebordsvarsler er globalt deaktivert i Oppførsel."
 msgid "VirusTotal API keys must be exactly 64 hexadecimal characters"
 msgstr "VirusTotal-API-nøkler må inneholde nøyaktig 64 heksadesimale tegn"
 
-#: desktop/src/pages/SettingsPreferences.tsx:418
-#: desktop/src/pages/SettingsPreferences.tsx:442
+#: desktop/src/pages/SettingsPreferences.tsx:419
+#: desktop/src/pages/SettingsPreferences.tsx:446
 msgid "Unable to save the API key"
 msgstr "Kan ikke lagre API-nøkkelen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:422
-#: desktop/src/pages/SettingsPreferences.tsx:446
-#: desktop/src/pages/Urlscan.tsx:132
+#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:452
+#: desktop/src/pages/Urlscan.tsx:134
 msgid "API key deleted"
 msgstr "API-nøkkelen er slettet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:422
-#: desktop/src/pages/SettingsPreferences.tsx:446
+#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:452
 msgid "Unable to delete the API key"
 msgstr "Kan ikke slette API-nøkkelen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid ""
 "Keys are stored in the operating system keyring or the explicitly enabled "
 "compatibility fallback; they are never returned to the interface."
@@ -6179,77 +6192,77 @@ msgstr ""
 "Nøkler lagres i operativsystemets nøkkelring eller den eksplisitt aktiverte "
 "kompatibilitetsreserven; de blir aldri returnert til grensesnittet."
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/Urlscan.tsx:50
 msgid "Configured ({masked}) using {backend}"
 msgstr "Konfigurert ({masked}) med {backend}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/Urlscan.tsx:51
 msgid "masked"
 msgstr "maskert"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Keyring is locked"
 msgstr "Nøkkelringen er låst"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Keyring unavailable"
 msgstr "Nøkkelringen er utilgjengelig"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/Urlscan.tsx:57
 msgid "Not configured"
 msgstr "Ikke satt opp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid "Exactly 64 hexadecimal characters."
 msgstr "Nøyaktig 64 heksadesimale tegn."
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Save Key"
 msgstr "Lagre nøkkel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid "Get a free API key"
 msgstr "Skaff en gratis API-nøkkel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Delete Key"
 msgstr "Slett nøkkel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "When API key is missing"
 msgstr "Når API-nøkkelen mangler"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Always ask"
 msgstr "Spør alltid"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid "Open VirusTotal website"
 msgstr "Åpne nettstedet til VirusTotal"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Show notification only"
 msgstr "Bare vis et varsel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Information"
 msgstr "Informasjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid ""
 "Free tier: 4 requests per minute, 500 per day. Files up to 650 MB can be "
 "scanned."
@@ -6257,11 +6270,11 @@ msgstr ""
 "Gratis nivå: 4 forespørsler per minutt, 500 per dag. Filer på opptil 650 MB "
 "kan skannes."
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid "Delete VirusTotal API key"
 msgstr "Slett VirusTotal API-nøkkel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:428
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "use VirusTotal scanning."
@@ -6269,29 +6282,29 @@ msgstr ""
 "Dette fjerner nøkkelen fra sikker lagring. Du må angi den på nytt for å "
 "bruke VirusTotal-skanning."
 
-#: desktop/src/pages/SettingsPreferences.tsx:439
+#: desktop/src/pages/SettingsPreferences.tsx:442
 #: desktop/src/pages/Urlscan.tsx:103
 msgid "Enter your urlscan API key."
 msgstr "Enter your urlscan API key."
 
-#: desktop/src/pages/SettingsPreferences.tsx:440
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "The urlscan API key cannot contain spaces."
 msgstr "The urlscan API key cannot contain spaces."
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Paste the API key from your urlscan.io account settings."
 msgstr "Paste the API key from your urlscan.io account settings."
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
-#: desktop/src/pages/Urlscan.tsx:219
+#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/Urlscan.tsx:221
 msgid "Get an API key"
 msgstr "Get an API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Open urlscan.io website"
 msgstr "Åpne urlscan.io-nettstedet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
@@ -6299,7 +6312,7 @@ msgstr ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid ""
 "Submitting a URL shares it with urlscan.io, including its query string, and "
 "can expose private or internal addresses. Never submit login links, session "
@@ -6309,11 +6322,11 @@ msgstr ""
 "can expose private or internal addresses. Never submit login links, session "
 "tokens, or confidential information."
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid "Delete urlscan.io API key"
 msgstr "Delete urlscan.io API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:449
+#: desktop/src/pages/SettingsPreferences.tsx:455
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
@@ -6321,182 +6334,182 @@ msgstr ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
 
-#: desktop/src/pages/SettingsPreferences.tsx:464
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Unable to read debug logs: {error}"
 msgstr "Kan ikke lese feilsøkingslogger: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:472
+#: desktop/src/pages/SettingsPreferences.tsx:478
 msgid "Unable to read system information: {error}"
 msgstr "Kan ikke lese systeminformasjon: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:479
+#: desktop/src/pages/SettingsPreferences.tsx:485
 msgid "ZIP archives"
 msgstr "ZIP-arkiver"
 
-#: desktop/src/pages/SettingsPreferences.tsx:480
+#: desktop/src/pages/SettingsPreferences.tsx:486
 msgid "All files"
 msgstr "Alle filer"
 
-#: desktop/src/pages/SettingsPreferences.tsx:482
+#: desktop/src/pages/SettingsPreferences.tsx:488
 msgid "Logs exported successfully"
 msgstr "Loggene er eksportert"
 
-#: desktop/src/pages/SettingsPreferences.tsx:484
+#: desktop/src/pages/SettingsPreferences.tsx:490
 msgid "Unable to export logs: {error}"
 msgstr "Kan ikke eksportere logger: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:496
+#: desktop/src/pages/SettingsPreferences.tsx:502
 msgid "{count} log file cleared"
 msgid_plural "{count} log files cleared"
 msgstr[0] "{count} loggfil er slettet"
 msgstr[1] "{count} loggfiler er slettet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:499
+#: desktop/src/pages/SettingsPreferences.tsx:505
 msgid "Unable to clear logs: {error}"
 msgstr "Kan ikke tømme logger: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:506
+#: desktop/src/pages/SettingsPreferences.tsx:512
 msgid "Linux Defender System Information"
 msgstr "Linux Defender System Information"
 
-#: desktop/src/pages/SettingsPreferences.tsx:508
+#: desktop/src/pages/SettingsPreferences.tsx:514
 msgid "Installation Type: {value}"
 msgstr "Installasjonstype: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:509
+#: desktop/src/pages/SettingsPreferences.tsx:515
 msgid "Distribution: {value}"
 msgstr "Distribusjon: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:510
+#: desktop/src/pages/SettingsPreferences.tsx:516
 msgid "Desktop Environment: {value}"
 msgstr "Skrivebordsmiljø: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:511
+#: desktop/src/pages/SettingsPreferences.tsx:517
 msgid "Rust Runtime: {value}"
 msgstr "Rust kjøretid: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:512
+#: desktop/src/pages/SettingsPreferences.tsx:518
 msgid "Tauri Runtime: {value}"
 msgstr "Tauri kjøretid: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:513
+#: desktop/src/pages/SettingsPreferences.tsx:519
 msgid "Platform: {value}"
 msgstr "Plattform: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:514
+#: desktop/src/pages/SettingsPreferences.tsx:520
 msgid "Architecture: {value}"
 msgstr "Arkitektur: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:515
+#: desktop/src/pages/SettingsPreferences.tsx:521
 msgid "Version: {value}"
 msgstr "Versjon: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:519
+#: desktop/src/pages/SettingsPreferences.tsx:525
 msgid "System information copied to clipboard"
 msgstr "Systeminformasjonen er kopiert til utklippstavlen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:521
+#: desktop/src/pages/SettingsPreferences.tsx:527
 msgid "Unable to copy system information: {error}"
 msgstr "Kan ikke kopiere systeminformasjon: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:526
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Logging Settings"
 msgstr "Logginnstillinger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:526
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Higher levels produce more detailed logs and apply immediately."
 msgstr "Høyere nivåer produserer mer detaljerte logger og gjelder umiddelbart."
 
-#: desktop/src/pages/SettingsPreferences.tsx:527
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Log Level"
 msgstr "Loggnivå"
 
-#: desktop/src/pages/SettingsPreferences.tsx:528
+#: desktop/src/pages/SettingsPreferences.tsx:534
 msgid "Log File Location"
 msgstr "Plassering av loggfiler"
 
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Log Management"
 msgstr "Loggadministrasjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid ""
 "Export a ZIP archive for support or permanently clear the application logs."
 msgstr "Eksporter et ZIP-arkiv for støtte eller tøm programloggene permanent."
 
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:537
 msgid "Current Log Size"
 msgstr "Nåværende loggstørrelse"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Export Logs"
 msgstr "Eksporter logger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Save all sanitized debug logs to a ZIP archive."
 msgstr "Lagre alle rensede feilsøkingslogger i et ZIP-arkiv."
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:539
 msgid "Clear Logs"
 msgstr "Tøm logger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:539
 msgid "This permanently deletes all debug log files."
 msgstr "Dette sletter alle feilsøkingsloggfiler permanent."
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:539
 msgid "Clear"
 msgstr "Tøm"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:541
 msgid "System Information"
 msgstr "Systeminformasjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:535
+#: desktop/src/pages/SettingsPreferences.tsx:541
 msgid "Useful for troubleshooting and bug reports."
 msgstr "Nyttig for feilsøking og feilrapporter."
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Installation Type"
 msgstr "Installasjonstype"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Distribution"
 msgstr "Distribusjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Desktop Environment"
 msgstr "Skrivebordsmiljø"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Rust Runtime"
 msgstr "Rust-kjøretid"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Tauri Runtime"
 msgstr "Tauri-kjøretid"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Platform"
 msgstr "Plattform"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy System Info"
 msgstr "Kopier systeminformasjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy all system information to the clipboard."
 msgstr "Kopier all systeminformasjon til utklippstavlen."
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Loading system information…"
 msgstr "Laster inn systeminformasjon …"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid "Clear logs"
 msgstr "Tøm logger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid ""
 "This permanently deletes {count} log file totaling {size}. This action "
 "cannot be undone."
@@ -6510,7 +6523,7 @@ msgstr[1] ""
 "Dette sletter permanent {count} loggfiler på totalt {size}. Denne handlingen "
 "kan ikke angres."
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid "Delete Logs"
 msgstr "Slett logger"
 
@@ -6637,39 +6650,39 @@ msgstr "System keyring is unavailable"
 msgid "Enter your VirusTotal API key."
 msgstr "Enter your VirusTotal API key."
 
-#: desktop/src/pages/Urlscan.tsx:115
+#: desktop/src/pages/Urlscan.tsx:116
 msgid "Unable to save the API key: {error}"
 msgstr "Unable to save the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:134
+#: desktop/src/pages/Urlscan.tsx:136
 msgid "Unable to delete the API key: {error}"
 msgstr "Unable to delete the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:148
+#: desktop/src/pages/Urlscan.tsx:150
 msgid "URL submitted to urlscan"
 msgstr "URL submitted to urlscan"
 
-#: desktop/src/pages/Urlscan.tsx:156
+#: desktop/src/pages/Urlscan.tsx:158
 msgid "URL analysis submitted to VirusTotal"
 msgstr "URL analysis submitted to VirusTotal"
 
-#: desktop/src/pages/Urlscan.tsx:166
-msgid ""
-"Private scans are visible only to you unless you share the result; urlscan "
-"retains them for a limited period."
-msgstr ""
-"Private scans are visible only to you unless you share the result; urlscan "
-"retains them for a limited period."
-
 #: desktop/src/pages/Urlscan.tsx:168
 msgid ""
+"Private scans are visible only to you unless you share the result; urlscan "
+"retains them for a limited period."
+msgstr ""
+"Private scans are visible only to you unless you share the result; urlscan "
+"retains them for a limited period."
+
+#: desktop/src/pages/Urlscan.tsx:170
+msgid ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
 msgstr ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
 
-#: desktop/src/pages/Urlscan.tsx:169
+#: desktop/src/pages/Urlscan.tsx:171
 msgid ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
@@ -6677,40 +6690,40 @@ msgstr ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
 
-#: desktop/src/pages/Urlscan.tsx:181 desktop/src/pages/Urlscan.tsx:201
+#: desktop/src/pages/Urlscan.tsx:183 desktop/src/pages/Urlscan.tsx:203
 msgid "Enter your urlscan API key before submitting a URL."
 msgstr "Skriv inn urlscan-API-nøkkelen før du sender inn en URL."
 
-#: desktop/src/pages/Urlscan.tsx:182 desktop/src/pages/Urlscan.tsx:202
+#: desktop/src/pages/Urlscan.tsx:184 desktop/src/pages/Urlscan.tsx:204
 msgid "Enter your VirusTotal API key before submitting a URL."
 msgstr "Skriv inn VirusTotal-API-nøkkelen før du sender inn en URL."
 
-#: desktop/src/pages/Urlscan.tsx:189
+#: desktop/src/pages/Urlscan.tsx:191
 msgid "Opened the urlscan.io website in your browser"
 msgstr "urlscan.io-nettstedet ble åpnet i nettleseren"
 
-#: desktop/src/pages/Urlscan.tsx:196
+#: desktop/src/pages/Urlscan.tsx:198
 msgid "Configure a urlscan API key in Preferences before submitting a URL."
 msgstr ""
 "Konfigurer en urlscan-API-nøkkel i Innstillinger før du sender inn en URL."
 
-#: desktop/src/pages/Urlscan.tsx:206
+#: desktop/src/pages/Urlscan.tsx:208
 msgid "Website URL inspection"
 msgstr "Website URL inspection"
 
-#: desktop/src/pages/Urlscan.tsx:207
+#: desktop/src/pages/Urlscan.tsx:209
 msgid "URL scan service"
 msgstr "URL scan service"
 
-#: desktop/src/pages/Urlscan.tsx:213
+#: desktop/src/pages/Urlscan.tsx:215
 msgid "urlscan.io account"
 msgstr "urlscan.io account"
 
-#: desktop/src/pages/Urlscan.tsx:213
+#: desktop/src/pages/Urlscan.tsx:215
 msgid "VirusTotal account"
 msgstr "VirusTotal account"
 
-#: desktop/src/pages/Urlscan.tsx:214
+#: desktop/src/pages/Urlscan.tsx:216
 msgid ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
@@ -6718,55 +6731,55 @@ msgstr ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
 
-#: desktop/src/pages/Urlscan.tsx:215
+#: desktop/src/pages/Urlscan.tsx:217
 msgid "Key status"
 msgstr "Key status"
 
-#: desktop/src/pages/Urlscan.tsx:216
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Personal API key"
 msgstr "Personal API key"
 
-#: desktop/src/pages/Urlscan.tsx:216
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Paste your urlscan API key"
 msgstr "Paste your urlscan API key"
 
-#: desktop/src/pages/Urlscan.tsx:216
+#: desktop/src/pages/Urlscan.tsx:218
 msgid "Paste your VirusTotal API key"
 msgstr "Paste your VirusTotal API key"
 
-#: desktop/src/pages/Urlscan.tsx:218
+#: desktop/src/pages/Urlscan.tsx:220
 msgid "Save key"
 msgstr "Save key"
 
-#: desktop/src/pages/Urlscan.tsx:218
+#: desktop/src/pages/Urlscan.tsx:220
 msgid "Delete key"
 msgstr "Delete key"
 
-#: desktop/src/pages/Urlscan.tsx:224
+#: desktop/src/pages/Urlscan.tsx:226
 msgid "Submit a website for inspection"
 msgstr "Submit a website for inspection"
 
-#: desktop/src/pages/Urlscan.tsx:226
+#: desktop/src/pages/Urlscan.tsx:228
 msgid ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
 msgstr ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
-
-#: desktop/src/pages/Urlscan.tsx:227
-msgid ""
-"VirusTotal checks the URL with multiple security engines and blocklists. "
-"This is a remote reputation analysis, not a local file scan."
-msgstr ""
-"VirusTotal checks the URL with multiple security engines and blocklists. "
-"This is a remote reputation analysis, not a local file scan."
 
 #: desktop/src/pages/Urlscan.tsx:229
+msgid ""
+"VirusTotal checks the URL with multiple security engines and blocklists. "
+"This is a remote reputation analysis, not a local file scan."
+msgstr ""
+"VirusTotal checks the URL with multiple security engines and blocklists. "
+"This is a remote reputation analysis, not a local file scan."
+
+#: desktop/src/pages/Urlscan.tsx:231
 msgid "Result visibility"
 msgstr "Result visibility"
 
-#: desktop/src/pages/Urlscan.tsx:231
+#: desktop/src/pages/Urlscan.tsx:233
 msgid ""
 "urlscan receives the complete URL, including its query string, and visits "
 "it. Never submit login links, session tokens, private/internal URLs, or "
@@ -6775,94 +6788,94 @@ msgstr ""
 "urlscan receives the complete URL, including its query string, and visits "
 "it. Never submit login links, session tokens, private/internal URLs, or "
 "confidential information."
-
-#: desktop/src/pages/Urlscan.tsx:232
-msgid ""
-"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
-"shared with its community and security partners. Never submit login links, "
-"session tokens, private/internal URLs, or confidential information."
-msgstr ""
-"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
-"shared with its community and security partners. Never submit login links, "
-"session tokens, private/internal URLs, or confidential information."
 
 #: desktop/src/pages/Urlscan.tsx:234
+msgid ""
+"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
+"shared with its community and security partners. Never submit login links, "
+"session tokens, private/internal URLs, or confidential information."
+msgstr ""
+"VirusTotal adds submitted and queried URLs to its dataset, where they may be "
+"shared with its community and security partners. Never submit login links, "
+"session tokens, private/internal URLs, or confidential information."
+
+#: desktop/src/pages/Urlscan.tsx:236
 msgid "Submission accepted"
 msgstr "Submission accepted"
 
-#: desktop/src/pages/Urlscan.tsx:234
+#: desktop/src/pages/Urlscan.tsx:236
 msgid "Visibility: {visibility}"
 msgstr "Visibility: {visibility}"
 
-#: desktop/src/pages/Urlscan.tsx:234
+#: desktop/src/pages/Urlscan.tsx:236
 msgid "Open urlscan result"
 msgstr "Open urlscan result"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "VirusTotal reported detections"
 msgstr "VirusTotal reported detections"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "Analysis complete — no detections reported"
 msgstr "Analysis complete — no detections reported"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "Analysis is still processing"
 msgstr "Analysis is still processing"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "VirusTotal rate limit reached"
 msgstr "VirusTotal rate limit reached"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "VirusTotal analysis failed"
 msgstr "VirusTotal analysis failed"
 
-#: desktop/src/pages/Urlscan.tsx:235
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "{detections} of {total} URL engines reported suspicious or malicious"
 msgstr "{detections} of {total} URL engines reported suspicious or malicious"
 
-#: desktop/src/pages/Urlscan.tsx:236 desktop/src/pages/Urlscan.tsx:244
+#: desktop/src/pages/Urlscan.tsx:238 desktop/src/pages/Urlscan.tsx:246
 msgid "Submitting…"
 msgstr "Submitting…"
 
-#: desktop/src/pages/Urlscan.tsx:236
+#: desktop/src/pages/Urlscan.tsx:238
 msgid "Review submission"
 msgstr "Review submission"
 
-#: desktop/src/pages/Urlscan.tsx:238
+#: desktop/src/pages/Urlscan.tsx:240
 msgid "Confirm urlscan submission"
 msgstr "Confirm urlscan submission"
 
-#: desktop/src/pages/Urlscan.tsx:238
+#: desktop/src/pages/Urlscan.tsx:240
 msgid "Confirm VirusTotal URL submission"
 msgstr "Confirm VirusTotal URL submission"
 
-#: desktop/src/pages/Urlscan.tsx:240
-msgid ""
-"urlscan will visit this URL and store page activity. The service receives "
-"the full URL, including its query string."
-msgstr ""
-"urlscan will visit this URL and store page activity. The service receives "
-"the full URL, including its query string."
-
-#: desktop/src/pages/Urlscan.tsx:241
-msgid ""
-"VirusTotal will submit this URL for analysis and add it to its dataset, "
-"where it may be shared with its community and security partners."
-msgstr ""
-"VirusTotal will submit this URL for analysis and add it to its dataset, "
-"where it may be shared with its community and security partners."
-
 #: desktop/src/pages/Urlscan.tsx:242
+msgid ""
+"urlscan will visit this URL and store page activity. The service receives "
+"the full URL, including its query string."
+msgstr ""
+"urlscan will visit this URL and store page activity. The service receives "
+"the full URL, including its query string."
+
+#: desktop/src/pages/Urlscan.tsx:243
+msgid ""
+"VirusTotal will submit this URL for analysis and add it to its dataset, "
+"where it may be shared with its community and security partners."
+msgstr ""
+"VirusTotal will submit this URL for analysis and add it to its dataset, "
+"where it may be shared with its community and security partners."
+
+#: desktop/src/pages/Urlscan.tsx:244
 msgid "URL"
 msgstr "URL"
 
-#: desktop/src/pages/Urlscan.tsx:242
+#: desktop/src/pages/Urlscan.tsx:244
 msgid "Visibility"
 msgstr "Visibility"
 
-#: desktop/src/pages/Urlscan.tsx:244
+#: desktop/src/pages/Urlscan.tsx:246
 msgid "Submit URL"
 msgstr "Submit URL"
 
@@ -6939,6 +6952,12 @@ msgstr "Virusdefinisjonene er over 1 dag gamle"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "Systemet er beskyttet"
+
+#~ msgid "No mandatory access control framework detected"
+#~ msgstr "Fant ikke noe rammeverk for obligatorisk tilgangskontroll (MAC)"
+
+#~ msgid "Consider enabling AppArmor or SELinux"
+#~ msgstr "Vurder å slå på AppArmor eller SELinux"
 
 #~ msgid "{key}: path cannot be empty"
 #~ msgstr "{key}: banen kan ikke være tom"

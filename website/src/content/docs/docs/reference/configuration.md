@@ -32,7 +32,7 @@ The settings file is an object. Linux Defender merges missing defaults, preserve
 | `notifications_enabled` | `true` | Global application notifications |
 | `minimize_to_tray` / `start_minimized` | `false` | Optional tray behavior |
 | `close_behavior` | `null` | `unset`, `minimize`, `quit`, or `ask` |
-| `scan_backend` | `"auto"` | `auto`, `clamd`, or `clamscan` |
+| `scan_backend` | `"auto"` | `auto`, `daemon`, or `clamscan` |
 | `daemon_socket_path` | `""` | Optional daemon socket override |
 | `show_live_progress` | `true` | Detailed scan progress |
 | `update_inactivity_timeout_minutes` | `10` | Whole minutes from 1–1440 without stdout or stderr output before a manual or forced database update is stopped; malformed or out-of-range values, including zero, use 10 |
@@ -71,7 +71,7 @@ Linux Defender scans with the configured host ClamAV database, which FreshClam m
 
 ## Scan backend and mounted devices
 
-`auto` selects a reachable daemon and otherwise `clamscan`; `clamd` is daemon-only and `clamscan` never attempts the daemon. Linux Defender checks a configured `LocalSocket` and common host socket locations. See [scan backends](/Linux-Defender/docs/reference/scan-backends/) for setup and troubleshooting.
+`auto` selects a reachable daemon and otherwise `clamscan`; `daemon` uses the reachable host clamd; `clamscan` never attempts the daemon. Linux Defender checks a configured `LocalSocket` and common host socket locations. See [scan backends](/Linux-Defender/docs/reference/scan-backends/) for setup and troubleshooting.
 
 Mounted-device settings are `device_auto_scan_enabled`, `device_auto_scan_types`, `device_auto_scan_notify`, `device_auto_scan_max_size_gb`, `device_auto_scan_delay_seconds`, `device_auto_scan_auto_quarantine`, and `device_auto_scan_skip_on_battery`. The defaults scan removable and external mounts only when the feature is enabled; the default size limit is 32 GiB and the default delay is three seconds.
 

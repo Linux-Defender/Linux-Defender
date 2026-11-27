@@ -110,7 +110,8 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
       else setVirusTotalStatus(saved);
       if (service === "urlscan") setUrlscanKey("");
       else setVirusTotalKey("");
-      notify(saved.message ?? _("API key saved"), "success");
+      const savedTone = saved.status === "locked" || saved.status === "unavailable" || saved.backend === "plaintext_fallback" ? "warning" : "success";
+      notify(saved.message ?? _("API key saved"), savedTone);
     } catch (reason) {
       notify(_("Unable to save the API key: {error}", { error: String(reason) }), "error");
     } finally {
@@ -129,7 +130,8 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
         setVirusTotalStatus(deleted);
         setVirusTotalResult(null);
       }
-      notify(deleted.message ?? _("API key deleted"), "success");
+      const deletedTone = deleted.status === "locked" || deleted.status === "unavailable" ? "warning" : "success";
+      notify(deleted.message ?? _("API key deleted"), deletedTone);
     } catch (reason) {
       notify(_("Unable to delete the API key: {error}", { error: String(reason) }), "error");
     } finally {

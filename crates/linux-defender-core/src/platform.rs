@@ -386,9 +386,15 @@ fn package_owns_executable(program: &str, flag: &str, executable: Option<&Path>)
 }
 
 fn distro_info() -> String {
-    let Ok(contents) = fs::read_to_string("/etc/os-release") else {
-        return platform_info();
+    // Under Flatpak /etc/os-release describes the SDK runtime, not the host.
+    let contents = if is_flatpak() {
+        crate::host::read_host_file("/etc/os-release").unwrap_or_default()
+    } else {
+        fs::read_to_string("/etc/os-release").unwrap_or_default()
     };
+    if contents.is_empty() {
+        return platform_info();
+    }
     let fields = contents
         .lines()
         .filter_map(|line| line.split_once('='))

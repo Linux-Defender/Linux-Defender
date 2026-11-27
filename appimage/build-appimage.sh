@@ -71,8 +71,8 @@ check_prerequisites() {
     require_command bun
     require_command pkg-config
 
-    if ! pkg-config --exists webkit2gtk-4.1 && ! pkg-config --exists webkit2gtk-4.0; then
-        die "WebKitGTK development files are required (webkit2gtk-4.1 or webkit2gtk-4.0)"
+    if ! pkg-config --exists webkit2gtk-4.1; then
+        die "WebKitGTK 4.1 development files are required by Tauri 2 (webkit2gtk-4.1); webkit2gtk-4.0 is not sufficient"
     fi
     pkg-config --exists gtk+-3.0 || die "GTK3 development files are required by Tauri on Linux"
 }

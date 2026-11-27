@@ -49,22 +49,17 @@ impl Paths {
             config_dir: config_home.join("linux-defender"),
             data_dir: data_home.join("linux-defender"),
         }
-        .migrate_legacy_data(&home, &config_home, &data_home)
+        .migrate_legacy_data(&config_home, &data_home)
     }
 
-    fn migrate_legacy_data(
-        self,
-        home: &Path,
-        config_home: &Path,
-        data_home: &Path,
-    ) -> AppResult<Self> {
-        let is_flatpak = env::var_os("FLATPAK_ID").is_some();
-        let (legacy_config, legacy_data) = if is_flatpak {
-            let old_app = home.join(".var/app/io.github.linx_systems.ClamUI");
-            (old_app.join("config/clamui"), old_app.join("data/clamui"))
-        } else {
-            (config_home.join("clamui"), data_home.join("clamui"))
-        };
+    fn migrate_legacy_data(self, config_home: &Path, data_home: &Path) -> AppResult<Self> {
+        // Use the XDG-relative legacy locations on every platform. Under
+        // Flatpak, HOME/XDG_*_HOME are remapped into this app's sandbox, so a
+        // publisher-side `flatpak build-commit-from --end-of-life-rebase`
+        // places migrated data at `data_home/clamui`; the old app's
+        // `~/.var/app/<old-id>` tree is never visible inside the sandbox.
+        let legacy_config = config_home.join("clamui");
+        let legacy_data = data_home.join("clamui");
 
         migrate_legacy_directory(&legacy_config, &self.config_dir)?;
         migrate_legacy_directory(&legacy_data, &self.data_dir)?;
@@ -735,6 +730,35 @@ pub fn now_iso() -> String {
 mod tests {
     use super::*;
     use std::sync::atomic::Ordering;
+
+    #[test]
+    fn flatpak_style_xdg_legacy_directories_are_migrated() {
+        // Flatpak remaps XDG_*_HOME into the app sandbox. A publisher-side
+        // end-of-life rebase lands the old app's data at data_home/clamui.
+        let temporary = tempfile::tempdir().expect("temp dir");
+        let sandbox = temporary
+            .path()
+            .join(".var/app/io.github.linuxdefender.linuxdefender");
+        let config_home = sandbox.join("config");
+        let data_home = sandbox.join("data");
+        fs::create_dir_all(config_home.join("clamui")).expect("config");
+        fs::create_dir_all(data_home.join("clamui")).expect("legacy data");
+        fs::write(
+            data_home.join("clamui/settings.json"),
+            b"{\"retained\":true}",
+        )
+        .expect("legacy settings");
+        let paths = Paths {
+            home: sandbox,
+            config_dir: config_home.join("linux-defender"),
+            data_dir: data_home.join("linux-defender"),
+        }
+        .migrate_legacy_data(&config_home, &data_home)
+        .expect("migration");
+        assert_eq!(paths.data_dir, data_home.join("linux-defender"));
+        assert!(data_home.join("linux-defender/settings.json").exists());
+        assert!(!data_home.join("clamui").exists());
+    }
 
     #[test]
     fn legacy_data_directory_is_moved_without_changing_contents() {

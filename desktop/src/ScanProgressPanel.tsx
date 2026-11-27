@@ -18,7 +18,7 @@ export function ScanProgressPanel({ progress, liveThreats, showLiveProgress, mul
     ? _("Target {index}/{count}: {path}", { index: progress.target_index, count: progress.target_count, path: progress.path })
     : progress.path ? `${_("Scan target")}: ${progress.path}` : null;
 
-  return <section className="scan-progress grouped-list" aria-labelledby="scan-progress-title"><div className="group-row"><div className="row-copy">
+  return <section className="scan-progress grouped-list" aria-labelledby="scan-progress-title"><div className="group-row"><div className="row-copy" aria-live="polite">
     <h2 id="scan-progress-title" className="row-title">{_("Scanning")}</h2>
     {targetLabel && <p id="scan-progress-target" className="row-description path-value">{targetLabel}</p>}
     {progress.files_scanned_total !== undefined && <p className="muted">{ngettext("{count} file scanned overall", "{count} files scanned overall", progress.files_scanned_total, { count: progress.files_scanned_total })}</p>}

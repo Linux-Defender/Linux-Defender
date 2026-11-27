@@ -227,16 +227,35 @@ impl QuarantineManager {
             .and_then(Value::as_str)
             .filter(|value| !value.is_empty())
             .map(expand_path);
-        let quarantine_dir = match configured {
-            Some(path) if is_within_directory(&path, &ctx.paths.data_dir) => path,
-            Some(_) => {
-                return Err(
-                    "Quarantine directory must be inside the Linux Defender data directory"
-                        .to_owned(),
-                )
-            }
-            None => ctx.paths.data_dir.join("quarantine"),
-        };
+        let quarantine_dir =
+            match configured {
+                Some(path) if is_within_directory(&path, &ctx.paths.data_dir) => path,
+                Some(path) => {
+                    // Pre-rename settings can still point into the legacy
+                    // `~/.local/share/clamui` tree. That tree is migrated into the
+                    // new data directory at startup, so map the configured
+                    // quarantine location onto the migrated tree instead of
+                    // breaking quarantine for upgraded users.
+                    let legacy_data = ctx
+                        .paths
+                        .data_dir
+                        .parent()
+                        .map(|parent| parent.join("clamui"));
+                    match legacy_data.filter(|legacy| is_within_directory(&path, legacy)) {
+                        Some(legacy) => {
+                            let relative = path
+                                .strip_prefix(&legacy)
+                                .unwrap_or(std::path::Path::new(""));
+                            ctx.paths.data_dir.join(relative)
+                        }
+                        None => return Err(
+                            "Quarantine directory must be inside the Linux Defender data directory"
+                                .to_owned(),
+                        ),
+                    }
+                }
+                None => ctx.paths.data_dir.join("quarantine"),
+            };
         let manager = Self {
             db_path: ctx.paths.data_dir.join("quarantine.db"),
             quarantine_dir,
@@ -1583,6 +1602,31 @@ fn restore_error_status(error: &io::Error) -> Status {
 mod tests {
     use super::*;
     use std::os::unix::fs::symlink;
+
+    #[test]
+    fn legacy_quarantine_directory_is_mapped_into_the_migrated_tree() {
+        use crate::common::{Context, Paths};
+        let root = tempfile::tempdir().unwrap();
+        let home = root.path().join("home");
+        let data_home = root.path().join("data");
+        let config_dir = root.path().join("config/linux-defender");
+        let data_dir = data_home.join("linux-defender");
+        std::fs::create_dir_all(&config_dir).unwrap();
+        let legacy = data_home.join("clamui/quarantine/custom");
+        std::fs::write(
+            config_dir.join("settings.json"),
+            serde_json::json!({ "quarantine_directory": legacy.to_string_lossy() }).to_string(),
+        )
+        .unwrap();
+        let ctx = Context::with_paths(Paths {
+            home,
+            config_dir,
+            data_dir: data_dir.clone(),
+        })
+        .unwrap();
+        let manager = QuarantineManager::from_context(&ctx).unwrap();
+        assert_eq!(manager.quarantine_dir, data_dir.join("quarantine/custom"));
+    }
 
     #[test]
     fn quarantine_directory_must_stay_inside_the_data_directory() {

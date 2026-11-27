@@ -5,7 +5,7 @@
     "": {
       "name": "linux-defender-assist",
       "dependencies": {
-        "@modelcontextprotocol/server": "latest",
+        "@modelcontextprotocol/server": "2.4.0",
         "zod": "^4",
       },
       "devDependencies": {

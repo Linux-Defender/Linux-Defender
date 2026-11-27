@@ -134,6 +134,7 @@ export default function Quarantine({ active }: { active: boolean }) {
   const [rescanning, setRescanning] = useState(false);
   const activeRef = useRef(active);
   const queryRef = useRef({ search: "", locale: Intl.DateTimeFormat().resolvedOptions().locale });
+  const bannerRef = useRef<HTMLDivElement>(null);
   const responseGeneration = useRef(0);
   const lastRefresh = useRef(0);
   activeRef.current = active;
@@ -310,6 +311,7 @@ export default function Quarantine({ active }: { active: boolean }) {
       if (result.status === "success") {
         setBanner({ message: action === "restore" ? _("File restored successfully.") : _("File deleted successfully."), type: "success" });
         await refreshEntries();
+        bannerRef.current?.focus();
         return;
       }
       if (result.status === "database_error") {
@@ -336,7 +338,7 @@ export default function Quarantine({ active }: { active: boolean }) {
         <p>{_("Secure storage for isolated threats.")}</p>
       </div>
     </header>
-    {banner && <div className={`status-banner ${banner.type}`} role="status"><span>{banner.message}</span><button className="icon-button" type="button" aria-label={_("Dismiss")} title={_("Dismiss")} onClick={() => setBanner(null)}><Icon name="close" /></button></div>}
+    {banner && <div ref={bannerRef} tabIndex={-1} className={`status-banner ${banner.type}`} role={banner.type === "error" ? "alert" : "status"}><span>{banner.message}</span><button className="icon-button" type="button" aria-label={_("Dismiss")} title={_("Dismiss")} onClick={() => setBanner(null)}><Icon name="close" /></button></div>}
     <section aria-labelledby="storage-heading">
       <header className="section-header"><div><h2 id="storage-heading">{_("Quarantine Storage")}</h2></div></header>
       <dl className="grouped-list summary-list">
@@ -356,7 +358,7 @@ export default function Quarantine({ active }: { active: boolean }) {
         </div>
       </header>
       <label className="search-field">{_("Search by threat name or path")}<input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={_("Search by threat name or path…")} /></label>
-      {loading ? <p className="muted">{_("Loading quarantine entries…")}</p> : !data || data.entryCount === 0 ? <p className="empty-state">{_("No Quarantined Files. Detected threats will be isolated here for review.")}</p> : appliedSearch && data.matchedCount === 0 ? <p className="empty-state">{_("No matching entries. Try a different search term.")}</p> : data.entries.length === 0 ? <p className="empty-state">{_("No entries on this page.")}</p> : <div className="grouped-list quarantine-list" role="list">{data.entries.map((entry) => <article className="group-row quarantine-entry" role="listitem" key={entry.id}>
+      {loading ? <p className="muted">{_("Loading quarantine entries…")}</p> : !data ? <p className="empty-state">{_("Unable to load quarantine entries.")}</p> : data.entryCount === 0 ? <p className="empty-state">{_("No Quarantined Files. Detected threats will be isolated here for review.")}</p> : appliedSearch && data.matchedCount === 0 ? <p className="empty-state">{_("No matching entries. Try a different search term.")}</p> : data.entries.length === 0 ? <p className="empty-state">{_("No entries on this page.")}</p> : <div className="grouped-list quarantine-list" role="list">{data.entries.map((entry) => <article className="group-row quarantine-entry" role="listitem" key={entry.id}>
         <div className="quarantine-entry-content row-copy">
           <header><h3 className="row-title">{entry.threatName || _("Unknown Threat")}</h3><span className="status-badge warning">{_("Quarantined")}</span>{rescan[entry.id] && <span className={`status-badge ${rescan[entry.id].status === "detected" ? "error" : "warning"}`} title={rescan[entry.id].detail || undefined}>{rescanLabel(rescan[entry.id].status)}</span>}</header>
           <p className="path-value">{_("Path")}: {entry.originalPath}</p>

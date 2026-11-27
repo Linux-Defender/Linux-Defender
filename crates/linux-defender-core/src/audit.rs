@@ -811,7 +811,16 @@ fn check_mac_framework(ctx: &Context) -> AuditSection {
         "Access Control",
         "system-lock-screen-symbolic",
     );
-    let mut found = false;
+    // Upstream ClamUI #368: `getenforce` can be absent on minimal images, and
+    // an inactive AppArmor module should not warn on a SELinux system.
+    let selinux_command = host_binary("getenforce").unwrap_or_else(|| "getenforce".to_owned());
+    let selinux = run_command(&selinux_command, &[], COMMAND_TIMEOUT);
+    let selinux_mode = if selinux.code.is_some() {
+        Some(selinux.stdout.trim().to_ascii_lowercase())
+    } else {
+        None
+    };
+    let selinux_active = matches!(selinux_mode.as_deref(), Some("enforcing" | "permissive"));
     let apparmor = if is_flatpak() {
         let output = run_command(
             "cat",
@@ -823,14 +832,16 @@ fn check_mac_framework(ctx: &Context) -> AuditSection {
         fs::read_to_string("/sys/module/apparmor/parameters/enabled").ok()
     };
     if let Some(value) = apparmor {
-        let mut row = if value.trim() == "Y" {
-            check(
+        let row = if value.trim() == "Y" {
+            Some(check(
                 ctx,
                 "apparmor",
                 "AppArmor",
                 AuditStatus::Pass,
                 tr(ctx, "AppArmor is enabled"),
-            )
+            ))
+        } else if selinux_active {
+            None
         } else {
             let mut row = check(
                 ctx,
@@ -840,16 +851,15 @@ fn check_mac_framework(ctx: &Context) -> AuditSection {
                 tr(ctx, "AppArmor module is loaded but not enabled"),
             );
             row.recommendation = Some(tr(ctx, "Enable AppArmor for application sandboxing"));
-            row
+            Some(row)
         };
-        row.info_url = Some(URL_APPARMOR.to_owned());
-        section.push(row);
-        found = true;
+        if let Some(mut row) = row {
+            row.info_url = Some(URL_APPARMOR.to_owned());
+            section.push(row);
+        }
     }
-    let selinux = run_command("getenforce", &[], COMMAND_TIMEOUT);
-    if selinux.code.is_some() {
-        let mode = selinux.stdout.trim().to_ascii_lowercase();
-        let mut row = match mode.as_str() {
+    if let Some(mode) = selinux_mode.as_deref() {
+        let mut row = match mode {
             "enforcing" => check(
                 ctx,
                 "selinux",
@@ -882,21 +892,24 @@ fn check_mac_framework(ctx: &Context) -> AuditSection {
                 row.recommendation = Some(tr(ctx, "Enable SELinux for mandatory access control"));
                 row
             }
-            _ => return section,
+            _ => check(
+                ctx,
+                "selinux",
+                "SELinux",
+                AuditStatus::Unknown,
+                tr(ctx, "SELinux status could not be determined"),
+            ),
         };
         row.info_url = Some(URL_SELINUX.to_owned());
         section.push(row);
-        found = true;
-    }
-    if !found {
-        let mut row = check(
+    } else {
+        let row = check(
             ctx,
-            "mac_framework",
-            "MAC Framework",
+            "selinux",
+            "SELinux",
             AuditStatus::Unknown,
-            tr(ctx, "No mandatory access control framework detected"),
+            tr(ctx, "SELinux status could not be determined"),
         );
-        row.recommendation = Some(tr(ctx, "Consider enabling AppArmor or SELinux"));
         section.push(row);
     }
     section
