@@ -1,6 +1,6 @@
-/** Suggested signature URL toggle. Pure so it can be unit-tested without
- * importing the heavy preferences page (whose dependencies are mocked in
- * other tests). */
+/** Provider rows stay in the configuration (URLhaus feed included) so signature
+ * updates keep working. The Suggested control only hides or reveals those rows
+ * in the draft UI. Pure helpers keep that rule regression-tested. */
 export const SUGGESTED_SIGNATURE_URLS = [
   "https://www.rfxn.com/downloads/rfxn.hdb",
   "https://www.rfxn.com/downloads/rfxn.ndb",
@@ -9,14 +9,18 @@ export const SUGGESTED_SIGNATURE_URLS = [
   "https://sigs.interserver.net/shell.ldb",
 ] as const;
 
-/** First click shows all five, the next removes them; user URLs survive. */
-export function toggleSuggestedUrls(current: readonly string[]): string[] {
-  if (SUGGESTED_SIGNATURE_URLS.every((url) => current.includes(url))) {
-    return current.filter((url) => !SUGGESTED_SIGNATURE_URLS.includes(url as (typeof SUGGESTED_SIGNATURE_URLS)[number]));
-  }
-  const merged = [...current];
-  for (const url of SUGGESTED_SIGNATURE_URLS) {
-    if (!merged.includes(url)) merged.push(url);
-  }
-  return merged;
+export function isUrlhausFeed(url: string): boolean {
+  return url.startsWith("https://urlhaus-api.abuse.ch/v2/files/exports/")
+    && url.endsWith("/urlhaus_clamav.ndb");
+}
+
+export function isSuggestedUrl(url: string): boolean {
+  return isUrlhausFeed(url)
+    || (SUGGESTED_SIGNATURE_URLS as readonly string[]).includes(url);
+}
+
+/** Hidden by default; Suggested reveals all provider rows without changing
+ * any stored configuration value. */
+export function visibleCustomUrls(values: readonly string[], showSuggested: boolean): string[] {
+  return showSuggested ? [...values] : values.filter((url) => !isSuggestedUrl(url));
 }
