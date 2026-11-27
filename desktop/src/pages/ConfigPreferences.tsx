@@ -3,6 +3,7 @@ import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } fro
 import { notify, openExternal, openPaths, request } from "../api";
 import { type ManualConfiguration, useConfigurationRecovery } from "../ConfigurationRecovery";
 import { cloneValues, mergeAuthorizedConfig } from "../configAuthorize";
+import { addSuggestedUrls, visibleCustomUrls } from "../suggestedUrls";
 import { isHelperTrustError } from "../helperTrustError";
 import { _ } from "../i18n";
 import { addNewestFirst, parseListDraft } from "../pathList";
@@ -93,14 +94,6 @@ const FREQUENCY_LABELS: Record<Schedule["schedule_frequency"], () => string> = {
 const FREQUENCIES: Schedule["schedule_frequency"][] = ["hourly", "daily", "weekly", "monthly"];
 const FILE_TYPE_FIELDS = ["ScanPE", "ScanELF", "ScanOLE2", "ScanPDF", "ScanHTML", "ScanArchive"] as const;
 const SCANNER_BOOLEAN_FIELDS = ["LogVerbose", "LogSyslog"] as const;
-const SUGGESTED_SIGNATURE_URLS = [
-  "https://www.rfxn.com/downloads/rfxn.hdb",
-  "https://www.rfxn.com/downloads/rfxn.ndb",
-  "https://sigs.interserver.net/interserver256.hdb",
-  "https://sigs.interserver.net/interservertopline.db",
-  "https://sigs.interserver.net/shell.ldb",
-] as const;
-
 // URLhaus stopped serving anonymous ClamAV signatures; the feed now lives
 // behind an abuse.ch Auth-Key that forms part of the export path.
 const URLHAUS_EXPORT_PREFIX = "https://urlhaus-api.abuse.ch/v2/files/exports/";
@@ -329,8 +322,9 @@ function parseCustomUrls(raw: string): string[] {
   return parsed;
 }
 
-function CustomUrlListField({ values, onChange }: { values: string[]; onChange: (next: string[]) => void }) {
+function CustomUrlListField({ values, onChange, showSuggested }: { values: string[]; onChange: (next: string[]) => void; showSuggested: boolean }) {
   const [draft, setDraft] = useState("");
+  const visible = visibleCustomUrls(values, showSuggested);
   const add = () => {
     const candidates = parseCustomUrls(draft);
     if (candidates.length === 0) {
@@ -350,8 +344,8 @@ function CustomUrlListField({ values, onChange }: { values: string[]; onChange: 
     <label className="field field-control" htmlFor="config-databasecustomurl">{_("Add URLs")}</label>
     <textarea id="config-databasecustomurl" value={draft} rows={3} placeholder={"DatabaseCustomURL https://example.invalid/signatures.ndb"} onChange={(event) => setDraft(event.target.value)} />
     <div className="toolbar actions"><button className="button" type="button" onClick={add}>{_("Add")}</button></div>
-    {values.length > 0 && <ul className="table url-list">
-      {values.map((item) => <li className="row setting-row" key={item}>
+    {visible.length > 0 && <ul className="table url-list">
+      {visible.map((item) => <li className="row setting-row" key={item}>
         <code className="monospace">{displayCustomUrl(item)}</code>
         <button className="button danger" type="button" onClick={() => onChange(values.filter((valueItem) => valueItem !== item))}>{_("Remove")}</button>
       </li>)}
@@ -370,6 +364,7 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const [report, setReport] = useState<SaveReport>(null);
   const [manualConfigurations, setManualConfigurations] = useState<readonly ManualConfiguration[]>([]);
   const [configLoadCount, setConfigLoadCount] = useState(0);
+  const [showSuggested, setShowSuggested] = useState(false);
   const [busy, setBusy] = useState(false);
   const [urlhausFeedUrl, setUrlhausFeedUrl] = useState<string | null>(null);
   const loadRequests = useRef<Record<ConfigKind, number>>({ freshclam: 0, clamd: 0 });
@@ -529,12 +524,15 @@ export default function ConfigPreferences({ section }: { section: string }) {
     setDocument((current) => current ? { ...current, values: updater(current.values) } : current);
   }, []);
 
-  const addSuggestedUrls = () => {
-    updateConfig("freshclam", (values) => valuesForMany(
-      values,
-      "DatabaseCustomURL",
-      [...(values.DatabaseCustomURL ?? []), ...SUGGESTED_SIGNATURE_URLS].filter((url) => !values.DatabaseCustomURL?.includes(url)),
-    ));
+  const toggleSuggested = () => {
+    if (!showSuggested) {
+      updateConfig("freshclam", (values) => valuesForMany(
+        values,
+        "DatabaseCustomURL",
+        addSuggestedUrls(values.DatabaseCustomURL ?? []),
+      ));
+    }
+    setShowSuggested((shown) => !shown);
   };
 
   const refreshUrlhausFeed = useCallback(async () => {
@@ -788,8 +786,8 @@ export default function ConfigPreferences({ section }: { section: string }) {
         <TextField label={_("Database Mirror")} field="DatabaseMirror" value={value(freshclamValues, "DatabaseMirror")} onChange={(next) => setFreshclamField("DatabaseMirror", next)} />
       </section>
       <section className="preference-section form-section"><h3 className="section-heading">{_("Custom Signature Databases")}</h3>
-        <CustomUrlListField values={freshclamValues.DatabaseCustomURL ?? []} onChange={(next) => updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", next))} />
-        <div className="toolbar actions"><button className="button" type="button" onClick={addSuggestedUrls}>{_("Suggested")}</button></div>
+        <CustomUrlListField values={freshclamValues.DatabaseCustomURL ?? []} showSuggested={showSuggested} onChange={(next) => updateConfig("freshclam", (values) => valuesForMany(values, "DatabaseCustomURL", next))} />
+        <div className="toolbar actions"><button className="button" type="button" onClick={toggleSuggested} aria-pressed={showSuggested}>{_("Suggested")}</button></div>
         <p className="muted">{_(
           // Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
           "Suggested adds the RFXN signatures and three InterServer databases to this draft. Save & Apply is still required.",
