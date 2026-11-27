@@ -435,3 +435,6 @@ License boundary: only Herodium is MIT. Linux Defender reimplemented behaviour f
 
 ### PR #366 native startup diagnostics (deferred subset)
 Upstream PR #366 also added a bounded native milestone timeline, `CLAMUI_STARTUP_TRACE=1`, a main-thread probe, and a three-way verdict (setup unfinished / UI thread blocked / page never mounted). These need no new IPC or capabilities, but they are diagnostic-only refinements to an already-working 10-second watchdog and are deferred pending a reproducible blank-window report (#361). Linux Defender did adopt the independently valuable pre-React fallback: a static message in `desktop/index.html` that React removes on first mount, covering the case where the bundle never executes and an error boundary cannot help.
+
+### Upstream PR #374 / commit 3960c74 (merged 2026-11-27)
+Ported the two behavioral refinements to the #368 access-control fix: a SELinux mode is now trusted only when `getenforce` exits 0, and a `disabled` SELinux row is skipped when AppArmor is already enabled (only one major LSM is active). The upstream split of probing from decision and its catalog churn are diagnostic/testing structure only; local audit tests already cover the parsers. Reviewed pin bumped to `3960c74`; freshness check is green.

@@ -815,7 +815,9 @@ fn check_mac_framework(ctx: &Context) -> AuditSection {
     // an inactive AppArmor module should not warn on a SELinux system.
     let selinux_command = host_binary("getenforce").unwrap_or_else(|| "getenforce".to_owned());
     let selinux = run_command(&selinux_command, &[], COMMAND_TIMEOUT);
-    let selinux_mode = if selinux.code.is_some() {
+    // Only exit code 0 is a trustworthy SELinux status; other exits mean the
+    // tool failed or is unavailable (upstream ClamUI #374).
+    let selinux_mode = if selinux.code == Some(0) {
         Some(selinux.stdout.trim().to_ascii_lowercase())
     } else {
         None
@@ -831,7 +833,7 @@ fn check_mac_framework(ctx: &Context) -> AuditSection {
     } else {
         fs::read_to_string("/sys/module/apparmor/parameters/enabled").ok()
     };
-    if let Some(value) = apparmor {
+    if let Some(ref value) = apparmor {
         let row = if value.trim() == "Y" {
             Some(check(
                 ctx,
@@ -858,7 +860,11 @@ fn check_mac_framework(ctx: &Context) -> AuditSection {
             section.push(row);
         }
     }
-    if let Some(mode) = selinux_mode.as_deref() {
+    let apparmor_enabled = apparmor.as_deref().is_some_and(|value| value.trim() == "Y");
+    if let Some(mode) = selinux_mode.as_deref().filter(|mode| {
+        // A disabled SELinux is not a risk when AppArmor is already enabled.
+        *mode != "disabled" || !apparmor_enabled
+    }) {
         let mut row = match mode {
             "enforcing" => check(
                 ctx,
