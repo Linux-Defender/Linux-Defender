@@ -218,8 +218,10 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 "backend": info.backend,
                 "status": info.status,
                 "masked": info.masked,
-                                // Translators: Keep `urlscan` unchanged; it is a product name.
-                "message": write.warning.unwrap_or_else(|| tr(ctx, "urlscan API key saved")),
+                "message": write.warning.unwrap_or_else(|| {
+                    // Translators: Keep `urlscan` unchanged; it is a product name.
+                    tr(ctx, "urlscan API key saved")
+                }),
             }))
         }
         "key_delete" => {
@@ -230,10 +232,11 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 "backend": info.backend,
                 "status": info.status,
                 "masked": info.masked,
-                                "message": if deleted {
+                "message": if deleted {
                     // Translators: Keep `urlscan` unchanged; it is a product name.
                     tr(ctx, "urlscan API key deleted")
                 } else {
+                    // Translators: Keep `urlscan` unchanged; it is a product name.
                     tr(ctx, "No urlscan API key was configured")
                 },
             }))
@@ -250,10 +253,34 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 .ok_or_else(|| {
                     "Set a personal urlscan API key before submitting a URL".to_owned()
                 })?;
-            let result = UrlscanClient::new(&key)?.submit(url, visibility)?;
+            let result = UrlscanClient::new(&key)?
+                .submit(url, visibility)
+                .map_err(|error| localize_submit_error(ctx, error))?;
             serde_json::to_value(result).map_err(|_| "Unable to serialize urlscan result".into())
         }
         _ => Err(format!("Unknown urlscan action: {action}")),
+    }
+}
+
+fn localize_submit_error(ctx: &Context, error: String) -> String {
+    match error.as_str() {
+        "Enter a valid HTTP or HTTPS URL" => {
+            // Translators: Keep HTTP and HTTPS unchanged; they are URL schemes.
+            tr(ctx, "Enter a valid HTTP or HTTPS URL")
+        }
+        "URL must use HTTP or HTTPS and cannot contain login credentials" => {
+            // Translators: Keep HTTP and HTTPS unchanged; they are URL schemes.
+            tr(
+                ctx,
+                "URL must use HTTP or HTTPS and cannot contain login credentials",
+            )
+        }
+        "Private and local network addresses cannot be submitted" => tr(
+            ctx,
+            "Private and local network addresses cannot be submitted",
+        ),
+        "urlscan response is too large" => tr(ctx, "urlscan response is too large"),
+        other => other.to_owned(),
     }
 }
 

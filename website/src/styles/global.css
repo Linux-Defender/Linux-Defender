@@ -125,7 +125,7 @@
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.18em] text-guard-sage/80;
+    @apply inline-flex flex-wrap items-center gap-2 text-[11px] font-mono uppercase tracking-[0.18em] text-guard-sage/80;
   }
 
   .section-title {

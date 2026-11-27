@@ -10,16 +10,16 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1469 translated messages. | 31 |
-| en | 1469 translated messages. | baseline |
-| es | 1469 translated messages. | 32 |
-| fr | 1469 translated messages. | 32 |
-| hu | 1469 translated messages. | 32 |
-| it | 1469 translated messages. | 32 |
-| nb | 1469 translated messages. | 32 |
-| pt_BR | 1469 translated messages. | 32 |
-| vi | 1469 translated messages. | 32 |
-| zh_CN | 1469 translated messages. | 32 |
+| de | 1472 translated messages. | 34 |
+| en | 1472 translated messages. | baseline |
+| es | 1472 translated messages. | 35 |
+| fr | 1472 translated messages. | 35 |
+| hu | 1472 translated messages. | 35 |
+| it | 1472 translated messages. | 35 |
+| nb | 1472 translated messages. | 35 |
+| pt_BR | 1472 translated messages. | 35 |
+| vi | 1472 translated messages. | 35 |
+| zh_CN | 1472 translated messages. | 35 |
 
 ## de
 
@@ -30,6 +30,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Connection timed out. Please check your network connection.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -40,11 +41,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
+- `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
+- `URL must use HTTP or HTTPS and cannot contain login credentials`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
@@ -64,6 +67,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Connection timed out. Please check your network connection.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -74,11 +78,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
+- `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
+- `URL must use HTTP or HTTPS and cannot contain login credentials`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
@@ -99,6 +105,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Connection timed out. Please check your network connection.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -109,11 +116,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
+- `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
+- `URL must use HTTP or HTTPS and cannot contain login credentials`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
@@ -134,6 +143,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Connection timed out. Please check your network connection.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -144,11 +154,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
+- `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
+- `URL must use HTTP or HTTPS and cannot contain login credentials`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
@@ -169,6 +181,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Connection timed out. Please check your network connection.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -179,11 +192,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
+- `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
+- `URL must use HTTP or HTTPS and cannot contain login credentials`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
@@ -204,6 +219,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Connection timed out. Please check your network connection.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -214,11 +230,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
+- `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
+- `URL must use HTTP or HTTPS and cannot contain login credentials`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
@@ -239,6 +257,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Connection timed out. Please check your network connection.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -249,11 +268,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
+- `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
+- `URL must use HTTP or HTTPS and cannot contain login credentials`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
@@ -274,6 +295,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Connection timed out. Please check your network connection.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -284,11 +306,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
+- `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
+- `URL must use HTTP or HTTPS and cannot contain login credentials`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`
@@ -309,6 +333,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Connection timed out. Please check your network connection.`
 - `DNS resolution failed. Please check your network settings.`
 - `Database is locked. Another freshclam instance may be running.`
+- `Enter a valid HTTP or HTTPS URL`
 - `Failed to create {path}: {error}`
 - `Failed to inspect {path}: {error}`
 - `Failed to remove {path}: {error}`
@@ -319,11 +344,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Integration destination escapes {path}`
 - `Invalid integration destination: {path}`
 - `No readable files were found in this folder.`
+- `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `The scan had already finished; no cancellation was needed.`
+- `URL must use HTTP or HTTPS and cannot contain login credentials`
 - `Unable to delete the API key: {error}`
 - `Unable to load quarantine entries.`
 - `Unable to open the folder picker`

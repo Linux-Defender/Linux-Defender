@@ -2568,3 +2568,66 @@ dialog.modal-dialog.about-dialog { width: min(720px, calc(100vw - 32px)); }
     scroll-behavior: auto !important;
   }
 }
+
+/* Custom signature URL lists must span the whole form grid. A half-width
+   column made long provider URLs wrap one character per line and squeezed the
+   Remove buttons (see the visual-harness regression). */
+.url-list {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.url-list .row {
+  min-height: 0;
+  gap: 12px;
+}
+
+.url-list .row > code {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.url-list .row > .button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Long unbroken text must never squeeze native action buttons. These rules
+   close the same class of overflow as .url-list across the remaining panels. */
+.component-details .row > pre,
+.audit-details .row > code {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.component-details .row > .button,
+.audit-details .row > .button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.notice > details,
+.notice > details > pre,
+pre.notice {
+  min-width: 0;
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.notice > strong { min-width: 0; overflow-wrap: anywhere; }
+
+.integration-row > :first-child { min-width: 0; }
+.integration-row > :first-child small { overflow-wrap: anywhere; }
+.integration-row > :last-child:not(:first-child) .button { white-space: nowrap; }
+
+.configuration-recovery-file-header > .actions,
+.compact-list > li > .button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.compact-list > li { min-width: 0; overflow-wrap: anywhere; }

@@ -19,6 +19,7 @@ application runtime dependencies.
 - `scripts/check-aur-consistency.py` — named AUR-only wrapper over the unified packaging check.
 - `scripts/check-badges.py` — every workflow has a README status badge.
 - `scripts/check-build-wiring.py` — `tauri dev` → Vite → `dist`, vendored glib patch.
+- `scripts/check-url-list-layout.py` — custom signature URL list stays full-width with wrapped URLs and unsqueezed Remove buttons.
 - `scripts/check-built-links.py` — built-site links, anchors, and HTML/CSS structure.
 - `scripts/check-compiled-catalogs.ts` — compiled catalog identity check.
 - `scripts/check-cross-layer.py` — IPC/CLI/locale/feature contracts from source.
@@ -35,6 +36,7 @@ application runtime dependencies.
 - `scripts/check-packaging-consistency.py` — all six formats.
 - `scripts/check-packaging-freshness.py` — reviewed packaging reference drift.
 - `scripts/check-potfiles.sh` — Rust/TS gettext source coverage.
+- `scripts/check-repo-state.py` — one `main` branch and no local release tags.
 - `scripts/check-repo-consistency.py` — versions, identity, workflow/script inventory.
 - `scripts/check-scripts-index.py` — every tracked script is listed in this index.
 - `scripts/check-signature-feeds.py` — URLhaus export health with key redacted.
@@ -61,4 +63,4 @@ application runtime dependencies.
 - `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).
 - `scripts/validate-sway.sh` — interactive Sway checklist runner.
 - `scripts/hooks/ai-enforcement-context.py`, `scripts/hooks/install-hooks.sh`, `scripts/hooks/pre-commit`, `scripts/hooks/pre-push` — git/AI hooks.
-- `scripts/tests/test_external_links.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py` — checker regression tests.
+- `scripts/tests/test_external_links.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.

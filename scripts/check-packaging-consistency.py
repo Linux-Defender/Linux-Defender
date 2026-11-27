@@ -186,6 +186,11 @@ def main() -> int:
             failures.append(f"{name} contains an upstream brand in live packaging files")
         if "/var/lib/clamav" in format_text or "clamav-db" in format_text:
             failures.append(f"{name} recipe bundles host signature data")
+        # The host engine and its signature database are never packaged.
+        if re.search(r"\.(cvd|cld|hdb|ndb|ftm|idb|ldb)\b", format_text, re.I):
+            failures.append(f"{name} recipe references a bundled signature database file")
+        if re.search(r"(?:cp|install|mv)\s+\S*(?:usr/(?:s)?bin/)?(?:clamscan|clamdscan|freshclam|clamd)\b", format_text):
+            failures.append(f"{name} recipe copies a host ClamAV binary into the package")
 
     # Cross-package helper identity and release asset names.
     helper_paths = [

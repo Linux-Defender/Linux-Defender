@@ -3,7 +3,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <footer class="border-t hairline mt-10">
-  <div class="container-tight py-12 grid gap-10 sm:grid-cols-[auto_1fr_auto] items-start">
+  <div class="container-tight py-12 grid gap-10 md:grid-cols-[auto_minmax(0,1fr)_auto] items-start">
     <div class="flex items-center gap-2.5">
       <img
         src={`${base}/favicon.svg`}
@@ -16,7 +16,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
       />
       <span class="font-semibold tracking-tight text-white">Linux Defender</span>
     </div>
-    <nav aria-label="Footer" class="grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm">
+    <nav aria-label="Footer" class="min-w-0 grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
       <div>
         <div class="text-white/40 text-[11px] uppercase tracking-wider font-mono mb-2">Project</div>
         <ul class="space-y-1.5">
@@ -41,7 +41,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
         </ul>
       </div>
     </nav>
-    <div class="text-xs text-white/45 sm:text-right">
+    <div class="min-w-0 text-xs text-white/45 md:text-right [overflow-wrap:anywhere]">
       <div>Built for the Linux desktop.</div>
       <div class="mt-1 font-mono">Maintained by <a class="hover:text-white" href="https://github.com/Linux-Defender" rel="noopener">Kira (Linux-Defender)</a></div>
     </div>
