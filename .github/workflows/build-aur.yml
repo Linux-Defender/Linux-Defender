@@ -51,7 +51,12 @@ jobs:
           fetch-depth: 0
 
       - name: Install pacman tools for .SRCINFO verification
-        run: sudo apt-get update && sudo apt-get install -y pacman
+        # Runner images can carry unrelated third-party repos (e.g. a Microsoft
+        # apt source returning 403). Those must not block AUR verification;
+        # the install itself stays fail-closed.
+        run: |
+          sudo apt-get update || true
+          sudo apt-get install -y pacman
 
       - name: Check PKGBUILD syntax
         run: |
