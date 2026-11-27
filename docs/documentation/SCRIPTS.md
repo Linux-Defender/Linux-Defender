@@ -37,6 +37,7 @@ application runtime dependencies.
 - `scripts/check-packaging-freshness.py` — reviewed packaging reference drift.
 - `scripts/check-potfiles.sh` — Rust/TS gettext source coverage.
 - `scripts/check-repo-state.py` — one `main` branch and no local release tags.
+- `scripts/check-unused-code-guard.py` — TypeScript configs reject unused locals/parameters before CodeQL.
 - `scripts/check-repo-consistency.py` — versions, identity, workflow/script inventory.
 - `scripts/check-scripts-index.py` — every tracked script is listed in this index.
 - `scripts/check-signature-feeds.py` — URLhaus export health with key redacted.
