@@ -550,7 +550,6 @@ export default function ConfigPreferences({ section }: { section: string }) {
   const autoAddedPaths = useRef(new Set<string>());
   useEffect(() => {
     if (!freshclam || !urlhausFeedUrl || autoAddedPaths.current.has(freshclam.path)) return;
-    if ((freshclam.values.DatabaseCustomURL ?? []).some(isUrlhausFeed)) return;
     autoAddedPaths.current.add(freshclam.path);
     updateConfig("freshclam", (values) => valuesForMany(
       values,
