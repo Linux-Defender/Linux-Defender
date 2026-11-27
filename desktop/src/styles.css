@@ -2614,3 +2614,14 @@ pre.notice {
 .url-list .row { min-height: 0; gap: 12px; }
 .url-list .row > code { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
 .url-list .row > .button { flex: 0 0 auto; white-space: nowrap; }
+
+/* Discoverability for the separate system-level security audit. */
+.system-check-callout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.system-check-callout .row-copy { flex: 1 1 auto; min-width: 0; }
+.system-check-callout .actions { flex: 0 0 auto; }
+.system-check-callout .muted { overflow-wrap: anywhere; }

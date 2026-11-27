@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 07:08-0500\n"
+"POT-Creation-Date: 2026-11-27 07:47-0500\n"
 "PO-Revision-Date: 2026-07-22 21:29+0800\n"
 "Last-Translator: Markson Hosben <marksonhosben@proton.me>\n"
 "Language-Team: Chinese <>\n"
@@ -2502,7 +2502,7 @@ msgstr "记住我的选择"
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
-#: desktop/src/pages/Results.tsx:200 desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Results.tsx:200 desktop/src/pages/Scan.tsx:790
 #: desktop/src/pages/SettingsPreferences.tsx:428
 #: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/SettingsPreferences.tsx:544
@@ -2634,7 +2634,7 @@ msgstr "复制内容"
 msgid "Configuration content"
 msgstr "配置内容"
 
-#: desktop/src/HelperTrustErrorDialog.tsx:36 desktop/src/pages/Audit.tsx:348
+#: desktop/src/HelperTrustErrorDialog.tsx:36 desktop/src/pages/Audit.tsx:335
 msgid "Could not open documentation: {error}"
 msgstr "无法打开文档：{error}"
 
@@ -2759,12 +2759,12 @@ msgstr "正在等待扫描数据…"
 msgid "Scan progress"
 msgstr "扫描进度"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:780
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:788
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "已扫描 {count} 个文件"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:780
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:788
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
@@ -2859,15 +2859,15 @@ msgstr "SSH 安全"
 msgid "Portmaster"
 msgstr "Portmaster"
 
-#: desktop/src/pages/Audit.tsx:59 desktop/src/pages/Audit.tsx:284
+#: desktop/src/pages/Audit.tsx:59 desktop/src/pages/Audit.tsx:281
 msgid "Checking"
 msgstr "正在检查"
 
-#: desktop/src/pages/Audit.tsx:60 desktop/src/pages/Audit.tsx:282
+#: desktop/src/pages/Audit.tsx:60 desktop/src/pages/Audit.tsx:279
 msgid "Pass"
 msgstr "通过"
 
-#: desktop/src/pages/Audit.tsx:61 desktop/src/pages/Audit.tsx:282
+#: desktop/src/pages/Audit.tsx:61 desktop/src/pages/Audit.tsx:279
 msgid "Warning"
 msgstr "警告"
 
@@ -2897,115 +2897,114 @@ msgstr "安全审计已完成"
 msgid "Could not receive progressive audit results: {error}"
 msgstr "无法接收逐步返回的审计结果：{error}"
 
-#: desktop/src/pages/Audit.tsx:209
-msgid "{tool} check completed"
-msgstr "{tool} 检查已完成"
-
-#: desktop/src/pages/Audit.tsx:235
+#: desktop/src/pages/Audit.tsx:221
 msgid "The audit supplied an unsupported GUI launch action."
 msgstr "审计提供的 GUI 启动操作不受支持。"
 
-#: desktop/src/pages/Audit.tsx:240
+#: desktop/src/pages/Audit.tsx:226
 msgid "The selected application did not start"
 msgstr "所选应用程序未能启动"
 
-#: desktop/src/pages/Audit.tsx:253
+#: desktop/src/pages/Audit.tsx:239
 msgid "Portmaster authorization granted; refreshing audit."
 msgstr "已获得 Portmaster 授权，正在刷新审计结果。"
 
-#: desktop/src/pages/Audit.tsx:256
+#: desktop/src/pages/Audit.tsx:242
 msgid "Portmaster authorization was cancelled."
 msgstr "Portmaster 授权已取消。"
 
-#: desktop/src/pages/Audit.tsx:258
+#: desktop/src/pages/Audit.tsx:244
 msgid "Portmaster authorization was not granted."
 msgstr "未获得 Portmaster 授权。"
 
-#: desktop/src/pages/Audit.tsx:275
+#: desktop/src/pages/Audit.tsx:261
 msgid "System security audit"
 msgstr "系统安全审计"
 
-#: desktop/src/pages/Audit.tsx:276
+#: desktop/src/pages/Audit.tsx:262
 msgid ""
 "Inspect your security posture and copy recommendations. Audit checks never "
 "change system configuration."
 msgstr "检查系统安全状况并复制建议。审计检查不会更改系统配置。"
 
-#: desktop/src/pages/Audit.tsx:278
+#: desktop/src/pages/Audit.tsx:264
 msgid "Auditing…"
 msgstr "正在审计…"
 
-#: desktop/src/pages/Audit.tsx:278
+#: desktop/src/pages/Audit.tsx:264
 msgid "Refresh audit"
 msgstr "刷新审计结果"
 
-#: desktop/src/pages/Audit.tsx:282
-msgid "{count} issue"
-msgid_plural "{count} issues"
-msgstr[0] "{count} 个问题"
-
-#: desktop/src/pages/Audit.tsx:282
-msgid "unavailable or skipped"
-msgstr "不可用或已跳过"
-
-#: desktop/src/pages/Audit.tsx:288
+#: desktop/src/pages/Audit.tsx:269
 msgid "Deep scans"
 msgstr "深度扫描"
 
 #. Translators: Keep Lynis, chkrootkit, and rkhunter unchanged; they are tool names.
-#: desktop/src/pages/Audit.tsx:288
+#: desktop/src/pages/Audit.tsx:269
 msgid ""
 "Lynis, chkrootkit, and rkhunter are never run automatically. Run all "
 "security scans to perform every check in sequence; each may request "
 "administrator authorization."
-msgstr "Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization."
+msgstr ""
+"Lynis, chkrootkit, and rkhunter are never run automatically. Run all "
+"security scans to perform every check in sequence; each may request "
+"administrator authorization."
 
-#: desktop/src/pages/Audit.tsx:293
+#: desktop/src/pages/Audit.tsx:274
 msgid "Running all security scans…"
 msgstr "Running all security scans…"
 
-#: desktop/src/pages/Audit.tsx:293
+#: desktop/src/pages/Audit.tsx:274
 msgid "Run all security scans"
 msgstr "Run all security scans"
 
+#: desktop/src/pages/Audit.tsx:279
+msgid "{count} issue"
+msgid_plural "{count} issues"
+msgstr[0] "{count} 个问题"
+
+#: desktop/src/pages/Audit.tsx:279
+msgid "unavailable or skipped"
+msgstr "不可用或已跳过"
+
 #. Translators: Portmaster is a product name. The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Audit.tsx:316
+#: desktop/src/pages/Audit.tsx:303
 msgid "Portmaster — not detected (optional)"
 msgstr "Portmaster——未检测到（可选）"
 
 #. Translators: Portmaster is a product name. The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Audit.tsx:321
+#: desktop/src/pages/Audit.tsx:308
 msgid "Portmaster — could not probe"
 msgstr "Portmaster——无法探测"
 
-#: desktop/src/pages/Audit.tsx:330
+#: desktop/src/pages/Audit.tsx:317
 msgid "No audit details were returned."
 msgstr "未返回任何审计详情。"
 
-#: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:192
+#: desktop/src/pages/Audit.tsx:326 desktop/src/pages/Components.tsx:192
 msgid "Command copied to clipboard"
 msgstr "命令已复制到剪贴板"
 
-#: desktop/src/pages/Audit.tsx:341 desktop/src/pages/Components.tsx:195
+#: desktop/src/pages/Audit.tsx:328 desktop/src/pages/Components.tsx:195
 msgid "Could not copy command: {error}"
 msgstr "无法复制命令：{error}"
 
-#: desktop/src/pages/Audit.tsx:355 desktop/src/pages/Components.tsx:278
+#: desktop/src/pages/Audit.tsx:342 desktop/src/pages/Components.tsx:278
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
-#: desktop/src/pages/Scan.tsx:780 desktop/src/pages/Scan.tsx:785
+#: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
 #: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy"
 msgstr "复制"
 
-#: desktop/src/pages/Audit.tsx:356
+#: desktop/src/pages/Audit.tsx:343
 msgid "Authorizing…"
 msgstr "正在授权…"
 
-#: desktop/src/pages/Audit.tsx:356 desktop/src/pages/Network.tsx:441
+#: desktop/src/pages/Audit.tsx:343 desktop/src/pages/Network.tsx:441
 msgid "Open in browser"
 msgstr "在浏览器中打开"
 
-#: desktop/src/pages/Audit.tsx:356
+#: desktop/src/pages/Audit.tsx:343
 msgid "Learn more"
 msgstr "了解更多"
 
@@ -4252,7 +4251,7 @@ msgid "Export Text"
 msgstr "导出文本"
 
 #: desktop/src/pages/Logs.tsx:410 desktop/src/pages/Logs.tsx:420
-#: desktop/src/pages/Results.tsx:170 desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Results.tsx:170 desktop/src/pages/Scan.tsx:788
 msgid "Fullscreen"
 msgstr "全屏"
 
@@ -4545,7 +4544,7 @@ msgstr "防护状态"
 msgid "Last Scan"
 msgstr "上次扫描"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:786
 msgid "Start Scan"
 msgstr "开始扫描"
 
@@ -5234,7 +5233,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "其他无法访问的文件未在此视图中显示。"
 
 #: desktop/src/pages/Results.tsx:194 desktop/src/pages/Results.tsx:195
-#: desktop/src/pages/Scan.tsx:780 desktop/src/pages/Scan.tsx:785
+#: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
 msgid "Scan details"
 msgstr "扫描详情"
 
@@ -5406,11 +5405,11 @@ msgstr "Cancel scan"
 msgid "API key available"
 msgstr "API 密钥可用"
 
-#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:786
 msgid "Scanning…"
 msgstr "正在扫描…"
 
-#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:786
 msgid "Scan with VirusTotal"
 msgstr "使用 VirusTotal 扫描"
 
@@ -5581,7 +5580,7 @@ msgstr "Files & Folders"
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:758 desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:758 desktop/src/pages/Scan.tsx:788
 msgid "Details"
 msgstr "详情"
 
@@ -5597,35 +5596,51 @@ msgstr "无配置文件（手动）"
 msgid "Drop local files or folders here, or add them below."
 msgstr "将本地文件或文件夹拖放到此处，或在下方添加。"
 
-#: desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:780
+msgid "Full system security check"
+msgstr "Full system security check"
+
+#: desktop/src/pages/Scan.tsx:781
+msgid ""
+"Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. "
+"Runs in sequence with administrator authorization and takes several minutes."
+msgstr ""
+"Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. "
+"Runs in sequence with administrator authorization and takes several minutes."
+
+#: desktop/src/pages/Scan.tsx:783
+msgid "Open Security Audit"
+msgstr "Open Security Audit"
+
+#: desktop/src/pages/Scan.tsx:786
 msgid "Run EICAR Test"
 msgstr "运行 EICAR 测试"
 
-#: desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:786
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:786
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:788
 msgid "Latest scan"
 msgstr "最近一次扫描"
 
-#: desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:788
 msgid "View Results"
 msgstr "查看结果"
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:790
 msgid "Virus database is not available"
 msgstr "病毒库不可用"
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:790
 msgid "Update the database before starting a scan."
 msgstr "开始扫描前请先更新病毒库。"
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:790
 msgid "Open Database Updates"
 msgstr "打开病毒库更新页面"
 
@@ -6737,6 +6752,9 @@ msgstr "病毒特征库已超过 1 天未更新"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "系统已受到保护"
+
+#~ msgid "{tool} check completed"
+#~ msgstr "{tool} 检查已完成"
 
 #~ msgid "Failed to run chkrootkit: {error}"
 #~ msgstr "运行 chkrootkit 失败：{error}"

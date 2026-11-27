@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 07:08-0500\n"
+"POT-Creation-Date: 2026-11-27 07:47-0500\n"
 "PO-Revision-Date: 2026-10-17 12:00+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmål\n"
@@ -2653,7 +2653,7 @@ msgstr "Husk valget mitt"
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
-#: desktop/src/pages/Results.tsx:200 desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Results.tsx:200 desktop/src/pages/Scan.tsx:790
 #: desktop/src/pages/SettingsPreferences.tsx:428
 #: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/SettingsPreferences.tsx:544
@@ -2788,7 +2788,7 @@ msgstr "Kopier innhold"
 msgid "Configuration content"
 msgstr "Konfigurasjonsinnhold"
 
-#: desktop/src/HelperTrustErrorDialog.tsx:36 desktop/src/pages/Audit.tsx:348
+#: desktop/src/HelperTrustErrorDialog.tsx:36 desktop/src/pages/Audit.tsx:335
 msgid "Could not open documentation: {error}"
 msgstr "Kunne ikke åpne dokumentasjonen: {error}"
 
@@ -2918,13 +2918,13 @@ msgstr "Venter på skannedata …"
 msgid "Scan progress"
 msgstr "Skannefremdrift"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:780
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:788
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "{count} fil skannet"
 msgstr[1] "{count} filer skannet"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:780
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:788
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
@@ -3022,15 +3022,15 @@ msgstr "SSH-sikkerhet"
 msgid "Portmaster"
 msgstr "Portmaster"
 
-#: desktop/src/pages/Audit.tsx:59 desktop/src/pages/Audit.tsx:284
+#: desktop/src/pages/Audit.tsx:59 desktop/src/pages/Audit.tsx:281
 msgid "Checking"
 msgstr "Kontrollerer"
 
-#: desktop/src/pages/Audit.tsx:60 desktop/src/pages/Audit.tsx:282
+#: desktop/src/pages/Audit.tsx:60 desktop/src/pages/Audit.tsx:279
 msgid "Pass"
 msgstr "Bestått"
 
-#: desktop/src/pages/Audit.tsx:61 desktop/src/pages/Audit.tsx:282
+#: desktop/src/pages/Audit.tsx:61 desktop/src/pages/Audit.tsx:279
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -3062,35 +3062,31 @@ msgstr "Sikkerhetsrevisjon fullført"
 msgid "Could not receive progressive audit results: {error}"
 msgstr "Kunne ikke motta progressive revisjonsresultater: {error}"
 
-#: desktop/src/pages/Audit.tsx:209
-msgid "{tool} check completed"
-msgstr "{tool}-sjekken er fullført"
-
-#: desktop/src/pages/Audit.tsx:235
+#: desktop/src/pages/Audit.tsx:221
 msgid "The audit supplied an unsupported GUI launch action."
 msgstr "Revisjonen oppga en ustøttet handling for å starte GUI."
 
-#: desktop/src/pages/Audit.tsx:240
+#: desktop/src/pages/Audit.tsx:226
 msgid "The selected application did not start"
 msgstr "Det valgte programmet startet ikke"
 
-#: desktop/src/pages/Audit.tsx:253
+#: desktop/src/pages/Audit.tsx:239
 msgid "Portmaster authorization granted; refreshing audit."
 msgstr "Portmaster-autorisasjon gitt; oppdaterer revisjonen."
 
-#: desktop/src/pages/Audit.tsx:256
+#: desktop/src/pages/Audit.tsx:242
 msgid "Portmaster authorization was cancelled."
 msgstr "Portmaster-autorisasjonen ble kansellert."
 
-#: desktop/src/pages/Audit.tsx:258
+#: desktop/src/pages/Audit.tsx:244
 msgid "Portmaster authorization was not granted."
 msgstr "Portmaster-autorisasjon ble ikke gitt."
 
-#: desktop/src/pages/Audit.tsx:275
+#: desktop/src/pages/Audit.tsx:261
 msgid "System security audit"
 msgstr "Systemsikkerhetsrevisjon"
 
-#: desktop/src/pages/Audit.tsx:276
+#: desktop/src/pages/Audit.tsx:262
 msgid ""
 "Inspect your security posture and copy recommendations. Audit checks never "
 "change system configuration."
@@ -3098,82 +3094,85 @@ msgstr ""
 "Inspiser sikkerhetsstillingen din og kopier anbefalingene. Revisjonssjekker "
 "endrer aldri systemkonfigurasjonen."
 
-#: desktop/src/pages/Audit.tsx:278
+#: desktop/src/pages/Audit.tsx:264
 msgid "Auditing…"
 msgstr "Revisjon …"
 
-#: desktop/src/pages/Audit.tsx:278
+#: desktop/src/pages/Audit.tsx:264
 msgid "Refresh audit"
 msgstr "Oppdater revisjonen"
 
-#: desktop/src/pages/Audit.tsx:282
+#: desktop/src/pages/Audit.tsx:269
+msgid "Deep scans"
+msgstr "Dype skanninger"
+
+#. Translators: Keep Lynis, chkrootkit, and rkhunter unchanged; they are tool names.
+#: desktop/src/pages/Audit.tsx:269
+msgid ""
+"Lynis, chkrootkit, and rkhunter are never run automatically. Run all "
+"security scans to perform every check in sequence; each may request "
+"administrator authorization."
+msgstr ""
+"Lynis, chkrootkit, and rkhunter are never run automatically. Run all "
+"security scans to perform every check in sequence; each may request "
+"administrator authorization."
+
+#: desktop/src/pages/Audit.tsx:274
+msgid "Running all security scans…"
+msgstr "Running all security scans…"
+
+#: desktop/src/pages/Audit.tsx:274
+msgid "Run all security scans"
+msgstr "Run all security scans"
+
+#: desktop/src/pages/Audit.tsx:279
 msgid "{count} issue"
 msgid_plural "{count} issues"
 msgstr[0] "{count} problem"
 msgstr[1] "{count} problemer"
 
-#: desktop/src/pages/Audit.tsx:282
+#: desktop/src/pages/Audit.tsx:279
 msgid "unavailable or skipped"
 msgstr "utilgjengelig eller hoppet over"
 
-#: desktop/src/pages/Audit.tsx:288
-msgid "Deep scans"
-msgstr "Dype skanninger"
-
-#. Translators: Keep Lynis, chkrootkit, and rkhunter unchanged; they are tool names.
-#: desktop/src/pages/Audit.tsx:288
-msgid ""
-"Lynis, chkrootkit, and rkhunter are never run automatically. Run all "
-"security scans to perform every check in sequence; each may request "
-"administrator authorization."
-msgstr "Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization."
-
-#: desktop/src/pages/Audit.tsx:293
-msgid "Running all security scans…"
-msgstr "Running all security scans…"
-
-#: desktop/src/pages/Audit.tsx:293
-msgid "Run all security scans"
-msgstr "Run all security scans"
-
 #. Translators: Portmaster is a product name. The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Audit.tsx:316
+#: desktop/src/pages/Audit.tsx:303
 msgid "Portmaster — not detected (optional)"
 msgstr "Portmaster – ikke funnet (valgfritt)"
 
 #. Translators: Portmaster is a product name. The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Audit.tsx:321
+#: desktop/src/pages/Audit.tsx:308
 msgid "Portmaster — could not probe"
 msgstr "Portmaster – kunne ikke undersøkes"
 
-#: desktop/src/pages/Audit.tsx:330
+#: desktop/src/pages/Audit.tsx:317
 msgid "No audit details were returned."
 msgstr "Ingen revisjonsdetaljer ble returnert."
 
-#: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:192
+#: desktop/src/pages/Audit.tsx:326 desktop/src/pages/Components.tsx:192
 msgid "Command copied to clipboard"
 msgstr "Kommandoen er kopiert til utklippstavlen"
 
-#: desktop/src/pages/Audit.tsx:341 desktop/src/pages/Components.tsx:195
+#: desktop/src/pages/Audit.tsx:328 desktop/src/pages/Components.tsx:195
 msgid "Could not copy command: {error}"
 msgstr "Kunne ikke kopiere kommandoen: {error}"
 
-#: desktop/src/pages/Audit.tsx:355 desktop/src/pages/Components.tsx:278
+#: desktop/src/pages/Audit.tsx:342 desktop/src/pages/Components.tsx:278
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
-#: desktop/src/pages/Scan.tsx:780 desktop/src/pages/Scan.tsx:785
+#: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
 #: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy"
 msgstr "Kopier"
 
-#: desktop/src/pages/Audit.tsx:356
+#: desktop/src/pages/Audit.tsx:343
 msgid "Authorizing…"
 msgstr "Godkjenner …"
 
-#: desktop/src/pages/Audit.tsx:356 desktop/src/pages/Network.tsx:441
+#: desktop/src/pages/Audit.tsx:343 desktop/src/pages/Network.tsx:441
 msgid "Open in browser"
 msgstr "Åpne i nettleseren"
 
-#: desktop/src/pages/Audit.tsx:356
+#: desktop/src/pages/Audit.tsx:343
 msgid "Learn more"
 msgstr "Lær mer"
 
@@ -4450,7 +4449,7 @@ msgid "Export Text"
 msgstr "Eksporter tekst"
 
 #: desktop/src/pages/Logs.tsx:410 desktop/src/pages/Logs.tsx:420
-#: desktop/src/pages/Results.tsx:170 desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Results.tsx:170 desktop/src/pages/Scan.tsx:788
 msgid "Fullscreen"
 msgstr "Fullskjerm"
 
@@ -4751,7 +4750,7 @@ msgstr "Beskyttelsesstatus"
 msgid "Last Scan"
 msgstr "Siste skanning"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:786
 msgid "Start Scan"
 msgstr "Start skanning"
 
@@ -5454,7 +5453,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "Ytterligere utilgjengelige filer er utelatt fra denne visningen."
 
 #: desktop/src/pages/Results.tsx:194 desktop/src/pages/Results.tsx:195
-#: desktop/src/pages/Scan.tsx:780 desktop/src/pages/Scan.tsx:785
+#: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
 msgid "Scan details"
 msgstr "Skannedetaljer"
 
@@ -5630,11 +5629,11 @@ msgstr "Cancel scan"
 msgid "API key available"
 msgstr "API-nøkkel tilgjengelig"
 
-#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:786
 msgid "Scanning…"
 msgstr "Skanner …"
 
-#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:786
 msgid "Scan with VirusTotal"
 msgstr "Skann med VirusTotal"
 
@@ -5812,7 +5811,7 @@ msgstr "Files & Folders"
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:758 desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:758 desktop/src/pages/Scan.tsx:788
 msgid "Details"
 msgstr "Detaljer"
 
@@ -5828,35 +5827,51 @@ msgstr "Ingen profil (manuelt)"
 msgid "Drop local files or folders here, or add them below."
 msgstr "Slipp lokale filer eller mapper her, eller legg dem til nedenfor."
 
-#: desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:780
+msgid "Full system security check"
+msgstr "Full system security check"
+
+#: desktop/src/pages/Scan.tsx:781
+msgid ""
+"Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. "
+"Runs in sequence with administrator authorization and takes several minutes."
+msgstr ""
+"Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. "
+"Runs in sequence with administrator authorization and takes several minutes."
+
+#: desktop/src/pages/Scan.tsx:783
+msgid "Open Security Audit"
+msgstr "Open Security Audit"
+
+#: desktop/src/pages/Scan.tsx:786
 msgid "Run EICAR Test"
 msgstr "Kjør EICAR Test"
 
-#: desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:786
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:786
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:788
 msgid "Latest scan"
 msgstr "Siste skanning"
 
-#: desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:788
 msgid "View Results"
 msgstr "Vis resultater"
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:790
 msgid "Virus database is not available"
 msgstr "Virusdatabasen er utilgjengelig"
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:790
 msgid "Update the database before starting a scan."
 msgstr "Oppdater databasen før du starter en skanning."
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:790
 msgid "Open Database Updates"
 msgstr "Åpne Databaseoppdateringer"
 
@@ -6995,6 +7010,9 @@ msgstr "Virusdefinisjonene er over 1 dag gamle"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "Systemet er beskyttet"
+
+#~ msgid "{tool} check completed"
+#~ msgstr "{tool}-sjekken er fullført"
 
 #~ msgid "Failed to run chkrootkit: {error}"
 #~ msgstr "Kunne ikke kjøre chkrootkit: {error}"

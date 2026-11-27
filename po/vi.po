@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 07:08-0500\n"
+"POT-Creation-Date: 2026-11-27 07:47-0500\n"
 "PO-Revision-Date: 2026-11-03 21:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -2599,7 +2599,7 @@ msgstr "Ghi nhớ lựa chọn của tôi"
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
-#: desktop/src/pages/Results.tsx:200 desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Results.tsx:200 desktop/src/pages/Scan.tsx:790
 #: desktop/src/pages/SettingsPreferences.tsx:428
 #: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/SettingsPreferences.tsx:544
@@ -2734,7 +2734,7 @@ msgstr "Sao chép nội dung"
 msgid "Configuration content"
 msgstr "Nội dung cấu hình"
 
-#: desktop/src/HelperTrustErrorDialog.tsx:36 desktop/src/pages/Audit.tsx:348
+#: desktop/src/HelperTrustErrorDialog.tsx:36 desktop/src/pages/Audit.tsx:335
 msgid "Could not open documentation: {error}"
 msgstr "Không thể mở tài liệu: {error}"
 
@@ -2863,12 +2863,12 @@ msgstr "Đang chờ dữ liệu quét…"
 msgid "Scan progress"
 msgstr "Tiến trình quét"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:780
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:788
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "Đã quét {count} tệp"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:780
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:788
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
@@ -2965,15 +2965,15 @@ msgstr "Bảo mật SSH"
 msgid "Portmaster"
 msgstr "Portmaster"
 
-#: desktop/src/pages/Audit.tsx:59 desktop/src/pages/Audit.tsx:284
+#: desktop/src/pages/Audit.tsx:59 desktop/src/pages/Audit.tsx:281
 msgid "Checking"
 msgstr "Đang kiểm tra"
 
-#: desktop/src/pages/Audit.tsx:60 desktop/src/pages/Audit.tsx:282
+#: desktop/src/pages/Audit.tsx:60 desktop/src/pages/Audit.tsx:279
 msgid "Pass"
 msgstr "Đạt"
 
-#: desktop/src/pages/Audit.tsx:61 desktop/src/pages/Audit.tsx:282
+#: desktop/src/pages/Audit.tsx:61 desktop/src/pages/Audit.tsx:279
 msgid "Warning"
 msgstr "Cảnh báo"
 
@@ -3003,36 +3003,32 @@ msgstr "Đã hoàn tất kiểm tra bảo mật"
 msgid "Could not receive progressive audit results: {error}"
 msgstr "Không thể nhận kết quả kiểm tra bảo mật theo từng phần: {error}"
 
-#: desktop/src/pages/Audit.tsx:209
-msgid "{tool} check completed"
-msgstr "Đã hoàn tất kiểm tra {tool}"
-
-#: desktop/src/pages/Audit.tsx:235
+#: desktop/src/pages/Audit.tsx:221
 msgid "The audit supplied an unsupported GUI launch action."
 msgstr ""
 "Kết quả kiểm tra bảo mật chứa thao tác khởi chạy giao diện không được hỗ trợ."
 
-#: desktop/src/pages/Audit.tsx:240
+#: desktop/src/pages/Audit.tsx:226
 msgid "The selected application did not start"
 msgstr "Ứng dụng đã chọn không khởi động được"
 
-#: desktop/src/pages/Audit.tsx:253
+#: desktop/src/pages/Audit.tsx:239
 msgid "Portmaster authorization granted; refreshing audit."
 msgstr "Đã cấp quyền Portmaster; đang kiểm tra lại."
 
-#: desktop/src/pages/Audit.tsx:256
+#: desktop/src/pages/Audit.tsx:242
 msgid "Portmaster authorization was cancelled."
 msgstr "Đã hủy yêu cầu cấp quyền Portmaster."
 
-#: desktop/src/pages/Audit.tsx:258
+#: desktop/src/pages/Audit.tsx:244
 msgid "Portmaster authorization was not granted."
 msgstr "Quyền Portmaster không được cấp."
 
-#: desktop/src/pages/Audit.tsx:275
+#: desktop/src/pages/Audit.tsx:261
 msgid "System security audit"
 msgstr "Kiểm tra bảo mật hệ thống"
 
-#: desktop/src/pages/Audit.tsx:276
+#: desktop/src/pages/Audit.tsx:262
 msgid ""
 "Inspect your security posture and copy recommendations. Audit checks never "
 "change system configuration."
@@ -3040,81 +3036,84 @@ msgstr ""
 "Đánh giá tình trạng bảo mật và sao chép các khuyến nghị. Các bước kiểm tra "
 "bảo mật không bao giờ thay đổi cấu hình hệ thống."
 
-#: desktop/src/pages/Audit.tsx:278
+#: desktop/src/pages/Audit.tsx:264
 msgid "Auditing…"
 msgstr "Đang kiểm tra bảo mật…"
 
-#: desktop/src/pages/Audit.tsx:278
+#: desktop/src/pages/Audit.tsx:264
 msgid "Refresh audit"
 msgstr "Kiểm tra lại"
 
-#: desktop/src/pages/Audit.tsx:282
-msgid "{count} issue"
-msgid_plural "{count} issues"
-msgstr[0] "{count} vấn đề"
-
-#: desktop/src/pages/Audit.tsx:282
-msgid "unavailable or skipped"
-msgstr "không khả dụng hoặc đã bỏ qua"
-
-#: desktop/src/pages/Audit.tsx:288
+#: desktop/src/pages/Audit.tsx:269
 msgid "Deep scans"
 msgstr "Quét chuyên sâu"
 
 #. Translators: Keep Lynis, chkrootkit, and rkhunter unchanged; they are tool names.
-#: desktop/src/pages/Audit.tsx:288
+#: desktop/src/pages/Audit.tsx:269
 msgid ""
 "Lynis, chkrootkit, and rkhunter are never run automatically. Run all "
 "security scans to perform every check in sequence; each may request "
 "administrator authorization."
-msgstr "Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization."
+msgstr ""
+"Lynis, chkrootkit, and rkhunter are never run automatically. Run all "
+"security scans to perform every check in sequence; each may request "
+"administrator authorization."
 
-#: desktop/src/pages/Audit.tsx:293
+#: desktop/src/pages/Audit.tsx:274
 msgid "Running all security scans…"
 msgstr "Running all security scans…"
 
-#: desktop/src/pages/Audit.tsx:293
+#: desktop/src/pages/Audit.tsx:274
 msgid "Run all security scans"
 msgstr "Run all security scans"
 
+#: desktop/src/pages/Audit.tsx:279
+msgid "{count} issue"
+msgid_plural "{count} issues"
+msgstr[0] "{count} vấn đề"
+
+#: desktop/src/pages/Audit.tsx:279
+msgid "unavailable or skipped"
+msgstr "không khả dụng hoặc đã bỏ qua"
+
 #. Translators: Portmaster is a product name. The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Audit.tsx:316
+#: desktop/src/pages/Audit.tsx:303
 msgid "Portmaster — not detected (optional)"
 msgstr "Portmaster — không phát hiện (không bắt buộc)"
 
 #. Translators: Portmaster is a product name. The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Audit.tsx:321
+#: desktop/src/pages/Audit.tsx:308
 msgid "Portmaster — could not probe"
 msgstr "Portmaster — không thể kiểm tra"
 
-#: desktop/src/pages/Audit.tsx:330
+#: desktop/src/pages/Audit.tsx:317
 msgid "No audit details were returned."
 msgstr "Không nhận được chi tiết kiểm tra bảo mật nào."
 
-#: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:192
+#: desktop/src/pages/Audit.tsx:326 desktop/src/pages/Components.tsx:192
 msgid "Command copied to clipboard"
 msgstr "Đã sao chép lệnh vào bộ nhớ tạm"
 
-#: desktop/src/pages/Audit.tsx:341 desktop/src/pages/Components.tsx:195
+#: desktop/src/pages/Audit.tsx:328 desktop/src/pages/Components.tsx:195
 msgid "Could not copy command: {error}"
 msgstr "Không thể sao chép lệnh: {error}"
 
-#: desktop/src/pages/Audit.tsx:355 desktop/src/pages/Components.tsx:278
+#: desktop/src/pages/Audit.tsx:342 desktop/src/pages/Components.tsx:278
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
-#: desktop/src/pages/Scan.tsx:780 desktop/src/pages/Scan.tsx:785
+#: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
 #: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy"
 msgstr "Sao chép"
 
-#: desktop/src/pages/Audit.tsx:356
+#: desktop/src/pages/Audit.tsx:343
 msgid "Authorizing…"
 msgstr "Đang cấp quyền…"
 
-#: desktop/src/pages/Audit.tsx:356 desktop/src/pages/Network.tsx:441
+#: desktop/src/pages/Audit.tsx:343 desktop/src/pages/Network.tsx:441
 msgid "Open in browser"
 msgstr "Mở trong trình duyệt"
 
-#: desktop/src/pages/Audit.tsx:356
+#: desktop/src/pages/Audit.tsx:343
 msgid "Learn more"
 msgstr "Tìm hiểu thêm"
 
@@ -4382,7 +4381,7 @@ msgid "Export Text"
 msgstr "Xuất văn bản"
 
 #: desktop/src/pages/Logs.tsx:410 desktop/src/pages/Logs.tsx:420
-#: desktop/src/pages/Results.tsx:170 desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Results.tsx:170 desktop/src/pages/Scan.tsx:788
 msgid "Fullscreen"
 msgstr "Toàn màn hình"
 
@@ -4682,7 +4681,7 @@ msgstr "Trạng thái bảo vệ"
 msgid "Last Scan"
 msgstr "Lượt quét gần nhất"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:786
 msgid "Start Scan"
 msgstr "Bắt đầu quét"
 
@@ -5376,7 +5375,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "Các tệp không truy cập được khác đã bị lược bỏ khỏi chế độ xem này."
 
 #: desktop/src/pages/Results.tsx:194 desktop/src/pages/Results.tsx:195
-#: desktop/src/pages/Scan.tsx:780 desktop/src/pages/Scan.tsx:785
+#: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
 msgid "Scan details"
 msgstr "Chi tiết lượt quét"
 
@@ -5549,11 +5548,11 @@ msgstr "Cancel scan"
 msgid "API key available"
 msgstr "Đã có khóa API"
 
-#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:786
 msgid "Scanning…"
 msgstr "Đang quét…"
 
-#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:259 desktop/src/pages/Scan.tsx:786
 msgid "Scan with VirusTotal"
 msgstr "Quét bằng VirusTotal"
 
@@ -5724,7 +5723,7 @@ msgstr "Files & Folders"
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:758 desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:758 desktop/src/pages/Scan.tsx:788
 msgid "Details"
 msgstr "Chi tiết"
 
@@ -5740,35 +5739,51 @@ msgstr "Không dùng hồ sơ (thủ công)"
 msgid "Drop local files or folders here, or add them below."
 msgstr "Thả tệp hoặc thư mục cục bộ vào đây, hoặc thêm ở bên dưới."
 
-#: desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:780
+msgid "Full system security check"
+msgstr "Full system security check"
+
+#: desktop/src/pages/Scan.tsx:781
+msgid ""
+"Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. "
+"Runs in sequence with administrator authorization and takes several minutes."
+msgstr ""
+"Also check the system itself: Lynis hardening, chkrootkit, and rkhunter. "
+"Runs in sequence with administrator authorization and takes several minutes."
+
+#: desktop/src/pages/Scan.tsx:783
+msgid "Open Security Audit"
+msgstr "Open Security Audit"
+
+#: desktop/src/pages/Scan.tsx:786
 msgid "Run EICAR Test"
 msgstr "Chạy thử nghiệm EICAR"
 
-#: desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:786
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:778
+#: desktop/src/pages/Scan.tsx:786
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:788
 msgid "Latest scan"
 msgstr "Lượt quét gần nhất"
 
-#: desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:788
 msgid "View Results"
 msgstr "Xem kết quả"
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:790
 msgid "Virus database is not available"
 msgstr "Không có cơ sở dữ liệu virus"
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:790
 msgid "Update the database before starting a scan."
 msgstr "Hãy cập nhật cơ sở dữ liệu virus trước khi bắt đầu quét."
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:790
 msgid "Open Database Updates"
 msgstr "Mở trang cập nhật cơ sở dữ liệu"
 
@@ -6903,6 +6918,9 @@ msgstr "Cơ sở dữ liệu virus đã cũ hơn 1 ngày"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "Hệ thống đang được bảo vệ"
+
+#~ msgid "{tool} check completed"
+#~ msgstr "Đã hoàn tất kiểm tra {tool}"
 
 #~ msgid "Failed to run chkrootkit: {error}"
 #~ msgstr "Không thể chạy chkrootkit: {error}"

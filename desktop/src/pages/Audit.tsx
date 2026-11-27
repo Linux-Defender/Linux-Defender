@@ -199,20 +199,6 @@ export default function Audit(): JSX.Element {
 
   
 
-  const runDeep = async (tool: "lynis" | "chkrootkit" | "rkhunter"): Promise<void> => {
-    if (running || deepRunning) return;
-    setDeepRunning(tool);
-    setError(null);
-    try {
-      const section = await request<AuditSection>("audit.deep", { tool });
-      applySection(section);
-      notify(_("{tool} check completed", { tool: tool === "lynis" ? "Lynis" : "chkrootkit" }), section.overall_status === "fail" ? "warning" : "info");
-    } catch (requestError) {
-      setError(errorText(requestError));
-    } finally {
-      setDeepRunning(null);
-    }
-  };
 
   const runAllDeep = async (): Promise<void> => {
     if (running || deepRunning) return;
@@ -279,11 +265,6 @@ export default function Audit(): JSX.Element {
       </header>
 
       {error && <p className="error-banner" role="alert">{error}</p>}
-      {(sections.length > 0 || running) && <div className="status-banner audit-overview" role="status"><span className="audit-overview-result"><Icon name={statusIcon("fail")} /><strong>{ngettext("{count} issue", "{count} issues", summary.fail, { count: summary.fail })}</strong></span><span className="audit-overview-metrics"><span role="img" aria-label={`${_("Warning")}: ${summary.warning}`} className="audit-metric warning" title={_("Warning")}><Icon name={statusIcon("warning")} /><span>{summary.warning}</span></span><span role="img" aria-label={`${_("Pass")}: ${summary.pass}`} className="audit-metric success" title={_("Pass")}><Icon name={statusIcon("pass")} /><span>{summary.pass}</span></span><span role="img" aria-label={`${_("unavailable or skipped")}: ${summary.unknown}`} className="audit-metric" title={_("unavailable or skipped")}><Icon name={statusIcon("unknown")} /><span>{summary.unknown}</span></span></span></div>}
-
-      {running && CATEGORY_ORDER.filter((category) => !sections.some((section) => section.category === category)).map((category) => <section className="audit-category" aria-labelledby={`audit-${category}`} key={category}><header className="section-header"><div><h2 id={`audit-${category}`}>{categoryTitle(category)}</h2></div><AuditStatusIndicator status="checking" /></header><div className="grouped-list"><div className="group-row muted">{_("Checking")}</div></div></section>)}
-      {tierSections.map((section) => <SectionView authorizationRunning={authorizationRunning} key={section.category} onAuthorize={authorizePortmaster} onLaunch={launch} section={section} />)}
-
       <section className="audit-category" aria-labelledby="deep-scans-heading">
         <header className="section-header"><div><h2 id="deep-scans-heading">{_("Deep scans")}</h2><p>{_(
           // Translators: Keep Lynis, chkrootkit, and rkhunter unchanged; they are tool names.
@@ -294,6 +275,12 @@ export default function Audit(): JSX.Element {
         </div>
       </section>
       {deepSections.map((section) => <SectionView authorizationRunning={authorizationRunning} key={section.category} onAuthorize={authorizePortmaster} onLaunch={launch} section={section} />)}
+
+      {(sections.length > 0 || running) && <div className="status-banner audit-overview" role="status"><span className="audit-overview-result"><Icon name={statusIcon("fail")} /><strong>{ngettext("{count} issue", "{count} issues", summary.fail, { count: summary.fail })}</strong></span><span className="audit-overview-metrics"><span role="img" aria-label={`${_("Warning")}: ${summary.warning}`} className="audit-metric warning" title={_("Warning")}><Icon name={statusIcon("warning")} /><span>{summary.warning}</span></span><span role="img" aria-label={`${_("Pass")}: ${summary.pass}`} className="audit-metric success" title={_("Pass")}><Icon name={statusIcon("pass")} /><span>{summary.pass}</span></span><span role="img" aria-label={`${_("unavailable or skipped")}: ${summary.unknown}`} className="audit-metric" title={_("unavailable or skipped")}><Icon name={statusIcon("unknown")} /><span>{summary.unknown}</span></span></span></div>}
+
+      {running && CATEGORY_ORDER.filter((category) => !sections.some((section) => section.category === category)).map((category) => <section className="audit-category" aria-labelledby={`audit-${category}`} key={category}><header className="section-header"><div><h2 id={`audit-${category}`}>{categoryTitle(category)}</h2></div><AuditStatusIndicator status="checking" /></header><div className="grouped-list"><div className="group-row muted">{_("Checking")}</div></div></section>)}
+      {tierSections.map((section) => <SectionView authorizationRunning={authorizationRunning} key={section.category} onAuthorize={authorizePortmaster} onLaunch={launch} section={section} />)}
+
     </main>
   );
 }
