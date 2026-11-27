@@ -45,7 +45,7 @@ auto-merges upstream content.
 
 ## When the release workflow runs
 
-`Release` (`.github/workflows/release.yml`) is the only workflow that signs artifacts. It starts when a tag matching `v*` is **pushed to GitHub**, or when a maintainer dispatches it manually. It builds signed Debian app/helper packages, the signed RPM helper, and a signed AppImage with the repository's GPG secrets, then creates a **draft** GitHub release whose notes come from `RELEASE_NOTES.md`. The draft is not published automatically: a human reviews the assets and signatures first.
+The reusable build workflows sign artifacts when invoked with `sign: true`; `Release` (`.github/workflows/release.yml`) is the only workflow that assembles and publishes them. It starts when a tag matching `v*` is **pushed to GitHub**, or when a maintainer dispatches it manually. It builds signed Debian app/helper packages, the signed RPM helper, and a signed AppImage with the repository's GPG secrets, then creates a **draft** GitHub release whose notes come from `RELEASE_NOTES.md`. The draft is not published automatically: a human reviews the assets and signatures first.
 
 This is deliberately left to a human decision. There are no published Linux Defender release packages yet, and the repository has **no tags on GitHub** — local legacy tags were removed so `git push --tags` cannot accidentally start a signed release. Do not create or push a `v*` tag until the version, changelog, release notes, CI state, and signing procedure have been reviewed. Read this page before dispatching `Release`, and never publish a draft that failed signature verification.
 

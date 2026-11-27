@@ -15,8 +15,12 @@ macro_rules! tr {
 }
 /// Returns whether arguments select the headless CLI route. `args` excludes argv0.
 pub fn is_cli(args: &[String]) -> bool {
+    let command = args
+        .iter()
+        .find(|arg| !matches!(arg.as_str(), "--json" | "-v" | "--verbose"))
+        .map(String::as_str);
     matches!(
-        args.first().map(String::as_str),
+        command,
         Some(
             "scan"
                 | "quarantine"
@@ -35,6 +39,18 @@ pub fn is_cli(args: &[String]) -> bool {
 
 /// Runs the Linux Defender headless CLI. `args` excludes argv0.
 pub fn run(args: &[String]) -> i32 {
+    // The documented global flags may precede the subcommand; normalize them
+    // into per-command arguments so they never fall through to the GUI.
+    let leading = args
+        .iter()
+        .take_while(|arg| matches!(arg.as_str(), "--json" | "-v" | "--verbose"))
+        .count();
+    if leading > 0 && leading < args.len() {
+        let mut normalized = vec![args[leading].clone()];
+        normalized.extend_from_slice(&args[..leading]);
+        normalized.extend_from_slice(&args[leading + 1..]);
+        return run(&normalized);
+    }
     match args.first().map(String::as_str) {
         None | Some("--help") | Some("-h") => root_help(),
         Some("--version") | Some("-V") => {
@@ -164,7 +180,7 @@ fn print_root_help(ctx: Option<&Context>) {
     for (name, summary) in command_summaries() {
         println!("  {name:<27} {}", tr(ctx, summary));
     }
-    println!("{}", tr(ctx, "\nGlobal options:"));
+    println!("{}", tr(ctx, "\nCommon per-command options:"));
     println!(
         "{}",
         tr(
@@ -265,15 +281,16 @@ fn run_help(args: &[String]) -> i32 {
         .find(|(name, _)| *name == topic.as_str())
     else {
         eprintln!(
-            "{}",
+            "{}: {}",
+            tr(Some(&ctx), "error"),
             trf(
                 Some(&ctx),
-                "Unknown command: {name}\n",
+                "Unknown command: {name}",
                 &[("{name}", topic.as_str())]
             )
         );
         print_root_help(Some(&ctx));
-        return 1;
+        return 2;
     };
     let translated_summary = tr(Some(&ctx), summary);
     println!(
@@ -330,7 +347,10 @@ fn command_examples(topic: &str) -> &'static [&'static str] {
             "linux-defender history --limit 50",
             "linux-defender history --type scan --json",
         ],
-        "install-privileged-helper" => &["sudo linux-defender install-privileged-helper"],
+        "install-privileged-helper" => &[
+            "sudo linux-defender install-privileged-helper",
+            "linux-defender-cli install-privileged-helper --prefix /tmp/stage",
+        ],
         "help" => &["linux-defender help", "linux-defender help scan"],
         _ => &[],
     }
@@ -580,7 +600,7 @@ fn print_scan_help(ctx: &Context) -> i32 {
         tr(
             Some(ctx),
             // Translators: Preserve the numeric exit-code meanings.
-            "Scan one or more files or directories with ClamAV.\nExit codes: 0 = clean, 1 = threats found, 2 = error."
+            "Scan one or more files or directories with ClamAV.\nExit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
         )
     );
     0
@@ -1620,7 +1640,7 @@ fn run_history(ctx: &Context, args: &[String]) -> i32 {
         index += 1;
     }
     let mut request = json!({"limit": limit});
-    if let Some(log_type) = log_type {
+    if let Some(log_type) = &log_type {
         request["log_type"] = json!(log_type);
     }
     let entries = match dispatch(ctx, "logs.list", request) {
@@ -1672,7 +1692,11 @@ fn run_history(ctx: &Context, args: &[String]) -> i32 {
         ],
         &rows,
     );
-    let total = dispatch(ctx, "logs.count", json!({}))
+    let mut count_request = json!({});
+    if let Some(log_type) = &log_type {
+        count_request["log_type"] = json!(log_type);
+    }
+    let total = dispatch(ctx, "logs.count", count_request)
         .ok()
         .and_then(|value| value["total_entries"].as_u64())
         .unwrap_or(entries.len() as u64);
@@ -1720,7 +1744,7 @@ fn run_install_privileged_helper(ctx: &Context, args: &[String]) -> i32 {
             tr(
                 Some(ctx),
                 // Translators: Keep `linux-defender install-privileged-helper` unchanged; it is the CLI command.
-                "Usage: linux-defender install-privileged-helper",
+                "Usage: linux-defender install-privileged-helper [--prefix PATH]",
             )
         );
         return 0;

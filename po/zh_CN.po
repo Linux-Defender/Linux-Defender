@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 19:18-0500\n"
+"POT-Creation-Date: 2026-11-26 20:56-0500\n"
 "PO-Revision-Date: 2026-07-22 21:29+0800\n"
 "Last-Translator: Markson Hosben <marksonhosben@proton.me>\n"
 "Language-Team: Chinese <>\n"
@@ -731,138 +731,137 @@ msgstr "OpenSnitch 图形界面不可用。"
 msgid "Could not launch OpenSnitch graphical interface: {error}"
 msgstr "Could not launch OpenSnitch graphical interface: {error}"
 
-#: crates/linux-defender-core/src/cli.rs:56
-#: crates/linux-defender-core/src/cli.rs:250
-#: crates/linux-defender-core/src/cli.rs:418
-#: crates/linux-defender-core/src/cli.rs:427
-#: crates/linux-defender-core/src/cli.rs:459
-#: crates/linux-defender-core/src/cli.rs:499
-#: crates/linux-defender-core/src/cli.rs:1195
-#: crates/linux-defender-core/src/cli.rs:1221
-#: crates/linux-defender-core/src/cli.rs:1752
-#: crates/linux-defender-core/src/cli.rs:1757
+#: crates/linux-defender-core/src/cli.rs:72
+#: crates/linux-defender-core/src/cli.rs:266
+#: crates/linux-defender-core/src/cli.rs:285
+#: crates/linux-defender-core/src/cli.rs:438
+#: crates/linux-defender-core/src/cli.rs:447
+#: crates/linux-defender-core/src/cli.rs:479
+#: crates/linux-defender-core/src/cli.rs:519
+#: crates/linux-defender-core/src/cli.rs:1215
+#: crates/linux-defender-core/src/cli.rs:1241
+#: crates/linux-defender-core/src/cli.rs:1776
+#: crates/linux-defender-core/src/cli.rs:1781
 msgid "error"
 msgstr "错误"
 
-#: crates/linux-defender-core/src/cli.rs:57
+#: crates/linux-defender-core/src/cli.rs:73
 msgid "Unknown command: {command}"
 msgstr "未知命令：{command}"
 
 #. Translators: The em dash separates the application name from its description.
-#: crates/linux-defender-core/src/cli.rs:140
+#: crates/linux-defender-core/src/cli.rs:156
 msgid "Linux Defender — ClamAV antivirus management\n"
 msgstr "Linux Defender — ClamAV antivirus management\n"
 
-#: crates/linux-defender-core/src/cli.rs:146
+#: crates/linux-defender-core/src/cli.rs:162
 msgid "Usage:"
 msgstr "用法："
 
 #. Translators: Keep `linux-defender` unchanged; it is the command name.
-#: crates/linux-defender-core/src/cli.rs:149
+#: crates/linux-defender-core/src/cli.rs:165
 msgid "  linux-defender                   Launch the graphical interface"
 msgstr "  linux-defender                   启动图形界面"
 
 #. Translators: Keep `linux-defender`, `<command>`, and `[args]` unchanged; they are command syntax.
-#: crates/linux-defender-core/src/cli.rs:157
+#: crates/linux-defender-core/src/cli.rs:173
 msgid "  linux-defender <command> [args]   Run a CLI command\n"
 msgstr "  linux-defender <command> [args]   运行 CLI 命令\n"
 
-#: crates/linux-defender-core/src/cli.rs:163
+#: crates/linux-defender-core/src/cli.rs:179
 msgid "Commands:"
 msgstr "命令："
 
-#: crates/linux-defender-core/src/cli.rs:167
+#: crates/linux-defender-core/src/cli.rs:183
 msgid ""
 "\n"
-"Global options:"
-msgstr ""
-"\n"
-"全局选项："
+"Common per-command options:"
+msgstr "\nCommon per-command options:"
 
 #. Translators: Keep `--json` and `JSON` unchanged; they are a CLI flag and data format.
-#: crates/linux-defender-core/src/cli.rs:170
+#: crates/linux-defender-core/src/cli.rs:186
 msgid "  --json                   Machine-readable JSON output"
 msgstr "  --json                   输出机器可读的 JSON"
 
 #. Translators: Keep `-v` and `--verbose` unchanged; they are CLI flags.
-#: crates/linux-defender-core/src/cli.rs:178
+#: crates/linux-defender-core/src/cli.rs:194
 msgid "  -v, --verbose            Verbose output"
 msgstr "  -v, --verbose            详细输出"
 
 #. Translators: Keep `-h` and `--help` unchanged; they are CLI flags.
-#: crates/linux-defender-core/src/cli.rs:186
+#: crates/linux-defender-core/src/cli.rs:202
 msgid "  -h, --help               Show help for any command\n"
 msgstr "  -h, --help               显示任意命令的帮助\n"
 
 #. Translators: Keep the quoted `linux-defender help <command>` command unchanged.
-#: crates/linux-defender-core/src/cli.rs:194
+#: crates/linux-defender-core/src/cli.rs:210
 msgid "Run 'linux-defender help <command>' for usage examples."
 msgstr "运行 'linux-defender help <command>' 查看用法示例。"
 
 #. Translators: Keep the quoted `linux-defender` command unchanged.
-#: crates/linux-defender-core/src/cli.rs:202
+#: crates/linux-defender-core/src/cli.rs:218
 msgid "Run 'linux-defender' without arguments to launch the GUI."
 msgstr "不带参数运行 'linux-defender' 即可启动图形界面。"
 
-#: crates/linux-defender-core/src/cli.rs:212
+#: crates/linux-defender-core/src/cli.rs:228
 msgid "Scan files or directories for threats"
 msgstr "扫描文件或目录以查找威胁"
 
-#: crates/linux-defender-core/src/cli.rs:213
+#: crates/linux-defender-core/src/cli.rs:229
 msgid "Manage quarantined files"
 msgstr "管理已隔离的文件"
 
-#: crates/linux-defender-core/src/cli.rs:214
+#: crates/linux-defender-core/src/cli.rs:230
 msgid "Manage scan profiles"
 msgstr "管理扫描配置文件"
 
-#: crates/linux-defender-core/src/cli.rs:215
+#: crates/linux-defender-core/src/cli.rs:231
 msgid "Show ClamAV and Linux Defender status"
 msgstr "Show ClamAV and Linux Defender status"
 
-#: crates/linux-defender-core/src/cli.rs:216
+#: crates/linux-defender-core/src/cli.rs:232
 msgid "View scan history"
 msgstr "查看扫描历史记录"
 
-#: crates/linux-defender-core/src/cli.rs:219
+#: crates/linux-defender-core/src/cli.rs:235
 msgid ""
 "Install the polkit helper for saving system ClamAV configs (native host only)"
 msgstr "安装 polkit 辅助程序，以保存系统 ClamAV 配置（仅限宿主机原生环境）"
 
-#: crates/linux-defender-core/src/cli.rs:221
+#: crates/linux-defender-core/src/cli.rs:237
 msgid "Show this help message"
 msgstr "显示此帮助信息"
 
 #. Translators: Keep `linux-defender` and `[COMMAND]` command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/cli.rs:232
+#: crates/linux-defender-core/src/cli.rs:248
 msgid "Usage: linux-defender help [COMMAND]"
 msgstr "用法：linux-defender help [COMMAND]"
 
-#: crates/linux-defender-core/src/cli.rs:240
+#: crates/linux-defender-core/src/cli.rs:256
 msgid ""
 "Display an overview of all commands or detailed help for a specific one."
 msgstr "显示所有命令的概览，或指定命令的详细帮助。"
 
 #. Translators: Keep `help` unchanged; it is the literal CLI subcommand.
-#: crates/linux-defender-core/src/cli.rs:251
+#: crates/linux-defender-core/src/cli.rs:267
 msgid "help accepts at most one command"
 msgstr "help 最多接受一个命令"
 
-#: crates/linux-defender-core/src/cli.rs:269
-msgid "Unknown command: {name}\n"
-msgstr "未知命令：{name}\n"
+#: crates/linux-defender-core/src/cli.rs:286
+msgid "Unknown command: {name}"
+msgstr "Unknown command: {name}"
 
 #. Translators: Keep `{name}` as the command name and `{summary}` as its translated description; the em dash separates them.
-#: crates/linux-defender-core/src/cli.rs:281
+#: crates/linux-defender-core/src/cli.rs:298
 msgid "linux-defender {name} — {summary}\n"
 msgstr "linux-defender {name} — {summary}\n"
 
-#: crates/linux-defender-core/src/cli.rs:291
+#: crates/linux-defender-core/src/cli.rs:308
 msgid "Examples:"
 msgstr "示例："
 
 #. Translators: Keep the quoted `linux-defender {name} --help` command unchanged; preserve `{name}` as the command name.
-#: crates/linux-defender-core/src/cli.rs:297
+#: crates/linux-defender-core/src/cli.rs:314
 msgid ""
 "\n"
 "Run 'linux-defender {name} --help' for full option reference."
@@ -870,33 +869,33 @@ msgstr ""
 "\n"
 "运行 'linux-defender {name} --help' 查看完整选项说明。"
 
-#: crates/linux-defender-core/src/cli.rs:395
-#: crates/linux-defender-core/src/cli.rs:1612
+#: crates/linux-defender-core/src/cli.rs:415
+#: crates/linux-defender-core/src/cli.rs:1632
 msgid "unrecognized argument: {argument}"
 msgstr "无法识别的参数：{argument}"
 
-#: crates/linux-defender-core/src/cli.rs:419
+#: crates/linux-defender-core/src/cli.rs:439
 msgid "No valid paths to scan"
 msgstr "没有可扫描的有效路径"
 
-#: crates/linux-defender-core/src/cli.rs:435
+#: crates/linux-defender-core/src/cli.rs:455
 msgid "ClamAV not available: {error}"
 msgstr "ClamAV 不可用：{error}"
 
-#: crates/linux-defender-core/src/cli.rs:447
+#: crates/linux-defender-core/src/cli.rs:467
 msgid "ClamAV version: {version}"
 msgstr "ClamAV 版本：{version}"
 
-#: crates/linux-defender-core/src/cli.rs:470
+#: crates/linux-defender-core/src/cli.rs:490
 msgid "Using profile: {name}"
 msgstr "使用配置文件：{name}"
 
-#: crates/linux-defender-core/src/cli.rs:489
+#: crates/linux-defender-core/src/cli.rs:509
 msgid "Scanning: {path}"
 msgstr "正在扫描：{path}"
 
 #. Translators: Keep `linux-defender`, uppercase metavariables, brackets, and all `--` flags unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:572
+#: crates/linux-defender-core/src/cli.rs:592
 msgid ""
 "Usage: linux-defender scan PATH [PATH ...] [--no-recursive] [--profile NAME] "
 "[--quarantine] [--json] [--verbose]"
@@ -905,28 +904,26 @@ msgstr ""
 "[--quarantine] [--json] [--verbose]"
 
 #. Translators: Preserve the numeric exit-code meanings.
-#: crates/linux-defender-core/src/cli.rs:580
+#: crates/linux-defender-core/src/cli.rs:600
 msgid ""
 "Scan one or more files or directories with ClamAV.\n"
-"Exit codes: 0 = clean, 1 = threats found, 2 = error."
-msgstr ""
-"使用 ClamAV 扫描一个或多个文件或目录。\n"
-"退出码：0 = 未发现威胁，1 = 发现威胁，2 = 出错。"
+"Exit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
+msgstr "Scan one or more files or directories with ClamAV.\nExit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
 
-#: crates/linux-defender-core/src/cli.rs:597
+#: crates/linux-defender-core/src/cli.rs:617
 msgid "Path not found: {path}"
 msgstr "未找到路径：{path}"
 
-#: crates/linux-defender-core/src/cli.rs:625
+#: crates/linux-defender-core/src/cli.rs:645
 msgid "Profile not found: {name}"
 msgstr "未找到配置文件：{name}"
 
-#: crates/linux-defender-core/src/cli.rs:724
+#: crates/linux-defender-core/src/cli.rs:744
 msgid "Scanned {count} file in {duration:.1f}s"
 msgid_plural "Scanned {count} files in {duration:.1f}s"
 msgstr[0] "已扫描 {count} 个文件，用时 {duration:.1f} 秒"
 
-#: crates/linux-defender-core/src/cli.rs:737
+#: crates/linux-defender-core/src/cli.rs:757
 msgid ""
 "\n"
 "Threat found: {count}"
@@ -937,7 +934,7 @@ msgstr[0] ""
 "\n"
 "发现威胁：{count} 个"
 
-#: crates/linux-defender-core/src/cli.rs:762
+#: crates/linux-defender-core/src/cli.rs:782
 msgid ""
 "\n"
 "Quarantined: {count} file"
@@ -948,7 +945,7 @@ msgstr[0] ""
 "\n"
 "已隔离：{count} 个文件"
 
-#: crates/linux-defender-core/src/cli.rs:772
+#: crates/linux-defender-core/src/cli.rs:792
 msgid ""
 "\n"
 "Failed to quarantine:"
@@ -956,12 +953,12 @@ msgstr ""
 "\n"
 "隔离失败："
 
-#: crates/linux-defender-core/src/cli.rs:784
-#: crates/linux-defender-core/src/logs.rs:1407
+#: crates/linux-defender-core/src/cli.rs:804
+#: crates/linux-defender-core/src/logs.rs:1431
 msgid "Threats Detected"
 msgstr "检测到威胁"
 
-#: crates/linux-defender-core/src/cli.rs:790
+#: crates/linux-defender-core/src/cli.rs:810
 msgid ""
 "\n"
 "Scan completed with errors:"
@@ -969,278 +966,278 @@ msgstr ""
 "\n"
 "扫描已完成，但出现错误："
 
-#: crates/linux-defender-core/src/cli.rs:795
+#: crates/linux-defender-core/src/cli.rs:815
 msgid "No threats found."
 msgstr "未发现威胁。"
 
 #. Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:804
-#: crates/linux-defender-core/src/cli.rs:826
+#: crates/linux-defender-core/src/cli.rs:824
+#: crates/linux-defender-core/src/cli.rs:846
 msgid "Usage: linux-defender quarantine <list|restore|delete> [args]"
 msgstr "用法：linux-defender quarantine <list|restore|delete> [args]"
 
 #. Translators: Keep `linux-defender`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:814
+#: crates/linux-defender-core/src/cli.rs:834
 msgid "Usage: linux-defender quarantine list [--json]"
 msgstr "用法：linux-defender quarantine list [--json]"
 
 #. Translators: Keep `linux-defender`, `restore`, and `ID` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:818
+#: crates/linux-defender-core/src/cli.rs:838
 msgid "Usage: linux-defender quarantine restore ID"
 msgstr "用法：linux-defender quarantine restore ID"
 
 #. Translators: Keep `linux-defender`, `delete`, and `ID` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:822
+#: crates/linux-defender-core/src/cli.rs:842
 msgid "Usage: linux-defender quarantine delete ID"
 msgstr "用法：linux-defender quarantine delete ID"
 
-#: crates/linux-defender-core/src/cli.rs:854
+#: crates/linux-defender-core/src/cli.rs:874
 msgid "No quarantined files."
 msgstr "没有已隔离的文件。"
 
-#: crates/linux-defender-core/src/cli.rs:871
-#: crates/linux-defender-core/src/logs.rs:1109
+#: crates/linux-defender-core/src/cli.rs:891
+#: crates/linux-defender-core/src/logs.rs:1133
 msgid "ID"
 msgstr "ID"
 
-#: crates/linux-defender-core/src/cli.rs:872
+#: crates/linux-defender-core/src/cli.rs:892
 msgid "File"
 msgstr "文件"
 
-#: crates/linux-defender-core/src/cli.rs:873
+#: crates/linux-defender-core/src/cli.rs:893
 msgid "Threat"
 msgstr "威胁"
 
-#: crates/linux-defender-core/src/cli.rs:874
-#: crates/linux-defender-core/src/cli.rs:1668
+#: crates/linux-defender-core/src/cli.rs:894
+#: crates/linux-defender-core/src/cli.rs:1688
 msgid "Date"
 msgstr "日期"
 
-#: crates/linux-defender-core/src/cli.rs:875
+#: crates/linux-defender-core/src/cli.rs:895
 msgid "Size"
 msgstr "大小"
 
-#: crates/linux-defender-core/src/cli.rs:890
+#: crates/linux-defender-core/src/cli.rs:910
 msgid "{count} entry ({size} total)"
 msgid_plural "{count} entries ({size} total)"
 msgstr[0] "{count} 个条目（共 {size}）"
 
 #. Translators: Keep `quarantine`, command-valued `{action}`, and `ID` unchanged.
-#: crates/linux-defender-core/src/cli.rs:908
-#: crates/linux-defender-core/src/cli.rs:922
+#: crates/linux-defender-core/src/cli.rs:928
+#: crates/linux-defender-core/src/cli.rs:942
 msgid "quarantine {action} requires ID"
 msgstr "quarantine {action} 需要指定 ID"
 
-#: crates/linux-defender-core/src/cli.rs:961
+#: crates/linux-defender-core/src/cli.rs:981
 msgid "Restored"
 msgstr "已还原"
 
-#: crates/linux-defender-core/src/cli.rs:963
+#: crates/linux-defender-core/src/cli.rs:983
 msgid "Deleted"
 msgstr "已删除"
 
-#: crates/linux-defender-core/src/cli.rs:968
+#: crates/linux-defender-core/src/cli.rs:988
 msgid "{verb}: {path}"
 msgstr "{verb}：{path}"
 
-#: crates/linux-defender-core/src/cli.rs:978
+#: crates/linux-defender-core/src/cli.rs:998
 msgid "Restore failed"
 msgstr "还原失败"
 
-#: crates/linux-defender-core/src/cli.rs:980
+#: crates/linux-defender-core/src/cli.rs:1000
 msgid "Delete failed"
 msgstr "删除失败"
 
-#: crates/linux-defender-core/src/cli.rs:987
+#: crates/linux-defender-core/src/cli.rs:1007
 msgid "{prefix}: {error}"
 msgstr "{prefix}：{error}"
 
-#: crates/linux-defender-core/src/cli.rs:1064
-#: crates/linux-defender-core/src/quarantine.rs:483
-#: crates/linux-defender-core/src/quarantine.rs:520
+#: crates/linux-defender-core/src/cli.rs:1084
+#: crates/linux-defender-core/src/quarantine.rs:507
+#: crates/linux-defender-core/src/quarantine.rs:544
 msgid "Quarantine entry not found: {id}"
 msgstr "未找到隔离条目：{id}"
 
 #. Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1077
-#: crates/linux-defender-core/src/cli.rs:1103
+#: crates/linux-defender-core/src/cli.rs:1097
+#: crates/linux-defender-core/src/cli.rs:1123
 msgid "Usage: linux-defender profile <list|show|export|import> [args]"
 msgstr "用法：linux-defender profile <list|show|export|import> [args]"
 
 #. Translators: Keep `linux-defender`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1087
+#: crates/linux-defender-core/src/cli.rs:1107
 msgid "Usage: linux-defender profile list [--json]"
 msgstr "用法：linux-defender profile list [--json]"
 
 #. Translators: Keep `linux-defender`, `show`, `NAME`, and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1091
+#: crates/linux-defender-core/src/cli.rs:1111
 msgid "Usage: linux-defender profile show NAME [--json]"
 msgstr "用法：linux-defender profile show NAME [--json]"
 
 #. Translators: Keep `linux-defender`, `export`, `NAME`, and `FILE` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1095
+#: crates/linux-defender-core/src/cli.rs:1115
 msgid "Usage: linux-defender profile export NAME FILE"
 msgstr "用法：linux-defender profile export NAME FILE"
 
 #. Translators: Keep `linux-defender`, `import`, and `FILE` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1099
+#: crates/linux-defender-core/src/cli.rs:1119
 msgid "Usage: linux-defender profile import FILE"
 msgstr "用法：linux-defender profile import FILE"
 
-#: crates/linux-defender-core/src/cli.rs:1130
+#: crates/linux-defender-core/src/cli.rs:1150
 msgid "No scan profiles configured."
 msgstr "尚无扫描配置文件。"
 
-#: crates/linux-defender-core/src/cli.rs:1146
+#: crates/linux-defender-core/src/cli.rs:1166
 msgid " (+{n} more)"
 msgstr " （另有 {n} 项）"
 
-#: crates/linux-defender-core/src/cli.rs:1151
+#: crates/linux-defender-core/src/cli.rs:1171
 msgid "(none)"
 msgstr "（无）"
 
-#: crates/linux-defender-core/src/cli.rs:1156
-#: crates/linux-defender-core/src/cli.rs:1326
+#: crates/linux-defender-core/src/cli.rs:1176
+#: crates/linux-defender-core/src/cli.rs:1346
 msgid "yes"
 msgstr "是"
 
-#: crates/linux-defender-core/src/cli.rs:1158
-#: crates/linux-defender-core/src/cli.rs:1328
+#: crates/linux-defender-core/src/cli.rs:1178
+#: crates/linux-defender-core/src/cli.rs:1348
 msgid "no"
 msgstr "否"
 
-#: crates/linux-defender-core/src/cli.rs:1166
+#: crates/linux-defender-core/src/cli.rs:1186
 msgid "Name"
 msgstr "名称"
 
-#: crates/linux-defender-core/src/cli.rs:1167
+#: crates/linux-defender-core/src/cli.rs:1187
 msgid "Targets"
 msgstr "目标"
 
-#: crates/linux-defender-core/src/cli.rs:1168
+#: crates/linux-defender-core/src/cli.rs:1188
 msgid "Default"
 msgstr "默认"
 
-#: crates/linux-defender-core/src/cli.rs:1169
+#: crates/linux-defender-core/src/cli.rs:1189
 msgid "Updated"
 msgstr "更新时间"
 
-#: crates/linux-defender-core/src/cli.rs:1177
+#: crates/linux-defender-core/src/cli.rs:1197
 msgid "{count} profile"
 msgid_plural "{count} profiles"
 msgstr[0] "{count} 个配置文件"
 
 #. Translators: Preserve `{name}` as the profile name and `{path}` as its destination; quotation marks may be localized.
-#: crates/linux-defender-core/src/cli.rs:1236
+#: crates/linux-defender-core/src/cli.rs:1256
 msgid "Exported '{name}' to {path}"
 msgstr "已将“{name}”导出到 {path}"
 
-#: crates/linux-defender-core/src/cli.rs:1265
+#: crates/linux-defender-core/src/cli.rs:1285
 msgid "Imported profile: {name}"
 msgstr "已导入配置文件：{name}"
 
 #. Translators: Preserve command-valued `{usage}`, `NAME`, and the `--json` CLI flag.
-#: crates/linux-defender-core/src/cli.rs:1285
-#: crates/linux-defender-core/src/cli.rs:1298
+#: crates/linux-defender-core/src/cli.rs:1305
+#: crates/linux-defender-core/src/cli.rs:1318
 msgid "{usage} requires NAME and optional --json"
 msgstr "{usage} 必须指定 NAME，--json 为可选参数"
 
-#: crates/linux-defender-core/src/cli.rs:1321
+#: crates/linux-defender-core/src/cli.rs:1341
 msgid "Name:        {name}"
 msgstr "名称：       {name}"
 
-#: crates/linux-defender-core/src/cli.rs:1324
+#: crates/linux-defender-core/src/cli.rs:1344
 msgid "ID:          {id}"
 msgstr "ID：         {id}"
 
-#: crates/linux-defender-core/src/cli.rs:1332
+#: crates/linux-defender-core/src/cli.rs:1352
 msgid "Default:     {value}"
 msgstr "默认：       {value}"
 
-#: crates/linux-defender-core/src/cli.rs:1341
+#: crates/linux-defender-core/src/cli.rs:1361
 msgid "Description: {description}"
 msgstr "描述：       {description}"
 
-#: crates/linux-defender-core/src/cli.rs:1351
+#: crates/linux-defender-core/src/cli.rs:1371
 msgid "Created:     {created}"
 msgstr "创建时间：   {created}"
 
-#: crates/linux-defender-core/src/cli.rs:1360
+#: crates/linux-defender-core/src/cli.rs:1380
 msgid "Updated:     {updated}"
 msgstr "更新时间：   {updated}"
 
-#: crates/linux-defender-core/src/cli.rs:1366
+#: crates/linux-defender-core/src/cli.rs:1386
 msgid "Targets:"
 msgstr "目标："
 
-#: crates/linux-defender-core/src/cli.rs:1375
+#: crates/linux-defender-core/src/cli.rs:1395
 msgid "  (none)"
 msgstr "  （无）"
 
-#: crates/linux-defender-core/src/cli.rs:1386
+#: crates/linux-defender-core/src/cli.rs:1406
 msgid "Exclusions:"
 msgstr "排除项："
 
-#: crates/linux-defender-core/src/cli.rs:1391
+#: crates/linux-defender-core/src/cli.rs:1411
 msgid "  path:    {path}"
 msgstr "  路径：    {path}"
 
-#: crates/linux-defender-core/src/cli.rs:1398
+#: crates/linux-defender-core/src/cli.rs:1418
 msgid "  pattern: {pattern}"
 msgstr "  匹配模式：{pattern}"
 
-#: crates/linux-defender-core/src/cli.rs:1410
+#: crates/linux-defender-core/src/cli.rs:1430
 msgid "Options:"
 msgstr "选项："
 
 #. Translators: Keep `linux-defender` and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1424
+#: crates/linux-defender-core/src/cli.rs:1444
 msgid "Usage: linux-defender status [--json]"
 msgstr "用法：linux-defender status [--json]"
 
-#: crates/linux-defender-core/src/cli.rs:1479
+#: crates/linux-defender-core/src/cli.rs:1499
 msgid "ClamAV"
 msgstr "ClamAV"
 
-#: crates/linux-defender-core/src/cli.rs:1484
+#: crates/linux-defender-core/src/cli.rs:1504
 msgid "  Version:  {version}"
 msgstr "  版本：    {version}"
 
-#: crates/linux-defender-core/src/cli.rs:1491
+#: crates/linux-defender-core/src/cli.rs:1511
 msgid "  Status:   not available"
 msgstr "  状态：    不可用"
 
-#: crates/linux-defender-core/src/cli.rs:1495
+#: crates/linux-defender-core/src/cli.rs:1515
 msgid "  Error:    {error}"
 msgstr "  错误：    {error}"
 
-#: crates/linux-defender-core/src/cli.rs:1501
+#: crates/linux-defender-core/src/cli.rs:1521
 msgid "  Backend:  {backend}"
 msgstr "  后端：    {backend}"
 
-#: crates/linux-defender-core/src/cli.rs:1510
+#: crates/linux-defender-core/src/cli.rs:1530
 msgid "  Daemon:   {daemon}"
 msgstr "  守护进程：{daemon}"
 
-#: crates/linux-defender-core/src/cli.rs:1512
+#: crates/linux-defender-core/src/cli.rs:1532
 msgid "Quarantine"
 msgstr "隔离区"
 
-#: crates/linux-defender-core/src/cli.rs:1516
-#: crates/linux-defender-core/src/cli.rs:1535
+#: crates/linux-defender-core/src/cli.rs:1536
+#: crates/linux-defender-core/src/cli.rs:1555
 msgid "  Entries:  {count}"
 msgstr "  条目数：  {count}"
 
-#: crates/linux-defender-core/src/cli.rs:1525
+#: crates/linux-defender-core/src/cli.rs:1545
 msgid "  Size:     {size}"
 msgstr "  大小：    {size}"
 
-#: crates/linux-defender-core/src/cli.rs:1527
+#: crates/linux-defender-core/src/cli.rs:1547
 msgid "Scan History"
 msgstr "扫描历史"
 
 #. Translators: Keep `linux-defender`, all `--` flags, `N`, and type choices unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1548
+#: crates/linux-defender-core/src/cli.rs:1568
 msgid ""
 "Usage: linux-defender history [--limit N] [--type scan|update|virustotal] [--"
 "json]"
@@ -1248,40 +1245,40 @@ msgstr ""
 "用法：linux-defender history [--limit N] [--type scan|update|virustotal] [--"
 "json]"
 
-#: crates/linux-defender-core/src/cli.rs:1631
+#: crates/linux-defender-core/src/cli.rs:1651
 msgid "Failed to load history: {error}"
 msgstr "加载历史记录失败：{error}"
 
-#: crates/linux-defender-core/src/cli.rs:1646
+#: crates/linux-defender-core/src/cli.rs:1666
 msgid "No scan history found."
 msgstr "未找到扫描历史记录。"
 
-#: crates/linux-defender-core/src/cli.rs:1669
-#: crates/linux-defender-core/src/logs.rs:1119
+#: crates/linux-defender-core/src/cli.rs:1689
+#: crates/linux-defender-core/src/logs.rs:1143
 msgid "Type"
 msgstr "类型"
 
-#: crates/linux-defender-core/src/cli.rs:1670
-#: crates/linux-defender-core/src/logs.rs:1124
+#: crates/linux-defender-core/src/cli.rs:1690
+#: crates/linux-defender-core/src/logs.rs:1148
 msgid "Status"
 msgstr "状态"
 
-#: crates/linux-defender-core/src/cli.rs:1671
-#: crates/linux-defender-core/src/logs.rs:1143
+#: crates/linux-defender-core/src/cli.rs:1691
+#: crates/linux-defender-core/src/logs.rs:1167
 msgid "Summary"
 msgstr "摘要"
 
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
-#: crates/linux-defender-core/src/cli.rs:1685
+#: crates/linux-defender-core/src/cli.rs:1709
 msgid "Showing {shown} of {total} entry. Use --limit to see more."
 msgid_plural "Showing {shown} of {total} entries. Use --limit to see more."
 msgstr[0] "显示 {shown} 条记录，共 {total} 条。使用 --limit 查看更多。"
 
 #. Translators: Keep `linux-defender install-privileged-helper` unchanged; it is the CLI command.
-#: crates/linux-defender-core/src/cli.rs:1720
-msgid "Usage: linux-defender install-privileged-helper"
-msgstr "用法：linux-defender install-privileged-helper"
+#: crates/linux-defender-core/src/cli.rs:1744
+msgid "Usage: linux-defender install-privileged-helper [--prefix PATH]"
+msgstr "Usage: linux-defender install-privileged-helper [--prefix PATH]"
 
 #: crates/linux-defender-core/src/config.rs:326
 #: crates/linux-defender-core/src/config.rs:345
@@ -1388,7 +1385,7 @@ msgid "{key}: URL must start with http(s)://, ftp(s)://, or file://"
 msgstr "{key}：URL 必须以 http(s)://、ftp(s):// 或 file:// 开头"
 
 #. Translators: The em dash separates the fallback state from its security warning.
-#: crates/linux-defender-core/src/credentials.rs:211
+#: crates/linux-defender-core/src/credentials.rs:227
 msgid "Stored in settings file (keyring unavailable — less secure)"
 msgstr "存储在设置文件中（密钥环不可用 — 安全性较低）"
 
@@ -1397,92 +1394,92 @@ msgstr "存储在设置文件中（密钥环不可用 — 安全性较低）"
 msgid "translator-credits"
 msgstr "Markson Hosben <marksonhosben@proton.me>"
 
-#: crates/linux-defender-core/src/host.rs:1040
+#: crates/linux-defender-core/src/host.rs:1042
 msgid "Daemon not responding: {error}"
 msgstr "守护进程未响应：{error}"
 
-#: crates/linux-defender-core/src/host.rs:1043
+#: crates/linux-defender-core/src/host.rs:1045
 msgid "{binary} found but returned error: {error}"
 msgstr "已找到 {binary}，但返回错误：{error}"
 
-#: crates/linux-defender-core/src/host.rs:1048
+#: crates/linux-defender-core/src/host.rs:1050
 msgid "{service} is active"
 msgstr "{service} 正在运行"
 
-#: crates/linux-defender-core/src/host.rs:1051
+#: crates/linux-defender-core/src/host.rs:1053
 msgid "No virus database files found in {path}"
 msgstr "未在 {path} 中找到病毒数据库文件"
 
-#: crates/linux-defender-core/src/host.rs:1057
+#: crates/linux-defender-core/src/host.rs:1059
 msgid "Error accessing database {path}: {error}"
 msgstr "访问数据库 {path} 时出错：{error}"
 
-#: crates/linux-defender-core/src/host.rs:1063
+#: crates/linux-defender-core/src/host.rs:1065
 msgid "{binary} is not installed. Please install it with: {command}"
 msgstr "未安装 {binary}。请使用以下命令安装：{command}"
 
-#: crates/linux-defender-core/src/host.rs:1073
+#: crates/linux-defender-core/src/host.rs:1075
 msgid ""
 "{binary} is not installed. Install the required ClamAV package for your "
 "distribution."
 msgstr "未安装 {binary}。请为您使用的发行版安装所需的 ClamAV 软件包。"
 
-#: crates/linux-defender-core/src/logs.rs:1102
+#: crates/linux-defender-core/src/logs.rs:1126
 msgid "SCAN LOG"
 msgstr "扫描日志"
 
-#: crates/linux-defender-core/src/logs.rs:1104
+#: crates/linux-defender-core/src/logs.rs:1128
 msgid "UPDATE LOG"
 msgstr "更新日志"
 
-#: crates/linux-defender-core/src/logs.rs:1114
+#: crates/linux-defender-core/src/logs.rs:1138
 msgid "Timestamp"
 msgstr "时间戳"
 
-#: crates/linux-defender-core/src/logs.rs:1129
+#: crates/linux-defender-core/src/logs.rs:1153
 msgid "Duration"
 msgstr "耗时"
 
-#: crates/linux-defender-core/src/logs.rs:1137
+#: crates/linux-defender-core/src/logs.rs:1161
 msgid "Full Output"
 msgstr "完整输出"
 
-#: crates/linux-defender-core/src/logs.rs:1168
+#: crates/linux-defender-core/src/logs.rs:1192
 msgid "{count} second"
 msgid_plural "{count} seconds"
 msgstr[0] "{count} 秒"
 
-#: crates/linux-defender-core/src/logs.rs:1394
+#: crates/linux-defender-core/src/logs.rs:1418
 #: desktop/src-tauri/src/notifications.rs:92
 msgid "Scan Complete"
 msgstr "扫描完成"
 
-#: crates/linux-defender-core/src/logs.rs:1397
+#: crates/linux-defender-core/src/logs.rs:1421
 msgid "Found {count} threat{suffix}"
 msgid_plural "Found {count} threats{suffix}"
 msgstr[0] "发现 {count} 个威胁{suffix}"
 
-#: crates/linux-defender-core/src/logs.rs:1412
+#: crates/linux-defender-core/src/logs.rs:1436
 #: desktop/src-tauri/src/notifications.rs:94
 msgid "Scan Cancelled"
 msgstr "扫描已取消"
 
-#: crates/linux-defender-core/src/logs.rs:1415
+#: crates/linux-defender-core/src/logs.rs:1439
 #: desktop/src-tauri/src/notifications.rs:96
 msgid "Scan Error"
 msgstr "扫描出错"
 
-#: crates/linux-defender-core/src/logs.rs:1426
+#: crates/linux-defender-core/src/logs.rs:1450
 msgid "Scanned: {count} file"
 msgid_plural "Scanned: {count} files"
 msgstr[0] "已扫描：{count} 个文件"
 
-#: crates/linux-defender-core/src/logs.rs:1433
+#: crates/linux-defender-core/src/logs.rs:1457
 msgid "{count} directory"
 msgid_plural "{count} directories"
 msgstr[0] "{count} 个目录"
 
-#: crates/linux-defender-core/src/logs.rs:1444
+#: crates/linux-defender-core/src/logs.rs:1468
 msgid "Threat found: {count}"
 msgid_plural "Threats found: {count}"
 msgstr[0] "发现威胁：{count} 个"
@@ -1561,55 +1558,55 @@ msgid "Failed to remove {path}: {error}"
 msgstr "Failed to remove {path}: {error}"
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1119
+#: crates/linux-defender-core/src/privileged.rs:1134
 msgid "Authorization was cancelled while {operation}."
 msgstr "{operation}时，授权被取消。"
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1125
+#: crates/linux-defender-core/src/privileged.rs:1140
 msgid "The privileged helper is unavailable while {operation}."
 msgstr "{operation}时，特权助手不可用。"
 
 #. Translators: PKEXEC_UID is a technical environment-variable name; keep it unchanged.
-#: crates/linux-defender-core/src/privileged.rs:1131
+#: crates/linux-defender-core/src/privileged.rs:1146
 msgid "The privileged helper rejected PKEXEC_UID while {operation}."
 msgstr "{operation}时，特权助手拒绝了 PKEXEC_UID。"
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1137
+#: crates/linux-defender-core/src/privileged.rs:1152
 msgid "The privileged helper reported a protocol mismatch while {operation}."
 msgstr "{operation}时，特权助手报告协议不匹配。"
 
 #. Translators: keep {operation}, numeric {code}, and sanitized diagnostic {detail}.
-#: crates/linux-defender-core/src/privileged.rs:1143
+#: crates/linux-defender-core/src/privileged.rs:1158
 msgid "The privileged helper failed while {operation} (exit {code}): {detail}."
 msgstr "{operation}时，特权助手执行失败（退出码 {code}）：{detail}。"
 
 #. Translators: keep the {operation} and numeric {code} placeholders.
-#: crates/linux-defender-core/src/privileged.rs:1151
+#: crates/linux-defender-core/src/privileged.rs:1166
 msgid "The privileged helper failed while {operation} (exit {code})."
 msgstr "{operation}时，特权助手执行失败（退出码 {code}）。"
 
 #. Translators: keep the {operation} placeholder; it is a localized operation name.
-#: crates/linux-defender-core/src/privileged.rs:1158
+#: crates/linux-defender-core/src/privileged.rs:1173
 msgid "The privileged helper was terminated while {operation}."
 msgstr "{operation}时，特权助手被终止。"
 
-#: crates/linux-defender-core/src/privileged.rs:1217
+#: crates/linux-defender-core/src/privileged.rs:1235
 msgid "Applying configuration"
 msgstr "应用配置"
 
 #. Translators: keep {message}; it is the complete preceding helper error.
-#: crates/linux-defender-core/src/privileged.rs:1219
+#: crates/linux-defender-core/src/privileged.rs:1237
 msgid "{message} One or more earlier replacements may have succeeded."
 msgstr "{message} 此前可能已有替换操作成功。"
 
-#: crates/linux-defender-core/src/privileged.rs:1461
+#: crates/linux-defender-core/src/privileged.rs:1479
 msgid "Reading configuration"
 msgstr "读取配置"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3106
+#: crates/linux-defender-core/src/privileged.rs:3133
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr "特权助手安装失败。请重试或手动安装。"
@@ -1731,18 +1728,18 @@ msgstr "{kind} 路径格式无效：{path}"
 msgid "Could not generate unique name for '{name}'"
 msgstr "无法为“{name}”生成唯一名称"
 
-#: crates/linux-defender-core/src/quarantine.rs:435
+#: crates/linux-defender-core/src/quarantine.rs:459
 msgid "Quarantine metadata was written but could not be read"
 msgstr "隔离区元数据已写入，但无法读取"
 
-#: crates/linux-defender-core/src/quarantine.rs:457
+#: crates/linux-defender-core/src/quarantine.rs:481
 msgid ""
 "Failed to record quarantine entry in database. File has been restored to "
 "original location."
 msgstr "无法将隔离记录写入数据库。文件已还原至原始位置。"
 
 #. Translators: Preserve `{error}` as a localized failure description and `{path}` as a user-provided file path.
-#: crates/linux-defender-core/src/quarantine.rs:460
+#: crates/linux-defender-core/src/quarantine.rs:484
 msgid ""
 "Failed to record quarantine entry in database. Rollback also failed: "
 "{error}. File may be orphaned at: {path}"
@@ -1750,7 +1747,7 @@ msgstr ""
 "无法将隔离记录写入数据库。回滚也失败：{error}。文件可能遗留在以下位置且无对应"
 "记录：{path}"
 
-#: crates/linux-defender-core/src/quarantine.rs:508
+#: crates/linux-defender-core/src/quarantine.rs:532
 msgid ""
 "File restored successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1758,7 +1755,7 @@ msgstr ""
 "文件已成功还原，但无法删除数据库记录。清理记录前，该文件可能仍会显示在列表"
 "中。"
 
-#: crates/linux-defender-core/src/quarantine.rs:535
+#: crates/linux-defender-core/src/quarantine.rs:564
 msgid ""
 "File deleted successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1767,12 +1764,12 @@ msgstr ""
 "中。"
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/linux-defender-core/src/quarantine.rs:1543
+#: crates/linux-defender-core/src/quarantine.rs:1585
 msgid "Cannot quarantine {path}: {error}"
 msgstr "无法隔离 {path}：{error}"
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/linux-defender-core/src/quarantine.rs:1561
+#: crates/linux-defender-core/src/quarantine.rs:1603
 msgid "File hash mismatch — file may be corrupted"
 msgstr "文件哈希值不匹配 — 文件可能已损坏"
 
@@ -1827,12 +1824,12 @@ msgid_plural ""
 "partially scanned"
 msgstr[0] "扫描期间出现 {count} 条非致命警告；部分文件可能未被完整扫描"
 
-#: crates/linux-defender-core/src/scheduler.rs:881
+#: crates/linux-defender-core/src/scheduler.rs:892
 msgid "Scheduled scan cancelled"
 msgstr "定时扫描已取消"
 
 #. Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/scheduler.rs:900
+#: crates/linux-defender-core/src/scheduler.rs:911
 msgid ""
 "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] "
 "[--target PATH] [--dry-run] [--verbose|-v]"
@@ -1841,125 +1838,125 @@ msgstr ""
 "[--target PATH] [--dry-run] [--verbose|-v]"
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/linux-defender-core/src/scheduler.rs:941
+#: crates/linux-defender-core/src/scheduler.rs:952
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
-#: crates/linux-defender-core/src/scheduler.rs:950
+#: crates/linux-defender-core/src/scheduler.rs:961
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "已跳过定时扫描（使用电池供电）"
 
-#: crates/linux-defender-core/src/scheduler.rs:967
+#: crates/linux-defender-core/src/scheduler.rs:978
 msgid "Warning: Target does not exist: {target}"
 msgstr "警告：目标不存在：{target}"
 
-#: crates/linux-defender-core/src/scheduler.rs:979
+#: crates/linux-defender-core/src/scheduler.rs:990
 msgid "Error: No valid scan targets found"
 msgstr "错误：未找到有效的扫描目标"
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/linux-defender-core/src/scheduler.rs:983
+#: crates/linux-defender-core/src/scheduler.rs:994
 msgid "Dry run mode — scan not executed"
 msgstr "试运行模式 — 未执行扫描"
 
-#: crates/linux-defender-core/src/scheduler.rs:991
+#: crates/linux-defender-core/src/scheduler.rs:1002
 msgid "  Skip on battery: {value}"
 msgstr "  电池供电时跳过扫描：{value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:996
+#: crates/linux-defender-core/src/scheduler.rs:1007
 msgid "  Auto quarantine: {value}"
 msgstr "  自动隔离：{value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1004
+#: crates/linux-defender-core/src/scheduler.rs:1015
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} 个目标：{targets:?}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1028
+#: crates/linux-defender-core/src/scheduler.rs:1039
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "定时扫描失败：ClamAV 不可用"
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/linux-defender-core/src/scheduler.rs:1038
+#: crates/linux-defender-core/src/scheduler.rs:1049
 msgid "Error: ClamAV not available — {error}"
 msgstr "错误：ClamAV 不可用 — {error}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1047
+#: crates/linux-defender-core/src/scheduler.rs:1058
 msgid "Scheduled Scan Failed"
 msgstr "定时扫描失败"
 
-#: crates/linux-defender-core/src/scheduler.rs:1048
+#: crates/linux-defender-core/src/scheduler.rs:1059
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "ClamAV 不可用。请安装 ClamAV。"
 
-#: crates/linux-defender-core/src/scheduler.rs:1111
+#: crates/linux-defender-core/src/scheduler.rs:1122
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
 msgstr[0] "定时扫描发现 {infected} 个威胁，已隔离 {quarantined} 个"
 
-#: crates/linux-defender-core/src/scheduler.rs:1122
+#: crates/linux-defender-core/src/scheduler.rs:1133
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "定时扫描发现 {count} 个威胁"
 
-#: crates/linux-defender-core/src/scheduler.rs:1131
+#: crates/linux-defender-core/src/scheduler.rs:1142
 msgid "Scheduled scan completed with errors"
 msgstr "定时扫描已完成，但有错误"
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/scheduler.rs:1134
+#: crates/linux-defender-core/src/scheduler.rs:1145
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] "计划扫描已完成 — 已扫描 {count} 个文件，未发现威胁"
 
-#: crates/linux-defender-core/src/scheduler.rs:1149
+#: crates/linux-defender-core/src/scheduler.rs:1160
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "扫描耗时：{duration:.1f} 秒"
 
-#: crates/linux-defender-core/src/scheduler.rs:1151
+#: crates/linux-defender-core/src/scheduler.rs:1162
 msgid "Files Scanned: {count}"
 msgstr "已扫描文件：{count} 个"
 
-#: crates/linux-defender-core/src/scheduler.rs:1152
+#: crates/linux-defender-core/src/scheduler.rs:1163
 msgid "Threats Found: {count}"
 msgstr "发现威胁：{count} 个"
 
-#: crates/linux-defender-core/src/scheduler.rs:1153
+#: crates/linux-defender-core/src/scheduler.rs:1164
 msgid "Targets: {targets}"
 msgstr "目标：{targets}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1157
+#: crates/linux-defender-core/src/scheduler.rs:1168
 msgid "Quarantined: {count}"
 msgstr "已隔离：{count} 个"
 
-#: crates/linux-defender-core/src/scheduler.rs:1162
+#: crates/linux-defender-core/src/scheduler.rs:1173
 msgid "Quarantine Failed: {count}"
 msgstr "隔离失败：{count} 个"
 
-#: crates/linux-defender-core/src/scheduler.rs:1190
+#: crates/linux-defender-core/src/scheduler.rs:1201
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "定时扫描：检测到威胁！"
 
-#: crates/linux-defender-core/src/scheduler.rs:1196
+#: crates/linux-defender-core/src/scheduler.rs:1207
 msgid "Scheduled Scan Completed"
 msgstr "定时扫描已完成"
 
-#: crates/linux-defender-core/src/scheduler.rs:1197
+#: crates/linux-defender-core/src/scheduler.rs:1208
 msgid "Scan completed with some errors. Check logs for details."
 msgstr "扫描已完成，但出现了一些错误。详情请查看日志。"
 
-#: crates/linux-defender-core/src/scheduler.rs:1205
+#: crates/linux-defender-core/src/scheduler.rs:1216
 msgid "Scheduled Scan Complete"
 msgstr "定时扫描已完成"
 
-#: crates/linux-defender-core/src/scheduler.rs:1218
+#: crates/linux-defender-core/src/scheduler.rs:1229
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "隔离失败：{count} 个文件"
 
-#: crates/linux-defender-core/src/scheduler.rs:1244
+#: crates/linux-defender-core/src/scheduler.rs:1255
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -1967,15 +1964,15 @@ msgstr ""
 "电量：{percent:.0f}%\n"
 "已根据电池供电设置跳过扫描。"
 
-#: crates/linux-defender-core/src/scheduler.rs:1249
+#: crates/linux-defender-core/src/scheduler.rs:1260
 msgid "Scan skipped due to battery-aware settings."
 msgstr "已根据电池供电设置跳过扫描。"
 
-#: crates/linux-defender-core/src/scheduler.rs:1255
+#: crates/linux-defender-core/src/scheduler.rs:1266
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "跳过扫描：当前使用电池供电（电量 {percent:.0f}%）"
 
-#: crates/linux-defender-core/src/scheduler.rs:1260
+#: crates/linux-defender-core/src/scheduler.rs:1271
 msgid "Skipping scan: running on battery power"
 msgstr "跳过扫描：当前使用电池供电"
 
@@ -2068,7 +2065,7 @@ msgstr ""
 #: crates/linux-defender-core/src/updater.rs:884
 msgid "Update timed out after {minutes} minute without output"
 msgid_plural "Update timed out after {minutes} minutes without output"
-msgstr[0] "Update timed out after {minutes} minutes without output"
+msgstr[0] "Update timed out after {minutes} minute without output"
 
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
 #. Translators: The em dash separates the completion state from the count; preserve `{count}`.
@@ -2100,72 +2097,72 @@ msgstr ""
 "无法触发 freshclam 服务更新。请尝试重启服务：sudo systemctl restart clamav-"
 "freshclam ({error})"
 
-#: crates/linux-defender-core/src/virustotal.rs:1182
+#: crates/linux-defender-core/src/virustotal.rs:1213
 msgid "File too large ({size}MB). Maximum size is {max}MB"
 msgstr "文件过大（{size} MB），上限为 {max} MB"
 
-#: crates/linux-defender-core/src/virustotal.rs:1186
+#: crates/linux-defender-core/src/virustotal.rs:1217
 msgid "Invalid file path"
 msgstr "文件路径无效"
 
-#: crates/linux-defender-core/src/virustotal.rs:1188
+#: crates/linux-defender-core/src/virustotal.rs:1219
 msgid "Path is not a regular file"
 msgstr "路径指向的不是普通文件"
 
-#: crates/linux-defender-core/src/virustotal.rs:1190
+#: crates/linux-defender-core/src/virustotal.rs:1221
 msgid "File changed while hashing"
 msgstr "文件在计算哈希值时发生了变化"
 
-#: crates/linux-defender-core/src/virustotal.rs:1192
+#: crates/linux-defender-core/src/virustotal.rs:1223
 msgid "File changed before upload"
 msgstr "文件在上传前已被修改"
 
-#: crates/linux-defender-core/src/virustotal.rs:1194
+#: crates/linux-defender-core/src/virustotal.rs:1225
 msgid "File changed during upload"
 msgstr "文件在上传过程中被修改"
 
-#: crates/linux-defender-core/src/virustotal.rs:1203
+#: crates/linux-defender-core/src/virustotal.rs:1234
 msgid "VirusTotal: Clean scan"
 msgstr "VirusTotal：扫描未发现威胁"
 
-#: crates/linux-defender-core/src/virustotal.rs:1206
+#: crates/linux-defender-core/src/virustotal.rs:1237
 msgid "VirusTotal: {detections}/{total} engines detected threats"
 msgstr "VirusTotal：{detections}/{total} 个引擎检测到威胁"
 
-#: crates/linux-defender-core/src/virustotal.rs:1213
+#: crates/linux-defender-core/src/virustotal.rs:1244
 msgid "VirusTotal: Threats detected"
 msgstr "VirusTotal：检测到威胁"
 
-#: crates/linux-defender-core/src/virustotal.rs:1214
+#: crates/linux-defender-core/src/virustotal.rs:1245
 msgid "VirusTotal: Rate limit exceeded"
 msgstr "VirusTotal：已超出请求频率限制"
 
-#: crates/linux-defender-core/src/virustotal.rs:1215
+#: crates/linux-defender-core/src/virustotal.rs:1246
 msgid "VirusTotal: Analysis pending"
 msgstr "VirusTotal：等待分析"
 
-#: crates/linux-defender-core/src/virustotal.rs:1218
+#: crates/linux-defender-core/src/virustotal.rs:1249
 msgid "VirusTotal: File not previously analyzed"
 msgstr "VirusTotal：此前未分析过此文件"
 
-#: crates/linux-defender-core/src/virustotal.rs:1220
+#: crates/linux-defender-core/src/virustotal.rs:1251
 msgid "VirusTotal: File too large for upload"
 msgstr "VirusTotal：文件过大，无法上传"
 
-#: crates/linux-defender-core/src/virustotal.rs:1221
+#: crates/linux-defender-core/src/virustotal.rs:1252
 msgid "VirusTotal: Scan error"
 msgstr "VirusTotal：扫描出错"
 
-#: crates/linux-defender-core/src/virustotal.rs:1226
+#: crates/linux-defender-core/src/virustotal.rs:1257
 msgid "Detections: {detections}/{total}"
 msgstr "检出数：{detections}/{total}"
 
-#: crates/linux-defender-core/src/virustotal.rs:1240
+#: crates/linux-defender-core/src/virustotal.rs:1271
 msgid "Error: {error}"
 msgstr "错误：{error}"
 
 #. Translators: Keep `API` unchanged as the abbreviation for application programming interface.
-#: crates/linux-defender-core/src/virustotal.rs:1462
+#: crates/linux-defender-core/src/virustotal.rs:1512
 msgid "API key saved"
 msgstr "API 密钥已保存"
 
@@ -2254,7 +2251,7 @@ msgstr "添加文件"
 msgid "Export"
 msgstr "导出"
 
-#: desktop/src-tauri/src/runtime.rs:678
+#: desktop/src-tauri/src/runtime.rs:681
 msgid "Open"
 msgstr "打开"
 
@@ -2262,8 +2259,8 @@ msgstr "打开"
 msgid "Overview"
 msgstr "概览"
 
-#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:730
-#: desktop/src/pages/Scan.tsx:732
+#: desktop/src/App.tsx:114 desktop/src/pages/Scan.tsx:735
+#: desktop/src/pages/Scan.tsx:737
 msgid "Scan"
 msgstr "扫描"
 
@@ -2293,7 +2290,7 @@ msgstr "审计"
 msgid "Network"
 msgstr "网络"
 
-#: desktop/src/App.tsx:130 desktop/src/App.tsx:909 desktop/src/App.tsx:997
+#: desktop/src/App.tsx:130 desktop/src/App.tsx:908 desktop/src/App.tsx:996
 #: desktop/src/pages/Preferences.tsx:120
 msgid "Preferences"
 msgstr "首选项"
@@ -2312,134 +2309,134 @@ msgid "Could not open link"
 msgstr "无法打开链接"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/App.tsx:401 desktop/src/App.tsx:416 desktop/src/App.tsx:434
-#: desktop/src/pages/Scan.tsx:509
+#: desktop/src/App.tsx:402 desktop/src/App.tsx:417 desktop/src/App.tsx:435
+#: desktop/src/pages/Scan.tsx:514
 msgid "Scan in progress — wait for it to finish before changing targets"
 msgstr "正在扫描——请等待扫描完成后再更改扫描目标"
 
-#: desktop/src/App.tsx:480
+#: desktop/src/App.tsx:481
 msgid "The privileged-helper installation returned an invalid status."
 msgstr "安装特权辅助程序时返回了无效状态。"
 
-#: desktop/src/App.tsx:487
+#: desktop/src/App.tsx:488
 msgid "The privileged helper was installed successfully."
 msgstr "特权辅助程序已成功安装。"
 
-#: desktop/src/App.tsx:489
+#: desktop/src/App.tsx:490
 msgid ""
 "The privileged helper is still unavailable. Try again or install it manually."
 msgstr "特权辅助程序仍不可用。请重试或手动安装。"
 
-#: desktop/src/App.tsx:801
+#: desktop/src/App.tsx:800
 msgid "The privileged-helper status returned an invalid response."
 msgstr "查询特权辅助程序状态时返回了无效响应。"
 
-#: desktop/src/App.tsx:902
+#: desktop/src/App.tsx:901
 msgid "Linux Defender"
 msgstr "Linux Defender"
 
-#: desktop/src/App.tsx:907
+#: desktop/src/App.tsx:906
 msgid "Back"
 msgstr "返回"
 
-#: desktop/src/App.tsx:932
+#: desktop/src/App.tsx:931
 msgid "Scan File or Folder"
 msgstr "扫描文件或文件夹"
 
-#: desktop/src/App.tsx:939
+#: desktop/src/App.tsx:938
 msgid "Choose scan targets"
 msgstr "选择扫描目标"
 
-#: desktop/src/App.tsx:949
+#: desktop/src/App.tsx:948
 msgid "Scan Files"
 msgstr "扫描文件"
 
-#: desktop/src/App.tsx:953
+#: desktop/src/App.tsx:952
 msgid "Scan Folders"
 msgstr "扫描文件夹"
 
-#: desktop/src/App.tsx:960
+#: desktop/src/App.tsx:959
 msgid "Scan System (Quick Scan)"
 msgstr "扫描系统（快速扫描）"
 
-#: desktop/src/App.tsx:967 desktop/src/App.tsx:968
+#: desktop/src/App.tsx:966 desktop/src/App.tsx:967
 msgid "Menu"
 msgstr "菜单"
 
-#: desktop/src/App.tsx:987
+#: desktop/src/App.tsx:986
 msgid "Application menu"
 msgstr "应用程序菜单"
 
-#: desktop/src/App.tsx:1000
+#: desktop/src/App.tsx:999
 msgid "About"
 msgstr "关于"
 
-#: desktop/src/App.tsx:1013
+#: desktop/src/App.tsx:1012
 msgid "Main navigation"
 msgstr "主导航"
 
-#: desktop/src/App.tsx:1014
+#: desktop/src/App.tsx:1013
 msgid "Views"
 msgstr "视图"
 
-#: desktop/src/App.tsx:1034 desktop/src/pages/Quarantine.tsx:341
+#: desktop/src/App.tsx:1033 desktop/src/pages/Quarantine.tsx:341
 msgid "Dismiss"
 msgstr "关闭"
 
-#: desktop/src/App.tsx:1056
+#: desktop/src/App.tsx:1055
 msgid "About Linux Defender"
 msgstr "About Linux Defender"
 
-#: desktop/src/App.tsx:1057
+#: desktop/src/App.tsx:1056
 msgid "An on-demand Linux security scanner using your system's ClamAV tools."
 msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 
-#: desktop/src/App.tsx:1059
+#: desktop/src/App.tsx:1058
 msgid "Version"
 msgstr "版本"
 
-#: desktop/src/App.tsx:1060 desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/App.tsx:1059 desktop/src/pages/SettingsPreferences.tsx:270
 #: desktop/src/pages/SettingsPreferences.tsx:271
 msgid "Language"
 msgstr "语言"
 
-#: desktop/src/App.tsx:1061
+#: desktop/src/App.tsx:1060
 msgid "License"
 msgstr "许可证"
 
-#: desktop/src/App.tsx:1064
+#: desktop/src/App.tsx:1063
 msgid "Project website"
 msgstr "项目网站"
 
-#: desktop/src/App.tsx:1065 desktop/src/pages/ConfigPreferences.tsx:827
+#: desktop/src/App.tsx:1064 desktop/src/pages/ConfigPreferences.tsx:831
 msgid "Documentation"
 msgstr "文档"
 
-#: desktop/src/App.tsx:1066
+#: desktop/src/App.tsx:1065
 msgid "Issue tracker"
 msgstr "问题跟踪器"
 
-#: desktop/src/App.tsx:1068
+#: desktop/src/App.tsx:1067
 msgid "Could not load contributor credits: {error}"
 msgstr "无法加载贡献者鸣谢：{error}"
 
-#: desktop/src/App.tsx:1073
+#: desktop/src/App.tsx:1072
 msgid "Contributors"
 msgstr "贡献者"
 
-#: desktop/src/App.tsx:1082
+#: desktop/src/App.tsx:1081
 msgid "Translator credits"
 msgstr "翻译者鸣谢"
 
-#: desktop/src/App.tsx:1085
+#: desktop/src/App.tsx:1084
 msgid "Loading contributor credits…"
 msgstr "正在加载贡献者鸣谢…"
 
-#: desktop/src/App.tsx:1087
+#: desktop/src/App.tsx:1086
 msgid "Close Linux Defender?"
 msgstr "Close Linux Defender?"
 
-#: desktop/src/App.tsx:1088
+#: desktop/src/App.tsx:1087
 msgid ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
@@ -2447,16 +2444,16 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1089 desktop/src/pages/Scan.tsx:266
+#: desktop/src/App.tsx:1088 desktop/src/pages/Scan.tsx:266
 msgid "Remember my choice"
 msgstr "记住我的选择"
 
-#: desktop/src/App.tsx:1090 desktop/src/App.tsx:1094
+#: desktop/src/App.tsx:1089 desktop/src/App.tsx:1093
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
-#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:784
+#: desktop/src/pages/Results.tsx:206 desktop/src/pages/Scan.tsx:789
 #: desktop/src/pages/SettingsPreferences.tsx:428
 #: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/SettingsPreferences.tsx:544
@@ -2464,38 +2461,38 @@ msgstr "记住我的选择"
 msgid "Cancel"
 msgstr "取消"
 
-#: desktop/src/App.tsx:1090
+#: desktop/src/App.tsx:1089
 msgid "Minimize to tray"
 msgstr "最小化到系统托盘"
 
-#: desktop/src/App.tsx:1092
+#: desktop/src/App.tsx:1091
 msgid "Scan in Progress"
 msgstr "正在扫描"
 
-#: desktop/src/App.tsx:1093
+#: desktop/src/App.tsx:1092
 msgid "A scan is still running. Cancelling it may leave partial results."
 msgstr "扫描仍在进行。取消扫描可能会导致结果不完整。"
 
-#: desktop/src/App.tsx:1094
+#: desktop/src/App.tsx:1093
 msgid "Keep Scanning"
 msgstr "继续扫描"
 
-#: desktop/src/App.tsx:1094
+#: desktop/src/App.tsx:1093
 msgid "Cancel Scan and Close"
 msgstr "取消扫描并关闭"
 
-#: desktop/src/App.tsx:1094 desktop/src/ConfigurationRecovery.tsx:94
+#: desktop/src/App.tsx:1093 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
-#: desktop/src/pages/Scan.tsx:354 desktop/src/pages/Scan.tsx:360
-#: desktop/src/pages/Scan.tsx:372 desktop/src/pages/SettingsPreferences.tsx:314
+#: desktop/src/pages/Scan.tsx:359 desktop/src/pages/Scan.tsx:365
+#: desktop/src/pages/Scan.tsx:377 desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Close"
 msgstr "关闭"
 
-#: desktop/src/App.tsx:1096
+#: desktop/src/App.tsx:1095
 msgid "Install Privileged Helper"
 msgstr "安装特权辅助程序"
 
-#: desktop/src/App.tsx:1097
+#: desktop/src/App.tsx:1096
 msgid ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
@@ -2503,12 +2500,12 @@ msgstr ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
 
-#: desktop/src/App.tsx:1099 desktop/src/HelperTrustErrorDialog.tsx:52
+#: desktop/src/App.tsx:1098 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr "安装该辅助程序需要管理员授权。"
 
 #. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1100
+#: desktop/src/App.tsx:1099
 msgid ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
@@ -2516,27 +2513,27 @@ msgstr ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
 
-#: desktop/src/App.tsx:1105 desktop/src/HelperTrustErrorDialog.tsx:78
+#: desktop/src/App.tsx:1104 desktop/src/HelperTrustErrorDialog.tsx:78
 msgid "Installing privileged helper…"
 msgstr "正在安装特权辅助程序…"
 
-#: desktop/src/App.tsx:1107
+#: desktop/src/App.tsx:1106
 msgid "Not now"
 msgstr "暂不"
 
-#: desktop/src/App.tsx:1107 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1106 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Installing…"
 msgstr "正在安装…"
 
-#: desktop/src/App.tsx:1107 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1106 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Try Again"
 msgstr "重试"
 
-#: desktop/src/App.tsx:1107 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1106 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Install Helper"
 msgstr "安装辅助程序"
 
-#: desktop/src/App.tsx:1107
+#: desktop/src/App.tsx:1106
 msgid "Open Preferences"
 msgstr "打开首选项"
 
@@ -2673,7 +2670,7 @@ msgid ""
 msgstr "请勿更改未知可执行文件的权限以绕过此检查。"
 
 #: desktop/src/HelperTrustErrorDialog.tsx:74 desktop/src/UiErrorBoundary.tsx:36
-#: desktop/src/pages/ConfigPreferences.tsx:920
+#: desktop/src/pages/ConfigPreferences.tsx:924
 msgid "Technical details"
 msgstr "技术详情"
 
@@ -2683,7 +2680,7 @@ msgstr "打开修复说明"
 
 #. Translators: This button opens the failed native configuration snapshot.
 #: desktop/src/HelperTrustErrorDialog.tsx:82
-#: desktop/src/pages/ConfigPreferences.tsx:924
+#: desktop/src/pages/ConfigPreferences.tsx:928
 msgid "See Configuration"
 msgstr "查看配置"
 
@@ -2692,7 +2689,7 @@ msgid "Target {index}/{count}: {path}"
 msgstr "目标 {index}/{count}：{path}"
 
 #: desktop/src/ScanProgressPanel.tsx:19 desktop/src/pages/Results.tsx:110
-#: desktop/src/pages/Scan.tsx:721
+#: desktop/src/pages/Scan.tsx:726
 msgid "Scan target"
 msgstr "扫描目标"
 
@@ -2713,12 +2710,12 @@ msgstr "正在等待扫描数据…"
 msgid "Scan progress"
 msgstr "扫描进度"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:782
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:787
 msgid "{count} file scanned"
 msgid_plural "{count} files scanned"
 msgstr[0] "已扫描 {count} 个文件"
 
-#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:782
+#: desktop/src/ScanProgressPanel.tsx:28 desktop/src/pages/Scan.tsx:787
 #: desktop/src/pages/Statistics.tsx:30
 msgid "{count} threat"
 msgid_plural "{count} threats"
@@ -2776,7 +2773,7 @@ msgid "Cancelled"
 msgstr "已取消"
 
 #: desktop/src/i18n.ts:96 desktop/src/pages/Audit.tsx:64
-#: desktop/src/pages/Components.tsx:146 desktop/src/pages/Logs.tsx:104
+#: desktop/src/pages/Components.tsx:150 desktop/src/pages/Logs.tsx:104
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:55
 #: desktop/src/pages/Results.tsx:69 desktop/src/pages/Results.tsx:76
@@ -2945,17 +2942,17 @@ msgstr "Portmaster——无法探测"
 msgid "No audit details were returned."
 msgstr "未返回任何审计详情。"
 
-#: desktop/src/pages/Audit.tsx:323 desktop/src/pages/Components.tsx:188
+#: desktop/src/pages/Audit.tsx:323 desktop/src/pages/Components.tsx:192
 msgid "Command copied to clipboard"
 msgstr "命令已复制到剪贴板"
 
-#: desktop/src/pages/Audit.tsx:325 desktop/src/pages/Components.tsx:191
+#: desktop/src/pages/Audit.tsx:325 desktop/src/pages/Components.tsx:195
 msgid "Could not copy command: {error}"
 msgstr "无法复制命令：{error}"
 
-#: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:274
+#: desktop/src/pages/Audit.tsx:339 desktop/src/pages/Components.tsx:278
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
-#: desktop/src/pages/Scan.tsx:782 desktop/src/pages/Scan.tsx:787
+#: desktop/src/pages/Scan.tsx:787 desktop/src/pages/Scan.tsx:792
 #: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Copy"
 msgstr "复制"
@@ -2972,49 +2969,49 @@ msgstr "在浏览器中打开"
 msgid "Learn more"
 msgstr "了解更多"
 
-#: desktop/src/pages/Components.tsx:78
+#: desktop/src/pages/Components.tsx:82
 msgid "Virus Scanner"
 msgstr "病毒扫描器"
 
-#: desktop/src/pages/Components.tsx:80
+#: desktop/src/pages/Components.tsx:84
 msgid "Database Updater"
 msgstr "病毒库更新器"
 
-#: desktop/src/pages/Components.tsx:82
+#: desktop/src/pages/Components.tsx:86
 msgid "Daemon Scanner Client"
 msgstr "扫描守护进程客户端"
 
-#: desktop/src/pages/Components.tsx:84
+#: desktop/src/pages/Components.tsx:88
 msgid "Scanner Daemon"
 msgstr "扫描守护进程"
 
 #. Translators: Keep clamscan unchanged; it is the scanner command name.
-#: desktop/src/pages/Components.tsx:91
+#: desktop/src/pages/Components.tsx:95
 msgid "clamscan performs on-demand virus scans."
 msgstr "clamscan 可按需执行病毒扫描。"
 
 #. Translators: Keep freshclam unchanged; it is the database-updater command name.
-#: desktop/src/pages/Components.tsx:96
+#: desktop/src/pages/Components.tsx:100
 msgid "freshclam downloads current virus definitions."
 msgstr "freshclam 用于下载最新的病毒库。"
 
 #. Translators: Keep clamdscan and clamd unchanged; they are command and service names.
-#: desktop/src/pages/Components.tsx:101
+#: desktop/src/pages/Components.tsx:105
 msgid "clamdscan uses the clamd daemon for faster scanning."
 msgstr "clamdscan 使用 clamd 守护进程加快扫描速度。"
 
 #. Translators: Keep clamd unchanged; it is the daemon service name.
-#: desktop/src/pages/Components.tsx:106
+#: desktop/src/pages/Components.tsx:110
 msgid "clamd is the ClamAV daemon for faster scans."
 msgstr "clamd 是 ClamAV 的守护进程，可加快扫描速度。"
 
 #. Translators: Keep freshclam unchanged; it is the database-updater command name.
-#: desktop/src/pages/Components.tsx:116
+#: desktop/src/pages/Components.tsx:120
 msgid "After installation, update virus definitions with freshclam."
 msgstr "安装后，请使用 freshclam 更新病毒库。"
 
 #. Translators: Keep the embedded shell commands and service name unchanged.
-#: desktop/src/pages/Components.tsx:121
+#: desktop/src/pages/Components.tsx:125
 msgid ""
 "Enable the service for automatic updates: sudo systemctl enable clamav-"
 "freshclam; sudo systemctl start clamav-freshclam"
@@ -3023,12 +3020,12 @@ msgstr ""
 "start clamav-freshclam"
 
 #. Translators: Keep clamd unchanged; it is the daemon service name.
-#: desktop/src/pages/Components.tsx:126
+#: desktop/src/pages/Components.tsx:130
 msgid "Requires the clamd daemon to be running."
 msgstr "需要 clamd 守护进程处于运行状态。"
 
 #. Translators: Keep the embedded file path, command, and command-line options unchanged.
-#: desktop/src/pages/Components.tsx:131
+#: desktop/src/pages/Components.tsx:135
 msgid ""
 "Configuration is auto-detected in Preferences. On Fedora, Linux Defender "
 "uses /etc/clamd.d/scan.conf. If clamd is running but unavailable, verify "
@@ -3040,44 +3037,44 @@ msgstr ""
 "socket permissions and run: clamdscan --config-file=/etc/clamd.d/scan.conf --"
 "ping 3"
 
-#: desktop/src/pages/Components.tsx:143 desktop/src/pages/Logs.tsx:98
+#: desktop/src/pages/Components.tsx:147 desktop/src/pages/Logs.tsx:98
 msgid "Running"
 msgstr "正在运行"
 
-#: desktop/src/pages/Components.tsx:143
+#: desktop/src/pages/Components.tsx:147
 #: desktop/src/pages/SettingsPreferences.tsx:305
 msgid "Installed"
 msgstr "已安装"
 
-#: desktop/src/pages/Components.tsx:144 desktop/src/pages/Logs.tsx:100
+#: desktop/src/pages/Components.tsx:148 desktop/src/pages/Logs.tsx:100
 msgid "Stopped"
 msgstr "已停止"
 
-#: desktop/src/pages/Components.tsx:145 desktop/src/pages/Logs.tsx:102
+#: desktop/src/pages/Components.tsx:149 desktop/src/pages/Logs.tsx:102
 #: desktop/src/pages/SettingsPreferences.tsx:307
 msgid "Not installed"
 msgstr "未安装"
 
-#: desktop/src/pages/Components.tsx:200
+#: desktop/src/pages/Components.tsx:204
 msgid "ClamAV components"
 msgstr "ClamAV 组件"
 
-#: desktop/src/pages/Components.tsx:201
+#: desktop/src/pages/Components.tsx:205
 msgid ""
 "Check host-side ClamAV tools and copy distribution-specific setup commands."
 msgstr "检查主机上的 ClamAV 工具，并复制适用于相应发行版的配置命令。"
 
-#: desktop/src/pages/Components.tsx:204 desktop/src/pages/Components.tsx:228
+#: desktop/src/pages/Components.tsx:208 desktop/src/pages/Components.tsx:232
 #: desktop/src/pages/Database.tsx:283 desktop/src/pages/Database.tsx:305
 msgid "Checking…"
 msgstr "正在检查…"
 
-#: desktop/src/pages/Components.tsx:204 desktop/src/pages/Database.tsx:283
-#: desktop/src/pages/Scan.tsx:733
+#: desktop/src/pages/Components.tsx:208 desktop/src/pages/Database.tsx:283
+#: desktop/src/pages/Scan.tsx:738
 msgid "Refresh status"
 msgstr "刷新状态"
 
-#: desktop/src/pages/Components.tsx:208
+#: desktop/src/pages/Components.tsx:212
 msgid ""
 "Setup instructions are copy-only. Linux Defender never installs packages or "
 "starts services for you."
@@ -3085,39 +3082,39 @@ msgstr ""
 "Setup instructions are copy-only. Linux Defender never installs packages or "
 "starts services for you."
 
-#: desktop/src/pages/Components.tsx:209
+#: desktop/src/pages/Components.tsx:213
 msgid "Could not check component status: {error}"
 msgstr "无法检查组件状态：{error}"
 
-#: desktop/src/pages/Components.tsx:210
+#: desktop/src/pages/Components.tsx:214
 msgid "Detected host family: {distro}."
 msgstr "检测到的主机发行版系列：{distro}。"
 
-#: desktop/src/pages/Components.tsx:215
+#: desktop/src/pages/Components.tsx:219
 msgid "Components Status"
 msgstr "组件状态"
 
-#: desktop/src/pages/Components.tsx:228
+#: desktop/src/pages/Components.tsx:232
 msgid "Version unavailable"
 msgstr "无法获取版本"
 
-#: desktop/src/pages/Components.tsx:245
+#: desktop/src/pages/Components.tsx:249
 msgid "Hide details"
 msgstr "隐藏详情"
 
-#: desktop/src/pages/Components.tsx:245
+#: desktop/src/pages/Components.tsx:249
 msgid "Show details"
 msgstr "显示详情"
 
-#: desktop/src/pages/Components.tsx:252
+#: desktop/src/pages/Components.tsx:256
 msgid "Suggested for the detected system:"
 msgstr "根据检测到的系统，建议使用："
 
-#: desktop/src/pages/Components.tsx:255
+#: desktop/src/pages/Components.tsx:259
 msgid "Commands for supported distributions:"
 msgstr "适用于受支持发行版的命令："
 
-#: desktop/src/pages/Components.tsx:274
+#: desktop/src/pages/Components.tsx:278
 msgid "Copied"
 msgstr "已复制"
 
@@ -3208,7 +3205,7 @@ msgstr "添加"
 #: desktop/src/pages/ConfigPreferences.tsx:310
 #: desktop/src/pages/ConfigPreferences.tsx:356
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
-#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:775
+#: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:780
 #: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Remove"
 msgstr "移除"
@@ -3243,151 +3240,151 @@ msgstr "已通过管理员授权加载配置。"
 msgid "URLhaus feed added to the draft. Save & Apply to write it."
 msgstr "URLhaus feed added to the draft. Save & Apply to write it."
 
-#: desktop/src/pages/ConfigPreferences.tsx:577
+#: desktop/src/pages/ConfigPreferences.tsx:579
 msgid "Scan backend saved."
 msgstr "扫描后端设置已保存。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:606
+#: desktop/src/pages/ConfigPreferences.tsx:610
 msgid "Choose a configuration file before applying its changes."
 msgstr "请先选择配置文件，再应用更改。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:618
+#: desktop/src/pages/ConfigPreferences.tsx:622
 msgid ""
 "On-Access scanning requires an excluded username, UID, or root user to "
 "prevent scan loops."
 msgstr ""
 "访问时扫描需要指定要排除的用户名、UID 或 root 用户，以防止扫描陷入循环。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:625
-#: desktop/src/pages/ConfigPreferences.tsx:715
+#: desktop/src/pages/ConfigPreferences.tsx:629
+#: desktop/src/pages/ConfigPreferences.tsx:719
 msgid "No changes to apply."
 msgstr "没有需要应用的更改。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:640
+#: desktop/src/pages/ConfigPreferences.tsx:644
 msgid "Configuration validation failed."
 msgstr "配置验证失败。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:715
+#: desktop/src/pages/ConfigPreferences.tsx:719
 msgid "Configuration saved and applied."
 msgstr "配置已保存并应用。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:715
-#: desktop/src/pages/ConfigPreferences.tsx:735
+#: desktop/src/pages/ConfigPreferences.tsx:719
+#: desktop/src/pages/ConfigPreferences.tsx:739
 msgid "Some changes could not be applied."
 msgstr "部分更改未能应用。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:716
+#: desktop/src/pages/ConfigPreferences.tsx:720
 msgid "Saved groups"
 msgstr "已保存的组"
 
-#: desktop/src/pages/ConfigPreferences.tsx:744
+#: desktop/src/pages/ConfigPreferences.tsx:748
 msgid "Checking scanner status…"
 msgstr "正在检查扫描器状态…"
 
-#: desktop/src/pages/ConfigPreferences.tsx:746
+#: desktop/src/pages/ConfigPreferences.tsx:750
 msgid "Daemon connected"
 msgstr "已连接到守护进程"
 
-#: desktop/src/pages/ConfigPreferences.tsx:747
+#: desktop/src/pages/ConfigPreferences.tsx:751
 msgid "Scanner available"
 msgstr "扫描器可用"
 
-#: desktop/src/pages/ConfigPreferences.tsx:747
+#: desktop/src/pages/ConfigPreferences.tsx:751
 msgid "Scanner unavailable"
 msgstr "扫描器不可用"
 
-#: desktop/src/pages/ConfigPreferences.tsx:757
+#: desktop/src/pages/ConfigPreferences.tsx:761
 msgid "Scan PE Files"
 msgstr "扫描 PE 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:758
+#: desktop/src/pages/ConfigPreferences.tsx:762
 msgid "Scan ELF Files"
 msgstr "扫描 ELF 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:759
+#: desktop/src/pages/ConfigPreferences.tsx:763
 msgid "Scan OLE2 Files"
 msgstr "扫描 OLE2 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:760
+#: desktop/src/pages/ConfigPreferences.tsx:764
 msgid "Scan PDF Files"
 msgstr "扫描 PDF 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:761
+#: desktop/src/pages/ConfigPreferences.tsx:765
 msgid "Scan HTML Files"
 msgstr "扫描 HTML 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:762
+#: desktop/src/pages/ConfigPreferences.tsx:766
 msgid "Scan Archive Files"
 msgstr "扫描归档文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:768
+#: desktop/src/pages/ConfigPreferences.tsx:772
 #: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Database Updates"
 msgstr "病毒库更新"
 
 #. Translators: Keep freshclam.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:769
+#: desktop/src/pages/ConfigPreferences.tsx:773
 msgid "freshclam.conf"
 msgstr "freshclam.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:773
+#: desktop/src/pages/ConfigPreferences.tsx:777
 msgid "Paths"
 msgstr "路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:774
+#: desktop/src/pages/ConfigPreferences.tsx:778
 msgid "Database Directory"
 msgstr "病毒库目录"
 
-#: desktop/src/pages/ConfigPreferences.tsx:775
+#: desktop/src/pages/ConfigPreferences.tsx:779
 msgid "Update Log File"
 msgstr "更新日志文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:776
+#: desktop/src/pages/ConfigPreferences.tsx:780
 msgid "PID File"
 msgstr "PID 文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:777
+#: desktop/src/pages/ConfigPreferences.tsx:781
 msgid "Notify ClamD Config"
 msgstr "通知 ClamD 时使用的配置文件"
 
-#: desktop/src/pages/ConfigPreferences.tsx:778
+#: desktop/src/pages/ConfigPreferences.tsx:782
 msgid "Log timestamps"
 msgstr "记录日志时间戳"
 
-#: desktop/src/pages/ConfigPreferences.tsx:779
+#: desktop/src/pages/ConfigPreferences.tsx:783
 msgid "Verbose logging"
 msgstr "记录详细日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:780
+#: desktop/src/pages/ConfigPreferences.tsx:784
 msgid "Syslog logging"
 msgstr "记录到系统日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:782
+#: desktop/src/pages/ConfigPreferences.tsx:786
 msgid "Update Behavior"
 msgstr "更新行为"
 
-#: desktop/src/pages/ConfigPreferences.tsx:783
+#: desktop/src/pages/ConfigPreferences.tsx:787
 msgid "Checks per day"
 msgstr "每日检查次数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:783
+#: desktop/src/pages/ConfigPreferences.tsx:787
 msgid "0 disables automatic checks."
 msgstr "设为 0 可禁用自动检查。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:784
+#: desktop/src/pages/ConfigPreferences.tsx:788
 msgid "Database Mirror"
 msgstr "病毒库镜像服务器"
 
-#: desktop/src/pages/ConfigPreferences.tsx:786
+#: desktop/src/pages/ConfigPreferences.tsx:790
 msgid "Custom Signature Databases"
 msgstr "自定义特征库"
 
-#: desktop/src/pages/ConfigPreferences.tsx:788
+#: desktop/src/pages/ConfigPreferences.tsx:792
 msgid "Suggested"
 msgstr "推荐"
 
 #. Translators: Suggested and Save & Apply are button labels; use their translations. Keep RFXN and InterServer unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:789
+#: desktop/src/pages/ConfigPreferences.tsx:793
 msgid ""
 "Suggested adds the RFXN signatures and three InterServer databases to this "
 "draft. Save & Apply is still required."
@@ -3395,7 +3392,7 @@ msgstr ""
 "建议：将 RFXN 签名和三个 InterServer 数据库加入此草稿。仍需点击“保存并应用”。"
 
 #. Translators: Keep the URI schemes unchanged.
-#: desktop/src/pages/ConfigPreferences.tsx:793
+#: desktop/src/pages/ConfigPreferences.tsx:797
 msgid ""
 "Supported URL schemes: http, https, ftp, ftps, and file. Paste each provider "
 "URL as a separate entry."
@@ -3403,24 +3400,24 @@ msgstr ""
 "支持的网址协议：http、https、ftp、ftps 和 file。请将提供商的每个网址粘贴为单"
 "独的条目。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:798
+#: desktop/src/pages/ConfigPreferences.tsx:802
 msgid "Signature Providers"
 msgstr "特征库提供商"
 
-#: desktop/src/pages/ConfigPreferences.tsx:799
+#: desktop/src/pages/ConfigPreferences.tsx:803
 msgid "Registration is required; URLs include your personal API key."
 msgstr "需要注册；网址中包含您的个人 API 密钥。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:799
 #: desktop/src/pages/ConfigPreferences.tsx:803
-#: desktop/src/pages/ConfigPreferences.tsx:804
-#: desktop/src/pages/ConfigPreferences.tsx:805
-#: desktop/src/pages/ConfigPreferences.tsx:806
+#: desktop/src/pages/ConfigPreferences.tsx:807
+#: desktop/src/pages/ConfigPreferences.tsx:808
+#: desktop/src/pages/ConfigPreferences.tsx:809
+#: desktop/src/pages/ConfigPreferences.tsx:810
 msgid "Open provider"
 msgstr "访问提供商网站"
 
 #. Translators: Keep fangfrisch and clamav-unofficial-sigs unchanged; they are tool names.
-#: desktop/src/pages/ConfigPreferences.tsx:800
+#: desktop/src/pages/ConfigPreferences.tsx:804
 msgid ""
 "Use fangfrisch or clamav-unofficial-sigs; it is not a direct custom URL "
 "provider."
@@ -3428,7 +3425,7 @@ msgstr ""
 "请使用 fangfrisch 或 clamav-unofficial-sigs；此提供商不提供可直接添加的自定义"
 "网址。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:804
+#: desktop/src/pages/ConfigPreferences.tsx:808
 msgid ""
 "Free Linux malware and web-shell hash and heuristic signatures from Linux "
 "Malware Detect."
@@ -3436,150 +3433,150 @@ msgstr ""
 "来自 Linux Malware Detect 的免费 Linux 恶意软件和 Web Shell 哈希及启发式特"
 "征。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:805
+#: desktop/src/pages/ConfigPreferences.tsx:809
 msgid "Community hash, web-shell, and general malware signature databases."
 msgstr "社区提供的哈希、网页后门和通用恶意软件特征库。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:806
+#: desktop/src/pages/ConfigPreferences.tsx:810
 msgid ""
 "Free malware URL blocklist, enabled by default. Added to Custom Signature "
 "Databases automatically."
 msgstr "免费恶意软件 URL 阻止列表，默认启用。自动添加到自定义签名数据库。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:808
+#: desktop/src/pages/ConfigPreferences.tsx:812
 msgid "Proxy Settings"
 msgstr "代理设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:809
+#: desktop/src/pages/ConfigPreferences.tsx:813
 msgid "Proxy Server"
 msgstr "代理服务器"
 
-#: desktop/src/pages/ConfigPreferences.tsx:810
+#: desktop/src/pages/ConfigPreferences.tsx:814
 msgid "Proxy Port"
 msgstr "代理端口"
 
-#: desktop/src/pages/ConfigPreferences.tsx:810
+#: desktop/src/pages/ConfigPreferences.tsx:814
 msgid "0 disables the proxy port."
 msgstr "设为 0 可禁用代理端口。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:811
+#: desktop/src/pages/ConfigPreferences.tsx:815
 msgid "Proxy Username"
 msgstr "代理用户名"
 
-#: desktop/src/pages/ConfigPreferences.tsx:812
+#: desktop/src/pages/ConfigPreferences.tsx:816
 msgid "Proxy Password"
 msgstr "代理密码"
 
-#: desktop/src/pages/ConfigPreferences.tsx:817
+#: desktop/src/pages/ConfigPreferences.tsx:821
 msgid "Scanner Settings"
 msgstr "扫描器设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:819
+#: desktop/src/pages/ConfigPreferences.tsx:823
 msgid "Scan Backend"
 msgstr "扫描后端"
 
-#: desktop/src/pages/ConfigPreferences.tsx:819
+#: desktop/src/pages/ConfigPreferences.tsx:823
 msgid "Auto (prefer daemon)"
 msgstr "自动（优先使用守护进程）"
 
 #. Translators: Keep clamd unchanged; it is the daemon command and service name.
-#: desktop/src/pages/ConfigPreferences.tsx:819
+#: desktop/src/pages/ConfigPreferences.tsx:823
 msgid "ClamAV Daemon (clamd)"
 msgstr "ClamAV 守护进程（clamd）"
 
 #. Translators: Keep clamscan unchanged; it is the scanner command name.
-#: desktop/src/pages/ConfigPreferences.tsx:822
+#: desktop/src/pages/ConfigPreferences.tsx:826
 msgid "Standalone Scanner (clamscan)"
 msgstr "独立扫描器（clamscan）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:830
 msgid "Daemon Status"
 msgstr "守护进程状态"
 
-#: desktop/src/pages/ConfigPreferences.tsx:826
+#: desktop/src/pages/ConfigPreferences.tsx:830
 msgid "Refresh Status"
 msgstr "刷新状态"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:829
-#: desktop/src/pages/ConfigPreferences.tsx:850
+#: desktop/src/pages/ConfigPreferences.tsx:833
+#: desktop/src/pages/ConfigPreferences.tsx:854
 msgid "clamd.conf"
 msgstr "clamd.conf"
 
-#: desktop/src/pages/ConfigPreferences.tsx:833
+#: desktop/src/pages/ConfigPreferences.tsx:837
 msgid "File Type Scanning"
 msgstr "文件类型扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:836
+#: desktop/src/pages/ConfigPreferences.tsx:840
 msgid "Performance and Limits"
 msgstr "性能与限制"
 
-#: desktop/src/pages/ConfigPreferences.tsx:837
-#: desktop/src/pages/ConfigPreferences.tsx:876
+#: desktop/src/pages/ConfigPreferences.tsx:841
+#: desktop/src/pages/ConfigPreferences.tsx:880
 msgid "Max File Size (MB)"
 msgstr "最大文件大小（兆字节）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:837
-#: desktop/src/pages/ConfigPreferences.tsx:838
-#: desktop/src/pages/ConfigPreferences.tsx:840
-#: desktop/src/pages/ConfigPreferences.tsx:876
+#: desktop/src/pages/ConfigPreferences.tsx:841
+#: desktop/src/pages/ConfigPreferences.tsx:842
+#: desktop/src/pages/ConfigPreferences.tsx:844
+#: desktop/src/pages/ConfigPreferences.tsx:880
 msgid "0 means unlimited."
 msgstr "0 表示无限制。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:838
+#: desktop/src/pages/ConfigPreferences.tsx:842
 msgid "Max Scan Size (MB)"
 msgstr "最大扫描大小（兆字节）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:839
+#: desktop/src/pages/ConfigPreferences.tsx:843
 msgid "Max Archive Recursion"
 msgstr "压缩包最大递归深度"
 
-#: desktop/src/pages/ConfigPreferences.tsx:840
+#: desktop/src/pages/ConfigPreferences.tsx:844
 msgid "Max Files in Archive"
 msgstr "压缩包内最大文件数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:842
+#: desktop/src/pages/ConfigPreferences.tsx:846
 msgid "Logging"
 msgstr "日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:843
+#: desktop/src/pages/ConfigPreferences.tsx:847
 msgid "Log File Path"
 msgstr "日志文件路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:844
+#: desktop/src/pages/ConfigPreferences.tsx:848
 msgid "Verbose Logging"
 msgstr "详细日志"
 
-#: desktop/src/pages/ConfigPreferences.tsx:844
+#: desktop/src/pages/ConfigPreferences.tsx:848
 msgid "Syslog Logging"
 msgstr "系统日志记录"
 
-#: desktop/src/pages/ConfigPreferences.tsx:849
+#: desktop/src/pages/ConfigPreferences.tsx:853
 msgid "On-Access Scanning"
 msgstr "访问时扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:854
+#: desktop/src/pages/ConfigPreferences.tsx:858
 msgid "Monitored Paths"
 msgstr "监控路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:855
+#: desktop/src/pages/ConfigPreferences.tsx:859
 msgid "Include Paths"
 msgstr "包含路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:856
+#: desktop/src/pages/ConfigPreferences.tsx:860
 msgid "Exclude Paths"
 msgstr "排除路径"
 
-#: desktop/src/pages/ConfigPreferences.tsx:859
+#: desktop/src/pages/ConfigPreferences.tsx:863
 msgid "Behavior Settings"
 msgstr "行为设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:860
+#: desktop/src/pages/ConfigPreferences.tsx:864
 msgid "Prevention Mode"
 msgstr "防护模式"
 
 #. Translators: Keep fanotify unchanged; it is a Linux kernel API name.
-#: desktop/src/pages/ConfigPreferences.tsx:860
+#: desktop/src/pages/ConfigPreferences.tsx:864
 msgid ""
 "Block access to infected files instead of only reporting them. Denies file "
 "opens via fanotify."
@@ -3587,31 +3584,31 @@ msgstr ""
 "Block access to infected files instead of only reporting them. Denies file "
 "opens via fanotify."
 
-#: desktop/src/pages/ConfigPreferences.tsx:864
+#: desktop/src/pages/ConfigPreferences.tsx:868
 msgid "Extra Scanning"
 msgstr "附加扫描"
 
 #. Translators: Keep inotify unchanged; it is a Linux kernel API name.
-#: desktop/src/pages/ConfigPreferences.tsx:864
+#: desktop/src/pages/ConfigPreferences.tsx:868
 msgid ""
 "Also scan newly created or moved files in monitored directories via inotify."
 msgstr ""
 "Also scan newly created or moved files in monitored directories via inotify."
 
-#: desktop/src/pages/ConfigPreferences.tsx:868
+#: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "Deny on Error"
 msgstr "出错时拒绝访问"
 
-#: desktop/src/pages/ConfigPreferences.tsx:868
+#: desktop/src/pages/ConfigPreferences.tsx:872
 msgid "Block file access if scanning fails or encounters an error."
 msgstr "Block file access if scanning fails or encounters an error."
 
-#: desktop/src/pages/ConfigPreferences.tsx:869
+#: desktop/src/pages/ConfigPreferences.tsx:873
 msgid "Disable DDD"
 msgstr "禁用 DDD"
 
 #. Translators: Keep DDD and inotify unchanged; they are ClamAV and Linux kernel terms.
-#: desktop/src/pages/ConfigPreferences.tsx:869
+#: desktop/src/pages/ConfigPreferences.tsx:873
 msgid ""
 "Disable Dynamic Directory Determination for recursive subdirectory tracking. "
 "Useful if large directory trees hit inotify watch limits."
@@ -3619,31 +3616,31 @@ msgstr ""
 "Disable Dynamic Directory Determination for recursive subdirectory tracking. "
 "Useful if large directory trees hit inotify watch limits."
 
-#: desktop/src/pages/ConfigPreferences.tsx:874
+#: desktop/src/pages/ConfigPreferences.tsx:878
 msgid "Performance Settings"
 msgstr "性能设置"
 
-#: desktop/src/pages/ConfigPreferences.tsx:875
+#: desktop/src/pages/ConfigPreferences.tsx:879
 msgid "Max Threads"
 msgstr "最大线程数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:877
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "Curl Timeout (seconds)"
 msgstr "Curl 超时（秒）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:877
+#: desktop/src/pages/ConfigPreferences.tsx:881
 msgid "0 disables the timeout."
 msgstr "设为 0 可禁用超时。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:878
+#: desktop/src/pages/ConfigPreferences.tsx:882
 msgid "Retry Attempts"
 msgstr "重试次数"
 
-#: desktop/src/pages/ConfigPreferences.tsx:880
+#: desktop/src/pages/ConfigPreferences.tsx:884
 msgid "Scan Loop Prevention"
 msgstr "防止循环扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:881
+#: desktop/src/pages/ConfigPreferences.tsx:885
 msgid ""
 "At least one loop-prevention exclusion is required. Exclude the clamav "
 "service account, its UID, or root to prevent recursive scans."
@@ -3651,94 +3648,94 @@ msgstr ""
 "必须至少设置一项用于防止循环扫描的排除规则。请排除 clamav 服务账户、其 UID "
 "或 root 用户，以防止递归扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:882
+#: desktop/src/pages/ConfigPreferences.tsx:886
 msgid "Exclude Username"
 msgstr "排除的用户名"
 
-#: desktop/src/pages/ConfigPreferences.tsx:883
+#: desktop/src/pages/ConfigPreferences.tsx:887
 msgid "Exclude User ID"
 msgstr "排除的用户编号"
 
-#: desktop/src/pages/ConfigPreferences.tsx:884
+#: desktop/src/pages/ConfigPreferences.tsx:888
 msgid "Exclude Root User"
 msgstr "排除超级用户"
 
-#: desktop/src/pages/ConfigPreferences.tsx:889
+#: desktop/src/pages/ConfigPreferences.tsx:893
 msgid "Scheduled Scans"
 msgstr "计划扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:890
+#: desktop/src/pages/ConfigPreferences.tsx:894
 msgid "Schedule"
 msgstr "计划"
 
-#: desktop/src/pages/ConfigPreferences.tsx:891
+#: desktop/src/pages/ConfigPreferences.tsx:895
 msgid "Enable Scheduled Scans"
 msgstr "启用计划扫描"
 
-#: desktop/src/pages/ConfigPreferences.tsx:892
+#: desktop/src/pages/ConfigPreferences.tsx:896
 msgid "Scan Frequency"
 msgstr "扫描频率"
 
-#: desktop/src/pages/ConfigPreferences.tsx:893
+#: desktop/src/pages/ConfigPreferences.tsx:897
 msgid "Scan Time (24-hour)"
 msgstr "扫描时间（24 小时制）"
 
-#: desktop/src/pages/ConfigPreferences.tsx:894
+#: desktop/src/pages/ConfigPreferences.tsx:898
 msgid "Day of Week"
 msgstr "每周扫描日"
 
-#: desktop/src/pages/ConfigPreferences.tsx:894
+#: desktop/src/pages/ConfigPreferences.tsx:898
 msgid "Used for weekly scans."
 msgstr "用于每周扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:895
+#: desktop/src/pages/ConfigPreferences.tsx:899
 msgid "Day of Month"
 msgstr "每月扫描日"
 
-#: desktop/src/pages/ConfigPreferences.tsx:895
+#: desktop/src/pages/ConfigPreferences.tsx:899
 msgid "Used for monthly scans."
 msgstr "用于每月扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:896
-#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:774
+#: desktop/src/pages/ConfigPreferences.tsx:900
+#: desktop/src/pages/Profiles.tsx:95 desktop/src/pages/Scan.tsx:779
 msgid "Scan Targets"
 msgstr "扫描目标"
 
-#: desktop/src/pages/ConfigPreferences.tsx:897
+#: desktop/src/pages/ConfigPreferences.tsx:901
 msgid ""
 "No targets are configured. The scheduled scan will use your home directory "
 "without saving it as an explicit target."
 msgstr ""
 "尚未配置扫描目标。计划扫描将使用您的主目录，但不会将其保存为显式指定的目标。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:898
+#: desktop/src/pages/ConfigPreferences.tsx:902
 #: desktop/src/pages/SettingsPreferences.tsx:403
 msgid "Skip on Battery"
 msgstr "使用电池时跳过"
 
-#: desktop/src/pages/ConfigPreferences.tsx:898
+#: desktop/src/pages/ConfigPreferences.tsx:902
 msgid "Do not start scheduled scans while on battery power."
 msgstr "使用电池供电时，不启动计划扫描。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:899
+#: desktop/src/pages/ConfigPreferences.tsx:903
 msgid "Auto-Quarantine"
 msgstr "自动隔离"
 
-#: desktop/src/pages/ConfigPreferences.tsx:899
+#: desktop/src/pages/ConfigPreferences.tsx:903
 msgid "Automatically quarantine threats found by scheduled scans."
 msgstr "自动隔离计划扫描发现的威胁。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:904
-#: desktop/src/pages/ConfigPreferences.tsx:914
+#: desktop/src/pages/ConfigPreferences.tsx:908
+#: desktop/src/pages/ConfigPreferences.tsx:918
 msgid "Save & Apply"
 msgstr "保存并应用"
 
-#: desktop/src/pages/ConfigPreferences.tsx:905
+#: desktop/src/pages/ConfigPreferences.tsx:909
 msgid "Apply Configuration"
 msgstr "应用配置"
 
 #. Translators: Save & Apply is a button label; use its translation.
-#: desktop/src/pages/ConfigPreferences.tsx:906
+#: desktop/src/pages/ConfigPreferences.tsx:910
 msgid ""
 "All edited forms are captured at the moment you click Save & Apply. Every "
 "configured file is validated before any write or authorization request."
@@ -3747,7 +3744,7 @@ msgstr ""
 "之前，会先验证所有已配置的文件。"
 
 #. Translators: Keep clamd.conf unchanged; it is a configuration file name.
-#: desktop/src/pages/ConfigPreferences.tsx:910
+#: desktop/src/pages/ConfigPreferences.tsx:914
 msgid ""
 "Scanner and On-Access changes share one clamd.conf proposal; neither form "
 "can overwrite the other's detached changes."
@@ -3755,7 +3752,7 @@ msgstr ""
 "扫描器和访问时扫描的更改会合并为同一份 clamd.conf 修改方案；两个表单都无法覆"
 "盖对方单独保留的更改。"
 
-#: desktop/src/pages/ConfigPreferences.tsx:914
+#: desktop/src/pages/ConfigPreferences.tsx:918
 #: desktop/src/pages/Profiles.tsx:109 desktop/src/pages/Scan.tsx:265
 msgid "Saving…"
 msgstr "正在保存…"
@@ -4181,7 +4178,7 @@ msgid "Export JSON"
 msgstr "导出 JSON"
 
 #: desktop/src/pages/Logs.tsx:388 desktop/src/pages/Logs.tsx:430
-#: desktop/src/pages/Scan.tsx:774
+#: desktop/src/pages/Scan.tsx:779
 msgid "Clear All"
 msgstr "全部清除"
 
@@ -4215,7 +4212,7 @@ msgid "Export Text"
 msgstr "导出文本"
 
 #: desktop/src/pages/Logs.tsx:410 desktop/src/pages/Logs.tsx:420
-#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Results.tsx:176 desktop/src/pages/Scan.tsx:787
 msgid "Fullscreen"
 msgstr "全屏"
 
@@ -4508,7 +4505,7 @@ msgstr "防护状态"
 msgid "Last Scan"
 msgstr "上次扫描"
 
-#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Overview.tsx:132 desktop/src/pages/Scan.tsx:785
 msgid "Start Scan"
 msgstr "开始扫描"
 
@@ -4644,7 +4641,7 @@ msgstr "默认配置文件的名称受保护"
 msgid "Description"
 msgstr "描述"
 
-#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:775
+#: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Scan.tsx:780
 msgid "No targets added"
 msgstr "未添加目标"
 
@@ -5197,7 +5194,7 @@ msgid "Additional inaccessible files are omitted from this view."
 msgstr "其他无法访问的文件未在此视图中显示。"
 
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Results.tsx:201
-#: desktop/src/pages/Scan.tsx:782 desktop/src/pages/Scan.tsx:787
+#: desktop/src/pages/Scan.tsx:787 desktop/src/pages/Scan.tsx:792
 msgid "Scan details"
 msgstr "扫描详情"
 
@@ -5247,7 +5244,7 @@ msgstr "复制 JSON"
 msgid "Copy Hash"
 msgstr "复制哈希值"
 
-#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:371
+#: desktop/src/pages/Results.tsx:225 desktop/src/pages/Scan.tsx:376
 msgid "View on VirusTotal"
 msgstr "在 VirusTotal 上查看"
 
@@ -5299,7 +5296,7 @@ msgstr[0] "扫描完成——检测到 {count} 个威胁"
 msgid "Scan cancelled — partial results are available"
 msgstr "扫描已取消——可查看部分结果"
 
-#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:723
+#: desktop/src/pages/Scan.tsx:114 desktop/src/pages/Scan.tsx:728
 msgid "Scan error"
 msgstr "扫描出错"
 
@@ -5311,7 +5308,7 @@ msgstr "未知错误"
 msgid "Opened the VirusTotal upload page in your browser"
 msgstr "已在浏览器中打开 VirusTotal 上传页面"
 
-#: desktop/src/pages/Scan.tsx:183 desktop/src/pages/Scan.tsx:359
+#: desktop/src/pages/Scan.tsx:183 desktop/src/pages/Scan.tsx:364
 #: desktop/src/pages/Urlscan.tsx:199
 msgid ""
 "Configure a VirusTotal API key in Preferences before starting this scan."
@@ -5322,11 +5319,11 @@ msgstr ""
 msgid "API key must contain exactly 64 hexadecimal characters"
 msgstr "API 密钥必须由 64 个十六进制字符组成"
 
-#: desktop/src/pages/Scan.tsx:246 desktop/src/pages/Scan.tsx:343
+#: desktop/src/pages/Scan.tsx:246 desktop/src/pages/Scan.tsx:348
 msgid "VirusTotal cancellation did not take effect"
 msgstr "VirusTotal cancellation did not take effect"
 
-#: desktop/src/pages/Scan.tsx:247 desktop/src/pages/Scan.tsx:344
+#: desktop/src/pages/Scan.tsx:247 desktop/src/pages/Scan.tsx:349
 msgid "Unable to cancel VirusTotal scan"
 msgstr "Unable to cancel VirusTotal scan"
 
@@ -5356,12 +5353,12 @@ msgstr "Uploading file to VirusTotal…"
 msgid "VirusTotal is analyzing the file…"
 msgstr "VirusTotal is analyzing the file…"
 
-#: desktop/src/pages/Scan.tsx:256 desktop/src/pages/Scan.tsx:366
+#: desktop/src/pages/Scan.tsx:256 desktop/src/pages/Scan.tsx:371
 #: desktop/src/pages/Urlscan.tsx:237
 msgid "Open VirusTotal analysis"
 msgstr "Open VirusTotal analysis"
 
-#: desktop/src/pages/Scan.tsx:257 desktop/src/pages/Scan.tsx:367
+#: desktop/src/pages/Scan.tsx:257 desktop/src/pages/Scan.tsx:372
 msgid "Cancel scan"
 msgstr "Cancel scan"
 
@@ -5369,11 +5366,11 @@ msgstr "Cancel scan"
 msgid "API key available"
 msgstr "API 密钥可用"
 
-#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/Scan.tsx:785
 msgid "Scanning…"
 msgstr "正在扫描…"
 
-#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:262 desktop/src/pages/Scan.tsx:785
 msgid "Scan with VirusTotal"
 msgstr "使用 VirusTotal 扫描"
 
@@ -5390,11 +5387,11 @@ msgstr "保存并扫描"
 msgid "Upload file manually"
 msgstr "手动上传文件"
 
-#: desktop/src/pages/Scan.tsx:348
+#: desktop/src/pages/Scan.tsx:353
 msgid "VirusTotal Folder Scan"
 msgstr "VirusTotal Folder Scan"
 
-#: desktop/src/pages/Scan.tsx:349
+#: desktop/src/pages/Scan.tsx:354
 msgid ""
 "Review the folder contents before any files are sent. VirusTotal receives "
 "each file hash and filename; files without an existing report may be "
@@ -5404,7 +5401,7 @@ msgstr ""
 "each file hash and filename; files without an existing report may be "
 "uploaded and shared with its security partners."
 
-#: desktop/src/pages/Scan.tsx:350
+#: desktop/src/pages/Scan.tsx:355
 msgid ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
@@ -5412,183 +5409,183 @@ msgstr ""
 "This action includes hidden files, skips symbolic links, and is limited to "
 "100 files and 1 GiB total. Individual files must be no larger than 650 MiB."
 
-#: desktop/src/pages/Scan.tsx:353
+#: desktop/src/pages/Scan.tsx:358
 msgid "Preparing folder preview…"
 msgstr "Preparing folder preview…"
 
-#: desktop/src/pages/Scan.tsx:356
+#: desktop/src/pages/Scan.tsx:361
 msgid "{count} file, {size} MiB total"
 msgid_plural "{count} files, {size} MiB total"
 msgstr[0] "{count} file, {size} MiB total"
 
-#: desktop/src/pages/Scan.tsx:357
+#: desktop/src/pages/Scan.tsx:362
 msgid "{count} unreadable entry will be skipped."
 msgid_plural "{count} unreadable entries will be skipped."
 msgstr[0] "{count} unreadable entry will be skipped."
 
-#: desktop/src/pages/Scan.tsx:358
+#: desktop/src/pages/Scan.tsx:363
 msgid "No readable files were found in this folder."
 msgstr "No readable files were found in this folder."
 
-#: desktop/src/pages/Scan.tsx:360
+#: desktop/src/pages/Scan.tsx:365
 msgid "Upload and scan folder"
 msgstr "Upload and scan folder"
 
-#: desktop/src/pages/Scan.tsx:363
+#: desktop/src/pages/Scan.tsx:368
 msgid "File {current} of {total}: {stage}"
 msgstr "File {current} of {total}: {stage}"
 
-#: desktop/src/pages/Scan.tsx:363
+#: desktop/src/pages/Scan.tsx:368
 msgid "hashing"
 msgstr "hashing"
 
-#: desktop/src/pages/Scan.tsx:363
+#: desktop/src/pages/Scan.tsx:368
 msgid "uploading"
 msgstr "uploading"
 
-#: desktop/src/pages/Scan.tsx:363
+#: desktop/src/pages/Scan.tsx:368
 msgid "analyzing"
 msgstr "analyzing"
 
-#: desktop/src/pages/Scan.tsx:370
+#: desktop/src/pages/Scan.tsx:375
 msgid "{count} of {total} file scanned"
 msgid_plural "{count} of {total} files scanned"
 msgstr[0] "{count} of {total} file scanned"
 
-#: desktop/src/pages/Scan.tsx:370
+#: desktop/src/pages/Scan.tsx:375
 msgid "{count} detection reported"
 msgid_plural "{count} detections reported"
 msgstr[0] "{count} detection reported"
 
-#: desktop/src/pages/Scan.tsx:370
+#: desktop/src/pages/Scan.tsx:375
 msgid "cancelled"
 msgstr "cancelled"
 
-#: desktop/src/pages/Scan.tsx:405
+#: desktop/src/pages/Scan.tsx:410
 msgid "Unable to load scan profiles"
 msgstr "无法加载扫描配置文件"
 
-#: desktop/src/pages/Scan.tsx:412
+#: desktop/src/pages/Scan.tsx:417
 msgid "Unable to check scanner status"
 msgstr "无法检查扫描器状态"
 
-#: desktop/src/pages/Scan.tsx:446 desktop/src/pages/Scan.tsx:527
+#: desktop/src/pages/Scan.tsx:451 desktop/src/pages/Scan.tsx:532
 msgid "Please select a file or folder to scan"
 msgstr "请选择要扫描的文件或文件夹"
 
-#: desktop/src/pages/Scan.tsx:460
+#: desktop/src/pages/Scan.tsx:465
 msgid "Starting scan…"
 msgstr "正在启动扫描…"
 
-#: desktop/src/pages/Scan.tsx:527
+#: desktop/src/pages/Scan.tsx:532
 msgid "Quick Scan profile has no valid targets"
 msgstr "“快速扫描”配置文件中没有有效的扫描目标"
 
 #. Translators: The em dash separates the two clauses; use your language's usual dash and spacing.
-#: desktop/src/pages/Scan.tsx:541 desktop/src/pages/Scan.tsx:645
-#: desktop/src/pages/Scan.tsx:707
+#: desktop/src/pages/Scan.tsx:546 desktop/src/pages/Scan.tsx:650
+#: desktop/src/pages/Scan.tsx:712
 msgid "Scan in progress — wait for it to finish before adding targets"
 msgstr "正在扫描——请等待扫描完成后再添加目标"
 
-#: desktop/src/pages/Scan.tsx:561
+#: desktop/src/pages/Scan.tsx:566
 msgid "VirusTotal scans one file at a time; {count} selection was ignored."
 msgid_plural ""
 "VirusTotal scans one file at a time; {count} selections were ignored."
 msgstr[0] "VirusTotal 每次只能扫描一个文件；已忽略 {count} 个选中项。"
 
-#: desktop/src/pages/Scan.tsx:576 desktop/src/pages/Scan.tsx:716
+#: desktop/src/pages/Scan.tsx:581 desktop/src/pages/Scan.tsx:721
 msgid "Only local files and folders can be scanned"
 msgstr "只能扫描本地文件和文件夹"
 
-#: desktop/src/pages/Scan.tsx:654
+#: desktop/src/pages/Scan.tsx:659
 msgid "Unable to choose scan targets"
 msgstr "无法选择扫描目标"
 
-#: desktop/src/pages/Scan.tsx:663
+#: desktop/src/pages/Scan.tsx:668
 msgid "Unable to open the folder picker"
 msgstr "Unable to open the folder picker"
 
-#: desktop/src/pages/Scan.tsx:671
+#: desktop/src/pages/Scan.tsx:676
 msgid "The scan had already finished; no cancellation was needed."
 msgstr "The scan had already finished; no cancellation was needed."
 
-#: desktop/src/pages/Scan.tsx:672
+#: desktop/src/pages/Scan.tsx:677
 msgid "Cancelling scan…"
 msgstr "正在取消扫描…"
 
-#: desktop/src/pages/Scan.tsx:674
+#: desktop/src/pages/Scan.tsx:679
 msgid "Unable to cancel scan"
 msgstr "无法取消扫描"
 
-#: desktop/src/pages/Scan.tsx:690
+#: desktop/src/pages/Scan.tsx:695
 msgid "Running EICAR test…"
 msgstr "正在运行 EICAR 测试…"
 
-#: desktop/src/pages/Scan.tsx:732
+#: desktop/src/pages/Scan.tsx:737
 msgid "Backend"
 msgstr "后端"
 
-#: desktop/src/pages/Scan.tsx:733
+#: desktop/src/pages/Scan.tsx:738
 msgid "Manage Profiles"
 msgstr "管理配置文件"
 
-#: desktop/src/pages/Scan.tsx:738
+#: desktop/src/pages/Scan.tsx:743
 msgid "Scan type"
 msgstr "Scan type"
 
-#: desktop/src/pages/Scan.tsx:756
+#: desktop/src/pages/Scan.tsx:761
 msgid "Files & Folders"
 msgstr "Files & Folders"
 
-#: desktop/src/pages/Scan.tsx:757 desktop/src/pages/Urlscan.tsx:230
+#: desktop/src/pages/Scan.tsx:762 desktop/src/pages/Urlscan.tsx:230
 msgid "Website URL"
 msgstr "Website URL"
 
-#: desktop/src/pages/Scan.tsx:760 desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:765 desktop/src/pages/Scan.tsx:787
 msgid "Details"
 msgstr "详情"
 
-#: desktop/src/pages/Scan.tsx:764
+#: desktop/src/pages/Scan.tsx:769
 msgid "Profile"
 msgstr "配置文件"
 
-#: desktop/src/pages/Scan.tsx:770
+#: desktop/src/pages/Scan.tsx:775
 msgid "No Profile (Manual)"
 msgstr "无配置文件（手动）"
 
-#: desktop/src/pages/Scan.tsx:774
+#: desktop/src/pages/Scan.tsx:779
 msgid "Drop local files or folders here, or add them below."
 msgstr "将本地文件或文件夹拖放到此处，或在下方添加。"
 
-#: desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:785
 msgid "Run EICAR Test"
 msgstr "运行 EICAR 测试"
 
-#: desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:785
 msgid "Select exactly one file before using VirusTotal"
 msgstr "Select exactly one file before using VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:780
+#: desktop/src/pages/Scan.tsx:785
 msgid "Scan a folder with VirusTotal"
 msgstr "Scan a folder with VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:787
 msgid "Latest scan"
 msgstr "最近一次扫描"
 
-#: desktop/src/pages/Scan.tsx:782
+#: desktop/src/pages/Scan.tsx:787
 msgid "View Results"
 msgstr "查看结果"
 
-#: desktop/src/pages/Scan.tsx:784
+#: desktop/src/pages/Scan.tsx:789
 msgid "Virus database is not available"
 msgstr "病毒库不可用"
 
-#: desktop/src/pages/Scan.tsx:784
+#: desktop/src/pages/Scan.tsx:789
 msgid "Update the database before starting a scan."
 msgstr "开始扫描前请先更新病毒库。"
 
-#: desktop/src/pages/Scan.tsx:784
+#: desktop/src/pages/Scan.tsx:789
 msgid "Open Database Updates"
 msgstr "打开病毒库更新页面"
 
@@ -6694,6 +6691,26 @@ msgstr "病毒特征库已超过 1 天未更新"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "系统已受到保护"
+
+#~ msgid ""
+#~ "\n"
+#~ "Global options:"
+#~ msgstr ""
+#~ "\n"
+#~ "全局选项："
+
+#~ msgid "Unknown command: {name}\n"
+#~ msgstr "未知命令：{name}\n"
+
+#~ msgid ""
+#~ "Scan one or more files or directories with ClamAV.\n"
+#~ "Exit codes: 0 = clean, 1 = threats found, 2 = error."
+#~ msgstr ""
+#~ "使用 ClamAV 扫描一个或多个文件或目录。\n"
+#~ "退出码：0 = 未发现威胁，1 = 发现威胁，2 = 出错。"
+
+#~ msgid "Usage: linux-defender install-privileged-helper"
+#~ msgstr "用法：linux-defender install-privileged-helper"
 
 #~ msgid "No mandatory access control framework detected"
 #~ msgstr "未检测到强制访问控制框架"

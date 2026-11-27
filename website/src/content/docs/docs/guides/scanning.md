@@ -13,7 +13,7 @@ For one-off integrations, launch with paths:
 linux-defender /path/to/file /path/to/folder
 ```
 
-The source build now ships the canonical `linux-defender` command, and the pre-rename `clamui` name remains accepted as a compatibility alias. A Linux Defender Flatpak is not published yet. Headless use is available through `linux-defender scan`; run `linux-defender scan --help` for the current options. Its standard ClamAV exit codes are `0` clean, `1` infected, and `2` error. Most Linux Defender subcommands accept `--json` for scripts.
+The source build now ships the canonical `linux-defender` command, and the pre-rename `clamui-scheduled-scan` and `clamui-apply-preferences` commands remain accepted as compatibility aliases. A Linux Defender Flatpak is not published yet. Headless use is available through `linux-defender scan`; run `linux-defender scan --help` for the current options. Its standard ClamAV exit codes are `0` clean, `1` infected, `2` error, and `130` cancelled. Most Linux Defender subcommands accept `--json` for scripts.
 
 ## Select the right scan
 

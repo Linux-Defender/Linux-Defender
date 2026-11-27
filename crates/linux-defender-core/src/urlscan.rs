@@ -91,11 +91,16 @@ impl HttpTransport for ReqwestTransport {
                 }
             })?;
         let status = response.status().as_u16();
-        let body = response
+        let bytes = response
             .bytes()
-            .map_err(|_| "Unable to read urlscan response")?
-            .to_vec();
-        Ok(HttpResponse { status, body })
+            .map_err(|_| "Unable to read urlscan response")?;
+        if bytes.len() > 1024 * 1024 {
+            return Err("urlscan response is too large".to_owned());
+        }
+        Ok(HttpResponse {
+            status,
+            body: bytes.to_vec(),
+        })
     }
 }
 

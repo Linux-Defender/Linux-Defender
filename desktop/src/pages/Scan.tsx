@@ -282,13 +282,18 @@ function VirusTotalFolderDialog({ path, onClose }: { path: string; onClose: () =
   const operationId = useRef<string | null>(null);
 
   useEffect(() => {
+    let active = true;
     void Promise.all([
       request<VTFolderPreview>("virustotal.folder_preview", { path }),
       request<{ present?: boolean }>("virustotal.key_status"),
     ]).then(([folder, key]) => {
+      if (!active) return;
       setPreview(folder);
       setKeyPresent(key.present === true);
-    }).catch((reason: unknown) => setError(String(reason)));
+    }).catch((reason: unknown) => {
+      if (active) setError(String(reason));
+    });
+    return () => { active = false; };
   }, [path]);
 
   useEffect(() => {

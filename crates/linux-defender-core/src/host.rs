@@ -328,11 +328,13 @@ pub fn check_clamd_connection(config_path: Option<&str>) -> Probe {
 }
 
 fn output_text(output: &std::process::Output) -> String {
-    let stderr = String::from_utf8_lossy(&output.stderr).trim().to_owned();
+    let stderr = String::from_utf8_lossy(&output.stderr);
+    let stderr = stderr.trim();
     if !stderr.is_empty() {
-        stderr
+        crate::common::sanitize_line(stderr)
     } else {
-        String::from_utf8_lossy(&output.stdout).trim().to_owned()
+        let stdout = String::from_utf8_lossy(&output.stdout);
+        crate::common::sanitize_line(stdout.trim())
     }
 }
 

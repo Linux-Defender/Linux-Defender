@@ -554,7 +554,7 @@ fn require_object(value: Value) -> AppResult<Map<String, Value>> {
 }
 
 fn normalized_name(name: String) -> String {
-    name.trim().to_string()
+    crate::common::sanitize_line(name.trim())
 }
 
 fn validate_profile(

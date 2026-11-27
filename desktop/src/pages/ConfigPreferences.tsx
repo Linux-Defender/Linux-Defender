@@ -568,15 +568,19 @@ export default function ConfigPreferences({ section }: { section: string }) {
     }
   };
 
+  const backendSequence = useRef(0);
   const saveBackend = useCallback(async (next: ScannerStatus["configured_backend"]) => {
-    const previous = backend;
+    const sequence = ++backendSequence.current;
     setBackend(next);
     try {
       await request("settings.update", { scan_backend: next });
       await refreshScanner();
+      if (sequence !== backendSequence.current) return;
       notify(_("Scan backend saved."), "success");
     } catch (error) {
-      setBackend(previous);
+      // A newer save may have committed while this one failed; never roll it back.
+      if (sequence !== backendSequence.current) return;
+      setBackend(backend);
       notify(String(error), "error");
     }
   }, [backend, refreshScanner]);
@@ -687,10 +691,10 @@ export default function ConfigPreferences({ section }: { section: string }) {
       }
       const scheduleWritten = result.schedule?.written === true || result.schedule?.success === true
         || (result.durable_groups ?? []).some((group) => group === "scheduled_preferences" || group === "schedule");
-      if (scheduleChanged && scheduleWritten) setScheduleBaseline(scheduleSnapshot);
       if (!isCurrentAttempt()) {
         return;
       }
+      if (scheduleChanged && scheduleWritten) setScheduleBaseline(scheduleSnapshot);
 
       const durable = (result.durable_groups ?? []).join(", ");
       const tone: ReportTone = result.status === "applied" ? "success" : result.status === "no_changes" ? "info" : result.status === "partially_applied" ? "warning" : "error";

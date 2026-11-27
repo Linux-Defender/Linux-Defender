@@ -424,6 +424,8 @@ pub struct HttpRequest {
     pub url: String,
     pub timeout: Duration,
     pub body: HttpBody,
+    /// Never attach the API key to a third-party upload URL.
+    pub include_api_key: bool,
 }
 
 struct ProgressReader {
@@ -486,6 +488,7 @@ impl ReqwestTransport {
             // Never inherit HTTP(S)_PROXY, ALL_PROXY, or REQUESTS_CA_BUNDLE.
             .no_proxy()
             .use_rustls_tls()
+            .redirect(reqwest::redirect::Policy::none())
             .build()
             .map_err(|_| "Unable to initialize VirusTotal connection")?;
         Ok(Self { client, api_key })
@@ -507,8 +510,12 @@ impl HttpTransport for ReqwestTransport {
             HttpMethod::Get => self.client.get(&request.url),
             HttpMethod::Post => self.client.post(&request.url),
         }
-        .timeout(request.timeout)
-        .header("x-apikey", self.api_key.clone());
+        .timeout(request.timeout);
+        let builder = if request.include_api_key {
+            builder.header("x-apikey", self.api_key.clone())
+        } else {
+            builder
+        };
 
         let builder = match request.body {
             HttpBody::Empty => builder,
@@ -544,8 +551,14 @@ impl HttpTransport for ReqwestTransport {
 
         let response = builder.send().map_err(classify_transport_error)?;
         let status = response.status().as_u16();
-        let body = response.bytes().map_err(classify_transport_error)?.to_vec();
-        Ok(HttpResponse { status, body })
+        let bytes = response.bytes().map_err(classify_transport_error)?;
+        if bytes.len() > 8 * 1024 * 1024 {
+            return Err(TransportError::Other);
+        }
+        Ok(HttpResponse {
+            status,
+            body: bytes.to_vec(),
+        })
     }
 }
 
@@ -671,6 +684,7 @@ impl VirusTotalClient {
                 url: format!("{}/urls", self.base_url),
                 timeout: VT_REQUEST_TIMEOUT,
                 body: HttpBody::Url(url.to_owned()),
+                include_api_key: true,
             },
             cancelled,
         ) {
@@ -718,6 +732,7 @@ impl VirusTotalClient {
                     url: format!("{}/analyses/{analysis_id}", self.base_url),
                     timeout: VT_REQUEST_TIMEOUT,
                     body: HttpBody::Empty,
+                    include_api_key: true,
                 },
                 cancelled,
             ) {
@@ -729,11 +744,26 @@ impl VirusTotalClient {
                     result.analysis_url = Some(analysis_url.to_owned());
                     return result;
                 }
+                Ok(response) if matches!(response.status, 401 | 403) => {
+                    return VTUrlScanResult::error(url, "Invalid API key")
+                }
                 Ok(_) => return url_analysis_pending(url, analysis_id, analysis_url),
                 Err(RequestFailure::Cancelled) => {
                     return VTUrlScanResult::error(url, "Scan cancelled")
                 }
-                Err(_) => return url_analysis_pending(url, analysis_id, analysis_url),
+                Err(failure) => {
+                    let message = match failure {
+                        RequestFailure::RateLimited => "API rate limit exceeded",
+                        RequestFailure::Authentication | RequestFailure::Permission => {
+                            "Invalid API key"
+                        }
+                        RequestFailure::Timeout => "Request timed out after retries",
+                        RequestFailure::Connection => "Network connection failed after retries",
+                        RequestFailure::Cancelled => "Scan cancelled",
+                        RequestFailure::Other => "Request failed",
+                    };
+                    return VTUrlScanResult::error(url, message);
+                }
             };
             let value = match serde_json::from_slice::<Value>(&response.body) {
                 Ok(value) => value,
@@ -833,6 +863,7 @@ impl VirusTotalClient {
             url: format!("{}/files/{sha256}", self.base_url),
             timeout: VT_REQUEST_TIMEOUT,
             body: HttpBody::Empty,
+            include_api_key: true,
         };
         match self.request(request, cancelled) {
             Err(RequestFailure::Cancelled) => VTScanResult::error("", sha256, "Scan cancelled"),
@@ -884,6 +915,7 @@ impl VirusTotalClient {
                 url: format!("{}/files/upload_url", self.base_url),
                 timeout: VT_REQUEST_TIMEOUT,
                 body: HttpBody::Empty,
+                include_api_key: true,
             };
             let response = match self.request(request, cancelled) {
                 Ok(response) => response,
@@ -935,6 +967,7 @@ impl VirusTotalClient {
                 length,
                 progress: Some(Arc::clone(progress)),
             },
+            include_api_key: false,
         };
         let response = match self.request(request, cancelled) {
             Ok(response) if file.unchanged() => response,
@@ -987,6 +1020,7 @@ impl VirusTotalClient {
                 url: format!("{}/analyses/{analysis_id}", self.base_url),
                 timeout: VT_REQUEST_TIMEOUT,
                 body: HttpBody::Empty,
+                include_api_key: true,
             };
             match self.request(request, cancelled) {
                 Ok(response) if response.status == 200 => {
@@ -1287,6 +1321,25 @@ fn validate_scan_url(input: &str) -> Result<String, &'static str> {
         || parsed.password().is_some()
     {
         return Err("Only HTTP and HTTPS URLs without embedded credentials can be submitted");
+    }
+    // The remote service fetches this URL; a literal private address would
+    // disclose an internal endpoint to it.
+    if let Some(ip) = match parsed.host() {
+        Some(url::Host::Ipv4(ip)) => Some(std::net::IpAddr::V4(ip)),
+        Some(url::Host::Ipv6(ip)) => Some(std::net::IpAddr::V6(ip)),
+        _ => None,
+    } {
+        let local = match ip {
+            std::net::IpAddr::V4(v4) => {
+                v4.is_loopback() || v4.is_private() || v4.is_link_local() || v4.is_unspecified()
+            }
+            std::net::IpAddr::V6(v6) => {
+                v6.is_loopback() || v6.is_unspecified() || v6.is_unique_local()
+            }
+        };
+        if local {
+            return Err("Private and local network addresses cannot be submitted");
+        }
     }
     Ok(parsed.to_string())
 }

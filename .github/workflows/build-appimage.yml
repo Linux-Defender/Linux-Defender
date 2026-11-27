@@ -3,7 +3,6 @@ name: Build AppImage
 on:
   push:
     branches: [main]
-    tags: ["v*"]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -149,5 +148,6 @@ jobs:
           path: |
             Linux-Defender-*-x86_64.AppImage
             Linux-Defender-*-x86_64.AppImage.zsync
+            Linux-Defender-*-x86_64.AppImage.sig
           if-no-files-found: error
           retention-days: 7

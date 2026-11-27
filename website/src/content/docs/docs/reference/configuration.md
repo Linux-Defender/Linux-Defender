@@ -31,7 +31,7 @@ The settings file is an object. Linux Defender merges missing defaults, preserve
 | `language` | `"auto"` | Automatic system locale, or one of `de`, `en`, `es`, `fr`, `hu`, `it`, `nb`, `pt_BR`, `vi`, or `zh_CN`; unsupported saved or system locales use English |
 | `notifications_enabled` | `true` | Global application notifications |
 | `minimize_to_tray` / `start_minimized` | `false` | Optional tray behavior |
-| `close_behavior` | `null` | `unset`, `minimize`, `quit`, or `ask` |
+| `close_behavior` | `null` | `minimize`, `quit`, or `ask` (`null` uses the default) |
 | `scan_backend` | `"auto"` | `auto`, `daemon`, or `clamscan` |
 | `daemon_socket_path` | `""` | Optional daemon socket override |
 | `show_live_progress` | `true` | Detailed scan progress |

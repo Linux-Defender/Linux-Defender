@@ -115,7 +115,10 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
         "clear" => clear(ctx),
         "export" => export(ctx, &args),
         "statistics" => statistics(ctx, &args),
-        "count" => Ok(json!({"total_entries": entry_count(ctx, &logs_dir(ctx))?})),
+        "count" => {
+            let log_type = args.get("log_type").and_then(Value::as_str);
+            Ok(json!({"total_entries": entry_count_of_type(ctx, &logs_dir(ctx), log_type)?}))
+        }
         "daemon" => daemon(ctx, &args),
         "debug_info" => debug_info(ctx),
         "debug_list" => debug_list(ctx),
@@ -646,6 +649,27 @@ fn entry_count(ctx: &Context, dir: &Path) -> AppResult<usize> {
             .count());
     }
     Ok(load_entries(ctx, dir)?.len())
+}
+
+fn entry_count_of_type(ctx: &Context, dir: &Path, log_type: Option<&str>) -> AppResult<usize> {
+    let Some(log_type) = log_type else {
+        return entry_count(ctx, dir);
+    };
+    if !dir.exists() {
+        return Ok(0);
+    }
+    migrate_logs(ctx, dir)?;
+    if let Some(index) = load_index(dir)? {
+        return Ok(index
+            .iter()
+            .filter(|entry| indexed_entry_is_usable(entry))
+            .filter(|entry| entry.log_type.as_deref() == Some(log_type))
+            .count());
+    }
+    Ok(load_entries(ctx, dir)?
+        .iter()
+        .filter(|entry| entry["type"].as_str() == Some(log_type))
+        .count())
 }
 
 fn load_list_entries(
@@ -1518,6 +1542,9 @@ fn migrate_legacy_debug_files(dir: &Path) {
 }
 
 fn migrate_debug(dir: &Path) -> AppResult<()> {
+    // Always adopt pre-rename log names first, even on an install whose
+    // privacy marker was already written by an earlier canonical run.
+    migrate_legacy_debug_files(dir);
     if fs::read_to_string(dir.join(DEBUG_PRIVACY_MARKER))
         .ok()
         .as_deref()

@@ -53,6 +53,31 @@ const ogImage = new URL(`${base}/og-image.png`, siteUrl).toString();
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content="Linux Defender security scanner preview" />
 
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          name: "Linux Defender",
+          applicationCategory: "SecurityApplication",
+          operatingSystem: "Linux",
+          softwareVersion: "0.6.0",
+          url: canonical,
+          description,
+        },
+        {
+          "@type": "WebSite",
+          name: "Linux Defender",
+          url: siteUrl,
+          potentialAction: {
+            "@type": "SearchAction",
+            target: `${canonical}?q={search_term_string}`,
+            "query-input": "required name=search_term_string",
+          },
+        },
+      ],
+    })} />
+
     <script is:inline>
       // Theme bootstrap: honor saved preference, then OS, then default to dark.
       (function () {

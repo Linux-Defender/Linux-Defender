@@ -222,7 +222,7 @@ function helperStatusFrom(value: unknown): HelperStatus | null {
 export default function App(): ReactNode {
   const [activePage, setActivePage] = useState<PageId>("overview");
   const activePageRef = useRef<PageId>("overview");
-  const initialPageRender = useRef(true);
+  const lastFocusedPage = useRef<PageId | null>(null);
   const [previousPage, setPreviousPage] = useState<Exclude<PageId, "preferences">>("overview");
   const [mountedPages, setMountedPages] = useState<Set<PageId>>(() => new Set(INITIAL_MOUNTED_PAGES));
   const [toasts, setToasts] = useState<Toast[]>([]);
@@ -332,10 +332,11 @@ export default function App(): ReactNode {
   // has just been hidden. Move focus to the newly shown page on real changes
   // (not on the first render, so the browser keeps its initial focus).
   useEffect(() => {
-    if (initialPageRender.current) {
-      initialPageRender.current = false;
-      return;
-    }
+    const previous = lastFocusedPage.current;
+    lastFocusedPage.current = activePage;
+    // StrictMode re-runs effects on the same fiber; only focus on a real page
+    // change, never on the initial render or its replay.
+    if (previous === null || previous === activePage) return;
     const section = document.querySelector<HTMLElement>(
       `section.content-page[data-page="${activePage}"]`,
     );
@@ -345,7 +346,7 @@ export default function App(): ReactNode {
 
   const requestQuit = useCallback(async (): Promise<void> => {
     setCloseIntent("quit");
-    if (scanJobId) {
+    if (scanJobIdRef.current) {
       setScanCloseOpen(true);
       return;
     }
@@ -354,7 +355,7 @@ export default function App(): ReactNode {
     } catch (error) {
       notify(error instanceof Error ? error.message : String(error), "error");
     }
-  }, [scanJobId]);
+  }, []);
 
   const completeClose = useCallback(async (choice: "minimize" | "quit", remember: boolean): Promise<void> => {
     try {
@@ -367,15 +368,15 @@ export default function App(): ReactNode {
 
   const cancelScanAndClose = useCallback(async (): Promise<void> => {
     try {
-      if (scanJobId) {
-        await request("scanner.cancel", { id: scanJobId });
+      if (scanJobIdRef.current) {
+        await request("scanner.cancel", { id: scanJobIdRef.current });
       }
       setScanCloseOpen(false);
       await closeApplication(closeIntent === "quit" ? "quit" : undefined);
     } catch (error) {
       notify(error instanceof Error ? error.message : String(error), "error");
     }
-  }, [closeIntent, scanJobId]);
+  }, [closeIntent]);
   const startUpdate = useCallback((): void => {
     selectPage("database");
     setUpdateStartRequest((current) => current + 1);
@@ -716,11 +717,9 @@ export default function App(): ReactNode {
         typeof event.data.id === "string"
       ) {
         const completedId = event.data.id;
-        setScanJobId((current) => {
-          const nextScanJobId = current === completedId ? null : current;
-          scanJobIdRef.current = nextScanJobId;
-          return nextScanJobId;
-        });
+        const nextScanJobId = scanJobIdRef.current === completedId ? null : scanJobIdRef.current;
+        scanJobIdRef.current = nextScanJobId;
+        setScanJobId(nextScanJobId);
         return;
       }
       if (
@@ -1089,9 +1088,9 @@ export default function App(): ReactNode {
         <label className="check-row"><input type="checkbox" checked={rememberCloseChoice} onChange={(event) => setRememberCloseChoice(event.currentTarget.checked)} />{_("Remember my choice")}</label>
         <div className="dialog-actions"><button className="button" type="button" onClick={() => setCloseOpen(false)}>{_("Cancel")}</button>{startupInfo.trayAvailable ? <button className="button" type="button" onClick={() => void completeClose("minimize", rememberCloseChoice)}>{_("Minimize to tray")}</button> : null}<button className="button danger" type="button" onClick={() => void completeClose("quit", rememberCloseChoice)}>{_("Quit")}</button></div>
       </Modal> : null}
-      {scanCloseOpen ? <Modal title={scanJobId ? _("Scan in Progress") : _("Scan Complete")} onClose={() => setScanCloseOpen(false)}>
-        {scanJobId ? <p>{_("A scan is still running. Cancelling it may leave partial results.")}</p> : null}
-        <div className="dialog-actions"><button className="button" type="button" onClick={() => setScanCloseOpen(false)}>{scanJobId ? _("Keep Scanning") : _("Cancel")}</button><button className={scanJobId ? "button danger" : "button"} type="button" onClick={() => void cancelScanAndClose()}>{scanJobId ? _("Cancel Scan and Close") : _("Close")}</button></div>
+      {scanCloseOpen ? <Modal title={scanJobIdRef.current ? _("Scan in Progress") : _("Scan Complete")} onClose={() => setScanCloseOpen(false)}>
+        {scanJobIdRef.current ? <p>{_("A scan is still running. Cancelling it may leave partial results.")}</p> : null}
+        <div className="dialog-actions"><button className="button" type="button" onClick={() => setScanCloseOpen(false)}>{scanJobIdRef.current ? _("Keep Scanning") : _("Cancel")}</button><button className={scanJobId ? "button danger" : "button"} type="button" onClick={() => void cancelScanAndClose()}>{scanJobIdRef.current ? _("Cancel Scan and Close") : _("Close")}</button></div>
       </Modal> : null}
       {onboardingOpen && !helperTrustError ? <Modal title={_("Install Privileged Helper")} busy={helperInstalling} onClose={() => void dismissOnboarding()}>
         <p>{helperStatus?.detail ?? _("Linux Defender needs its matching privileged helper to save system configuration.")}</p>

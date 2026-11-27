@@ -40,10 +40,21 @@ pub fn select_close_action(
 
 pub fn is_safe_external_url(input: &str) -> Result<Url, String> {
     let url = Url::parse(input).map_err(|_| "invalid URL".to_owned())?;
-    match url.scheme() {
-        "https" | "http" if url.host_str().is_some() => Ok(url),
-        _ => Err("only absolute HTTP(S) URLs may be opened".to_owned()),
+    if url.scheme() != "https" || url.host_str().is_none() {
+        return Err("only absolute HTTPS URLs may be opened".to_owned());
     }
+    if !url.username().is_empty() || url.password().is_some() {
+        return Err("external URLs must not contain credentials".to_owned());
+    }
+    // A trusted app should not open loopback, link-local, or literal-IP
+    // targets on behalf of untrusted webview content.
+    if matches!(
+        url.host(),
+        Some(url::Host::Ipv4(_)) | Some(url::Host::Ipv6(_))
+    ) {
+        return Err("external URLs must use a hostname".to_owned());
+    }
+    Ok(url)
 }
 
 #[cfg(test)]

@@ -270,8 +270,22 @@ impl QuarantineManager {
 
     fn ensure_quarantine_dir(&self) -> io::Result<()> {
         fs::create_dir_all(&self.quarantine_dir)?;
+        // The lexical check in from_context cannot see symlinked ancestors.
+        // Canonicalize before using the directory so a configured path cannot
+        // escape the data directory through an intermediate symlink.
+        let root = self.db_path.parent().ok_or_else(|| {
+            io::Error::new(io::ErrorKind::InvalidInput, "quarantine DB has no parent")
+        })?;
+        let canonical_root = root.canonicalize()?;
+        let canonical_dir = self.quarantine_dir.canonicalize()?;
+        if canonical_dir == canonical_root || !canonical_dir.starts_with(&canonical_root) {
+            return Err(io::Error::new(
+                io::ErrorKind::PermissionDenied,
+                "Quarantine directory must be inside the Linux Defender data directory",
+            ));
+        }
         let dir = open_path(
-            &self.quarantine_dir,
+            &canonical_dir,
             libc::O_RDONLY | libc::O_DIRECTORY | libc::O_NOFOLLOW,
             0,
         )?;
@@ -346,7 +360,8 @@ impl QuarantineManager {
             ).map_err(|error| format!("Unable to migrate quarantine state: {error}"))?;
         }
         self.reconcile_pending(&mut connection)?;
-        self.secure_database_files();
+        self.secure_database_files()
+            .map_err(|error| error.to_string())?;
         *initialized = true;
         Ok(())
     }
@@ -366,17 +381,26 @@ impl QuarantineManager {
         Ok(())
     }
 
-    fn secure_database_files(&self) {
+    fn secure_database_files(&self) -> io::Result<()> {
         let wal = sidecar_path(&self.db_path, b"-wal");
         let shm = sidecar_path(&self.db_path, b"-shm");
         for path in [&self.db_path, &wal, &shm] {
-            if let Ok(file) = open_path(path, libc::O_RDONLY | libc::O_NOFOLLOW, 0) {
-                let _ = fchmod(file.as_raw_fd(), DB_MODE);
+            match open_path(path, libc::O_RDONLY | libc::O_NOFOLLOW, 0) {
+                Ok(file) => {
+                    fchmod(file.as_raw_fd(), DB_MODE)?;
+                }
+                Err(error) if error.kind() == io::ErrorKind::NotFound => {}
+                Err(error) => return Err(error),
             }
         }
+        Ok(())
     }
 
     fn connection(&self) -> AppResult<Connection> {
+        // SQLite resolves sidecar paths itself; refuse a symlinked journal
+        // before it can follow one outside the data directory.
+        self.secure_database_files()
+            .map_err(|error| format!("Unsafe quarantine database sidecar: {error}"))?;
         let connection = Connection::open_with_flags(
             &self.db_path,
             OpenFlags::SQLITE_OPEN_READ_WRITE
@@ -390,7 +414,8 @@ impl QuarantineManager {
         connection
             .execute_batch("PRAGMA synchronous=FULL; PRAGMA foreign_keys=ON;")
             .map_err(|error| error.to_string())?;
-        self.secure_database_files();
+        self.secure_database_files()
+            .map_err(|error| format!("Unsafe quarantine database sidecar: {error}"))?;
         Ok(connection)
     }
 
@@ -410,7 +435,7 @@ impl QuarantineManager {
                 params![
                     source_path.as_os_str().as_bytes(),
                     &moved.destination.0,
-                    threat_name,
+                    crate::common::sanitize_line(threat_name),
                     now_iso(),
                     moved.file_size as i64,
                     &moved.file_hash,
@@ -525,7 +550,12 @@ impl QuarantineManager {
             Err(error) => return OperationResult::failure(Status::DatabaseError, error),
         };
         if let Err(error) = self.delete_payload(&entry.quarantine_path.as_path()) {
-            return OperationResult::with_entry(file_status(&error), entry, error.to_string());
+            // A crash between restore and DB removal leaves metadata behind
+            // with no payload. Treat that as a successful delete so the user
+            // can clear the stale entry instead of being stuck forever.
+            if error.kind() != io::ErrorKind::NotFound {
+                return OperationResult::with_entry(file_status(&error), entry, error.to_string());
+            }
         }
         match self.remove_entry(id) {
             Ok(true) => OperationResult::success(entry),
@@ -574,6 +604,15 @@ impl QuarantineManager {
                 continue;
             }
             let payload = entry.quarantine_path.as_path();
+            if let Err(error) = self.validate_quarantine_path(&payload) {
+                errors += 1;
+                results.push(serde_json::json!({
+                    "id": entry.id,
+                    "status": "integrity_failed",
+                    "detail": error.to_string(),
+                }));
+                continue;
+            }
             let (status, detail) = match verify_hash(&payload, &entry.file_hash) {
                 Err(_) => {
                     errors += 1;
@@ -840,7 +879,9 @@ impl QuarantineManager {
             {
                 continue;
             }
-            if verify_hash(&payload.as_path(), &hash).is_err() {
+            if self.validate_quarantine_path(&payload.as_path()).is_err()
+                || verify_hash(&payload.as_path(), &hash).is_err()
+            {
                 continue;
             }
             let transaction = connection
@@ -865,7 +906,7 @@ impl QuarantineManager {
         let connection = self.connection()?;
         connection.execute(
             "INSERT INTO quarantine_pending (quarantine_path, original_path, threat_name, file_size, file_hash, original_permissions) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
-            params![&moved.destination.0, source.as_os_str().as_bytes(), threat_name, moved.file_size as i64, &moved.file_hash, moved.original_permissions as i64],
+            params![&moved.destination.0, source.as_os_str().as_bytes(), crate::common::sanitize_line(threat_name), moved.file_size as i64, &moved.file_hash, moved.original_permissions as i64],
         ).map_err(|error| error.to_string())?;
         Ok(())
     }
@@ -1211,7 +1252,7 @@ fn entry_from_row(row: &Row<'_>) -> rusqlite::Result<QuarantineEntry> {
         id: row.get(0)?,
         original_path: RawPath(value_bytes(row, 1)?),
         quarantine_path: RawPath(value_bytes(row, 2)?),
-        threat_name: row.get(3)?,
+        threat_name: crate::common::sanitize_line(&row.get::<_, String>(3)?),
         detection_date: row.get(4)?,
         file_size: row.get::<_, i64>(5)?.max(0) as u64,
         file_hash: row.get(6)?,
@@ -1351,15 +1392,17 @@ fn open_destination_parent(destination: &Path) -> io::Result<(File, CString)> {
         ) {
             Ok(child) => child,
             Err(error) if error.kind() == io::ErrorKind::NotFound => {
-                if unsafe { libc::mkdirat(directory.as_raw_fd(), part.as_ptr(), 0o777) } != 0 {
+                if unsafe { libc::mkdirat(directory.as_raw_fd(), part.as_ptr(), 0o700) } != 0 {
                     return Err(io::Error::last_os_error());
                 }
-                open_at(
+                let created = open_at(
                     directory.as_raw_fd(),
                     &part,
                     libc::O_RDONLY | libc::O_DIRECTORY | libc::O_NOFOLLOW,
                     0,
-                )?
+                )?;
+                fchmod(created.as_raw_fd(), 0o700)?;
+                created
             }
             Err(error) => return Err(error),
         };

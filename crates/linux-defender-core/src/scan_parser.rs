@@ -241,7 +241,7 @@ pub(crate) fn detection(raw: &[u8]) -> Option<ThreatDetail> {
     }
     Some(ThreatDetail {
         file_path: path_to_wire(Path::new(OsStr::from_bytes(file_path))),
-        threat_name: threat_name.to_owned(),
+        threat_name: crate::common::sanitize_line(threat_name),
         category: categorize(Some(threat_name)),
         severity: classify_severity(Some(threat_name)).as_str().to_owned(),
     })
@@ -432,7 +432,7 @@ fn interpret(scan: ScanEvidence<'_>) -> ScanResult {
     }
 
     if status == ScanStatus::Error && error_message.is_none() {
-        error_message = nonempty(&stderr).map(str::to_owned);
+        error_message = nonempty(&stderr).map(crate::common::sanitize_text);
         if error_message.is_none() {
             if let Some((line, _)) = evidence.hard_errors.first() {
                 error_message = Some(line.clone());
@@ -466,8 +466,8 @@ fn interpret(scan: ScanEvidence<'_>) -> ScanResult {
     ScanResult {
         status,
         path: path.to_owned(),
-        stdout,
-        stderr,
+        stdout: crate::common::sanitize_text(&stdout),
+        stderr: crate::common::sanitize_text(&stderr),
         exit_code,
         infected_files,
         scanned_files,

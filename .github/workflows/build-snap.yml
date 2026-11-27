@@ -54,6 +54,9 @@ jobs:
           snap="${{ steps.snapcraft.outputs.snap }}"
           unsquashfs -l "$snap" | grep -q 'squashfs-root/bin/linux-defender$'
           unsquashfs -l "$snap" | grep -q 'squashfs-root/bin/linux-defender-scheduled-scan$'
+          unsquashfs -l "$snap" | grep -q 'squashfs-root/bin/linux-defender-apply-preferences$'
+          unsquashfs -d /tmp/opencode/snap-check "$snap" >/dev/null
+          /tmp/opencode/snap-check/squashfs-root/bin/linux-defender-apply-preferences --help >/dev/null 2>&1 || test $? -eq 2
 
       - name: Install and run headless CLI
         run: |
@@ -66,3 +69,5 @@ jobs:
         with:
           name: snap-${{ matrix.architecture }}
           path: ${{ steps.snapcraft.outputs.snap }}
+          if-no-files-found: error
+          retention-days: 7

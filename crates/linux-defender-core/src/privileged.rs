@@ -28,6 +28,7 @@ pub(crate) fn install_cli_helper(ctx: &Context, prefix: &Path) -> AppResult<Stri
 
 pub const PROTOCOL_VERSION: u8 = 4;
 pub const MAX_CONFIG_READ_BYTES: usize = 1024 * 1024;
+pub const MAX_STAGED_PAIRS: usize = 16;
 pub const HELPER_PATH: &str = "/usr/bin/linux-defender-apply-preferences";
 /// Pre-rename helper. An upgrade can leave this installed, and it speaks the
 /// same protocol-v4 contract, so it stays usable under the identical trust
@@ -562,11 +563,6 @@ fn has_elf_magic(path: &Path) -> bool {
 ///
 /// PATH is deliberately not consulted: a pyenv, conda, or venv executable
 /// earlier in the host PATH must not change whether a helper is available.
-fn canonical_host_helper_exists(path: &str) -> bool {
-    host_command("/usr/bin/test", &["-f", path, "-a", "-x", path])
-        .is_ok_and(|output| output.status.success())
-}
-
 /// Canonical helper first, then the pre-rename path left by an upgrade.
 fn helper_candidates() -> [&'static str; 2] {
     [HELPER_PATH, LEGACY_HELPER_PATH]
@@ -577,11 +573,24 @@ fn helper_candidates() -> [&'static str; 2] {
 /// accepted only when every imported module is immutable and root-owned.
 fn trust_helper_candidate(path: &str) -> AppResult<()> {
     if flatpak() {
-        return if canonical_host_helper_exists(path) {
-            Ok(())
-        } else {
-            Err(format!("the host privileged helper {path} is unavailable"))
-        };
+        // `canonical_host_helper_exists` only did `test -f -a -x`, which a
+        // writable user-owned file could satisfy. Use the same root-owned,
+        // immutable checks as the native path, evaluated on the host.
+        if !trusted_host_program(path, true, true) {
+            return Err(format!(
+                "the host privileged helper {path} is not a root-owned immutable executable"
+            ));
+        }
+        if path == LEGACY_HELPER_PATH
+            && !LEGACY_HELPER_MODULES
+                .iter()
+                .all(|module| trusted_host_program(module, false, true))
+        {
+            return Err(
+                "legacy privileged helper libraries are not root-owned and immutable".to_owned(),
+            );
+        }
+        return Ok(());
     }
     match root_owned_regular_trust(Path::new(path), true) {
         Ok(()) => {}
@@ -946,6 +955,12 @@ pub fn open_verified_staged_source(
             source.display()
         ));
     }
+    if metadata.len() > MAX_CONFIG_READ_BYTES as u64 {
+        return Err(format!(
+            "staged source exceeds {MAX_CONFIG_READ_BYTES} byte limit: {}",
+            source.display()
+        ));
+    }
     let canonical_root = root
         .canonicalize()
         .map_err(|error| format!("cannot resolve staging root {}: {error}", root.display()))?;
@@ -1188,6 +1203,11 @@ pub fn write_staged_configs(
 ) -> AppResult<PrivilegedWriteResult> {
     if configs.is_empty() {
         return Ok(PrivilegedWriteResult::default());
+    }
+    if configs.len() > MAX_STAGED_PAIRS {
+        return Err(format!(
+            "too many staged config pairs (maximum {MAX_STAGED_PAIRS})"
+        ));
     }
     let uid = current_uid();
     let root = staging_root_for_uid(uid)?;
@@ -1537,7 +1557,7 @@ fn fsync_directory(directory: &Path) -> AppResult<()> {
     })
 }
 
-fn atomic_replace(mut source: File, destination: &Path) -> AppResult<()> {
+fn atomic_replace(source: File, destination: &Path) -> AppResult<()> {
     let parent = destination
         .parent()
         .ok_or_else(|| format!("destination has no parent: {}", destination.display()))?;
@@ -1558,8 +1578,14 @@ fn atomic_replace(mut source: File, destination: &Path) -> AppResult<()> {
             .custom_flags(O_NOFOLLOW)
             .open(&temporary)
             .map_err(|error| format!("cannot open replacement {}: {error}", temporary.display()))?;
-        io::copy(&mut source, &mut target)
-            .map_err(|error| format!("cannot copy config: {error}"))?;
+        let copied = io::copy(
+            &mut source.take((MAX_CONFIG_READ_BYTES + 1) as u64),
+            &mut target,
+        )
+        .map_err(|error| format!("cannot copy config: {error}"))?;
+        if copied > MAX_CONFIG_READ_BYTES as u64 {
+            return Err("staged config grew beyond the read limit".to_owned());
+        }
         target
             .sync_all()
             .map_err(|error| format!("cannot sync replacement: {error}"))?;
@@ -1723,6 +1749,11 @@ fn parse_pkexec_uid() -> AppResult<u32> {
 fn run_config_helper(args: &[String], uid: u32) -> AppResult<()> {
     if args.is_empty() || !args.len().is_multiple_of(2) {
         return Err("expected one or more staged-source/destination pairs".to_owned());
+    }
+    if args.len() / 2 > MAX_STAGED_PAIRS {
+        return Err(format!(
+            "too many staged config pairs (maximum {MAX_STAGED_PAIRS})"
+        ));
     }
     let root = staging_root_for_uid(uid)?;
     verify_staging_root(&root, uid)?;

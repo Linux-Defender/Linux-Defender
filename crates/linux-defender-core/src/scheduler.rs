@@ -197,6 +197,10 @@ pub fn apply(ctx: &Context, schedule: &ScheduleConfig) -> AppResult<Value> {
             Some("No scheduler backend available"),
         ));
     }
+    // A previous backend may still be active; clean both before provisioning
+    // so a backend switch cannot leave two scans scheduled.
+    let _ = disable_systemd(ctx);
+    let _ = disable_cron();
     let result = match backend {
         SchedulerBackend::Systemd => enable_systemd(ctx, schedule),
         SchedulerBackend::Cron => enable_cron(schedule),
@@ -209,14 +213,18 @@ pub fn apply(ctx: &Context, schedule: &ScheduleConfig) -> AppResult<Value> {
 }
 
 fn disable(ctx: &Context, backend: SchedulerBackend) -> AppResult<Value> {
-    let result = match backend {
-        SchedulerBackend::Systemd => disable_systemd(ctx),
-        SchedulerBackend::Cron => disable_cron(),
-        SchedulerBackend::None => Ok(()),
+    // A backend switch or a stale timer can leave a schedule active in the
+    // other backend. Always remove both so "disable" really disables.
+    let systemd = disable_systemd(ctx);
+    let cron = disable_cron();
+    let error = match (systemd, cron) {
+        (Err(a), Err(b)) => Some(format!("{a}; {b}")),
+        (Err(a), Ok(())) | (Ok(()), Err(a)) => Some(a),
+        (Ok(()), Ok(())) => None,
     };
-    match result {
-        Ok(()) => Ok(provision_result(true, true, false, backend, None)),
-        Err(error) => Ok(provision_result(false, false, false, backend, Some(&error))),
+    match error {
+        None => Ok(provision_result(true, true, false, backend, None)),
+        Some(error) => Ok(provision_result(false, false, false, backend, Some(&error))),
     }
 }
 
@@ -332,14 +340,14 @@ fn disable_systemd(ctx: &Context) -> AppResult<()> {
         (SERVICE_NAME, TIMER_NAME),
         (LEGACY_SERVICE_NAME, LEGACY_TIMER_NAME),
     ] {
-        if dir.join(format!("{timer}.timer")).exists() {
-            let output = run_host(
-                "systemctl",
-                &["--user", "disable", "--now", &format!("{timer}.timer")],
-            )?;
-            if !output.status.success() {
-                return Err(format!("Could not disable {timer}.timer"));
-            }
+        let output = run_host(
+            "systemctl",
+            &["--user", "disable", "--now", &format!("{timer}.timer")],
+        )?;
+        if !output.status.success()
+            && !String::from_utf8_lossy(&output.stderr).contains("could not be found")
+        {
+            return Err(format!("Could not disable {timer}.timer"));
         }
         remove_systemd_units(&dir, service, timer)?;
     }
@@ -411,11 +419,19 @@ fn cron_status() -> AppResult<Value> {
 fn enable_cron(schedule: &ScheduleConfig) -> AppResult<()> {
     let command = launcher_command()
         .ok_or_else(|| "Could not find linux-defender-scheduled-scan command".to_string())?;
-    let existing = run_host("crontab", &["-l"])
-        .ok()
-        .filter(|output| output.status.success())
-        .map(|output| String::from_utf8_lossy(&output.stdout).into_owned())
-        .unwrap_or_default();
+    let output = run_host("crontab", &["-l"])?;
+    let existing = if output.status.success() {
+        String::from_utf8_lossy(&output.stdout).into_owned()
+    } else {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        if stderr.contains("no crontab for")
+            || (output.stdout.is_empty() && stderr.trim().is_empty())
+        {
+            String::new()
+        } else {
+            return Err(format!("Could not read crontab: {}", stderr.trim()));
+        }
+    };
     let mut lines = remove_our_cron_lines(&existing);
     lines.push(CRON_MARKER.to_owned());
     lines.push(format!(
@@ -617,23 +633,11 @@ fn cron_quote(word: &str) -> String {
 }
 
 pub fn remove_our_cron_lines(existing: &str) -> Vec<String> {
-    let mut lines = Vec::new();
-    let mut next_is_paired = false;
-    for line in existing.lines() {
-        if next_is_paired {
-            next_is_paired = false;
-            if !is_scheduled_scan_command(line) {
-                lines.push(line.to_owned());
-            }
-            continue;
-        }
-        if is_our_cron_marker(line) {
-            next_is_paired = true;
-        } else {
-            lines.push(line.to_owned());
-        }
-    }
-    lines
+    existing
+        .lines()
+        .filter(|line| !is_our_cron_marker(line) && !is_scheduled_scan_command(line))
+        .map(str::to_owned)
+        .collect()
 }
 
 /// True for either the current or the pre-rename scheduled-scan marker.
@@ -650,17 +654,24 @@ pub fn is_scheduled_scan_command(line: &str) -> bool {
     // AppImage schedules the stable root dispatcher rather than the transient
     // helper mounted beneath /tmp/.mount*. Its original filename is user-owned,
     // so the explicit dispatcher flag is the durable identity.
+    let program = Path::new(&command[0]).file_name();
+    // AppImage filenames are user-owned; the `--scheduled-scan` flag is the
+    // durable identity there, but the file must still look like an AppImage.
+    let is_appimage = program
+        .and_then(OsStr::to_str)
+        .is_some_and(|name| name.ends_with(".AppImage"));
+    let is_our_program = is_appimage
+        || SCHEDULER_PROGRAMS
+            .iter()
+            .any(|known| program == Some(OsStr::new(known)));
     if command
         .get(1)
         .is_some_and(|argument| argument == "--scheduled-scan")
+        && is_our_program
     {
         return true;
     }
-    let program = Path::new(&command[0]).file_name();
-    if SCHEDULER_PROGRAMS
-        .iter()
-        .any(|known| program == Some(OsStr::new(known)))
-    {
+    if is_our_program {
         return true;
     }
     if command

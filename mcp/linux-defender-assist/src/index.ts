@@ -206,7 +206,12 @@ server.registerTool(
   },
   async ({ service, target }) => {
     const username = service === "virustotal" ? "virustotal_api_key" : "urlscan_api_key";
-    const lookup = await command("secret-tool", ["search", "--all", "service", "linux-defender", "username", username]);
+    const [canonical, legacy] = await Promise.all([
+      command("secret-tool", ["search", "--all", "service", "linux-defender", "username", username]),
+      command("secret-tool", ["search", "--all", "service", "clamui", "username", username]),
+    ]);
+    const lookup = { out: `${canonical.out}
+${legacy.out}` };
     const result = {
       service,
       target,

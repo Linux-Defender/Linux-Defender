@@ -5,11 +5,11 @@
       "source": "addyosmani/web-quality-skills",
       "sourceType": "github",
       "skillPath": "skills/accessibility/SKILL.md",
-      "computedHash": "098afe634ece137d5f56784cc96c2519ad77d9e9d393822af8b3d3ab9b2f18e2",
-      "reviewedUpstreamAt": "2026-11-23",
+      "computedHash": "27fe25c19d5c22ab00517592a26c46ded0c866db6c69dec3839a0c7a8fc791b5",
+      "reviewedUpstreamAt": "2026-11-27",
       "upstreamHash": "267fb2a0707d6142f2871f22688203a42ba21291a2aa200fb740936e41362b5d",
       "locallyAdapted": true,
-      "adaptation": "Linux Defender project enforcement section appended; upstream guidance otherwise preserved."
+      "adaptation": "Linux Defender project enforcement section appended; dead upstream companion-skill link removed; upstream guidance otherwise preserved."
     },
     "rust-best-practices": {
       "source": "apollographql/skills",

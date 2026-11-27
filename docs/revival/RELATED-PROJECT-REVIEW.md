@@ -419,3 +419,9 @@ License boundary: only Herodium is MIT. Linux Defender reimplemented behaviour f
 - XOR "encryption" for quarantine payloads and restore paths that do not re-verify identity or hash.
 - `--database` directories that shadow the official set, world-writable/symlink refusal as a scanning gate, and silent success on partial database updates.
 - Placeholder web protection, cached root sessions, API keys in query strings or stdout, and default-on detection uploads.
+
+## ClamUI #370 / #371 / #368 reviewed 2026-11-26
+
+- **Implemented:** openSUSE Tumbleweed/Leap detection (exact `ID`, so MicroOS is not misdetected), `zypper` install commands in core and the Components page, `/usr/bin` and `/bin` fallback in `host_binary`, and the #368 access-control fix (`getenforce` via `host_binary`, no false AppArmor warning with active SELinux). Regression tests cover the new behavior.
+- **Deferred:** the `os-update.timer` automatic-updates audit rows and the `/run/reboot-needed` reboot flag from #370; adding them requires new gettext IDs and audit-row tests, and the timer is specific to openSUSE's transactional update tooling. Revisit with dedicated tests before adopting.
+- **Deferred:** FUSE-mounted file streaming and pathless clamd error attribution (#369, open upstream PR #372), and the bounded in-memory result store for very large scans (same PR). These change scan execution and result ownership; a blind port would risk scan correctness regressions.

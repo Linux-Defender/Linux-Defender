@@ -10,16 +10,16 @@ translator decides. No machine translation is applied.
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1462 translated messages. | 36 |
+| de | 1462 translated messages. | 37 |
 | en | 1462 translated messages. | baseline |
-| es | 1462 translated messages. | 39 |
-| fr | 1462 translated messages. | 39 |
-| hu | 1462 translated messages. | 39 |
-| it | 1462 translated messages. | 39 |
-| nb | 1462 translated messages. | 39 |
-| pt_BR | 1462 translated messages. | 39 |
-| vi | 1462 translated messages. | 38 |
-| zh_CN | 1462 translated messages. | 39 |
+| es | 1462 translated messages. | 40 |
+| fr | 1462 translated messages. | 40 |
+| hu | 1462 translated messages. | 40 |
+| it | 1462 translated messages. | 40 |
+| nb | 1462 translated messages. | 40 |
+| pt_BR | 1462 translated messages. | 40 |
+| vi | 1462 translated messages. | 39 |
+| zh_CN | 1462 translated messages. | 40 |
 
 ## de
 
@@ -56,6 +56,7 @@ translator decides. No machine translation is applied.
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
+- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
 - `{key}: value contains a control character`
@@ -97,6 +98,7 @@ translator decides. No machine translation is applied.
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
+- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
@@ -139,6 +141,7 @@ translator decides. No machine translation is applied.
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
+- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
@@ -181,6 +184,7 @@ translator decides. No machine translation is applied.
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
+- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
@@ -223,6 +227,7 @@ translator decides. No machine translation is applied.
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
+- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
@@ -265,6 +270,7 @@ translator decides. No machine translation is applied.
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
+- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
@@ -307,6 +313,7 @@ translator decides. No machine translation is applied.
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
+- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
@@ -348,6 +355,7 @@ translator decides. No machine translation is applied.
 - `Unable to open the folder picker`
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
+- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`
@@ -390,6 +398,7 @@ translator decides. No machine translation is applied.
 - `Unable to save the API key: {error}`
 - `Update failed with an unknown error. Check the logs for details.`
 - `Update inactivity timeout (minutes)`
+- `Usage: linux-defender install-privileged-helper [--prefix PATH]`
 - `linux-defender {name} — {summary}\n`
 - `{detections} of {total} URL engines reported suspicious or malicious`
 - `{key}: path must be non-empty and cannot traverse with '..'`

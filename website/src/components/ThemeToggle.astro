@@ -40,6 +40,10 @@
     const btn = document.getElementById("theme-toggle");
     if (!btn || (btn as any).dataset.bound) return;
     (btn as any).dataset.bound = "1";
+    btn.setAttribute(
+      "aria-pressed",
+      document.documentElement.classList.contains("light") ? "true" : "false",
+    );
     btn.addEventListener("click", () => {
       const root = document.documentElement;
       const isLight = root.classList.toggle("light");

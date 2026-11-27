@@ -131,10 +131,10 @@ impl UpdateResult {
 /// custom feed URL. Persisted logs are redacted separately; live IPC replies
 /// and notifications must be redacted too.
 fn redact_result(result: &mut UpdateResult) {
-    result.stdout = crate::logs::redact(&result.stdout);
-    result.stderr = crate::logs::redact(&result.stderr);
+    result.stdout = crate::common::sanitize_text(&crate::logs::redact(&result.stdout));
+    result.stderr = crate::common::sanitize_text(&crate::logs::redact(&result.stderr));
     if let Some(message) = result.error_message.take() {
-        result.error_message = Some(crate::logs::redact(&message));
+        result.error_message = Some(crate::common::sanitize_line(&crate::logs::redact(&message)));
     }
 }
 

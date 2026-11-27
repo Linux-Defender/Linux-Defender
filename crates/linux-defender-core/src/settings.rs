@@ -42,9 +42,28 @@ pub fn dispatch(ctx: &crate::common::Context, action: &str, args: Value) -> AppR
             for key in SECRET_SETTING_KEYS {
                 patch.remove(*key);
             }
-            Ok(frontend_settings(
-                ctx.update_settings(Value::Object(patch))?,
-            ))
+            let fallback_key = crate::credentials::PLAINTEXT_FALLBACK_SETTING;
+            let was_allowed = ctx
+                .settings()?
+                .get(fallback_key)
+                .and_then(Value::as_bool)
+                .unwrap_or(false);
+            let now_allowed = patch
+                .get(fallback_key)
+                .and_then(Value::as_bool)
+                .unwrap_or(was_allowed);
+            let updated = ctx.update_settings(Value::Object(patch))?;
+            if was_allowed && !now_allowed {
+                // Turning the fallback off must not leave plaintext secrets
+                // behind in settings.json or keep returning them to callers.
+                let mut purge = serde_json::Map::new();
+                for key in SECRET_SETTING_KEYS {
+                    purge.insert((*key).to_owned(), Value::Null);
+                }
+                let _ = ctx.update_settings(Value::Object(purge))?;
+                return Ok(frontend_settings(ctx.settings()?));
+            }
+            Ok(frontend_settings(updated))
         }
         _ => Err(format!("unsupported settings action: {action}")),
     }

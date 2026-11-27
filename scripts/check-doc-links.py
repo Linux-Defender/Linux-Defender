@@ -16,7 +16,11 @@ LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 IGNORED_SCHEMES = ("http://", "https://", "mailto:", "tel:", "data:", "#")
 # Literal placeholder targets appear inside quoted historical upstream issue
 # text (e.g. the RELATED-PROJECT-REVIEW quotes). They are not links to repair.
-PLACEHOLDER_TARGETS = {"url", "URL", "link", "example", "example.com"}
+PLACEHOLDER_TARGETS = {
+    "url", "URL", "link", "example", "example.com",
+    # Upstream rust-best-practices code-comment examples, not real links.
+    "link/to/adr-123", "link/to/adr-12",
+}
 
 
 def resolve(link: str, doc: Path) -> Path | None:
@@ -39,7 +43,7 @@ def resolve(link: str, doc: Path) -> Path | None:
 def main() -> int:
     failures: list[str] = []
     docs = sorted(set(ROOT.glob("**/*.md")) | set(ROOT.glob("**/*.mdx")))
-    docs = [d for d in docs if not any(part in {".git", "node_modules", "target", "dist", ".astro", "vendor", ".agents"} for part in d.parts)]
+    docs = [d for d in docs if not any(part in {".git", "node_modules", "target", "dist", ".astro", "vendor"} for part in d.parts)]
     for doc in docs:
         text = doc.read_text(encoding="utf-8", errors="replace")
         for match in LINK_RE.finditer(text):

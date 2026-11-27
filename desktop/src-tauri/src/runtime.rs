@@ -541,6 +541,9 @@ async fn save_export(
 
 #[tauri::command]
 async fn copy_text(state: State<'_, AppState>, app: AppHandle, text: String) -> Result<(), String> {
+    if text.len() > 16 * 1024 * 1024 {
+        return Err("clipboard payload is too large".to_owned());
+    }
     let _operation = state.active_jobs.register("native.copy_text".into())?;
     tauri::async_runtime::spawn_blocking(move || {
         #[cfg(target_os = "linux")]

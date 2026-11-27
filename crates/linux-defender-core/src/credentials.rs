@@ -12,7 +12,7 @@ pub const VIRUSTOTAL_API_KEY: &str = "virustotal_api_key";
 pub const URLSCAN_API_KEY: &str = "urlscan_api_key";
 pub const URLHAUS_AUTH_KEY: &str = "urlhaus_auth_key";
 pub const PORTMASTER_API_TOKEN: &str = "portmaster_api_token";
-const PLAINTEXT_FALLBACK_SETTING: &str = "allow_plaintext_api_key_fallback";
+pub(crate) const PLAINTEXT_FALLBACK_SETTING: &str = "allow_plaintext_api_key_fallback";
 
 /// The only account names Linux Defender stores. Keeping this closed prevents this
 /// module from becoming a generic secret exfiltration API.
@@ -130,10 +130,24 @@ pub fn validate_urlhaus_auth_key(key: &str) -> AppResult<()> {
     Ok(())
 }
 
+/// urlscan and Portmaster tokens are opaque secrets: require a plausible
+/// length and reject whitespace/control characters so a malformed value is
+/// never stored or echoed back through `masked`.
+pub fn validate_generic_api_token(key: &str) -> AppResult<()> {
+    let key = key.trim();
+    if key.chars().count() < 16 {
+        return Err("Token must be at least 16 characters".into());
+    }
+    if key.chars().any(|c| c.is_control() || c.is_whitespace()) {
+        return Err("Token must not contain whitespace or control characters".into());
+    }
+    Ok(())
+}
+
 pub fn mask_api_key(key: Option<&str>) -> String {
     match key {
         None | Some("") => "Not set".into(),
-        Some(key) if key.chars().count() < 8 => "****".into(),
+        Some(key) if key.chars().count() < 12 => "****".into(),
         Some(key) => format!("{}...", key.chars().take(8).collect::<String>()),
     }
 }
@@ -184,10 +198,12 @@ impl CredentialStore {
                 _ => "Token cannot be empty".into(),
             });
         }
-        if account == Account::VirusTotalApiKey {
-            validate_virustotal_api_key(secret)?;
-        } else if account == Account::UrlhausAuthKey {
-            validate_urlhaus_auth_key(secret)?;
+        match account {
+            Account::VirusTotalApiKey => validate_virustotal_api_key(secret)?,
+            Account::UrlhausAuthKey => validate_urlhaus_auth_key(secret)?,
+            Account::UrlscanApiKey | Account::PortmasterApiToken => {
+                validate_generic_api_token(secret)?;
+            }
         }
 
         match keyring_set(account, secret) {
@@ -348,11 +364,18 @@ fn keyring_set(account: Account, secret: &str) -> Result<(), KeyringFailure> {
 }
 
 fn keyring_delete(account: Account) -> Result<bool, KeyringFailure> {
-    let deleted = keyring_delete_for(SERVICE_NAME, account)?;
-    // Best effort: a pre-rename copy must not keep the app from reporting a
-    // successful delete of the canonical entry.
-    let legacy = keyring_delete_for(LEGACY_SERVICE_NAME, account).unwrap_or(false);
-    Ok(deleted || legacy)
+    // Attempt both services independently: a locked canonical service must
+    // not prevent removal of a pre-rename copy (or vice versa).
+    let canonical = keyring_delete_for(SERVICE_NAME, account);
+    let legacy = keyring_delete_for(LEGACY_SERVICE_NAME, account);
+    match (canonical, legacy) {
+        (Ok(a), Ok(b)) => Ok(a || b),
+        (Err(KeyringFailure::Locked), _) | (_, Err(KeyringFailure::Locked)) => {
+            Err(KeyringFailure::Locked)
+        }
+        (Err(_), Ok(b)) | (Ok(b), Err(_)) => Ok(b),
+        (Err(a), Err(_)) => Err(a),
+    }
 }
 
 fn keyring_delete_for(
