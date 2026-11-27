@@ -169,6 +169,7 @@ stage_sources() {
         return 1
     fi
     install -m 0644 "$policy" "$SOURCES_DIR/io.github.linuxdefender.linuxdefender.policy"
+    install -m 0644 "$PROJECT_ROOT/LICENSE" "$SOURCES_DIR/LICENSE"
 }
 
 verify_package_metadata() {

@@ -23,7 +23,7 @@ pkgbase = linux-defender
 	depends = desktop-file-utils
 	depends = clamav
 	depends = polkit
-	optdepends = linux-defender-privileged-helper: apply protected host ClamAV configuration
+	optdepends = linux-defender-privileged-helper=0.6.0: apply protected host ClamAV configuration
 	optdepends = waybar: StatusNotifierItem tray on Sway and other wlroots desktops
 	optdepends = sway: Wayland compositor
 	optdepends = xdg-desktop-portal-wlr: native dialogs on wlroots compositors

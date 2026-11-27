@@ -5,7 +5,7 @@ description: Current development-build status and how to run Linux Defender on C
 
 ## Release status
 
-Linux Defender **0.6.0 is a development snapshot**. It has no signed Linux Defender installer, Flatpak, AppImage, DEB, RPM, or published AUR package yet. AUR source recipes live in the repository's `aur/` directory but have not been submitted to the AUR; use the source checkout or those recipes to test it. An upstream app package is a different product build.
+Linux Defender **0.6.0 is a development snapshot**. It has no signed Linux Defender installer, Flatpak, AppImage, DEB, RPM, Snap, or published AUR package yet. AUR source recipes live in the repository's `aur/` directory but have not been submitted to the AUR; use the source checkout or those recipes to test it. An upstream app package is a different product build.
 
 The current source still uses transitional launch, helper, and data identifiers for compatibility. The native source build and the previous Flatpak install use different data locations, but migration from ClamTk's settings, history, schedule, and quarantine is not complete. Keep existing installs and their data backed up while testing this branch.
 
@@ -37,16 +37,20 @@ Linux Defender has no published release or signed installer packages yet, so non
 
 | Target | Current project status |
 | --- | --- |
-| CachyOS / Arch | AUR `PKGBUILD` recipes for the app and the matching helper exist in `aur/`, but are not published to the AUR and have no desktop validation claim yet. Sway is expected to work with a tray watcher such as `waybar`. |
+| CachyOS / Arch | AUR `PKGBUILD` recipes for the app and the matching helper exist in `aur/`, but are not published to the AUR. An initial Sway/window validation pass is recorded in the tray guide; interactive menu and dialog checks remain open. A tray watcher such as `waybar` is expected. |
 | Debian / Ubuntu | DEB build workflow targets amd64 and arm64; no Linux Defender package release yet. |
 | Fedora | RPM workflow packages the privileged helper only, not the full desktop app. |
+| Fedora Atomic | Helper-only RPM delivered by verified `rpm-ostree` layering plus reboot; no immutable-host source installer. |
+| openSUSE Tumbleweed/Leap | Host ClamAV install guidance only (`sudo zypper install clamav`); no Linux Defender package release yet. |
+| AUR (Arch derivatives) | Local source recipes for app and helper in `aur/`; not submitted to the AUR and no update channel. |
+| Snap | Classic-confinement CI build target; no Snap Store release yet. |
 | Flatpak | CI build target for x86_64 and aarch64; not published on Flathub or another update remote. |
 | AppImage | x86_64 build target; the release workflow prepares a signed GitHub zsync feed, but no release/feed is published yet. |
 | Other distributions | No compatibility claim until build, install, update, desktop, and scanner behavior are tested there. |
 
 The Rust/Tauri UI is shared, but GTK/WebKitGTK versions, helper packages, ClamAV paths, services, desktop menus, and release channels differ. A successful source build alone does not establish distribution support.
 
-File-manager integrations ship in two format-correct variants: native packages use `linux-defender ...` launchers, while Flatpak uses `flatpak run io.github.linuxdefender.linuxdefender ...`. Both sets contain the same eight Nautilus, Nemo, Dolphin, and Thunar actions, checked by `scripts/check-integration-parity.py` on every commit. Dolphin and Konqueror service menus cover all file types and directories, so text files, images, and archives also offer the scan actions. Every action passes all selected paths to the scanner; VirusTotal folder analysis submits up to 100 files individually; the file-manager action submits only the first selected file.
+File-manager integrations ship in two format-correct variants: native packages use `linux-defender ...` launchers, while Flatpak uses `flatpak run io.github.linuxdefender.linuxdefender ...`. Both sets contain the same eight Nautilus, Nemo, Dolphin, and Thunar actions, checked by `scripts/check-integration-parity.py` on every commit. Dolphin and Konqueror service menus cover all file types and directories, so text files, images, and archives also offer the scan actions. Every action passes all selected paths to the scanner; the exception is the Nautilus VirusTotal script, which submits only the first selected file. VirusTotal folder analysis submits up to 100 files individually.
 
 ## Build and run on CachyOS / Arch
 

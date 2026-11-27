@@ -15,6 +15,7 @@ Requires:       polkit
 
 Source0:        linux-defender-apply-preferences
 Source1:        io.github.linuxdefender.linuxdefender.policy
+Source2:        LICENSE
 
 %description
 Root-owned Rust helper (/usr/bin/linux-defender-apply-preferences) and the matching
@@ -27,3 +28,4 @@ install -Dpm 0644 %{SOURCE1} %{buildroot}%{_datadir}/polkit-1/actions/io.github.
 %files
 %attr(0755,root,root) %{_bindir}/linux-defender-apply-preferences
 %attr(0644,root,root) %{_datadir}/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy
+%license %{SOURCE2}

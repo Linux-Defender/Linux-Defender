@@ -50,6 +50,10 @@ sudo systemctl reboot
 # Arch Linux
 sudo pacman -S clamav
 sudo systemctl enable --now clamav-daemon
+
+# openSUSE Tumbleweed/Leap
+sudo zypper install clamav
+sudo systemctl enable --now clamd
 ```
 
 Fedora uses `/etc/clamd.d/scan.conf`; Linux Defender invokes `clamdscan --config-file=/etc/clamd.d/scan.conf`. If a running Fedora daemon is unavailable, check its `LocalSocketMode` and `LocalSocketGroup`.

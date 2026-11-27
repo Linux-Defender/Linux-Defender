@@ -119,7 +119,8 @@ stage_package() {
     install -d -m 0755 \
         "$BUILD_DIR/DEBIAN" \
         "$BUILD_DIR/usr/bin" \
-        "$BUILD_DIR/usr/share/polkit-1/actions"
+        "$BUILD_DIR/usr/share/polkit-1/actions" \
+        "$BUILD_DIR/usr/share/doc/linux-defender-privileged-helper"
 
     # Both files are root-owned by dpkg-deb --root-owner-group. The policy
     # names the same canonical helper path and action ID as the native binary.
@@ -127,6 +128,9 @@ stage_package() {
         "$BUILD_DIR/usr/bin/linux-defender-apply-preferences"
     stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender.policy" \
         "$BUILD_DIR/usr/share/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy" 0644
+
+    stage_required_file "$PROJECT_ROOT/LICENSE" \
+        "$BUILD_DIR/usr/share/doc/linux-defender-privileged-helper/copyright" 0644
 
     sed -e "s/VERSION/$VERSION/g" -e "s/ARCHITECTURE/$ARCHITECTURE/g" \
         "$SCRIPT_DIR/DEBIAN/control.helper" > "$BUILD_DIR/DEBIAN/control"

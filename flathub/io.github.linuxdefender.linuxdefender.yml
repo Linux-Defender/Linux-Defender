@@ -67,6 +67,7 @@ modules:
       - install -Dm755 target/release/linux-defender-scheduled-scan /app/bin/linux-defender-scheduled-scan
       - install -Dm644 data/io.github.linuxdefender.linuxdefender.desktop /app/share/applications/io.github.linuxdefender.linuxdefender.desktop
       - install -Dm644 data/io.github.linuxdefender.linuxdefender.metainfo.xml /app/share/metainfo/io.github.linuxdefender.linuxdefender.metainfo.xml
+      - install -Dm644 LICENSE /app/share/doc/linux-defender/copyright
       - install -Dm644 icons/io.github.linuxdefender.linuxdefender.svg /app/share/icons/hicolor/scalable/apps/io.github.linuxdefender.linuxdefender.svg
       - install -Dm644 icons/io.github.linuxdefender.linuxdefender.png /app/share/icons/hicolor/128x128/apps/io.github.linuxdefender.linuxdefender.png
       - install -d /app/share/linux-defender

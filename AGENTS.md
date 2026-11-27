@@ -67,7 +67,7 @@ Before declaring any port or refactor done, run `bash scripts/audit-consistency.
 
 ## Build and test entry points
 
-Toolchain manifests are the source of truth. Work on one file or one small function at a time; after every Rust edit run `cargo check`, after every TypeScript/Astro edit run `bun run --cwd desktop check` (or `npm run build`/`npx tsc --noEmit` where appropriate). Fix any compiler error or warning immediately and re-run until clean before replying to the user. Typical local commands are:
+Toolchain manifests are the source of truth. Work on one file or one small function at a time; after every Rust edit run `cargo check`, after every TypeScript/Astro edit run `bun run --cwd desktop check` (or `bun run --cwd desktop build`). Fix any compiler error or warning immediately and re-run until clean before replying to the user. Typical local commands are:
 
 ```bash
 cargo test --workspace --locked
@@ -112,7 +112,7 @@ CI builds native artifacts on the Ubuntu 22.04-compatible baseline. A build on a
 ## Release builds and dependency hygiene
 
 - Configure release profile settings in the workspace `Cargo.toml` for size (`lto`, reduced `codegen-units`, optimized `opt-level`, `panic = "abort"`, `strip`). Check scan responsiveness and failure handling under the release profile before shipping.
-- Keep the system WebKitGTK WebView; do not bundle a browser runtime. Keep Tauri, Rust dependencies, and frontend packages current through the repository's locked dependency workflows. Run `cargo audit` and `bun audit` when updating dependencies and address relevant advisories.
+- Keep the system WebKitGTK WebView; do not bundle a browser runtime. Keep Tauri, Rust dependencies, and frontend packages current through the repository's locked dependency workflows. Run `cargo audit`, `bun audit --cwd desktop`, and `bun audit --cwd website` when updating dependencies and address relevant advisories.
 
 ## Coding-agent skills
 

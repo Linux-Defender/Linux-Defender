@@ -140,6 +140,8 @@ parts:
 
       install -Dm644 data/io.github.linuxdefender.linuxdefender.metainfo.xml \
         "$CRAFT_PART_INSTALL/usr/share/metainfo/io.github.linuxdefender.linuxdefender.metainfo.xml"
+      install -Dm644 LICENSE \
+        "$CRAFT_PART_INSTALL/usr/share/doc/linux-defender/copyright"
       install -d "$CRAFT_PART_INSTALL/usr/share/linux-defender/integrations"
       cp -a assets/integrations-native/. \
         "$CRAFT_PART_INSTALL/usr/share/linux-defender/integrations/"

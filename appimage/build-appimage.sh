@@ -176,6 +176,7 @@ install_packaging_assets() {
     # the same canonical AppStream metadata is installed system-wide below.
     install -Dm644 "$PROJECT_ROOT/data/$APP_ID.metainfo.xml" "$APPDIR/$APP_ID.appdata.xml"
     install -Dm644 "$PROJECT_ROOT/data/$APP_ID.metainfo.xml" "$APPDIR/usr/share/metainfo/$APP_ID.metainfo.xml"
+    install -Dm644 "$PROJECT_ROOT/LICENSE" "$APPDIR/usr/share/doc/linux-defender/copyright"
     # Replace Tauri's generated root icon artifacts; appimagetool resolves the
     # canonical desktop Icon from the AppDir root and uses .DirIcon for
     # file-manager integration.

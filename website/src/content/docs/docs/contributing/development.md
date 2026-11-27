@@ -5,7 +5,7 @@ description: Build and validate the Linux Defender Rust core, Tauri desktop, pac
 
 ## Prerequisites
 
-Linux Defender 0.6.0 is a development snapshot built on the upstream v0.6.0 source baseline. It has a headless Rust core (`crates/linux-defender-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency. Linux Defender packages are not yet published.
+Python 3 is required for the built-site link checker, catalog tools, and Flatpak source generation. Linux Defender 0.6.0 is a development snapshot built on the upstream v0.6.0 source baseline. It has a headless Rust core (`crates/linux-defender-core`) and a Tauri 2 desktop (`desktop/src-tauri`) with a React/TypeScript frontend (`desktop/`). The desktop needs the Linux WebKitGTK **4.1** API and GTK 3 development libraries. Python is not an application build or runtime dependency. Linux Defender packages are not yet published.
 
 ### Debian or Ubuntu
 
@@ -15,6 +15,35 @@ sudo apt install build-essential pkg-config libssl-dev libgtk-3-dev \
   libwebkit2gtk-4.1-dev librsvg2-dev libxdo-dev curl wget file \
   flatpak-builder
 ```
+
+### Fedora
+
+```bash
+sudo dnf install webkit2gtk4.1-devel openssl-devel curl wget file \
+  libappindicator-gtk3-devel librsvg2-devel libxdo-devel
+sudo dnf group install "c-development"
+```
+
+### Fedora Atomic
+
+```bash
+sudo rpm-ostree install webkit2gtk4.1-devel openssl-devel curl wget file \
+  libappindicator-gtk3-devel librsvg2-devel libxdo-devel gcc gcc-c++ make
+sudo systemctl reboot
+```
+
+### openSUSE Tumbleweed / Leap
+
+```bash
+sudo zypper in webkit2gtk3-devel libopenssl-devel curl wget file \
+  libappindicator3-1 librsvg-devel
+sudo zypper in -t pattern devel_basis
+```
+
+Package names vary by release; confirm `pkg-config --modversion webkit2gtk-4.1`
+reports a 4.1 API before building. Arch/CachyOS prerequisites are listed in the
+[installation guide](/Linux-Defender/docs/installation/). All distributions
+still need current stable Rust and Bun.
 
 Install current stable Rust with `rustup` and Bun using your distribution package manager or their official installers. Confirm the tools before continuing:
 
@@ -119,9 +148,9 @@ Use the Tauri/WebKit developer tools for frontend state and the terminal for Rus
 These optional, project-local skills assist compatible coding agents; they are not application dependencies and do not change the build or runtime requirements. From the repository root, install only the selected skills:
 
 ```bash
-npx skills@1.7.4 add apollographql/skills --skill rust-best-practices
-npx skills@1.7.4 add vercel-labs/agent-skills --skill vercel-react-best-practices
-npx skills@1.7.4 add addyosmani/web-quality-skills --skill accessibility
+bunx skills@1.7.4 add apollographql/skills --skill rust-best-practices
+bunx skills@1.7.4 add vercel-labs/agent-skills --skill vercel-react-best-practices
+bunx skills@1.7.4 add addyosmani/web-quality-skills --skill accessibility
 ```
 
 Do not use `-g` or bulk-install an upstream repository. Imported payloads belong in `.agents/skills`; `.claude/skills` provides compatibility links. The three imported skills are locally adapted with Linux Defender enforcement rules. `skills-lock.json` records each source, selected `skillPath`, the reviewed upstream hash (`upstreamHash`), the enforced local payload hash (`computedHash`), a `locallyAdapted` flag, and the review date. Refresh only a named skill intentionally: review the upstream diff, update the imported file, and refresh both hashes and the date in the same change. `bash scripts/check-all.sh` verifies every imported skill still matches its locked local hash and that every skill is named in `AGENTS.md`, `CLAUDE.md`, or this guide, so no skill is forgotten.

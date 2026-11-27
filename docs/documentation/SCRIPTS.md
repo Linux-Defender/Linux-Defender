@@ -30,9 +30,11 @@ application runtime dependencies.
 - `scripts/check-external-links.py` — dead external documentation links.
 - `scripts/check-file-modes.py` — shebang and Debian maintainer scripts are executable.
 - `scripts/check-gate-wiring.py` — every checker is wired to a gate and every gate path exists.
+- `scripts/check-install-guidance.py` — every distro and package format stays documented in README/site/format READMEs.
 - `scripts/check-host-tool-guidance.py` — app/site ClamAV commands.
 - `scripts/check-integration-parity.py` — Flatpak vs native launcher assets.
 - `scripts/check-ipc-operations.py` — every literal frontend IPC operation resolves to a core handler.
+- `scripts/check-packaging-license.py` — every format ships LICENSE and no build-only signing key.
 - `scripts/check-packaging-consistency.py` — all six formats.
 - `scripts/check-packaging-freshness.py` — reviewed packaging reference drift.
 - `scripts/check-potfiles.sh` — Rust/TS gettext source coverage.

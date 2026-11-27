@@ -2,6 +2,8 @@
 
 This branch builds on the upstream v0.6.0 Rust/Tauri/React source baseline, then adds Linux Defender work. It is a development build; there are no signed Linux Defender release packages yet.
 
+Distribution note: draft release assets currently include DEB (app + helper), the signed RPM helper, and the signed AppImage. Flatpak and Snap are built and verified by CI (including on `v*` tags and in `Build All Packages`) but are not attached as release assets; neither has a published remote or store yet. Source recipes and per-format READMEs are in the repository.
+
 ## Included
 
 - Upstream v0.6.0 scan reliability and responsiveness improvements, including bounded history and quarantine views, complete large-scan findings, progress coalescing, long daemon-path handling, Flatpak host database detection, trusted helper checks, Wayland startup handling, and current dependency locks. Vietnamese (`vi`) is active in both desktop and CLI catalogs.

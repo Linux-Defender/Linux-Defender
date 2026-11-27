@@ -234,8 +234,11 @@ stage_desktop_assets() {
         "$BUILD_DIR/usr/share/kio/servicemenus/io.github.linuxdefender.linuxdefender-virustotal.desktop" 0644
     stage_required_file "$PROJECT_ROOT/data/io.github.linuxdefender.linuxdefender-virustotal.desktop" \
         "$BUILD_DIR/usr/share/kservices5/ServiceMenus/io.github.linuxdefender.linuxdefender-virustotal.desktop" 0644
-    stage_required_file "$PROJECT_ROOT/signing-key.asc" \
-        "$BUILD_DIR/usr/share/linux-defender/signing-key.asc" 0644
+    # Debian Policy 12.3: the package copyright file must be installed. The
+    # signing key is compiled into the binary, so no runtime copy is staged.
+    install -d -m 0755 "$BUILD_DIR/usr/share/doc/linux-defender"
+    stage_required_file "$PROJECT_ROOT/LICENSE" \
+        "$BUILD_DIR/usr/share/doc/linux-defender/copyright" 0644
 }
 
 stage_control_files() {

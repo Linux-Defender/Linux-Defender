@@ -1,7 +1,7 @@
 # Snap
 
-`snapcraft.yaml` builds the Linux Defender snap. The snap uses the system
-WebKitGTK/GTK3 stack and calls host ClamAV tools through the snap boundary;
+`snapcraft.yaml` builds the Linux Defender snap. The snap runs host ClamAV tools directly under classic confinement and bundles
+the GTK3/WebKitGTK 4.1 libraries staged from the core22 base;
 `snap/local/linux-defender-launch` rewrites desktop launch variables so the
 host environment is not leaked into wrapped commands.
 
@@ -9,8 +9,8 @@ host environment is not leaked into wrapped commands.
 snapcraft
 ```
 
-The snap keeps the rebranded app id `io.github.linuxdefender.linuxdefender` and
-does not bundle ClamAV, FreshClam, or a signature database. Protected host
+The snap is named `linux-defender` and keeps `io.github.linuxdefender.linuxdefender`
+as its desktop `common-id`/AppStream id; it does not bundle ClamAV, FreshClam, or a signature database. Protected host
 configuration still requires the version-matched privileged helper and Polkit;
 the snap's file-manager integrations honor the same compatibility fallbacks.
 

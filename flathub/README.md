@@ -6,7 +6,7 @@ the Rust stable and Node 24 extensions, and the rebranded
 `io.github.linuxdefender.linuxdefender` app id. `cargo-sources.json` and
 `bun-sources.json` are generated locked source manifests — do not hand-edit them.
 
-`integrations/` contains the packaged file-manager actions and service menus.
+`crates/linux-defender-core/assets/integrations/` is the source of the packaged file-manager actions and service menus (native formats use `assets/integrations-native/`).
 Host ClamAV tools are reached through `flatpak-spawn --host`; no engine or
 signature database is bundled in the sandbox. Database detection reads the
 host's `DatabaseDirectory` read-only.

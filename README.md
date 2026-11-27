@@ -46,6 +46,18 @@ Every package format uses **host** ClamAV. Install host `clamscan` and `freshcla
 ```bash
 # Debian or Ubuntu
 sudo apt install clamav clamav-freshclam
+
+# Arch / CachyOS
+sudo pacman -S --needed clamav
+
+# Fedora Workstation
+sudo dnf install clamav clamav-freshclam
+
+# Fedora Atomic (then reboot)
+sudo rpm-ostree install clamav clamav-freshclam
+
+# openSUSE Tumbleweed / Leap
+sudo zypper install clamav
 ```
 
 Linux Defender does not bundle an engine or signature database. Scanning, quarantine, scheduling, database status, and optional VirusTotal/urlscan lookups are one desktop app; the host **FreshClam** service owns database updates.

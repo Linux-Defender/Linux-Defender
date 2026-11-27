@@ -17,11 +17,11 @@ Yes. Choose **Website URL** in Scan to use VirusTotal or urlscan. VirusTotal als
 
 ## Is Linux Defender 0.6.0 ready to install?
 
-Not yet. It is a development snapshot with no signed Linux Defender package published. Use the source-build steps in [Installation and testing](/Linux-Defender/docs/installation/). ClamTk data migration, release signing, and CachyOS desktop validation remain open.
+Not yet. It is a development snapshot with no signed Linux Defender package published. Use the source-build steps in [Installation and testing](/Linux-Defender/docs/installation/). ClamTk data migration and release signing remain open. An initial Sway/CachyOS tray and window pass is recorded in the [tray guide](/Linux-Defender/docs/guides/tray/); right-click actions, minimize/restore during a scan, and portal dialogs still need interactive validation.
 
 ## What distributions are supported?
 
-The current validation target is CachyOS/Arch. The app uses GTK 3 and WebKitGTK 4.1, and Linux Defender packages are not published yet. We will list each distribution only after its build, package, and desktop behavior have been tested.
+No Linux Defender packages are published yet, so no distribution has a released support claim. Build targets exist for Ubuntu/Debian (DEB), Fedora (helper RPM), Flatpak, AppImage, Snap, and Arch/CachyOS (local AUR source recipes); an initial Sway/CachyOS window and tray pass is recorded but interactive checks remain open. The app needs GTK 3 and WebKitGTK 4.1. See the [installation guide](/Linux-Defender/docs/installation/) for the per-target status.
 
 ## How often should I scan?
 
