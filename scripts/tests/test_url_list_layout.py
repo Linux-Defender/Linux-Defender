@@ -1,7 +1,6 @@
 """Negative tests for the URL-list layout contract."""
 from __future__ import annotations
 
-import os
 import subprocess
 import sys
 import tempfile
