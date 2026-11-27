@@ -17,7 +17,6 @@ concurrency:
 
 jobs:
   build-deb:
-    environment: release
     uses: ./.github/workflows/build-deb.yml
     permissions:
       contents: read
@@ -28,7 +27,6 @@ jobs:
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
   build-rpm:
-    environment: release
     uses: ./.github/workflows/build-rpm.yml
     permissions:
       contents: read
@@ -39,7 +37,6 @@ jobs:
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
   build-appimage:
-    environment: release
     uses: ./.github/workflows/build-appimage.yml
     permissions:
       contents: read
