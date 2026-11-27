@@ -98,3 +98,17 @@ fn lynis_runs_noninteractively_with_an_open_parent_stdin() {
         "completed"
     );
 }
+
+#[test]
+fn lsm_list_identifies_active_major_module() {
+    use super::{lsm_active, other_major_lsm_active};
+    let ubuntu = Some("capability,yama,apparmor");
+    assert!(lsm_active(ubuntu, "apparmor"));
+    assert!(!lsm_active(ubuntu, "selinux"));
+    assert!(!other_major_lsm_active(ubuntu));
+    let fedora = Some("capability,selinux");
+    assert!(lsm_active(fedora, "selinux"));
+    let smack = Some("capability,smack");
+    assert!(other_major_lsm_active(smack));
+    assert!(!other_major_lsm_active(None));
+}

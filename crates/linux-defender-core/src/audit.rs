@@ -318,6 +318,34 @@ fn service_active(service: &str) -> (bool, String) {
     (status == "active", status.to_owned())
 }
 
+/// Read a kernel/host sysfs attribute, crossing the Flatpak boundary when
+/// needed. Used for authoritative LSM probes; never writes to sysfs.
+fn host_sysfs_read(path: &str) -> Option<String> {
+    if crate::common::is_flatpak() {
+        crate::host::read_host_file(path)
+            .ok()
+            .filter(|value| !value.is_empty())
+    } else {
+        fs::read_to_string(path)
+            .ok()
+            .filter(|value| !value.is_empty())
+    }
+}
+
+/// True when `name` appears in a comma-separated `/sys/kernel/security/lsm` list.
+fn lsm_active(list: Option<&str>, name: &str) -> bool {
+    list.is_some_and(|list| list.split(',').any(|entry| entry.trim() == name))
+}
+
+/// Another major LSM (Smack/TOMOYO) is active, so AppArmor/SELinux rows would
+/// be misleading false negatives.
+fn other_major_lsm_active(list: Option<&str>) -> bool {
+    list.is_some_and(|list| {
+        list.split(',')
+            .any(|entry| matches!(entry.trim(), "smack" | "tomoyo"))
+    })
+}
+
 fn service_installed(service: &str) -> bool {
     command_ok("systemctl", &["cat", service])
 }
@@ -813,28 +841,35 @@ fn check_mac_framework(ctx: &Context) -> AuditSection {
     );
     // Upstream ClamUI #368: `getenforce` can be absent on minimal images, and
     // an inactive AppArmor module should not warn on a SELinux system.
+    let active_lsms = host_sysfs_read("/sys/kernel/security/lsm");
+    let selinux_lsm_active = lsm_active(active_lsms.as_deref(), "selinux");
+    let other_major_lsm = other_major_lsm_active(active_lsms.as_deref());
     let selinux_command = host_binary("getenforce").unwrap_or_else(|| "getenforce".to_owned());
     let selinux = run_command(&selinux_command, &[], COMMAND_TIMEOUT);
     // Only exit code 0 is a trustworthy SELinux status; other exits mean the
-    // tool failed or is unavailable (upstream ClamUI #374).
+    // tool failed or is unavailable (upstream ClamUI #374). libselinux's
+    // enforcement flag is a fallback when getenforce is unavailable.
     let selinux_mode = if selinux.code == Some(0) {
         Some(selinux.stdout.trim().to_ascii_lowercase())
+    } else if selinux_lsm_active {
+        host_sysfs_read("/sys/fs/selinux/enforce").and_then(|value| match value.trim() {
+            "1" => Some("enforcing".to_owned()),
+            "0" => Some("permissive".to_owned()),
+            _ => None,
+        })
     } else {
         None
     };
-    let selinux_active = matches!(selinux_mode.as_deref(), Some("enforcing" | "permissive"));
-    let apparmor = if is_flatpak() {
-        let output = run_command(
-            "cat",
-            &["/sys/module/apparmor/parameters/enabled"],
-            COMMAND_TIMEOUT,
-        );
-        (output.code == Some(0)).then_some(output.stdout)
-    } else {
-        fs::read_to_string("/sys/module/apparmor/parameters/enabled").ok()
-    };
-    if let Some(ref value) = apparmor {
-        let row = if value.trim() == "Y" {
+    let selinux_active =
+        matches!(selinux_mode.as_deref(), Some("enforcing" | "permissive")) || selinux_lsm_active;
+    let apparmor = host_sysfs_read("/sys/module/apparmor/parameters/enabled");
+    // `enabled=Y` is only the boot-disable flag. libapparmor also requires a
+    // mounted securityfs AppArmor interface before reporting it as enabled.
+    let apparmor_mounted = host_sysfs_read("/sys/kernel/security/apparmor/features").is_some();
+    let apparmor_enabled =
+        apparmor.as_deref().is_some_and(|value| value.trim() == "Y") && apparmor_mounted;
+    if apparmor.is_some() {
+        let row = if apparmor_enabled {
             Some(check(
                 ctx,
                 "apparmor",
@@ -860,7 +895,11 @@ fn check_mac_framework(ctx: &Context) -> AuditSection {
             section.push(row);
         }
     }
-    let apparmor_enabled = apparmor.as_deref().is_some_and(|value| value.trim() == "Y");
+    if other_major_lsm {
+        // Smack/TOMOYO is the active major LSM; AppArmor/SELinux rows would be
+        // misleading false negatives.
+        return section;
+    }
     if let Some(mode) = selinux_mode.as_deref().filter(|mode| {
         // A disabled SELinux is not a risk when AppArmor is already enabled.
         *mode != "disabled" || !apparmor_enabled

@@ -9,9 +9,9 @@ The compact summary shows the issue total alongside icon-led warning, pass, and 
 
 ## Standard checks
 
-The audit reviews ClamAV health and definitions, firewall state and selected listening services, AppArmor/SELinux, automatic updates and pending reboot, fail2ban/CrowdSec, selected SSH settings, and optional Portmaster availability. When Portmaster rejects a stored token, Linux Defender clears it so authorization can be requested again.
+The audit reviews ClamAV health and definitions, firewall state and selected listening services, the mandatory-access-control indicators (AppArmor `enabled` plus a mounted securityfs interface, and SELinux via `getenforce` with `/sys/kernel/security/lsm` and `/sys/fs/selinux/enforce` as fallbacks). Only one major LSM can be active; if Smack or TOMOYO is active, these rows are omitted rather than reported as false negatives, automatic updates and pending reboot, fail2ban/CrowdSec, selected SSH settings, and optional Portmaster availability. When Portmaster rejects a stored token, Linux Defender clears it so authorization can be requested again.
 
-Host permissions and distribution differences can produce **Unknown**. A passing status summarizes only checks Linux Defender could perform, not a security guarantee.
+The AppArmor row is omitted when its `enabled` parameter is unreadable, its securityfs interface is not mounted, or SELinux reports enforcing/permissive. SELinux probes that fail or return a mode other than `enforcing`/`permissive`/`disabled` are reported **Unknown**. Other host permissions and distribution differences can also produce **Unknown**. A passing status summarizes only checks Linux Defender could perform, not a security guarantee.
 
 ## Firewall inventory
 
