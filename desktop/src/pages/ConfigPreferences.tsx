@@ -94,14 +94,6 @@ const FREQUENCY_LABELS: Record<Schedule["schedule_frequency"], () => string> = {
 const FREQUENCIES: Schedule["schedule_frequency"][] = ["hourly", "daily", "weekly", "monthly"];
 const FILE_TYPE_FIELDS = ["ScanPE", "ScanELF", "ScanOLE2", "ScanPDF", "ScanHTML", "ScanArchive"] as const;
 const SCANNER_BOOLEAN_FIELDS = ["LogVerbose", "LogSyslog"] as const;
-const SUGGESTED_SIGNATURE_URLS = [
-  "https://www.rfxn.com/downloads/rfxn.hdb",
-  "https://www.rfxn.com/downloads/rfxn.ndb",
-  "https://sigs.interserver.net/interserver256.hdb",
-  "https://sigs.interserver.net/interservertopline.db",
-  "https://sigs.interserver.net/shell.ldb",
-] as const;
-
 // URLhaus stopped serving anonymous ClamAV signatures; the feed now lives
 // behind an abuse.ch Auth-Key that forms part of the export path.
 const URLHAUS_EXPORT_PREFIX = "https://urlhaus-api.abuse.ch/v2/files/exports/";
