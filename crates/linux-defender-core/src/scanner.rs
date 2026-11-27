@@ -905,7 +905,9 @@ fn finalize_daemon_phase(raw_path: &str, evidence: DaemonPhaseEvidence<'_>) -> S
         scanned_files,
     } = evidence;
     let stdout = display_stdout(&output);
-    let mut result = output.evidence.finish(
+    let mut evidence = output.evidence;
+    evidence.attribute_anonymous_errors(stdin_path.unwrap_or(raw_path));
+    let mut result = evidence.finish(
         BackendEvidence::Daemon { precounted: true },
         raw_path,
         stdout,

@@ -183,6 +183,15 @@ impl StreamEvidence {
         }
     }
 
+    /// clamd names the descriptor instead of the path for errors on files
+    /// passed over stdin (`fd[N]: ... ERROR`, `stream: ... ERROR`). When the
+    /// real path is known, rewrite those lines so users see which file failed.
+    pub(crate) fn attribute_anonymous_errors(&mut self, path: &str) {
+        for (line, _) in &mut self.warnings.hard_errors {
+            *line = attribute_anonymous_error(line, path);
+        }
+    }
+
     pub(crate) fn merge_stderr(&mut self, stderr: Self) {
         for path in stderr.warnings.skipped_files {
             if !self.warnings.skipped_files.contains(&path) {
@@ -323,6 +332,24 @@ fn skipped_path(line: &str) -> Option<&str> {
             .and_then(|(path, _)| nonempty_path(path));
     }
     None
+}
+
+/// Message of a pathless clamd error such as `fd[10]: Not a regular file ERROR`.
+pub(crate) fn anonymous_error_message(line: &str) -> Option<&str> {
+    let body = line.trim_end().strip_suffix(" ERROR")?;
+    let message = body.strip_prefix("stream: ").or_else(|| {
+        let (digits, message) = body.strip_prefix("fd[")?.split_once("]: ")?;
+        (!digits.is_empty() && digits.bytes().all(|byte| byte.is_ascii_digit())).then_some(message)
+    })?;
+    Some(message.trim()).filter(|message| !message.is_empty())
+}
+
+/// Rewrites a pathless clamd error to name `path`; other lines are unchanged.
+pub(crate) fn attribute_anonymous_error(line: &str, path: &str) -> String {
+    anonymous_error_message(line).map_or_else(
+        || line.to_owned(),
+        |message| format!("{path}: {message} ERROR"),
+    )
 }
 
 fn nonempty_path(value: &str) -> Option<&str> {
@@ -484,5 +511,31 @@ fn interpret(scan: ScanEvidence<'_>) -> ScanResult {
             BackendEvidence::Daemon { .. } => "daemon",
         }
         .into(),
+    }
+}
+
+#[cfg(test)]
+mod anonymous_error_tests {
+    use super::*;
+
+    #[test]
+    fn attributes_fd_and_stream_errors_to_the_real_path() {
+        let path = "/home/u/mount/file";
+        assert_eq!(
+            attribute_anonymous_error("fd[10]: Not a regular file ERROR", path),
+            "/home/u/mount/file: Not a regular file ERROR"
+        );
+        assert_eq!(
+            attribute_anonymous_error("stream: size limit exceeded ERROR", path),
+            "/home/u/mount/file: size limit exceeded ERROR"
+        );
+    }
+
+    #[test]
+    fn leaves_named_errors_and_unrelated_lines_alone() {
+        let line = "/other/path: ERROR: Boom";
+        assert_eq!(attribute_anonymous_error(line, "/home/u/file"), line);
+        assert!(anonymous_error_message("fd[x]: nope ERROR").is_none());
+        assert!(anonymous_error_message("fd[10]: nope").is_none());
     }
 }

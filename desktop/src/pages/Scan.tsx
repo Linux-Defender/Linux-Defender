@@ -3,6 +3,7 @@ import { Icon } from "../Icon";
 import { Modal } from "../Modal";
 import { _, ngettext, scanStatusLabel } from "../i18n";
 import { copyText, navigate, notify, onEvent, openExternal, openPaths, request, startupState } from "../api";
+import { resultStore } from "../resultStore";
 import { formatScanOutput } from "../scanOutput";
 import { scanLogChunks } from "../scanLog";
 import { ScanLogViewport } from "../ScanLogViewport";
@@ -195,11 +196,7 @@ function VirusTotalDialog({ path, onClose }: { path: string; onClose: () => void
       const id = `vt-${crypto.randomUUID()}`;
       operationId.current = id;
       const result = await request<Record<string, unknown>>("virustotal.scan", { id, path });
-      try {
-        sessionStorage.setItem("linux-defender-last-vt-result", JSON.stringify(result));
-      } catch {
-        // Result remains available through navigation.
-      }
+      resultStore.remember("virustotal", result);
       window.dispatchEvent(new CustomEvent("linux-defender-vt-result", { detail: result }));
       onClose();
     } catch (reason) {
@@ -426,11 +423,7 @@ export default function Scan() {
     setActiveId(null);
     activeIdRef.current = null;
     setProgress({});
-    try {
-      sessionStorage.setItem("linux-defender-last-scan-result", JSON.stringify(scanResult));
-    } catch {
-      // Result remains available in the mounted page.
-    }
+    resultStore.remember("scan", scanResult);
     if (completedId) window.dispatchEvent(new CustomEvent("linux-defender-scan-state", { detail: { id: completedId, active: false } }));
     window.dispatchEvent(new CustomEvent("linux-defender-scan-result", { detail: scanResult }));
   }, []);

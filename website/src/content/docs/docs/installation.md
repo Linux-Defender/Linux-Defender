@@ -19,6 +19,12 @@ On CachyOS or Arch, the package is `clamav`:
 sudo pacman -S --needed clamav
 ```
 
+On openSUSE Tumbleweed or Leap, the package is also `clamav`:
+
+```bash
+sudo zypper install clamav
+```
+
 If you already enabled `clamav-freshclam-once.timer`, leave updates to that timer. You can confirm its status and check the ClamAV database version from the Linux Defender Database page.
 
 ## Software updates

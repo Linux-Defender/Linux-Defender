@@ -19,7 +19,7 @@ def read(p: Path) -> str:
 def main() -> int:
     failures: list[str] = []
     app, site = read(APP), read(SITE)
-    for label in ("Ubuntu/Debian", "Fedora Workstation", "Fedora Atomic", "Arch Linux"):
+    for label in ("Ubuntu/Debian", "Fedora Workstation", "Fedora Atomic", "Arch Linux", "openSUSE Tumbleweed/Leap"):
         if label not in app:
             failures.append(f"app component guides miss {label}")
         if label not in site:
@@ -27,6 +27,7 @@ def main() -> int:
     for command in (
         "sudo apt install clamav", "sudo dnf install clamav",
         "sudo rpm-ostree install clamav", "sudo pacman -S clamav",
+        "sudo zypper install clamav",
         "sudo apt install clamav-freshclam", "sudo dnf install clamav-freshclam",
         "sudo rpm-ostree install clamav-freshclam",
         "sudo apt install clamav-daemon", "sudo dnf install clamd clamav-freshclam",

@@ -116,22 +116,31 @@ pub fn host_binary(binary: &str) -> Option<String> {
     {
         return None;
     }
-    let args = vec![binary.to_owned()];
-    let output = run_host("which", &args, Some(5)).ok()?;
-    if output.status.success() {
-        let path = String::from_utf8_lossy(&output.stdout).trim().to_owned();
-        if !path.is_empty() {
-            return Some(path);
-        }
+    if let Some(path) = which_host_binary(binary) {
+        return Some(path);
     }
+    fallback_binary_paths(binary)
+        .into_iter()
+        .find(|candidate| host_regular_executable(candidate))
+}
+
+/// Fixed system locations used when `which` is unavailable (minimal images).
+fn fallback_binary_paths(binary: &str) -> [String; 4] {
     [
         format!("/usr/sbin/{binary}"),
         format!("/sbin/{binary}"),
         format!("/usr/bin/{binary}"),
         format!("/bin/{binary}"),
     ]
-    .into_iter()
-    .find(|candidate| host_regular_executable(candidate))
+}
+
+fn which_host_binary(binary: &str) -> Option<String> {
+    let output = run_host("which", &[binary.to_owned()], Some(5)).ok()?;
+    if !output.status.success() {
+        return None;
+    }
+    let path = String::from_utf8_lossy(&output.stdout).trim().to_owned();
+    (!path.is_empty()).then_some(path)
 }
 
 fn host_regular_executable(path: &str) -> bool {
@@ -1146,6 +1155,19 @@ mod tests {
     use std::fs;
     use std::os::unix::fs::symlink;
     use std::time::{Duration, UNIX_EPOCH};
+
+    #[test]
+    fn fallback_binary_paths_include_system_and_usr_bin() {
+        let paths = fallback_binary_paths("getenforce");
+        assert_eq!(paths[0], "/usr/sbin/getenforce");
+        assert_eq!(paths[1], "/sbin/getenforce");
+        assert_eq!(paths[2], "/usr/bin/getenforce");
+        assert_eq!(paths[3], "/bin/getenforce");
+        // The fallback is reachable regardless of whether `which` exists:
+        // which_host_binary returns None on spawn failure instead of
+        // short-circuiting host_binary.
+        assert!(paths.iter().all(|path| path.starts_with('/')));
+    }
 
     #[test]
     fn opensuse_ids_resolve_to_suse_family_and_commands() {

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { resultStore, type ResultKind } from "../resultStore";
 import { Icon } from "../Icon";
 import { Modal } from "../Modal";
 import { _, ngettext, scanStatusLabel } from "../i18n";
@@ -79,15 +80,8 @@ function completedVT(value: unknown): VTResult | null {
   const record = asRecord(value);
   return record && isVTResult(record.result) ? record.result : null;
 }
-function storedResult<T>(key: string, guard: (value: unknown) => value is T): T | null {
-  const serialized = sessionStorage.getItem(key);
-  if (!serialized) return null;
-  try {
-    const parsed: unknown = JSON.parse(serialized);
-    return guard(parsed) ? parsed : null;
-  } catch {
-    return null;
-  }
+function storedResult<T>(kind: ResultKind, guard: (value: unknown) => value is T): T | null {
+  return resultStore.recall(kind, guard);
 }
 
 function ScanResultPanel({ result }: { result: ScanResult }) {
@@ -239,8 +233,8 @@ function FullscreenOutput({ title, chunks, onCopyOrExport, onClose }: { title: s
 }
 
 export default function Results() {
-  const [scan, setScan] = useState<ScanResult | null>(() => storedResult("linux-defender-last-scan-result", isScanResult));
-  const [virusTotal, setVirusTotal] = useState<VTResult | null>(() => storedResult("linux-defender-last-vt-result", isVTResult));
+  const [scan, setScan] = useState<ScanResult | null>(() => storedResult("scan", isScanResult));
+  const [virusTotal, setVirusTotal] = useState<VTResult | null>(() => storedResult("virustotal", isVTResult));
 
   useEffect(() => {
     const onScan = (event: Event) => {
