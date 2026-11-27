@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, type JSX } from "react";
 
-import { notify, openExternal, request } from "../api";
+import { isOpaqueApiToken, isPublicHttpUrl, notify, openExternal, request } from "../api";
 import { Icon } from "../Icon";
 import { _ } from "../i18n";
 import { Modal } from "../Modal";
@@ -33,17 +33,6 @@ const VISIBILITIES: Array<{ id: Visibility; label: () => string }> = [
   { id: "unlisted", label: () => _("Unlisted — visible to urlscan Pro researchers") },
   { id: "public", label: () => _("Public — visible in urlscan search") },
 ];
-
-function validUrl(value: string): boolean {
-  try {
-    const url = new URL(value.trim());
-    return (url.protocol === "http:" || url.protocol === "https:") &&
-      Boolean(url.hostname) && !url.username && !url.password &&
-      !/[\u0000-\u001f\u007f]/.test(value) && new TextEncoder().encode(value).length <= 8192;
-  } catch {
-    return false;
-  }
-}
 
 function keyStatusLabel(status: KeyStatus | null): string {
   if (status?.present) {
@@ -101,6 +90,10 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
     const key = service === "urlscan" ? urlscanKey.trim() : virusTotalKey.trim();
     if (!key) {
       notify(service === "urlscan" ? _("Enter your urlscan API key.") : _("Enter your VirusTotal API key."), "error");
+      return;
+    }
+    if (service === "urlscan" && !isOpaqueApiToken(key)) {
+      notify(_("The urlscan API key must be at least 16 characters and contain no spaces."), "error");
       return;
     }
     setBusy(true);
@@ -235,7 +228,7 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
       {error ? <p className="notice error" role="alert">{error}</p> : null}
       {provider === "urlscan" && urlscanResult ? <div className="notice success" role="status"><div><strong>{_("Submission accepted")}</strong><p>{_("Visibility: {visibility}", { visibility: urlscanResult.visibility })}</p></div><button className="button" type="button" onClick={() => void openExternal(urlscanResult.result_url)}><Icon name="external-link" />{_("Open urlscan result")}</button></div> : null}
       {provider === "virustotal" && virusTotalResult ? <div className={`notice ${virusTotalResult.status === "detected" ? "warning" : virusTotalResult.status === "error" || virusTotalResult.status === "rate_limited" ? "error" : "success"}`} role="status"><div><strong>{virusTotalResult.status === "detected" ? _("VirusTotal reported detections") : virusTotalResult.status === "clean" ? _("Analysis complete — no detections reported") : virusTotalResult.status === "pending" ? _("Analysis is still processing") : virusTotalResult.status === "rate_limited" ? _("VirusTotal rate limit reached") : _("VirusTotal analysis failed")}</strong>{virusTotalResult.status === "clean" || virusTotalResult.status === "detected" ? <p>{_("{detections} of {total} URL engines reported suspicious or malicious", { detections: virusTotalResult.detections, total: virusTotalResult.total_engines })}</p> : null}{virusTotalResult.error_message ? <p>{virusTotalResult.error_message}</p> : null}</div>{virusTotalResult.analysis_url ? <button className="button" type="button" onClick={() => void openExternal(virusTotalResult.analysis_url!)}><Icon name="external-link" />{_("Open VirusTotal analysis")}</button> : null}</div> : null}
-      <div className="button-row"><button className="button primary" type="button" disabled={busy || !validUrl(url)} onClick={review}>{busy ? _("Submitting…") : _("Review submission")}</button></div>
+      <div className="button-row"><button className="button primary" type="button" disabled={busy || !isPublicHttpUrl(url)} onClick={review}>{busy ? _("Submitting…") : _("Review submission")}</button></div>
     </section>
     {confirm ? <Modal title={provider === "urlscan" ? _("Confirm urlscan submission") : _("Confirm VirusTotal URL submission")} busy={busy} onClose={() => { if (!busy) setConfirm(false); }}>
       <p>{provider === "urlscan"

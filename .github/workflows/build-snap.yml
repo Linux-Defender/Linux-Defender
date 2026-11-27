@@ -58,12 +58,13 @@ jobs:
           extract_dir="$(mktemp -d)"
           rmdir "$extract_dir"
           unsquashfs -d "$extract_dir" "$snap" >/dev/null
-          if ! "$extract_dir/squashfs-root/bin/linux-defender-apply-preferences" --help >/dev/null 2>&1; then
-            code=$?
-            # The protocol helper rejects a missing PKEXEC_UID with a bounded
-            # exit code; anything else means the staged binary did not run.
-            test "$code" -ge 1 -a "$code" -le 4
-          fi
+          set +e
+          "$extract_dir/squashfs-root/bin/linux-defender-apply-preferences" --help >/dev/null 2>&1
+          code=$?
+          set -e
+          # The protocol helper rejects a missing PKEXEC_UID with a bounded
+          # exit code; anything else means the staged binary did not run.
+          test "$code" -ge 1 -a "$code" -le 4
           rm -rf "$extract_dir"
 
       - name: Install and run headless CLI

@@ -139,6 +139,7 @@ instead. To add one:
 | `check-packaging-consistency.py` | AUR source pin not an ancestor of HEAD, or format drift |
 | `check-stale-phrases.py` | a corrected stale claim reappearing |
 | `check-cross-layer.py` | Tauri command, CLI subcommand, locale, or feature-matrix drift |
+| `check-support-parity.py` | behavioral support asymmetry between services/layers (e.g. VT hardened but urlscan not) |
 | `check-doc-links.py` / `check-dead-files.py` / `check-doc-indexes.py` | dead links, orphan files, unreachable docs |
 
 ## What is deliberately NOT ported (do not "fix" by copying)

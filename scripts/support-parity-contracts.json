@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "description": "Declarative cross-service and cross-layer support invariants. Each rule lists the files that must contain every pattern; a missing pattern fails check-support-parity.py in check-all.sh.",
+  "rules": [
+    {
+      "name": "online-private-url-guard",
+      "files": ["crates/linux-defender-core/src/virustotal.rs", "crates/linux-defender-core/src/urlscan.rs"],
+      "patterns": ["is_private", "is_loopback", "is_link_local", "is_unspecified"],
+      "reason": "Both remote scanners must reject literal private/loopback/link-local URLs before user consent."
+    },
+    {
+      "name": "online-response-caps",
+      "files": ["crates/linux-defender-core/src/virustotal.rs", "crates/linux-defender-core/src/urlscan.rs"],
+      "patterns": ["bytes.len() >"],
+      "reason": "Both remote clients must bound HTTP response bodies."
+    },
+    {
+      "name": "online-redirect-policy",
+      "files": ["crates/linux-defender-core/src/virustotal.rs", "crates/linux-defender-core/src/urlscan.rs"],
+      "patterns": ["Policy::none()"],
+      "reason": "Neither client may follow redirects with a non-standard API key header."
+    },
+    {
+      "name": "online-masked-status",
+      "files": ["crates/linux-defender-core/src/virustotal.rs", "crates/linux-defender-core/src/urlscan.rs", "crates/linux-defender-core/src/urlhaus.rs"],
+      "patterns": ["masked"],
+      "reason": "Every online service must expose only a masked key status to the frontend."
+    },
+    {
+      "name": "online-gettext-messages",
+      "files": ["crates/linux-defender-core/src/urlscan.rs", "crates/linux-defender-core/src/urlhaus.rs"],
+      "patterns": ["use crate::i18n::translate as tr"],
+      "forbidden": ["\"urlscan API key saved\".into()", "\"URLhaus Auth-Key saved\".into()"],
+      "reason": "Service status messages must be static gettext literals, not raw English IPC text."
+    },
+    {
+      "name": "frontend-online-parity",
+      "files": ["desktop/src/api.ts"],
+      "patterns": ["export function isPublicHttpUrl", "export function isOpaqueApiToken"],
+      "reason": "Frontend validators must mirror both Rust core validators."
+    },
+    {
+      "name": "frontend-uses-shared-validators",
+      "files": ["desktop/src/pages/Urlscan.tsx"],
+      "patterns": ["isPublicHttpUrl(url)", "isOpaqueApiToken(key)"],
+      "reason": "The urlscan UI must enforce the same URL and token rules as the core."
+    },
+    {
+      "name": "scheduler-dual-backend-cleanup",
+      "files": ["crates/linux-defender-core/src/scheduler.rs"],
+      "patterns": ["let _ = disable_systemd(ctx)", "let _ = disable_cron()", "let systemd = disable_systemd(ctx)", "let cron = disable_cron()"],
+      "reason": "Enable and disable must both clear systemd and cron so a backend switch cannot double-schedule."
+    },
+    {
+      "name": "quarantine-confinement",
+      "files": ["crates/linux-defender-core/src/quarantine.rs"],
+      "patterns": ["fn validate_quarantine_path", "canonicalize()", "fn ensure_quarantine_dir", "0o700"],
+      "reason": "Quarantine paths and restore directories must remain confined and private."
+    },
+    {
+      "name": "tauri-least-privilege",
+      "files": ["desktop/src-tauri/capabilities/main.json"],
+      "patterns": ["core:event:allow-listen"],
+      "forbidden": ["core:event:default", "core:window:default", "core:app:default", "core:default"],
+      "reason": "The webview may listen to events but must not emit, query all windows, or read app metadata."
+    },
+    {
+      "name": "helper-bounded-wire",
+      "files": ["crates/linux-defender-core/src/privileged.rs"],
+      "patterns": ["MAX_STAGED_PAIRS", "MAX_CONFIG_READ_BYTES"],
+      "reason": "The root helper must cap both staged pair count and staged byte length."
+    },
+    {
+      "name": "untrusted-input-sanitization",
+      "files": [
+        "crates/linux-defender-core/src/scan_parser.rs",
+        "crates/linux-defender-core/src/updater.rs",
+        "crates/linux-defender-core/src/host.rs",
+        "crates/linux-defender-core/src/quarantine.rs",
+        "crates/linux-defender-core/src/profiles.rs"
+      ],
+      "mode": "union",
+      "patterns": ["sanitize_line", "sanitize_text"],
+      "reason": "Host and remote text must be sanitized before IPC, persistence, or native menu display."
+    }
+  ]
+}

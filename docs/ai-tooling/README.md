@@ -27,7 +27,7 @@ all of them; adapters only add convenience.
 | Aider | `.aider.conf.yml` | Loads `AGENTS.md` and `AI-ENFORCEMENT.md` into every chat. |
 | Cursor / Continue / Zed | `AGENTS.md` convention | Universal baseline applies directly. |
 | Skills | `.agents/skills/`, linked from `.claude/skills/` | `linux-defender-parity`, `linux-defender-integrations`, `linux-defender-gettext`, `linux-defender-enforcement`, plus imported base skills. |
-| MCP server | `mcp/linux-defender-assist/` | Local stdio tools for translation review, desktop capture, tray/helper probing, and online-service preflight. Never performs privileged installs, catalog writes, or external submissions. |
+| MCP server | `mcp/linux-defender-assist/` | Local stdio tools for translation review, desktop capture, tray/helper probing, online-service preflight, and read-only cross-layer support-parity reporting. Never performs privileged installs, catalog writes, or external submissions. |
 
 `scripts/check-ai-enforcement-wiring.py` verifies that every adapter still
 reads the canonical file, that no rules are duplicated, that all supported
@@ -42,3 +42,13 @@ assistants are listed, and that hooks/commands/skills are wired.
   published website or user-facing app.
 - When adding an assistant, update **all** universal entry points and the
   wiring checker in the same change.
+
+## Support-parity guard
+
+`scripts/check-support-parity.py` enforces the declarative behavioral contracts in
+`scripts/support-parity-contracts.json` (online-service symmetry, frontend
+validators, scheduler cleanup, quarantine confinement, least-privilege
+capabilities, helper bounds, and untrusted-input sanitization). It runs in
+`check-all.sh`, the pre-commit gate, and CI; the read-only MCP tool
+`ld_support_parity` reports the same result without changing any file. New
+contracts require a negative test in `scripts/tests/test_support_parity.py`.

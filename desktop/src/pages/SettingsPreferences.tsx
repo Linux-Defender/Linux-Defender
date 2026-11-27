@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
-import { copyText, notify, openExternal, openPath, openPaths, request, saveBinary } from "../api";
+import { isOpaqueApiToken, copyText, notify, openExternal, openPath, openPaths, request, saveBinary } from "../api";
 import { _, activeCatalog, ngettext } from "../i18n";
 import { Icon } from "../Icon";
 import { Modal } from "../Modal";
@@ -437,7 +437,7 @@ function UrlscanPage({ settings, saveSetting }: { settings: Settings; saveSettin
     try { setStatus(await request<KeyStatus>("urlscan.key_status")); } catch { setStatus({ present: false, backend: "none", status: "unavailable" }); }
   }, []);
   useEffect(() => { void refresh(); }, [refresh]);
-  const canSave = key.trim().length > 0 && !/\s/.test(key.trim());
+  const canSave = isOpaqueApiToken(key);
   const saveKey = async () => {
     if (key.trim().length === 0) { notify(_("Enter your urlscan API key."), "error"); return; }
     if (/\s/.test(key.trim())) { notify(_("The urlscan API key cannot contain spaces."), "error"); return; }

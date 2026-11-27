@@ -1,4 +1,5 @@
 use crate::credentials::{Account, CredentialStore};
+use crate::i18n::translate as tr;
 use crate::{AppResult, Context};
 use reqwest::blocking::Client;
 use reqwest::redirect::Policy;
@@ -217,7 +218,8 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 "backend": info.backend,
                 "status": info.status,
                 "masked": info.masked,
-                "message": write.warning.unwrap_or_else(|| "urlscan API key saved".into()),
+                                // Translators: Keep `urlscan` unchanged; it is a product name.
+                "message": write.warning.unwrap_or_else(|| tr(ctx, "urlscan API key saved")),
             }))
         }
         "key_delete" => {
@@ -228,7 +230,12 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 "backend": info.backend,
                 "status": info.status,
                 "masked": info.masked,
-                "message": if deleted { "urlscan API key deleted" } else { "No urlscan API key was configured" },
+                                "message": if deleted {
+                    // Translators: Keep `urlscan` unchanged; it is a product name.
+                    tr(ctx, "urlscan API key deleted")
+                } else {
+                    tr(ctx, "No urlscan API key was configured")
+                },
             }))
         }
         "submit" => {

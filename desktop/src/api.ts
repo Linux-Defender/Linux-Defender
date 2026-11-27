@@ -2,6 +2,35 @@ import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { _ } from "./i18n";
 
+/** Public HTTP(S) URL check mirroring the Rust core validators. Literal
+ * loopback/private/link-local addresses are rejected before user consent. */
+export function isPublicHttpUrl(value: string): boolean {
+  try {
+    const url = new URL(value.trim());
+    if (url.protocol !== "http:" && url.protocol !== "https:") return false;
+    if (!url.hostname || url.username || url.password) return false;
+    if (new TextEncoder().encode(value).length > 8192) return false;
+    const host = url.hostname.replace(/^\[|\]$/g, "").toLowerCase();
+    const v4 = host.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+    if (v4) {
+      const [a, b] = v4.slice(1).map(Number);
+      if (a === 0 || a === 10 || a === 127 || (a === 169 && b === 254)
+        || (a === 192 && b === 168) || a >= 224) return false;
+    }
+    if (host === "localhost" || host.endsWith(".localhost") || host === "::1"
+      || host.startsWith("fc") || host.startsWith("fd") || host.startsWith("fe80:")) return false;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** urlscan / Portmaster opaque token rule, mirroring `validate_generic_api_token`. */
+export function isOpaqueApiToken(value: string): boolean {
+  const trimmed = value.trim();
+  return trimmed.length >= 16 && !/[\s\u0000-\u001f\u007f]/.test(trimmed);
+}
+
 
 export type NotificationType = "success" | "error" | "info" | "warning";
 export type FileFilter = { name: string; extensions: string[] };

@@ -22,6 +22,7 @@ application runtime dependencies.
 - `scripts/check-built-links.py` — built-site links, anchors, and HTML/CSS structure.
 - `scripts/check-compiled-catalogs.ts` — compiled catalog identity check.
 - `scripts/check-cross-layer.py` — IPC/CLI/locale/feature contracts from source.
+- `scripts/check-support-parity.py` — declarative cross-service support invariants (VT/urlscan/urlhaus, frontend validators, scheduler, quarantine, capabilities, sanitization).
 - `scripts/check-dead-files.py` — orphaned docs/modules/skills.
 - `scripts/check-doc-indexes.py` — every internal doc linked from its folder index.
 - `scripts/check-doc-links.py` — broken relative Markdown links.
@@ -60,4 +61,4 @@ application runtime dependencies.
 - `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).
 - `scripts/validate-sway.sh` — interactive Sway checklist runner.
 - `scripts/hooks/ai-enforcement-context.py`, `scripts/hooks/install-hooks.sh`, `scripts/hooks/pre-commit`, `scripts/hooks/pre-push` — git/AI hooks.
-- `scripts/tests/test_external_links.py`, `scripts/tests/test_signature_check.py` — checker regression tests.
+- `scripts/tests/test_external_links.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py` — checker regression tests.

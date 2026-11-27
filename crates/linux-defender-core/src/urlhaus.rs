@@ -10,6 +10,7 @@
 use crate::credentials::{
     mask_api_key, Account, CredentialBackend, CredentialInfo, CredentialStatus, CredentialStore,
 };
+use crate::i18n::translate as tr;
 use crate::{AppResult, Context};
 use serde_json::{json, Value};
 
@@ -92,7 +93,8 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 "backend": info.backend,
                 "status": info.status,
                 "masked": info.masked,
-                "message": write.warning.unwrap_or_else(|| "URLhaus Auth-Key saved".into()),
+                                // Translators: Keep `URLhaus` and `Auth-Key` unchanged; they are product/protocol names.
+                "message": write.warning.unwrap_or_else(|| tr(ctx, "URLhaus Auth-Key saved")),
             }))
         }
         "key_delete" => {
@@ -105,7 +107,12 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 "backend": info.backend,
                 "status": info.status,
                 "masked": info.masked,
-                "message": if deleted { "URLhaus Auth-Key deleted" } else { "No URLhaus Auth-Key was configured" },
+                                "message": if deleted {
+                    // Translators: Keep `URLhaus` and `Auth-Key` unchanged; they are product/protocol names.
+                    tr(ctx, "URLhaus Auth-Key deleted")
+                } else {
+                    tr(ctx, "No URLhaus Auth-Key was configured")
+                },
             }))
         }
         _ => Err(format!("Unknown urlhaus action: {action}")),

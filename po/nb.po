@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-26 20:56-0500\n"
+"POT-Creation-Date: 2026-11-26 23:07-0500\n"
 "PO-Revision-Date: 2026-10-17 12:00+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmål\n"
@@ -866,7 +866,9 @@ msgstr "Kommandoer:"
 msgid ""
 "\n"
 "Common per-command options:"
-msgstr "\nCommon per-command options:"
+msgstr ""
+"\n"
+"Common per-command options:"
 
 #. Translators: Keep `--json` and `JSON` unchanged; they are a CLI flag and data format.
 #: crates/linux-defender-core/src/cli.rs:186
@@ -1003,7 +1005,9 @@ msgstr ""
 msgid ""
 "Scan one or more files or directories with ClamAV.\n"
 "Exit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
-msgstr "Scan one or more files or directories with ClamAV.\nExit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
+msgstr ""
+"Scan one or more files or directories with ClamAV.\n"
+"Exit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
 
 #: crates/linux-defender-core/src/cli.rs:617
 msgid "Path not found: {path}"
@@ -1156,8 +1160,8 @@ msgid "{prefix}: {error}"
 msgstr "{prefix}: {error}"
 
 #: crates/linux-defender-core/src/cli.rs:1084
-#: crates/linux-defender-core/src/quarantine.rs:507
-#: crates/linux-defender-core/src/quarantine.rs:544
+#: crates/linux-defender-core/src/quarantine.rs:508
+#: crates/linux-defender-core/src/quarantine.rs:545
 msgid "Quarantine entry not found: {id}"
 msgstr "Fant ikke karanteneoppføringen: {id}"
 
@@ -1716,21 +1720,21 @@ msgstr ""
 msgid "The privileged helper was terminated while {operation}."
 msgstr "Den privilegerte hjelperen ble avsluttet mens {operation}."
 
-#: crates/linux-defender-core/src/privileged.rs:1235
+#: crates/linux-defender-core/src/privileged.rs:1237
 msgid "Applying configuration"
 msgstr "Bruker konfigurasjon"
 
 #. Translators: keep {message}; it is the complete preceding helper error.
-#: crates/linux-defender-core/src/privileged.rs:1237
+#: crates/linux-defender-core/src/privileged.rs:1239
 msgid "{message} One or more earlier replacements may have succeeded."
 msgstr "{message} En eller flere tidligere erstatninger kan ha lyktes."
 
-#: crates/linux-defender-core/src/privileged.rs:1479
+#: crates/linux-defender-core/src/privileged.rs:1481
 msgid "Reading configuration"
 msgstr "Leser konfigurasjon"
 
 #. Translators: "privileged-helper" identifies the Linux Defender helper component.
-#: crates/linux-defender-core/src/privileged.rs:3133
+#: crates/linux-defender-core/src/privileged.rs:3137
 msgid ""
 "The privileged-helper installation failed. Try again or install it manually."
 msgstr ""
@@ -1854,11 +1858,11 @@ msgstr "Ugyldig {kind} baneformat: {path}"
 msgid "Could not generate unique name for '{name}'"
 msgstr "Kunne ikke generere unikt navn for '{name}'"
 
-#: crates/linux-defender-core/src/quarantine.rs:459
+#: crates/linux-defender-core/src/quarantine.rs:460
 msgid "Quarantine metadata was written but could not be read"
 msgstr "Karantenemetadata ble skrevet, men kunne ikke leses"
 
-#: crates/linux-defender-core/src/quarantine.rs:481
+#: crates/linux-defender-core/src/quarantine.rs:482
 msgid ""
 "Failed to record quarantine entry in database. File has been restored to "
 "original location."
@@ -1867,7 +1871,7 @@ msgstr ""
 "gjenopprettet til den opprinnelige plasseringen."
 
 #. Translators: Preserve `{error}` as a localized failure description and `{path}` as a user-provided file path.
-#: crates/linux-defender-core/src/quarantine.rs:484
+#: crates/linux-defender-core/src/quarantine.rs:485
 msgid ""
 "Failed to record quarantine entry in database. Rollback also failed: "
 "{error}. File may be orphaned at: {path}"
@@ -1875,7 +1879,7 @@ msgstr ""
 "Kunne ikke registrere karanteneoppføringen i databasen. Tilbakestillingen "
 "mislyktes også: {error}. Filen kan ligge igjen uten oppføring på: {path}"
 
-#: crates/linux-defender-core/src/quarantine.rs:532
+#: crates/linux-defender-core/src/quarantine.rs:533
 msgid ""
 "File restored successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1883,7 +1887,7 @@ msgstr ""
 "Filen er gjenopprettet, men oppføringen i databasen kunne ikke fjernes. Den "
 "kan fortsatt vises i listen til den er ryddet bort."
 
-#: crates/linux-defender-core/src/quarantine.rs:564
+#: crates/linux-defender-core/src/quarantine.rs:565
 msgid ""
 "File deleted successfully, but the database entry could not be removed. It "
 "may still appear in the list until cleaned up."
@@ -1892,12 +1896,12 @@ msgstr ""
 "fortsatt vises i listen til den er ryddet bort."
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/linux-defender-core/src/quarantine.rs:1585
+#: crates/linux-defender-core/src/quarantine.rs:1586
 msgid "Cannot quarantine {path}: {error}"
 msgstr "Kan ikke sette {path} i karantene: {error}"
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/linux-defender-core/src/quarantine.rs:1603
+#: crates/linux-defender-core/src/quarantine.rs:1604
 msgid "File hash mismatch — file may be corrupted"
 msgstr "Filhash samsvarer ikke — filen kan være ødelagt"
 
@@ -2243,72 +2247,96 @@ msgstr ""
 "Kunne ikke utløse freshclam-tjenesteoppdateringen. Prøv å starte tjenesten "
 "på nytt: sudo systemctl restart clamav-freshclam ({error})"
 
-#: crates/linux-defender-core/src/virustotal.rs:1213
+#: crates/linux-defender-core/src/urlhaus.rs:97
+msgid "URLhaus Auth-Key saved"
+msgstr "URLhaus Auth-Key saved"
+
+#: crates/linux-defender-core/src/urlhaus.rs:112
+msgid "URLhaus Auth-Key deleted"
+msgstr "URLhaus Auth-Key deleted"
+
+#: crates/linux-defender-core/src/urlhaus.rs:114
+msgid "No URLhaus Auth-Key was configured"
+msgstr "No URLhaus Auth-Key was configured"
+
+#: crates/linux-defender-core/src/urlscan.rs:222
+msgid "urlscan API key saved"
+msgstr "urlscan API key saved"
+
+#: crates/linux-defender-core/src/urlscan.rs:235
+msgid "urlscan API key deleted"
+msgstr "urlscan API key deleted"
+
+#: crates/linux-defender-core/src/urlscan.rs:237
+msgid "No urlscan API key was configured"
+msgstr "No urlscan API key was configured"
+
+#: crates/linux-defender-core/src/virustotal.rs:1217
 msgid "File too large ({size}MB). Maximum size is {max}MB"
 msgstr "Filen er for stor ({size} MB). Største tillatte størrelse er {max} MB"
 
-#: crates/linux-defender-core/src/virustotal.rs:1217
+#: crates/linux-defender-core/src/virustotal.rs:1221
 msgid "Invalid file path"
 msgstr "Ugyldig filbane"
 
-#: crates/linux-defender-core/src/virustotal.rs:1219
+#: crates/linux-defender-core/src/virustotal.rs:1223
 msgid "Path is not a regular file"
 msgstr "Banen er ikke en vanlig fil"
 
-#: crates/linux-defender-core/src/virustotal.rs:1221
+#: crates/linux-defender-core/src/virustotal.rs:1225
 msgid "File changed while hashing"
 msgstr "Fil endret under hashing"
 
-#: crates/linux-defender-core/src/virustotal.rs:1223
+#: crates/linux-defender-core/src/virustotal.rs:1227
 msgid "File changed before upload"
 msgstr "Fil endret før opplasting"
 
-#: crates/linux-defender-core/src/virustotal.rs:1225
+#: crates/linux-defender-core/src/virustotal.rs:1229
 msgid "File changed during upload"
 msgstr "Fil endret under opplasting"
 
-#: crates/linux-defender-core/src/virustotal.rs:1234
+#: crates/linux-defender-core/src/virustotal.rs:1238
 msgid "VirusTotal: Clean scan"
 msgstr "VirusTotal: Ren skanning"
 
-#: crates/linux-defender-core/src/virustotal.rs:1237
+#: crates/linux-defender-core/src/virustotal.rs:1241
 msgid "VirusTotal: {detections}/{total} engines detected threats"
 msgstr "VirusTotal: {detections}/{total} motorer oppdaget trusler"
 
-#: crates/linux-defender-core/src/virustotal.rs:1244
+#: crates/linux-defender-core/src/virustotal.rs:1248
 msgid "VirusTotal: Threats detected"
 msgstr "VirusTotal: Trusler oppdaget"
 
-#: crates/linux-defender-core/src/virustotal.rs:1245
+#: crates/linux-defender-core/src/virustotal.rs:1249
 msgid "VirusTotal: Rate limit exceeded"
 msgstr "VirusTotal: Frekvensgrensen er overskredet"
 
-#: crates/linux-defender-core/src/virustotal.rs:1246
+#: crates/linux-defender-core/src/virustotal.rs:1250
 msgid "VirusTotal: Analysis pending"
 msgstr "VirusTotal: Analyse venter"
 
-#: crates/linux-defender-core/src/virustotal.rs:1249
+#: crates/linux-defender-core/src/virustotal.rs:1253
 msgid "VirusTotal: File not previously analyzed"
 msgstr "VirusTotal: Filen er ikke tidligere analysert"
 
-#: crates/linux-defender-core/src/virustotal.rs:1251
+#: crates/linux-defender-core/src/virustotal.rs:1255
 msgid "VirusTotal: File too large for upload"
 msgstr "VirusTotal: Filen er for stor for opplasting"
 
-#: crates/linux-defender-core/src/virustotal.rs:1252
+#: crates/linux-defender-core/src/virustotal.rs:1256
 msgid "VirusTotal: Scan error"
 msgstr "VirusTotal: Skannefeil"
 
-#: crates/linux-defender-core/src/virustotal.rs:1257
+#: crates/linux-defender-core/src/virustotal.rs:1261
 msgid "Detections: {detections}/{total}"
 msgstr "Deteksjoner: {detections}/{total}"
 
-#: crates/linux-defender-core/src/virustotal.rs:1271
+#: crates/linux-defender-core/src/virustotal.rs:1275
 msgid "Error: {error}"
 msgstr "Feil: {error}"
 
 #. Translators: Keep `API` unchanged as the abbreviation for application programming interface.
-#: crates/linux-defender-core/src/virustotal.rs:1512
+#: crates/linux-defender-core/src/virustotal.rs:1516
 msgid "API key saved"
 msgstr "API-nøkkelen er lagret"
 
@@ -2607,7 +2635,7 @@ msgstr "Husk valget mitt"
 #: desktop/src/pages/SettingsPreferences.tsx:428
 #: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/SettingsPreferences.tsx:544
-#: desktop/src/pages/Urlscan.tsx:246
+#: desktop/src/pages/Urlscan.tsx:239
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -2906,19 +2934,19 @@ msgstr "Feil"
 msgid "Retry"
 msgstr "Prøv på nytt"
 
-#: desktop/src/api.ts:75
+#: desktop/src/api.ts:104
 msgid "The contributor credits response was invalid."
 msgstr "Bidragsyter-krediteringssvaret var ugyldig."
 
-#: desktop/src/api.ts:178
+#: desktop/src/api.ts:207
 msgid "Enter a valid HTTP(S) address"
 msgstr "Skriv inn en gyldig HTTP(S)-adresse"
 
-#: desktop/src/api.ts:181
+#: desktop/src/api.ts:210
 msgid "Only HTTP(S) addresses may be opened externally"
 msgstr "Bare HTTP(S)-adresser kan åpnes eksternt"
 
-#: desktop/src/api.ts:190
+#: desktop/src/api.ts:219
 msgid "Choose a file or folder first"
 msgstr "Velg en fil eller mappe først"
 
@@ -4361,7 +4389,7 @@ msgstr "Tidligere skanninger og oppdateringer"
 #: desktop/src/pages/SettingsPreferences.tsx:428
 #: desktop/src/pages/SettingsPreferences.tsx:455
 #: desktop/src/pages/SettingsPreferences.tsx:537
-#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:217
+#: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:210
 msgid "Refresh"
 msgstr "Oppdater"
 
@@ -4786,11 +4814,11 @@ msgstr "Sanntidsskanning"
 msgid "YARA Rules"
 msgstr "YARA-regler"
 
-#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:211
+#: desktop/src/pages/Preferences.tsx:21 desktop/src/pages/Urlscan.tsx:204
 msgid "VirusTotal"
 msgstr "VirusTotal"
 
-#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:210
+#: desktop/src/pages/Preferences.tsx:22 desktop/src/pages/Urlscan.tsx:203
 msgid "urlscan.io"
 msgstr "urlscan.io"
 
@@ -5526,12 +5554,12 @@ msgstr "Skannefeil"
 msgid "Unknown error"
 msgstr "Ukjent feil"
 
-#: desktop/src/pages/Scan.tsx:176 desktop/src/pages/Urlscan.tsx:192
+#: desktop/src/pages/Scan.tsx:176 desktop/src/pages/Urlscan.tsx:185
 msgid "Opened the VirusTotal upload page in your browser"
 msgstr "VirusTotal-opplastingssiden ble åpnet i nettleseren"
 
 #: desktop/src/pages/Scan.tsx:183 desktop/src/pages/Scan.tsx:364
-#: desktop/src/pages/Urlscan.tsx:199
+#: desktop/src/pages/Urlscan.tsx:192
 msgid ""
 "Configure a VirusTotal API key in Preferences before starting this scan."
 msgstr ""
@@ -5578,7 +5606,7 @@ msgid "VirusTotal is analyzing the file…"
 msgstr "VirusTotal is analyzing the file…"
 
 #: desktop/src/pages/Scan.tsx:256 desktop/src/pages/Scan.tsx:371
-#: desktop/src/pages/Urlscan.tsx:237
+#: desktop/src/pages/Urlscan.tsx:230
 msgid "Open VirusTotal analysis"
 msgstr "Open VirusTotal analysis"
 
@@ -5768,7 +5796,7 @@ msgstr "Scan type"
 msgid "Files & Folders"
 msgstr "Files & Folders"
 
-#: desktop/src/pages/Scan.tsx:762 desktop/src/pages/Urlscan.tsx:230
+#: desktop/src/pages/Scan.tsx:762 desktop/src/pages/Urlscan.tsx:223
 msgid "Website URL"
 msgstr "Website URL"
 
@@ -6171,7 +6199,7 @@ msgstr "Kan ikke lagre API-nøkkelen"
 
 #: desktop/src/pages/SettingsPreferences.tsx:425
 #: desktop/src/pages/SettingsPreferences.tsx:452
-#: desktop/src/pages/Urlscan.tsx:134
+#: desktop/src/pages/Urlscan.tsx:127
 msgid "API key deleted"
 msgstr "API-nøkkelen er slettet"
 
@@ -6191,13 +6219,13 @@ msgstr ""
 
 #: desktop/src/pages/SettingsPreferences.tsx:428
 #: desktop/src/pages/SettingsPreferences.tsx:455
-#: desktop/src/pages/Urlscan.tsx:50
+#: desktop/src/pages/Urlscan.tsx:39
 msgid "Configured ({masked}) using {backend}"
 msgstr "Konfigurert ({masked}) med {backend}"
 
 #: desktop/src/pages/SettingsPreferences.tsx:428
 #: desktop/src/pages/SettingsPreferences.tsx:455
-#: desktop/src/pages/Urlscan.tsx:51
+#: desktop/src/pages/Urlscan.tsx:40
 msgid "masked"
 msgstr "maskert"
 
@@ -6213,7 +6241,7 @@ msgstr "Nøkkelringen er utilgjengelig"
 
 #: desktop/src/pages/SettingsPreferences.tsx:428
 #: desktop/src/pages/SettingsPreferences.tsx:455
-#: desktop/src/pages/Urlscan.tsx:57
+#: desktop/src/pages/Urlscan.tsx:46
 msgid "Not configured"
 msgstr "Ikke satt opp"
 
@@ -6280,7 +6308,7 @@ msgstr ""
 "bruke VirusTotal-skanning."
 
 #: desktop/src/pages/SettingsPreferences.tsx:442
-#: desktop/src/pages/Urlscan.tsx:103
+#: desktop/src/pages/Urlscan.tsx:92
 msgid "Enter your urlscan API key."
 msgstr "Enter your urlscan API key."
 
@@ -6293,7 +6321,7 @@ msgid "Paste the API key from your urlscan.io account settings."
 msgstr "Paste the API key from your urlscan.io account settings."
 
 #: desktop/src/pages/SettingsPreferences.tsx:455
-#: desktop/src/pages/Urlscan.tsx:221
+#: desktop/src/pages/Urlscan.tsx:214
 msgid "Get an API key"
 msgstr "Get an API key"
 
@@ -6635,35 +6663,40 @@ msgstr "Unlisted — visible to urlscan Pro researchers"
 msgid "Public — visible in urlscan search"
 msgstr "Public — visible in urlscan search"
 
-#: desktop/src/pages/Urlscan.tsx:55
+#: desktop/src/pages/Urlscan.tsx:44
 msgid "System keyring is locked"
 msgstr "System keyring is locked"
 
-#: desktop/src/pages/Urlscan.tsx:56
+#: desktop/src/pages/Urlscan.tsx:45
 msgid "System keyring is unavailable"
 msgstr "System keyring is unavailable"
 
-#: desktop/src/pages/Urlscan.tsx:103
+#: desktop/src/pages/Urlscan.tsx:92
 msgid "Enter your VirusTotal API key."
 msgstr "Enter your VirusTotal API key."
 
-#: desktop/src/pages/Urlscan.tsx:116
+#: desktop/src/pages/Urlscan.tsx:96
+msgid ""
+"The urlscan API key must be at least 16 characters and contain no spaces."
+msgstr "The urlscan API key must be at least 16 characters and contain no spaces."
+
+#: desktop/src/pages/Urlscan.tsx:109
 msgid "Unable to save the API key: {error}"
 msgstr "Unable to save the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:136
+#: desktop/src/pages/Urlscan.tsx:129
 msgid "Unable to delete the API key: {error}"
 msgstr "Unable to delete the API key: {error}"
 
-#: desktop/src/pages/Urlscan.tsx:150
+#: desktop/src/pages/Urlscan.tsx:143
 msgid "URL submitted to urlscan"
 msgstr "URL submitted to urlscan"
 
-#: desktop/src/pages/Urlscan.tsx:158
+#: desktop/src/pages/Urlscan.tsx:151
 msgid "URL analysis submitted to VirusTotal"
 msgstr "URL analysis submitted to VirusTotal"
 
-#: desktop/src/pages/Urlscan.tsx:168
+#: desktop/src/pages/Urlscan.tsx:161
 msgid ""
 "Private scans are visible only to you unless you share the result; urlscan "
 "retains them for a limited period."
@@ -6671,7 +6704,7 @@ msgstr ""
 "Private scans are visible only to you unless you share the result; urlscan "
 "retains them for a limited period."
 
-#: desktop/src/pages/Urlscan.tsx:170
+#: desktop/src/pages/Urlscan.tsx:163
 msgid ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
@@ -6679,7 +6712,7 @@ msgstr ""
 "Unlisted scans are not in public search, but vetted urlscan Pro researchers "
 "can see them."
 
-#: desktop/src/pages/Urlscan.tsx:171
+#: desktop/src/pages/Urlscan.tsx:164
 msgid ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
@@ -6687,40 +6720,40 @@ msgstr ""
 "Public scans are visible in urlscan search and may expose the submitted URL "
 "to others."
 
-#: desktop/src/pages/Urlscan.tsx:183 desktop/src/pages/Urlscan.tsx:203
+#: desktop/src/pages/Urlscan.tsx:176 desktop/src/pages/Urlscan.tsx:196
 msgid "Enter your urlscan API key before submitting a URL."
 msgstr "Skriv inn urlscan-API-nøkkelen før du sender inn en URL."
 
-#: desktop/src/pages/Urlscan.tsx:184 desktop/src/pages/Urlscan.tsx:204
+#: desktop/src/pages/Urlscan.tsx:177 desktop/src/pages/Urlscan.tsx:197
 msgid "Enter your VirusTotal API key before submitting a URL."
 msgstr "Skriv inn VirusTotal-API-nøkkelen før du sender inn en URL."
 
-#: desktop/src/pages/Urlscan.tsx:191
+#: desktop/src/pages/Urlscan.tsx:184
 msgid "Opened the urlscan.io website in your browser"
 msgstr "urlscan.io-nettstedet ble åpnet i nettleseren"
 
-#: desktop/src/pages/Urlscan.tsx:198
+#: desktop/src/pages/Urlscan.tsx:191
 msgid "Configure a urlscan API key in Preferences before submitting a URL."
 msgstr ""
 "Konfigurer en urlscan-API-nøkkel i Innstillinger før du sender inn en URL."
 
-#: desktop/src/pages/Urlscan.tsx:208
+#: desktop/src/pages/Urlscan.tsx:201
 msgid "Website URL inspection"
 msgstr "Website URL inspection"
 
-#: desktop/src/pages/Urlscan.tsx:209
+#: desktop/src/pages/Urlscan.tsx:202
 msgid "URL scan service"
 msgstr "URL scan service"
 
-#: desktop/src/pages/Urlscan.tsx:215
+#: desktop/src/pages/Urlscan.tsx:208
 msgid "urlscan.io account"
 msgstr "urlscan.io account"
 
-#: desktop/src/pages/Urlscan.tsx:215
+#: desktop/src/pages/Urlscan.tsx:208
 msgid "VirusTotal account"
 msgstr "VirusTotal account"
 
-#: desktop/src/pages/Urlscan.tsx:216
+#: desktop/src/pages/Urlscan.tsx:209
 msgid ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
@@ -6728,35 +6761,35 @@ msgstr ""
 "API keys are stored in the operating system keyring when available and are "
 "never sent to the interface."
 
-#: desktop/src/pages/Urlscan.tsx:217
+#: desktop/src/pages/Urlscan.tsx:210
 msgid "Key status"
 msgstr "Key status"
 
-#: desktop/src/pages/Urlscan.tsx:218
+#: desktop/src/pages/Urlscan.tsx:211
 msgid "Personal API key"
 msgstr "Personal API key"
 
-#: desktop/src/pages/Urlscan.tsx:218
+#: desktop/src/pages/Urlscan.tsx:211
 msgid "Paste your urlscan API key"
 msgstr "Paste your urlscan API key"
 
-#: desktop/src/pages/Urlscan.tsx:218
+#: desktop/src/pages/Urlscan.tsx:211
 msgid "Paste your VirusTotal API key"
 msgstr "Paste your VirusTotal API key"
 
-#: desktop/src/pages/Urlscan.tsx:220
+#: desktop/src/pages/Urlscan.tsx:213
 msgid "Save key"
 msgstr "Save key"
 
-#: desktop/src/pages/Urlscan.tsx:220
+#: desktop/src/pages/Urlscan.tsx:213
 msgid "Delete key"
 msgstr "Delete key"
 
-#: desktop/src/pages/Urlscan.tsx:226
+#: desktop/src/pages/Urlscan.tsx:219
 msgid "Submit a website for inspection"
 msgstr "Submit a website for inspection"
 
-#: desktop/src/pages/Urlscan.tsx:228
+#: desktop/src/pages/Urlscan.tsx:221
 msgid ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
@@ -6764,7 +6797,7 @@ msgstr ""
 "urlscan visits the website in a remote browser and records its page "
 "activity. This is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/Urlscan.tsx:229
+#: desktop/src/pages/Urlscan.tsx:222
 msgid ""
 "VirusTotal checks the URL with multiple security engines and blocklists. "
 "This is a remote reputation analysis, not a local file scan."
@@ -6772,11 +6805,11 @@ msgstr ""
 "VirusTotal checks the URL with multiple security engines and blocklists. "
 "This is a remote reputation analysis, not a local file scan."
 
-#: desktop/src/pages/Urlscan.tsx:231
+#: desktop/src/pages/Urlscan.tsx:224
 msgid "Result visibility"
 msgstr "Result visibility"
 
-#: desktop/src/pages/Urlscan.tsx:233
+#: desktop/src/pages/Urlscan.tsx:226
 msgid ""
 "urlscan receives the complete URL, including its query string, and visits "
 "it. Never submit login links, session tokens, private/internal URLs, or "
@@ -6786,7 +6819,7 @@ msgstr ""
 "it. Never submit login links, session tokens, private/internal URLs, or "
 "confidential information."
 
-#: desktop/src/pages/Urlscan.tsx:234
+#: desktop/src/pages/Urlscan.tsx:227
 msgid ""
 "VirusTotal adds submitted and queried URLs to its dataset, where they may be "
 "shared with its community and security partners. Never submit login links, "
@@ -6796,59 +6829,59 @@ msgstr ""
 "shared with its community and security partners. Never submit login links, "
 "session tokens, private/internal URLs, or confidential information."
 
-#: desktop/src/pages/Urlscan.tsx:236
+#: desktop/src/pages/Urlscan.tsx:229
 msgid "Submission accepted"
 msgstr "Submission accepted"
 
-#: desktop/src/pages/Urlscan.tsx:236
+#: desktop/src/pages/Urlscan.tsx:229
 msgid "Visibility: {visibility}"
 msgstr "Visibility: {visibility}"
 
-#: desktop/src/pages/Urlscan.tsx:236
+#: desktop/src/pages/Urlscan.tsx:229
 msgid "Open urlscan result"
 msgstr "Open urlscan result"
 
-#: desktop/src/pages/Urlscan.tsx:237
+#: desktop/src/pages/Urlscan.tsx:230
 msgid "VirusTotal reported detections"
 msgstr "VirusTotal reported detections"
 
-#: desktop/src/pages/Urlscan.tsx:237
+#: desktop/src/pages/Urlscan.tsx:230
 msgid "Analysis complete — no detections reported"
 msgstr "Analysis complete — no detections reported"
 
-#: desktop/src/pages/Urlscan.tsx:237
+#: desktop/src/pages/Urlscan.tsx:230
 msgid "Analysis is still processing"
 msgstr "Analysis is still processing"
 
-#: desktop/src/pages/Urlscan.tsx:237
+#: desktop/src/pages/Urlscan.tsx:230
 msgid "VirusTotal rate limit reached"
 msgstr "VirusTotal rate limit reached"
 
-#: desktop/src/pages/Urlscan.tsx:237
+#: desktop/src/pages/Urlscan.tsx:230
 msgid "VirusTotal analysis failed"
 msgstr "VirusTotal analysis failed"
 
-#: desktop/src/pages/Urlscan.tsx:237
+#: desktop/src/pages/Urlscan.tsx:230
 msgid "{detections} of {total} URL engines reported suspicious or malicious"
 msgstr "{detections} of {total} URL engines reported suspicious or malicious"
 
-#: desktop/src/pages/Urlscan.tsx:238 desktop/src/pages/Urlscan.tsx:246
+#: desktop/src/pages/Urlscan.tsx:231 desktop/src/pages/Urlscan.tsx:239
 msgid "Submitting…"
 msgstr "Submitting…"
 
-#: desktop/src/pages/Urlscan.tsx:238
+#: desktop/src/pages/Urlscan.tsx:231
 msgid "Review submission"
 msgstr "Review submission"
 
-#: desktop/src/pages/Urlscan.tsx:240
+#: desktop/src/pages/Urlscan.tsx:233
 msgid "Confirm urlscan submission"
 msgstr "Confirm urlscan submission"
 
-#: desktop/src/pages/Urlscan.tsx:240
+#: desktop/src/pages/Urlscan.tsx:233
 msgid "Confirm VirusTotal URL submission"
 msgstr "Confirm VirusTotal URL submission"
 
-#: desktop/src/pages/Urlscan.tsx:242
+#: desktop/src/pages/Urlscan.tsx:235
 msgid ""
 "urlscan will visit this URL and store page activity. The service receives "
 "the full URL, including its query string."
@@ -6856,7 +6889,7 @@ msgstr ""
 "urlscan will visit this URL and store page activity. The service receives "
 "the full URL, including its query string."
 
-#: desktop/src/pages/Urlscan.tsx:243
+#: desktop/src/pages/Urlscan.tsx:236
 msgid ""
 "VirusTotal will submit this URL for analysis and add it to its dataset, "
 "where it may be shared with its community and security partners."
@@ -6864,15 +6897,15 @@ msgstr ""
 "VirusTotal will submit this URL for analysis and add it to its dataset, "
 "where it may be shared with its community and security partners."
 
-#: desktop/src/pages/Urlscan.tsx:244
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "URL"
 msgstr "URL"
 
-#: desktop/src/pages/Urlscan.tsx:244
+#: desktop/src/pages/Urlscan.tsx:237
 msgid "Visibility"
 msgstr "Visibility"
 
-#: desktop/src/pages/Urlscan.tsx:246
+#: desktop/src/pages/Urlscan.tsx:239
 msgid "Submit URL"
 msgstr "Submit URL"
 

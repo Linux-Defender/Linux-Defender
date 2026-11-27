@@ -226,6 +226,25 @@ ${legacy.out}` };
   },
 );
 
+server.registerTool(
+  "ld_support_parity",
+  {
+    title: "Cross-layer support parity",
+    description: "Read-only report from scripts/check-support-parity.py: verifies that behavioral support remains symmetric across VirusTotal, urlscan, urlhaus, frontend validators, scheduler, quarantine, capabilities, and untrusted-input sanitization.",
+    inputSchema: z.object({}),
+    annotations: READ,
+  },
+  async () => {
+    const check = await command("python3", ["scripts/check-support-parity.py"]);
+    const result = {
+      ok: check.code === 0,
+      output: `${check.out}\n${check.err}`.trim(),
+      note: "The same check runs in check-all.sh, pre-commit, and CI; a non-zero result means a layer was left behind by a partial fix.",
+    };
+    return { content: [{ type: "text" as const, text: text(result) }], structuredContent: result };
+  },
+);
+
 async function main(): Promise<void> {
   await server.connect(new StdioServerTransport());
 }
