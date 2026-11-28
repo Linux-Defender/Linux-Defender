@@ -10,7 +10,7 @@ description: Read protection posture, totals, and readiness checks without over-
 - **Protection status:** the same status that [Statistics](/Linux-Defender/docs/guides/statistics/) shows, with the last scan time and how long ago it ran.
 - **Totals:** all-time scans, files checked, threats detected, and clean scans. These are lifetime counters, not a session summary, and they do not reset when you change the Statistics timeframe.
 - **Protection checks:** the scanner engine and database availability reported by the native runtime, the last scan, and how many files are held in quarantine.
-- **Quick actions:** shortcuts into Quick Scan, Database, Logs, and Quarantine.
+- **Quick actions:** shortcuts into Quick Scan, the [System Security Check](/Linux-Defender/docs/guides/security-audit/), Database, Logs, and Quarantine. The security check opens the Audit view; it does not start a scan by itself.
 
 Each card and row is read-only except the actions. **Refresh** re-reads the current state, and the page also refreshes when you switch back to it or when a scan finishes.
 

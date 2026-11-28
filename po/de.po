@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 20:05-0500\n"
+"POT-Creation-Date: 2026-11-27 22:56-0500\n"
 "PO-Revision-Date: 2026-10-20 10:21+0200\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: German\n"
@@ -1031,7 +1031,7 @@ msgstr ""
 "Quarantäne fehlgeschlagen:"
 
 #: crates/linux-defender-core/src/cli.rs:804
-#: crates/linux-defender-core/src/logs.rs:1431
+#: crates/linux-defender-core/src/logs.rs:1437
 msgid "Threats Detected"
 msgstr "Bedrohungen erkannt"
 
@@ -1073,7 +1073,7 @@ msgid "No quarantined files."
 msgstr "Keine Dateien in Quarantäne."
 
 #: crates/linux-defender-core/src/cli.rs:891
-#: crates/linux-defender-core/src/logs.rs:1133
+#: crates/linux-defender-core/src/logs.rs:1139
 msgid "ID"
 msgstr "ID"
 
@@ -1333,17 +1333,17 @@ msgid "No scan history found."
 msgstr "Kein Scan-Verlauf gefunden."
 
 #: crates/linux-defender-core/src/cli.rs:1689
-#: crates/linux-defender-core/src/logs.rs:1143
+#: crates/linux-defender-core/src/logs.rs:1149
 msgid "Type"
 msgstr "Typ"
 
 #: crates/linux-defender-core/src/cli.rs:1690
-#: crates/linux-defender-core/src/logs.rs:1148
+#: crates/linux-defender-core/src/logs.rs:1154
 msgid "Status"
 msgstr "Status"
 
 #: crates/linux-defender-core/src/cli.rs:1691
-#: crates/linux-defender-core/src/logs.rs:1167
+#: crates/linux-defender-core/src/logs.rs:1173
 msgid "Summary"
 msgstr "Zusammenfassung"
 
@@ -1519,66 +1519,66 @@ msgstr ""
 "{binary} ist nicht installiert. Installieren Sie das erforderliche ClamAV-"
 "Paket für Ihre Distribution."
 
-#: crates/linux-defender-core/src/logs.rs:1126
+#: crates/linux-defender-core/src/logs.rs:1132
 msgid "SCAN LOG"
 msgstr "SCAN-LOG"
 
-#: crates/linux-defender-core/src/logs.rs:1128
+#: crates/linux-defender-core/src/logs.rs:1134
 msgid "UPDATE LOG"
 msgstr "AKTUALISIERUNGS-LOG"
 
-#: crates/linux-defender-core/src/logs.rs:1138
+#: crates/linux-defender-core/src/logs.rs:1144
 msgid "Timestamp"
 msgstr "Zeitstempel"
 
-#: crates/linux-defender-core/src/logs.rs:1153
+#: crates/linux-defender-core/src/logs.rs:1159
 msgid "Duration"
 msgstr "Dauer"
 
-#: crates/linux-defender-core/src/logs.rs:1161
+#: crates/linux-defender-core/src/logs.rs:1167
 msgid "Full Output"
 msgstr "Vollständige Ausgabe"
 
-#: crates/linux-defender-core/src/logs.rs:1192
+#: crates/linux-defender-core/src/logs.rs:1198
 msgid "{count} second"
 msgid_plural "{count} seconds"
 msgstr[0] "{count} Sekunde"
 msgstr[1] "{count} Sekunden"
 
-#: crates/linux-defender-core/src/logs.rs:1418
+#: crates/linux-defender-core/src/logs.rs:1424
 #: desktop/src-tauri/src/notifications.rs:92
 msgid "Scan Complete"
 msgstr "Scan abgeschlossen"
 
-#: crates/linux-defender-core/src/logs.rs:1421
+#: crates/linux-defender-core/src/logs.rs:1427
 msgid "Found {count} threat{suffix}"
 msgid_plural "Found {count} threats{suffix}"
 msgstr[0] "  {count} Bedrohung gefunden{suffix}"
 msgstr[1] "  {count} Bedrohungen gefunden{suffix}"
 
-#: crates/linux-defender-core/src/logs.rs:1436
+#: crates/linux-defender-core/src/logs.rs:1442
 #: desktop/src-tauri/src/notifications.rs:94
 msgid "Scan Cancelled"
 msgstr "Scan abgebrochen"
 
-#: crates/linux-defender-core/src/logs.rs:1439
+#: crates/linux-defender-core/src/logs.rs:1445
 #: desktop/src-tauri/src/notifications.rs:96
 msgid "Scan Error"
 msgstr "Scan-Fehler"
 
-#: crates/linux-defender-core/src/logs.rs:1450
+#: crates/linux-defender-core/src/logs.rs:1456
 msgid "Scanned: {count} file"
 msgid_plural "Scanned: {count} files"
 msgstr[0] "Gescannt: {count} Datei"
 msgstr[1] "Gescannt: {count} Dateien"
 
-#: crates/linux-defender-core/src/logs.rs:1457
+#: crates/linux-defender-core/src/logs.rs:1463
 msgid "{count} directory"
 msgid_plural "{count} directories"
 msgstr[0] "{count} Verzeichnis"
 msgstr[1] "{count} Verzeichnisse"
 
-#: crates/linux-defender-core/src/logs.rs:1468
+#: crates/linux-defender-core/src/logs.rs:1474
 msgid "Threat found: {count}"
 msgid_plural "Threats found: {count}"
 msgstr[0] "Bedrohung gefunden: {count}"
@@ -2463,19 +2463,19 @@ msgstr "Scan-Profil"
 msgid "Quit"
 msgstr "Beenden"
 
-#: desktop/src-tauri/src/runtime.rs:514
+#: desktop/src-tauri/src/runtime.rs:517
 msgid "Add Folders"
 msgstr "Ordner hinzufügen"
 
-#: desktop/src-tauri/src/runtime.rs:516
+#: desktop/src-tauri/src/runtime.rs:519
 msgid "Add Files"
 msgstr "Dateien hinzufügen"
 
-#: desktop/src-tauri/src/runtime.rs:594
+#: desktop/src-tauri/src/runtime.rs:597
 msgid "Export"
 msgstr "Exportieren"
 
-#: desktop/src-tauri/src/runtime.rs:778
+#: desktop/src-tauri/src/runtime.rs:784
 msgid "Open"
 msgstr "Öffnen"
 
@@ -2985,7 +2985,7 @@ msgstr "Alle abbrechen"
 msgid "Error"
 msgstr "Fehler"
 
-#: desktop/src/UiErrorBoundary.tsx:40 desktop/src/main.tsx:33
+#: desktop/src/UiErrorBoundary.tsx:40 desktop/src/main.tsx:40
 #: desktop/src/pages/Network.tsx:402 desktop/src/pages/Network.tsx:403
 msgid "Retry"
 msgstr "Erneut versuchen"
@@ -3028,7 +3028,7 @@ msgstr "Abgebrochen"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: desktop/src/main.tsx:30
+#: desktop/src/main.tsx:37
 msgid "Linux Defender could not start"
 msgstr "Linux Defender could not start"
 
@@ -4841,24 +4841,24 @@ msgid "Fast scan of the Downloads folder for quick threat detection"
 msgstr "Schnellscan des Downloads-Ordners zur schnellen Bedrohungserkennung"
 
 #: desktop/src/pages/Overview.tsx:209
-msgid "Keep virus definitions current"
-msgstr "Virendefinitionen aktuell halten"
-
-#: desktop/src/pages/Overview.tsx:212 desktop/src/pages/Statistics.tsx:134
-msgid "View Scan Logs"
-msgstr "Scan-Protokolle anzeigen"
-
-#: desktop/src/pages/Overview.tsx:212 desktop/src/pages/Statistics.tsx:134
-msgid "See detailed scan history"
-msgstr "Detaillierten Scan-Verlauf anzeigen"
-
-#: desktop/src/pages/Overview.tsx:218
 msgid "System Security Check"
 msgstr "System Security Check"
 
-#: desktop/src/pages/Overview.tsx:218
+#: desktop/src/pages/Overview.tsx:209
 msgid "Run Lynis, chkrootkit, and rkhunter with administrator authorization"
 msgstr "Run Lynis, chkrootkit, and rkhunter with administrator authorization"
+
+#: desktop/src/pages/Overview.tsx:212
+msgid "Keep virus definitions current"
+msgstr "Virendefinitionen aktuell halten"
+
+#: desktop/src/pages/Overview.tsx:215 desktop/src/pages/Statistics.tsx:134
+msgid "View Scan Logs"
+msgstr "Scan-Protokolle anzeigen"
+
+#: desktop/src/pages/Overview.tsx:215 desktop/src/pages/Statistics.tsx:134
+msgid "See detailed scan history"
+msgstr "Detaillierten Scan-Verlauf anzeigen"
 
 #: desktop/src/pages/Preferences.tsx:13
 #: desktop/src/pages/SettingsPreferences.tsx:428

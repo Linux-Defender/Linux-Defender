@@ -20,4 +20,4 @@ When no definition timestamp is available, status falls back to scan recency alo
 
 A rise in files scanned normally reflects larger targets. A rise in detections deserves investigation, but a count does not distinguish severity; open Logs for the affected paths and detection names. Gaps in green scan bars may indicate skipped scheduled scans. Individual scan details live in [Logs](/Linux-Defender/docs/guides/history/).
 
-Quick actions on Overview and Statistics navigate to the relevant view (quick scan, logs, database update, quarantine); they do not make a hidden change.
+Quick actions navigate to the relevant view and do not make a hidden change. Overview offers Quick Scan, the [System Security Check](/Linux-Defender/docs/guides/security-audit/), Database, Logs, and Quarantine; Statistics offers Quick Scan and Logs only.

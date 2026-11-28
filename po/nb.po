@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 20:05-0500\n"
+"POT-Creation-Date: 2026-11-27 22:56-0500\n"
 "PO-Revision-Date: 2026-10-17 12:00+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmål\n"
@@ -1066,7 +1066,7 @@ msgstr ""
 "Kunne ikke settes i karantene:"
 
 #: crates/linux-defender-core/src/cli.rs:804
-#: crates/linux-defender-core/src/logs.rs:1431
+#: crates/linux-defender-core/src/logs.rs:1437
 msgid "Threats Detected"
 msgstr "Trusler oppdaget"
 
@@ -1108,7 +1108,7 @@ msgid "No quarantined files."
 msgstr "Ingen filer i karantene."
 
 #: crates/linux-defender-core/src/cli.rs:891
-#: crates/linux-defender-core/src/logs.rs:1133
+#: crates/linux-defender-core/src/logs.rs:1139
 msgid "ID"
 msgstr "ID"
 
@@ -1368,17 +1368,17 @@ msgid "No scan history found."
 msgstr "Fant ingen skannehistorikk."
 
 #: crates/linux-defender-core/src/cli.rs:1689
-#: crates/linux-defender-core/src/logs.rs:1143
+#: crates/linux-defender-core/src/logs.rs:1149
 msgid "Type"
 msgstr "Type"
 
 #: crates/linux-defender-core/src/cli.rs:1690
-#: crates/linux-defender-core/src/logs.rs:1148
+#: crates/linux-defender-core/src/logs.rs:1154
 msgid "Status"
 msgstr "Status"
 
 #: crates/linux-defender-core/src/cli.rs:1691
-#: crates/linux-defender-core/src/logs.rs:1167
+#: crates/linux-defender-core/src/logs.rs:1173
 msgid "Summary"
 msgstr "Sammendrag"
 
@@ -1543,66 +1543,66 @@ msgstr ""
 "{binary} er ikke installert. Installer den nødvendige ClamAV-pakken for "
 "distribusjonen din."
 
-#: crates/linux-defender-core/src/logs.rs:1126
+#: crates/linux-defender-core/src/logs.rs:1132
 msgid "SCAN LOG"
 msgstr "SKANNELOGG"
 
-#: crates/linux-defender-core/src/logs.rs:1128
+#: crates/linux-defender-core/src/logs.rs:1134
 msgid "UPDATE LOG"
 msgstr "OPPDATERINGSLOGG"
 
-#: crates/linux-defender-core/src/logs.rs:1138
+#: crates/linux-defender-core/src/logs.rs:1144
 msgid "Timestamp"
 msgstr "Tidsstempel"
 
-#: crates/linux-defender-core/src/logs.rs:1153
+#: crates/linux-defender-core/src/logs.rs:1159
 msgid "Duration"
 msgstr "Varighet"
 
-#: crates/linux-defender-core/src/logs.rs:1161
+#: crates/linux-defender-core/src/logs.rs:1167
 msgid "Full Output"
 msgstr "Fullstendig utdata"
 
-#: crates/linux-defender-core/src/logs.rs:1192
+#: crates/linux-defender-core/src/logs.rs:1198
 msgid "{count} second"
 msgid_plural "{count} seconds"
 msgstr[0] "{count} sekund"
 msgstr[1] "{count} sekunder"
 
-#: crates/linux-defender-core/src/logs.rs:1418
+#: crates/linux-defender-core/src/logs.rs:1424
 #: desktop/src-tauri/src/notifications.rs:92
 msgid "Scan Complete"
 msgstr "Skanning fullført"
 
-#: crates/linux-defender-core/src/logs.rs:1421
+#: crates/linux-defender-core/src/logs.rs:1427
 msgid "Found {count} threat{suffix}"
 msgid_plural "Found {count} threats{suffix}"
 msgstr[0] "Fant {count} trussel{suffix}"
 msgstr[1] "Fant {count} trusler{suffix}"
 
-#: crates/linux-defender-core/src/logs.rs:1436
+#: crates/linux-defender-core/src/logs.rs:1442
 #: desktop/src-tauri/src/notifications.rs:94
 msgid "Scan Cancelled"
 msgstr "Skanning avbrutt"
 
-#: crates/linux-defender-core/src/logs.rs:1439
+#: crates/linux-defender-core/src/logs.rs:1445
 #: desktop/src-tauri/src/notifications.rs:96
 msgid "Scan Error"
 msgstr "Skannefeil"
 
-#: crates/linux-defender-core/src/logs.rs:1450
+#: crates/linux-defender-core/src/logs.rs:1456
 msgid "Scanned: {count} file"
 msgid_plural "Scanned: {count} files"
 msgstr[0] "Skannet: {count} fil"
 msgstr[1] "Skannet: {count} filer"
 
-#: crates/linux-defender-core/src/logs.rs:1457
+#: crates/linux-defender-core/src/logs.rs:1463
 msgid "{count} directory"
 msgid_plural "{count} directories"
 msgstr[0] "{count} mappe"
 msgstr[1] "{count} mapper"
 
-#: crates/linux-defender-core/src/logs.rs:1468
+#: crates/linux-defender-core/src/logs.rs:1474
 msgid "Threat found: {count}"
 msgid_plural "Threats found: {count}"
 msgstr[0] "Trussel funnet: {count}"
@@ -2453,19 +2453,19 @@ msgstr "Skanneprofil"
 msgid "Quit"
 msgstr "Avslutt"
 
-#: desktop/src-tauri/src/runtime.rs:514
+#: desktop/src-tauri/src/runtime.rs:517
 msgid "Add Folders"
 msgstr "Legg til mapper"
 
-#: desktop/src-tauri/src/runtime.rs:516
+#: desktop/src-tauri/src/runtime.rs:519
 msgid "Add Files"
 msgstr "Legg til filer"
 
-#: desktop/src-tauri/src/runtime.rs:594
+#: desktop/src-tauri/src/runtime.rs:597
 msgid "Export"
 msgstr "Eksporter"
 
-#: desktop/src-tauri/src/runtime.rs:778
+#: desktop/src-tauri/src/runtime.rs:784
 msgid "Open"
 msgstr "Åpne"
 
@@ -2968,7 +2968,7 @@ msgstr "Avbryt alle"
 msgid "Error"
 msgstr "Feil"
 
-#: desktop/src/UiErrorBoundary.tsx:40 desktop/src/main.tsx:33
+#: desktop/src/UiErrorBoundary.tsx:40 desktop/src/main.tsx:40
 #: desktop/src/pages/Network.tsx:402 desktop/src/pages/Network.tsx:403
 msgid "Retry"
 msgstr "Prøv på nytt"
@@ -3011,7 +3011,7 @@ msgstr "Kansellert"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: desktop/src/main.tsx:30
+#: desktop/src/main.tsx:37
 msgid "Linux Defender could not start"
 msgstr "Linux Defender could not start"
 
@@ -4800,24 +4800,24 @@ msgid "Fast scan of the Downloads folder for quick threat detection"
 msgstr "Rask skanning av nedlastingsmappen for rask trusseldeteksjon"
 
 #: desktop/src/pages/Overview.tsx:209
-msgid "Keep virus definitions current"
-msgstr "Hold virusdefinisjonene oppdatert"
-
-#: desktop/src/pages/Overview.tsx:212 desktop/src/pages/Statistics.tsx:134
-msgid "View Scan Logs"
-msgstr "Vis skannelogger"
-
-#: desktop/src/pages/Overview.tsx:212 desktop/src/pages/Statistics.tsx:134
-msgid "See detailed scan history"
-msgstr "Se detaljert skannehistorikk"
-
-#: desktop/src/pages/Overview.tsx:218
 msgid "System Security Check"
 msgstr "System Security Check"
 
-#: desktop/src/pages/Overview.tsx:218
+#: desktop/src/pages/Overview.tsx:209
 msgid "Run Lynis, chkrootkit, and rkhunter with administrator authorization"
 msgstr "Run Lynis, chkrootkit, and rkhunter with administrator authorization"
+
+#: desktop/src/pages/Overview.tsx:212
+msgid "Keep virus definitions current"
+msgstr "Hold virusdefinisjonene oppdatert"
+
+#: desktop/src/pages/Overview.tsx:215 desktop/src/pages/Statistics.tsx:134
+msgid "View Scan Logs"
+msgstr "Vis skannelogger"
+
+#: desktop/src/pages/Overview.tsx:215 desktop/src/pages/Statistics.tsx:134
+msgid "See detailed scan history"
+msgstr "Se detaljert skannehistorikk"
 
 #: desktop/src/pages/Preferences.tsx:13
 #: desktop/src/pages/SettingsPreferences.tsx:428

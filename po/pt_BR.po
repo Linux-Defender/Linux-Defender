@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 20:05-0500\n"
+"POT-Creation-Date: 2026-11-27 22:56-0500\n"
 "PO-Revision-Date: 2026-08-09 00:00-0300\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -1018,7 +1018,7 @@ msgstr ""
 "Falha na quarentena:"
 
 #: crates/linux-defender-core/src/cli.rs:804
-#: crates/linux-defender-core/src/logs.rs:1431
+#: crates/linux-defender-core/src/logs.rs:1437
 msgid "Threats Detected"
 msgstr "Ameaças detectadas"
 
@@ -1060,7 +1060,7 @@ msgid "No quarantined files."
 msgstr "Nenhum arquivo em quarentena."
 
 #: crates/linux-defender-core/src/cli.rs:891
-#: crates/linux-defender-core/src/logs.rs:1133
+#: crates/linux-defender-core/src/logs.rs:1139
 msgid "ID"
 msgstr "ID"
 
@@ -1320,17 +1320,17 @@ msgid "No scan history found."
 msgstr "Nenhum histórico de verificação encontrado."
 
 #: crates/linux-defender-core/src/cli.rs:1689
-#: crates/linux-defender-core/src/logs.rs:1143
+#: crates/linux-defender-core/src/logs.rs:1149
 msgid "Type"
 msgstr "Tipo"
 
 #: crates/linux-defender-core/src/cli.rs:1690
-#: crates/linux-defender-core/src/logs.rs:1148
+#: crates/linux-defender-core/src/logs.rs:1154
 msgid "Status"
 msgstr "Status"
 
 #: crates/linux-defender-core/src/cli.rs:1691
-#: crates/linux-defender-core/src/logs.rs:1167
+#: crates/linux-defender-core/src/logs.rs:1173
 msgid "Summary"
 msgstr "Resumo"
 
@@ -1497,66 +1497,66 @@ msgstr ""
 "{binary} não está instalado. Instale o pacote ClamAV necessário para sua "
 "distribuição."
 
-#: crates/linux-defender-core/src/logs.rs:1126
+#: crates/linux-defender-core/src/logs.rs:1132
 msgid "SCAN LOG"
 msgstr "REGISTRO DE VERIFICAÇÃO"
 
-#: crates/linux-defender-core/src/logs.rs:1128
+#: crates/linux-defender-core/src/logs.rs:1134
 msgid "UPDATE LOG"
 msgstr "REGISTRO DE ATUALIZAÇÃO"
 
-#: crates/linux-defender-core/src/logs.rs:1138
+#: crates/linux-defender-core/src/logs.rs:1144
 msgid "Timestamp"
 msgstr "Carimbo de data e hora"
 
-#: crates/linux-defender-core/src/logs.rs:1153
+#: crates/linux-defender-core/src/logs.rs:1159
 msgid "Duration"
 msgstr "Duração"
 
-#: crates/linux-defender-core/src/logs.rs:1161
+#: crates/linux-defender-core/src/logs.rs:1167
 msgid "Full Output"
 msgstr "Saída completa"
 
-#: crates/linux-defender-core/src/logs.rs:1192
+#: crates/linux-defender-core/src/logs.rs:1198
 msgid "{count} second"
 msgid_plural "{count} seconds"
 msgstr[0] "{count} segundo"
 msgstr[1] "{count} segundos"
 
-#: crates/linux-defender-core/src/logs.rs:1418
+#: crates/linux-defender-core/src/logs.rs:1424
 #: desktop/src-tauri/src/notifications.rs:92
 msgid "Scan Complete"
 msgstr "Verificação concluída"
 
-#: crates/linux-defender-core/src/logs.rs:1421
+#: crates/linux-defender-core/src/logs.rs:1427
 msgid "Found {count} threat{suffix}"
 msgid_plural "Found {count} threats{suffix}"
 msgstr[0] "Encontrada {count} ameaça{suffix}"
 msgstr[1] "Encontradas {count} ameaças{suffix}"
 
-#: crates/linux-defender-core/src/logs.rs:1436
+#: crates/linux-defender-core/src/logs.rs:1442
 #: desktop/src-tauri/src/notifications.rs:94
 msgid "Scan Cancelled"
 msgstr "Verificação cancelada"
 
-#: crates/linux-defender-core/src/logs.rs:1439
+#: crates/linux-defender-core/src/logs.rs:1445
 #: desktop/src-tauri/src/notifications.rs:96
 msgid "Scan Error"
 msgstr "Erro de verificação"
 
-#: crates/linux-defender-core/src/logs.rs:1450
+#: crates/linux-defender-core/src/logs.rs:1456
 msgid "Scanned: {count} file"
 msgid_plural "Scanned: {count} files"
 msgstr[0] "Verificado: {count} arquivo"
 msgstr[1] "Verificados: {count} arquivos"
 
-#: crates/linux-defender-core/src/logs.rs:1457
+#: crates/linux-defender-core/src/logs.rs:1463
 msgid "{count} directory"
 msgid_plural "{count} directories"
 msgstr[0] "{count} diretório"
 msgstr[1] "{count} diretórios"
 
-#: crates/linux-defender-core/src/logs.rs:1468
+#: crates/linux-defender-core/src/logs.rs:1474
 msgid "Threat found: {count}"
 msgid_plural "Threats found: {count}"
 msgstr[0] "Ameaça encontrada: {count}"
@@ -2426,19 +2426,19 @@ msgstr "Perfil de verificação"
 msgid "Quit"
 msgstr "Sair"
 
-#: desktop/src-tauri/src/runtime.rs:514
+#: desktop/src-tauri/src/runtime.rs:517
 msgid "Add Folders"
 msgstr "Adicionar pastas"
 
-#: desktop/src-tauri/src/runtime.rs:516
+#: desktop/src-tauri/src/runtime.rs:519
 msgid "Add Files"
 msgstr "Adicionar arquivos"
 
-#: desktop/src-tauri/src/runtime.rs:594
+#: desktop/src-tauri/src/runtime.rs:597
 msgid "Export"
 msgstr "Exportar"
 
-#: desktop/src-tauri/src/runtime.rs:778
+#: desktop/src-tauri/src/runtime.rs:784
 msgid "Open"
 msgstr "Abrir"
 
@@ -2943,7 +2943,7 @@ msgstr "Cancelar tudo"
 msgid "Error"
 msgstr "Erro"
 
-#: desktop/src/UiErrorBoundary.tsx:40 desktop/src/main.tsx:33
+#: desktop/src/UiErrorBoundary.tsx:40 desktop/src/main.tsx:40
 #: desktop/src/pages/Network.tsx:402 desktop/src/pages/Network.tsx:403
 msgid "Retry"
 msgstr "Tentar novamente"
@@ -2986,7 +2986,7 @@ msgstr "Cancelado"
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: desktop/src/main.tsx:30
+#: desktop/src/main.tsx:37
 msgid "Linux Defender could not start"
 msgstr "Linux Defender could not start"
 
@@ -4790,24 +4790,24 @@ msgstr ""
 "Verificação rápida da pasta Downloads para detectar ameaças rapidamente"
 
 #: desktop/src/pages/Overview.tsx:209
-msgid "Keep virus definitions current"
-msgstr "Mantenha as definições de vírus atualizadas"
-
-#: desktop/src/pages/Overview.tsx:212 desktop/src/pages/Statistics.tsx:134
-msgid "View Scan Logs"
-msgstr "Ver registros de verificação"
-
-#: desktop/src/pages/Overview.tsx:212 desktop/src/pages/Statistics.tsx:134
-msgid "See detailed scan history"
-msgstr "Consultar o histórico detalhado de verificações"
-
-#: desktop/src/pages/Overview.tsx:218
 msgid "System Security Check"
 msgstr "System Security Check"
 
-#: desktop/src/pages/Overview.tsx:218
+#: desktop/src/pages/Overview.tsx:209
 msgid "Run Lynis, chkrootkit, and rkhunter with administrator authorization"
 msgstr "Run Lynis, chkrootkit, and rkhunter with administrator authorization"
+
+#: desktop/src/pages/Overview.tsx:212
+msgid "Keep virus definitions current"
+msgstr "Mantenha as definições de vírus atualizadas"
+
+#: desktop/src/pages/Overview.tsx:215 desktop/src/pages/Statistics.tsx:134
+msgid "View Scan Logs"
+msgstr "Ver registros de verificação"
+
+#: desktop/src/pages/Overview.tsx:215 desktop/src/pages/Statistics.tsx:134
+msgid "See detailed scan history"
+msgstr "Consultar o histórico detalhado de verificações"
 
 #: desktop/src/pages/Preferences.tsx:13
 #: desktop/src/pages/SettingsPreferences.tsx:428

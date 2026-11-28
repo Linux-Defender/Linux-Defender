@@ -205,6 +205,9 @@ export default function Overview({ active }: { active: boolean }) {
           <button className="group-row" type="button" onClick={() => navigate("scan", { quickScan: true })}>
             {_("Quick Scan")}<span>{_("Fast scan of the Downloads folder for quick threat detection")}</span>
           </button>
+          <button className="group-row" type="button" onClick={() => navigate("audit")}>
+            {_("System Security Check")}<span>{_("Run Lynis, chkrootkit, and rkhunter with administrator authorization")}</span>
+          </button>
           <button className="group-row" type="button" onClick={() => navigate("database")}>
             {_("Update Database")}<span>{_("Keep virus definitions current")}</span>
           </button>
@@ -213,9 +216,6 @@ export default function Overview({ active }: { active: boolean }) {
           </button>
           <button className="group-row" type="button" onClick={() => navigate("quarantine")}>
             {_("Quarantine")}<span>{_("Manage quarantined files")}</span>
-          </button>
-          <button className="group-row" type="button" onClick={() => navigate("audit")}>
-            {_("System Security Check")}<span>{_("Run Lynis, chkrootkit, and rkhunter with administrator authorization")}</span>
           </button>
         </div>
       </section>

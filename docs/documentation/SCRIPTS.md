@@ -8,6 +8,7 @@ application runtime dependencies.
 
 - `scripts/check-all.sh` — single source of truth for static checks (pre-commit runs it).
 - `scripts/audit-consistency.sh` — full audit: builds, tests, clippy, static checks, git/CI sync (pre-push runs it).
+- `scripts/update-all.sh` — single regeneration entry point for POT, catalogs, translation review, doc map, and (with `--full`) locked packaging sources; verifies with `check-all.sh`.
 - `scripts/local-run.sh` — quick source build/run wrapper.
 - `scripts/merge-catalogs.py` — regenerate POT and merge all active gettext catalogs.
 - `scripts/generate-doc-map.py` — regenerate `docs/DOC-MAP.md`.
@@ -71,4 +72,4 @@ application runtime dependencies.
 - `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).
 - `scripts/validate-sway.sh` — interactive Sway checklist runner.
 - `scripts/hooks/ai-enforcement-context.py`, `scripts/hooks/install-hooks.sh`, `scripts/hooks/pre-commit`, `scripts/hooks/pre-push` — git/AI hooks.
-- `scripts/tests/test_external_links.py`, `scripts/tests/test_release_profile.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.
+- `scripts/tests/test_external_links.py`, `scripts/tests/test_release_profile.py`, `scripts/tests/test_update_all.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.

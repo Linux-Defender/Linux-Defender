@@ -351,11 +351,13 @@
         ],
         "site": [
           "rkhunter",
-          "Run all security scans"
+          "Run all security scans",
+          "System Security Check"
         ],
         "docs": [
           "rkhunter",
-          "deep scan"
+          "deep scan",
+          "System Security Check"
         ]
       }
     }
