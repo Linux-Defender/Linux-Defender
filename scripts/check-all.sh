@@ -57,6 +57,11 @@ python3 scripts/check-url-list-layout.py || fail "custom URL list layout"
 ( cd desktop && bun test ) >/dev/null || fail "desktop unit tests"
 ( cd mcp/linux-defender-assist && bun install --frozen-lockfile >/dev/null && bun run build ) >/dev/null || fail "MCP assist server type-check"
 
+step "Startup diagnostics and site accessibility guards"
+python3 scripts/check-boot-diagnostics.py || fail "boot diagnostics contract"
+python3 scripts/check-website-a11y.py || fail "website accessibility contract"
+python3 scripts/tests/test_ui_guards.py >/dev/null || fail "UI guard regression tests"
+
 step "Unused Rust dependencies (cargo machete)"
 if command -v cargo-machete >/dev/null 2>&1; then
     machete_ok=0

@@ -13,4 +13,10 @@ describe("boot diagnostics", () => {
     expect(script).toContain("textContent");
     expect(script).not.toContain("innerHTML");
   });
+  test("does not mistake a pre-body error for a successful mount", () => {
+    expect(script).toContain("sawPlaceholder");
+    expect(script).toContain("pendingFailure");
+    expect(script).toContain("flush()");
+    expect(script).toContain("debugLogPath()");
+  });
 });

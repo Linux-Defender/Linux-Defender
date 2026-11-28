@@ -223,7 +223,7 @@ html.light [class~="text-white/70"] { color: rgba(20, 32, 26, 0.78); }
 html.light [class~="text-white/65"] { color: rgba(20, 32, 26, 0.72); }
 html.light [class~="text-white/60"] { color: rgba(20, 32, 26, 0.66); }
 html.light [class~="text-white/55"] { color: rgba(20, 32, 26, 0.60); }
-html.light [class~="text-white/50"] { color: rgba(20, 32, 26, 0.55); }
+html.light [class~="text-white/50"] { color: rgba(20, 32, 26, 0.72); }
 html.light [class~="text-white/45"] { color: rgba(20, 32, 26, 0.52); }
 html.light [class~="text-white/40"] { color: rgba(20, 32, 26, 0.48); }
 html.light [class~="text-white/35"] { color: rgba(20, 32, 26, 0.62); }
@@ -294,12 +294,16 @@ html.light .product-preview [class~="text-white/45"] { color: rgba(255, 255, 255
 html.light .product-preview [class~="text-white/40"] { color: rgba(255, 255, 255, 0.40); }
 html.light .product-preview [class~="text-white/35"] { color: rgba(255, 255, 255, 0.35); }
 html.light .product-preview [class~="border-white/10"] { border-color: rgba(255, 255, 255, 0.10); }
+/* The terminal and preview are dark in both themes; keep the light sage token
+   on them instead of the light-mode ink override, which fails AA contrast. */
+html.light .term [class~="text-guard-sage"],
+html.light .product-preview [class~="text-guard-sage"] { color: #7ce38b; }
 
 /* FAQ number bubble */
 html.light details summary span[class~="bg-guard-forest/20"] {
   background-color: rgba(21, 127, 61, 0.12);
   border-color: rgba(21, 127, 61, 0.38);
-  color: #157f3d;
+  color: #116932;
 }
 
 /* Pillar-icon chip */

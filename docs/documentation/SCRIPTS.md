@@ -18,6 +18,7 @@ application runtime dependencies.
 - `scripts/check-ai-enforcement-wiring.py` — AI adapters read the canonical rules.
 - `scripts/check-aur-consistency.py` — named AUR-only wrapper over the unified packaging check.
 - `scripts/check-badges.py` — every workflow has a README status badge.
+- `scripts/check-boot-diagnostics.py` — pre-React placeholder, CSP-safe boot script, host-aware log path, and blank-window probe.
 - `scripts/check-build-wiring.py` — `tauri dev` → Vite → `dist`, vendored glib patch.
 - `scripts/check-url-list-layout.py` — full-width provider URL rows with wrapped URLs and unsqueezed Remove buttons.
 - `scripts/check-built-links.py` — built-site links, anchors, and HTML/CSS structure.
@@ -52,6 +53,7 @@ application runtime dependencies.
 - `scripts/check-upstream-urls.py` — upstream inventory URLs.
 - `scripts/check-workflows.py` — workflow YAML parses, named, triggerable.
 - `scripts/check-watchers.py` — every scheduled workflow is indexed in `WATCHERS.md`.
+- `scripts/check-website-a11y.py` — Starlight search-button accessible name and light-header hover contract.
 - `scripts/extract-typescript-gettext.ts` — TS/TSX extraction.
 - `scripts/update-pot.sh` — Rust/Tauri POT regeneration.
 
@@ -68,4 +70,4 @@ application runtime dependencies.
 - `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).
 - `scripts/validate-sway.sh` — interactive Sway checklist runner.
 - `scripts/hooks/ai-enforcement-context.py`, `scripts/hooks/install-hooks.sh`, `scripts/hooks/pre-commit`, `scripts/hooks/pre-push` — git/AI hooks.
-- `scripts/tests/test_external_links.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.
+- `scripts/tests/test_external_links.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.

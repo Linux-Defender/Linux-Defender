@@ -35,6 +35,15 @@
               daemon_status: { available: false, connected: false, clamdscan_available: false, message: "Daemon not running" }
             };
             if (a === "config.needs_elevation") return {};
+            if (a === "audit.run") return { timestamp: 0, sections: [
+              { category: "clamav_health", title: "ClamAV health", icon_name: "check-circle", overall_status: "pass", checks: [
+                { name: "Engine installed", status: "pass", detail: "clamscan is available" },
+                { name: "Database fresh", status: "warning", detail: "Definitions were updated three days ago" }
+              ]},
+              { category: "deep_scan_lynis", title: "Lynis", icon_name: "audit", overall_status: "unknown", checks: [
+                { name: "Deep audit", status: "unknown", detail: "Not run yet" }
+              ]}
+            ] };
             if (a === "virustotal.key_status") return { present: false, status: "not_configured" };
             if (a === "urlhaus.key_status") return { present: true, status: "configured", masked: "4bf8***" };
             return {};

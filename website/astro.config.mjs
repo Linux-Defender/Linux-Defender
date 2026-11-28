@@ -65,6 +65,10 @@ export default defineConfig({
             content: "Linux Defender security scanner preview",
           },
         },
+        {
+          tag: "script",
+          content: `(function(){function sync(){var b=document.querySelector('button[data-open-modal][aria-label="Search documentation"]');if(!b)return;var k=b.querySelector('kbd');if(k)k.setAttribute('aria-hidden','true');b.setAttribute('aria-label', b.textContent.trim().replace(/\s+/g,' '));}document.addEventListener('DOMContentLoaded',sync);document.addEventListener('astro:page-load',sync);if(document.readyState!=='loading')sync();})();`,
+        },
       ],
       logo: {
         src: "./src/assets/logo.svg",
