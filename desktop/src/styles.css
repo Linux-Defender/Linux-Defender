@@ -2625,3 +2625,8 @@ pre.notice {
 .system-check-callout .row-copy { flex: 1 1 auto; min-width: 0; }
 .system-check-callout .actions { flex: 0 0 auto; }
 .system-check-callout .muted { overflow-wrap: anywhere; }
+
+/* Pre-React boot diagnostics; React removes this on first commit. */
+.startup-error { padding: 24px; }
+.startup-error .card { max-width: 900px; }
+.startup-error-details { white-space: pre-wrap; overflow-wrap: anywhere; margin-top: 12px; }

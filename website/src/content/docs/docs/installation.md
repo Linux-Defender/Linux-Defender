@@ -13,16 +13,44 @@ The current source still uses transitional launch, helper, and data identifiers 
 
 Linux Defender calls the host-installed ClamAV tools. Install `clamscan` and `freshclam` using your distribution's package manager. Daemon scans also require `clamd` and `clamdscan`. FreshClam owns the shared signature database through the service or timer configured by your distribution; Linux Defender does not bundle a second database or automatically install arbitrary third-party feeds.
 
+On Debian or Ubuntu:
+
+```bash
+sudo apt install clamav clamav-freshclam
+sudo systemctl enable --now clamav-freshclam
+# Optional daemon scanning:
+sudo apt install clamav-daemon
+sudo systemctl enable --now clamav-daemon
+```
+
+On Fedora Workstation:
+
+```bash
+sudo dnf install clamav clamav-freshclam
+sudo freshclam
+sudo systemctl enable --now clamav-freshclam
+# Optional daemon scanning:
+sudo dnf install clamd
+sudo systemctl enable --now clamd@scan
+```
+
 On CachyOS or Arch, the package is `clamav`:
 
 ```bash
 sudo pacman -S --needed clamav
+sudo freshclam
+sudo systemctl enable --now clamav-freshclam
+# Optional daemon scanning:
+sudo systemctl enable --now clamav-daemon
 ```
 
 On openSUSE Tumbleweed or Leap, the package is also `clamav`:
 
 ```bash
 sudo zypper install clamav
+sudo freshclam
+# Optional daemon scanning:
+sudo systemctl enable --now clamd
 ```
 
 If you already enabled `clamav-freshclam-once.timer`, leave updates to that timer. You can check the ClamAV database version and update-service status from the Linux Defender Database page; to inspect that one-shot timer specifically, run `systemctl status clamav-freshclam-once.timer`.

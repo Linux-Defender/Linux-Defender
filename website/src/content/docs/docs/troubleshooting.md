@@ -43,13 +43,17 @@ The native app uses Tauri with WebKitGTK 4.1 and GTK 3. On some Wayland and NVID
 WEBKIT_DISABLE_DMABUF_RENDERER=1 bun run --cwd desktop tauri dev
 ```
 
+On Debian-family hosts, confirm the native runtime libraries with `dpkg -l libwebkit2gtk-4.1-0 libgtk-3-0`. A build on a newer distribution does not establish the Ubuntu 22.04 compatibility baseline.
+
 An explicit `WEBKIT_DISABLE_DMABUF_RENDERER` value in the environment is never overridden. The workaround may reduce hardware acceleration. If it fixes startup, report the desktop session, GPU driver, and exact error.
 
-If the window still opens blank, the native runtime writes one warning to the debug log after ten seconds if React has not reported that it mounted (`frontend did not mount within 10s`). The frontend sends the existing `app.startup_ready` operation once it mounts, so the warning narrows the failure to the WebView bundle, the React error boundary, catalog loading, or an IPC reply. A caught render error is shown in the window with a **Retry** button instead of leaving it blank. Include that log line and the desktop session in a report.
+If the window still opens blank, the native runtime writes one warning to the debug log after ten seconds if React has not reported that it mounted (`frontend did not mount within 10s`). The frontend sends the existing `app.startup_ready` operation once it mounts, so the warning narrows the failure to the WebView bundle, the React error boundary, catalog loading, or an IPC reply. A caught render error is shown in the window with a **Retry** button instead of leaving it blank. Include that log line and the desktop session in a report. The startup-stage warning is written to `~/.local/share/linux-defender/debug/linux-defender.log`.
 
 ## Daemon backend is unavailable
 
 The daemon backend needs host `clamd` and `clamdscan`, a running daemon, and a socket accessible to the current user. Select **Auto** or **Clamscan** if you do not need the daemon. Check the service name and socket from your distribution; Fedora commonly uses `clamd@scan` and `/etc/clamd.d/scan.conf`. See the [backend guide](/Linux-Defender/docs/reference/scan-backends/).
+
+Check the daemon on Debian-family hosts with `sudo systemctl status clamav-daemon`, start it with `sudo systemctl enable --now clamav-daemon`, and confirm the client with `clamdscan --version`.
 
 Daemon scans use a protected transport for long paths. A name containing a newline or carriage return is sent through `clamdscan` stdin instead of the newline-delimited file list, so one unusual name does not abort the rest of the scan. Unix file names cannot contain NUL bytes.
 

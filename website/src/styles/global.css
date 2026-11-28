@@ -205,6 +205,13 @@ html.light header.sticky {
   background-color: rgba(245, 248, 245, 0.80);
 }
 
+/* Light-header hover states: blanket white overrides would otherwise hide hover. */
+html.light header.sticky [class~="hover:text-white"]:hover { color: #116932; }
+html.light header.sticky [class~="hover:bg-white/[0.04]"]:hover,
+html.light header.sticky [class~="hover:bg-white/[0.06]"]:hover { background-color: rgba(21, 127, 61, 0.10); }
+html.light header.sticky [class~="hover:border-guard-sage/50"]:hover { border-color: rgba(21, 127, 61, 0.45); }
+html.light header.sticky #theme-toggle:hover { border-color: rgba(21, 127, 61, 0.35); }
+
 /* 1. Blanket utility-class overrides (white-on-dark → ink-on-paper).
    Uses [class~="…"] attribute selectors instead of escaped class selectors
    so Tailwind's dep analyzer doesn't treat these as utility redefinitions. */
