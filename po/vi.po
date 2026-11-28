@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 22:56-0500\n"
+"POT-Creation-Date: 2026-11-28 01:04-0500\n"
 "PO-Revision-Date: 2026-11-03 21:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -798,48 +798,48 @@ msgstr "Giao diện đồ họa OpenSnitch không có sẵn."
 msgid "Could not launch OpenSnitch graphical interface: {error}"
 msgstr "Không thể khởi chạy giao diện đồ họa OpenSnitch: {error}"
 
-#: crates/linux-defender-core/src/cli.rs:72
-#: crates/linux-defender-core/src/cli.rs:266
-#: crates/linux-defender-core/src/cli.rs:285
-#: crates/linux-defender-core/src/cli.rs:438
-#: crates/linux-defender-core/src/cli.rs:447
-#: crates/linux-defender-core/src/cli.rs:479
-#: crates/linux-defender-core/src/cli.rs:519
-#: crates/linux-defender-core/src/cli.rs:1215
-#: crates/linux-defender-core/src/cli.rs:1241
-#: crates/linux-defender-core/src/cli.rs:1776
-#: crates/linux-defender-core/src/cli.rs:1781
+#: crates/linux-defender-core/src/cli.rs:83
+#: crates/linux-defender-core/src/cli.rs:277
+#: crates/linux-defender-core/src/cli.rs:296
+#: crates/linux-defender-core/src/cli.rs:449
+#: crates/linux-defender-core/src/cli.rs:458
+#: crates/linux-defender-core/src/cli.rs:490
+#: crates/linux-defender-core/src/cli.rs:530
+#: crates/linux-defender-core/src/cli.rs:1226
+#: crates/linux-defender-core/src/cli.rs:1252
+#: crates/linux-defender-core/src/cli.rs:1787
+#: crates/linux-defender-core/src/cli.rs:1792
 msgid "error"
 msgstr "lỗi"
 
-#: crates/linux-defender-core/src/cli.rs:73
+#: crates/linux-defender-core/src/cli.rs:84
 msgid "Unknown command: {command}"
 msgstr "Lệnh không xác định: {command}"
 
 #. Translators: The em dash separates the application name from its description.
-#: crates/linux-defender-core/src/cli.rs:156
+#: crates/linux-defender-core/src/cli.rs:167
 msgid "Linux Defender — ClamAV antivirus management\n"
 msgstr "Linux Defender — ClamAV antivirus management\n"
 
-#: crates/linux-defender-core/src/cli.rs:162
+#: crates/linux-defender-core/src/cli.rs:173
 msgid "Usage:"
 msgstr "Cách dùng:"
 
 #. Translators: Keep `linux-defender` unchanged; it is the command name.
-#: crates/linux-defender-core/src/cli.rs:165
+#: crates/linux-defender-core/src/cli.rs:176
 msgid "  linux-defender                   Launch the graphical interface"
 msgstr "  linux-defender                   Mở giao diện đồ họa"
 
 #. Translators: Keep `linux-defender`, `<command>`, and `[args]` unchanged; they are command syntax.
-#: crates/linux-defender-core/src/cli.rs:173
+#: crates/linux-defender-core/src/cli.rs:184
 msgid "  linux-defender <command> [args]   Run a CLI command\n"
 msgstr "  linux-defender <command> [args]   Chạy một lệnh CLI\n"
 
-#: crates/linux-defender-core/src/cli.rs:179
+#: crates/linux-defender-core/src/cli.rs:190
 msgid "Commands:"
 msgstr "Các lệnh:"
 
-#: crates/linux-defender-core/src/cli.rs:183
+#: crates/linux-defender-core/src/cli.rs:194
 msgid ""
 "\n"
 "Common per-command options:"
@@ -848,67 +848,67 @@ msgstr ""
 "Common per-command options:"
 
 #. Translators: Keep `--json` and `JSON` unchanged; they are a CLI flag and data format.
-#: crates/linux-defender-core/src/cli.rs:186
+#: crates/linux-defender-core/src/cli.rs:197
 msgid "  --json                   Machine-readable JSON output"
 msgstr "  --json                   Xuất kết quả dạng JSON cho máy đọc"
 
 #. Translators: Keep `-v` and `--verbose` unchanged; they are CLI flags.
-#: crates/linux-defender-core/src/cli.rs:194
-msgid "  -v, --verbose            Verbose output"
-msgstr "  -v, --verbose            Xuất thông tin chi tiết"
+#: crates/linux-defender-core/src/cli.rs:205
+msgid "  -v, --verbose            Verbose output (scan only)"
+msgstr "  -v, --verbose            Verbose output (scan only)"
 
 #. Translators: Keep `-h` and `--help` unchanged; they are CLI flags.
-#: crates/linux-defender-core/src/cli.rs:202
+#: crates/linux-defender-core/src/cli.rs:213
 msgid "  -h, --help               Show help for any command\n"
 msgstr "  -h, --help               Hiển thị trợ giúp cho bất kỳ lệnh nào\n"
 
 #. Translators: Keep the quoted `linux-defender help <command>` command unchanged.
-#: crates/linux-defender-core/src/cli.rs:210
+#: crates/linux-defender-core/src/cli.rs:221
 msgid "Run 'linux-defender help <command>' for usage examples."
 msgstr "Chạy “linux-defender help <command>” để xem ví dụ cách dùng."
 
 #. Translators: Keep the quoted `linux-defender` command unchanged.
-#: crates/linux-defender-core/src/cli.rs:218
+#: crates/linux-defender-core/src/cli.rs:229
 msgid "Run 'linux-defender' without arguments to launch the GUI."
 msgstr "Chạy “linux-defender” không kèm đối số để mở giao diện đồ họa."
 
-#: crates/linux-defender-core/src/cli.rs:228
+#: crates/linux-defender-core/src/cli.rs:239
 msgid "Scan files or directories for threats"
 msgstr "Quét tệp hoặc thư mục để tìm mối đe dọa"
 
-#: crates/linux-defender-core/src/cli.rs:229
+#: crates/linux-defender-core/src/cli.rs:240
 msgid "Manage quarantined files"
 msgstr "Quản lý các tệp đã cách ly"
 
-#: crates/linux-defender-core/src/cli.rs:230
+#: crates/linux-defender-core/src/cli.rs:241
 msgid "Manage scan profiles"
 msgstr "Quản lý hồ sơ quét"
 
-#: crates/linux-defender-core/src/cli.rs:231
+#: crates/linux-defender-core/src/cli.rs:242
 msgid "Show ClamAV and Linux Defender status"
 msgstr "Show ClamAV and Linux Defender status"
 
-#: crates/linux-defender-core/src/cli.rs:232
+#: crates/linux-defender-core/src/cli.rs:243
 msgid "View scan history"
 msgstr "Xem lịch sử quét"
 
-#: crates/linux-defender-core/src/cli.rs:235
+#: crates/linux-defender-core/src/cli.rs:246
 msgid ""
 "Install the polkit helper for saving system ClamAV configs (native host only)"
 msgstr ""
 "Cài đặt trình trợ giúp polkit để lưu cài đặt ClamAV của hệ thống (chỉ với "
 "bản cài đặt trực tiếp trên máy chủ)"
 
-#: crates/linux-defender-core/src/cli.rs:237
+#: crates/linux-defender-core/src/cli.rs:248
 msgid "Show this help message"
 msgstr "Hiển thị thông tin trợ giúp này"
 
 #. Translators: Keep `linux-defender` and `[COMMAND]` command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/cli.rs:248
+#: crates/linux-defender-core/src/cli.rs:259
 msgid "Usage: linux-defender help [COMMAND]"
 msgstr "Cách dùng: linux-defender help [COMMAND]"
 
-#: crates/linux-defender-core/src/cli.rs:256
+#: crates/linux-defender-core/src/cli.rs:267
 msgid ""
 "Display an overview of all commands or detailed help for a specific one."
 msgstr ""
@@ -916,25 +916,25 @@ msgstr ""
 "thể."
 
 #. Translators: Keep `help` unchanged; it is the literal CLI subcommand.
-#: crates/linux-defender-core/src/cli.rs:267
+#: crates/linux-defender-core/src/cli.rs:278
 msgid "help accepts at most one command"
 msgstr "help chỉ nhận tối đa một lệnh"
 
-#: crates/linux-defender-core/src/cli.rs:286
+#: crates/linux-defender-core/src/cli.rs:297
 msgid "Unknown command: {name}"
 msgstr "Unknown command: {name}"
 
 #. Translators: Keep `{name}` as the command name and `{summary}` as its translated description; the em dash separates them.
-#: crates/linux-defender-core/src/cli.rs:298
+#: crates/linux-defender-core/src/cli.rs:309
 msgid "linux-defender {name} — {summary}\n"
 msgstr "linux-defender {name} — {summary}\n"
 
-#: crates/linux-defender-core/src/cli.rs:308
+#: crates/linux-defender-core/src/cli.rs:319
 msgid "Examples:"
 msgstr "Ví dụ:"
 
 #. Translators: Keep the quoted `linux-defender {name} --help` command unchanged; preserve `{name}` as the command name.
-#: crates/linux-defender-core/src/cli.rs:314
+#: crates/linux-defender-core/src/cli.rs:325
 msgid ""
 "\n"
 "Run 'linux-defender {name} --help' for full option reference."
@@ -942,33 +942,33 @@ msgstr ""
 "\n"
 "Chạy “linux-defender {name} --help” để xem đầy đủ các tùy chọn."
 
-#: crates/linux-defender-core/src/cli.rs:415
-#: crates/linux-defender-core/src/cli.rs:1632
+#: crates/linux-defender-core/src/cli.rs:426
+#: crates/linux-defender-core/src/cli.rs:1643
 msgid "unrecognized argument: {argument}"
 msgstr "không nhận dạng được đối số: {argument}"
 
-#: crates/linux-defender-core/src/cli.rs:439
+#: crates/linux-defender-core/src/cli.rs:450
 msgid "No valid paths to scan"
 msgstr "Không có đường dẫn hợp lệ nào để quét"
 
-#: crates/linux-defender-core/src/cli.rs:455
+#: crates/linux-defender-core/src/cli.rs:466
 msgid "ClamAV not available: {error}"
 msgstr "ClamAV không khả dụng: {error}"
 
-#: crates/linux-defender-core/src/cli.rs:467
+#: crates/linux-defender-core/src/cli.rs:478
 msgid "ClamAV version: {version}"
 msgstr "Phiên bản ClamAV: {version}"
 
-#: crates/linux-defender-core/src/cli.rs:490
+#: crates/linux-defender-core/src/cli.rs:501
 msgid "Using profile: {name}"
 msgstr "Đang dùng hồ sơ quét: {name}"
 
-#: crates/linux-defender-core/src/cli.rs:509
+#: crates/linux-defender-core/src/cli.rs:520
 msgid "Scanning: {path}"
 msgstr "Đang quét: {path}"
 
 #. Translators: Keep `linux-defender`, uppercase metavariables, brackets, and all `--` flags unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:592
+#: crates/linux-defender-core/src/cli.rs:603
 msgid ""
 "Usage: linux-defender scan PATH [PATH ...] [--no-recursive] [--profile NAME] "
 "[--quarantine] [--json] [--verbose]"
@@ -977,7 +977,7 @@ msgstr ""
 "NAME] [--quarantine] [--json] [--verbose]"
 
 #. Translators: Preserve the numeric exit-code meanings.
-#: crates/linux-defender-core/src/cli.rs:600
+#: crates/linux-defender-core/src/cli.rs:611
 msgid ""
 "Scan one or more files or directories with ClamAV.\n"
 "Exit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
@@ -985,20 +985,20 @@ msgstr ""
 "Scan one or more files or directories with ClamAV.\n"
 "Exit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
 
-#: crates/linux-defender-core/src/cli.rs:617
+#: crates/linux-defender-core/src/cli.rs:628
 msgid "Path not found: {path}"
 msgstr "Không tìm thấy đường dẫn: {path}"
 
-#: crates/linux-defender-core/src/cli.rs:645
+#: crates/linux-defender-core/src/cli.rs:656
 msgid "Profile not found: {name}"
 msgstr "Không tìm thấy hồ sơ quét: {name}"
 
-#: crates/linux-defender-core/src/cli.rs:744
+#: crates/linux-defender-core/src/cli.rs:755
 msgid "Scanned {count} file in {duration:.1f}s"
 msgid_plural "Scanned {count} files in {duration:.1f}s"
 msgstr[0] "Đã quét {count} tệp trong {duration:.1f}s"
 
-#: crates/linux-defender-core/src/cli.rs:757
+#: crates/linux-defender-core/src/cli.rs:768
 msgid ""
 "\n"
 "Threat found: {count}"
@@ -1009,7 +1009,7 @@ msgstr[0] ""
 "\n"
 "Số mối đe dọa tìm thấy: {count}"
 
-#: crates/linux-defender-core/src/cli.rs:782
+#: crates/linux-defender-core/src/cli.rs:793
 msgid ""
 "\n"
 "Quarantined: {count} file"
@@ -1020,7 +1020,7 @@ msgstr[0] ""
 "\n"
 "Đã cách ly: {count} tệp"
 
-#: crates/linux-defender-core/src/cli.rs:792
+#: crates/linux-defender-core/src/cli.rs:803
 msgid ""
 "\n"
 "Failed to quarantine:"
@@ -1028,12 +1028,12 @@ msgstr ""
 "\n"
 "Không thể cách ly:"
 
-#: crates/linux-defender-core/src/cli.rs:804
+#: crates/linux-defender-core/src/cli.rs:815
 #: crates/linux-defender-core/src/logs.rs:1437
 msgid "Threats Detected"
 msgstr "Phát hiện mối đe dọa"
 
-#: crates/linux-defender-core/src/cli.rs:810
+#: crates/linux-defender-core/src/cli.rs:821
 msgid ""
 "\n"
 "Scan completed with errors:"
@@ -1041,278 +1041,278 @@ msgstr ""
 "\n"
 "Quá trình quét đã hoàn tất nhưng có lỗi:"
 
-#: crates/linux-defender-core/src/cli.rs:815
+#: crates/linux-defender-core/src/cli.rs:826
 msgid "No threats found."
 msgstr "Không tìm thấy mối đe dọa nào."
 
 #. Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:824
-#: crates/linux-defender-core/src/cli.rs:846
+#: crates/linux-defender-core/src/cli.rs:835
+#: crates/linux-defender-core/src/cli.rs:857
 msgid "Usage: linux-defender quarantine <list|restore|delete> [args]"
 msgstr "Cách dùng: linux-defender quarantine <list|restore|delete> [args]"
 
 #. Translators: Keep `linux-defender`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:834
+#: crates/linux-defender-core/src/cli.rs:845
 msgid "Usage: linux-defender quarantine list [--json]"
 msgstr "Cách dùng: linux-defender quarantine list [--json]"
 
 #. Translators: Keep `linux-defender`, `restore`, and `ID` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:838
+#: crates/linux-defender-core/src/cli.rs:849
 msgid "Usage: linux-defender quarantine restore ID"
 msgstr "Cách dùng: linux-defender quarantine restore ID"
 
 #. Translators: Keep `linux-defender`, `delete`, and `ID` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:842
+#: crates/linux-defender-core/src/cli.rs:853
 msgid "Usage: linux-defender quarantine delete ID"
 msgstr "Cách dùng: linux-defender quarantine delete ID"
 
-#: crates/linux-defender-core/src/cli.rs:874
+#: crates/linux-defender-core/src/cli.rs:885
 msgid "No quarantined files."
 msgstr "Không có tệp nào đã cách ly."
 
-#: crates/linux-defender-core/src/cli.rs:891
+#: crates/linux-defender-core/src/cli.rs:902
 #: crates/linux-defender-core/src/logs.rs:1139
 msgid "ID"
 msgstr "ID"
 
-#: crates/linux-defender-core/src/cli.rs:892
+#: crates/linux-defender-core/src/cli.rs:903
 msgid "File"
 msgstr "Tệp"
 
-#: crates/linux-defender-core/src/cli.rs:893
+#: crates/linux-defender-core/src/cli.rs:904
 msgid "Threat"
 msgstr "Mối đe dọa"
 
-#: crates/linux-defender-core/src/cli.rs:894
-#: crates/linux-defender-core/src/cli.rs:1688
+#: crates/linux-defender-core/src/cli.rs:905
+#: crates/linux-defender-core/src/cli.rs:1699
 msgid "Date"
 msgstr "Ngày"
 
-#: crates/linux-defender-core/src/cli.rs:895
+#: crates/linux-defender-core/src/cli.rs:906
 msgid "Size"
 msgstr "Kích thước"
 
-#: crates/linux-defender-core/src/cli.rs:910
+#: crates/linux-defender-core/src/cli.rs:921
 msgid "{count} entry ({size} total)"
 msgid_plural "{count} entries ({size} total)"
 msgstr[0] "{count} mục (tổng cộng {size})"
 
 #. Translators: Keep `quarantine`, command-valued `{action}`, and `ID` unchanged.
-#: crates/linux-defender-core/src/cli.rs:928
-#: crates/linux-defender-core/src/cli.rs:942
+#: crates/linux-defender-core/src/cli.rs:939
+#: crates/linux-defender-core/src/cli.rs:953
 msgid "quarantine {action} requires ID"
 msgstr "quarantine {action} cần có ID"
 
-#: crates/linux-defender-core/src/cli.rs:981
+#: crates/linux-defender-core/src/cli.rs:992
 msgid "Restored"
 msgstr "Đã khôi phục"
 
-#: crates/linux-defender-core/src/cli.rs:983
+#: crates/linux-defender-core/src/cli.rs:994
 msgid "Deleted"
 msgstr "Đã xóa"
 
-#: crates/linux-defender-core/src/cli.rs:988
+#: crates/linux-defender-core/src/cli.rs:999
 msgid "{verb}: {path}"
 msgstr "{verb}: {path}"
 
-#: crates/linux-defender-core/src/cli.rs:998
+#: crates/linux-defender-core/src/cli.rs:1009
 msgid "Restore failed"
 msgstr "Khôi phục thất bại"
 
-#: crates/linux-defender-core/src/cli.rs:1000
+#: crates/linux-defender-core/src/cli.rs:1011
 msgid "Delete failed"
 msgstr "Xóa thất bại"
 
-#: crates/linux-defender-core/src/cli.rs:1007
+#: crates/linux-defender-core/src/cli.rs:1018
 msgid "{prefix}: {error}"
 msgstr "{prefix}: {error}"
 
-#: crates/linux-defender-core/src/cli.rs:1084
+#: crates/linux-defender-core/src/cli.rs:1095
 #: crates/linux-defender-core/src/quarantine.rs:508
 #: crates/linux-defender-core/src/quarantine.rs:545
 msgid "Quarantine entry not found: {id}"
 msgstr "Không tìm thấy mục trong khu cách ly: {id}"
 
 #. Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1097
-#: crates/linux-defender-core/src/cli.rs:1123
+#: crates/linux-defender-core/src/cli.rs:1108
+#: crates/linux-defender-core/src/cli.rs:1134
 msgid "Usage: linux-defender profile <list|show|export|import> [args]"
 msgstr "Cách dùng: linux-defender profile <list|show|export|import> [args]"
 
 #. Translators: Keep `linux-defender`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1107
+#: crates/linux-defender-core/src/cli.rs:1118
 msgid "Usage: linux-defender profile list [--json]"
 msgstr "Cách dùng: linux-defender profile list [--json]"
 
 #. Translators: Keep `linux-defender`, `show`, `NAME`, and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1111
+#: crates/linux-defender-core/src/cli.rs:1122
 msgid "Usage: linux-defender profile show NAME [--json]"
 msgstr "Cách dùng: linux-defender profile show NAME [--json]"
 
 #. Translators: Keep `linux-defender`, `export`, `NAME`, and `FILE` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1115
+#: crates/linux-defender-core/src/cli.rs:1126
 msgid "Usage: linux-defender profile export NAME FILE"
 msgstr "Cách dùng: linux-defender profile export NAME FILE"
 
 #. Translators: Keep `linux-defender`, `import`, and `FILE` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1119
+#: crates/linux-defender-core/src/cli.rs:1130
 msgid "Usage: linux-defender profile import FILE"
 msgstr "Cách dùng: linux-defender profile import FILE"
 
-#: crates/linux-defender-core/src/cli.rs:1150
+#: crates/linux-defender-core/src/cli.rs:1161
 msgid "No scan profiles configured."
 msgstr "Chưa có hồ sơ quét nào được cấu hình."
 
-#: crates/linux-defender-core/src/cli.rs:1166
+#: crates/linux-defender-core/src/cli.rs:1177
 msgid " (+{n} more)"
 msgstr " (+{n} mục khác)"
 
-#: crates/linux-defender-core/src/cli.rs:1171
+#: crates/linux-defender-core/src/cli.rs:1182
 msgid "(none)"
 msgstr "(không có)"
 
-#: crates/linux-defender-core/src/cli.rs:1176
-#: crates/linux-defender-core/src/cli.rs:1346
+#: crates/linux-defender-core/src/cli.rs:1187
+#: crates/linux-defender-core/src/cli.rs:1357
 msgid "yes"
 msgstr "có"
 
-#: crates/linux-defender-core/src/cli.rs:1178
-#: crates/linux-defender-core/src/cli.rs:1348
+#: crates/linux-defender-core/src/cli.rs:1189
+#: crates/linux-defender-core/src/cli.rs:1359
 msgid "no"
 msgstr "không"
 
-#: crates/linux-defender-core/src/cli.rs:1186
+#: crates/linux-defender-core/src/cli.rs:1197
 msgid "Name"
 msgstr "Tên"
 
-#: crates/linux-defender-core/src/cli.rs:1187
+#: crates/linux-defender-core/src/cli.rs:1198
 msgid "Targets"
 msgstr "Mục tiêu"
 
-#: crates/linux-defender-core/src/cli.rs:1188
+#: crates/linux-defender-core/src/cli.rs:1199
 msgid "Default"
 msgstr "Mặc định"
 
-#: crates/linux-defender-core/src/cli.rs:1189
+#: crates/linux-defender-core/src/cli.rs:1200
 msgid "Updated"
 msgstr "Ngày cập nhật"
 
-#: crates/linux-defender-core/src/cli.rs:1197
+#: crates/linux-defender-core/src/cli.rs:1208
 msgid "{count} profile"
 msgid_plural "{count} profiles"
 msgstr[0] "{count} hồ sơ"
 
 #. Translators: Preserve `{name}` as the profile name and `{path}` as its destination; quotation marks may be localized.
-#: crates/linux-defender-core/src/cli.rs:1256
+#: crates/linux-defender-core/src/cli.rs:1267
 msgid "Exported '{name}' to {path}"
 msgstr "Đã xuất “{name}” ra {path}"
 
-#: crates/linux-defender-core/src/cli.rs:1285
+#: crates/linux-defender-core/src/cli.rs:1296
 msgid "Imported profile: {name}"
 msgstr "Đã nhập hồ sơ: {name}"
 
 #. Translators: Preserve command-valued `{usage}`, `NAME`, and the `--json` CLI flag.
-#: crates/linux-defender-core/src/cli.rs:1305
-#: crates/linux-defender-core/src/cli.rs:1318
+#: crates/linux-defender-core/src/cli.rs:1316
+#: crates/linux-defender-core/src/cli.rs:1329
 msgid "{usage} requires NAME and optional --json"
 msgstr "{usage} cần có NAME, có thể kèm --json"
 
-#: crates/linux-defender-core/src/cli.rs:1341
+#: crates/linux-defender-core/src/cli.rs:1352
 msgid "Name:        {name}"
 msgstr "Tên:           {name}"
 
-#: crates/linux-defender-core/src/cli.rs:1344
+#: crates/linux-defender-core/src/cli.rs:1355
 msgid "ID:          {id}"
 msgstr "ID:            {id}"
 
-#: crates/linux-defender-core/src/cli.rs:1352
+#: crates/linux-defender-core/src/cli.rs:1363
 msgid "Default:     {value}"
 msgstr "Mặc định:      {value}"
 
-#: crates/linux-defender-core/src/cli.rs:1361
+#: crates/linux-defender-core/src/cli.rs:1372
 msgid "Description: {description}"
 msgstr "Mô tả:         {description}"
 
-#: crates/linux-defender-core/src/cli.rs:1371
+#: crates/linux-defender-core/src/cli.rs:1382
 msgid "Created:     {created}"
 msgstr "Ngày tạo:      {created}"
 
-#: crates/linux-defender-core/src/cli.rs:1380
+#: crates/linux-defender-core/src/cli.rs:1391
 msgid "Updated:     {updated}"
 msgstr "Ngày cập nhật: {updated}"
 
-#: crates/linux-defender-core/src/cli.rs:1386
+#: crates/linux-defender-core/src/cli.rs:1397
 msgid "Targets:"
 msgstr "Mục tiêu:"
 
-#: crates/linux-defender-core/src/cli.rs:1395
+#: crates/linux-defender-core/src/cli.rs:1406
 msgid "  (none)"
 msgstr "  (không có)"
 
-#: crates/linux-defender-core/src/cli.rs:1406
+#: crates/linux-defender-core/src/cli.rs:1417
 msgid "Exclusions:"
 msgstr "Ngoại lệ:"
 
-#: crates/linux-defender-core/src/cli.rs:1411
+#: crates/linux-defender-core/src/cli.rs:1422
 msgid "  path:    {path}"
 msgstr "  đường dẫn: {path}"
 
-#: crates/linux-defender-core/src/cli.rs:1418
+#: crates/linux-defender-core/src/cli.rs:1429
 msgid "  pattern: {pattern}"
 msgstr "  mẫu:       {pattern}"
 
-#: crates/linux-defender-core/src/cli.rs:1430
+#: crates/linux-defender-core/src/cli.rs:1441
 msgid "Options:"
 msgstr "Tùy chọn:"
 
 #. Translators: Keep `linux-defender` and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1444
+#: crates/linux-defender-core/src/cli.rs:1455
 msgid "Usage: linux-defender status [--json]"
 msgstr "Cách dùng: linux-defender status [--json]"
 
-#: crates/linux-defender-core/src/cli.rs:1499
+#: crates/linux-defender-core/src/cli.rs:1510
 msgid "ClamAV"
 msgstr "ClamAV"
 
-#: crates/linux-defender-core/src/cli.rs:1504
+#: crates/linux-defender-core/src/cli.rs:1515
 msgid "  Version:  {version}"
 msgstr "  Phiên bản:   {version}"
 
-#: crates/linux-defender-core/src/cli.rs:1511
+#: crates/linux-defender-core/src/cli.rs:1522
 msgid "  Status:   not available"
 msgstr "  Trạng thái:  không khả dụng"
 
-#: crates/linux-defender-core/src/cli.rs:1515
+#: crates/linux-defender-core/src/cli.rs:1526
 msgid "  Error:    {error}"
 msgstr "  Lỗi:         {error}"
 
-#: crates/linux-defender-core/src/cli.rs:1521
+#: crates/linux-defender-core/src/cli.rs:1532
 msgid "  Backend:  {backend}"
 msgstr "  Cơ chế quét: {backend}"
 
-#: crates/linux-defender-core/src/cli.rs:1530
+#: crates/linux-defender-core/src/cli.rs:1541
 msgid "  Daemon:   {daemon}"
 msgstr "  Dịch vụ:     {daemon}"
 
-#: crates/linux-defender-core/src/cli.rs:1532
+#: crates/linux-defender-core/src/cli.rs:1543
 msgid "Quarantine"
 msgstr "Khu cách ly"
 
-#: crates/linux-defender-core/src/cli.rs:1536
-#: crates/linux-defender-core/src/cli.rs:1555
+#: crates/linux-defender-core/src/cli.rs:1547
+#: crates/linux-defender-core/src/cli.rs:1566
 msgid "  Entries:  {count}"
 msgstr "  Số mục:      {count}"
 
-#: crates/linux-defender-core/src/cli.rs:1545
+#: crates/linux-defender-core/src/cli.rs:1556
 msgid "  Size:     {size}"
 msgstr "  Dung lượng:  {size}"
 
-#: crates/linux-defender-core/src/cli.rs:1547
+#: crates/linux-defender-core/src/cli.rs:1558
 msgid "Scan History"
 msgstr "Lịch sử quét"
 
 #. Translators: Keep `linux-defender`, all `--` flags, `N`, and type choices unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1568
+#: crates/linux-defender-core/src/cli.rs:1579
 msgid ""
 "Usage: linux-defender history [--limit N] [--type scan|update|virustotal] [--"
 "json]"
@@ -1320,39 +1320,39 @@ msgstr ""
 "Cách dùng: linux-defender history [--limit N] [--type scan|update|"
 "virustotal] [--json]"
 
-#: crates/linux-defender-core/src/cli.rs:1651
+#: crates/linux-defender-core/src/cli.rs:1662
 msgid "Failed to load history: {error}"
 msgstr "Không thể tải lịch sử: {error}"
 
-#: crates/linux-defender-core/src/cli.rs:1666
+#: crates/linux-defender-core/src/cli.rs:1677
 msgid "No scan history found."
 msgstr "Không tìm thấy lịch sử quét."
 
-#: crates/linux-defender-core/src/cli.rs:1689
+#: crates/linux-defender-core/src/cli.rs:1700
 #: crates/linux-defender-core/src/logs.rs:1149
 msgid "Type"
 msgstr "Loại"
 
-#: crates/linux-defender-core/src/cli.rs:1690
+#: crates/linux-defender-core/src/cli.rs:1701
 #: crates/linux-defender-core/src/logs.rs:1154
 msgid "Status"
 msgstr "Trạng thái"
 
-#: crates/linux-defender-core/src/cli.rs:1691
+#: crates/linux-defender-core/src/cli.rs:1702
 #: crates/linux-defender-core/src/logs.rs:1173
 msgid "Summary"
 msgstr "Tóm tắt"
 
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
-#: crates/linux-defender-core/src/cli.rs:1709
+#: crates/linux-defender-core/src/cli.rs:1720
 msgid "Showing {shown} of {total} entry. Use --limit to see more."
 msgid_plural "Showing {shown} of {total} entries. Use --limit to see more."
 msgstr[0] ""
 "Đang hiển thị {shown} trên tổng số {total} mục. Dùng --limit để xem thêm."
 
 #. Translators: Keep `linux-defender install-privileged-helper` unchanged; it is the CLI command.
-#: crates/linux-defender-core/src/cli.rs:1744
+#: crates/linux-defender-core/src/cli.rs:1755
 msgid "Usage: linux-defender install-privileged-helper [--prefix PATH]"
 msgstr "Usage: linux-defender install-privileged-helper [--prefix PATH]"
 
@@ -1853,22 +1853,22 @@ msgstr ""
 "Mục này có thể vẫn hiển thị trong danh sách cho đến khi được dọn dẹp."
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/linux-defender-core/src/quarantine.rs:1589
+#: crates/linux-defender-core/src/quarantine.rs:1592
 msgid "Cannot quarantine {path}: {error}"
 msgstr "Không thể cách ly {path}: {error}"
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/linux-defender-core/src/quarantine.rs:1607
+#: crates/linux-defender-core/src/quarantine.rs:1610
 msgid "File hash mismatch — file may be corrupted"
 msgstr "Mã băm của tệp không khớp — tệp có thể đã bị hỏng"
 
-#: crates/linux-defender-core/src/scanner.rs:490
+#: crates/linux-defender-core/src/scanner.rs:498
 msgid "No ClamAV database files were found in standard host locations"
 msgstr ""
 "Không tìm thấy tệp cơ sở dữ liệu ClamAV nào ở các vị trí tiêu chuẩn trên hệ "
 "thống chủ"
 
-#: crates/linux-defender-core/src/scanner.rs:561
+#: crates/linux-defender-core/src/scanner.rs:569
 msgid ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
@@ -1876,37 +1876,37 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2251
+#: crates/linux-defender-core/src/scanner.rs:2259
 msgid "Scan cancelled by user"
 msgstr "Người dùng đã hủy quá trình quét"
 
-#: crates/linux-defender-core/src/scanner.rs:2258
+#: crates/linux-defender-core/src/scanner.rs:2266
 msgid "No files could be scanned"
 msgstr "Không thể quét tệp nào"
 
-#: crates/linux-defender-core/src/scanner.rs:2264
+#: crates/linux-defender-core/src/scanner.rs:2272
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "Mục tiêu quét không tồn tại hoặc chứa byte NUL không hợp lệ"
 
-#: crates/linux-defender-core/src/scanner.rs:2271
+#: crates/linux-defender-core/src/scanner.rs:2279
 msgid "Scan target is not a regular file or directory"
 msgstr "Mục tiêu quét không phải là tệp hoặc thư mục thông thường"
 
-#: crates/linux-defender-core/src/scanner.rs:2280
+#: crates/linux-defender-core/src/scanner.rs:2288
 msgid "Threats were detected, but details are unavailable."
 msgstr "Đã phát hiện các mối đe dọa, nhưng không có thông tin chi tiết."
 
-#: crates/linux-defender-core/src/scanner.rs:2292
+#: crates/linux-defender-core/src/scanner.rs:2300
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "Không thể truy cập {count} tệp"
 
-#: crates/linux-defender-core/src/scanner.rs:2305
+#: crates/linux-defender-core/src/scanner.rs:2313
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "Không thể đọc {count} tệp"
 
-#: crates/linux-defender-core/src/scanner.rs:2324
+#: crates/linux-defender-core/src/scanner.rs:2332
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -1917,12 +1917,12 @@ msgstr[0] ""
 "{count} cảnh báo không nghiêm trọng trong quá trình quét; một số tệp có thể "
 "chỉ được quét một phần"
 
-#: crates/linux-defender-core/src/scheduler.rs:910
+#: crates/linux-defender-core/src/scheduler.rs:926
 msgid "Scheduled scan cancelled"
 msgstr "Đã hủy quét theo lịch"
 
 #. Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/scheduler.rs:929
+#: crates/linux-defender-core/src/scheduler.rs:945
 msgid ""
 "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] "
 "[--target PATH] [--dry-run] [--verbose|-v]"
@@ -1931,128 +1931,128 @@ msgstr ""
 "quarantine] [--target PATH] [--dry-run] [--verbose|-v]"
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/linux-defender-core/src/scheduler.rs:970
+#: crates/linux-defender-core/src/scheduler.rs:986
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
-#: crates/linux-defender-core/src/scheduler.rs:979
+#: crates/linux-defender-core/src/scheduler.rs:995
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "Đã bỏ qua quét theo lịch (đang dùng pin)"
 
-#: crates/linux-defender-core/src/scheduler.rs:996
+#: crates/linux-defender-core/src/scheduler.rs:1012
 msgid "Warning: Target does not exist: {target}"
 msgstr "Cảnh báo: Mục tiêu không tồn tại: {target}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1008
+#: crates/linux-defender-core/src/scheduler.rs:1024
 msgid "Error: No valid scan targets found"
 msgstr "Lỗi: Không tìm thấy mục tiêu quét hợp lệ nào"
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/linux-defender-core/src/scheduler.rs:1012
+#: crates/linux-defender-core/src/scheduler.rs:1028
 msgid "Dry run mode — scan not executed"
 msgstr "Chế độ chạy thử — không thực hiện quét"
 
-#: crates/linux-defender-core/src/scheduler.rs:1020
+#: crates/linux-defender-core/src/scheduler.rs:1036
 msgid "  Skip on battery: {value}"
 msgstr "  Bỏ qua khi dùng pin: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1025
+#: crates/linux-defender-core/src/scheduler.rs:1041
 msgid "  Auto quarantine: {value}"
 msgstr "  Tự động cách ly: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1033
+#: crates/linux-defender-core/src/scheduler.rs:1049
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} mục tiêu: {targets:?}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1057
+#: crates/linux-defender-core/src/scheduler.rs:1073
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "Quét theo lịch thất bại: ClamAV không khả dụng"
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/linux-defender-core/src/scheduler.rs:1067
+#: crates/linux-defender-core/src/scheduler.rs:1083
 msgid "Error: ClamAV not available — {error}"
 msgstr "Lỗi: ClamAV không khả dụng — {error}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1076
+#: crates/linux-defender-core/src/scheduler.rs:1092
 msgid "Scheduled Scan Failed"
 msgstr "Quét theo lịch thất bại"
 
-#: crates/linux-defender-core/src/scheduler.rs:1077
+#: crates/linux-defender-core/src/scheduler.rs:1093
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "ClamAV không khả dụng. Vui lòng cài đặt ClamAV."
 
-#: crates/linux-defender-core/src/scheduler.rs:1146
+#: crates/linux-defender-core/src/scheduler.rs:1162
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
 msgstr[0] ""
 "Quét theo lịch phát hiện {infected} mối đe dọa, đã cách ly {quarantined}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1157
+#: crates/linux-defender-core/src/scheduler.rs:1173
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "Quét theo lịch phát hiện {count} mối đe dọa"
 
-#: crates/linux-defender-core/src/scheduler.rs:1166
+#: crates/linux-defender-core/src/scheduler.rs:1182
 msgid "Scheduled scan completed with errors"
 msgstr "Quét theo lịch đã hoàn tất nhưng có lỗi"
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/scheduler.rs:1169
+#: crates/linux-defender-core/src/scheduler.rs:1185
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] ""
 "Quét theo lịch đã hoàn tất — đã quét {count} tệp, không có mối đe dọa"
 
-#: crates/linux-defender-core/src/scheduler.rs:1184
+#: crates/linux-defender-core/src/scheduler.rs:1200
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "Thời gian quét: {duration:.1f} giây"
 
-#: crates/linux-defender-core/src/scheduler.rs:1186
+#: crates/linux-defender-core/src/scheduler.rs:1202
 msgid "Files Scanned: {count}"
 msgstr "Số tệp đã quét: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1187
+#: crates/linux-defender-core/src/scheduler.rs:1203
 msgid "Threats Found: {count}"
 msgstr "Số mối đe dọa phát hiện: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1188
+#: crates/linux-defender-core/src/scheduler.rs:1204
 msgid "Targets: {targets}"
 msgstr "Mục tiêu: {targets}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1192
+#: crates/linux-defender-core/src/scheduler.rs:1208
 msgid "Quarantined: {count}"
 msgstr "Đã cách ly: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1197
+#: crates/linux-defender-core/src/scheduler.rs:1213
 msgid "Quarantine Failed: {count}"
 msgstr "Cách ly thất bại: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1225
+#: crates/linux-defender-core/src/scheduler.rs:1241
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "Quét theo lịch: Phát hiện mối đe dọa!"
 
-#: crates/linux-defender-core/src/scheduler.rs:1231
+#: crates/linux-defender-core/src/scheduler.rs:1247
 msgid "Scheduled Scan Completed"
 msgstr "Quét theo lịch đã hoàn tất"
 
-#: crates/linux-defender-core/src/scheduler.rs:1232
+#: crates/linux-defender-core/src/scheduler.rs:1248
 msgid "Scan completed with some errors. Check logs for details."
 msgstr ""
 "Quá trình quét đã hoàn tất nhưng có một số lỗi. Xem nhật ký để biết chi tiết."
 
-#: crates/linux-defender-core/src/scheduler.rs:1240
+#: crates/linux-defender-core/src/scheduler.rs:1256
 msgid "Scheduled Scan Complete"
 msgstr "Quét theo lịch đã hoàn tất"
 
-#: crates/linux-defender-core/src/scheduler.rs:1253
+#: crates/linux-defender-core/src/scheduler.rs:1269
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "Không thể cách ly: {count} tệp"
 
-#: crates/linux-defender-core/src/scheduler.rs:1279
+#: crates/linux-defender-core/src/scheduler.rs:1295
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -2060,15 +2060,15 @@ msgstr ""
 "Mức pin: {percent:.0f}%\n"
 "Đã bỏ qua lượt quét do cài đặt tiết kiệm pin."
 
-#: crates/linux-defender-core/src/scheduler.rs:1284
+#: crates/linux-defender-core/src/scheduler.rs:1300
 msgid "Scan skipped due to battery-aware settings."
 msgstr "Đã bỏ qua lượt quét do cài đặt tiết kiệm pin."
 
-#: crates/linux-defender-core/src/scheduler.rs:1290
+#: crates/linux-defender-core/src/scheduler.rs:1306
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "Bỏ qua lượt quét: đang dùng pin ({percent:.0f}%)"
 
-#: crates/linux-defender-core/src/scheduler.rs:1295
+#: crates/linux-defender-core/src/scheduler.rs:1311
 msgid "Skipping scan: running on battery power"
 msgstr "Bỏ qua lượt quét: đang dùng pin"
 
@@ -2405,7 +2405,7 @@ msgstr "Thêm tệp"
 msgid "Export"
 msgstr "Xuất"
 
-#: desktop/src-tauri/src/runtime.rs:784
+#: desktop/src-tauri/src/runtime.rs:790
 msgid "Open"
 msgstr "Mở"
 
@@ -2444,7 +2444,7 @@ msgstr "Kiểm tra bảo mật"
 msgid "Network"
 msgstr "Mạng"
 
-#: desktop/src/App.tsx:130 desktop/src/App.tsx:910 desktop/src/App.tsx:998
+#: desktop/src/App.tsx:130 desktop/src/App.tsx:917 desktop/src/App.tsx:1005
 #: desktop/src/pages/Preferences.tsx:120
 msgid "Preferences"
 msgstr "Tùy chọn"
@@ -2491,112 +2491,112 @@ msgstr ""
 "Yêu cầu kiểm tra trạng thái trình trợ giúp đặc quyền trả về phản hồi không "
 "hợp lệ."
 
-#: desktop/src/App.tsx:903
+#: desktop/src/App.tsx:910
 msgid "Linux Defender"
 msgstr "Linux Defender"
 
-#: desktop/src/App.tsx:908
+#: desktop/src/App.tsx:915
 msgid "Back"
 msgstr "Quay lại"
 
-#: desktop/src/App.tsx:933
+#: desktop/src/App.tsx:940
 msgid "Scan File or Folder"
 msgstr "Quét tệp hoặc thư mục"
 
-#: desktop/src/App.tsx:940
+#: desktop/src/App.tsx:947
 msgid "Choose scan targets"
 msgstr "Chọn mục tiêu quét"
 
-#: desktop/src/App.tsx:950
+#: desktop/src/App.tsx:957
 msgid "Scan Files"
 msgstr "Quét tệp"
 
-#: desktop/src/App.tsx:954
+#: desktop/src/App.tsx:961
 msgid "Scan Folders"
 msgstr "Quét thư mục"
 
-#: desktop/src/App.tsx:961
+#: desktop/src/App.tsx:968
 msgid "Scan System (Quick Scan)"
 msgstr "Quét hệ thống (quét nhanh)"
 
-#: desktop/src/App.tsx:968 desktop/src/App.tsx:969
+#: desktop/src/App.tsx:975 desktop/src/App.tsx:976
 msgid "Menu"
 msgstr "Menu"
 
-#: desktop/src/App.tsx:988
+#: desktop/src/App.tsx:995
 msgid "Application menu"
 msgstr "Menu ứng dụng"
 
-#: desktop/src/App.tsx:1001
+#: desktop/src/App.tsx:1008
 msgid "About"
 msgstr "Giới thiệu"
 
-#: desktop/src/App.tsx:1014
+#: desktop/src/App.tsx:1021
 msgid "Main navigation"
 msgstr "Điều hướng chính"
 
-#: desktop/src/App.tsx:1015
+#: desktop/src/App.tsx:1022
 msgid "Views"
 msgstr "Các trang"
 
-#: desktop/src/App.tsx:1035 desktop/src/pages/Quarantine.tsx:341
+#: desktop/src/App.tsx:1042 desktop/src/pages/Quarantine.tsx:341
 msgid "Dismiss"
 msgstr "Bỏ qua"
 
-#: desktop/src/App.tsx:1057
+#: desktop/src/App.tsx:1067
 msgid "About Linux Defender"
 msgstr "About Linux Defender"
 
-#: desktop/src/App.tsx:1058
+#: desktop/src/App.tsx:1068
 msgid "An on-demand Linux security scanner using your system's ClamAV tools."
 msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 
-#: desktop/src/App.tsx:1060
+#: desktop/src/App.tsx:1070
 msgid "Version"
 msgstr "Phiên bản"
 
-#: desktop/src/App.tsx:1061 desktop/src/pages/SettingsPreferences.tsx:270
-#: desktop/src/pages/SettingsPreferences.tsx:271
+#: desktop/src/App.tsx:1071 desktop/src/pages/SettingsPreferences.tsx:276
+#: desktop/src/pages/SettingsPreferences.tsx:277
 msgid "Language"
 msgstr "Ngôn ngữ"
 
-#: desktop/src/App.tsx:1062
+#: desktop/src/App.tsx:1072
 msgid "License"
 msgstr "Giấy phép"
 
-#: desktop/src/App.tsx:1065
+#: desktop/src/App.tsx:1075
 msgid "Project website"
 msgstr "Trang web dự án"
 
-#: desktop/src/App.tsx:1066 desktop/src/pages/ConfigPreferences.tsx:824
+#: desktop/src/App.tsx:1076 desktop/src/pages/ConfigPreferences.tsx:824
 msgid "Documentation"
 msgstr "Tài liệu"
 
-#: desktop/src/App.tsx:1067
+#: desktop/src/App.tsx:1077
 msgid "Issue tracker"
 msgstr "Trình theo dõi sự cố"
 
-#: desktop/src/App.tsx:1069
+#: desktop/src/App.tsx:1079
 msgid "Could not load contributor credits: {error}"
 msgstr "Không thể tải danh sách người đóng góp: {error}"
 
-#: desktop/src/App.tsx:1074
+#: desktop/src/App.tsx:1084
 msgid "Contributors"
 msgstr "Người đóng góp"
 
-#: desktop/src/App.tsx:1083
+#: desktop/src/App.tsx:1093
 msgid "Translator credits"
 msgstr "Người dịch"
 
-#: desktop/src/App.tsx:1086
+#: desktop/src/App.tsx:1096
 msgid "Loading contributor credits…"
 msgstr "Đang tải danh sách người đóng góp…"
 
-#: desktop/src/App.tsx:1088
+#: desktop/src/App.tsx:1098
 msgid "Close Linux Defender?"
 msgstr "Close Linux Defender?"
 
-#: desktop/src/App.tsx:1089
+#: desktop/src/App.tsx:1099
 msgid ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
@@ -2604,55 +2604,55 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1090 desktop/src/pages/Scan.tsx:263
+#: desktop/src/App.tsx:1100 desktop/src/pages/Scan.tsx:263
 msgid "Remember my choice"
 msgstr "Ghi nhớ lựa chọn của tôi"
 
-#: desktop/src/App.tsx:1091 desktop/src/App.tsx:1095
+#: desktop/src/App.tsx:1101 desktop/src/App.tsx:1105
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Scan.tsx:790
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
-#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
+#: desktop/src/pages/SettingsPreferences.tsx:550
 #: desktop/src/pages/Urlscan.tsx:239
 msgid "Cancel"
 msgstr "Hủy"
 
-#: desktop/src/App.tsx:1091
+#: desktop/src/App.tsx:1101 desktop/src/pages/SettingsPreferences.tsx:136
 msgid "Minimize to tray"
 msgstr "Thu nhỏ xuống khay hệ thống"
 
-#: desktop/src/App.tsx:1093
+#: desktop/src/App.tsx:1103
 msgid "Scan in Progress"
 msgstr "Đang quét"
 
-#: desktop/src/App.tsx:1094
+#: desktop/src/App.tsx:1104
 msgid "A scan is still running. Cancelling it may leave partial results."
 msgstr "Quá trình quét vẫn đang chạy. Nếu hủy, kết quả có thể không đầy đủ."
 
-#: desktop/src/App.tsx:1095
+#: desktop/src/App.tsx:1105
 msgid "Keep Scanning"
 msgstr "Tiếp tục quét"
 
-#: desktop/src/App.tsx:1095
+#: desktop/src/App.tsx:1105
 msgid "Cancel Scan and Close"
 msgstr "Hủy quét và đóng"
 
-#: desktop/src/App.tsx:1095 desktop/src/ConfigurationRecovery.tsx:94
+#: desktop/src/App.tsx:1105 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:356 desktop/src/pages/Scan.tsx:362
-#: desktop/src/pages/Scan.tsx:374 desktop/src/pages/SettingsPreferences.tsx:314
+#: desktop/src/pages/Scan.tsx:374 desktop/src/pages/SettingsPreferences.tsx:320
 msgid "Close"
 msgstr "Đóng"
 
-#: desktop/src/App.tsx:1097
+#: desktop/src/App.tsx:1107
 msgid "Install Privileged Helper"
 msgstr "Cài đặt trình trợ giúp đặc quyền"
 
-#: desktop/src/App.tsx:1098
+#: desktop/src/App.tsx:1108
 msgid ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
@@ -2660,12 +2660,12 @@ msgstr ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
 
-#: desktop/src/App.tsx:1100 desktop/src/HelperTrustErrorDialog.tsx:52
+#: desktop/src/App.tsx:1110 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr "Việc cài đặt trình trợ giúp cần được cấp quyền quản trị."
 
 #. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1101
+#: desktop/src/App.tsx:1111
 msgid ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
@@ -2673,27 +2673,27 @@ msgstr ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
 
-#: desktop/src/App.tsx:1106 desktop/src/HelperTrustErrorDialog.tsx:78
+#: desktop/src/App.tsx:1116 desktop/src/HelperTrustErrorDialog.tsx:78
 msgid "Installing privileged helper…"
 msgstr "Đang cài đặt trình trợ giúp đặc quyền…"
 
-#: desktop/src/App.tsx:1108
+#: desktop/src/App.tsx:1118
 msgid "Not now"
 msgstr "Để sau"
 
-#: desktop/src/App.tsx:1108 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1118 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Installing…"
 msgstr "Đang cài đặt…"
 
-#: desktop/src/App.tsx:1108 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1118 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Try Again"
 msgstr "Thử lại"
 
-#: desktop/src/App.tsx:1108 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1118 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Install Helper"
 msgstr "Cài đặt trình trợ giúp"
 
-#: desktop/src/App.tsx:1108
+#: desktop/src/App.tsx:1118
 msgid "Open Preferences"
 msgstr "Mở Tùy chọn"
 
@@ -2946,8 +2946,8 @@ msgstr "Đã hủy"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:56
 #: desktop/src/pages/Results.tsx:70 desktop/src/pages/Results.tsx:77
-#: desktop/src/pages/SettingsPreferences.tsx:518
-#: desktop/src/pages/SettingsPreferences.tsx:542 desktop/src/protection.ts:131
+#: desktop/src/pages/SettingsPreferences.tsx:524
+#: desktop/src/pages/SettingsPreferences.tsx:548 desktop/src/protection.ts:131
 msgid "Unknown"
 msgstr "Không xác định"
 
@@ -3115,7 +3115,7 @@ msgstr "Không thể sao chép lệnh: {error}"
 #: desktop/src/pages/Audit.tsx:342 desktop/src/pages/Components.tsx:278
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
 #: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Copy"
 msgstr "Sao chép"
 
@@ -3204,7 +3204,7 @@ msgid "Running"
 msgstr "Đang chạy"
 
 #: desktop/src/pages/Components.tsx:147
-#: desktop/src/pages/SettingsPreferences.tsx:305
+#: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Installed"
 msgstr "Đã cài đặt"
 
@@ -3213,7 +3213,7 @@ msgid "Stopped"
 msgstr "Đã dừng"
 
 #: desktop/src/pages/Components.tsx:149 desktop/src/pages/Logs.tsx:102
-#: desktop/src/pages/SettingsPreferences.tsx:307
+#: desktop/src/pages/SettingsPreferences.tsx:313
 msgid "Not installed"
 msgstr "Chưa cài đặt"
 
@@ -3363,7 +3363,7 @@ msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:298
 #: desktop/src/pages/ConfigPreferences.tsx:346
-#: desktop/src/pages/SettingsPreferences.tsx:381
+#: desktop/src/pages/SettingsPreferences.tsx:387
 msgid "Add"
 msgstr "Thêm"
 
@@ -3371,7 +3371,7 @@ msgstr "Thêm"
 #: desktop/src/pages/ConfigPreferences.tsx:350
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
 #: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:773
-#: desktop/src/pages/SettingsPreferences.tsx:311
+#: desktop/src/pages/SettingsPreferences.tsx:317
 msgid "Remove"
 msgstr "Gỡ bỏ"
 
@@ -3484,7 +3484,7 @@ msgid "Scan Archive Files"
 msgstr "Quét tệp nén"
 
 #: desktop/src/pages/ConfigPreferences.tsx:765
-#: desktop/src/pages/SettingsPreferences.tsx:283
+#: desktop/src/pages/SettingsPreferences.tsx:289
 msgid "Database Updates"
 msgstr "Cập nhật cơ sở dữ liệu"
 
@@ -3881,7 +3881,7 @@ msgstr ""
 "bạn mà không lưu thư mục đó thành mục tiêu cụ thể."
 
 #: desktop/src/pages/ConfigPreferences.tsx:895
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Skip on Battery"
 msgstr "Bỏ qua khi dùng pin"
 
@@ -4344,9 +4344,9 @@ msgstr "Các lượt quét và cập nhật trước đây"
 #: desktop/src/pages/Logs.tsx:385 desktop/src/pages/Logs.tsx:418
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
 #: desktop/src/pages/Quarantine.tsx:356
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
+#: desktop/src/pages/SettingsPreferences.tsx:543
 #: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:210
 msgid "Refresh"
 msgstr "Làm mới"
@@ -4539,8 +4539,8 @@ msgstr "Đang làm mới…"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
 #: desktop/src/pages/Overview.tsx:153
-#: desktop/src/pages/SettingsPreferences.tsx:534
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:540
+#: desktop/src/pages/SettingsPreferences.tsx:543
 msgid "Loading…"
 msgstr "Đang tải…"
 
@@ -4712,7 +4712,7 @@ msgid "Scanner engine"
 msgstr "Công cụ quét"
 
 #: desktop/src/pages/Overview.tsx:192
-#: desktop/src/pages/SettingsPreferences.tsx:463
+#: desktop/src/pages/SettingsPreferences.tsx:469
 msgid "{count} file"
 msgid_plural "{count} files"
 msgstr[0] "{count} tệp"
@@ -4747,8 +4747,8 @@ msgid "See detailed scan history"
 msgstr "Xem lịch sử quét chi tiết"
 
 #: desktop/src/pages/Preferences.tsx:13
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Behavior"
 msgstr "Hành vi"
 
@@ -4773,7 +4773,7 @@ msgid "On-Access"
 msgstr "Quét thời gian thực"
 
 #: desktop/src/pages/Preferences.tsx:20
-#: desktop/src/pages/SettingsPreferences.tsx:199
+#: desktop/src/pages/SettingsPreferences.tsx:205
 msgid "YARA Rules"
 msgstr "Quy tắc YARA"
 
@@ -4794,12 +4794,12 @@ msgid "Save"
 msgstr "Lưu"
 
 #: desktop/src/pages/Preferences.tsx:49
-#: desktop/src/pages/SettingsPreferences.tsx:147
+#: desktop/src/pages/SettingsPreferences.tsx:153
 msgid "Unable to load preferences: {error}"
 msgstr "Không tải được tùy chọn: {error}"
 
 #: desktop/src/pages/Preferences.tsx:98
-#: desktop/src/pages/SettingsPreferences.tsx:161
+#: desktop/src/pages/SettingsPreferences.tsx:167
 msgid "Could not save preference: {error}"
 msgstr "Không lưu được tùy chọn: {error}"
 
@@ -4956,8 +4956,8 @@ msgstr "Nhân bản"
 
 #: desktop/src/pages/Profiles.tsx:234 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Quarantine.tsx:367 desktop/src/pages/Quarantine.tsx:379
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Delete"
 msgstr "Xóa"
 
@@ -5578,8 +5578,8 @@ msgstr "Đang quét…"
 msgid "Scan with VirusTotal"
 msgstr "Quét bằng VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:261 desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/Scan.tsx:261 desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "API Key"
 msgstr "Khóa API"
 
@@ -5870,15 +5870,25 @@ msgid "{count} byte"
 msgid_plural "{count} bytes"
 msgstr[0] "{count} byte"
 
-#: desktop/src/pages/SettingsPreferences.tsx:186
+#: desktop/src/pages/SettingsPreferences.tsx:137
+msgid "Quit completely"
+msgstr "Quit completely"
+
+#: desktop/src/pages/SettingsPreferences.tsx:138
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
+msgid "Always ask"
+msgstr "Luôn hỏi"
+
+#: desktop/src/pages/SettingsPreferences.tsx:192
 msgid "Unable to choose the YARA rules folder: {error}"
 msgstr "Không thể chọn thư mục quy tắc YARA: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:194
+#: desktop/src/pages/SettingsPreferences.tsx:200
 msgid "Unable to open the YARA rules folder: {error}"
 msgstr "Không thể mở thư mục quy tắc YARA: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:199
+#: desktop/src/pages/SettingsPreferences.tsx:205
 msgid ""
 "Add local YARA rules that ClamAV can load during standalone scans. Linux "
 "Defender does not download or update YARA rules; manage this folder yourself."
@@ -5887,15 +5897,15 @@ msgstr ""
 "Defender không tải xuống hoặc cập nhật quy tắc YARA; hãy tự quản lý thư mục "
 "này."
 
-#: desktop/src/pages/SettingsPreferences.tsx:200
+#: desktop/src/pages/SettingsPreferences.tsx:206
 msgid "Rules Folder"
 msgstr "Thư mục quy tắc"
 
-#: desktop/src/pages/SettingsPreferences.tsx:200
+#: desktop/src/pages/SettingsPreferences.tsx:206
 msgid "Only regular .yar and .yara files in this folder are loaded."
 msgstr "Chỉ tải các tệp thông thường .yar và .yara trong thư mục này."
 
-#: desktop/src/pages/SettingsPreferences.tsx:203
+#: desktop/src/pages/SettingsPreferences.tsx:209
 msgid ""
 "Rules are used only with the standalone clamscan backend. Automatic scanning "
 "selects it when rules are present; an explicitly selected daemon backend "
@@ -5905,7 +5915,7 @@ msgstr ""
 "bộ quét này khi có quy tắc; daemon được chọn rõ ràng không thể tải các quy "
 "tắc đó."
 
-#: desktop/src/pages/SettingsPreferences.tsx:204
+#: desktop/src/pages/SettingsPreferences.tsx:210
 msgid ""
 "Use rules only from sources you trust. ClamAV supports a subset of YARA "
 "rules."
@@ -5913,35 +5923,35 @@ msgstr ""
 "Chỉ dùng quy tắc từ nguồn đáng tin cậy. ClamAV chỉ hỗ trợ một phần các quy "
 "tắc YARA."
 
-#: desktop/src/pages/SettingsPreferences.tsx:206
+#: desktop/src/pages/SettingsPreferences.tsx:212
 msgid "Choose Folder"
 msgstr "Chọn thư mục"
 
-#: desktop/src/pages/SettingsPreferences.tsx:207
+#: desktop/src/pages/SettingsPreferences.tsx:213
 msgid "Open Folder"
 msgstr "Mở thư mục"
 
-#: desktop/src/pages/SettingsPreferences.tsx:235
+#: desktop/src/pages/SettingsPreferences.tsx:241
 msgid "Unable to read file manager integrations: {error}"
 msgstr "Không thể đọc thông tin tích hợp trình quản lý tệp: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:252
+#: desktop/src/pages/SettingsPreferences.tsx:258
 msgid "{name} integration removed"
 msgstr "Đã gỡ bỏ tích hợp {name}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:254
+#: desktop/src/pages/SettingsPreferences.tsx:260
 msgid "{name} integration repaired"
 msgstr "Đã sửa tích hợp {name}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:255
+#: desktop/src/pages/SettingsPreferences.tsx:261
 msgid "{name} integration installed"
 msgstr "Đã cài đặt tích hợp {name}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:258
+#: desktop/src/pages/SettingsPreferences.tsx:264
 msgid "Integration {action} failed: {error}"
 msgstr "Thao tác tích hợp {action} thất bại: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/pages/SettingsPreferences.tsx:276
 msgid ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
@@ -5949,36 +5959,36 @@ msgstr ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
 
-#: desktop/src/pages/SettingsPreferences.tsx:272
+#: desktop/src/pages/SettingsPreferences.tsx:278
 msgid "Restart Linux Defender to apply the new language"
 msgstr "Restart Linux Defender to apply the new language"
 
-#: desktop/src/pages/SettingsPreferences.tsx:273
+#: desktop/src/pages/SettingsPreferences.tsx:279
 msgid "Automatic (System)"
 msgstr "Tự động (theo hệ thống)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:275
-#: desktop/src/pages/SettingsPreferences.tsx:278
+#: desktop/src/pages/SettingsPreferences.tsx:281
+#: desktop/src/pages/SettingsPreferences.tsx:284
 msgid "Window Behavior"
 msgstr "Hành vi cửa sổ"
 
-#: desktop/src/pages/SettingsPreferences.tsx:275
+#: desktop/src/pages/SettingsPreferences.tsx:281
 msgid "Configure what happens when closing the main window."
 msgstr "Thiết lập hành động khi đóng cửa sổ chính."
 
-#: desktop/src/pages/SettingsPreferences.tsx:276
+#: desktop/src/pages/SettingsPreferences.tsx:282
 msgid "When closing window"
 msgstr "Khi đóng cửa sổ"
 
-#: desktop/src/pages/SettingsPreferences.tsx:277
+#: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Start in System Tray"
 msgstr "Khởi động trong khay hệ thống"
 
-#: desktop/src/pages/SettingsPreferences.tsx:277
+#: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Launch in the background and show only the tray icon."
 msgstr "Chạy ở chế độ nền và chỉ hiện biểu tượng trên khay hệ thống."
 
-#: desktop/src/pages/SettingsPreferences.tsx:278
+#: desktop/src/pages/SettingsPreferences.tsx:284
 msgid ""
 "System tray is not available. Window behavior settings require an active "
 "system tray."
@@ -5986,31 +5996,31 @@ msgstr ""
 "Không có khay hệ thống. Các thiết lập hành vi cửa sổ yêu cầu khay hệ thống "
 "đang hoạt động."
 
-#: desktop/src/pages/SettingsPreferences.tsx:279
+#: desktop/src/pages/SettingsPreferences.tsx:285
 msgid "Scan Behavior"
 msgstr "Hành vi quét"
 
-#: desktop/src/pages/SettingsPreferences.tsx:280
+#: desktop/src/pages/SettingsPreferences.tsx:286
 msgid "Show Live Scan Progress"
 msgstr "Hiện tiến trình quét trực tiếp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:280
+#: desktop/src/pages/SettingsPreferences.tsx:286
 msgid "Display files being scanned in real time."
 msgstr "Hiển thị các tệp đang được quét theo thời gian thực."
 
-#: desktop/src/pages/SettingsPreferences.tsx:281
+#: desktop/src/pages/SettingsPreferences.tsx:287
 msgid "Desktop Notifications"
 msgstr "Thông báo trên màn hình"
 
-#: desktop/src/pages/SettingsPreferences.tsx:281
+#: desktop/src/pages/SettingsPreferences.tsx:287
 msgid "Allow scan, update, device, and VirusTotal notifications."
 msgstr "Cho phép thông báo về quét, cập nhật, thiết bị và VirusTotal."
 
-#: desktop/src/pages/SettingsPreferences.tsx:284
+#: desktop/src/pages/SettingsPreferences.tsx:290
 msgid "Update inactivity timeout (minutes)"
 msgstr "Thời gian chờ khi cập nhật không hoạt động (phút)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:284
+#: desktop/src/pages/SettingsPreferences.tsx:290
 msgid ""
 "Minutes without output before stopping a manual database update. Active "
 "updates have no total time limit."
@@ -6018,65 +6028,69 @@ msgstr ""
 "Số phút không có đầu ra trước khi dừng cập nhật cơ sở dữ liệu thủcông. Các "
 "bản cập nhật đang hoạt động không bị giới hạn tổng thờigian."
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
-#: desktop/src/pages/SettingsPreferences.tsx:298
+#: desktop/src/pages/SettingsPreferences.tsx:303
+#: desktop/src/pages/SettingsPreferences.tsx:304
 msgid "File Manager Integration"
 msgstr "Tích hợp trình quản lý tệp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
+#: desktop/src/pages/SettingsPreferences.tsx:303
 msgid "Add context menu actions for supported file managers."
 msgstr "Thêm thao tác vào menu ngữ cảnh của các trình quản lý tệp được hỗ trợ."
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
+#: desktop/src/pages/SettingsPreferences.tsx:303
 msgid "Configure Integration"
 msgstr "Thiết lập tích hợp"
 
 #. Translators: 'Scan with Linux Defender' is the installed file-manager menu label; keep it in English.
-#: desktop/src/pages/SettingsPreferences.tsx:299
+#: desktop/src/pages/SettingsPreferences.tsx:305
 msgid ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 msgstr ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 
-#: desktop/src/pages/SettingsPreferences.tsx:308
+#: desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Partially installed"
 msgstr "Đã cài đặt một phần"
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
+#: desktop/src/pages/SettingsPreferences.tsx:316
 msgid "Not available"
 msgstr "Không khả dụng"
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
+#: desktop/src/pages/SettingsPreferences.tsx:316
 msgid "missing"
 msgstr "thiếu"
 
-#: desktop/src/pages/SettingsPreferences.tsx:311
+#: desktop/src/pages/SettingsPreferences.tsx:317
 msgid "Repair"
 msgstr "Sửa chữa"
 
-#: desktop/src/pages/SettingsPreferences.tsx:338
+#: desktop/src/pages/SettingsPreferences.tsx:317
+msgid "Install"
+msgstr "Install"
+
+#: desktop/src/pages/SettingsPreferences.tsx:344
 msgid "This exclusion already exists"
 msgstr "Ngoại lệ này đã tồn tại"
 
-#: desktop/src/pages/SettingsPreferences.tsx:354
+#: desktop/src/pages/SettingsPreferences.tsx:360
 msgid "Unable to choose exclusions: {error}"
 msgstr "Không thể chọn ngoại lệ: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:363
+#: desktop/src/pages/SettingsPreferences.tsx:369
 msgid "Preset Exclusions"
 msgstr "Ngoại lệ có sẵn"
 
-#: desktop/src/pages/SettingsPreferences.tsx:363
+#: desktop/src/pages/SettingsPreferences.tsx:369
 msgid "Common directories to exclude from scanning. Changes save immediately."
 msgstr ""
 "Các thư mục thường được loại trừ khỏi quá trình quét. Thay đổi được lưu ngay "
 "lập tức."
 
-#: desktop/src/pages/SettingsPreferences.tsx:374
+#: desktop/src/pages/SettingsPreferences.tsx:380
 msgid "Custom Exclusions"
 msgstr "Ngoại lệ tùy chỉnh"
 
-#: desktop/src/pages/SettingsPreferences.tsx:374
+#: desktop/src/pages/SettingsPreferences.tsx:380
 msgid ""
 "Select files or folders, or enter an absolute file path or pattern. Changes "
 "save immediately."
@@ -6084,95 +6098,95 @@ msgstr ""
 "Chọn tệp hoặc thư mục, hoặc nhập đường dẫn tuyệt đối hay mẫu tên tệp. Thay "
 "đổi được lưu ngay lập tức."
 
-#: desktop/src/pages/SettingsPreferences.tsx:380
+#: desktop/src/pages/SettingsPreferences.tsx:386
 msgid "/path/to/exclude or *.tmp"
 msgstr "/đường/dẫn/cần/loại/trừ hoặc *.tmp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:388
+#: desktop/src/pages/SettingsPreferences.tsx:394
 msgid "Remove {pattern}"
 msgstr "Gỡ bỏ {pattern}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "General"
 msgstr "Chung"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Automatically scan storage devices when they are connected."
 msgstr "Tự động quét thiết bị lưu trữ khi được kết nối."
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Enable Device Auto-Scan"
 msgstr "Bật tự động quét thiết bị"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Device Types"
 msgstr "Loại thiết bị"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Select which kinds of mounted devices may be scanned."
 msgstr "Chọn những loại thiết bị đã gắn kết được phép quét."
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Options"
 msgstr "Tùy chọn"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Max Device Size (GB)"
 msgstr "Dung lượng thiết bị tối đa (GB)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "0 means no size limit; devices larger than 10,000 GB are not accepted."
 msgstr ""
 "0 nghĩa là không giới hạn dung lượng; không chấp nhận thiết bị lớn hơn "
 "10.000 GB."
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Scan Delay (seconds)"
 msgstr "Độ trễ quét (giây)"
 
 #. Translators: The en dash marks the inclusive 0–60-second delay range; use your language's usual range typography.
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Wait after mounting before scanning (0–60 seconds)."
 msgstr "Thời gian chờ sau khi gắn kết trước khi quét (0–60 giây)."
 
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Auto-Quarantine Threats"
 msgstr "Tự động cách ly mối đe dọa"
 
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Notifications"
 msgstr "Thông báo"
 
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Show desktop notifications for device scan events."
 msgstr "Hiển thị thông báo trên màn hình cho các sự kiện quét thiết bị."
 
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Desktop notifications are globally disabled in Behavior."
 msgstr "Thông báo trên màn hình đang bị tắt toàn cục trong mục Hành vi."
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:422
 msgid "VirusTotal API keys must be exactly 64 hexadecimal characters"
 msgstr "Khóa API VirusTotal phải gồm đúng 64 ký tự thập lục phân"
 
-#: desktop/src/pages/SettingsPreferences.tsx:419
-#: desktop/src/pages/SettingsPreferences.tsx:446
+#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:452
 msgid "Unable to save the API key"
 msgstr "Không thể lưu khóa API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:452
+#: desktop/src/pages/SettingsPreferences.tsx:431
+#: desktop/src/pages/SettingsPreferences.tsx:458
 #: desktop/src/pages/Urlscan.tsx:127
 msgid "API key deleted"
 msgstr "Đã xóa khóa API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:452
+#: desktop/src/pages/SettingsPreferences.tsx:431
+#: desktop/src/pages/SettingsPreferences.tsx:458
 msgid "Unable to delete the API key"
 msgstr "Không thể xóa khóa API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid ""
 "Keys are stored in the operating system keyring or the explicitly enabled "
 "compatibility fallback; they are never returned to the interface."
@@ -6180,77 +6194,72 @@ msgstr ""
 "Khóa được lưu trong kho khóa của hệ điều hành hoặc phương án dự phòng tương "
 "thích đã được bật rõ ràng; khóa không bao giờ được trả về giao diện."
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 #: desktop/src/pages/Urlscan.tsx:39
 msgid "Configured ({masked}) using {backend}"
 msgstr "Đã cấu hình ({masked}) qua {backend}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 #: desktop/src/pages/Urlscan.tsx:40
 msgid "masked"
 msgstr "đã ẩn"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Keyring is locked"
 msgstr "Kho khóa đang bị khóa"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Keyring unavailable"
 msgstr "Kho khóa không khả dụng"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 #: desktop/src/pages/Urlscan.tsx:46
 msgid "Not configured"
 msgstr "Chưa cấu hình"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid "Exactly 64 hexadecimal characters."
 msgstr "Đúng 64 ký tự thập lục phân."
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Save Key"
 msgstr "Lưu khóa"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid "Get a free API key"
 msgstr "Nhận khóa API miễn phí"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Delete Key"
 msgstr "Xóa khóa"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "When API key is missing"
 msgstr "Khi chưa có khóa API"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
-msgid "Always ask"
-msgstr "Luôn hỏi"
-
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid "Open VirusTotal website"
 msgstr "Mở trang web VirusTotal"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Show notification only"
 msgstr "Chỉ hiển thị thông báo"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Information"
 msgstr "Thông tin"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid ""
 "Free tier: 4 requests per minute, 500 per day. Files up to 650 MB can be "
 "scanned."
@@ -6258,11 +6267,11 @@ msgstr ""
 "Gói miễn phí: 4 yêu cầu mỗi phút, 500 yêu cầu mỗi ngày. Có thể quét tệp có "
 "dung lượng tối đa 650 MB."
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid "Delete VirusTotal API key"
 msgstr "Xóa khóa API VirusTotal"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "use VirusTotal scanning."
@@ -6270,29 +6279,29 @@ msgstr ""
 "Thao tác này xóa khóa khỏi kho lưu trữ bảo mật. Bạn sẽ cần nhập lại khóa để "
 "dùng tính năng quét bằng VirusTotal."
 
-#: desktop/src/pages/SettingsPreferences.tsx:442
+#: desktop/src/pages/SettingsPreferences.tsx:448
 #: desktop/src/pages/Urlscan.tsx:92
 msgid "Enter your urlscan API key."
 msgstr "Enter your urlscan API key."
 
-#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "The urlscan API key cannot contain spaces."
 msgstr "The urlscan API key cannot contain spaces."
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Paste the API key from your urlscan.io account settings."
 msgstr "Paste the API key from your urlscan.io account settings."
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 #: desktop/src/pages/Urlscan.tsx:214
 msgid "Get an API key"
 msgstr "Get an API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Open urlscan.io website"
 msgstr "Mở trang web urlscan.io"
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
@@ -6300,7 +6309,7 @@ msgstr ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid ""
 "Submitting a URL shares it with urlscan.io, including its query string, and "
 "can expose private or internal addresses. Never submit login links, session "
@@ -6310,11 +6319,11 @@ msgstr ""
 "can expose private or internal addresses. Never submit login links, session "
 "tokens, or confidential information."
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Delete urlscan.io API key"
 msgstr "Delete urlscan.io API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
@@ -6322,184 +6331,184 @@ msgstr ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
 
-#: desktop/src/pages/SettingsPreferences.tsx:470
+#: desktop/src/pages/SettingsPreferences.tsx:476
 msgid "Unable to read debug logs: {error}"
 msgstr "Không thể đọc nhật ký gỡ lỗi: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:478
+#: desktop/src/pages/SettingsPreferences.tsx:484
 msgid "Unable to read system information: {error}"
 msgstr "Không thể đọc thông tin hệ thống: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:485
+#: desktop/src/pages/SettingsPreferences.tsx:491
 msgid "ZIP archives"
 msgstr "Tệp nén ZIP"
 
-#: desktop/src/pages/SettingsPreferences.tsx:486
+#: desktop/src/pages/SettingsPreferences.tsx:492
 msgid "All files"
 msgstr "Tất cả tệp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:488
+#: desktop/src/pages/SettingsPreferences.tsx:494
 msgid "Logs exported successfully"
 msgstr "Đã xuất nhật ký thành công"
 
-#: desktop/src/pages/SettingsPreferences.tsx:490
+#: desktop/src/pages/SettingsPreferences.tsx:496
 msgid "Unable to export logs: {error}"
 msgstr "Không thể xuất nhật ký: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:502
+#: desktop/src/pages/SettingsPreferences.tsx:508
 msgid "{count} log file cleared"
 msgid_plural "{count} log files cleared"
 msgstr[0] "Đã xóa {count} tệp nhật ký"
 
-#: desktop/src/pages/SettingsPreferences.tsx:505
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Unable to clear logs: {error}"
 msgstr "Không thể xóa nhật ký: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:512
+#: desktop/src/pages/SettingsPreferences.tsx:518
 msgid "Linux Defender System Information"
 msgstr "Linux Defender System Information"
 
-#: desktop/src/pages/SettingsPreferences.tsx:514
+#: desktop/src/pages/SettingsPreferences.tsx:520
 msgid "Installation Type: {value}"
 msgstr "Kiểu cài đặt: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:515
+#: desktop/src/pages/SettingsPreferences.tsx:521
 msgid "Distribution: {value}"
 msgstr "Bản phân phối: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:516
+#: desktop/src/pages/SettingsPreferences.tsx:522
 msgid "Desktop Environment: {value}"
 msgstr "Môi trường desktop: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:517
+#: desktop/src/pages/SettingsPreferences.tsx:523
 msgid "Rust Runtime: {value}"
 msgstr "Môi trường chạy Rust: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:518
+#: desktop/src/pages/SettingsPreferences.tsx:524
 msgid "Tauri Runtime: {value}"
 msgstr "Môi trường chạy Tauri: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:519
+#: desktop/src/pages/SettingsPreferences.tsx:525
 msgid "Platform: {value}"
 msgstr "Nền tảng: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:520
+#: desktop/src/pages/SettingsPreferences.tsx:526
 msgid "Architecture: {value}"
 msgstr "Kiến trúc: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:521
+#: desktop/src/pages/SettingsPreferences.tsx:527
 msgid "Version: {value}"
 msgstr "Phiên bản: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:525
+#: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "System information copied to clipboard"
 msgstr "Đã sao chép thông tin hệ thống vào bộ nhớ tạm"
 
-#: desktop/src/pages/SettingsPreferences.tsx:527
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Unable to copy system information: {error}"
 msgstr "Không thể sao chép thông tin hệ thống: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Logging Settings"
 msgstr "Cài đặt ghi nhật ký"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Higher levels produce more detailed logs and apply immediately."
 msgstr ""
 "Mức càng cao thì nhật ký càng chi tiết; thay đổi được áp dụng ngay lập tức."
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:539
 msgid "Log Level"
 msgstr "Mức nhật ký"
 
-#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:540
 msgid "Log File Location"
 msgstr "Vị trí tệp nhật ký"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Log Management"
 msgstr "Quản lý nhật ký"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid ""
 "Export a ZIP archive for support or permanently clear the application logs."
 msgstr ""
 "Xuất tệp nén ZIP để gửi hỗ trợ hoặc xóa vĩnh viễn nhật ký của ứng dụng."
 
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:543
 msgid "Current Log Size"
 msgstr "Dung lượng nhật ký hiện tại"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid "Export Logs"
 msgstr "Xuất nhật ký"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid "Save all sanitized debug logs to a ZIP archive."
 msgstr ""
 "Lưu toàn bộ nhật ký gỡ lỗi đã lọc thông tin nhạy cảm vào một tệp nén ZIP."
 
-#: desktop/src/pages/SettingsPreferences.tsx:539
+#: desktop/src/pages/SettingsPreferences.tsx:545
 msgid "Clear Logs"
 msgstr "Xóa nhật ký"
 
-#: desktop/src/pages/SettingsPreferences.tsx:539
+#: desktop/src/pages/SettingsPreferences.tsx:545
 msgid "This permanently deletes all debug log files."
 msgstr "Thao tác này xóa vĩnh viễn toàn bộ tệp nhật ký gỡ lỗi."
 
-#: desktop/src/pages/SettingsPreferences.tsx:539
+#: desktop/src/pages/SettingsPreferences.tsx:545
 msgid "Clear"
 msgstr "Xóa"
 
-#: desktop/src/pages/SettingsPreferences.tsx:541
+#: desktop/src/pages/SettingsPreferences.tsx:547
 msgid "System Information"
 msgstr "Thông tin hệ thống"
 
-#: desktop/src/pages/SettingsPreferences.tsx:541
+#: desktop/src/pages/SettingsPreferences.tsx:547
 msgid "Useful for troubleshooting and bug reports."
 msgstr "Hữu ích khi khắc phục sự cố và báo cáo lỗi."
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Installation Type"
 msgstr "Kiểu cài đặt"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Distribution"
 msgstr "Bản phân phối"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Desktop Environment"
 msgstr "Môi trường desktop"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Rust Runtime"
 msgstr "Môi trường chạy Rust"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Tauri Runtime"
 msgstr "Môi trường chạy Tauri"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Platform"
 msgstr "Nền tảng"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Copy System Info"
 msgstr "Sao chép thông tin hệ thống"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Copy all system information to the clipboard."
 msgstr "Sao chép toàn bộ thông tin hệ thống vào bộ nhớ tạm."
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Loading system information…"
 msgstr "Đang tải thông tin hệ thống…"
 
-#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/SettingsPreferences.tsx:550
 msgid "Clear logs"
 msgstr "Xóa nhật ký"
 
-#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/SettingsPreferences.tsx:550
 msgid ""
 "This permanently deletes {count} log file totaling {size}. This action "
 "cannot be undone."
@@ -6510,7 +6519,7 @@ msgstr[0] ""
 "Thao tác này xóa vĩnh viễn {count} tệp nhật ký, tổng dung lượng {size}. "
 "Không thể hoàn tác thao tác này."
 
-#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/SettingsPreferences.tsx:550
 msgid "Delete Logs"
 msgstr "Xóa nhật ký"
 
@@ -6940,6 +6949,9 @@ msgstr "Cơ sở dữ liệu virus đã cũ hơn 1 ngày"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "Hệ thống đang được bảo vệ"
+
+#~ msgid "  -v, --verbose            Verbose output"
+#~ msgstr "  -v, --verbose            Xuất thông tin chi tiết"
 
 #~ msgid ""
 #~ "Suggested adds the RFXN signatures and three InterServer databases to "

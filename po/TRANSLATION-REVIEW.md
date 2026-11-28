@@ -10,19 +10,20 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1478 translated messages. | 52 |
-| en | 1478 translated messages. | baseline |
-| es | 1478 translated messages. | 53 |
-| fr | 1478 translated messages. | 53 |
-| hu | 1478 translated messages. | 53 |
-| it | 1478 translated messages. | 53 |
-| nb | 1478 translated messages. | 53 |
-| pt_BR | 1478 translated messages. | 53 |
-| vi | 1478 translated messages. | 61 |
-| zh_CN | 1478 translated messages. | 53 |
+| de | 1480 translated messages. | 57 |
+| en | 1480 translated messages. | baseline |
+| es | 1480 translated messages. | 58 |
+| fr | 1480 translated messages. | 58 |
+| hu | 1480 translated messages. | 58 |
+| it | 1480 translated messages. | 58 |
+| nb | 1480 translated messages. | 58 |
+| pt_BR | 1480 translated messages. | 58 |
+| vi | 1480 translated messages. | 65 |
+| zh_CN | 1480 translated messages. | 58 |
 
 ## de
 
+- `  -v, --verbose            Verbose output (scan only)`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -62,11 +63,11 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- `UFW is inactive, but another firewall manager is active and protecting the system.`
-- … 12 more
+- … 17 more
 
 ## es
 
+- `  -v, --verbose            Verbose output (scan only)`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -106,11 +107,11 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- `UFW is inactive, but another firewall manager is active and protecting the system.`
-- … 13 more
+- … 18 more
 
 ## fr
 
+- `  -v, --verbose            Verbose output (scan only)`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -150,11 +151,11 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- `UFW is inactive, but another firewall manager is active and protecting the system.`
-- … 13 more
+- … 18 more
 
 ## hu
 
+- `  -v, --verbose            Verbose output (scan only)`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -194,11 +195,11 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- `UFW is inactive, but another firewall manager is active and protecting the system.`
-- … 13 more
+- … 18 more
 
 ## it
 
+- `  -v, --verbose            Verbose output (scan only)`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -238,11 +239,11 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- `UFW is inactive, but another firewall manager is active and protecting the system.`
-- … 13 more
+- … 18 more
 
 ## nb
 
+- `  -v, --verbose            Verbose output (scan only)`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -282,11 +283,11 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- `UFW is inactive, but another firewall manager is active and protecting the system.`
-- … 13 more
+- … 18 more
 
 ## pt_BR
 
+- `  -v, --verbose            Verbose output (scan only)`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -326,11 +327,11 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- `UFW is inactive, but another firewall manager is active and protecting the system.`
-- … 13 more
+- … 18 more
 
 ## vi
 
+- `  -v, --verbose            Verbose output (scan only)`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -370,11 +371,11 @@ translator decides. No machine translation is applied by this script. Where an m
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
-- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- … 21 more
+- … 25 more
 
 ## zh_CN
 
+- `  -v, --verbose            Verbose output (scan only)`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -414,8 +415,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- `UFW is inactive, but another firewall manager is active and protecting the system.`
-- … 13 more
+- … 18 more
 
 ## Review procedure
 

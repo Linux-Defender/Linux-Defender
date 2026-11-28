@@ -28,3 +28,14 @@ Dependency auditing covers the locked Rust crates and the locked desktop package
 The project investigates, develops, tests, releases, and coordinates disclosure of validated reports. Do not disclose details before a fix and coordinated announcement. Keep Linux Defender and ClamAV definitions current, inspect unexpected detections before restoring them, and verify release artifacts before installation.
 
 `SECURITY.md` is the short GitHub reporting pointer; this page is the complete project security policy.
+
+## Allowed dependency advisories
+
+`cargo audit` reports five **unmaintained** (not vulnerable) advisories with no
+patched version available: `chrono` (RUSTSEC-2026-0543), `proc-macro-error`
+(RUSTSEC-2024-0370, via the EOL GTK 0.18 macro stack), `zvariant`, `zbus_names`
+and `zvariant_derive` (RUSTSEC-2026-0372; with RUSTSEC-2026-0370 and RUSTSEC-2026-0371 for `zvariant` and `zbus_names`, via the zbus 5 chain still
+used by `ksni` and notification plugins). The direct `zbus` dependency is
+already on 6.5.0. These are allowed warnings, not vulnerabilities; GitHub
+Dependabot has zero open alerts. Revisit when a patched release exists or when
+the GTK/zbus 5 stacks can be migrated with locked, tested changes.

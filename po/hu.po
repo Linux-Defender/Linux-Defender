@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 22:56-0500\n"
+"POT-Creation-Date: 2026-11-28 01:04-0500\n"
 "PO-Revision-Date: 2026-09-13 09:59+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Hungarian\n"
@@ -778,48 +778,48 @@ msgstr "Az OpenSnitch grafikus felület nem elérhető."
 msgid "Could not launch OpenSnitch graphical interface: {error}"
 msgstr "Az OpenSnitch grafikus felületét nem sikerült elindítani: {error}"
 
-#: crates/linux-defender-core/src/cli.rs:72
-#: crates/linux-defender-core/src/cli.rs:266
-#: crates/linux-defender-core/src/cli.rs:285
-#: crates/linux-defender-core/src/cli.rs:438
-#: crates/linux-defender-core/src/cli.rs:447
-#: crates/linux-defender-core/src/cli.rs:479
-#: crates/linux-defender-core/src/cli.rs:519
-#: crates/linux-defender-core/src/cli.rs:1215
-#: crates/linux-defender-core/src/cli.rs:1241
-#: crates/linux-defender-core/src/cli.rs:1776
-#: crates/linux-defender-core/src/cli.rs:1781
+#: crates/linux-defender-core/src/cli.rs:83
+#: crates/linux-defender-core/src/cli.rs:277
+#: crates/linux-defender-core/src/cli.rs:296
+#: crates/linux-defender-core/src/cli.rs:449
+#: crates/linux-defender-core/src/cli.rs:458
+#: crates/linux-defender-core/src/cli.rs:490
+#: crates/linux-defender-core/src/cli.rs:530
+#: crates/linux-defender-core/src/cli.rs:1226
+#: crates/linux-defender-core/src/cli.rs:1252
+#: crates/linux-defender-core/src/cli.rs:1787
+#: crates/linux-defender-core/src/cli.rs:1792
 msgid "error"
 msgstr "Hiba"
 
-#: crates/linux-defender-core/src/cli.rs:73
+#: crates/linux-defender-core/src/cli.rs:84
 msgid "Unknown command: {command}"
 msgstr "Ismeretlen parancs: {command}"
 
 #. Translators: The em dash separates the application name from its description.
-#: crates/linux-defender-core/src/cli.rs:156
+#: crates/linux-defender-core/src/cli.rs:167
 msgid "Linux Defender — ClamAV antivirus management\n"
 msgstr "Linux Defender — ClamAV antivirus management\n"
 
-#: crates/linux-defender-core/src/cli.rs:162
+#: crates/linux-defender-core/src/cli.rs:173
 msgid "Usage:"
 msgstr "Használat:"
 
 #. Translators: Keep `linux-defender` unchanged; it is the command name.
-#: crates/linux-defender-core/src/cli.rs:165
+#: crates/linux-defender-core/src/cli.rs:176
 msgid "  linux-defender                   Launch the graphical interface"
 msgstr "  linux-defender                   A grafikus felület indítása"
 
 #. Translators: Keep `linux-defender`, `<command>`, and `[args]` unchanged; they are command syntax.
-#: crates/linux-defender-core/src/cli.rs:173
+#: crates/linux-defender-core/src/cli.rs:184
 msgid "  linux-defender <command> [args]   Run a CLI command\n"
 msgstr "  linux-defender <command> [args]   Egy CLI-parancs futtatása\n"
 
-#: crates/linux-defender-core/src/cli.rs:179
+#: crates/linux-defender-core/src/cli.rs:190
 msgid "Commands:"
 msgstr "Parancsok:"
 
-#: crates/linux-defender-core/src/cli.rs:183
+#: crates/linux-defender-core/src/cli.rs:194
 msgid ""
 "\n"
 "Common per-command options:"
@@ -828,68 +828,68 @@ msgstr ""
 "Common per-command options:"
 
 #. Translators: Keep `--json` and `JSON` unchanged; they are a CLI flag and data format.
-#: crates/linux-defender-core/src/cli.rs:186
+#: crates/linux-defender-core/src/cli.rs:197
 msgid "  --json                   Machine-readable JSON output"
 msgstr "  --json                   Géppel olvasható JSON-kimenet"
 
 #. Translators: Keep `-v` and `--verbose` unchanged; they are CLI flags.
-#: crates/linux-defender-core/src/cli.rs:194
-msgid "  -v, --verbose            Verbose output"
-msgstr "  -v, --verbose            Részletes kimenet"
+#: crates/linux-defender-core/src/cli.rs:205
+msgid "  -v, --verbose            Verbose output (scan only)"
+msgstr "  -v, --verbose            Verbose output (scan only)"
 
 #. Translators: Keep `-h` and `--help` unchanged; they are CLI flags.
-#: crates/linux-defender-core/src/cli.rs:202
+#: crates/linux-defender-core/src/cli.rs:213
 msgid "  -h, --help               Show help for any command\n"
 msgstr "  -h, --help               Súgó megjelenítése bármely parancshoz\n"
 
 #. Translators: Keep the quoted `linux-defender help <command>` command unchanged.
-#: crates/linux-defender-core/src/cli.rs:210
+#: crates/linux-defender-core/src/cli.rs:221
 msgid "Run 'linux-defender help <command>' for usage examples."
 msgstr "Használati példákért futtassa: 'linux-defender help <command>'"
 
 #. Translators: Keep the quoted `linux-defender` command unchanged.
-#: crates/linux-defender-core/src/cli.rs:218
+#: crates/linux-defender-core/src/cli.rs:229
 msgid "Run 'linux-defender' without arguments to launch the GUI."
 msgstr ""
 "A grafikus felület indításához futtassa argumentumok nélkül: 'linux-defender'"
 
-#: crates/linux-defender-core/src/cli.rs:228
+#: crates/linux-defender-core/src/cli.rs:239
 msgid "Scan files or directories for threats"
 msgstr "Fájlok vagy könyvtárak átvizsgálása fenyegetések után kutatva"
 
-#: crates/linux-defender-core/src/cli.rs:229
+#: crates/linux-defender-core/src/cli.rs:240
 msgid "Manage quarantined files"
 msgstr "Karanténba helyezett fájlok kezelése"
 
-#: crates/linux-defender-core/src/cli.rs:230
+#: crates/linux-defender-core/src/cli.rs:241
 msgid "Manage scan profiles"
 msgstr "Vizsgálati profilok kezelése"
 
-#: crates/linux-defender-core/src/cli.rs:231
+#: crates/linux-defender-core/src/cli.rs:242
 msgid "Show ClamAV and Linux Defender status"
 msgstr "Show ClamAV and Linux Defender status"
 
-#: crates/linux-defender-core/src/cli.rs:232
+#: crates/linux-defender-core/src/cli.rs:243
 msgid "View scan history"
 msgstr "Vizsgálati előzmények megtekintése"
 
-#: crates/linux-defender-core/src/cli.rs:235
+#: crates/linux-defender-core/src/cli.rs:246
 msgid ""
 "Install the polkit helper for saving system ClamAV configs (native host only)"
 msgstr ""
 "A polkit segédprogram telepítése a rendszer ClamAV-beállításainak mentéséhez "
 "(csak natív gazdagépen)"
 
-#: crates/linux-defender-core/src/cli.rs:237
+#: crates/linux-defender-core/src/cli.rs:248
 msgid "Show this help message"
 msgstr "Ez a súgóüzenet megjelenítése"
 
 #. Translators: Keep `linux-defender` and `[COMMAND]` command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/cli.rs:248
+#: crates/linux-defender-core/src/cli.rs:259
 msgid "Usage: linux-defender help [COMMAND]"
 msgstr "Használat: linux-defender help [COMMAND]"
 
-#: crates/linux-defender-core/src/cli.rs:256
+#: crates/linux-defender-core/src/cli.rs:267
 msgid ""
 "Display an overview of all commands or detailed help for a specific one."
 msgstr ""
@@ -897,25 +897,25 @@ msgstr ""
 "megjelenítése."
 
 #. Translators: Keep `help` unchanged; it is the literal CLI subcommand.
-#: crates/linux-defender-core/src/cli.rs:267
+#: crates/linux-defender-core/src/cli.rs:278
 msgid "help accepts at most one command"
 msgstr "A help legfeljebb egy parancsot fogad el"
 
-#: crates/linux-defender-core/src/cli.rs:286
+#: crates/linux-defender-core/src/cli.rs:297
 msgid "Unknown command: {name}"
 msgstr "Unknown command: {name}"
 
 #. Translators: Keep `{name}` as the command name and `{summary}` as its translated description; the em dash separates them.
-#: crates/linux-defender-core/src/cli.rs:298
+#: crates/linux-defender-core/src/cli.rs:309
 msgid "linux-defender {name} — {summary}\n"
 msgstr "linux-defender {name} — {summary}\n"
 
-#: crates/linux-defender-core/src/cli.rs:308
+#: crates/linux-defender-core/src/cli.rs:319
 msgid "Examples:"
 msgstr "Példák:"
 
 #. Translators: Keep the quoted `linux-defender {name} --help` command unchanged; preserve `{name}` as the command name.
-#: crates/linux-defender-core/src/cli.rs:314
+#: crates/linux-defender-core/src/cli.rs:325
 msgid ""
 "\n"
 "Run 'linux-defender {name} --help' for full option reference."
@@ -923,33 +923,33 @@ msgstr ""
 "\n"
 "A teljes kapcsolóleírásért futtassa: 'linux-defender {name} --help'"
 
-#: crates/linux-defender-core/src/cli.rs:415
-#: crates/linux-defender-core/src/cli.rs:1632
+#: crates/linux-defender-core/src/cli.rs:426
+#: crates/linux-defender-core/src/cli.rs:1643
 msgid "unrecognized argument: {argument}"
 msgstr "fel nem ismert argumentum: {argument}"
 
-#: crates/linux-defender-core/src/cli.rs:439
+#: crates/linux-defender-core/src/cli.rs:450
 msgid "No valid paths to scan"
 msgstr "Nincs érvényes vizsgálandó útvonal"
 
-#: crates/linux-defender-core/src/cli.rs:455
+#: crates/linux-defender-core/src/cli.rs:466
 msgid "ClamAV not available: {error}"
 msgstr "A ClamAV nem érhető el: {error}"
 
-#: crates/linux-defender-core/src/cli.rs:467
+#: crates/linux-defender-core/src/cli.rs:478
 msgid "ClamAV version: {version}"
 msgstr "ClamAV verzió: {version}"
 
-#: crates/linux-defender-core/src/cli.rs:490
+#: crates/linux-defender-core/src/cli.rs:501
 msgid "Using profile: {name}"
 msgstr "Használt profil: {name}"
 
-#: crates/linux-defender-core/src/cli.rs:509
+#: crates/linux-defender-core/src/cli.rs:520
 msgid "Scanning: {path}"
 msgstr "Vizsgálat: {path}"
 
 #. Translators: Keep `linux-defender`, uppercase metavariables, brackets, and all `--` flags unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:592
+#: crates/linux-defender-core/src/cli.rs:603
 msgid ""
 "Usage: linux-defender scan PATH [PATH ...] [--no-recursive] [--profile NAME] "
 "[--quarantine] [--json] [--verbose]"
@@ -958,7 +958,7 @@ msgstr ""
 "NAME] [--quarantine] [--json] [--verbose]"
 
 #. Translators: Preserve the numeric exit-code meanings.
-#: crates/linux-defender-core/src/cli.rs:600
+#: crates/linux-defender-core/src/cli.rs:611
 msgid ""
 "Scan one or more files or directories with ClamAV.\n"
 "Exit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
@@ -966,21 +966,21 @@ msgstr ""
 "Scan one or more files or directories with ClamAV.\n"
 "Exit codes: 0 = clean, 1 = threats found, 2 = error, 130 = cancelled."
 
-#: crates/linux-defender-core/src/cli.rs:617
+#: crates/linux-defender-core/src/cli.rs:628
 msgid "Path not found: {path}"
 msgstr "Az útvonal nem található: {path}"
 
-#: crates/linux-defender-core/src/cli.rs:645
+#: crates/linux-defender-core/src/cli.rs:656
 msgid "Profile not found: {name}"
 msgstr "A profil nem található: {name}"
 
-#: crates/linux-defender-core/src/cli.rs:744
+#: crates/linux-defender-core/src/cli.rs:755
 msgid "Scanned {count} file in {duration:.1f}s"
 msgid_plural "Scanned {count} files in {duration:.1f}s"
 msgstr[0] "Megvizsgálva {count} fájl {duration:.1f} mp alatt"
 msgstr[1] "Megvizsgálva {count} fájl {duration:.1f} mp alatt"
 
-#: crates/linux-defender-core/src/cli.rs:757
+#: crates/linux-defender-core/src/cli.rs:768
 msgid ""
 "\n"
 "Threat found: {count}"
@@ -994,7 +994,7 @@ msgstr[1] ""
 "\n"
 "Talált fenyegetések: {count}"
 
-#: crates/linux-defender-core/src/cli.rs:782
+#: crates/linux-defender-core/src/cli.rs:793
 msgid ""
 "\n"
 "Quarantined: {count} file"
@@ -1008,7 +1008,7 @@ msgstr[1] ""
 "\n"
 "Karanténba helyezve: {count} fájl"
 
-#: crates/linux-defender-core/src/cli.rs:792
+#: crates/linux-defender-core/src/cli.rs:803
 msgid ""
 "\n"
 "Failed to quarantine:"
@@ -1016,12 +1016,12 @@ msgstr ""
 "\n"
 "Karanténba helyezés sikertelen:"
 
-#: crates/linux-defender-core/src/cli.rs:804
+#: crates/linux-defender-core/src/cli.rs:815
 #: crates/linux-defender-core/src/logs.rs:1437
 msgid "Threats Detected"
 msgstr "Fenyegetés észlelve"
 
-#: crates/linux-defender-core/src/cli.rs:810
+#: crates/linux-defender-core/src/cli.rs:821
 msgid ""
 "\n"
 "Scan completed with errors:"
@@ -1029,280 +1029,280 @@ msgstr ""
 "\n"
 "A vizsgálat hibákkal fejeződött be:"
 
-#: crates/linux-defender-core/src/cli.rs:815
+#: crates/linux-defender-core/src/cli.rs:826
 msgid "No threats found."
 msgstr "Nem található fenyegetés."
 
 #. Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:824
-#: crates/linux-defender-core/src/cli.rs:846
+#: crates/linux-defender-core/src/cli.rs:835
+#: crates/linux-defender-core/src/cli.rs:857
 msgid "Usage: linux-defender quarantine <list|restore|delete> [args]"
 msgstr "Használat: linux-defender quarantine <list|restore|delete> [args]"
 
 #. Translators: Keep `linux-defender`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:834
+#: crates/linux-defender-core/src/cli.rs:845
 msgid "Usage: linux-defender quarantine list [--json]"
 msgstr "Használat: linux-defender quarantine list [--json]"
 
 #. Translators: Keep `linux-defender`, `restore`, and `ID` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:838
+#: crates/linux-defender-core/src/cli.rs:849
 msgid "Usage: linux-defender quarantine restore ID"
 msgstr "Használat: linux-defender quarantine restore ID"
 
 #. Translators: Keep `linux-defender`, `delete`, and `ID` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:842
+#: crates/linux-defender-core/src/cli.rs:853
 msgid "Usage: linux-defender quarantine delete ID"
 msgstr "Használat: linux-defender quarantine delete ID"
 
-#: crates/linux-defender-core/src/cli.rs:874
+#: crates/linux-defender-core/src/cli.rs:885
 msgid "No quarantined files."
 msgstr "Nincs karanténba helyezett fájl."
 
-#: crates/linux-defender-core/src/cli.rs:891
+#: crates/linux-defender-core/src/cli.rs:902
 #: crates/linux-defender-core/src/logs.rs:1139
 msgid "ID"
 msgstr "Azonosító"
 
-#: crates/linux-defender-core/src/cli.rs:892
+#: crates/linux-defender-core/src/cli.rs:903
 msgid "File"
 msgstr "Fájl"
 
-#: crates/linux-defender-core/src/cli.rs:893
+#: crates/linux-defender-core/src/cli.rs:904
 msgid "Threat"
 msgstr "Fenyegetés"
 
-#: crates/linux-defender-core/src/cli.rs:894
-#: crates/linux-defender-core/src/cli.rs:1688
+#: crates/linux-defender-core/src/cli.rs:905
+#: crates/linux-defender-core/src/cli.rs:1699
 msgid "Date"
 msgstr "Dátum"
 
-#: crates/linux-defender-core/src/cli.rs:895
+#: crates/linux-defender-core/src/cli.rs:906
 msgid "Size"
 msgstr "Méret"
 
-#: crates/linux-defender-core/src/cli.rs:910
+#: crates/linux-defender-core/src/cli.rs:921
 msgid "{count} entry ({size} total)"
 msgid_plural "{count} entries ({size} total)"
 msgstr[0] "{count} bejegyzés (összesen {size})"
 msgstr[1] "{count} bejegyzés (összesen {size})"
 
 #. Translators: Keep `quarantine`, command-valued `{action}`, and `ID` unchanged.
-#: crates/linux-defender-core/src/cli.rs:928
-#: crates/linux-defender-core/src/cli.rs:942
+#: crates/linux-defender-core/src/cli.rs:939
+#: crates/linux-defender-core/src/cli.rs:953
 msgid "quarantine {action} requires ID"
 msgstr "A quarantine {action} művelethez ID szükséges"
 
-#: crates/linux-defender-core/src/cli.rs:981
+#: crates/linux-defender-core/src/cli.rs:992
 msgid "Restored"
 msgstr "Visszaállítva"
 
-#: crates/linux-defender-core/src/cli.rs:983
+#: crates/linux-defender-core/src/cli.rs:994
 msgid "Deleted"
 msgstr "Törölve"
 
-#: crates/linux-defender-core/src/cli.rs:988
+#: crates/linux-defender-core/src/cli.rs:999
 msgid "{verb}: {path}"
 msgstr "{verb}: {path}"
 
-#: crates/linux-defender-core/src/cli.rs:998
+#: crates/linux-defender-core/src/cli.rs:1009
 msgid "Restore failed"
 msgstr "Visszaállítás sikertelen"
 
-#: crates/linux-defender-core/src/cli.rs:1000
+#: crates/linux-defender-core/src/cli.rs:1011
 msgid "Delete failed"
 msgstr "Törlés sikertelen"
 
-#: crates/linux-defender-core/src/cli.rs:1007
+#: crates/linux-defender-core/src/cli.rs:1018
 msgid "{prefix}: {error}"
 msgstr "{prefix}: {error}"
 
-#: crates/linux-defender-core/src/cli.rs:1084
+#: crates/linux-defender-core/src/cli.rs:1095
 #: crates/linux-defender-core/src/quarantine.rs:508
 #: crates/linux-defender-core/src/quarantine.rs:545
 msgid "Quarantine entry not found: {id}"
 msgstr "A karantén-bejegyzés nem található: {id}"
 
 #. Translators: Keep `linux-defender`, angle-bracket choices, and `[args]` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1097
-#: crates/linux-defender-core/src/cli.rs:1123
+#: crates/linux-defender-core/src/cli.rs:1108
+#: crates/linux-defender-core/src/cli.rs:1134
 msgid "Usage: linux-defender profile <list|show|export|import> [args]"
 msgstr "Használat: linux-defender profile <list|show|export|import> [args]"
 
 #. Translators: Keep `linux-defender`, `list`, and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1107
+#: crates/linux-defender-core/src/cli.rs:1118
 msgid "Usage: linux-defender profile list [--json]"
 msgstr "Használat: linux-defender profile list [--json]"
 
 #. Translators: Keep `linux-defender`, `show`, `NAME`, and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1111
+#: crates/linux-defender-core/src/cli.rs:1122
 msgid "Usage: linux-defender profile show NAME [--json]"
 msgstr "Használat: linux-defender profile show NAME [--json]"
 
 #. Translators: Keep `linux-defender`, `export`, `NAME`, and `FILE` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1115
+#: crates/linux-defender-core/src/cli.rs:1126
 msgid "Usage: linux-defender profile export NAME FILE"
 msgstr "Használat: linux-defender profile export NAME FILE"
 
 #. Translators: Keep `linux-defender`, `import`, and `FILE` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1119
+#: crates/linux-defender-core/src/cli.rs:1130
 msgid "Usage: linux-defender profile import FILE"
 msgstr "Használat: linux-defender profile import FILE"
 
-#: crates/linux-defender-core/src/cli.rs:1150
+#: crates/linux-defender-core/src/cli.rs:1161
 msgid "No scan profiles configured."
 msgstr "Nincs beállított vizsgálati profil."
 
-#: crates/linux-defender-core/src/cli.rs:1166
+#: crates/linux-defender-core/src/cli.rs:1177
 msgid " (+{n} more)"
 msgstr " (+{n} további)"
 
-#: crates/linux-defender-core/src/cli.rs:1171
+#: crates/linux-defender-core/src/cli.rs:1182
 msgid "(none)"
 msgstr "(nincs)"
 
-#: crates/linux-defender-core/src/cli.rs:1176
-#: crates/linux-defender-core/src/cli.rs:1346
+#: crates/linux-defender-core/src/cli.rs:1187
+#: crates/linux-defender-core/src/cli.rs:1357
 msgid "yes"
 msgstr "igen"
 
-#: crates/linux-defender-core/src/cli.rs:1178
-#: crates/linux-defender-core/src/cli.rs:1348
+#: crates/linux-defender-core/src/cli.rs:1189
+#: crates/linux-defender-core/src/cli.rs:1359
 msgid "no"
 msgstr "nem"
 
-#: crates/linux-defender-core/src/cli.rs:1186
+#: crates/linux-defender-core/src/cli.rs:1197
 msgid "Name"
 msgstr "Név"
 
-#: crates/linux-defender-core/src/cli.rs:1187
+#: crates/linux-defender-core/src/cli.rs:1198
 msgid "Targets"
 msgstr "Célok"
 
-#: crates/linux-defender-core/src/cli.rs:1188
+#: crates/linux-defender-core/src/cli.rs:1199
 msgid "Default"
 msgstr "Alapértelmezett"
 
-#: crates/linux-defender-core/src/cli.rs:1189
+#: crates/linux-defender-core/src/cli.rs:1200
 msgid "Updated"
 msgstr "Frissítve"
 
-#: crates/linux-defender-core/src/cli.rs:1197
+#: crates/linux-defender-core/src/cli.rs:1208
 msgid "{count} profile"
 msgid_plural "{count} profiles"
 msgstr[0] "{count} profil"
 msgstr[1] "{count} profil"
 
 #. Translators: Preserve `{name}` as the profile name and `{path}` as its destination; quotation marks may be localized.
-#: crates/linux-defender-core/src/cli.rs:1256
+#: crates/linux-defender-core/src/cli.rs:1267
 msgid "Exported '{name}' to {path}"
 msgstr "'{name}' exportálva ide: {path}"
 
-#: crates/linux-defender-core/src/cli.rs:1285
+#: crates/linux-defender-core/src/cli.rs:1296
 msgid "Imported profile: {name}"
 msgstr "Importált profil: {name}"
 
 #. Translators: Preserve command-valued `{usage}`, `NAME`, and the `--json` CLI flag.
-#: crates/linux-defender-core/src/cli.rs:1305
-#: crates/linux-defender-core/src/cli.rs:1318
+#: crates/linux-defender-core/src/cli.rs:1316
+#: crates/linux-defender-core/src/cli.rs:1329
 msgid "{usage} requires NAME and optional --json"
 msgstr "{usage} használatához NAME és az opcionális --json szükséges"
 
-#: crates/linux-defender-core/src/cli.rs:1341
+#: crates/linux-defender-core/src/cli.rs:1352
 msgid "Name:        {name}"
 msgstr "Név:         {name}"
 
-#: crates/linux-defender-core/src/cli.rs:1344
+#: crates/linux-defender-core/src/cli.rs:1355
 msgid "ID:          {id}"
 msgstr "Azonosító:   {id}"
 
-#: crates/linux-defender-core/src/cli.rs:1352
+#: crates/linux-defender-core/src/cli.rs:1363
 msgid "Default:     {value}"
 msgstr "Alapértelmezett: {value}"
 
-#: crates/linux-defender-core/src/cli.rs:1361
+#: crates/linux-defender-core/src/cli.rs:1372
 msgid "Description: {description}"
 msgstr "Leírás:      {description}"
 
-#: crates/linux-defender-core/src/cli.rs:1371
+#: crates/linux-defender-core/src/cli.rs:1382
 msgid "Created:     {created}"
 msgstr "Létrehozva:  {created}"
 
-#: crates/linux-defender-core/src/cli.rs:1380
+#: crates/linux-defender-core/src/cli.rs:1391
 msgid "Updated:     {updated}"
 msgstr "Frissítve:   {updated}"
 
-#: crates/linux-defender-core/src/cli.rs:1386
+#: crates/linux-defender-core/src/cli.rs:1397
 msgid "Targets:"
 msgstr "Célok:"
 
-#: crates/linux-defender-core/src/cli.rs:1395
+#: crates/linux-defender-core/src/cli.rs:1406
 msgid "  (none)"
 msgstr "  (nincs)"
 
-#: crates/linux-defender-core/src/cli.rs:1406
+#: crates/linux-defender-core/src/cli.rs:1417
 msgid "Exclusions:"
 msgstr "Kizárások:"
 
-#: crates/linux-defender-core/src/cli.rs:1411
+#: crates/linux-defender-core/src/cli.rs:1422
 msgid "  path:    {path}"
 msgstr "  útvonal:   {path}"
 
-#: crates/linux-defender-core/src/cli.rs:1418
+#: crates/linux-defender-core/src/cli.rs:1429
 msgid "  pattern: {pattern}"
 msgstr "  minta:     {pattern}"
 
-#: crates/linux-defender-core/src/cli.rs:1430
+#: crates/linux-defender-core/src/cli.rs:1441
 msgid "Options:"
 msgstr "Beállítások:"
 
 #. Translators: Keep `linux-defender` and `--json` unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1444
+#: crates/linux-defender-core/src/cli.rs:1455
 msgid "Usage: linux-defender status [--json]"
 msgstr "Használat: linux-defender status [--json]"
 
-#: crates/linux-defender-core/src/cli.rs:1499
+#: crates/linux-defender-core/src/cli.rs:1510
 msgid "ClamAV"
 msgstr "ClamAV"
 
-#: crates/linux-defender-core/src/cli.rs:1504
+#: crates/linux-defender-core/src/cli.rs:1515
 msgid "  Version:  {version}"
 msgstr "  Verzió:      {version}"
 
-#: crates/linux-defender-core/src/cli.rs:1511
+#: crates/linux-defender-core/src/cli.rs:1522
 msgid "  Status:   not available"
 msgstr "  Állapot:     nem érhető el"
 
-#: crates/linux-defender-core/src/cli.rs:1515
+#: crates/linux-defender-core/src/cli.rs:1526
 msgid "  Error:    {error}"
 msgstr "  Hiba:        {error}"
 
-#: crates/linux-defender-core/src/cli.rs:1521
+#: crates/linux-defender-core/src/cli.rs:1532
 msgid "  Backend:  {backend}"
 msgstr "  Háttérrendszer: {backend}"
 
-#: crates/linux-defender-core/src/cli.rs:1530
+#: crates/linux-defender-core/src/cli.rs:1541
 msgid "  Daemon:   {daemon}"
 msgstr "  Démon:   {daemon}"
 
-#: crates/linux-defender-core/src/cli.rs:1532
+#: crates/linux-defender-core/src/cli.rs:1543
 msgid "Quarantine"
 msgstr "Karanténba helyezés"
 
-#: crates/linux-defender-core/src/cli.rs:1536
-#: crates/linux-defender-core/src/cli.rs:1555
+#: crates/linux-defender-core/src/cli.rs:1547
+#: crates/linux-defender-core/src/cli.rs:1566
 msgid "  Entries:  {count}"
 msgstr "  Bejegyzések: {count}"
 
-#: crates/linux-defender-core/src/cli.rs:1545
+#: crates/linux-defender-core/src/cli.rs:1556
 msgid "  Size:     {size}"
 msgstr "  Méret:       {size}"
 
-#: crates/linux-defender-core/src/cli.rs:1547
+#: crates/linux-defender-core/src/cli.rs:1558
 msgid "Scan History"
 msgstr "Vizsgálati előzmények"
 
 #. Translators: Keep `linux-defender`, all `--` flags, `N`, and type choices unchanged; they are CLI syntax.
-#: crates/linux-defender-core/src/cli.rs:1568
+#: crates/linux-defender-core/src/cli.rs:1579
 msgid ""
 "Usage: linux-defender history [--limit N] [--type scan|update|virustotal] [--"
 "json]"
@@ -1310,32 +1310,32 @@ msgstr ""
 "Használat: linux-defender history [--limit N] [--type scan|update|"
 "virustotal] [--json]"
 
-#: crates/linux-defender-core/src/cli.rs:1651
+#: crates/linux-defender-core/src/cli.rs:1662
 msgid "Failed to load history: {error}"
 msgstr "Nem sikerült betölteni az előzményeket: {error}"
 
-#: crates/linux-defender-core/src/cli.rs:1666
+#: crates/linux-defender-core/src/cli.rs:1677
 msgid "No scan history found."
 msgstr "Nem található vizsgálati előzmény."
 
-#: crates/linux-defender-core/src/cli.rs:1689
+#: crates/linux-defender-core/src/cli.rs:1700
 #: crates/linux-defender-core/src/logs.rs:1149
 msgid "Type"
 msgstr "Típus"
 
-#: crates/linux-defender-core/src/cli.rs:1690
+#: crates/linux-defender-core/src/cli.rs:1701
 #: crates/linux-defender-core/src/logs.rs:1154
 msgid "Status"
 msgstr "Állapot"
 
-#: crates/linux-defender-core/src/cli.rs:1691
+#: crates/linux-defender-core/src/cli.rs:1702
 #: crates/linux-defender-core/src/logs.rs:1173
 msgid "Summary"
 msgstr "Összegzés"
 
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
 #. Translators: Preserve `{shown}` and `{total}` as counts and keep the `--limit` CLI flag unchanged.
-#: crates/linux-defender-core/src/cli.rs:1709
+#: crates/linux-defender-core/src/cli.rs:1720
 msgid "Showing {shown} of {total} entry. Use --limit to see more."
 msgid_plural "Showing {shown} of {total} entries. Use --limit to see more."
 msgstr[0] ""
@@ -1346,7 +1346,7 @@ msgstr[1] ""
 "limit kapcsolót."
 
 #. Translators: Keep `linux-defender install-privileged-helper` unchanged; it is the CLI command.
-#: crates/linux-defender-core/src/cli.rs:1744
+#: crates/linux-defender-core/src/cli.rs:1755
 msgid "Usage: linux-defender install-privileged-helper [--prefix PATH]"
 msgstr "Usage: linux-defender install-privileged-helper [--prefix PATH]"
 
@@ -1871,21 +1871,21 @@ msgstr ""
 "eltávolítani. Előfordulhat, hogy még megjelenik a listában a takarításig."
 
 #. Translators: Preserve `{path}` as a user-provided file path and `{error}` as the filesystem diagnostic.
-#: crates/linux-defender-core/src/quarantine.rs:1589
+#: crates/linux-defender-core/src/quarantine.rs:1592
 msgid "Cannot quarantine {path}: {error}"
 msgstr "A(z) {path} nem helyezhető karanténba: {error}"
 
 #. Translators: The em dash separates the integrity failure from its consequence.
-#: crates/linux-defender-core/src/quarantine.rs:1607
+#: crates/linux-defender-core/src/quarantine.rs:1610
 msgid "File hash mismatch — file may be corrupted"
 msgstr "A fájl kivonata nem egyezik — a fájl sérült lehet"
 
-#: crates/linux-defender-core/src/scanner.rs:490
+#: crates/linux-defender-core/src/scanner.rs:498
 msgid "No ClamAV database files were found in standard host locations"
 msgstr ""
 "Nem találhatók ClamAV-adatbázisfájlok a szokásos gazdarendszerbeli helyeken"
 
-#: crates/linux-defender-core/src/scanner.rs:561
+#: crates/linux-defender-core/src/scanner.rs:569
 msgid ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
@@ -1893,39 +1893,39 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2251
+#: crates/linux-defender-core/src/scanner.rs:2259
 msgid "Scan cancelled by user"
 msgstr "A felhasználó megszakította a vizsgálatot"
 
-#: crates/linux-defender-core/src/scanner.rs:2258
+#: crates/linux-defender-core/src/scanner.rs:2266
 msgid "No files could be scanned"
 msgstr "Egyetlen fájl sem volt megvizsgálható"
 
-#: crates/linux-defender-core/src/scanner.rs:2264
+#: crates/linux-defender-core/src/scanner.rs:2272
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "A vizsgálati cél nem létezik, vagy érvénytelen NUL bájtot tartalmaz"
 
-#: crates/linux-defender-core/src/scanner.rs:2271
+#: crates/linux-defender-core/src/scanner.rs:2279
 msgid "Scan target is not a regular file or directory"
 msgstr "A vizsgálati cél nem szabályos fájl vagy könyvtár"
 
-#: crates/linux-defender-core/src/scanner.rs:2280
+#: crates/linux-defender-core/src/scanner.rs:2288
 msgid "Threats were detected, but details are unavailable."
 msgstr "Fenyegetéseket észleltünk, de a részletek nem érhetők el."
 
-#: crates/linux-defender-core/src/scanner.rs:2292
+#: crates/linux-defender-core/src/scanner.rs:2300
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "{count} fájl nem volt elérhető"
 msgstr[1] "{count} fájl nem volt elérhető"
 
-#: crates/linux-defender-core/src/scanner.rs:2305
+#: crates/linux-defender-core/src/scanner.rs:2313
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "{count} fájl nem volt olvasható"
 msgstr[1] "{count} fájl nem volt olvasható"
 
-#: crates/linux-defender-core/src/scanner.rs:2324
+#: crates/linux-defender-core/src/scanner.rs:2332
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -1939,12 +1939,12 @@ msgstr[1] ""
 "{count} nem végzetes figyelmeztetés történt a vizsgálat során; egyes fájlok "
 "csak részben lettek megvizsgálva"
 
-#: crates/linux-defender-core/src/scheduler.rs:910
+#: crates/linux-defender-core/src/scheduler.rs:926
 msgid "Scheduled scan cancelled"
 msgstr "Az ütemezett vizsgálat megszakítva"
 
 #. Translators: Keep `linux-defender-scheduled-scan`, flags, `PATH`, and command syntax unchanged; translate the `Usage:` label.
-#: crates/linux-defender-core/src/scheduler.rs:929
+#: crates/linux-defender-core/src/scheduler.rs:945
 msgid ""
 "Usage: linux-defender-scheduled-scan [--skip-on-battery] [--auto-quarantine] "
 "[--target PATH] [--dry-run] [--verbose|-v]"
@@ -1953,59 +1953,59 @@ msgstr ""
 "quarantine] [--target PATH] [--dry-run] [--verbose|-v]"
 
 #. Translators: The ellipsis indicates that the scheduled scan is starting.
-#: crates/linux-defender-core/src/scheduler.rs:970
+#: crates/linux-defender-core/src/scheduler.rs:986
 msgid "Linux Defender scheduled scan starting…"
 msgstr "Linux Defender scheduled scan starting…"
 
-#: crates/linux-defender-core/src/scheduler.rs:979
+#: crates/linux-defender-core/src/scheduler.rs:995
 msgid "Scheduled scan skipped (on battery power)"
 msgstr "Az ütemezett vizsgálat kihagyva (akkumulátoros üzemmódban)"
 
-#: crates/linux-defender-core/src/scheduler.rs:996
+#: crates/linux-defender-core/src/scheduler.rs:1012
 msgid "Warning: Target does not exist: {target}"
 msgstr "Figyelmeztetés: A cél nem létezik: {target}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1008
+#: crates/linux-defender-core/src/scheduler.rs:1024
 msgid "Error: No valid scan targets found"
 msgstr "Hiba: Nem található érvényes vizsgálati cél"
 
 #. Translators: The em dash separates the dry-run state from its consequence.
-#: crates/linux-defender-core/src/scheduler.rs:1012
+#: crates/linux-defender-core/src/scheduler.rs:1028
 msgid "Dry run mode — scan not executed"
 msgstr "Próbafuttatási mód — a vizsgálat nem indult el"
 
-#: crates/linux-defender-core/src/scheduler.rs:1020
+#: crates/linux-defender-core/src/scheduler.rs:1036
 msgid "  Skip on battery: {value}"
 msgstr "  Kihagyás akkumulátorról: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1025
+#: crates/linux-defender-core/src/scheduler.rs:1041
 msgid "  Auto quarantine: {value}"
 msgstr "  Automatikus karanténba helyezés: {value}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1033
+#: crates/linux-defender-core/src/scheduler.rs:1049
 msgid "  {count} target: {targets:?}"
 msgid_plural "  {count} targets: {targets:?}"
 msgstr[0] "  {count} cél: {targets:?}"
 msgstr[1] "  {count} cél: {targets:?}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1057
+#: crates/linux-defender-core/src/scheduler.rs:1073
 msgid "Scheduled scan failed: ClamAV not available"
 msgstr "Az ütemezett vizsgálat sikertelen: a ClamAV nem érhető el"
 
 #. Translators: The em dash separates the unavailable component from `{error}`; preserve the raw diagnostic placeholder.
-#: crates/linux-defender-core/src/scheduler.rs:1067
+#: crates/linux-defender-core/src/scheduler.rs:1083
 msgid "Error: ClamAV not available — {error}"
 msgstr "Hiba: a ClamAV nem érhető el — {error}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1076
+#: crates/linux-defender-core/src/scheduler.rs:1092
 msgid "Scheduled Scan Failed"
 msgstr "Az ütemezett vizsgálat sikertelen"
 
-#: crates/linux-defender-core/src/scheduler.rs:1077
+#: crates/linux-defender-core/src/scheduler.rs:1093
 msgid "ClamAV is not available. Please install ClamAV."
 msgstr "A ClamAV nem érhető el. Kérjük, telepítse a ClamAV-ot."
 
-#: crates/linux-defender-core/src/scheduler.rs:1146
+#: crates/linux-defender-core/src/scheduler.rs:1162
 msgid "Scheduled scan found {infected} threat, {quarantined} quarantined"
 msgid_plural ""
 "Scheduled scan found {infected} threats, {quarantined} quarantined"
@@ -2016,19 +2016,19 @@ msgstr[1] ""
 "Az ütemezett vizsgálat {infected} fenyegetést talált, {quarantined} "
 "karanténba helyezve"
 
-#: crates/linux-defender-core/src/scheduler.rs:1157
+#: crates/linux-defender-core/src/scheduler.rs:1173
 msgid "Scheduled scan found {count} threat"
 msgid_plural "Scheduled scan found {count} threats"
 msgstr[0] "Az ütemezett vizsgálat {count} fenyegetést talált"
 msgstr[1] "Az ütemezett vizsgálat {count} fenyegetést talált"
 
-#: crates/linux-defender-core/src/scheduler.rs:1166
+#: crates/linux-defender-core/src/scheduler.rs:1182
 msgid "Scheduled scan completed with errors"
 msgstr "Az ütemezett vizsgálat hibákkal fejeződött be"
 
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
 #. Translators: The em dash separates the summary from the count; preserve `{count}`.
-#: crates/linux-defender-core/src/scheduler.rs:1169
+#: crates/linux-defender-core/src/scheduler.rs:1185
 msgid "Scheduled scan completed — {count} file scanned, no threats"
 msgid_plural "Scheduled scan completed — {count} files scanned, no threats"
 msgstr[0] ""
@@ -2038,55 +2038,55 @@ msgstr[1] ""
 "Az ütemezett vizsgálat befejeződött — {count} fájl vizsgálva, fenyegetés "
 "nélkül"
 
-#: crates/linux-defender-core/src/scheduler.rs:1184
+#: crates/linux-defender-core/src/scheduler.rs:1200
 msgid "Scan Duration: {duration:.1f} seconds"
 msgstr "Vizsgálat időtartama: {duration:.1f} másodperc"
 
-#: crates/linux-defender-core/src/scheduler.rs:1186
+#: crates/linux-defender-core/src/scheduler.rs:1202
 msgid "Files Scanned: {count}"
 msgstr "Megvizsgált fájlok: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1187
+#: crates/linux-defender-core/src/scheduler.rs:1203
 msgid "Threats Found: {count}"
 msgstr "Talált fenyegetések: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1188
+#: crates/linux-defender-core/src/scheduler.rs:1204
 msgid "Targets: {targets}"
 msgstr "Célok: {targets}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1192
+#: crates/linux-defender-core/src/scheduler.rs:1208
 msgid "Quarantined: {count}"
 msgstr "Karanténba helyezve: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1197
+#: crates/linux-defender-core/src/scheduler.rs:1213
 msgid "Quarantine Failed: {count}"
 msgstr "Karanténba helyezés sikertelen: {count}"
 
-#: crates/linux-defender-core/src/scheduler.rs:1225
+#: crates/linux-defender-core/src/scheduler.rs:1241
 msgid "Scheduled Scan: Threats Detected!"
 msgstr "Ütemezett vizsgálat: Fenyegetés észlelve!"
 
-#: crates/linux-defender-core/src/scheduler.rs:1231
+#: crates/linux-defender-core/src/scheduler.rs:1247
 msgid "Scheduled Scan Completed"
 msgstr "Ütemezett vizsgálat befejeződött"
 
-#: crates/linux-defender-core/src/scheduler.rs:1232
+#: crates/linux-defender-core/src/scheduler.rs:1248
 msgid "Scan completed with some errors. Check logs for details."
 msgstr ""
 "A vizsgálat néhány hibával fejeződött be. A részletekért nézze meg a "
 "naplókat."
 
-#: crates/linux-defender-core/src/scheduler.rs:1240
+#: crates/linux-defender-core/src/scheduler.rs:1256
 msgid "Scheduled Scan Complete"
 msgstr "Ütemezett vizsgálat kész"
 
-#: crates/linux-defender-core/src/scheduler.rs:1253
+#: crates/linux-defender-core/src/scheduler.rs:1269
 msgid "Failed to quarantine: {count} file"
 msgid_plural "Failed to quarantine: {count} files"
 msgstr[0] "Nem sikerült karanténba helyezni: {count} fájl"
 msgstr[1] "Nem sikerült karanténba helyezni: {count} fájl"
 
-#: crates/linux-defender-core/src/scheduler.rs:1279
+#: crates/linux-defender-core/src/scheduler.rs:1295
 msgid ""
 "Battery level: {percent:.0f}%\n"
 "Scan skipped due to battery-aware settings."
@@ -2094,15 +2094,15 @@ msgstr ""
 "Akkumulátorszint: {percent:.0f}%\n"
 "A vizsgálat az akkumulátor-figyelő beállítások miatt kihagyva."
 
-#: crates/linux-defender-core/src/scheduler.rs:1284
+#: crates/linux-defender-core/src/scheduler.rs:1300
 msgid "Scan skipped due to battery-aware settings."
 msgstr "A vizsgálat akkumulátorkímélő beállítások miatt kihagyva."
 
-#: crates/linux-defender-core/src/scheduler.rs:1290
+#: crates/linux-defender-core/src/scheduler.rs:1306
 msgid "Skipping scan: running on battery power ({percent:.0f}%)"
 msgstr "Vizsgálat kihagyva: akkumulátoros üzemmódban fut ({percent:.0f}%)"
 
-#: crates/linux-defender-core/src/scheduler.rs:1295
+#: crates/linux-defender-core/src/scheduler.rs:1311
 msgid "Skipping scan: running on battery power"
 msgstr "Vizsgálat kihagyása: akkumulátoros üzemmódban fut"
 
@@ -2446,7 +2446,7 @@ msgstr "Fájlok hozzáadása"
 msgid "Export"
 msgstr "Exportálás"
 
-#: desktop/src-tauri/src/runtime.rs:784
+#: desktop/src-tauri/src/runtime.rs:790
 msgid "Open"
 msgstr "Megnyitás"
 
@@ -2485,7 +2485,7 @@ msgstr "Audit"
 msgid "Network"
 msgstr "Hálózat"
 
-#: desktop/src/App.tsx:130 desktop/src/App.tsx:910 desktop/src/App.tsx:998
+#: desktop/src/App.tsx:130 desktop/src/App.tsx:917 desktop/src/App.tsx:1005
 #: desktop/src/pages/Preferences.tsx:120
 msgid "Preferences"
 msgstr "Beállítások"
@@ -2532,112 +2532,112 @@ msgid "The privileged-helper status returned an invalid response."
 msgstr ""
 "A jogosultságemelt segédprogram állapota érvénytelen választ adott vissza."
 
-#: desktop/src/App.tsx:903
+#: desktop/src/App.tsx:910
 msgid "Linux Defender"
 msgstr "Linux Defender"
 
-#: desktop/src/App.tsx:908
+#: desktop/src/App.tsx:915
 msgid "Back"
 msgstr "Vissza"
 
-#: desktop/src/App.tsx:933
+#: desktop/src/App.tsx:940
 msgid "Scan File or Folder"
 msgstr "Fájl vagy mappa vizsgálata"
 
-#: desktop/src/App.tsx:940
+#: desktop/src/App.tsx:947
 msgid "Choose scan targets"
 msgstr "Válassza ki a vizsgálati célokat"
 
-#: desktop/src/App.tsx:950
+#: desktop/src/App.tsx:957
 msgid "Scan Files"
 msgstr "Fájlok vizsgálata"
 
-#: desktop/src/App.tsx:954
+#: desktop/src/App.tsx:961
 msgid "Scan Folders"
 msgstr "Mappák vizsgálata"
 
-#: desktop/src/App.tsx:961
+#: desktop/src/App.tsx:968
 msgid "Scan System (Quick Scan)"
 msgstr "Rendszer vizsgálata (gyors vizsgálat)"
 
-#: desktop/src/App.tsx:968 desktop/src/App.tsx:969
+#: desktop/src/App.tsx:975 desktop/src/App.tsx:976
 msgid "Menu"
 msgstr "Menü"
 
-#: desktop/src/App.tsx:988
+#: desktop/src/App.tsx:995
 msgid "Application menu"
 msgstr "Alkalmazásmenü"
 
-#: desktop/src/App.tsx:1001
+#: desktop/src/App.tsx:1008
 msgid "About"
 msgstr "Névjegy"
 
-#: desktop/src/App.tsx:1014
+#: desktop/src/App.tsx:1021
 msgid "Main navigation"
 msgstr "Fő navigáció"
 
-#: desktop/src/App.tsx:1015
+#: desktop/src/App.tsx:1022
 msgid "Views"
 msgstr "Nézetek"
 
-#: desktop/src/App.tsx:1035 desktop/src/pages/Quarantine.tsx:341
+#: desktop/src/App.tsx:1042 desktop/src/pages/Quarantine.tsx:341
 msgid "Dismiss"
 msgstr "Elvetés"
 
-#: desktop/src/App.tsx:1057
+#: desktop/src/App.tsx:1067
 msgid "About Linux Defender"
 msgstr "About Linux Defender"
 
-#: desktop/src/App.tsx:1058
+#: desktop/src/App.tsx:1068
 msgid "An on-demand Linux security scanner using your system's ClamAV tools."
 msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 
-#: desktop/src/App.tsx:1060
+#: desktop/src/App.tsx:1070
 msgid "Version"
 msgstr "Verzió"
 
-#: desktop/src/App.tsx:1061 desktop/src/pages/SettingsPreferences.tsx:270
-#: desktop/src/pages/SettingsPreferences.tsx:271
+#: desktop/src/App.tsx:1071 desktop/src/pages/SettingsPreferences.tsx:276
+#: desktop/src/pages/SettingsPreferences.tsx:277
 msgid "Language"
 msgstr "Nyelv"
 
-#: desktop/src/App.tsx:1062
+#: desktop/src/App.tsx:1072
 msgid "License"
 msgstr "Licenc"
 
-#: desktop/src/App.tsx:1065
+#: desktop/src/App.tsx:1075
 msgid "Project website"
 msgstr "Projekt webhelye"
 
-#: desktop/src/App.tsx:1066 desktop/src/pages/ConfigPreferences.tsx:824
+#: desktop/src/App.tsx:1076 desktop/src/pages/ConfigPreferences.tsx:824
 msgid "Documentation"
 msgstr "Dokumentáció"
 
-#: desktop/src/App.tsx:1067
+#: desktop/src/App.tsx:1077
 msgid "Issue tracker"
 msgstr "Hibakövető"
 
-#: desktop/src/App.tsx:1069
+#: desktop/src/App.tsx:1079
 msgid "Could not load contributor credits: {error}"
 msgstr "Nem sikerült betölteni a közreműködői névsort: {error}"
 
-#: desktop/src/App.tsx:1074
+#: desktop/src/App.tsx:1084
 msgid "Contributors"
 msgstr "Közreműködők"
 
-#: desktop/src/App.tsx:1083
+#: desktop/src/App.tsx:1093
 msgid "Translator credits"
 msgstr "Fordítói közreműködők"
 
-#: desktop/src/App.tsx:1086
+#: desktop/src/App.tsx:1096
 msgid "Loading contributor credits…"
 msgstr "Közreműködői névsor betöltése…"
 
-#: desktop/src/App.tsx:1088
+#: desktop/src/App.tsx:1098
 msgid "Close Linux Defender?"
 msgstr "Close Linux Defender?"
 
-#: desktop/src/App.tsx:1089
+#: desktop/src/App.tsx:1099
 msgid ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
@@ -2645,57 +2645,57 @@ msgstr ""
 "Choose whether to keep Linux Defender available in the system tray or quit "
 "it completely."
 
-#: desktop/src/App.tsx:1090 desktop/src/pages/Scan.tsx:263
+#: desktop/src/App.tsx:1100 desktop/src/pages/Scan.tsx:263
 msgid "Remember my choice"
 msgstr "Válaszom megjegyzése"
 
-#: desktop/src/App.tsx:1091 desktop/src/App.tsx:1095
+#: desktop/src/App.tsx:1101 desktop/src/App.tsx:1105
 #: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
 #: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
 #: desktop/src/pages/Results.tsx:200 desktop/src/pages/Scan.tsx:790
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
-#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
+#: desktop/src/pages/SettingsPreferences.tsx:550
 #: desktop/src/pages/Urlscan.tsx:239
 msgid "Cancel"
 msgstr "Mégse"
 
-#: desktop/src/App.tsx:1091
+#: desktop/src/App.tsx:1101 desktop/src/pages/SettingsPreferences.tsx:136
 msgid "Minimize to tray"
 msgstr "Kicsinyítés a tálcára"
 
-#: desktop/src/App.tsx:1093
+#: desktop/src/App.tsx:1103
 msgid "Scan in Progress"
 msgstr "Vizsgálat folyamatban"
 
-#: desktop/src/App.tsx:1094
+#: desktop/src/App.tsx:1104
 msgid "A scan is still running. Cancelling it may leave partial results."
 msgstr ""
 "A vizsgálat még folyamatban van. Megszakítása részleges eredményeket hagyhat "
 "maga után."
 
-#: desktop/src/App.tsx:1095
+#: desktop/src/App.tsx:1105
 msgid "Keep Scanning"
 msgstr "Vizsgálat folytatása"
 
-#: desktop/src/App.tsx:1095
+#: desktop/src/App.tsx:1105
 msgid "Cancel Scan and Close"
 msgstr "Vizsgálat megszakítása és bezárás"
 
-#: desktop/src/App.tsx:1095 desktop/src/ConfigurationRecovery.tsx:94
+#: desktop/src/App.tsx:1105 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:356 desktop/src/pages/Scan.tsx:362
-#: desktop/src/pages/Scan.tsx:374 desktop/src/pages/SettingsPreferences.tsx:314
+#: desktop/src/pages/Scan.tsx:374 desktop/src/pages/SettingsPreferences.tsx:320
 msgid "Close"
 msgstr "Bezárás"
 
-#: desktop/src/App.tsx:1097
+#: desktop/src/App.tsx:1107
 msgid "Install Privileged Helper"
 msgstr "Jogosultsággal rendelkező segédprogram telepítése"
 
-#: desktop/src/App.tsx:1098
+#: desktop/src/App.tsx:1108
 msgid ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
@@ -2703,12 +2703,12 @@ msgstr ""
 "Linux Defender needs its matching privileged helper to save system "
 "configuration."
 
-#: desktop/src/App.tsx:1100 desktop/src/HelperTrustErrorDialog.tsx:52
+#: desktop/src/App.tsx:1110 desktop/src/HelperTrustErrorDialog.tsx:52
 msgid "Installing the helper requires administrator authorization."
 msgstr "A segédprogram telepítéséhez rendszergazdai engedély szükséges."
 
 #. Translators: Keep Fedora and DNF unchanged; DNF is Fedora's package manager.
-#: desktop/src/App.tsx:1101
+#: desktop/src/App.tsx:1111
 msgid ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
@@ -2716,27 +2716,27 @@ msgstr ""
 "On Fedora with DNF, installation also adds the signing key used by this "
 "build to the system RPM keyring."
 
-#: desktop/src/App.tsx:1106 desktop/src/HelperTrustErrorDialog.tsx:78
+#: desktop/src/App.tsx:1116 desktop/src/HelperTrustErrorDialog.tsx:78
 msgid "Installing privileged helper…"
 msgstr "Jogosultságemelt segédprogram telepítése…"
 
-#: desktop/src/App.tsx:1108
+#: desktop/src/App.tsx:1118
 msgid "Not now"
 msgstr "Most nem"
 
-#: desktop/src/App.tsx:1108 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1118 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Installing…"
 msgstr "Telepítés…"
 
-#: desktop/src/App.tsx:1108 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1118 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Try Again"
 msgstr "Próbálja újra"
 
-#: desktop/src/App.tsx:1108 desktop/src/HelperTrustErrorDialog.tsx:86
+#: desktop/src/App.tsx:1118 desktop/src/HelperTrustErrorDialog.tsx:86
 msgid "Install Helper"
 msgstr "Segédprogram telepítése"
 
-#: desktop/src/App.tsx:1108
+#: desktop/src/App.tsx:1118
 msgid "Open Preferences"
 msgstr "Beállítások megnyitása"
 
@@ -2992,8 +2992,8 @@ msgstr "Megszakítva"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:56
 #: desktop/src/pages/Results.tsx:70 desktop/src/pages/Results.tsx:77
-#: desktop/src/pages/SettingsPreferences.tsx:518
-#: desktop/src/pages/SettingsPreferences.tsx:542 desktop/src/protection.ts:131
+#: desktop/src/pages/SettingsPreferences.tsx:524
+#: desktop/src/pages/SettingsPreferences.tsx:548 desktop/src/protection.ts:131
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -3164,7 +3164,7 @@ msgstr "Nem másolható a parancs: {error}"
 #: desktop/src/pages/Audit.tsx:342 desktop/src/pages/Components.tsx:278
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
 #: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Copy"
 msgstr "Másolás"
 
@@ -3254,7 +3254,7 @@ msgid "Running"
 msgstr "Fut"
 
 #: desktop/src/pages/Components.tsx:147
-#: desktop/src/pages/SettingsPreferences.tsx:305
+#: desktop/src/pages/SettingsPreferences.tsx:311
 msgid "Installed"
 msgstr "Telepítve"
 
@@ -3263,7 +3263,7 @@ msgid "Stopped"
 msgstr "Leállítva"
 
 #: desktop/src/pages/Components.tsx:149 desktop/src/pages/Logs.tsx:102
-#: desktop/src/pages/SettingsPreferences.tsx:307
+#: desktop/src/pages/SettingsPreferences.tsx:313
 msgid "Not installed"
 msgstr "Nincs telepítve"
 
@@ -3414,7 +3414,7 @@ msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:298
 #: desktop/src/pages/ConfigPreferences.tsx:346
-#: desktop/src/pages/SettingsPreferences.tsx:381
+#: desktop/src/pages/SettingsPreferences.tsx:387
 msgid "Add"
 msgstr "Hozzáadás"
 
@@ -3422,7 +3422,7 @@ msgstr "Hozzáadás"
 #: desktop/src/pages/ConfigPreferences.tsx:350
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
 #: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:773
-#: desktop/src/pages/SettingsPreferences.tsx:311
+#: desktop/src/pages/SettingsPreferences.tsx:317
 msgid "Remove"
 msgstr "Eltávolítás"
 
@@ -3536,7 +3536,7 @@ msgid "Scan Archive Files"
 msgstr "Archív fájlok vizsgálata"
 
 #: desktop/src/pages/ConfigPreferences.tsx:765
-#: desktop/src/pages/SettingsPreferences.tsx:283
+#: desktop/src/pages/SettingsPreferences.tsx:289
 msgid "Database Updates"
 msgstr "Adatbázis-frissítések"
 
@@ -3933,7 +3933,7 @@ msgstr ""
 "használja anélkül, hogy azt külön célként mentené."
 
 #: desktop/src/pages/ConfigPreferences.tsx:895
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Skip on Battery"
 msgstr "Kihagyás akkumulátoros használatkor"
 
@@ -4406,9 +4406,9 @@ msgstr "Korábbi vizsgálati és frissítési műveletek"
 #: desktop/src/pages/Logs.tsx:385 desktop/src/pages/Logs.tsx:418
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
 #: desktop/src/pages/Quarantine.tsx:356
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
+#: desktop/src/pages/SettingsPreferences.tsx:543
 #: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:210
 msgid "Refresh"
 msgstr "Frissítés"
@@ -4603,8 +4603,8 @@ msgstr "Frissítés…"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
 #: desktop/src/pages/Overview.tsx:153
-#: desktop/src/pages/SettingsPreferences.tsx:534
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:540
+#: desktop/src/pages/SettingsPreferences.tsx:543
 msgid "Loading…"
 msgstr "Betöltés…"
 
@@ -4778,7 +4778,7 @@ msgid "Scanner engine"
 msgstr "Vizsgálómotor"
 
 #: desktop/src/pages/Overview.tsx:192
-#: desktop/src/pages/SettingsPreferences.tsx:463
+#: desktop/src/pages/SettingsPreferences.tsx:469
 msgid "{count} file"
 msgid_plural "{count} files"
 msgstr[0] "{count} fájl"
@@ -4815,8 +4815,8 @@ msgid "See detailed scan history"
 msgstr "Részletes vizsgálati előzmények megtekintése"
 
 #: desktop/src/pages/Preferences.tsx:13
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Behavior"
 msgstr "Működés"
 
@@ -4841,7 +4841,7 @@ msgid "On-Access"
 msgstr "Valós idejű védelem"
 
 #: desktop/src/pages/Preferences.tsx:20
-#: desktop/src/pages/SettingsPreferences.tsx:199
+#: desktop/src/pages/SettingsPreferences.tsx:205
 msgid "YARA Rules"
 msgstr "YARA-szabályok"
 
@@ -4862,12 +4862,12 @@ msgid "Save"
 msgstr "Mentés"
 
 #: desktop/src/pages/Preferences.tsx:49
-#: desktop/src/pages/SettingsPreferences.tsx:147
+#: desktop/src/pages/SettingsPreferences.tsx:153
 msgid "Unable to load preferences: {error}"
 msgstr "Nem sikerült betölteni a beállításokat: {error}"
 
 #: desktop/src/pages/Preferences.tsx:98
-#: desktop/src/pages/SettingsPreferences.tsx:161
+#: desktop/src/pages/SettingsPreferences.tsx:167
 msgid "Could not save preference: {error}"
 msgstr "Nem sikerült menteni a beállítást: {error}"
 
@@ -5026,8 +5026,8 @@ msgstr "Megkettőzés"
 
 #: desktop/src/pages/Profiles.tsx:234 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Quarantine.tsx:367 desktop/src/pages/Quarantine.tsx:379
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Delete"
 msgstr "Törlés"
 
@@ -5661,8 +5661,8 @@ msgstr "Vizsgálat folyamatban…"
 msgid "Scan with VirusTotal"
 msgstr "Vizsgálat a VirusTotal használatával"
 
-#: desktop/src/pages/Scan.tsx:261 desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/Scan.tsx:261 desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "API Key"
 msgstr "API-kulcs"
 
@@ -5964,15 +5964,25 @@ msgid_plural "{count} bytes"
 msgstr[0] "{count} bájt"
 msgstr[1] "{count} bájt"
 
-#: desktop/src/pages/SettingsPreferences.tsx:186
+#: desktop/src/pages/SettingsPreferences.tsx:137
+msgid "Quit completely"
+msgstr "Quit completely"
+
+#: desktop/src/pages/SettingsPreferences.tsx:138
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
+msgid "Always ask"
+msgstr "Mindig kérdezzen rá"
+
+#: desktop/src/pages/SettingsPreferences.tsx:192
 msgid "Unable to choose the YARA rules folder: {error}"
 msgstr "Nem választható ki a YARA-szabályok mappája: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:194
+#: desktop/src/pages/SettingsPreferences.tsx:200
 msgid "Unable to open the YARA rules folder: {error}"
 msgstr "Nem nyitható meg a YARA-szabályok mappája: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:199
+#: desktop/src/pages/SettingsPreferences.tsx:205
 msgid ""
 "Add local YARA rules that ClamAV can load during standalone scans. Linux "
 "Defender does not download or update YARA rules; manage this folder yourself."
@@ -5980,15 +5990,15 @@ msgstr ""
 "Add local YARA rules that ClamAV can load during standalone scans. Linux "
 "Defender does not download or update YARA rules; manage this folder yourself."
 
-#: desktop/src/pages/SettingsPreferences.tsx:200
+#: desktop/src/pages/SettingsPreferences.tsx:206
 msgid "Rules Folder"
 msgstr "Szabályok mappája"
 
-#: desktop/src/pages/SettingsPreferences.tsx:200
+#: desktop/src/pages/SettingsPreferences.tsx:206
 msgid "Only regular .yar and .yara files in this folder are loaded."
 msgstr "Csak a mappában található normál .yar és .yara fájlok töltődnek be."
 
-#: desktop/src/pages/SettingsPreferences.tsx:203
+#: desktop/src/pages/SettingsPreferences.tsx:209
 msgid ""
 "Rules are used only with the standalone clamscan backend. Automatic scanning "
 "selects it when rules are present; an explicitly selected daemon backend "
@@ -5998,7 +6008,7 @@ msgstr ""
 "Automatikus módban ez választódik ki, ha vannak szabályok; a kifejezetten "
 "választott daemon háttérprogram nem tudja betölteni őket."
 
-#: desktop/src/pages/SettingsPreferences.tsx:204
+#: desktop/src/pages/SettingsPreferences.tsx:210
 msgid ""
 "Use rules only from sources you trust. ClamAV supports a subset of YARA "
 "rules."
@@ -6006,35 +6016,35 @@ msgstr ""
 "Csak megbízható forrásból származó szabályokat használjon. A ClamAV a YARA-"
 "szabályoknak csak egy részét támogatja."
 
-#: desktop/src/pages/SettingsPreferences.tsx:206
+#: desktop/src/pages/SettingsPreferences.tsx:212
 msgid "Choose Folder"
 msgstr "Mappa kiválasztása"
 
-#: desktop/src/pages/SettingsPreferences.tsx:207
+#: desktop/src/pages/SettingsPreferences.tsx:213
 msgid "Open Folder"
 msgstr "Mappa megnyitása"
 
-#: desktop/src/pages/SettingsPreferences.tsx:235
+#: desktop/src/pages/SettingsPreferences.tsx:241
 msgid "Unable to read file manager integrations: {error}"
 msgstr "Nem olvashatók a fájlkezelő-integrációk: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:252
+#: desktop/src/pages/SettingsPreferences.tsx:258
 msgid "{name} integration removed"
 msgstr "A(z) {name} integráció eltávolítva"
 
-#: desktop/src/pages/SettingsPreferences.tsx:254
+#: desktop/src/pages/SettingsPreferences.tsx:260
 msgid "{name} integration repaired"
 msgstr "A(z) {name} integráció javítva"
 
-#: desktop/src/pages/SettingsPreferences.tsx:255
+#: desktop/src/pages/SettingsPreferences.tsx:261
 msgid "{name} integration installed"
 msgstr "A(z) {name} integráció telepítve"
 
-#: desktop/src/pages/SettingsPreferences.tsx:258
+#: desktop/src/pages/SettingsPreferences.tsx:264
 msgid "Integration {action} failed: {error}"
 msgstr "A(z) {action} integrációs művelet sikertelen: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/pages/SettingsPreferences.tsx:276
 msgid ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
@@ -6042,36 +6052,36 @@ msgstr ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
 
-#: desktop/src/pages/SettingsPreferences.tsx:272
+#: desktop/src/pages/SettingsPreferences.tsx:278
 msgid "Restart Linux Defender to apply the new language"
 msgstr "Restart Linux Defender to apply the new language"
 
-#: desktop/src/pages/SettingsPreferences.tsx:273
+#: desktop/src/pages/SettingsPreferences.tsx:279
 msgid "Automatic (System)"
 msgstr "Automatikus (rendszer)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:275
-#: desktop/src/pages/SettingsPreferences.tsx:278
+#: desktop/src/pages/SettingsPreferences.tsx:281
+#: desktop/src/pages/SettingsPreferences.tsx:284
 msgid "Window Behavior"
 msgstr "Ablak viselkedése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:275
+#: desktop/src/pages/SettingsPreferences.tsx:281
 msgid "Configure what happens when closing the main window."
 msgstr "Állítsa be, mi történjen a főablak bezárásakor."
 
-#: desktop/src/pages/SettingsPreferences.tsx:276
+#: desktop/src/pages/SettingsPreferences.tsx:282
 msgid "When closing window"
 msgstr "Ablak bezárásakor"
 
-#: desktop/src/pages/SettingsPreferences.tsx:277
+#: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Start in System Tray"
 msgstr "Indítás a rendszertálcán"
 
-#: desktop/src/pages/SettingsPreferences.tsx:277
+#: desktop/src/pages/SettingsPreferences.tsx:283
 msgid "Launch in the background and show only the tray icon."
 msgstr "Indítás a háttérben, csak a tálcaikon megjelenítésével."
 
-#: desktop/src/pages/SettingsPreferences.tsx:278
+#: desktop/src/pages/SettingsPreferences.tsx:284
 msgid ""
 "System tray is not available. Window behavior settings require an active "
 "system tray."
@@ -6079,32 +6089,32 @@ msgstr ""
 "A rendszertálca nem érhető el. Az ablakviselkedési beállításokhoz aktív "
 "rendszertálca szükséges."
 
-#: desktop/src/pages/SettingsPreferences.tsx:279
+#: desktop/src/pages/SettingsPreferences.tsx:285
 msgid "Scan Behavior"
 msgstr "Vizsgálat viselkedése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:280
+#: desktop/src/pages/SettingsPreferences.tsx:286
 msgid "Show Live Scan Progress"
 msgstr "Élő vizsgálati előrehaladás megjelenítése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:280
+#: desktop/src/pages/SettingsPreferences.tsx:286
 msgid "Display files being scanned in real time."
 msgstr "A vizsgált fájlok valós idejű megjelenítése."
 
-#: desktop/src/pages/SettingsPreferences.tsx:281
+#: desktop/src/pages/SettingsPreferences.tsx:287
 msgid "Desktop Notifications"
 msgstr "Asztali értesítések"
 
-#: desktop/src/pages/SettingsPreferences.tsx:281
+#: desktop/src/pages/SettingsPreferences.tsx:287
 msgid "Allow scan, update, device, and VirusTotal notifications."
 msgstr ""
 "Vizsgálati, frissítési, eszköz- és VirusTotal-értesítések engedélyezése."
 
-#: desktop/src/pages/SettingsPreferences.tsx:284
+#: desktop/src/pages/SettingsPreferences.tsx:290
 msgid "Update inactivity timeout (minutes)"
 msgstr "Frissítés tétlenségi időkorlátja (perc)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:284
+#: desktop/src/pages/SettingsPreferences.tsx:290
 msgid ""
 "Minutes without output before stopping a manual database update. Active "
 "updates have no total time limit."
@@ -6112,64 +6122,68 @@ msgstr ""
 "Minutes without output before stopping a manual database update.Active "
 "updates have no total time limit."
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
-#: desktop/src/pages/SettingsPreferences.tsx:298
+#: desktop/src/pages/SettingsPreferences.tsx:303
+#: desktop/src/pages/SettingsPreferences.tsx:304
 msgid "File Manager Integration"
 msgstr "Fájlkezelő-integráció"
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
+#: desktop/src/pages/SettingsPreferences.tsx:303
 msgid "Add context menu actions for supported file managers."
 msgstr "Helyi menü műveleteinek hozzáadása a támogatott fájlkezelőkhöz."
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
+#: desktop/src/pages/SettingsPreferences.tsx:303
 msgid "Configure Integration"
 msgstr "Integráció beállítása"
 
 #. Translators: 'Scan with Linux Defender' is the installed file-manager menu label; keep it in English.
-#: desktop/src/pages/SettingsPreferences.tsx:299
+#: desktop/src/pages/SettingsPreferences.tsx:305
 msgid ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 msgstr ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 
-#: desktop/src/pages/SettingsPreferences.tsx:308
+#: desktop/src/pages/SettingsPreferences.tsx:314
 msgid "Partially installed"
 msgstr "Részben telepítve"
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
+#: desktop/src/pages/SettingsPreferences.tsx:316
 msgid "Not available"
 msgstr "Nem érhető el"
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
+#: desktop/src/pages/SettingsPreferences.tsx:316
 msgid "missing"
 msgstr "hiányzik"
 
-#: desktop/src/pages/SettingsPreferences.tsx:311
+#: desktop/src/pages/SettingsPreferences.tsx:317
 msgid "Repair"
 msgstr "Javítás"
 
-#: desktop/src/pages/SettingsPreferences.tsx:338
+#: desktop/src/pages/SettingsPreferences.tsx:317
+msgid "Install"
+msgstr "Install"
+
+#: desktop/src/pages/SettingsPreferences.tsx:344
 msgid "This exclusion already exists"
 msgstr "Ez a kizárás már létezik"
 
-#: desktop/src/pages/SettingsPreferences.tsx:354
+#: desktop/src/pages/SettingsPreferences.tsx:360
 msgid "Unable to choose exclusions: {error}"
 msgstr "Nem választhatók ki kizárások: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:363
+#: desktop/src/pages/SettingsPreferences.tsx:369
 msgid "Preset Exclusions"
 msgstr "Előre beállított kizárások"
 
-#: desktop/src/pages/SettingsPreferences.tsx:363
+#: desktop/src/pages/SettingsPreferences.tsx:369
 msgid "Common directories to exclude from scanning. Changes save immediately."
 msgstr ""
 "A vizsgálatból kizárandó gyakori könyvtárak. A módosítások azonnal mentődnek."
 
-#: desktop/src/pages/SettingsPreferences.tsx:374
+#: desktop/src/pages/SettingsPreferences.tsx:380
 msgid "Custom Exclusions"
 msgstr "Egyéni kizárások"
 
-#: desktop/src/pages/SettingsPreferences.tsx:374
+#: desktop/src/pages/SettingsPreferences.tsx:380
 msgid ""
 "Select files or folders, or enter an absolute file path or pattern. Changes "
 "save immediately."
@@ -6177,98 +6191,98 @@ msgstr ""
 "Válasszon fájlokat vagy mappákat, vagy adjon meg abszolút fájlútvonalat vagy "
 "mintát. A módosítások azonnal mentődnek."
 
-#: desktop/src/pages/SettingsPreferences.tsx:380
+#: desktop/src/pages/SettingsPreferences.tsx:386
 msgid "/path/to/exclude or *.tmp"
 msgstr "/path/to/exclude vagy *.tmp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:388
+#: desktop/src/pages/SettingsPreferences.tsx:394
 msgid "Remove {pattern}"
 msgstr "{pattern} eltávolítása"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "General"
 msgstr "Általános"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Automatically scan storage devices when they are connected."
 msgstr "Tárolóeszközök automatikus vizsgálata csatlakoztatáskor."
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Enable Device Auto-Scan"
 msgstr "Eszközök automatikus vizsgálatának engedélyezése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Device Types"
 msgstr "Eszköztípusok"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Select which kinds of mounted devices may be scanned."
 msgstr "Válassza ki, mely csatlakoztatott eszköztípusok vizsgálhatók."
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Options"
 msgstr "Beállítások"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Max Device Size (GB)"
 msgstr "Eszköz maximális mérete (GB)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "0 means no size limit; devices larger than 10,000 GB are not accepted."
 msgstr ""
 "A 0 nem jelent méretkorlátot; a 10 000 GB-nál nagyobb eszközök nem "
 "fogadhatók el."
 
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Scan Delay (seconds)"
 msgstr "Vizsgálati késleltetés (másodperc)"
 
 #. Translators: The en dash marks the inclusive 0–60-second delay range; use your language's usual range typography.
-#: desktop/src/pages/SettingsPreferences.tsx:400
+#: desktop/src/pages/SettingsPreferences.tsx:406
 msgid "Wait after mounting before scanning (0–60 seconds)."
 msgstr "Csatlakoztatás után várakozás a vizsgálat előtt (0–60 másodperc)."
 
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Auto-Quarantine Threats"
 msgstr "Fenyegetések automatikus karanténba helyezése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Notifications"
 msgstr "Értesítések"
 
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Show desktop notifications for device scan events."
 msgstr "Asztali értesítések megjelenítése eszközvizsgálati eseményekhez."
 
-#: desktop/src/pages/SettingsPreferences.tsx:403
+#: desktop/src/pages/SettingsPreferences.tsx:409
 msgid "Desktop notifications are globally disabled in Behavior."
 msgstr ""
 "Az asztali értesítések globálisan le vannak tiltva a Viselkedés beállításban."
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:422
 msgid "VirusTotal API keys must be exactly 64 hexadecimal characters"
 msgstr ""
 "A VirusTotal API-kulcsoknak pontosan 64 hexadecimális karakterből kell "
 "állniuk"
 
-#: desktop/src/pages/SettingsPreferences.tsx:419
-#: desktop/src/pages/SettingsPreferences.tsx:446
+#: desktop/src/pages/SettingsPreferences.tsx:425
+#: desktop/src/pages/SettingsPreferences.tsx:452
 msgid "Unable to save the API key"
 msgstr "Nem menthető az API-kulcs"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:452
+#: desktop/src/pages/SettingsPreferences.tsx:431
+#: desktop/src/pages/SettingsPreferences.tsx:458
 #: desktop/src/pages/Urlscan.tsx:127
 msgid "API key deleted"
 msgstr "API-kulcs törölve"
 
-#: desktop/src/pages/SettingsPreferences.tsx:425
-#: desktop/src/pages/SettingsPreferences.tsx:452
+#: desktop/src/pages/SettingsPreferences.tsx:431
+#: desktop/src/pages/SettingsPreferences.tsx:458
 msgid "Unable to delete the API key"
 msgstr "Nem törölhető az API-kulcs"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid ""
 "Keys are stored in the operating system keyring or the explicitly enabled "
 "compatibility fallback; they are never returned to the interface."
@@ -6277,77 +6291,72 @@ msgstr ""
 "engedélyezett kompatibilitási tartalék megoldásban vannak tárolva; soha nem "
 "kerülnek vissza az interfészre."
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 #: desktop/src/pages/Urlscan.tsx:39
 msgid "Configured ({masked}) using {backend}"
 msgstr "Beállítva ({masked}), használatban: {backend}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 #: desktop/src/pages/Urlscan.tsx:40
 msgid "masked"
 msgstr "elfedve"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Keyring is locked"
 msgstr "A kulcstartó zárolva van"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Keyring unavailable"
 msgstr "A kulcstartó nem érhető el"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 #: desktop/src/pages/Urlscan.tsx:46
 msgid "Not configured"
 msgstr "Nincs beállítva"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid "Exactly 64 hexadecimal characters."
 msgstr "Pontosan 64 hexadecimális karakter."
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Save Key"
 msgstr "Kulcs mentése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid "Get a free API key"
 msgstr "Ingyenes API-kulcs beszerzése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Delete Key"
 msgstr "Kulcs törlése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "When API key is missing"
 msgstr "Ha hiányzik az API-kulcs"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
-msgid "Always ask"
-msgstr "Mindig kérdezzen rá"
-
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid "Open VirusTotal website"
 msgstr "VirusTotal webhely megnyitása"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Show notification only"
 msgstr "Csak értesítés megjelenítése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Information"
 msgstr "Információk"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid ""
 "Free tier: 4 requests per minute, 500 per day. Files up to 650 MB can be "
 "scanned."
@@ -6355,11 +6364,11 @@ msgstr ""
 "Ingyenes csomag: percenként 4 kérés, naponta 500. Legfeljebb 650 MB méretű "
 "fájlok vizsgálhatók."
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid "Delete VirusTotal API key"
 msgstr "VirusTotal API-kulcs törlése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:428
+#: desktop/src/pages/SettingsPreferences.tsx:434
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "use VirusTotal scanning."
@@ -6367,29 +6376,29 @@ msgstr ""
 "Ez eltávolítja a kulcsot a biztonságos tárolóból. A VirusTotal-vizsgálat "
 "használatához újra meg kell adnia."
 
-#: desktop/src/pages/SettingsPreferences.tsx:442
+#: desktop/src/pages/SettingsPreferences.tsx:448
 #: desktop/src/pages/Urlscan.tsx:92
 msgid "Enter your urlscan API key."
 msgstr "Enter your urlscan API key."
 
-#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:449
 msgid "The urlscan API key cannot contain spaces."
 msgstr "The urlscan API key cannot contain spaces."
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Paste the API key from your urlscan.io account settings."
 msgstr "Paste the API key from your urlscan.io account settings."
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 #: desktop/src/pages/Urlscan.tsx:214
 msgid "Get an API key"
 msgstr "Get an API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Open urlscan.io website"
 msgstr "A urlscan.io webhely megnyitása"
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
@@ -6397,7 +6406,7 @@ msgstr ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid ""
 "Submitting a URL shares it with urlscan.io, including its query string, and "
 "can expose private or internal addresses. Never submit login links, session "
@@ -6407,11 +6416,11 @@ msgstr ""
 "can expose private or internal addresses. Never submit login links, session "
 "tokens, or confidential information."
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Delete urlscan.io API key"
 msgstr "Delete urlscan.io API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
@@ -6419,186 +6428,186 @@ msgstr ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
 
-#: desktop/src/pages/SettingsPreferences.tsx:470
+#: desktop/src/pages/SettingsPreferences.tsx:476
 msgid "Unable to read debug logs: {error}"
 msgstr "Nem olvashatók a hibakeresési naplók: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:478
+#: desktop/src/pages/SettingsPreferences.tsx:484
 msgid "Unable to read system information: {error}"
 msgstr "Nem olvashatók a rendszerinformációk: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:485
+#: desktop/src/pages/SettingsPreferences.tsx:491
 msgid "ZIP archives"
 msgstr "ZIP-archívumok"
 
-#: desktop/src/pages/SettingsPreferences.tsx:486
+#: desktop/src/pages/SettingsPreferences.tsx:492
 msgid "All files"
 msgstr "Minden fájl"
 
-#: desktop/src/pages/SettingsPreferences.tsx:488
+#: desktop/src/pages/SettingsPreferences.tsx:494
 msgid "Logs exported successfully"
 msgstr "A naplók exportálása sikerült"
 
-#: desktop/src/pages/SettingsPreferences.tsx:490
+#: desktop/src/pages/SettingsPreferences.tsx:496
 msgid "Unable to export logs: {error}"
 msgstr "A naplók exportálása nem sikerült: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:502
+#: desktop/src/pages/SettingsPreferences.tsx:508
 msgid "{count} log file cleared"
 msgid_plural "{count} log files cleared"
 msgstr[0] "{count} naplófájl törölve"
 msgstr[1] "{count} naplófájl törölve"
 
-#: desktop/src/pages/SettingsPreferences.tsx:505
+#: desktop/src/pages/SettingsPreferences.tsx:511
 msgid "Unable to clear logs: {error}"
 msgstr "A naplók törlése nem sikerült: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:512
+#: desktop/src/pages/SettingsPreferences.tsx:518
 msgid "Linux Defender System Information"
 msgstr "Linux Defender System Information"
 
-#: desktop/src/pages/SettingsPreferences.tsx:514
+#: desktop/src/pages/SettingsPreferences.tsx:520
 msgid "Installation Type: {value}"
 msgstr "Telepítés típusa: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:515
+#: desktop/src/pages/SettingsPreferences.tsx:521
 msgid "Distribution: {value}"
 msgstr "Disztribúció: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:516
+#: desktop/src/pages/SettingsPreferences.tsx:522
 msgid "Desktop Environment: {value}"
 msgstr "Asztali környezet: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:517
+#: desktop/src/pages/SettingsPreferences.tsx:523
 msgid "Rust Runtime: {value}"
 msgstr "Rust futtatókörnyezet: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:518
+#: desktop/src/pages/SettingsPreferences.tsx:524
 msgid "Tauri Runtime: {value}"
 msgstr "Tauri futtatókörnyezet: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:519
+#: desktop/src/pages/SettingsPreferences.tsx:525
 msgid "Platform: {value}"
 msgstr "Platform: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:520
+#: desktop/src/pages/SettingsPreferences.tsx:526
 msgid "Architecture: {value}"
 msgstr "Architektúra: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:521
+#: desktop/src/pages/SettingsPreferences.tsx:527
 msgid "Version: {value}"
 msgstr "Verzió: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:525
+#: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "System information copied to clipboard"
 msgstr "A rendszerinformációk a vágólapra másolva"
 
-#: desktop/src/pages/SettingsPreferences.tsx:527
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Unable to copy system information: {error}"
 msgstr "A rendszerinformációk másolása nem sikerült: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Logging Settings"
 msgstr "Naplózási beállítások"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:538
 msgid "Higher levels produce more detailed logs and apply immediately."
 msgstr ""
 "A magasabb szintek részletesebb naplókat eredményeznek, és azonnal érvénybe "
 "lépnek."
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:539
 msgid "Log Level"
 msgstr "Naplózási szint"
 
-#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:540
 msgid "Log File Location"
 msgstr "Naplófájl helye"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Log Management"
 msgstr "Naplókezelés"
 
-#: desktop/src/pages/SettingsPreferences.tsx:536
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid ""
 "Export a ZIP archive for support or permanently clear the application logs."
 msgstr ""
 "Exportáljon egy ZIP-archívumot támogatási célokra, vagy törölje véglegesen "
 "az alkalmazás naplóit."
 
-#: desktop/src/pages/SettingsPreferences.tsx:537
+#: desktop/src/pages/SettingsPreferences.tsx:543
 msgid "Current Log Size"
 msgstr "Jelenlegi naplóméret"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid "Export Logs"
 msgstr "Naplók exportálása"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:544
 msgid "Save all sanitized debug logs to a ZIP archive."
 msgstr "Az összes megtisztított hibakeresési napló mentése ZIP-archívumba."
 
-#: desktop/src/pages/SettingsPreferences.tsx:539
+#: desktop/src/pages/SettingsPreferences.tsx:545
 msgid "Clear Logs"
 msgstr "Naplók törlése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:539
+#: desktop/src/pages/SettingsPreferences.tsx:545
 msgid "This permanently deletes all debug log files."
 msgstr "Ez véglegesen törli az összes hibakeresési naplófájlt."
 
-#: desktop/src/pages/SettingsPreferences.tsx:539
+#: desktop/src/pages/SettingsPreferences.tsx:545
 msgid "Clear"
 msgstr "Törlés"
 
-#: desktop/src/pages/SettingsPreferences.tsx:541
+#: desktop/src/pages/SettingsPreferences.tsx:547
 msgid "System Information"
 msgstr "Rendszerinformációk"
 
-#: desktop/src/pages/SettingsPreferences.tsx:541
+#: desktop/src/pages/SettingsPreferences.tsx:547
 msgid "Useful for troubleshooting and bug reports."
 msgstr "Hasznos hibaelhárításhoz és hibajelentésekhez."
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Installation Type"
 msgstr "Telepítés típusa"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Distribution"
 msgstr "Disztribúció"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Desktop Environment"
 msgstr "Asztali környezet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Rust Runtime"
 msgstr "Rust futtatókörnyezet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Tauri Runtime"
 msgstr "Tauri futtatókörnyezet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Platform"
 msgstr "Platform"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Copy System Info"
 msgstr "Rendszerinformációk másolása"
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Copy all system information to the clipboard."
 msgstr "Az összes rendszerinformáció másolása a vágólapra."
 
-#: desktop/src/pages/SettingsPreferences.tsx:542
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Loading system information…"
 msgstr "Rendszerinformációk betöltése…"
 
-#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/SettingsPreferences.tsx:550
 msgid "Clear logs"
 msgstr "Naplók törlése"
 
-#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/SettingsPreferences.tsx:550
 msgid ""
 "This permanently deletes {count} log file totaling {size}. This action "
 "cannot be undone."
@@ -6612,7 +6621,7 @@ msgstr[1] ""
 "Véglegesen törli {count} naplófájlt, összesen {size} méretben. Ez a művelet "
 "nem vonható vissza."
 
-#: desktop/src/pages/SettingsPreferences.tsx:544
+#: desktop/src/pages/SettingsPreferences.tsx:550
 msgid "Delete Logs"
 msgstr "Naplók törlése"
 
@@ -7047,6 +7056,9 @@ msgstr "A vírusdefiníciók több mint 1 naposak"
 #: desktop/src/protection.ts:140
 msgid "System is protected"
 msgstr "A rendszer védett"
+
+#~ msgid "  -v, --verbose            Verbose output"
+#~ msgstr "  -v, --verbose            Részletes kimenet"
 
 #~ msgid ""
 #~ "Suggested adds the RFXN signatures and three InterServer databases to "

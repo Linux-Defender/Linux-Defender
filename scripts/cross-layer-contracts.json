@@ -123,6 +123,9 @@
         ],
         "docs": [
           "clamui-apply-preferences"
+        ],
+        "site": [
+          "clamui-apply-preferences"
         ]
       }
     },
@@ -137,6 +140,9 @@
           "clamui-scheduled-scan"
         ],
         "site": [
+          "clamui-scheduled-scan"
+        ],
+        "docs": [
           "clamui-scheduled-scan"
         ]
       }
@@ -156,6 +162,9 @@
         ],
         "docs": [
           "linux-defender-event"
+        ],
+        "core": [
+          "pub event: String"
         ]
       }
     },
@@ -358,6 +367,45 @@
           "rkhunter",
           "deep scan",
           "System Security Check"
+        ]
+      }
+    },
+    {
+      "id": "portmaster",
+      "why": "Portmaster audit check and authorization stay wired across core, runtime, frontend, site and parity docs.",
+      "layers": {
+        "core": [
+          "portmaster"
+        ],
+        "frontend": [
+          "portmaster"
+        ],
+        "site": [
+          "Portmaster"
+        ],
+        "docs": [
+          "Portmaster"
+        ]
+      }
+    },
+    {
+      "id": "tray-close-behavior",
+      "why": "Tray minimize/start settings stay consistent across core, runtime, frontend and site.",
+      "layers": {
+        "core": [
+          "start_minimized"
+        ],
+        "runtime": [
+          "start_minimized"
+        ],
+        "frontend": [
+          "close_behavior"
+        ],
+        "site": [
+          "Start in System Tray"
+        ],
+        "docs": [
+          "Sway"
         ]
       }
     }

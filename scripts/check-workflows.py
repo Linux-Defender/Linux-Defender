@@ -14,8 +14,8 @@ from pathlib import Path
 try:
     import yaml
 except ImportError:
-    print("SKIP: PyYAML not installed; workflow parse check skipped", file=sys.stderr)
-    raise SystemExit(0)
+    print("FAIL: PyYAML is required to validate workflows; install pyyaml==6.0.4", file=sys.stderr)
+    raise SystemExit(1)
 
 ROOT = Path(__file__).resolve().parent.parent
 TRIGGERS = {

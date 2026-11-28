@@ -699,3 +699,17 @@ fn rescan_rejects_non_integer_ids() {
     let error = dispatch(&test.context, "rescan", json!({"ids": 1})).unwrap_err();
     assert!(error.contains("quarantine.rescan ids must be an array"));
 }
+
+#[test]
+fn cleanup_rejects_overflowing_day_counts() {
+    // A huge or maximum i64 must not wrap into a 1970 cutoff that deletes
+    // every stored entry. The operation is allowed but removes nothing.
+    for days in [i64::MAX, 144115188075876272] {
+        let test = TestContext::new();
+        let removed = dispatch(&test.context, "cleanup", json!({"days": days}))
+            .expect("cleanup must not overflow")["removed"]
+            .as_u64()
+            .expect("removed count");
+        assert_eq!(removed, 0);
+    }
+}

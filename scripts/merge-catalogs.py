@@ -74,13 +74,28 @@ def main() -> int:
                 cursor += 1
             if cursor >= len(lines):
                 continue
-            start = cursor + 1
-            end = start
-            while end < len(lines) and lines[end].startswith('"'):
-                end += 1
-            if unquote("".join(re.match(r'"(.*)"$', line).group(1) for line in lines[start:end])):
-                continue
-            lines[cursor:end] = [f'msgstr "{quoted(msgid)}"']
+            if lines[cursor].startswith("msgstr["):
+                # Plural entries need one filled msgstr[n] per form. Replacing
+                # them with a single msgstr produces an invalid PO catalog.
+                forms: list[int] = []
+                end = cursor
+                while end < len(lines) and lines[end].startswith("msgstr["):
+                    match = re.match(r'msgstr\[(\d+)\] "(.*)"$', lines[end])
+                    if not match:
+                        break
+                    forms.append(int(match.group(1)))
+                    end += 1
+                if any(unquote(re.match(r'msgstr\[\d+\] "(.*)"$', lines[n]).group(1)) for n in range(cursor, end)):
+                    continue
+                lines[cursor:end] = [f'msgstr[{n}] "{quoted(msgid)}"' for n in forms]
+            else:
+                start = cursor + 1
+                end = start
+                while end < len(lines) and lines[end].startswith('"'):
+                    end += 1
+                if unquote("".join(re.match(r'"(.*)"$', line).group(1) for line in lines[start:end])):
+                    continue
+                lines[cursor:end] = [f'msgstr "{quoted(msgid)}"']
             blocks[block_index] = "\n".join(lines)
         catalog.write_text("\n\n".join(blocks), encoding="utf-8")
 

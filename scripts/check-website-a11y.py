@@ -39,7 +39,8 @@ def check(root: Path = ROOT) -> list[str]:
             'tag: "script"',
             'button[data-open-modal]',
             "astro:page-load",
-            "textContent",
+            "aria-label",
+            "kbd",
             "aria-hidden",
         ):
             if marker not in text:
@@ -59,6 +60,9 @@ def check(root: Path = ROOT) -> list[str]:
             'html.light .term [class~="text-guard-sage"]',
             'html.light .product-preview [class~="text-guard-sage"]',
             'text-white/50"] { color: rgba(20, 32, 26, 0.72); }',
+            'text-white/45"] { color: rgba(20, 32, 26, 0.72); }',
+            'text-white/40"] { color: rgba(20, 32, 26, 0.70); }',
+            'html.light footer a:hover,',
             'color: #116932;',
         ):
             if marker not in text:

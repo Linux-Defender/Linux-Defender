@@ -49,7 +49,7 @@ Then merge and complete **every active catalog**, then run the canonical freshne
 
 ```bash
 for language in de en es fr hu it nb pt_BR vi zh_CN; do
-  msgmerge --update "po/${language}.po" po/linux-defender.pot
+  msgmerge --update --no-fuzzy-matching "po/${language}.po" po/linux-defender.pot
 done
 ./scripts/update-pot.sh --check
 ./scripts/check-translations.sh

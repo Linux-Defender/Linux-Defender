@@ -68,7 +68,7 @@ application runtime dependencies.
 
 ## Validation helpers
 
-- `scripts/capture-all.sh` — one entry point combining the native window and all browser/site captures.
+- `scripts/capture-all.sh` — one entry point combining the native window and all browser/site captures (site preview: `bun run --cwd website preview`, default `http://127.0.0.1:4321/Linux-Defender/`).
 - `scripts/capture-app-window.sh` — real Tauri/WebKitGTK screenshot.
 - `scripts/capture-browser.mjs` — Playwright capture of every harness view and the site in both color schemes.
 - `scripts/inspect-blank-window.py` — read-only local WebKit inspector probe for blank-window diagnosis; never uploads data, and warns that the inspector itself can freeze startup.
@@ -76,4 +76,4 @@ application runtime dependencies.
 - `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).
 - `scripts/validate-sway.sh` — interactive Sway checklist runner.
 - `scripts/hooks/ai-enforcement-context.py`, `scripts/hooks/install-hooks.sh`, `scripts/hooks/pre-commit`, `scripts/hooks/pre-push` — git/AI hooks.
-- `scripts/tests/test_capture_wiring.py`, `scripts/tests/test_external_links.py`, `scripts/tests/test_format_coverage.py`, `scripts/tests/test_release_profile.py`, `scripts/tests/test_update_all.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_screenshot_branding.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.
+- `scripts/tests/test_capture_wiring.py`, `scripts/tests/test_external_links.py`, `scripts/tests/test_fleet_fixes.py`, `scripts/tests/test_format_coverage.py`, `scripts/tests/test_release_profile.py`, `scripts/tests/test_update_all.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_screenshot_branding.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.

@@ -8,7 +8,7 @@ Status and instructions for the **Linux Defender** gettext catalogs.
   locales `de en es fr hu it nb pt_BR vi zh_CN`.
 - **Automated status: green.** `update-pot.sh --check`, `check-potfiles.sh`,
   `check-translations.sh`, `msgfmt -c`, and `msgcmp` all pass. Every active
-  catalog contains all 1,478 source messages.
+  catalog contains all 1,480 source messages.
 - **Human status: still open.** The generated
   [`po/TRANSLATION-REVIEW.md`](../../po/TRANSLATION-REVIEW.md) lists long English
   strings that remain identical in non-English catalogs. Some are legitimate
@@ -20,7 +20,7 @@ Status and instructions for the **Linux Defender** gettext catalogs.
 
 1. Edit the source literal(s) and precise translator note in Rust/TypeScript.
 2. Regenerate and merge with `python3 scripts/merge-catalogs.py` (it runs `update-pot.sh`, `msgmerge` for every active locale, and fills only newly added entries with the English fallback).
-3. Merge each catalog with `msgmerge --update po/<loc>.po po/linux-defender.pot`.
+3. If you merge a catalog manually, use `msgmerge --update --no-fuzzy-matching po/<loc>.po po/linux-defender.pot` so fuzzy entries cannot be mistaken for translations (the project rejects them).
 4. Fill the affected entries, preserving placeholders, markup, whitespace, and
    every required `msgstr[N]` form for plurals.
 5. Run `./scripts/check-translations.sh`, `./scripts/check-potfiles.sh`, and

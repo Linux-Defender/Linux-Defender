@@ -527,9 +527,13 @@ fn check_clamav_health(ctx: &Context) -> AuditSection {
     daemon.essential = true;
     section.push(daemon);
 
-    let freshclam_active = ["clamav-freshclam", "clamav-freshclam.timer"]
-        .iter()
-        .any(|service| service_active(service).0);
+    let freshclam_active = [
+        "clamav-freshclam",
+        "clamav-freshclam-once.timer",
+        "clamav-freshclam.timer",
+    ]
+    .iter()
+    .any(|service| service_active(service).0);
     let mut freshclam = if freshclam_active {
         check(
             ctx,

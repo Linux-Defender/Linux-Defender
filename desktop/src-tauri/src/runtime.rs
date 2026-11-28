@@ -150,7 +150,6 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
     tauri_context.config_mut().identifier = CANONICAL_LINUX_APPLICATION_ID.into();
     let app_slot: Arc<Mutex<Option<AppHandle>>> = Arc::new(Mutex::new(None));
     let slot_for_events = app_slot.clone();
-    trace.mark("core context created");
     let ctx = Context::new()?.with_emitter(move |event: Event| {
         if let Some(app) = slot_for_events
             .lock()
@@ -171,6 +170,7 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
                 });
         }
     });
+    trace.mark("core context created");
 
     let tray_events: TrayEvent = Arc::new({
         let slot = app_slot.clone();
@@ -670,6 +670,9 @@ fn open_with_desktop(target: &std::ffi::OsStr) -> Result<(), String> {
 
 #[tauri::command]
 async fn open_external(state: State<'_, AppState>, url: String) -> Result<(), String> {
+    if url.is_empty() || url.len() > 8 * 1024 {
+        return Err("external URL is too long".into());
+    }
     let _operation = state.active_jobs.register("native.open_external".into())?;
     let url = is_safe_external_url(&url)?;
     tauri::async_runtime::spawn_blocking(move || {
@@ -681,6 +684,9 @@ async fn open_external(state: State<'_, AppState>, url: String) -> Result<(), St
 
 #[tauri::command]
 async fn open_path(state: State<'_, AppState>, path: String) -> Result<(), String> {
+    if path.is_empty() || path.len() > 64 * 1024 {
+        return Err("path is too long".into());
+    }
     let _operation = state.active_jobs.register("native.open_path".into())?;
     let path = path_from_wire(&path)?;
     let metadata =

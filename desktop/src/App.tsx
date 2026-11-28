@@ -841,6 +841,13 @@ export default function App(): ReactNode {
         }
         return;
       }
+      const target = event.target as HTMLElement | null;
+      if (
+        target
+        && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT" || target.isContentEditable)
+      ) {
+        return;
+      }
       const key = event.key.toLowerCase();
 
       const destination = destinations.find((item) => item.shortcut === `Ctrl+${key}`);
@@ -1037,7 +1044,10 @@ export default function App(): ReactNode {
         </main>
       </ConfigurationRecoveryProvider>
       <div className="toast-region" role="status" aria-live="polite">
-        {toasts.map((toast) => <div className={toastClass(toast.type)} key={toast.id}>{toast.message}</div>)}
+        {toasts.filter((toast) => toast.type !== "error").map((toast) => <div className={toastClass(toast.type)} key={toast.id}>{toast.message}</div>)}
+      </div>
+      <div className="toast-region" role="alert" aria-live="assertive">
+        {toasts.filter((toast) => toast.type === "error").map((toast) => <div className={toastClass(toast.type)} key={toast.id}>{toast.message}</div>)}
       </div>
       {recoveryOpen && recoveryConfigurations ? <ConfigurationRecoveryDialog
         configurations={recoveryConfigurations}

@@ -50,8 +50,12 @@ step "GitHub Actions on HEAD"
 if [ -n "${GITHUB_ACTIONS:-}" ] || [ -n "${SKIP_GIT_SYNC:-}" ]; then
     echo "skipping self-CI check (CI or pre-push; workflows cannot have run yet)"
 elif command -v gh >/dev/null 2>&1; then
-    FAILED=$(gh run list --commit "$LOCAL" --limit 20 --json conclusion \
-        --jq '[.[] | select(.conclusion=="failure" or .conclusion=="cancelled")] | length' 2>/dev/null || echo 0)
+    set +e
+    CI_JSON=$(gh run list --commit "$LOCAL" --limit 20 --json conclusion 2>&1)
+    CI_RC=$?
+    set -e
+    [ "$CI_RC" -eq 0 ] || fail "could not query GitHub Actions status: $CI_JSON"
+    FAILED=$(printf '%s' "$CI_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(sum(1 for r in d if r.get("conclusion") in ("failure","cancelled")))')
     [ "$FAILED" = "0" ] || fail "$FAILED workflow(s) failed/cancelled on HEAD"
 else
     echo "gh not available; skipping CI check"

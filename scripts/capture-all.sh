@@ -26,10 +26,16 @@ fi
 
 echo "== React views + website =="
 HARNESS_URL="${HARNESS_URL:-http://127.0.0.1:1420/visual-harness.html}"
-SITE_URL="${SITE_URL:-http://127.0.0.1:8899/Linux-Defender/index.html}"
+SITE_URL="${SITE_URL:-http://127.0.0.1:4321/Linux-Defender/}"
 if curl -fsS -o /dev/null "$HARNESS_URL"; then
     if [ -d "$PROJECT_ROOT/website/node_modules/playwright" ]; then
-        ( cd "$PROJECT_ROOT" && bun scripts/capture-browser.mjs "$OUT" "$HARNESS_URL" "$SITE_URL" )
+        SITE_FOR_CAPTURE=""
+        if curl -fsS -o /dev/null "$SITE_URL"; then
+            SITE_FOR_CAPTURE="$SITE_URL"
+        else
+            echo "SKIP: start 'bun run --cwd website preview' for site captures"
+        fi
+        ( cd "$PROJECT_ROOT" && bun scripts/capture-browser.mjs "$OUT" "$HARNESS_URL" "$SITE_FOR_CAPTURE" ) || echo "WARN: some browser captures failed"
     else
         echo "SKIP: install website dependencies for Playwright browser captures"
     fi

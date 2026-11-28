@@ -185,6 +185,10 @@ stage_locales() {
         [ -z "$language" ] && continue
         source="$po_dir/$language.po"
         destination="$BUILD_DIR/usr/share/locale/$language/LC_MESSAGES"
+        if [[ ! "$language" =~ ^[A-Za-z][A-Za-z0-9_@-]*$ ]]; then
+            log_error "Invalid locale name in LINGUAS: $language"
+            return 1
+        fi
         if [ ! -f "$source" ]; then
             log_error "Locale listed in LINGUAS is missing: $source"
             return 1

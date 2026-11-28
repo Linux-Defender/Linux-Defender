@@ -9,3 +9,14 @@ Include the affected commit or version, impact, reproduction steps or proof of c
 `SECURITY.txt` provides the machine-readable RFC 9116 contact and policy links.
 
 See the detailed [security guide](website/src/content/docs/docs/contributing/security.md) for scope and safe-use guidance.
+
+## Allowed dependency advisories
+
+`cargo audit` reports five **unmaintained** (not vulnerable) advisories with no
+patched version available: `chrono` (RUSTSEC-2026-0543), `proc-macro-error`
+(RUSTSEC-2024-0370, via the EOL GTK 0.18 macro stack), `zvariant`, `zbus_names`
+and `zvariant_derive` (RUSTSEC-2026-0372; with RUSTSEC-2026-0370 and RUSTSEC-2026-0371 for `zvariant` and `zbus_names`, via the zbus 5 chain still
+used by `ksni` and notification plugins). The direct `zbus` dependency is
+already on 6.5.0. These are allowed warnings, not vulnerabilities; GitHub
+Dependabot has zero open alerts. Revisit when a patched release exists or when
+the GTK/zbus 5 stacks can be migrated with locked, tested changes.

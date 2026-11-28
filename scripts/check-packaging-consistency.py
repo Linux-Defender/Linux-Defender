@@ -34,7 +34,7 @@ FORMATS = {
         "marker": "linux-defender-apply-preferences",
     },
     "AppImage": {
-        "files": ["appimage/README.md", "appimage/build-appimage.sh"],
+        "files": ["appimage/README.md", "appimage/build-appimage.sh", "desktop/src-tauri/tauri.conf.json"],
         "workflow": "build-appimage.yml",
         "marker": APP_ID,
     },

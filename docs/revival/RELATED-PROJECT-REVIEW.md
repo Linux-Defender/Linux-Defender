@@ -153,7 +153,7 @@ Snapshot GitHub API counts from that date; the 2026-11-27 sweeps and the reviewe
 
 | Repository | Open issues | Open PRs | Default-branch head |
 |---|---|---|---|
-| `linx-systems/clamui` | 57 | 7 | `3960c74503b03c84cae48336936d4c94c10981cc` (reviewed 2026-11-27) |
+| `linx-systems/clamui` | 57 | 7 | `6bfc4d50da50463e9e6f70259886a4d78d3af677` (reviewed 2026-11-27; current default-branch head, zero open PRs) |
 | `vmkspv/lenspect` | 0 | 0 | `a5507a6c8ec1bdf1f2222e7397d053ff365b3d70` |
 | `dave-theunsub/clamtk` | 23 | 4 (#168, #169, #170, #141) | `694833d27c800e7c3ac4ff6dd44f0b2e65025260` |
 | `Linux-Defender/Linux-Defender` | 0 | 0 | local `main` (checked at recheck time) |
@@ -436,7 +436,7 @@ License boundary: only Herodium is MIT. Linux Defender reimplemented behaviour f
 Upstream PR #366's bounded native milestone timeline, main-thread probe, and three-way verdict are implemented in `desktop/src-tauri/src/startup_trace.rs` and wired in `runtime.rs`. The `CLAMUI_STARTUP_TRACE=1` stderr echo and the extra `frontend_ready`/`frontend_report` IPC commands are omitted: no new command or capability is needed for the existing `app.startup_ready` signal and React error boundary. The pre-React fallback is now the CSP-safe classic script `desktop/public/boot-diagnostics.js` plus a hidden placeholder in `desktop/index.html`, which reports resource/script errors or an 8-second stall without network access or new IPC. `scripts/inspect-blank-window.py` is the adapted read-only local probe; it warns that the inspector itself can freeze startup and must be cross-checked with a no-inspector run.
 
 ### Upstream PR #374 / commit 3960c74 (merged 2026-11-27)
-Ported the two behavioral refinements to the #368 access-control fix: a SELinux mode is now trusted only when `getenforce` exits 0, and a `disabled` SELinux row is skipped when AppArmor is already enabled (only one major LSM is active). The upstream split of probing from decision and its catalog churn are diagnostic/testing structure only; local audit tests already cover the parsers. Reviewed pin bumped to `3960c74`; freshness check is green.
+Ported the two behavioral refinements to the #368 access-control fix: a SELinux mode is now trusted only when `getenforce` exits 0, and a `disabled` SELinux row is skipped when AppArmor is already enabled (only one major LSM is active). The upstream split of probing from decision and its catalog churn are diagnostic/testing structure only; local audit tests already cover the parsers. The reviewed pin later moved to `6bfc4d5` (final sweep, all PRs closed); freshness check is green.
 
 ### ClamAV alternative-tool sweep (2026-11-27)
 
@@ -471,3 +471,37 @@ Tested in a temporary copy: `bun install` succeeds (bun does not enforce peer ra
 - Upstream audit acknowledge/revoke buttons and "essentials only" overview (PRs #338/#323): the Rust core already implements `acknowledgements`, `essential`, and status logic, but the frontend types/UI do not expose them. Deferred pending a dedicated UI design; recorded here so the earlier "covered" claim is no longer overstated.
 - Path-list Move up/Move down UI (PR #345): `moveEntry` exists in `desktop/src/pathList.ts` but is not wired into the editor. Deferred with the reorder UI.
 - Newline/CR filenames sent over clamd stdin are line-delimited; no NUL-safe transport exists without a protocol change. These are skipped/reported rather than silently mis-scanned where detected, and the limitation is documented.
+
+## Fine-comb sweep deferrals (2026-11-28, reviewed at `58c6a683`)
+
+The 23-agent read-only fleet found no new upstream behavior to port (all ten
+pinned heads match; ClamUI has zero open PRs). The following local residuals
+were reviewed and deliberately deferred with reasons; none is a regression:
+
+- **Non-UTF-8 clamscan argv** (`scanner.rs:1227`): the daemon backend already
+  preserves raw bytes; changing the clamscan backend to `OsString` plumbing
+  touches command execution end-to-end and needs dedicated byte-level tests.
+- **VirusTotal in-flight cancellation** (`virustotal.rs:507-569`): requires a
+  transport API change to abort a blocking read; polling, folder loops and
+  sleeps already honor cancellation.
+- **systemd/cron directory ownership hardening** (`scheduler.rs:316-334`):
+  host-specific permission semantics; needs per-distro verification before a
+  fail-closed rule can be enforced safely.
+- **`open_path` check/use TOCTOU and tray readiness timing**: both need a real
+  desktop reproduction; the native helper still re-validates destinations.
+- **SNI profile label sanitization** (`tray.rs:332-355`): labels come from
+  persisted profiles; a sanitizer needs the same normalization as persistence.
+- **DEB ELF-architecture verification and post-build metadata assertion**:
+  the RPM builder already does this; porting it to both DEB builders needs
+  cross-arch CI runs before it can be trusted.
+- **Release preflight `verify-tag` job**: tag/ref validation already runs in
+  the final release job; moving it earlier changes a human-only workflow and
+  is deferred until a release is actually prepared.
+- **Latent checker blind spots** (`check-ipc-operations.py` whole-module scan,
+  `check-cross-layer.py` hardcoded CLI names, `check-dead-files.py` bare-name
+  matches, `support-parity-contracts.json` union-mode sanitization): tightening
+  these regexes can create false failures on valid historical references; each
+  needs a staged rollout with its own negative tests.
+- **Imported-skill payload wording**: `.agents/skills` payloads are hash-locked;
+  changing a line requires a reviewed upstream diff and both hashes in
+  `skills-lock.json`, not an incidental edit.

@@ -10,6 +10,8 @@ readonly BUILD_DIR="$PROJECT_ROOT/build-appimage-temp"
 readonly APPDIR="$BUILD_DIR/Linux-Defender.AppDir"
 readonly TAURI_CONFIG="$PROJECT_ROOT/desktop/src-tauri/tauri.conf.json"
 readonly RELEASE_DIR="$PROJECT_ROOT/target/release"
+# Always remove the extracted AppDir, including on an early die().
+trap 'rm -rf "$BUILD_DIR"' EXIT
 
 log() {
     printf '[appimage] %s\n' "$*"

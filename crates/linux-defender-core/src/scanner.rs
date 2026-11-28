@@ -419,6 +419,14 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 .get("id")
                 .and_then(Value::as_str)
                 .ok_or_else(|| "scanner.cancel requires id".to_owned())?;
+            if id.is_empty()
+                || id.len() > 128
+                || !id
+                    .bytes()
+                    .all(|byte| byte.is_ascii_alphanumeric() || byte == b'_' || byte == b'-')
+            {
+                return Err("scanner.cancel has an invalid operation id".to_owned());
+            }
             Ok(json!({"id": id, "cancelled": ctx.cancel(id)}))
         }
         "eicar" => eicar(ctx, args),

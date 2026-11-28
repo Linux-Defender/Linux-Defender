@@ -300,6 +300,7 @@ fn run_host(program: &str, args: &[&str]) -> AppResult<std::process::Output> {
 fn enable_systemd(ctx: &Context, schedule: &ScheduleConfig) -> AppResult<()> {
     let command = launcher_command()
         .ok_or_else(|| "Could not find linux-defender-scheduled-scan command".to_string())?;
+    validate_launcher_command(&command)?;
     let dir = systemd_dir(ctx);
     // An upgrade can leave the pre-rename units active. Stop and remove them
     // first so only one timer schedules the same scan.
@@ -430,6 +431,7 @@ fn cron_status() -> AppResult<Value> {
 fn enable_cron(schedule: &ScheduleConfig) -> AppResult<()> {
     let command = launcher_command()
         .ok_or_else(|| "Could not find linux-defender-scheduled-scan command".to_string())?;
+    validate_launcher_command(&command)?;
     let output = run_host("crontab", &["-l"])?;
     let existing = if output.status.success() {
         String::from_utf8_lossy(&output.stdout).into_owned()
@@ -503,6 +505,20 @@ fn install_crontab(content: &str) -> AppResult<()> {
             output_message(&output)
         ))
     }
+}
+
+/// Environment-derived launcher paths must never carry control characters:
+/// a newline inside a cron/systemd unit line could inject a new directive.
+pub fn validate_launcher_command(command: &[String]) -> AppResult<()> {
+    for part in command {
+        if part.len() > 4096 {
+            return Err("Scheduled launcher component is too long".to_string());
+        }
+        if part.chars().any(char::is_control) {
+            return Err("Scheduled launcher contains control characters".to_string());
+        }
+    }
+    Ok(())
 }
 
 pub fn validate_target_paths(targets: &[String]) -> AppResult<()> {
@@ -603,7 +619,7 @@ pub fn service_file(command: &[String], schedule: &ScheduleConfig) -> String {
     // path containing a literal dollar sign.
     let command = format!(
         "{}{}",
-        command.replace('%', "%%"),
+        command.replace('%', "%%").replace('$', "$$"),
         arguments.replace('$', "$$").replace('%', "%%")
     );
     format!("[Unit]\nDescription=Linux Defender Scheduled Antivirus Scan\nAfter=network.target\n\n[Service]\nType=oneshot\nExecStart={command}\nNice=19\nIOSchedulingClass=idle\n\n[Install]\nWantedBy=default.target\n")

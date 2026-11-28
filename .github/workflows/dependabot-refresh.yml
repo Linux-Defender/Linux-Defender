@@ -236,7 +236,7 @@ jobs:
           fi
           check_pr "$HEAD_SHA"
           # workflow_dispatch is an explicit exception to GITHUB_TOKEN event suppression.
-          for workflow in lint.yml test.yml codeql.yml dependency-audit.yml build-all.yml; do
+          for workflow in lint.yml test.yml codeql.yml dependency-audit.yml build-all.yml consistency.yml; do
             check_pr "$HEAD_SHA"
             gh workflow run "$workflow" --repo "$REPO" --ref "$BRANCH" -f "expected_sha=$HEAD_SHA"
           done

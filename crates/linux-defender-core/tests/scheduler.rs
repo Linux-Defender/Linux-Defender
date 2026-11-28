@@ -65,7 +65,7 @@ fn service_escapes_systemd_specifiers_and_only_argument_dollars() {
         &["/opt/$launcher/linux-defender-scheduled-scan".to_owned()],
         &schedule,
     );
-    assert!(unit.contains("/opt/$launcher/linux-defender-scheduled-scan"));
+    assert!(unit.contains("/opt/$$launcher/linux-defender-scheduled-scan"));
     assert!(unit.contains("/scan/$$HOME/%%h/"));
     assert!(unit.contains("--skip-on-battery --auto-quarantine"));
     assert!(unit.contains("Nice=19\nIOSchedulingClass=idle"));
@@ -259,4 +259,16 @@ fn detached_schedule_preflight_rejects_invalid_input_without_context_or_host_io(
     assert_eq!(normalized.time, "02:00");
     assert_eq!(normalized.day_of_week, 6);
     assert_eq!(normalized.day_of_month, 28);
+}
+
+#[test]
+fn launcher_command_rejects_control_characters() {
+    let clean = vec!["/usr/bin/linux-defender-scheduled-scan".to_string()];
+    assert!(linux_defender_core::scheduler::validate_launcher_command(&clean).is_ok());
+
+    let injected = vec!["/usr/bin/linux-defender\nExecStartPost=touch /tmp/pwned".to_string()];
+    assert!(linux_defender_core::scheduler::validate_launcher_command(&injected).is_err());
+
+    let carriage = vec!["/usr/bin/linux-defender\rOther=value".to_string()];
+    assert!(linux_defender_core::scheduler::validate_launcher_command(&carriage).is_err());
 }

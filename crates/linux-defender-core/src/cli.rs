@@ -41,10 +41,21 @@ pub fn is_cli(args: &[String]) -> bool {
 pub fn run(args: &[String]) -> i32 {
     // The documented global flags may precede the subcommand; normalize them
     // into per-command arguments so they never fall through to the GUI.
-    let leading = args
-        .iter()
-        .take_while(|arg| matches!(arg.as_str(), "--json" | "-v" | "--verbose"))
-        .count();
+    // Only flags the target command actually accepts may precede it; the
+    // root help describes them as per-command options, not true globals.
+    let mut leading = 0;
+    for arg in args {
+        let next = args.get(leading + 1).map(String::as_str).unwrap_or("");
+        let accepted = match arg.as_str() {
+            "--json" => next != "help",
+            "-v" | "--verbose" => next == "scan",
+            _ => false,
+        };
+        if !accepted {
+            break;
+        }
+        leading += 1;
+    }
     if leading > 0 && leading < args.len() {
         let mut normalized = vec![args[leading].clone()];
         normalized.extend_from_slice(&args[..leading]);
@@ -194,7 +205,7 @@ fn print_root_help(ctx: Option<&Context>) {
         tr(
             ctx,
             // Translators: Keep `-v` and `--verbose` unchanged; they are CLI flags.
-            "  -v, --verbose            Verbose output",
+            "  -v, --verbose            Verbose output (scan only)",
         )
     );
     println!(

@@ -360,7 +360,7 @@ export default function Database({ startRequest }: DatabaseProps): JSX.Element {
           <div><h2 className="section-heading" id="update-log-heading">{_("Update log")}</h2></div>
         </header>
         <div className="grouped-list">
-          <div className="database-update-log" role="log" aria-live="polite" aria-label={_("Update log")}>
+          <div className="database-update-log" role="log" aria-live="off" aria-label={_("Update log")}>
             {progress.length > 0 && <pre className={`monospace database-update-text${result ? "" : " database-update-terminal"}`}>{progress.join("\n")}</pre>}
             {result ? <>
               <pre className="monospace database-update-text">{formatResultSummary(result)}</pre>

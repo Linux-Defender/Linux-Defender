@@ -61,7 +61,10 @@ def identical_candidates(locale: str) -> list[str]:
                 index += 1
             if index >= len(lines):
                 break
-            msgstr, index = po_string(lines, index, "msgstr ")
+            plural = lines[index].startswith("msgstr[")
+            msgstr, index = po_string(
+                lines, index, "msgstr[0] " if plural else "msgstr "
+            )
             if (
                 msgid
                 and msgid == msgstr

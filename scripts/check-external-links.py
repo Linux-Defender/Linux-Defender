@@ -91,6 +91,10 @@ def main() -> int:
 
     for item in sorted(skipped):
         print(f"SKIP (offline?): {item}", file=sys.stderr)
+    import os
+    if locations and len(skipped) == len(locations):
+        print("All external links were skipped; network outage cannot prove links are live", file=sys.stderr)
+        return 1
     if dead:
         print("Dead external links:", file=sys.stderr)
         for item in sorted(dead):

@@ -24,6 +24,9 @@ GATES = (
     ROOT / "scripts/check-all.sh",
     ROOT / "scripts/audit-consistency.sh",
     ROOT / "scripts/check-translations.sh",
+    ROOT / "scripts/update-all.sh",
+    ROOT / "scripts/hooks/pre-commit",
+    ROOT / "scripts/hooks/pre-push",
 )
 CHECKER = re.compile(r"^scripts/(?:check-[A-Za-z0-9_.-]+|tests/test_[A-Za-z0-9_.-]+)\.(?:py|sh|ts)$")
 INVOCATION = re.compile(

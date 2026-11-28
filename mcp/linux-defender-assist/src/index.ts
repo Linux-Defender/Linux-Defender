@@ -92,17 +92,17 @@ server.registerTool(
     inputSchema: z.object({
       locale: z.enum(["de", "es", "fr", "hu", "it", "nb", "pt_BR", "vi", "zh_CN"]),
       msgid: z.string().min(1).max(2000),
-      endpoint: z.string().url().default("http://127.0.0.1:1234/v1/chat/completions"),
     }),
     annotations: { ...READ, openWorldHint: false },
   },
-  async ({ locale, msgid, endpoint }) => {
+  async ({ locale, msgid }) => {
     const names: Record<string, string> = {
       de: "German", es: "Spanish", fr: "French", hu: "Hungarian", it: "Italian",
       nb: "Norwegian Bokmål", pt_BR: "Brazilian Portuguese", vi: "Vietnamese", zh_CN: "Simplified Chinese",
     };
     try {
-      const response = await fetch(endpoint, {
+      // Fixed loopback endpoint: a caller must never be able to submit text to an arbitrary host.
+      const response = await fetch("http://127.0.0.1:1234/v1/chat/completions", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
@@ -132,7 +132,9 @@ server.registerTool(
   {
     title: "Capture the desktop app window",
     description: "Focus the Linux Defender window and capture a PNG using the repository capture helper.",
-    inputSchema: z.object({ output: z.string().optional() }),
+    inputSchema: z.object({
+      output: z.string().regex(/^\/tmp\/opencode\/[A-Za-z0-9._-]+\.png$/, "must be a PNG directly under /tmp/opencode/").optional(),
+    }),
     annotations: LOCAL,
   },
   async ({ output }) => {
@@ -185,7 +187,7 @@ server.registerTool(
       policy,
       helper_exists: stat.code === 0,
       root_owned: fields[0] === "0",
-      executable: Boolean(fields[1] && Number(fields[1]) & 0o111),
+      executable: Boolean(fields[1] && parseInt(fields[1], 8) & 0o111),
       policy_exists: (await command("test", ["-f", policy])).code === 0,
       note: "Authorization itself requires an interactive pkexec session performed by a human.",
     };

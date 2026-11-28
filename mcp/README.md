@@ -22,6 +22,7 @@ bun run mcp/linux-defender-assist/src/index.ts
 | `ld_tray_probe` | Checks Sway/waybar/grim and app process readiness. | Read-only |
 | `ld_helper_probe` | Checks helper path, root ownership, executable bit, and policy presence. | Read-only; never invokes `pkexec` |
 | `ld_online_preflight` | Checks whether a service key exists in the OS keyring without revealing it, and shows what a submission would disclose. | No network submission |
+| `ld_support_parity` | Runs `scripts/check-support-parity.py` and reports cross-layer invariant status. | Read-only |
 
 This server deliberately does **not** install packages, start services, invoke
 `pkexec`, write catalogs, or submit files/URLs to VirusTotal or urlscan. Those

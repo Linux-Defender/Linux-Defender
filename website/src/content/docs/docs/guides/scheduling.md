@@ -15,7 +15,7 @@ For most desktops, scan Downloads daily during an idle, plugged-in period and le
 | Time | 24-hour `HH:MM`; default `02:00`, ignored by hourly scans (which run at minute zero) |
 | Weekly day | `0` Monday through `6` Sunday |
 | Monthly day | `1` through `28` |
-| Targets | absolute directories; empty means no scan |
+| Targets | absolute directories; empty falls back to the user's home directory |
 | Skip on battery | default on |
 | Auto-quarantine | default off; review its risk before enabling |
 

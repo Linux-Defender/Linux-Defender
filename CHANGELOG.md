@@ -17,7 +17,7 @@
 - Hardened quarantine and scheduler: canonical path confinement, no-follow/atomic operations, a `0700` restore directory, fail-closed SQLite sidecars, and dual-backend cleanup that cannot leave two schedules active.
 - Hardened host ClamAV URL validation and untrusted text sanitization across scan results, update output, notifications, and native menus.
 - AppArmor/SELinux audit now uses authoritative LSM detection (`/sys/kernel/security/lsm`, securityfs interface, `getenforce` exit codes, `/sys/fs/selinux/enforce` fallback) and avoids contradictory recommendations.
-- Ported upstream ClamUI openSUSE detection/zypper guidance, pathless clamd error attribution, a bounded in-memory result store, and PR #374 LSM refinements; refreshed the reviewed pin to `3960c74`.
+- Ported upstream ClamUI openSUSE detection/zypper guidance, pathless clamd error attribution, a bounded in-memory result store, and PR #374 LSM refinements; refreshed the reviewed pin to `6bfc4d5`.
 - Custom Signature Databases: provider feeds are added once (no duplicates or repeated toast), hidden by default, and Suggested only reveals/hides rows; long URLs wrap without squeezing Remove buttons.
 
 ### Added

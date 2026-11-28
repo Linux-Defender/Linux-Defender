@@ -1824,11 +1824,13 @@ fn required_debug_name(args: &Value) -> AppResult<&str> {
         .get("name")
         .and_then(Value::as_str)
         .ok_or_else(|| "debug log name is required".to_owned())?;
-    if name.starts_with(DEBUG_FILE)
-        && !name.contains('/')
-        && !name.contains('\\')
-        && !name.contains("..")
-    {
+    let rotation = name.strip_prefix(DEBUG_FILE).filter(|suffix| {
+        suffix.is_empty()
+            || suffix
+                .strip_prefix('.')
+                .is_some_and(|n| !n.is_empty() && n.bytes().all(|byte| byte.is_ascii_digit()))
+    });
+    if rotation.is_some() {
         Ok(name)
     } else {
         Err("invalid debug log name".to_owned())

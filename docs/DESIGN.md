@@ -101,6 +101,8 @@ served by `bun run --cwd desktop dev`: dispatch a
 uses the harness `?threats` flag. The two social-preview PNGs are copies of
 `website/src/assets/social-preview.png` (the branded card), not upstream art.
 
+For a one-command visual review of every surface, run `./scripts/capture-all.sh` (see the development guide); it combines the native WebKitGTK window, all twelve React views, and the site in both color schemes into one output directory.
+
 `scripts/check-screenshot-branding.py` refuses any pixel change until it has
 been reviewed: every image is pinned by SHA-256 in
 `scripts/screenshot-manifest.json`, and Tesseract OCR additionally rejects the

@@ -96,6 +96,7 @@ export function ScanLogViewport({ chunks, label, className }: ScanLogViewportPro
   }
 
   return <div
+    role="region"
     aria-label={label}
     className={viewportClassName}
     onKeyDown={onKeyDown}

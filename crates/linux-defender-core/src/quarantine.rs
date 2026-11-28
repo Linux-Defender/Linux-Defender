@@ -1057,7 +1057,10 @@ impl QuarantineManager {
     }
 
     fn cleanup_old(&self, days: i64) -> AppResult<u64> {
-        let cutoff = unix_timestamp().saturating_sub(days.max(0) as u64 * 86_400);
+        // A crafted i64 must never wrap the day multiplier into a tiny value
+        // and make the cutoff delete nearly the whole quarantine.
+        let seconds = (days.max(0) as u64).saturating_mul(86_400);
+        let cutoff = unix_timestamp().saturating_sub(seconds);
         let connection = self.connection()?;
         let mut statement = connection.prepare(
             "SELECT id, original_path, quarantine_path, threat_name, detection_date, file_size, file_hash, original_permissions FROM quarantine WHERE replace(detection_date, 'T', ' ') < datetime(?1, 'unixepoch') ORDER BY detection_date ASC",

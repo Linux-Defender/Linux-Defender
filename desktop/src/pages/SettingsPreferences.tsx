@@ -132,6 +132,12 @@ function Section({ title, children, description }: { title: string; children?: R
 }
 
 /** Auto-saved preference pages. Optional props allow the component to be mounted independently. */
+function closeBehaviorLabel(value: string): string {
+  if (value === "minimize") return _("Minimize to tray");
+  if (value === "quit") return _("Quit completely");
+  return _("Always ask");
+}
+
 export default function SettingsPreferences({
   selectedPage = "behavior",
   settings: suppliedSettings,
@@ -273,7 +279,7 @@ function BehaviorPage({ settings, saveSetting, trayAvailable, isFlatpak }: { set
       }}><option value="auto">{_("Automatic (System)")}</option>{languages.map((language) => <option key={language.code} value={language.code}>{language.name}</option>)}</select></Field>
     </Section>
     {trayAvailable ? <Section title={_("Window Behavior")} description={_("Configure what happens when closing the main window.")}>
-      <Field label={_("When closing window")}><select value={valueString(settings, "close_behavior", "ask")} onChange={(event) => void saveSetting("close_behavior", event.target.value)}>{CLOSE_BEHAVIOR.map((value) => <option key={value} value={value}>{_(value === "minimize" ? "Minimize to tray" : value === "quit" ? "Quit completely" : "Always ask")}</option>)}</select></Field>
+      <Field label={_("When closing window")}><select value={valueString(settings, "close_behavior", "ask")} onChange={(event) => void saveSetting("close_behavior", event.target.value)}>{CLOSE_BEHAVIOR.map((value) => <option key={value} value={value}>{closeBehaviorLabel(value)}</option>)}</select></Field>
       <Field label={_("Start in System Tray")} detail={_("Launch in the background and show only the tray icon.")}><input type="checkbox" checked={valueBoolean(settings, "start_minimized", false)} onChange={(event) => void saveSetting("start_minimized", event.target.checked)} /></Field>
     </Section> : <Section title={_("Window Behavior")} description={_("System tray is not available. Window behavior settings require an active system tray.")} />}
     <Section title={_("Scan Behavior")}>
@@ -308,7 +314,7 @@ function BehaviorPage({ settings, saveSetting, trayAvailable, isFlatpak }: { set
             : _("Partially installed");
         return <article key={integration.file_manager} className="integration-row">
           <div><strong>{integration.display_name}</strong><p>{integration.description}</p><small>{integration.is_available ? status : _("Not available")}{integration.missing_files.length > 0 ? ` — ${_("missing")} ${integration.missing_files.join(", ")}` : ""}</small></div>
-          <div>{integration.status === "installed" ? <><button type="button" disabled={busyManager === integration.file_manager} onClick={() => void changeIntegration(integration, "repair")}>{_("Repair")}</button><button type="button" disabled={busyManager === integration.file_manager} onClick={() => void changeIntegration(integration, "remove")}>{_("Remove")}</button></> : <button type="button" disabled={!integration.is_available || busyManager === integration.file_manager} onClick={() => void changeIntegration(integration, integration.status === "partial" ? "repair" : "install")}>{_(integration.status === "partial" ? "Repair" : "Install")}</button>}</div>
+          <div>{integration.status === "installed" ? <><button type="button" disabled={busyManager === integration.file_manager} onClick={() => void changeIntegration(integration, "repair")}>{_("Repair")}</button><button type="button" disabled={busyManager === integration.file_manager} onClick={() => void changeIntegration(integration, "remove")}>{_("Remove")}</button></> : <button type="button" disabled={!integration.is_available || busyManager === integration.file_manager} onClick={() => void changeIntegration(integration, integration.status === "partial" ? "repair" : "install")}>{integration.status === "partial" ? _("Repair") : _("Install")}</button>}</div>
         </article>;
       })}
       <footer><button type="button" onClick={() => setDialogOpen(false)}>{_("Close")}</button></footer>
