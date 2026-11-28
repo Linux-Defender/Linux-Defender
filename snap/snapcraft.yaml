@@ -14,7 +14,7 @@ description: |
   `linux-defender-privileged-helper`; install it with
   `sudo linux-defender install-privileged-helper` or from the Debian/RPM packages.
 license: MIT
-website: https://linux-defender.github.io
+website: https://linux-defender.github.io/Linux-Defender/
 source-code: https://github.com/Linux-Defender/Linux-Defender
 issues: https://github.com/Linux-Defender/Linux-Defender/issues
 contact: https://github.com/Linux-Defender/Linux-Defender/issues

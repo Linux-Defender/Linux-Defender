@@ -103,7 +103,7 @@ The canonical CLI command is `linux-defender-scheduled-scan`; the pre-rename `cl
 
 ## Upgrading the host ClamAV engine
 
-Linux Defender and ClamTK are frontends; neither ships or installs a scanner engine. The engine version comes from your distribution's `clamav` package. On CachyOS/Arch, sync the repositories and upgrade the package, then verify all three host tools report the same version:
+Linux Defender and ClamTk are frontends; neither ships or installs a scanner engine. The engine version comes from your distribution's `clamav` package. On CachyOS/Arch, sync the repositories and upgrade the package, then verify all three host tools report the same version:
 
 ```bash
 sudo pacman -Syu

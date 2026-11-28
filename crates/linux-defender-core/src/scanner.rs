@@ -573,9 +573,9 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
     } else {
         select_backend(ctx, &configured)
     };
-    if selected_backend == "clamscan" {
+    if selected_backend == "clamscan" && exclusions.yara_rules.is_empty() {
         // One built-in, EICAR-only rule is active by default for standalone
-        // scans. Daemon scans keep their original behavior.
+        // scans. A configured user folder replaces it; daemon scans unchanged.
         let default_rule = provision_default_yara(ctx);
         for path in default_rule {
             if !exclusions.yara_rules.contains(&path) {

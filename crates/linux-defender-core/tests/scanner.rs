@@ -1151,7 +1151,9 @@ fn default_yara_rule_is_provisioned_once_and_user_folder_wins() {
     ctx.update_settings(json!({"yara_rules_directory": custom.to_string_lossy()}))
         .unwrap();
     let status = scanner::dispatch(&ctx, "status", json!({})).unwrap();
-    assert_eq!(status["local_yara_rule_count"], 2); // custom rule + built-in EICAR rule
+    // Status reports all visible rules, but a configured user folder replaces
+    // the default in actual scans (see scanner.rs scan() branch).
+    assert_eq!(status["local_yara_rule_count"], 2);
 }
 
 #[test]
@@ -1183,7 +1185,7 @@ fn standalone_scan_uses_builtin_eicar_rule_without_changing_daemon_behavior() {
     let ctx = Context::with_paths(Paths {
         home,
         config_dir: config,
-        data_dir: data,
+        data_dir: data.clone(),
     })
     .unwrap();
 
@@ -1196,8 +1198,9 @@ fn standalone_scan_uses_builtin_eicar_rule_without_changing_daemon_behavior() {
     )
     .unwrap();
     assert_eq!(clamscan["status"], "infected");
-    // The built-in rule is validated against the host ClamAV binary by
-    // scripts/check-yara-boundary.py; here the contract is an unchanged verdict.
+    // The pinned rule is text-validated by check-yara-boundary.py. With no
+    // user folder configured it is provisioned into the app data directory.
+    assert!(data.join("yara/linux-defender-default.yar").is_file());
 
     // Explicit daemon mode is unchanged by the built-in rule.
     let daemon = scanner::dispatch(

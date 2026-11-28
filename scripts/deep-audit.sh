@@ -80,9 +80,13 @@ if [ "${1:-}" != "--quick" ]; then
     step "GitHub Actions status on HEAD"
     if command -v gh >/dev/null 2>&1 && [ -z "${GITHUB_ACTIONS:-}" ]; then
         SHA="$(git rev-parse HEAD)"
-        gh api "repos/Linux-Defender/Linux-Defender/actions/runs?head_sha=$SHA&per_page=100" \
-            --jq '[.workflow_runs[] | select(.status!="completed" or .conclusion!="success") | .name] | if length==0 then "CI OK: all workflows green" else "CI PENDING/FAIL: " + join(", ") end' \
-            >>"$REPORT" 2>&1 || printf 'CI status unavailable\n' >>"$REPORT"
+        CI_OUT=$(gh api "repos/Linux-Defender/Linux-Defender/actions/runs?head_sha=$SHA&per_page=100" \
+            --jq '[.workflow_runs[] | select(.status!="completed" or .conclusion!="success") | .name] | if length==0 then "CI OK: all workflows green" else "CI PENDING/FAIL: " + join(", ") end' 2>&1)
+        printf '%s\n' "$CI_OUT" >>"$REPORT"
+        case "$CI_OUT" in
+            "CI OK: all workflows green") ;;
+            *) failures=$((failures + 1)) ;;
+        esac
     else
         printf 'CI status skipped (CI context)\n' >>"$REPORT"
     fi

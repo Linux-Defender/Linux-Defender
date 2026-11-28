@@ -92,3 +92,7 @@ result. There is no "trust me" path.
 `scripts/check-ai-enforcement-wiring.py` verifies in every commit that all
 adapters still read this file (no duplicated rules, all hooks/commands/skill
 wired). Editing the rules here is enough; do not edit copies elsewhere.
+
+## Universal activation phrase
+
+Say **"yk the drill"** to run the canonical exhaustive review: `./scripts/deep-audit.sh` (or `/deep-audit` / MCP `ld_deep_audit`). Fix each failure with a fail-closed guard in `scripts/check-all.sh`, update the ledger, and re-run until zero failures.

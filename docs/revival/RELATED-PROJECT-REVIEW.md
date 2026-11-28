@@ -439,7 +439,7 @@ Upstream PR #366's bounded native milestone timeline, main-thread probe, and thr
 
 ### Upstream PR #378 (merged 2026-11-28)
 Ported the AppImage AppDir permission normalization and squashfs readability check (already landed in the fleet sweep). The upstream AppStream screenshot refresh was independently implemented with 13 current Linux Defender screenshots pinned to this repository's commit, not upstream images.
-Ported the two behavioral refinements to the #368 access-control fix: a SELinux mode is now trusted only when `getenforce` exits 0, and a `disabled` SELinux row is skipped when AppArmor is already enabled (only one major LSM is active). The upstream split of probing from decision and its catalog churn are diagnostic/testing structure only; local audit tests already cover the parsers. The reviewed pin later moved to `6bfc4d5` (final sweep, all PRs closed); freshness check is green.
+Ported the two behavioral refinements to the #368 access-control fix: a SELinux mode is now trusted only when `getenforce` exits 0, and a `disabled` SELinux row is skipped when AppArmor is already enabled (only one major LSM is active). The upstream split of probing from decision and its catalog churn are diagnostic/testing structure only; local audit tests already cover the parsers. The reviewed pin later moved to `9eda12203b1c` (PR #378 merge, all PRs closed); `6bfc4d5` was its parent. Freshness check is green.
 
 ### ClamAV alternative-tool sweep (2026-11-27)
 

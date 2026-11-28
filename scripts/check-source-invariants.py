@@ -62,6 +62,7 @@ PROOF_REQUIRED = (
 )
 CSP_REQUIRED = (
     "default-src 'self'",
+    "connect-src 'self' ipc: http://ipc.localhost",
     "script-src 'self'",
     "object-src 'none'",
     "base-uri 'none'",
@@ -69,6 +70,7 @@ CSP_REQUIRED = (
     "form-action 'none'",
 )
 CSP_FORBIDDEN = (
+    re.compile(r"connect-src[^;\"]*\*"),
     re.compile(r"script-src[^;\"]*'unsafe-(?:inline|eval)'"),
     re.compile(r"'unsafe-eval'"),
 )

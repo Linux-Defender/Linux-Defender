@@ -1,6 +1,6 @@
 # Scripts index
 
-Every tracked script in `scripts/` is listed here so none is forgotten. This
+Every tracked executable script in `scripts/` is listed here so none is forgotten. Declarative data files are also listed below. This
 is internal contributor documentation; scripts are development aids, not
 application runtime dependencies.
 
@@ -31,6 +31,7 @@ application runtime dependencies.
 - `scripts/check-doc-links.py` — broken relative Markdown links.
 - `scripts/check-external-links.py` — dead external documentation links.
 - `scripts/check-file-modes.py` — shebang and Debian maintainer scripts are executable.
+- `scripts/cross-layer-contracts.json`, `scripts/screenshot-manifest.json`, `scripts/support-parity-contracts.json` — declarative guard data.
 - `scripts/check-format-coverage.py` — all six formats stay documented in every master doc.
 - `scripts/check-clamav-upgrade-guidance.py` — host-owned engine, patch-only 1.5.5 claims, independent signatures.
 - `scripts/check-clamav-host.sh` — read-only installed/repository engine version, daemon state and signature health.

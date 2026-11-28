@@ -410,7 +410,7 @@ export default function Network(): JSX.Element {
         { time: snapshot.captured_at },
       )}</p>
       <div className="network-toolbar">
-        <div className="segmented-control" aria-label={_("Network socket filter")}>
+        <div className="segmented-control" role="group" aria-label={_("Network socket filter")}>
           <button aria-pressed={filter === "all"} onClick={() => resetFilters("all")} type="button" data-network-filter="all">{_("All")}</button>
           <button aria-pressed={filter === "listener"} onClick={() => resetFilters("listener")} type="button" data-network-filter="listener">{_("Listening and bound")}</button>
           <button aria-pressed={filter === "connection"} onClick={() => resetFilters("connection")} type="button" data-network-filter="connection">{_("Connections")}</button>

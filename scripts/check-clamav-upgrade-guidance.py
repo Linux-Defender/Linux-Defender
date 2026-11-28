@@ -12,8 +12,6 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DOC = ROOT / "website/src/content/docs/docs/troubleshooting.md"
-
 
 def check(root: Path = ROOT) -> list[str]:
     doc = root / "website/src/content/docs/docs/troubleshooting.md"
@@ -37,9 +35,14 @@ def check(root: Path = ROOT) -> list[str]:
         if marker not in text:
             failures.append(f"upgrade guidance lost {marker!r}")
     lowered = text.lower()
+    safe_negation = "does **not** claim a higher malware detection rate" in lowered
     for bad in ("higher detection rate", "detects more malware", "auto-installs the engine"):
-        if bad in lowered and "does **not** claim a higher malware detection rate" not in text:
-            failures.append(f"unsupported claim {bad!r}")
+        # A bare negated sentence is allowed; any other occurrence is a claim.
+        if bad in lowered:
+            occurrences = lowered.count(bad)
+            allowed = 1 if bad == "higher detection rate" and safe_negation else 0
+            if occurrences > allowed:
+                failures.append(f"unsupported claim {bad!r}")
     return failures
 
 

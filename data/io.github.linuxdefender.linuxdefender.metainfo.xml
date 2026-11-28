@@ -77,6 +77,10 @@
             <caption>Configuration settings</caption>
             <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/config_view.png</image>
         </screenshot>
+        <screenshot>
+            <caption>Scan profile management</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b32/screenshots/profile_management.png</image>
+        </screenshot>
     </screenshots>
     <launchable type="desktop-id">io.github.linuxdefender.linuxdefender.desktop</launchable>
 

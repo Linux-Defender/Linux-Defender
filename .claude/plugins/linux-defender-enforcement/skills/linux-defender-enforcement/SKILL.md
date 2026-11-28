@@ -20,3 +20,5 @@ Before saying done:
 
 `scripts/check-ai-enforcement-wiring.py` verifies that all adapters still read
 the canonical file and that no rules are duplicated.
+
+Activation phrase: **"yk the drill"** runs `./scripts/deep-audit.sh`.

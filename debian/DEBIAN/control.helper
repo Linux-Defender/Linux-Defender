@@ -13,7 +13,7 @@ Description: Root-owned native pkexec helper and polkit policy for Linux Defende
  pkexec.
  .
  This package coexists with linux-defender and owns only the privileged helper and
- policy. linux-defender depends on this exact version.
+ policy. linux-defender recommends this exact version.
  .
  Replaces lets dpkg transfer ownership of the helper and policy from an older
  linux-defender package of at most the same version without forcing an uninstall.

@@ -28,6 +28,13 @@ type VirusTotalSubmission = {
 const URLSCAN_WEBSITE = "https://urlscan.io/";
 const VIRUSTOTAL_UPLOAD_URL = "https://www.virustotal.com/gui/home/upload";
 
+function backendLabel(backend: string): string {
+  if (backend === "keyring") return _("keyring");
+  if (backend === "plaintext_fallback") return _("plaintext fallback");
+  if (backend === "none") return _("none");
+  return backend;
+}
+
 const VISIBILITIES: Array<{ id: Visibility; label: () => string }> = [
   { id: "private", label: () => _("Private — visible only to you") },
   { id: "unlisted", label: () => _("Unlisted — visible to urlscan Pro researchers") },
@@ -38,7 +45,7 @@ function keyStatusLabel(status: KeyStatus | null): string {
   if (status?.present) {
     return _("Configured ({masked}) using {backend}", {
       masked: status.masked ?? _("masked"),
-      backend: status.backend.replaceAll("_", " "),
+      backend: backendLabel(status.backend),
     });
   }
   if (status?.status === "locked") return _("System keyring is locked");
@@ -226,7 +233,7 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
         ? _("urlscan receives the complete URL, including its query string, and visits it. Never submit login links, session tokens, private/internal URLs, or confidential information.")
         : _("VirusTotal adds submitted and queried URLs to its dataset, where they may be shared with its community and security partners. Never submit login links, session tokens, private/internal URLs, or confidential information.")}</span></div>
       {error ? <p className="notice error" role="alert">{error}</p> : null}
-      {provider === "urlscan" && urlscanResult ? <div className="notice success" role="status"><div><strong>{_("Submission accepted")}</strong><p>{_("Visibility: {visibility}", { visibility: urlscanResult.visibility })}</p></div><button className="button" type="button" onClick={() => void openExternal(urlscanResult.result_url)}><Icon name="external-link" />{_("Open urlscan result")}</button></div> : null}
+      {provider === "urlscan" && urlscanResult ? <div className="notice success" role="status"><div><strong>{_("Submission accepted")}</strong><p>{_("Visibility: {visibility}", { visibility: VISIBILITIES.find((item) => item.id === urlscanResult.visibility)?.label() ?? _("Unknown") })}</p></div><button className="button" type="button" onClick={() => void openExternal(urlscanResult.result_url)}><Icon name="external-link" />{_("Open urlscan result")}</button></div> : null}
       {provider === "virustotal" && virusTotalResult ? <div className={`notice ${virusTotalResult.status === "detected" ? "warning" : virusTotalResult.status === "error" || virusTotalResult.status === "rate_limited" ? "error" : "success"}`} role="status"><div><strong>{virusTotalResult.status === "detected" ? _("VirusTotal reported detections") : virusTotalResult.status === "clean" ? _("Analysis complete — no detections reported") : virusTotalResult.status === "pending" ? _("Analysis is still processing") : virusTotalResult.status === "rate_limited" ? _("VirusTotal rate limit reached") : _("VirusTotal analysis failed")}</strong>{virusTotalResult.status === "clean" || virusTotalResult.status === "detected" ? <p>{_("{detections} of {total} URL engines reported suspicious or malicious", { detections: virusTotalResult.detections, total: virusTotalResult.total_engines })}</p> : null}{virusTotalResult.error_message ? <p>{virusTotalResult.error_message}</p> : null}</div>{virusTotalResult.analysis_url ? <button className="button" type="button" onClick={() => void openExternal(virusTotalResult.analysis_url!)}><Icon name="external-link" />{_("Open VirusTotal analysis")}</button> : null}</div> : null}
       <div className="button-row"><button className="button primary" type="button" disabled={busy || !isPublicHttpUrl(url)} onClick={review}>{busy ? _("Submitting…") : _("Review submission")}</button></div>
     </section>
@@ -234,7 +241,7 @@ export default function Urlscan({ active }: { active: boolean }): JSX.Element {
       <p>{provider === "urlscan"
         ? _("urlscan will visit this URL and store page activity. The service receives the full URL, including its query string.")
         : _("VirusTotal will submit this URL for analysis and add it to its dataset, where it may be shared with its community and security partners.")}</p>
-      <dl className="about-details"><dt>{_("URL")}</dt><dd><code className="path-value">{url.trim()}</code></dd>{provider === "urlscan" ? <><dt>{_("Visibility")}</dt><dd>{visibility}</dd></> : null}</dl>
+      <dl className="about-details"><dt>{_("URL")}</dt><dd><code className="path-value">{url.trim()}</code></dd>{provider === "urlscan" ? <><dt>{_("Visibility")}</dt><dd>{VISIBILITIES.find((item) => item.id === visibility)?.label() ?? _("Unknown")}</dd></> : null}</dl>
       {provider === "urlscan" ? <p>{visibilityDescription}</p> : null}
       <div className="dialog-actions"><button className="button" type="button" disabled={busy} onClick={() => setConfirm(false)}>{_("Cancel")}</button><button className="button primary" type="button" disabled={busy} onClick={() => void submit()}>{busy ? _("Submitting…") : _("Submit URL")}</button></div>
     </Modal> : null}

@@ -20,3 +20,5 @@ Your review procedure:
    logs; never claim done on unit tests alone.
 
 Report concrete findings only. Do not rebrand compatibility identifiers.
+
+Activation phrase: **"yk the drill"** runs `./scripts/deep-audit.sh`.

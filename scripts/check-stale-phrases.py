@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SKIP_PARTS = {".git", "node_modules", "target", "dist", ".astro", "vendor", "__pycache__"}
 
 STALE = {
+    "ClamTK": "use the upstream project's own spelling, ClamTk",
     "Lensorreview": "misspelled/nonexistent project name in parity docs",
     "de done, others English fallback": "all 10 catalogs are now maintained",
     "ClamUI was deprecated upstream": "upstream status claim is no longer made",

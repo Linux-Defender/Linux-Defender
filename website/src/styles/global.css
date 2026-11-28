@@ -232,6 +232,7 @@ html.light [class~="text-white/35"] { color: rgba(20, 32, 26, 0.62); }
 html.light [class~="text-white/30"] { color: rgba(20, 32, 26, 0.70); }
 html.dark [class~="text-white/40"] { color: rgba(255, 255, 255, 0.62); }
 html.dark [class~="text-white/45"] { color: rgba(255, 255, 255, 0.68); }
+html.dark [class~="text-white/30"] { color: rgba(255, 255, 255, 0.62); }
 
 html.light [class~="text-guard-sage"] { color: #157f3d; }
 html.light [class~="text-guard-sage-pale"] { color: #14201a; }

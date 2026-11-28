@@ -40,9 +40,20 @@ fi
 if [ -n "$installed" ] || [ -n "$available" ]; then
     printf 'installed=%s available=%s\n' "${installed:-unknown}" "${available:-unknown}"
     if [ -n "$installed" ] && [ -n "$available" ] && [ "$installed" != "$available" ]; then
-        echo "Upgrade available from the distribution repository."
+        newer=""
+        if command -v vercmp >/dev/null 2>&1; then
+            vercmp "$available" "$installed" >/dev/null 2>&1 && return_code=$? || return_code=$?
+            [ "$return_code" -eq 1 ] && newer="yes"
+        elif command -v dpkg >/dev/null 2>&1 && dpkg --compare-versions "$available" gt "$installed" 2>/dev/null; then
+            newer="yes"
+        fi
+        if [ -n "$newer" ]; then
+            echo "Upgrade available from the distribution repository."
+        else
+            echo "Versions differ (native comparison unavailable); check your package manager."
+        fi
     else
-        echo "No repository upgrade detected (or version comparison unavailable)."
+        echo "No repository upgrade detected."
     fi
 fi
 

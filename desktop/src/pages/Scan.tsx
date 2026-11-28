@@ -47,6 +47,13 @@ function progressEvent(value: unknown): ProgressEvent | null {
     new_threats: threatList(record.new_threats),
     bytes_scanned: typeof record.bytes_scanned === "number" ? record.bytes_scanned : undefined,
     estimate_exceeded: record.estimate_exceeded === true,
+    path: typeof record.path === "string" ? record.path : undefined,
+    target_index: typeof record.target_index === "number" ? record.target_index : undefined,
+    target_count: typeof record.target_count === "number" ? record.target_count : undefined,
+    files_scanned_total: typeof record.files_scanned_total === "number" ? record.files_scanned_total : undefined,
+    total_estimate: typeof record.total_estimate === "number" ? record.total_estimate : null,
+    estimate_approximate: record.estimate_approximate === true,
+    percentage: typeof record.percentage === "number" ? record.percentage : null,
   };
 }
 

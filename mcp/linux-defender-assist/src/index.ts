@@ -179,6 +179,7 @@ server.registerTool(
   },
   async () => {
     const helper = "/usr/bin/linux-defender-apply-preferences";
+    const legacy = "/usr/bin/clamui-apply-preferences";
     const policy = "/usr/share/polkit-1/actions/io.github.linuxdefender.linuxdefender.policy";
     const stat = await command("stat", ["-c", "%u %a %F", helper]);
     const fields = stat.out.trim().split(/\s+/);
@@ -188,6 +189,7 @@ server.registerTool(
       helper_exists: stat.code === 0,
       root_owned: fields[0] === "0",
       executable: Boolean(fields[1] && parseInt(fields[1], 8) & 0o111),
+      legacy_helper_exists: (await command("test", ["-f", legacy])).code === 0,
       policy_exists: (await command("test", ["-f", policy])).code === 0,
       note: "Authorization itself requires an interactive pkexec session performed by a human.",
     };
@@ -253,12 +255,12 @@ server.registerTool(
     title: "Deep audit (static, read-only)",
     description: "Activation phrase: yk the drill. Runs scripts/deep-audit.sh --quick: generated-artifact checks, all static gates, parity/signature/image guards, and the agent-fleet brief. Reports only; never edits, commits, or pushes.",
     inputSchema: z.object({}),
-    annotations: READ,
+    annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
   },
   async () => {
     const audit = await command("bash", ["scripts/deep-audit.sh", "--quick"]);
     const output = `${audit.out}\n${audit.err}`.trim();
-    const report = "/tmp/opencode/linux-defender-deep-audit.md";
+    const report = `${process.env.TMPDIR || "/tmp/opencode"}/linux-defender-deep-audit.md`;
     return {
       content: [{ type: "text" as const, text: output.slice(0, 12000) }],
       structuredContent: { ok: audit.code === 0, output: output.slice(0, 12000), report },

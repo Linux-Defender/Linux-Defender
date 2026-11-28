@@ -12,7 +12,7 @@ Linux Defender 0.6.0 is a development snapshot; no signed release packages are p
 ```bash
 git clone https://github.com/Linux-Defender/Linux-Defender.git
 cd Linux-Defender
-./scripts/local-run.sh --deps --run
+./scripts/local-run.sh --run
 ```
 
 The development guide has the [full source-build and validation workflow](/Linux-Defender/docs/contributing/development/).

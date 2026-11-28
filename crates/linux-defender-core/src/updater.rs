@@ -875,10 +875,21 @@ fn append_update_line(
         json!({"id": id, "line": sanitize_line(line)}),
     );
     let target = if is_stderr { stderr } else { stdout };
-    if target.len() < 4 * 1024 * 1024 {
-        target.push_str(line);
-        target.push('\n');
-    } else if !target.ends_with("... truncated\n") {
+    let budget = 4 * 1024 * 1024;
+    if target.len() >= budget {
+        if !target.ends_with("... truncated\n") {
+            target.push_str("... truncated\n");
+        }
+        return;
+    }
+    let allowed = budget - target.len() - 1;
+    // Keep raw host output (including carriage returns used for progress)
+    // but redact secrets before it is emitted or stored.
+    let safe = crate::logs::redact(line);
+    let truncated = safe.chars().count() > allowed;
+    target.extend(safe.chars().take(allowed));
+    target.push('\n');
+    if truncated && !target.ends_with("... truncated\n") {
         target.push_str("... truncated\n");
     }
 }

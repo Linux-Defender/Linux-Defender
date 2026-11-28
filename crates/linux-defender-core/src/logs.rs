@@ -1203,16 +1203,28 @@ fn visible_duration(ctx: &Context, seconds: f64) -> Option<String> {
             &[("{count}", &count)],
         ))
     } else if seconds < 3600.0 {
-        Some(format!(
-            "{}m {}s",
-            (seconds / 60.0).floor(),
-            (seconds % 60.0).round()
+        let total = seconds.round() as u64;
+        Some(trnf(
+            ctx,
+            "{count}m {secs}s",
+            "{count}m {secs}s",
+            total / 60,
+            &[
+                ("{count}", &(total / 60).to_string()),
+                ("{secs}", &(total % 60).to_string()),
+            ],
         ))
     } else {
-        Some(format!(
-            "{}h {}m",
-            (seconds / 3600.0).floor(),
-            ((seconds % 3600.0) / 60.0).floor()
+        let total = seconds.round() as u64;
+        Some(trnf(
+            ctx,
+            "{count}h {mins}m",
+            "{count}h {mins}m",
+            total / 3600,
+            &[
+                ("{count}", &(total / 3600).to_string()),
+                ("{mins}", &((total % 3600) / 60).to_string()),
+            ],
         ))
     }
 }
