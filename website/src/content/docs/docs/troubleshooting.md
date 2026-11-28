@@ -101,6 +101,22 @@ crontab -l
 
 The canonical CLI command is `linux-defender-scheduled-scan`; the pre-rename `clamui-scheduled-scan` name remains accepted for existing schedules.
 
+## Upgrading the host ClamAV engine
+
+Linux Defender and ClamTK are frontends; neither ships or installs a scanner engine. The engine version comes from your distribution's `clamav` package. On CachyOS/Arch, sync the repositories and upgrade the package, then verify all three host tools report the same version:
+
+```bash
+sudo pacman -Syu
+clamscan --version
+clamd --version
+freshclam --version
+pacman -Q clamav
+```
+
+ClamAV 1.5.5 (released 2026-11-18) is a **patch** release. Upstream fixes address crafted-input crashes, memory-safety bugs and denial-of-service cases (including CVE-2026-76422, -76411, -76415, -76414, -76416, -76417, -76421, -76430, -76515 and -76516), improve OpenSSL 4 compatibility, HTML/XML classification, hashing overhead, `sigtool` MD5 edge cases and `clamsubmit` submissions. It does **not** claim a higher malware detection rate: signature quality comes from the independently updated database. See the [official 1.5.5 release notes](https://github.com/Cisco-Talos/clamav/releases/tag/clamav-1.5.5).
+
+After an engine upgrade, restart the running daemon so it loads the new library and its database; on systemd hosts that is usually `sudo systemctl restart clamav-daemon` (CachyOS service names can differ — check `systemctl status clamav-daemon`). Signatures are separate: FreshClam or the distribution timer updates them, and a daemon that was started before the update may need a reload/restart to see new definitions. Linux Defender's **Update Database** asks the host updater; it never installs packages, replaces the engine, or silently enables third-party feeds. The privileged helper is only for protected application configuration and always needs interactive authorization.
+
 ## Still stuck?
 
 Collect the Linux Defender commit, ClamAV version, distribution, desktop environment, scan backend, and exact error. Open a [GitHub issue](https://github.com/Linux-Defender/Linux-Defender/issues). Report security vulnerabilities through the [private security policy](/Linux-Defender/docs/contributing/security/), not a public issue.

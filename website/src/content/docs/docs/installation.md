@@ -42,6 +42,9 @@ On CachyOS or Arch, the package is `clamav`:
 
 ```bash
 sudo pacman -S --needed clamav
+# To upgrade the engine later: sudo pacman -Syu && sudo pacman -S clamav
+# then verify clamscan --version, clamd --version, freshclam --version and
+# restart the daemon. See the troubleshooting guide. ClamTK is not required.
 sudo freshclam
 sudo systemctl enable --now clamav-freshclam
 # Optional daemon scanning:
