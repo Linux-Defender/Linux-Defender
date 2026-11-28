@@ -67,7 +67,7 @@ Open **Preferences → YARA Rules** and choose a readable directory containing r
 
 ## VirusTotal or urlscan does not return a result
 
-Check network connectivity, the VirusTotal key in **Preferences → VirusTotal**, rate limits, provider status, and the analysis status shown in Scan. A file/URL result may take time after upload. The app does not submit files or URLs automatically. Review each confirmation carefully: VirusTotal and urlscan have different retention and sharing options. Never upload private files or URLs without authorization.
+Check network connectivity, the VirusTotal key in **Preferences → VirusTotal**, the urlscan key in **Preferences → urlscan.io**, rate limits, provider status, and the per-service statuses shown in the combined result. A file/URL result may take time after upload. The app does not submit files or URLs automatically. Review each confirmation carefully: VirusTotal and urlscan have different retention and sharing options. Never upload private files or URLs without authorization.
 
 ## A privileged settings change is blocked
 

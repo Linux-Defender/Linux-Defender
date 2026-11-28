@@ -41,9 +41,9 @@ When notifications are enabled and permitted by the desktop, a completed scan se
 
 ## Optional online reputation checks
 
-Choose **Website URL** in Scan to submit a URL to VirusTotal or urlscan. Linux Defender asks you to confirm before sending it. VirusTotal URL submissions are added to its analysis dataset and may be shared with its security partners; urlscan offers **Private**, **Unlisted**, and **Public** visibility choices. Read the provider's terms and choose the visibility deliberately: [VirusTotal data use](https://docs.virustotal.com/docs/how-it-works), [urlscan visibility](https://docs.urlscan.io/pages/visibility).
+Choose **Website URL** in Scan to submit a URL to both VirusTotal and urlscan by default (**Both services**), or select one provider explicitly. Linux Defender asks you to confirm before sending it. VirusTotal URL submissions are added to its analysis dataset and may be shared with its security partners; urlscan offers **Private**, **Unlisted**, and **Public** visibility choices. Read the provider's terms and choose the visibility deliberately: [VirusTotal data use](https://docs.virustotal.com/docs/how-it-works), [urlscan visibility](https://docs.urlscan.io/pages/visibility).
 
-VirusTotal also supports file lookups and uploads, including a bounded, user-confirmed folder-upload flow with visible progress. Any uploaded file leaves your device. Its result is an online reputation report, not the local ClamAV scan result. The app does not submit files or URLs automatically.
+VirusTotal also supports file lookups and uploads, including a bounded, user-confirmed folder-upload flow with visible progress. Any uploaded file leaves your device. Its result is an online reputation report, not the local ClamAV scan result. The app does not submit files or URLs automatically. With both providers selected, both results are shown separately plus a conservative combined assessment: a detection on either service wins, a pending analysis is not clean, and a single answered service is only partial.
 
 ## Test with EICAR
 

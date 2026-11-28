@@ -183,6 +183,9 @@
         ],
         "site": [
           "virustotal"
+        ],
+        "docs": [
+          "VirusTotal"
         ]
       }
     },
@@ -406,6 +409,22 @@
         ],
         "docs": [
           "Sway"
+        ]
+      }
+    },
+    {
+      "id": "combined-url-inspection",
+      "why": "Both-services URL inspection must stay wired in frontend, site and docs.",
+      "layers": {
+        "frontend": [
+          "Both services",
+          "combinedVerdict"
+        ],
+        "site": [
+          "Both services"
+        ],
+        "docs": [
+          "Combined URL inspection"
         ]
       }
     }

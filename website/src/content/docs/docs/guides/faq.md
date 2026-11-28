@@ -13,7 +13,7 @@ ClamAV loads compatible signature files from its configured database directory. 
 
 ## Can I check a website URL or a folder with VirusTotal?
 
-Yes. Choose **Website URL** in Scan to use VirusTotal or urlscan. VirusTotal also accepts file and confirmed folder uploads. These are online reputation checks: Linux Defender asks before sending data and keeps their results separate from the local ClamAV verdict. Review the provider's privacy and visibility terms before submitting.
+Yes. Choose **Website URL** in Scan: **Both services** is the default and checks the URL with VirusTotal and urlscan together, or choose one service explicitly. VirusTotal also accepts file and confirmed folder uploads. These are online reputation checks: Linux Defender asks before sending data and keeps their results separate from the local ClamAV verdict. Review the provider's privacy and visibility terms before submitting.
 
 ## Is Linux Defender 0.6.0 ready to install?
 

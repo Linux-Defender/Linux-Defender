@@ -670,7 +670,7 @@ impl VirusTotalClient {
         let started = Instant::now();
         let mut result = match validate_scan_url(raw_url) {
             Ok(url) => self.scan_url_inner(&url, cancelled),
-            Err(message) => VTUrlScanResult::error(raw_url, message),
+            Err(message) => VTUrlScanResult::error("", message),
         };
         result.duration = started.elapsed().as_secs_f64();
         result
@@ -1279,6 +1279,16 @@ fn localize_known(ctx: &Context, message: &str) -> String {
             tr(ctx, "Malformed response: missing analysis stats")
         }
         "API key not configured" => tr(ctx, "API key not configured"),
+        "Invalid URL" => tr(ctx, "Invalid URL"),
+        "Only HTTP and HTTPS URLs without embedded credentials can be submitted" => tr(
+            ctx,
+            "Only HTTP and HTTPS URLs without embedded credentials can be submitted",
+        ),
+        "Private and local network addresses cannot be submitted" => tr(
+            ctx,
+            "Private and local network addresses cannot be submitted",
+        ),
+        "API key lacks required permissions" => tr(ctx, "API key lacks required permissions"),
         _ => message.to_owned(),
     }
 }

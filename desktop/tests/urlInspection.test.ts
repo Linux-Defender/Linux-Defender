@@ -1,10 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import {
-  activeProviders,
-  combinedSummary,
-  combinedVerdict,
-  type UrlscanSubmission,
-  type VirusTotalSubmission,
+  activeProviders, combinedMessageId, combinedVerdict,
+  type UrlscanSubmission, type VirusTotalSubmission,
 } from "../src/urlInspection";
 
 const us: UrlscanSubmission = {
@@ -13,6 +10,7 @@ const us: UrlscanSubmission = {
 const vt = (status: VirusTotalSubmission["status"], detections = 0): VirusTotalSubmission => ({
   status, url: "https://example.org/", detections, total_engines: 60,
 });
+const both = ["urlscan", "virustotal"] as const;
 
 describe("combined URL inspection", () => {
   test("both mode uses both services", () => {
@@ -21,31 +19,33 @@ describe("combined URL inspection", () => {
   });
 
   test("any detection wins", () => {
-    expect(combinedVerdict(us, vt("detected", 2), ["urlscan", "virustotal"])).toBe("detected");
+    expect(combinedVerdict(us, vt("detected", 2), both)).toBe("detected");
   });
 
   test("pending is never clean", () => {
-    expect(combinedVerdict(us, vt("pending"), ["urlscan", "virustotal"])).toBe("pending");
+    expect(combinedVerdict(us, vt("pending"), both)).toBe("pending");
   });
 
-  test("one answered is partial, not complete", () => {
-    expect(combinedVerdict(us, null, ["urlscan", "virustotal"])).toBe("partial");
-    expect(combinedVerdict(null, vt("clean"), ["urlscan", "virustotal"])).toBe("partial");
+  test("errors and rate limits are never clean", () => {
+    expect(combinedVerdict(us, vt("error"), both)).toBe("partial");
+    expect(combinedVerdict(us, vt("rate_limited"), both)).toBe("partial");
+    expect(combinedVerdict(null, vt("error"), ["virustotal"])).toBe("partial");
   });
 
-  test("both clean is clean", () => {
-    expect(combinedVerdict(us, vt("clean"), ["urlscan", "virustotal"])).toBe("clean");
+  test("urlscan alone is only a receipt, never a verdict", () => {
+    expect(combinedVerdict(us, null, ["urlscan"])).toBe("partial");
+    expect(combinedVerdict(null, null, ["urlscan"])).toBe("unavailable");
   });
 
-  test("single service verdicts still work", () => {
+  test("clean requires VirusTotal clean and both services answering", () => {
+    expect(combinedVerdict(us, vt("clean"), both)).toBe("clean");
+    expect(combinedVerdict(null, vt("clean"), both)).toBe("partial");
     expect(combinedVerdict(null, vt("clean"), ["virustotal"])).toBe("clean");
-    expect(combinedVerdict(null, null, ["virustotal"])).toBe("unavailable");
-    expect(combinedVerdict(us, null, ["urlscan"])).toBe("clean");
   });
 
-  test("summary is conservative", () => {
-    expect(combinedSummary("partial", 0, 60)).toContain("Only one service");
-    expect(combinedSummary("detected", 2, 60)).toContain("2 of 60");
-    expect(combinedSummary("clean", 0, 60)).toContain("Both services");
+  test("messages are static translation ids", () => {
+    expect(combinedMessageId("clean")).toContain("urlscan");
+    expect(combinedMessageId("partial")).toContain("not checked successfully");
+    expect(combinedMessageId("detected")).toContain("suspicious");
   });
 });

@@ -10,20 +10,21 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1517 translated messages. | 65 |
-| en | 1517 translated messages. | baseline |
-| es | 1517 translated messages. | 66 |
-| fr | 1517 translated messages. | 66 |
-| hu | 1517 translated messages. | 66 |
-| it | 1517 translated messages. | 66 |
-| nb | 1517 translated messages. | 66 |
-| pt_BR | 1517 translated messages. | 66 |
-| vi | 1517 translated messages. | 73 |
-| zh_CN | 1517 translated messages. | 66 |
+| de | 1521 translated messages. | 68 |
+| en | 1521 translated messages. | baseline |
+| es | 1521 translated messages. | 69 |
+| fr | 1521 translated messages. | 69 |
+| hu | 1521 translated messages. | 69 |
+| it | 1521 translated messages. | 69 |
+| nb | 1521 translated messages. | 69 |
+| pt_BR | 1521 translated messages. | 69 |
+| vi | 1521 translated messages. | 76 |
+| zh_CN | 1521 translated messages. | 69 |
 
 ## de
 
 - `  -v, --verbose            Verbose output (scan only)`
+- `API key lacks required permissions`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -33,6 +34,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Analysis complete — no detections reported`
 - `Authentication cancelled. Database update requires administrator privileges.`
 - `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Confirm submission to both services`
 - `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
 - `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
@@ -54,20 +56,19 @@ translator decides. No machine translation is applied by this script. Where an m
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `One service did not accept the URL`
+- `Only HTTP and HTTPS URLs without embedded credentials can be submitted`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
-- `Submit a website for inspection`
-- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- … 25 more
+- … 28 more
 
 ## es
 
 - `  -v, --verbose            Verbose output (scan only)`
+- `API key lacks required permissions`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -77,6 +78,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Analysis complete — no detections reported`
 - `Authentication cancelled. Database update requires administrator privileges.`
 - `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Confirm submission to both services`
 - `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
 - `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
@@ -98,20 +100,19 @@ translator decides. No machine translation is applied by this script. Where an m
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `One service did not accept the URL`
+- `Only HTTP and HTTPS URLs without embedded credentials can be submitted`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
-- `Submit a website for inspection`
-- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- … 26 more
+- … 29 more
 
 ## fr
 
 - `  -v, --verbose            Verbose output (scan only)`
+- `API key lacks required permissions`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -121,6 +122,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Analysis complete — no detections reported`
 - `Authentication cancelled. Database update requires administrator privileges.`
 - `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Confirm submission to both services`
 - `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
 - `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
@@ -142,20 +144,19 @@ translator decides. No machine translation is applied by this script. Where an m
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `One service did not accept the URL`
+- `Only HTTP and HTTPS URLs without embedded credentials can be submitted`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
-- `Submit a website for inspection`
-- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- … 26 more
+- … 29 more
 
 ## hu
 
 - `  -v, --verbose            Verbose output (scan only)`
+- `API key lacks required permissions`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -165,6 +166,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Analysis complete — no detections reported`
 - `Authentication cancelled. Database update requires administrator privileges.`
 - `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Confirm submission to both services`
 - `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
 - `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
@@ -186,20 +188,19 @@ translator decides. No machine translation is applied by this script. Where an m
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `One service did not accept the URL`
+- `Only HTTP and HTTPS URLs without embedded credentials can be submitted`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
-- `Submit a website for inspection`
-- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- … 26 more
+- … 29 more
 
 ## it
 
 - `  -v, --verbose            Verbose output (scan only)`
+- `API key lacks required permissions`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -209,6 +210,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Analysis complete — no detections reported`
 - `Authentication cancelled. Database update requires administrator privileges.`
 - `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Confirm submission to both services`
 - `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
 - `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
@@ -230,20 +232,19 @@ translator decides. No machine translation is applied by this script. Where an m
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `One service did not accept the URL`
+- `Only HTTP and HTTPS URLs without embedded credentials can be submitted`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
-- `Submit a website for inspection`
-- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- … 26 more
+- … 29 more
 
 ## nb
 
 - `  -v, --verbose            Verbose output (scan only)`
+- `API key lacks required permissions`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -253,6 +254,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Analysis complete — no detections reported`
 - `Authentication cancelled. Database update requires administrator privileges.`
 - `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Confirm submission to both services`
 - `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
 - `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
@@ -274,20 +276,19 @@ translator decides. No machine translation is applied by this script. Where an m
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `One service did not accept the URL`
+- `Only HTTP and HTTPS URLs without embedded credentials can be submitted`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
-- `Submit a website for inspection`
-- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- … 26 more
+- … 29 more
 
 ## pt_BR
 
 - `  -v, --verbose            Verbose output (scan only)`
+- `API key lacks required permissions`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -297,6 +298,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Analysis complete — no detections reported`
 - `Authentication cancelled. Database update requires administrator privileges.`
 - `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Confirm submission to both services`
 - `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
 - `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
@@ -318,20 +320,19 @@ translator decides. No machine translation is applied by this script. Where an m
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `One service did not accept the URL`
+- `Only HTTP and HTTPS URLs without embedded credentials can be submitted`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
-- `Submit a website for inspection`
-- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- … 26 more
+- … 29 more
 
 ## vi
 
 - `  -v, --verbose            Verbose output (scan only)`
+- `API key lacks required permissions`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -343,6 +344,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Authorization failed. Please try again and enter your password.`
 - `Authorization failed. You are not authorized to update the database.`
 - `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Confirm submission to both services`
 - `Connection error. Please check your network connection.`
 - `Connection timed out. Please check your network connection.`
 - `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
@@ -368,14 +370,13 @@ translator decides. No machine translation is applied by this script. Where an m
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `One service did not accept the URL`
-- `Permission denied. You may need elevated privileges to update the database.`
-- `Private and local network addresses cannot be submitted`
-- `Recognized database and signature files`
-- … 33 more
+- `Only HTTP and HTTPS URLs without embedded credentials can be submitted`
+- … 36 more
 
 ## zh_CN
 
 - `  -v, --verbose            Verbose output (scan only)`
+- `API key lacks required permissions`
 - `API keys are stored in the operating system keyring when available and are never sent to the interface.`
 - `Administrator access may be required to read UFW status. This check does not change firewall settings.`
 - `Administrator authorization for the UFW status check was denied or unavailable.`
@@ -385,6 +386,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Analysis complete — no detections reported`
 - `Authentication cancelled. Database update requires administrator privileges.`
 - `Block access to infected files instead of only reporting them. Denies file opens via fanotify.`
+- `Confirm submission to both services`
 - `Custom database {file} from {host} failed to update. Later custom databases may not have been attempted.`
 - `Disable Dynamic Directory Determination for recursive subdirectory tracking. Useful if large directory trees hit inotify watch limits.`
 - `Enter a valid HTTP or HTTPS URL`
@@ -406,16 +408,14 @@ translator decides. No machine translation is applied by this script. Where an m
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `One service did not accept the URL`
+- `Only HTTP and HTTPS URLs without embedded credentials can be submitted`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
-- `Submit a website for inspection`
-- `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- … 26 more
+- … 29 more
 
 ## Review procedure
 

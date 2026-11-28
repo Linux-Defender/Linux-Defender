@@ -45,11 +45,13 @@ Database, Scanner, and On-Access settings change host `/etc/clamav`, not Flatpak
 
 ## Local YARA rules
 
+In **Preferences → YARA Rules**, choose a folder containing rules you trust. One MIT-authored, EICAR-test-only rule ships by default for standalone `clamscan` scans; clear or replace `<data-dir>/yara/linux-defender-default.yar` to disable it. Only regular `.yar` and `.yara` files with UTF-8 names are loaded, bounded to 1,000 files / 8 MiB each / 64 MiB total. ClamAV supports a subset of YARA syntax; the standalone `clamscan` backend passes the configured system database together with those rule files. Local YARA rules do not install or update third-party ClamAV feeds.
+
 ## Website URL inspection
 
-**Website URL** in the Scan page opens one inspection view with a **Both services** mode by default. With an API key configured for each service, one confirmation sends the URL to urlscan.io and VirusTotal; the page shows each report separately plus a conservative combined assessment. A detection on either service wins, a still-pending analysis is never called clean, and a single answered service is marked partial. Configure or remove keys in **Preferences → VirusTotal** and **Preferences → urlscan.io**. Nothing is sent before you confirm.
+**Website URL** in the Scan page opens one inspection view with a **Both services** mode by default. With an API key configured for each service, one confirmation sends the URL to urlscan.io and VirusTotal; the page shows each report separately plus a conservative combined assessment. A VirusTotal detection wins, a still-pending or failed analysis is never called clean, and a single answered service is marked partial. urlscan returns a submission receipt for later review, not a verdict. Configure or remove keys in **Preferences → VirusTotal** and **Preferences → urlscan.io**. Nothing is sent before you confirm.
 
-In **Preferences → YARA Rules**, choose a folder containing rules you trust. One MIT-authored, EICAR-test-only rule ships by default for standalone `clamscan` scans; clear or replace `<data-dir>/yara/linux-defender-default.yar` to disable it. Only regular `.yar` and `.yara` files with UTF-8 names are loaded, bounded to 1,000 files / 8 MiB each / 64 MiB total. ClamAV supports a subset of YARA syntax; the standalone `clamscan` backend passes the configured system database together with those rule files. Local YARA rules do not install or update third-party ClamAV feeds.
+
 
 ## Safe defaults
 

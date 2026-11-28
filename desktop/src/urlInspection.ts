@@ -26,9 +26,13 @@ export function activeProviders(mode: InspectionMode): UrlProvider[] {
 }
 
 /**
- * Merge two independent reputation results conservatively: any detection
- * wins; otherwise a still-running analysis is not a clean verdict; if only
- * one service answered, the result is partial, never presented as complete.
+ * Merge two independent reputation results conservatively.
+ *
+ * A urlscan submission only proves the URL was accepted for later review —
+ * it carries no verdict. Only VirusTotal provides a machine-readable verdict,
+ * so a "clean" combined result requires a VirusTotal clean verdict and no
+ * failure from any active service. Errors, rate limits and pending results
+ * are never clean.
  */
 export function combinedVerdict(
   urlscan: UrlscanSubmission | null,
@@ -36,36 +40,27 @@ export function combinedVerdict(
   providers: readonly UrlProvider[],
 ): CombinedVerdict {
   if (providers.length === 0) return "unavailable";
-  let answered = 0;
-  if (providers.includes("urlscan") && urlscan) answered += 1;
-  if (providers.includes("virustotal") && virustotal) answered += 1;
-  if (answered === 0) return "unavailable";
-
-  if (virustotal && providers.includes("virustotal")) {
-    if (virustotal.status === "detected") return "detected";
-    if (virustotal.status === "pending") return "pending";
+  if (!providers.includes("virustotal")) {
+    // urlscan alone has only a submission receipt, never a verdict.
+    return urlscan ? "partial" : "unavailable";
   }
-  if (answered < providers.length) return "partial";
+  if (!virustotal) return urlscan ? "partial" : "unavailable";
+  if (virustotal.status === "detected") return "detected";
+  if (virustotal.status === "pending") return "pending";
+  if (virustotal.status === "error" || virustotal.status === "rate_limited") return "partial";
+  // A clean VirusTotal verdict is downgraded when the other active service
+  // failed to answer, so two-service mode never overclaims completeness.
+  if (providers.includes("urlscan") && !urlscan) return "partial";
   return "clean";
 }
 
-export function combinedSummary(
-  verdict: CombinedVerdict,
-  detections: number,
-  total: number,
-): string {
+/** Static message IDs; the caller wraps them with _() and interpolates values. */
+export function combinedMessageId(verdict: CombinedVerdict): string {
   switch (verdict) {
-    case "detected":
-      return detections > 0
-        ? `${detections} of ${total} VirusTotal URL engines reported suspicious or malicious; review both reports.`
-        : "A service reported a suspicious result; review both reports.";
-    case "pending":
-      return "One analysis is still processing; this is not a clean verdict yet.";
-    case "partial":
-      return "Only one service answered; the URL was not checked by both.";
-    case "unavailable":
-      return "No URL inspection service was available.";
-    default:
-      return "Both services reported no detections for this URL.";
+    case "detected": return "A service reported a suspicious URL; review both reports.";
+    case "pending": return "The URL analysis is still processing; this is not a clean verdict.";
+    case "partial": return "The URL was not checked successfully by every selected service; review the available report.";
+    case "unavailable": return "No URL inspection service returned a result.";
+    default: return "VirusTotal reported no detections; the urlscan result is available for review.";
   }
 }
