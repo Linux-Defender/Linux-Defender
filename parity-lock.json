@@ -3,8 +3,8 @@
   "sources": {
     "clamui": {
       "source": "linx-systems/clamui",
-      "commit": "6bfc4d50da50463e9e6f70259886a4d78d3af677",
-      "reviewedAt": "2026-11-27"
+      "commit": "9eda12203b1cb6e21ae1e2a5ae9bc63879eb7936",
+      "reviewedAt": "2026-11-28"
     },
     "lenspect": {
       "source": "vmkspv/lenspect",

@@ -27,6 +27,57 @@
         </ul>
     </description>
 
+
+    <screenshots>
+        <screenshot type="default">
+            <caption>Main application window with protection status and quick actions</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/main_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Scan view with profiles and targets</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/scan_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Protection status after a detected threat</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/main_view_with_scan_result.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Detected threats with quarantine and exclude actions</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/results_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Quarantine management</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/quarantine_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Virus definition updates with host FreshClam</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/database_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Scan and update history</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/history_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Scan statistics and trends</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/analysis_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Host ClamAV components and setup guidance</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/components_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>System security audit</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/audit_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Network connections and listening ports</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/network_view.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Configuration settings</caption>
+            <image>https://raw.githubusercontent.com/Linux-Defender/Linux-Defender/209a9b320a0edaf7b936c7b07d5a564b2e762ab4/screenshots/config_view.png</image>
+        </screenshot>
+    </screenshots>
     <launchable type="desktop-id">io.github.linuxdefender.linuxdefender.desktop</launchable>
 
     <url type="homepage">https://github.com/Linux-Defender/Linux-Defender</url>

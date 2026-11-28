@@ -153,7 +153,7 @@ Snapshot GitHub API counts from that date; the 2026-11-27 sweeps and the reviewe
 
 | Repository | Open issues | Open PRs | Default-branch head |
 |---|---|---|---|
-| `linx-systems/clamui` | 57 | 7 | `6bfc4d50da50463e9e6f70259886a4d78d3af677` (reviewed 2026-11-27; current default-branch head, zero open PRs) |
+| `linx-systems/clamui` | 57 | 7 | `9eda12203b1cb6e21ae1e2a5ae9bc63879eb7936` (reviewed 2026-11-28; current default-branch head, zero open PRs) |
 | `vmkspv/lenspect` | 0 | 0 | `a5507a6c8ec1bdf1f2222e7397d053ff365b3d70` |
 | `dave-theunsub/clamtk` | 23 | 4 (#168, #169, #170, #141) | `694833d27c800e7c3ac4ff6dd44f0b2e65025260` |
 | `Linux-Defender/Linux-Defender` | 0 | 0 | local `main` (checked at recheck time) |
@@ -436,6 +436,9 @@ License boundary: only Herodium is MIT. Linux Defender reimplemented behaviour f
 Upstream PR #366's bounded native milestone timeline, main-thread probe, and three-way verdict are implemented in `desktop/src-tauri/src/startup_trace.rs` and wired in `runtime.rs`. The `CLAMUI_STARTUP_TRACE=1` stderr echo and the extra `frontend_ready`/`frontend_report` IPC commands are omitted: no new command or capability is needed for the existing `app.startup_ready` signal and React error boundary. The pre-React fallback is now the CSP-safe classic script `desktop/public/boot-diagnostics.js` plus a hidden placeholder in `desktop/index.html`, which reports resource/script errors or an 8-second stall without network access or new IPC. `scripts/inspect-blank-window.py` is the adapted read-only local probe; it warns that the inspector itself can freeze startup and must be cross-checked with a no-inspector run.
 
 ### Upstream PR #374 / commit 3960c74 (merged 2026-11-27)
+
+### Upstream PR #378 (merged 2026-11-28)
+Ported the AppImage AppDir permission normalization and squashfs readability check (already landed in the fleet sweep). The upstream AppStream screenshot refresh was independently implemented with 13 current Linux Defender screenshots pinned to this repository's commit, not upstream images.
 Ported the two behavioral refinements to the #368 access-control fix: a SELinux mode is now trusted only when `getenforce` exits 0, and a `disabled` SELinux row is skipped when AppArmor is already enabled (only one major LSM is active). The upstream split of probing from decision and its catalog churn are diagnostic/testing structure only; local audit tests already cover the parsers. The reviewed pin later moved to `6bfc4d5` (final sweep, all PRs closed); freshness check is green.
 
 ### ClamAV alternative-tool sweep (2026-11-27)
