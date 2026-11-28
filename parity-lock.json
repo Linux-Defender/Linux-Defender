@@ -3,7 +3,7 @@
   "sources": {
     "clamui": {
       "source": "linx-systems/clamui",
-      "commit": "6bfc4d50da50",
+      "commit": "6bfc4d50da50463e9e6f70259886a4d78d3af677",
       "reviewedAt": "2026-11-27"
     },
     "lenspect": {
