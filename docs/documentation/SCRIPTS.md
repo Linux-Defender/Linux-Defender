@@ -41,6 +41,7 @@ application runtime dependencies.
 - `scripts/check-potfiles.sh` — Rust/TS gettext source coverage.
 - `scripts/check-repo-state.py` — one `main` branch and no local release tags.
 - `scripts/check-unused-code-guard.py` — TypeScript configs reject unused locals/parameters before CodeQL.
+- `scripts/check-release-profile.py` — size-conscious release profile used by every package format.
 - `scripts/check-repo-consistency.py` — versions, identity, workflow/script inventory.
 - `scripts/check-scripts-index.py` — every tracked script is listed in this index.
 - `scripts/check-signature-feeds.py` — URLhaus export health with key redacted.
@@ -70,4 +71,4 @@ application runtime dependencies.
 - `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).
 - `scripts/validate-sway.sh` — interactive Sway checklist runner.
 - `scripts/hooks/ai-enforcement-context.py`, `scripts/hooks/install-hooks.sh`, `scripts/hooks/pre-commit`, `scripts/hooks/pre-push` — git/AI hooks.
-- `scripts/tests/test_external_links.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.
+- `scripts/tests/test_external_links.py`, `scripts/tests/test_release_profile.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.

@@ -8,6 +8,15 @@ edition = "2021"
 license = "MIT"
 repository = "https://github.com/Linux-Defender/Linux-Defender"
 
+# Size-conscious release builds for every package format. Scan responsiveness
+# stays acceptable because `s` optimizes without the speed loss of `z`.
+[profile.release]
+lto = "thin"
+codegen-units = 1
+opt-level = "s"
+panic = "abort"
+strip = true
+
 [workspace.dependencies]
 base64 = "0.23"
 chrono = { version = "0.4", features = ["serde"] }

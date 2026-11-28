@@ -53,6 +53,8 @@ python3 scripts/check-install-guidance.py || fail "install/download guidance dri
 
 step "Dev/build wiring (tauri dev -> Vite -> dist, vendored glib patch)"
 python3 scripts/check-build-wiring.py || fail "build wiring"
+python3 scripts/check-release-profile.py || fail "release profile"
+python3 scripts/tests/test_release_profile.py >/dev/null || fail "release profile guard tests"
 python3 scripts/check-url-list-layout.py || fail "custom URL list layout"
 ( cd desktop && bun test ) >/dev/null || fail "desktop unit tests"
 ( cd mcp/linux-defender-assist && bun install --frozen-lockfile >/dev/null && bun run build ) >/dev/null || fail "MCP assist server type-check"
