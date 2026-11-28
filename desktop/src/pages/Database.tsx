@@ -291,6 +291,7 @@ export default function Database({ startRequest }: DatabaseProps): JSX.Element {
         <header className="section-header">
           <div><h2 className="section-heading" id="definition-status-heading">{_("Virus definitions")}</h2></div>
         </header>
+        <p className="muted">{_("Updates here refresh signatures through the host FreshClam service. Engine upgrades come from your distribution package manager; Linux Defender never installs or bundles the engine.")}</p>
         <div className="grouped-list">
           <div className="group-row">
             <div className="row-copy">

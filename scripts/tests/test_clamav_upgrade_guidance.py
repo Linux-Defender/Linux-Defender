@@ -30,7 +30,9 @@ class ClamavUpgradeTests(unittest.TestCase):
         script = ROOT / "scripts/check-clamav-host.sh"
         self.assertTrue(script.exists())
         text = script.read_text()
-        self.assertIn("pacman -Q clamav", text)
+        for marker in ("pacman -Q clamav", "dpkg-query", "dnf -q list", "zypper -q info",
+                       "clamav-daemon clamd@scan clamd", "check-signatures.py"):
+            self.assertIn(marker, text)
         self.assertIn("for tool in clamscan clamd freshclam", text)
         self.assertIn("check-signatures.py", text)
         self.assertNotIn("sudo pacman", text)

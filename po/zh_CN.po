@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-28 06:08-0500\n"
+"POT-Creation-Date: 2026-11-28 07:37-0500\n"
 "PO-Revision-Date: 2026-07-22 21:29+0800\n"
 "Last-Translator: Markson Hosben <marksonhosben@proton.me>\n"
 "Language-Team: Chinese <>\n"
@@ -1782,11 +1782,11 @@ msgstr "无法隔离 {path}：{error}"
 msgid "File hash mismatch — file may be corrupted"
 msgstr "文件哈希值不匹配 — 文件可能已损坏"
 
-#: crates/linux-defender-core/src/scanner.rs:503
+#: crates/linux-defender-core/src/scanner.rs:511
 msgid "No ClamAV database files were found in standard host locations"
 msgstr "未在宿主机的标准位置找到 ClamAV 数据库文件"
 
-#: crates/linux-defender-core/src/scanner.rs:582
+#: crates/linux-defender-core/src/scanner.rs:600
 msgid ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
@@ -1794,37 +1794,37 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2324
+#: crates/linux-defender-core/src/scanner.rs:2364
 msgid "Scan cancelled by user"
 msgstr "用户已取消扫描"
 
-#: crates/linux-defender-core/src/scanner.rs:2331
+#: crates/linux-defender-core/src/scanner.rs:2371
 msgid "No files could be scanned"
 msgstr "未能扫描任何文件"
 
-#: crates/linux-defender-core/src/scanner.rs:2337
+#: crates/linux-defender-core/src/scanner.rs:2377
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "扫描目标不存在或包含无效的 NUL 字节"
 
-#: crates/linux-defender-core/src/scanner.rs:2344
+#: crates/linux-defender-core/src/scanner.rs:2384
 msgid "Scan target is not a regular file or directory"
 msgstr "扫描目标不是普通文件或目录"
 
-#: crates/linux-defender-core/src/scanner.rs:2353
+#: crates/linux-defender-core/src/scanner.rs:2393
 msgid "Threats were detected, but details are unavailable."
 msgstr "检测到威胁，但无法提供详细信息。"
 
-#: crates/linux-defender-core/src/scanner.rs:2365
+#: crates/linux-defender-core/src/scanner.rs:2405
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "无法访问 {count} 个文件"
 
-#: crates/linux-defender-core/src/scanner.rs:2378
+#: crates/linux-defender-core/src/scanner.rs:2418
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "无法读取 {count} 个文件"
 
-#: crates/linux-defender-core/src/scanner.rs:2397
+#: crates/linux-defender-core/src/scanner.rs:2437
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -2572,8 +2572,8 @@ msgid "Remember my choice"
 msgstr "记住我的选择"
 
 #: desktop/src/App.tsx:1101 desktop/src/App.tsx:1105
-#: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
-#: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
+#: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:351
+#: desktop/src/pages/Database.tsx:377 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
 #: desktop/src/pages/Results.tsx:208 desktop/src/pages/Scan.tsx:790
@@ -3178,7 +3178,7 @@ msgid ""
 msgstr "检查主机上的 ClamAV 工具，并复制适用于相应发行版的配置命令。"
 
 #: desktop/src/pages/Components.tsx:208 desktop/src/pages/Components.tsx:232
-#: desktop/src/pages/Database.tsx:283 desktop/src/pages/Database.tsx:305
+#: desktop/src/pages/Database.tsx:283 desktop/src/pages/Database.tsx:306
 msgid "Checking…"
 msgstr "正在检查…"
 
@@ -4025,35 +4025,42 @@ msgstr "无法读取更新程序状态：{error}"
 msgid "Virus definitions"
 msgstr "病毒定义"
 
-#: desktop/src/pages/Database.tsx:298
+#: desktop/src/pages/Database.tsx:294
+msgid ""
+"Updates here refresh signatures through the host FreshClam service. Engine "
+"upgrades come from your distribution package manager; Linux Defender never "
+"installs or bundles the engine."
+msgstr "Updates here refresh signatures through the host FreshClam service. Engine upgrades come from your distribution package manager; Linux Defender never installs or bundles the engine."
+
+#: desktop/src/pages/Database.tsx:299
 msgid "Checking freshclam…"
 msgstr "正在检查 freshclam…"
 
-#: desktop/src/pages/Database.tsx:298
+#: desktop/src/pages/Database.tsx:299
 msgid "No freshclam status returned"
 msgstr "未返回 freshclam 状态"
 
-#: desktop/src/pages/Database.tsx:301 desktop/src/pages/Overview.tsx:37
+#: desktop/src/pages/Database.tsx:302 desktop/src/pages/Overview.tsx:37
 msgid "Available"
 msgstr "可用"
 
-#: desktop/src/pages/Database.tsx:301 desktop/src/pages/Overview.tsx:37
+#: desktop/src/pages/Database.tsx:302 desktop/src/pages/Overview.tsx:37
 msgid "Unavailable"
 msgstr "不可用"
 
-#: desktop/src/pages/Database.tsx:304
+#: desktop/src/pages/Database.tsx:305
 msgid "Update service"
 msgstr "更新服务"
 
-#: desktop/src/pages/Database.tsx:309
+#: desktop/src/pages/Database.tsx:310
 msgid "Database freshness"
 msgstr "病毒库时效性"
 
-#: desktop/src/pages/Database.tsx:316
+#: desktop/src/pages/Database.tsx:317
 msgid "Base databases"
 msgstr "基础数据库"
 
-#: desktop/src/pages/Database.tsx:317
+#: desktop/src/pages/Database.tsx:318
 msgid ""
 "Official ClamAV databases found in the configured database directory. A "
 "missing entry is downloaded by the next successful freshclam update."
@@ -4061,16 +4068,16 @@ msgstr ""
 "在配置的数据库目录中找到的官方 ClamAV 数据库。缺少的条目会在下次成功运行 "
 "freshclam 更新时下载。"
 
-#: desktop/src/pages/Database.tsx:320
+#: desktop/src/pages/Database.tsx:321
 msgid "{count} custom signature file"
 msgid_plural "{count} custom signature files"
 msgstr[0] "{count} 个自定义特征文件"
 
-#: desktop/src/pages/Database.tsx:326
+#: desktop/src/pages/Database.tsx:327
 msgid "Recognized database and signature files"
 msgstr "Recognized database and signature files"
 
-#: desktop/src/pages/Database.tsx:327
+#: desktop/src/pages/Database.tsx:328
 msgid ""
 "Files detected in the configured ClamAV database directory. This list does "
 "not confirm which files the active scanner loaded."
@@ -4078,21 +4085,21 @@ msgstr ""
 "Files detected in the configured ClamAV database directory. This list does "
 "not confirm which files the active scanner loaded."
 
-#: desktop/src/pages/Database.tsx:329
+#: desktop/src/pages/Database.tsx:330
 msgid "Show {count} recognized file"
 msgid_plural "Show {count} recognized files"
 msgstr[0] "Show {count} recognized file"
 
-#: desktop/src/pages/Database.tsx:333
+#: desktop/src/pages/Database.tsx:334
 msgid "{count} detected"
 msgid_plural "{count} detected"
 msgstr[0] "{count} detected"
 
-#: desktop/src/pages/Database.tsx:341 desktop/src/pages/Database.tsx:348
+#: desktop/src/pages/Database.tsx:342 desktop/src/pages/Database.tsx:349
 msgid "Update database"
 msgstr "更新病毒库"
 
-#: desktop/src/pages/Database.tsx:342
+#: desktop/src/pages/Database.tsx:343
 msgid ""
 "A normal update asks an active freshclam service to update when possible. A "
 "force update bypasses the service and stages replacements before promoting "
@@ -4101,35 +4108,35 @@ msgstr ""
 "常规更新会请求正在运行的 freshclam 服务在条件允许时进行更新。强制更新会绕过该"
 "服务，先暂存替换用的病毒库，再正式启用；若替换失败，则恢复原有病毒库。"
 
-#: desktop/src/pages/Database.tsx:348
+#: desktop/src/pages/Database.tsx:349
 msgid "Updating…"
 msgstr "正在更新…"
 
-#: desktop/src/pages/Database.tsx:349 desktop/src/pages/Database.tsx:377
+#: desktop/src/pages/Database.tsx:350 desktop/src/pages/Database.tsx:378
 msgid "Force update"
 msgstr "强制更新"
 
-#: desktop/src/pages/Database.tsx:353
+#: desktop/src/pages/Database.tsx:354
 msgid "Install freshclam before requesting database updates."
 msgstr "请先安装 freshclam，再请求更新病毒库。"
 
-#: desktop/src/pages/Database.tsx:354
+#: desktop/src/pages/Database.tsx:355
 msgid "Preparing the update progress listener…"
 msgstr "正在准备更新进度监听器…"
 
-#: desktop/src/pages/Database.tsx:360 desktop/src/pages/Database.tsx:363
+#: desktop/src/pages/Database.tsx:361 desktop/src/pages/Database.tsx:364
 msgid "Update log"
 msgstr "更新日志"
 
-#: desktop/src/pages/Database.tsx:368
+#: desktop/src/pages/Database.tsx:369
 msgid "No update has been requested in this session."
 msgstr "本次会话中尚未请求更新。"
 
-#: desktop/src/pages/Database.tsx:373
+#: desktop/src/pages/Database.tsx:374
 msgid "Force database update?"
 msgstr "强制更新病毒库？"
 
-#: desktop/src/pages/Database.tsx:374
+#: desktop/src/pages/Database.tsx:375
 msgid ""
 "This bypasses the freshclam service and stages replacement databases. "
 "Existing definitions remain available until a replacement succeeds; they are "
@@ -5857,7 +5864,9 @@ msgstr "Copy example rules"
 msgid ""
 "The example is ClamAV-compatible and inert until you copy it into your rules "
 "folder as a .yar file and review it."
-msgstr "The example is ClamAV-compatible and inert until you copy it into your rules folder as a .yar file and review it."
+msgstr ""
+"The example is ClamAV-compatible and inert until you copy it into your rules "
+"folder as a .yar file and review it."
 
 #: desktop/src/pages/SettingsPreferences.tsx:220
 msgid "Choose Folder"
@@ -6942,4 +6951,3 @@ msgstr "系统已受到保护"
 
 #~ msgid "Security Audit Complete"
 #~ msgstr "安全审计完成"
-

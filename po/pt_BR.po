@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-28 06:08-0500\n"
+"POT-Creation-Date: 2026-11-28 07:37-0500\n"
 "PO-Revision-Date: 2026-08-09 00:00-0300\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -1869,13 +1869,13 @@ msgstr "Não foi possível colocar {path} em quarentena: {error}"
 msgid "File hash mismatch — file may be corrupted"
 msgstr "Hash do arquivo não corresponde — o arquivo pode estar corrompido"
 
-#: crates/linux-defender-core/src/scanner.rs:503
+#: crates/linux-defender-core/src/scanner.rs:511
 msgid "No ClamAV database files were found in standard host locations"
 msgstr ""
 "Nenhum arquivo de banco de dados do ClamAV foi encontrado nos locais padrão "
 "do host"
 
-#: crates/linux-defender-core/src/scanner.rs:582
+#: crates/linux-defender-core/src/scanner.rs:600
 msgid ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
@@ -1883,39 +1883,39 @@ msgstr ""
 "This profile includes scan options that require standalone clamscan. Change "
 "the scan backend preference to automatic or clamscan."
 
-#: crates/linux-defender-core/src/scanner.rs:2324
+#: crates/linux-defender-core/src/scanner.rs:2364
 msgid "Scan cancelled by user"
 msgstr "Verificação cancelada pelo usuário"
 
-#: crates/linux-defender-core/src/scanner.rs:2331
+#: crates/linux-defender-core/src/scanner.rs:2371
 msgid "No files could be scanned"
 msgstr "Nenhum arquivo pôde ser verificado"
 
-#: crates/linux-defender-core/src/scanner.rs:2337
+#: crates/linux-defender-core/src/scanner.rs:2377
 msgid "Scan target does not exist or contains an invalid NUL byte"
 msgstr "O alvo da verificação não existe ou contém um byte NUL inválido"
 
-#: crates/linux-defender-core/src/scanner.rs:2344
+#: crates/linux-defender-core/src/scanner.rs:2384
 msgid "Scan target is not a regular file or directory"
 msgstr "O alvo da verificação não é um arquivo regular nem um diretório"
 
-#: crates/linux-defender-core/src/scanner.rs:2353
+#: crates/linux-defender-core/src/scanner.rs:2393
 msgid "Threats were detected, but details are unavailable."
 msgstr "Ameaças foram detectadas, mas os detalhes não estão disponíveis."
 
-#: crates/linux-defender-core/src/scanner.rs:2365
+#: crates/linux-defender-core/src/scanner.rs:2405
 msgid "{count} file could not be accessed"
 msgid_plural "{count} files could not be accessed"
 msgstr[0] "Não foi possível acessar {count} arquivo"
 msgstr[1] "Não foi possível acessar {count} arquivos"
 
-#: crates/linux-defender-core/src/scanner.rs:2378
+#: crates/linux-defender-core/src/scanner.rs:2418
 msgid "{count} file could not be read"
 msgid_plural "{count} files could not be read"
 msgstr[0] "Não foi possível ler {count} arquivo"
 msgstr[1] "Não foi possível ler {count} arquivos"
 
-#: crates/linux-defender-core/src/scanner.rs:2397
+#: crates/linux-defender-core/src/scanner.rs:2437
 msgid ""
 "{count} non-fatal warning during scan; some files may have been only "
 "partially scanned"
@@ -2699,8 +2699,8 @@ msgid "Remember my choice"
 msgstr "Lembre-se da minha escolha"
 
 #: desktop/src/App.tsx:1101 desktop/src/App.tsx:1105
-#: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:350
-#: desktop/src/pages/Database.tsx:376 desktop/src/pages/Logs.tsx:430
+#: desktop/src/ScanProgressPanel.tsx:32 desktop/src/pages/Database.tsx:351
+#: desktop/src/pages/Database.tsx:377 desktop/src/pages/Logs.tsx:430
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
 #: desktop/src/pages/Results.tsx:208 desktop/src/pages/Scan.tsx:790
@@ -3328,7 +3328,7 @@ msgstr ""
 "configuração específicos da distribuição."
 
 #: desktop/src/pages/Components.tsx:208 desktop/src/pages/Components.tsx:232
-#: desktop/src/pages/Database.tsx:283 desktop/src/pages/Database.tsx:305
+#: desktop/src/pages/Database.tsx:283 desktop/src/pages/Database.tsx:306
 msgid "Checking…"
 msgstr "Verificando…"
 
@@ -4198,35 +4198,42 @@ msgstr "Não foi possível ler o status do atualizador: {error}"
 msgid "Virus definitions"
 msgstr "Definições de vírus"
 
-#: desktop/src/pages/Database.tsx:298
+#: desktop/src/pages/Database.tsx:294
+msgid ""
+"Updates here refresh signatures through the host FreshClam service. Engine "
+"upgrades come from your distribution package manager; Linux Defender never "
+"installs or bundles the engine."
+msgstr "Updates here refresh signatures through the host FreshClam service. Engine upgrades come from your distribution package manager; Linux Defender never installs or bundles the engine."
+
+#: desktop/src/pages/Database.tsx:299
 msgid "Checking freshclam…"
 msgstr "Verificando freshclam…"
 
-#: desktop/src/pages/Database.tsx:298
+#: desktop/src/pages/Database.tsx:299
 msgid "No freshclam status returned"
 msgstr "Nenhum status do freshclam foi retornado"
 
-#: desktop/src/pages/Database.tsx:301 desktop/src/pages/Overview.tsx:37
+#: desktop/src/pages/Database.tsx:302 desktop/src/pages/Overview.tsx:37
 msgid "Available"
 msgstr "Disponível"
 
-#: desktop/src/pages/Database.tsx:301 desktop/src/pages/Overview.tsx:37
+#: desktop/src/pages/Database.tsx:302 desktop/src/pages/Overview.tsx:37
 msgid "Unavailable"
 msgstr "Indisponível"
 
-#: desktop/src/pages/Database.tsx:304
+#: desktop/src/pages/Database.tsx:305
 msgid "Update service"
 msgstr "Serviço de atualização"
 
-#: desktop/src/pages/Database.tsx:309
+#: desktop/src/pages/Database.tsx:310
 msgid "Database freshness"
 msgstr "Atualidade do banco de dados"
 
-#: desktop/src/pages/Database.tsx:316
+#: desktop/src/pages/Database.tsx:317
 msgid "Base databases"
 msgstr "Bancos de dados"
 
-#: desktop/src/pages/Database.tsx:317
+#: desktop/src/pages/Database.tsx:318
 msgid ""
 "Official ClamAV databases found in the configured database directory. A "
 "missing entry is downloaded by the next successful freshclam update."
@@ -4235,17 +4242,17 @@ msgstr ""
 "entrada ausente será baixada na próxima atualização bem-sucedida do "
 "freshclam."
 
-#: desktop/src/pages/Database.tsx:320
+#: desktop/src/pages/Database.tsx:321
 msgid "{count} custom signature file"
 msgid_plural "{count} custom signature files"
 msgstr[0] "{count} arquivo de assinaturas personalizadas"
 msgstr[1] "{count} arquivos de assinaturas personalizadas"
 
-#: desktop/src/pages/Database.tsx:326
+#: desktop/src/pages/Database.tsx:327
 msgid "Recognized database and signature files"
 msgstr "Recognized database and signature files"
 
-#: desktop/src/pages/Database.tsx:327
+#: desktop/src/pages/Database.tsx:328
 msgid ""
 "Files detected in the configured ClamAV database directory. This list does "
 "not confirm which files the active scanner loaded."
@@ -4253,23 +4260,23 @@ msgstr ""
 "Files detected in the configured ClamAV database directory. This list does "
 "not confirm which files the active scanner loaded."
 
-#: desktop/src/pages/Database.tsx:329
+#: desktop/src/pages/Database.tsx:330
 msgid "Show {count} recognized file"
 msgid_plural "Show {count} recognized files"
 msgstr[0] "Show {count} recognized file"
 msgstr[1] "Show {count} recognized files"
 
-#: desktop/src/pages/Database.tsx:333
+#: desktop/src/pages/Database.tsx:334
 msgid "{count} detected"
 msgid_plural "{count} detected"
 msgstr[0] "{count} detected"
 msgstr[1] "{count} detected"
 
-#: desktop/src/pages/Database.tsx:341 desktop/src/pages/Database.tsx:348
+#: desktop/src/pages/Database.tsx:342 desktop/src/pages/Database.tsx:349
 msgid "Update database"
 msgstr "Atualizar banco de dados"
 
-#: desktop/src/pages/Database.tsx:342
+#: desktop/src/pages/Database.tsx:343
 msgid ""
 "A normal update asks an active freshclam service to update when possible. A "
 "force update bypasses the service and stages replacements before promoting "
@@ -4280,35 +4287,35 @@ msgstr ""
 "substituições antes de promovê-las, restaurando bancos de dados anteriores "
 "caso falhem."
 
-#: desktop/src/pages/Database.tsx:348
+#: desktop/src/pages/Database.tsx:349
 msgid "Updating…"
 msgstr "Atualizando…"
 
-#: desktop/src/pages/Database.tsx:349 desktop/src/pages/Database.tsx:377
+#: desktop/src/pages/Database.tsx:350 desktop/src/pages/Database.tsx:378
 msgid "Force update"
 msgstr "Forçar atualização"
 
-#: desktop/src/pages/Database.tsx:353
+#: desktop/src/pages/Database.tsx:354
 msgid "Install freshclam before requesting database updates."
 msgstr "Instale o freshclam antes de solicitar atualizações do banco de dados."
 
-#: desktop/src/pages/Database.tsx:354
+#: desktop/src/pages/Database.tsx:355
 msgid "Preparing the update progress listener…"
 msgstr "Preparando o ouvinte de progresso da atualização…"
 
-#: desktop/src/pages/Database.tsx:360 desktop/src/pages/Database.tsx:363
+#: desktop/src/pages/Database.tsx:361 desktop/src/pages/Database.tsx:364
 msgid "Update log"
 msgstr "Registro de atualização"
 
-#: desktop/src/pages/Database.tsx:368
+#: desktop/src/pages/Database.tsx:369
 msgid "No update has been requested in this session."
 msgstr "Nenhuma atualização foi solicitada nesta sessão."
 
-#: desktop/src/pages/Database.tsx:373
+#: desktop/src/pages/Database.tsx:374
 msgid "Force database update?"
 msgstr "Forçar atualização do banco de dados?"
 
-#: desktop/src/pages/Database.tsx:374
+#: desktop/src/pages/Database.tsx:375
 msgid ""
 "This bypasses the freshclam service and stages replacement databases. "
 "Existing definitions remain available until a replacement succeeds; they are "
@@ -6088,7 +6095,9 @@ msgstr "Copy example rules"
 msgid ""
 "The example is ClamAV-compatible and inert until you copy it into your rules "
 "folder as a .yar file and review it."
-msgstr "The example is ClamAV-compatible and inert until you copy it into your rules folder as a .yar file and review it."
+msgstr ""
+"The example is ClamAV-compatible and inert until you copy it into your rules "
+"folder as a .yar file and review it."
 
 #: desktop/src/pages/SettingsPreferences.tsx:220
 msgid "Choose Folder"
@@ -7221,4 +7230,3 @@ msgstr "O sistema está protegido"
 
 #~ msgid "Security Audit Complete"
 #~ msgstr "Auditoria de segurança concluída"
-

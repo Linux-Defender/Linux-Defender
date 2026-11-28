@@ -10,16 +10,16 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1501 translated messages. | 63 |
-| en | 1501 translated messages. | baseline |
-| es | 1501 translated messages. | 64 |
-| fr | 1501 translated messages. | 64 |
-| hu | 1501 translated messages. | 64 |
-| it | 1501 translated messages. | 64 |
-| nb | 1501 translated messages. | 64 |
-| pt_BR | 1501 translated messages. | 64 |
-| vi | 1501 translated messages. | 71 |
-| zh_CN | 1501 translated messages. | 64 |
+| de | 1502 translated messages. | 63 |
+| en | 1502 translated messages. | baseline |
+| es | 1502 translated messages. | 64 |
+| fr | 1502 translated messages. | 64 |
+| hu | 1502 translated messages. | 64 |
+| it | 1502 translated messages. | 64 |
+| nb | 1502 translated messages. | 64 |
+| pt_BR | 1502 translated messages. | 64 |
+| vi | 1502 translated messages. | 71 |
+| zh_CN | 1502 translated messages. | 64 |
 
 ## de
 
