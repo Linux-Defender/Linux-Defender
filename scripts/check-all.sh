@@ -66,6 +66,7 @@ python3 scripts/tests/test_ui_guards.py >/dev/null || fail "UI guard regression 
 python3 scripts/tests/test_update_all.py >/dev/null || fail "unified regeneration guard"
 python3 scripts/check-screenshot-branding.py || fail "screenshot branding"
 python3 scripts/tests/test_screenshot_branding.py >/dev/null || fail "screenshot guard tests"
+python3 scripts/tests/test_capture_wiring.py >/dev/null || fail "capture wiring tests"
 
 step "Unused Rust dependencies (cargo machete)"
 if command -v cargo-machete >/dev/null 2>&1; then

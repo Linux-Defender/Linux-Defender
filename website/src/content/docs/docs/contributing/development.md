@@ -92,6 +92,23 @@ For a **visual-only** check of the React layout without launching Tauri, start `
 
 To see the **real Tauri/WebKitGTK window** (native form controls can render differently from Chromium), run the app with `bun run --cwd desktop tauri dev`, focus its window, and run `bash scripts/capture-app-window.sh [out.png]`. The script uses Spectacle on KDE/Wayland, gnome-screenshot on GNOME, grim on wlroots/Sway/Hyprland, and ImageMagick/scrot/ffmpeg on X11, then prints the PNG path; open that file with an image-capable tool. Supported assistants expose this as a `/capture-app` command, so any agent can inspect the actual desktop UI rather than assuming the browser rendering matches.
 
+#### Run and capture flow
+
+The shortest known-good local flow, verified on this host, is:
+
+```bash
+cd ~/Linux-Defender && git pull --ff-only
+cd desktop && bun run tauri dev
+```
+
+One command then captures **every** surface for review:
+
+```bash
+./scripts/capture-all.sh [out-dir]   # default /tmp/opencode/captures
+```
+
+It merges both capture paths: `scripts/capture-app-window.sh` for the real WebKitGTK window (native rendering), and `scripts/capture-browser.mjs` for all twelve React views through the visual harness plus the built site in both color schemes. A missing source is skipped with a message rather than failing the whole review; set `HARNESS_URL` and `SITE_URL` to use other previews. Captures go to the output directory, never into the repository — the checked-in `screenshots/` set is regenerated separately with the procedure in [DESIGN.md](https://github.com/Linux-Defender/Linux-Defender/blob/main/docs/DESIGN.md#ui-screenshots). This gives contributors, reviewers, and coding agents the same visual evidence.
+
 The GUI runs through Tauri/WebKitGTK. For the headless core CLI, use the native binary directly; this route must not initialize a WebKit window:
 
 ```bash
