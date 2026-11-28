@@ -21,3 +21,7 @@ export function isSuggestedYaraUrl(url: string): boolean {
     (source) => source.url === url,
   );
 }
+
+/** Vetted example rules, shipped as .yar.example and never auto-loaded.
+ * Keep in sync with assets/yara/linux-defender-examples.yar.example. */
+export const YARA_EXAMPLE_RULES = "// Linux Defender example YARA rules (MIT). NOT enabled by default.\n// Verified against ClamAV 1.5.4's YARA subset: plain string rules only.\n// Copy into your YARA Rules folder as .yar after reviewing each rule.\nrule LinuxDefender_Example_EICAR_Test {\n    strings:\n        $eicar = \"EICAR-STANDARD-ANTIVIRUS-TEST-FILE\"\n    condition:\n        $eicar\n}\n\nrule LinuxDefender_Example_Inert_Template {\n    strings:\n        $template = \"REPLACE_WITH_A_REVIEWED_STRING\"\n    condition:\n        $template\n}\n";

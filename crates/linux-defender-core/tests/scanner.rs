@@ -1102,5 +1102,100 @@ fn local_yara_loading_enforces_file_and_total_bounds() {
     })
     .unwrap();
     let status = scanner::dispatch(&ctx2, "status", json!({})).unwrap();
+    assert_eq!(status["local_yara_rule_count"], 2); // reviewed custom rule + built-in EICAR rule
+}
+
+#[test]
+fn default_yara_rule_is_provisioned_once_and_user_folder_wins() {
+    let root = tempfile::tempdir().unwrap();
+    let home = root.path().join("home");
+    let config = root.path().join("config/linux-defender");
+    let data = root.path().join("data/linux-defender");
+    fs::create_dir_all(&home).unwrap();
+    fs::create_dir_all(&config).unwrap();
+    fs::create_dir_all(&data).unwrap();
+    let ctx = Context::with_paths(Paths {
+        home: home.clone(),
+        config_dir: config.clone(),
+        data_dir: data.clone(),
+    })
+    .unwrap();
+
+    let status = scanner::dispatch(&ctx, "status", json!({})).unwrap();
     assert_eq!(status["local_yara_rule_count"], 1);
+    let provisioned = data.join("yara/linux-defender-default.yar");
+    assert!(provisioned.is_file());
+
+    // A user-modified file is never overwritten.
+    fs::write(&provisioned, "// user disabled the default rule\n").unwrap();
+    let status = scanner::dispatch(&ctx, "status", json!({})).unwrap();
+    assert_eq!(status["local_yara_rule_count"], 1);
+    assert_eq!(
+        fs::read_to_string(&provisioned).unwrap(),
+        "// user disabled the default rule\n"
+    );
+
+    // An explicit folder replaces the default rule set.
+    fs::write(
+        config.join("settings.json"),
+        "{\"yara_rules_directory\":\"\"}",
+    )
+    .unwrap();
+    let custom = root.path().join("custom");
+    fs::create_dir_all(&custom).unwrap();
+    fs::write(
+        custom.join("own.yar"),
+        "rule own { strings: $a = \"x\" condition: $a }",
+    )
+    .unwrap();
+    ctx.update_settings(json!({"yara_rules_directory": custom.to_string_lossy()}))
+        .unwrap();
+    let status = scanner::dispatch(&ctx, "status", json!({})).unwrap();
+    assert_eq!(status["local_yara_rule_count"], 2); // custom rule + built-in EICAR rule
+}
+
+#[test]
+fn standalone_scan_uses_builtin_eicar_rule_without_changing_daemon_behavior() {
+    let root = tempfile::tempdir().unwrap();
+    let home = root.path().join("home");
+    let config = root.path().join("config/linux-defender");
+    let data = root.path().join("data/linux-defender");
+    for dir in [&home, &config, &data] {
+        fs::create_dir_all(dir).unwrap();
+    }
+    let file = root.path().join("eicar.txt");
+    fs::write(
+        &file,
+        b"X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*\n",
+    )
+    .unwrap();
+    let ctx = Context::with_paths(Paths {
+        home,
+        config_dir: config,
+        data_dir: data,
+    })
+    .unwrap();
+
+    let clamscan = scanner::dispatch(
+        &ctx,
+        "scan",
+        json!({
+            "id": "default-yara-eicar", "paths": [file.to_string_lossy()], "backend_override": "clamscan"
+        }),
+    )
+    .unwrap();
+    assert_eq!(clamscan["status"], "infected");
+    // The built-in rule is validated against the host ClamAV binary by
+    // scripts/check-yara-boundary.py; here the contract is an unchanged verdict.
+
+    // Explicit daemon mode is unchanged by the built-in rule.
+    let daemon = scanner::dispatch(
+        &ctx,
+        "scan",
+        json!({
+            "id": "default-yara-daemon", "paths": [file.to_string_lossy()], "backend_override": "daemon"
+        }),
+    )
+    .unwrap();
+    assert_eq!(daemon["status"], "infected");
 }

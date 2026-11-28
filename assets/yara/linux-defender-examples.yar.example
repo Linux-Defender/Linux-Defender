@@ -1,0 +1,16 @@
+// Linux Defender example YARA rules (MIT). NOT enabled by default.
+// Verified against ClamAV 1.5.4's YARA subset: plain string rules only.
+// Copy into your YARA Rules folder as .yar after reviewing each rule.
+rule LinuxDefender_Example_EICAR_Test {
+    strings:
+        $eicar = "EICAR-STANDARD-ANTIVIRUS-TEST-FILE"
+    condition:
+        $eicar
+}
+
+rule LinuxDefender_Example_Inert_Template {
+    strings:
+        $template = "REPLACE_WITH_A_REVIEWED_STRING"
+    condition:
+        $template
+}

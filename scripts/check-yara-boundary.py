@@ -9,6 +9,7 @@ it cannot turn a scan into an unbounded command line.
 from __future__ import annotations
 
 import subprocess
+import re
 import sys
 from pathlib import Path
 
@@ -29,9 +30,20 @@ def check(root: Path = ROOT) -> list[str]:
             for path in root.rglob("*")
             if path.is_file()
         ]
+    allowed = "crates/linux-defender-core/assets/yara/linux-defender-default.yar"
     bundled = [rel for rel in tracked if rel.lower().endswith((".yar", ".yara"))]
-    if bundled:
-        failures.append(f"YARA rules must not be bundled: {', '.join(bundled)}")
+    unexpected = [rel for rel in bundled if rel != allowed]
+    if unexpected:
+        failures.append(f"unexpected YARA rules bundled: {', '.join(unexpected)}")
+    default_rule = root / allowed
+    if not default_rule.exists():
+        failures.append("the single built-in EICAR rule is missing")
+    else:
+        text = default_rule.read_text(encoding="utf-8")
+        if sum(1 for line in text.splitlines() if line.startswith("rule ")) != 1 or "EICAR-STANDARD-ANTIVIRUS-TEST-FILE" not in text:
+            failures.append("built-in YARA rule must be the EICAR-only rule")
+        if "condition:" not in text or "$eicar" not in text:
+            failures.append("built-in YARA rule must use ClamAV-supported plain string syntax")
 
     settings = root / "crates/linux-defender-core/src/settings.rs"
     if not settings.exists() or '"yara_rules_directory": ""' not in settings.read_text(encoding="utf-8"):
@@ -40,7 +52,7 @@ def check(root: Path = ROOT) -> list[str]:
     scanner = root / "crates/linux-defender-core/src/scanner.rs"
     if scanner.exists():
         text = scanner.read_text(encoding="utf-8")
-        for marker in ("MAX_LOCAL_YARA_FILES", "MAX_LOCAL_YARA_FILE_BYTES", "MAX_LOCAL_YARA_TOTAL_BYTES"):
+        for marker in ("MAX_LOCAL_YARA_FILES", "MAX_LOCAL_YARA_FILE_BYTES", "MAX_LOCAL_YARA_TOTAL_BYTES", "provision_default_yara"):
             if marker not in text:
                 failures.append(f"local YARA bound {marker} is missing")
 
@@ -65,6 +77,23 @@ def check(root: Path = ROOT) -> list[str]:
             failures.append("suggested YARA sources must remain suggestion-only")
     else:
         failures.append("desktop/src/suggestedYara.ts is missing")
+
+    example = root / "assets/yara/linux-defender-examples.yar.example"
+    if not example.exists():
+        failures.append("vetted YARA example asset is missing")
+    else:
+        if example.suffix != ".example":
+            failures.append("YARA example must use .example so the loader ignores it")
+        expected = example.read_text(encoding="utf-8")
+        if suggested.exists():
+            import json
+            source = suggested.read_text(encoding="utf-8")
+            match = re.search(r"export const YARA_EXAMPLE_RULES = (\"[\s\S]*?\");", source)
+            if not match or json.loads(match.group(1)) != expected:
+                failures.append("app example rules drifted from assets/yara/linux-defender-examples.yar.example")
+        docs = root / "website/src/content/docs/docs/reference/scan-backends.md"
+        if docs.exists() and "linux-defender-examples.yar.example" not in docs.read_text(encoding="utf-8"):
+            failures.append("YARA example is not documented")
 
     contracts = root / "scripts/cross-layer-contracts.json"
     if not contracts.exists() or '"id": "yara"' not in contracts.read_text(encoding="utf-8"):

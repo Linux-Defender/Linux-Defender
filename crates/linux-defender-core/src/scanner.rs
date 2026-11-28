@@ -447,10 +447,18 @@ fn status(ctx: &Context) -> AppResult<Value> {
         .unwrap_or("auto")
         .to_owned();
     let clamscan = probe_program("clamscan", &["--version"]);
-    let (yara_rules, yara_error) = match yara_database_paths(ctx) {
+    let (user_yara_rules, yara_error) = match yara_database_paths(ctx) {
         Ok(rules) => (rules, None),
         Err(error) => (Vec::new(), Some(error)),
     };
+    let default_yara = provision_default_yara(ctx);
+    let mut all_yara_rules = user_yara_rules.clone();
+    for path in default_yara {
+        if !all_yara_rules.contains(&path) {
+            all_yara_rules.push(path);
+        }
+    }
+    let yara_rules = user_yara_rules;
     let clamdscan = probe_program("clamdscan", &["--version"]);
     let daemon_ping = if clamdscan.available {
         probe_clamd(ctx, &["--ping", "1"])
@@ -514,7 +522,7 @@ fn status(ctx: &Context) -> AppResult<Value> {
         "configured_backend": configured_backend,
         "database_available": database_available,
         "database_error": database_error,
-        "local_yara_rule_count": yara_rules.len(),
+        "local_yara_rule_count": all_yara_rules.len(),
         "local_yara_error": yara_error,
         "daemon_status": {
             "available": daemon_available,
@@ -565,6 +573,16 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
     } else {
         select_backend(ctx, &configured)
     };
+    if selected_backend == "clamscan" {
+        // One built-in, EICAR-only rule is active by default for standalone
+        // scans. Daemon scans keep their original behavior.
+        let default_rule = provision_default_yara(ctx);
+        for path in default_rule {
+            if !exclusions.yara_rules.contains(&path) {
+                exclusions.yara_rules.push(path);
+            }
+        }
+    }
     let mut results = Vec::with_capacity(request.paths.len());
 
     for (index, path) in request.paths.iter().enumerate() {
@@ -1268,6 +1286,26 @@ fn clamscan_arguments(
     args
 }
 
+const DEFAULT_YARA_RULE: &str = include_str!("../assets/yara/linux-defender-default.yar");
+
+/// Write the single built-in rule into the app data directory once. An
+/// existing file is never overwritten, so a user can disable the rule by
+/// replacing it with an empty file or by configuring their own folder.
+fn provision_default_yara(ctx: &Context) -> Vec<PathBuf> {
+    let directory = ctx.paths.data_dir.join("yara");
+    let path = directory.join("linux-defender-default.yar");
+    if path.exists() {
+        return vec![path];
+    }
+    if fs::create_dir_all(&directory).is_err() {
+        return Vec::new();
+    }
+    match crate::common::atomic_write(&path, DEFAULT_YARA_RULE.as_bytes(), 0o644) {
+        Ok(()) => vec![path],
+        Err(_) => Vec::new(),
+    }
+}
+
 fn yara_database_paths(ctx: &Context) -> AppResult<Vec<PathBuf>> {
     let configured = ctx
         .settings()?
@@ -1277,6 +1315,8 @@ fn yara_database_paths(ctx: &Context) -> AppResult<Vec<PathBuf>> {
         .trim()
         .to_owned();
     if configured.is_empty() {
+        // No user folder: the built-in EICAR rule is added only for standalone
+        // clamscan scans, never for daemon scans or backend selection.
         return Ok(Vec::new());
     }
     let directory = crate::common::expand_path(&configured);

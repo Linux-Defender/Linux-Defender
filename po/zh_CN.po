@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-28 05:52-0500\n"
+"POT-Creation-Date: 2026-11-28 06:08-0500\n"
 "PO-Revision-Date: 2026-07-22 21:29+0800\n"
 "Last-Translator: Markson Hosben <marksonhosben@proton.me>\n"
 "Language-Team: Chinese <>\n"
@@ -2518,8 +2518,8 @@ msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 msgid "Version"
 msgstr "版本"
 
-#: desktop/src/App.tsx:1071 desktop/src/pages/SettingsPreferences.tsx:283
-#: desktop/src/pages/SettingsPreferences.tsx:284
+#: desktop/src/App.tsx:1071 desktop/src/pages/SettingsPreferences.tsx:285
+#: desktop/src/pages/SettingsPreferences.tsx:286
 msgid "Language"
 msgstr "语言"
 
@@ -2577,9 +2577,9 @@ msgstr "记住我的选择"
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
 #: desktop/src/pages/Results.tsx:208 desktop/src/pages/Scan.tsx:790
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
-#: desktop/src/pages/SettingsPreferences.tsx:557
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
+#: desktop/src/pages/SettingsPreferences.tsx:559
 #: desktop/src/pages/Urlscan.tsx:239
 msgid "Cancel"
 msgstr "取消"
@@ -2607,7 +2607,7 @@ msgstr "取消扫描并关闭"
 #: desktop/src/App.tsx:1105 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:356 desktop/src/pages/Scan.tsx:362
-#: desktop/src/pages/Scan.tsx:374 desktop/src/pages/SettingsPreferences.tsx:327
+#: desktop/src/pages/Scan.tsx:374 desktop/src/pages/SettingsPreferences.tsx:329
 msgid "Close"
 msgstr "关闭"
 
@@ -2900,8 +2900,8 @@ msgstr "已取消"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:64
 #: desktop/src/pages/Results.tsx:78 desktop/src/pages/Results.tsx:85
-#: desktop/src/pages/SettingsPreferences.tsx:531
-#: desktop/src/pages/SettingsPreferences.tsx:555 desktop/src/protection.ts:131
+#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:557 desktop/src/protection.ts:131
 msgid "Unknown"
 msgstr "未知"
 
@@ -3066,7 +3066,7 @@ msgstr "无法复制命令：{error}"
 #: desktop/src/pages/Audit.tsx:349 desktop/src/pages/Components.tsx:278
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
 #: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Copy"
 msgstr "复制"
 
@@ -3155,7 +3155,7 @@ msgid "Running"
 msgstr "正在运行"
 
 #: desktop/src/pages/Components.tsx:147
-#: desktop/src/pages/SettingsPreferences.tsx:318
+#: desktop/src/pages/SettingsPreferences.tsx:320
 msgid "Installed"
 msgstr "已安装"
 
@@ -3164,7 +3164,7 @@ msgid "Stopped"
 msgstr "已停止"
 
 #: desktop/src/pages/Components.tsx:149 desktop/src/pages/Logs.tsx:102
-#: desktop/src/pages/SettingsPreferences.tsx:320
+#: desktop/src/pages/SettingsPreferences.tsx:322
 msgid "Not installed"
 msgstr "未安装"
 
@@ -3311,7 +3311,7 @@ msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:298
 #: desktop/src/pages/ConfigPreferences.tsx:346
-#: desktop/src/pages/SettingsPreferences.tsx:394
+#: desktop/src/pages/SettingsPreferences.tsx:396
 msgid "Add"
 msgstr "添加"
 
@@ -3319,7 +3319,7 @@ msgstr "添加"
 #: desktop/src/pages/ConfigPreferences.tsx:350
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
 #: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:773
-#: desktop/src/pages/SettingsPreferences.tsx:324
+#: desktop/src/pages/SettingsPreferences.tsx:326
 msgid "Remove"
 msgstr "移除"
 
@@ -3431,7 +3431,7 @@ msgid "Scan Archive Files"
 msgstr "扫描归档文件"
 
 #: desktop/src/pages/ConfigPreferences.tsx:765
-#: desktop/src/pages/SettingsPreferences.tsx:296
+#: desktop/src/pages/SettingsPreferences.tsx:298
 msgid "Database Updates"
 msgstr "病毒库更新"
 
@@ -3823,7 +3823,7 @@ msgstr ""
 "尚未配置扫描目标。计划扫描将使用您的主目录，但不会将其保存为显式指定的目标。"
 
 #: desktop/src/pages/ConfigPreferences.tsx:895
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Skip on Battery"
 msgstr "使用电池时跳过"
 
@@ -4275,9 +4275,9 @@ msgstr "以往的扫描和更新操作"
 #: desktop/src/pages/Logs.tsx:385 desktop/src/pages/Logs.tsx:418
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
 #: desktop/src/pages/Quarantine.tsx:356
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
-#: desktop/src/pages/SettingsPreferences.tsx:550
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
+#: desktop/src/pages/SettingsPreferences.tsx:552
 #: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:210
 msgid "Refresh"
 msgstr "刷新"
@@ -4466,8 +4466,8 @@ msgstr "正在刷新…"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
 #: desktop/src/pages/Overview.tsx:153
-#: desktop/src/pages/SettingsPreferences.tsx:547
-#: desktop/src/pages/SettingsPreferences.tsx:550
+#: desktop/src/pages/SettingsPreferences.tsx:549
+#: desktop/src/pages/SettingsPreferences.tsx:552
 msgid "Loading…"
 msgstr "正在加载…"
 
@@ -4636,7 +4636,7 @@ msgid "Scanner engine"
 msgstr "扫描引擎"
 
 #: desktop/src/pages/Overview.tsx:192
-#: desktop/src/pages/SettingsPreferences.tsx:476
+#: desktop/src/pages/SettingsPreferences.tsx:478
 msgid "{count} file"
 msgid_plural "{count} files"
 msgstr[0] "{count} 个文件"
@@ -4671,8 +4671,8 @@ msgid "See detailed scan history"
 msgstr "查看详细的扫描历史记录"
 
 #: desktop/src/pages/Preferences.tsx:13
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Behavior"
 msgstr "行为"
 
@@ -4880,8 +4880,8 @@ msgstr "复制"
 
 #: desktop/src/pages/Profiles.tsx:234 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Quarantine.tsx:367 desktop/src/pages/Quarantine.tsx:379
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Delete"
 msgstr "删除"
 
@@ -5496,8 +5496,8 @@ msgstr "正在扫描…"
 msgid "Scan with VirusTotal"
 msgstr "使用 VirusTotal 扫描"
 
-#: desktop/src/pages/Scan.tsx:261 desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/Scan.tsx:261 desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "API Key"
 msgstr "API 密钥"
 
@@ -5793,8 +5793,8 @@ msgid "Quit completely"
 msgstr "Quit completely"
 
 #: desktop/src/pages/SettingsPreferences.tsx:139
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Always ask"
 msgstr "始终询问"
 
@@ -5845,49 +5845,61 @@ msgstr "Suggested documentation"
 msgid ""
 "These links explain the rule format. Nothing is downloaded or enabled "
 "automatically; add only rules you have reviewed."
-msgstr "These links explain the rule format. Nothing is downloaded or enabled automatically; add only rules you have reviewed."
+msgstr ""
+"These links explain the rule format. Nothing is downloaded or enabled "
+"automatically; add only rules you have reviewed."
 
-#: desktop/src/pages/SettingsPreferences.tsx:218
+#: desktop/src/pages/SettingsPreferences.tsx:216
+msgid "Copy example rules"
+msgstr "Copy example rules"
+
+#: desktop/src/pages/SettingsPreferences.tsx:217
+msgid ""
+"The example is ClamAV-compatible and inert until you copy it into your rules "
+"folder as a .yar file and review it."
+msgstr "The example is ClamAV-compatible and inert until you copy it into your rules folder as a .yar file and review it."
+
+#: desktop/src/pages/SettingsPreferences.tsx:220
 msgid "Choose Folder"
 msgstr "选择文件夹"
 
-#: desktop/src/pages/SettingsPreferences.tsx:219
+#: desktop/src/pages/SettingsPreferences.tsx:221
 msgid "Open Folder"
 msgstr "打开文件夹"
 
-#: desktop/src/pages/SettingsPreferences.tsx:247
+#: desktop/src/pages/SettingsPreferences.tsx:249
 msgid "Unable to read file manager integrations: {error}"
 msgstr "无法读取文件管理器集成信息：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:264
+#: desktop/src/pages/SettingsPreferences.tsx:266
 msgid "{name} integration removed"
 msgstr "已移除 {name} 集成"
 
-#: desktop/src/pages/SettingsPreferences.tsx:266
+#: desktop/src/pages/SettingsPreferences.tsx:268
 msgid "{name} integration repaired"
 msgstr "已修复 {name} 集成"
 
-#: desktop/src/pages/SettingsPreferences.tsx:267
+#: desktop/src/pages/SettingsPreferences.tsx:269
 msgid "{name} integration installed"
 msgstr "已安装 {name} 集成"
 
-#: desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/pages/SettingsPreferences.tsx:272
 msgid "install"
 msgstr "install"
 
-#: desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/pages/SettingsPreferences.tsx:272
 msgid "repair"
 msgstr "repair"
 
-#: desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/pages/SettingsPreferences.tsx:272
 msgid "remove"
 msgstr "remove"
 
-#: desktop/src/pages/SettingsPreferences.tsx:271
+#: desktop/src/pages/SettingsPreferences.tsx:273
 msgid "Integration {action} failed: {error}"
 msgstr "集成操作（{action}）失败：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:283
+#: desktop/src/pages/SettingsPreferences.tsx:285
 msgid ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
@@ -5895,66 +5907,66 @@ msgstr ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
 
-#: desktop/src/pages/SettingsPreferences.tsx:285
+#: desktop/src/pages/SettingsPreferences.tsx:287
 msgid "Restart Linux Defender to apply the new language"
 msgstr "Restart Linux Defender to apply the new language"
 
-#: desktop/src/pages/SettingsPreferences.tsx:286
+#: desktop/src/pages/SettingsPreferences.tsx:288
 msgid "Automatic (System)"
 msgstr "自动（跟随系统）"
 
-#: desktop/src/pages/SettingsPreferences.tsx:288
-#: desktop/src/pages/SettingsPreferences.tsx:291
+#: desktop/src/pages/SettingsPreferences.tsx:290
+#: desktop/src/pages/SettingsPreferences.tsx:293
 msgid "Window Behavior"
 msgstr "窗口行为"
 
-#: desktop/src/pages/SettingsPreferences.tsx:288
+#: desktop/src/pages/SettingsPreferences.tsx:290
 msgid "Configure what happens when closing the main window."
 msgstr "配置关闭主窗口时的行为。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:289
+#: desktop/src/pages/SettingsPreferences.tsx:291
 msgid "When closing window"
 msgstr "关闭窗口时"
 
-#: desktop/src/pages/SettingsPreferences.tsx:290
+#: desktop/src/pages/SettingsPreferences.tsx:292
 msgid "Start in System Tray"
 msgstr "启动时驻留系统托盘"
 
-#: desktop/src/pages/SettingsPreferences.tsx:290
+#: desktop/src/pages/SettingsPreferences.tsx:292
 msgid "Launch in the background and show only the tray icon."
 msgstr "在后台启动，仅显示托盘图标。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:291
+#: desktop/src/pages/SettingsPreferences.tsx:293
 msgid ""
 "System tray is not available. Window behavior settings require an active "
 "system tray."
 msgstr "系统托盘不可用。窗口行为设置需要系统托盘处于启用状态。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:292
+#: desktop/src/pages/SettingsPreferences.tsx:294
 msgid "Scan Behavior"
 msgstr "扫描行为"
 
-#: desktop/src/pages/SettingsPreferences.tsx:293
+#: desktop/src/pages/SettingsPreferences.tsx:295
 msgid "Show Live Scan Progress"
 msgstr "显示实时扫描进度"
 
-#: desktop/src/pages/SettingsPreferences.tsx:293
+#: desktop/src/pages/SettingsPreferences.tsx:295
 msgid "Display files being scanned in real time."
 msgstr "实时显示正在扫描的文件。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:294
+#: desktop/src/pages/SettingsPreferences.tsx:296
 msgid "Desktop Notifications"
 msgstr "桌面通知"
 
-#: desktop/src/pages/SettingsPreferences.tsx:294
+#: desktop/src/pages/SettingsPreferences.tsx:296
 msgid "Allow scan, update, device, and VirusTotal notifications."
 msgstr "允许发送扫描、更新、设备和 VirusTotal 通知。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
+#: desktop/src/pages/SettingsPreferences.tsx:299
 msgid "Update inactivity timeout (minutes)"
 msgstr "更新无输出超时（分钟）"
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
+#: desktop/src/pages/SettingsPreferences.tsx:299
 msgid ""
 "Minutes without output before stopping a manual database update. Active "
 "updates have no total time limit."
@@ -5962,264 +5974,264 @@ msgstr ""
 "Minutes without output before stopping a manual database update.Active "
 "updates have no total time limit."
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
-#: desktop/src/pages/SettingsPreferences.tsx:311
+#: desktop/src/pages/SettingsPreferences.tsx:312
+#: desktop/src/pages/SettingsPreferences.tsx:313
 msgid "File Manager Integration"
 msgstr "文件管理器集成"
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
+#: desktop/src/pages/SettingsPreferences.tsx:312
 msgid "Add context menu actions for supported file managers."
 msgstr "为支持的文件管理器添加右键菜单操作。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
+#: desktop/src/pages/SettingsPreferences.tsx:312
 msgid "Configure Integration"
 msgstr "配置集成"
 
 #. Translators: 'Scan with Linux Defender' is the installed file-manager menu label; keep it in English.
-#: desktop/src/pages/SettingsPreferences.tsx:312
+#: desktop/src/pages/SettingsPreferences.tsx:314
 msgid ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 msgstr ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 
-#: desktop/src/pages/SettingsPreferences.tsx:321
+#: desktop/src/pages/SettingsPreferences.tsx:323
 msgid "Partially installed"
 msgstr "部分已安装"
 
-#: desktop/src/pages/SettingsPreferences.tsx:323
+#: desktop/src/pages/SettingsPreferences.tsx:325
 msgid "Not available"
 msgstr "不可用"
 
-#: desktop/src/pages/SettingsPreferences.tsx:323
+#: desktop/src/pages/SettingsPreferences.tsx:325
 msgid "missing"
 msgstr "缺失"
 
-#: desktop/src/pages/SettingsPreferences.tsx:324
+#: desktop/src/pages/SettingsPreferences.tsx:326
 msgid "Repair"
 msgstr "修复"
 
-#: desktop/src/pages/SettingsPreferences.tsx:324
+#: desktop/src/pages/SettingsPreferences.tsx:326
 msgid "Install"
 msgstr "Install"
 
-#: desktop/src/pages/SettingsPreferences.tsx:351
+#: desktop/src/pages/SettingsPreferences.tsx:353
 msgid "This exclusion already exists"
 msgstr "此排除项已存在"
 
-#: desktop/src/pages/SettingsPreferences.tsx:367
+#: desktop/src/pages/SettingsPreferences.tsx:369
 msgid "Unable to choose exclusions: {error}"
 msgstr "无法选择排除项：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:376
+#: desktop/src/pages/SettingsPreferences.tsx:378
 msgid "Preset Exclusions"
 msgstr "预设排除项"
 
-#: desktop/src/pages/SettingsPreferences.tsx:376
+#: desktop/src/pages/SettingsPreferences.tsx:378
 msgid "Common directories to exclude from scanning. Changes save immediately."
 msgstr "可从扫描中排除的常见目录。更改会立即保存。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:387
+#: desktop/src/pages/SettingsPreferences.tsx:389
 msgid "Custom Exclusions"
 msgstr "自定义排除项"
 
-#: desktop/src/pages/SettingsPreferences.tsx:387
+#: desktop/src/pages/SettingsPreferences.tsx:389
 msgid ""
 "Select files or folders, or enter an absolute file path or pattern. Changes "
 "save immediately."
 msgstr "选择文件或文件夹，或输入绝对文件路径或匹配模式。更改会立即保存。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:393
+#: desktop/src/pages/SettingsPreferences.tsx:395
 msgid "/path/to/exclude or *.tmp"
 msgstr "/path/to/exclude 或 *.tmp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:401
+#: desktop/src/pages/SettingsPreferences.tsx:403
 msgid "Remove {pattern}"
 msgstr "移除 {pattern}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "General"
 msgstr "常规"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Automatically scan storage devices when they are connected."
 msgstr "连接存储设备时自动扫描。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Enable Device Auto-Scan"
 msgstr "启用设备自动扫描"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Device Types"
 msgstr "设备类型"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Select which kinds of mounted devices may be scanned."
 msgstr "选择允许扫描的已挂载设备类型。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Options"
 msgstr "选项"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Max Device Size (GB)"
 msgstr "最大设备容量（GB）"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "0 means no size limit; devices larger than 10,000 GB are not accepted."
 msgstr "0 表示不限制容量；不接受容量超过 10,000 GB 的设备。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Scan Delay (seconds)"
 msgstr "扫描延迟（秒）"
 
 #. Translators: The en dash marks the inclusive 0–60-second delay range; use your language's usual range typography.
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Wait after mounting before scanning (0–60 seconds)."
 msgstr "挂载后等待指定时间再扫描（0～60 秒）。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Auto-Quarantine Threats"
 msgstr "自动隔离威胁"
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Notifications"
 msgstr "通知"
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Show desktop notifications for device scan events."
 msgstr "在设备扫描事件发生时显示桌面通知。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Desktop notifications are globally disabled in Behavior."
 msgstr "桌面通知已在“行为”设置中全局禁用。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:429
+#: desktop/src/pages/SettingsPreferences.tsx:431
 msgid "VirusTotal API keys must be exactly 64 hexadecimal characters"
 msgstr "VirusTotal API 密钥必须由 64 个十六进制字符组成"
 
-#: desktop/src/pages/SettingsPreferences.tsx:432
-#: desktop/src/pages/SettingsPreferences.tsx:459
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Unable to save the API key"
 msgstr "无法保存 API 密钥"
 
-#: desktop/src/pages/SettingsPreferences.tsx:438
-#: desktop/src/pages/SettingsPreferences.tsx:465
+#: desktop/src/pages/SettingsPreferences.tsx:440
+#: desktop/src/pages/SettingsPreferences.tsx:467
 msgid "Unable to delete the API key"
 msgstr "无法删除 API 密钥"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid ""
 "Keys are stored in the operating system keyring or the explicitly enabled "
 "compatibility fallback; they are never returned to the interface."
 msgstr ""
 "密钥存储在操作系统密钥环或显式启用的兼容性备用存储中，绝不会返回给界面。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 #: desktop/src/pages/Urlscan.tsx:39
 msgid "Configured ({masked}) using {backend}"
 msgstr "已配置（{masked}），使用 {backend}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 #: desktop/src/pages/Urlscan.tsx:40
 msgid "masked"
 msgstr "已隐藏"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Keyring is locked"
 msgstr "密钥环已锁定"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Keyring unavailable"
 msgstr "密钥环不可用"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 #: desktop/src/pages/Urlscan.tsx:46
 msgid "Not configured"
 msgstr "未配置"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "Exactly 64 hexadecimal characters."
 msgstr "必须恰好为 64 个十六进制字符。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Save Key"
 msgstr "保存密钥"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "Get a free API key"
 msgstr "获取免费的 API 密钥"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Delete Key"
 msgstr "删除密钥"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "When API key is missing"
 msgstr "缺少 API 密钥时"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "Open VirusTotal website"
 msgstr "打开 VirusTotal 网站"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Show notification only"
 msgstr "仅显示通知"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Information"
 msgstr "信息"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid ""
 "Free tier: 4 requests per minute, 500 per day. Files up to 650 MB can be "
 "scanned."
 msgstr "免费版：每分钟 4 次请求，每天 500 次请求。可扫描最大 650 MB 的文件。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "Delete VirusTotal API key"
 msgstr "删除 VirusTotal API 密钥"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "use VirusTotal scanning."
 msgstr ""
 "此操作将从安全存储中移除密钥。如需使用 VirusTotal 扫描，您需要重新输入密钥。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:457
 #: desktop/src/pages/Urlscan.tsx:92
 msgid "Enter your urlscan API key."
 msgstr "Enter your urlscan API key."
 
-#: desktop/src/pages/SettingsPreferences.tsx:456
+#: desktop/src/pages/SettingsPreferences.tsx:458
 msgid "The urlscan API key cannot contain spaces."
 msgstr "The urlscan API key cannot contain spaces."
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Paste the API key from your urlscan.io account settings."
 msgstr "Paste the API key from your urlscan.io account settings."
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 #: desktop/src/pages/Urlscan.tsx:214
 msgid "Get an API key"
 msgstr "Get an API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Open urlscan.io website"
 msgstr "打开 urlscan.io 网站"
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
@@ -6227,7 +6239,7 @@ msgstr ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid ""
 "Submitting a URL shares it with urlscan.io, including its query string, and "
 "can expose private or internal addresses. Never submit login links, session "
@@ -6237,11 +6249,11 @@ msgstr ""
 "can expose private or internal addresses. Never submit login links, session "
 "tokens, or confidential information."
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Delete urlscan.io API key"
 msgstr "Delete urlscan.io API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
@@ -6249,181 +6261,181 @@ msgstr ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
 
-#: desktop/src/pages/SettingsPreferences.tsx:483
+#: desktop/src/pages/SettingsPreferences.tsx:485
 msgid "Unable to read debug logs: {error}"
 msgstr "无法读取调试日志：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:491
+#: desktop/src/pages/SettingsPreferences.tsx:493
 msgid "Unable to read system information: {error}"
 msgstr "无法读取系统信息：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:498
+#: desktop/src/pages/SettingsPreferences.tsx:500
 msgid "ZIP archives"
 msgstr "ZIP 压缩包"
 
-#: desktop/src/pages/SettingsPreferences.tsx:499
+#: desktop/src/pages/SettingsPreferences.tsx:501
 msgid "All files"
 msgstr "所有文件"
 
-#: desktop/src/pages/SettingsPreferences.tsx:501
+#: desktop/src/pages/SettingsPreferences.tsx:503
 msgid "Logs exported successfully"
 msgstr "日志导出成功"
 
-#: desktop/src/pages/SettingsPreferences.tsx:503
+#: desktop/src/pages/SettingsPreferences.tsx:505
 msgid "Unable to export logs: {error}"
 msgstr "无法导出日志：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:515
+#: desktop/src/pages/SettingsPreferences.tsx:517
 msgid "{count} log file cleared"
 msgid_plural "{count} log files cleared"
 msgstr[0] "已清除 {count} 个日志文件"
 
-#: desktop/src/pages/SettingsPreferences.tsx:518
+#: desktop/src/pages/SettingsPreferences.tsx:520
 msgid "Unable to clear logs: {error}"
 msgstr "无法清除日志：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:525
+#: desktop/src/pages/SettingsPreferences.tsx:527
 msgid "Linux Defender System Information"
 msgstr "Linux Defender System Information"
 
-#: desktop/src/pages/SettingsPreferences.tsx:527
+#: desktop/src/pages/SettingsPreferences.tsx:529
 msgid "Installation Type: {value}"
 msgstr "安装类型：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:528
+#: desktop/src/pages/SettingsPreferences.tsx:530
 msgid "Distribution: {value}"
 msgstr "发行版：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:529
+#: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "Desktop Environment: {value}"
 msgstr "桌面环境：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Rust Runtime: {value}"
 msgstr "Rust 运行时：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Tauri Runtime: {value}"
 msgstr "Tauri 运行时：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:534
 msgid "Platform: {value}"
 msgstr "平台：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:535
 msgid "Architecture: {value}"
 msgstr "架构：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Version: {value}"
 msgstr "版本：{value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:540
 msgid "System information copied to clipboard"
 msgstr "系统信息已复制到剪贴板"
 
-#: desktop/src/pages/SettingsPreferences.tsx:540
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Unable to copy system information: {error}"
 msgstr "无法复制系统信息：{error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:545
+#: desktop/src/pages/SettingsPreferences.tsx:547
 msgid "Logging Settings"
 msgstr "日志设置"
 
-#: desktop/src/pages/SettingsPreferences.tsx:545
+#: desktop/src/pages/SettingsPreferences.tsx:547
 msgid "Higher levels produce more detailed logs and apply immediately."
 msgstr "日志级别越高，记录的内容越详细。更改会立即生效。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:546
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Log Level"
 msgstr "日志级别"
 
-#: desktop/src/pages/SettingsPreferences.tsx:547
+#: desktop/src/pages/SettingsPreferences.tsx:549
 msgid "Log File Location"
 msgstr "日志文件位置"
 
-#: desktop/src/pages/SettingsPreferences.tsx:549
+#: desktop/src/pages/SettingsPreferences.tsx:551
 msgid "Log Management"
 msgstr "日志管理"
 
-#: desktop/src/pages/SettingsPreferences.tsx:549
+#: desktop/src/pages/SettingsPreferences.tsx:551
 msgid ""
 "Export a ZIP archive for support or permanently clear the application logs."
 msgstr "将日志导出为 ZIP 压缩包以供技术支持使用，或永久清除应用程序日志。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:550
+#: desktop/src/pages/SettingsPreferences.tsx:552
 msgid "Current Log Size"
 msgstr "当前日志大小"
 
-#: desktop/src/pages/SettingsPreferences.tsx:551
+#: desktop/src/pages/SettingsPreferences.tsx:553
 msgid "Export Logs"
 msgstr "导出日志"
 
-#: desktop/src/pages/SettingsPreferences.tsx:551
+#: desktop/src/pages/SettingsPreferences.tsx:553
 msgid "Save all sanitized debug logs to a ZIP archive."
 msgstr "将所有已脱敏的调试日志保存为 ZIP 压缩包。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:552
+#: desktop/src/pages/SettingsPreferences.tsx:554
 msgid "Clear Logs"
 msgstr "清除日志"
 
-#: desktop/src/pages/SettingsPreferences.tsx:552
+#: desktop/src/pages/SettingsPreferences.tsx:554
 msgid "This permanently deletes all debug log files."
 msgstr "此操作将永久删除所有调试日志文件。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:552
+#: desktop/src/pages/SettingsPreferences.tsx:554
 msgid "Clear"
 msgstr "清除"
 
-#: desktop/src/pages/SettingsPreferences.tsx:554
+#: desktop/src/pages/SettingsPreferences.tsx:556
 msgid "System Information"
 msgstr "系统信息"
 
-#: desktop/src/pages/SettingsPreferences.tsx:554
+#: desktop/src/pages/SettingsPreferences.tsx:556
 msgid "Useful for troubleshooting and bug reports."
 msgstr "便于排查问题和提交错误报告。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Installation Type"
 msgstr "安装类型"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Distribution"
 msgstr "发行版"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Desktop Environment"
 msgstr "桌面环境"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Rust Runtime"
 msgstr "Rust 运行时"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Tauri Runtime"
 msgstr "Tauri 运行时"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Platform"
 msgstr "平台"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Copy System Info"
 msgstr "复制系统信息"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Copy all system information to the clipboard."
 msgstr "将所有系统信息复制到剪贴板。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Loading system information…"
 msgstr "正在加载系统信息…"
 
-#: desktop/src/pages/SettingsPreferences.tsx:557
+#: desktop/src/pages/SettingsPreferences.tsx:559
 msgid "Clear logs"
 msgstr "清除日志"
 
-#: desktop/src/pages/SettingsPreferences.tsx:557
+#: desktop/src/pages/SettingsPreferences.tsx:559
 msgid ""
 "This permanently deletes {count} log file totaling {size}. This action "
 "cannot be undone."
@@ -6432,7 +6444,7 @@ msgid_plural ""
 "cannot be undone."
 msgstr[0] "这将永久删除 {count} 个日志文件，总大小为 {size}。此操作无法撤销。"
 
-#: desktop/src/pages/SettingsPreferences.tsx:557
+#: desktop/src/pages/SettingsPreferences.tsx:559
 msgid "Delete Logs"
 msgstr "删除日志"
 

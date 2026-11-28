@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 import { isOpaqueApiToken, copyText, notify, openExternal, openPath, openPaths, request, saveBinary } from "../api";
 import { _, activeCatalog, ngettext } from "../i18n";
 import { Icon } from "../Icon";
-import { SUGGESTED_YARA_SOURCES } from "../suggestedYara";
+import { SUGGESTED_YARA_SOURCES, YARA_EXAMPLE_RULES } from "../suggestedYara";
 import { Modal } from "../Modal";
 type Settings = Record<string, unknown>;
 type SaveSetting = (key: string, value: unknown) => Promise<boolean>;
@@ -213,6 +213,8 @@ function YaraPage({ settings, saveSetting }: { settings: Settings; saveSetting: 
         <summary>{_("Suggested documentation")}</summary>
         <ul>{SUGGESTED_YARA_SOURCES.map((source) => <li key={source.url}><button type="button" onClick={() => void openExternal(source.url)}>{source.label}</button></li>)}</ul>
         <p>{_("These links explain the rule format. Nothing is downloaded or enabled automatically; add only rules you have reviewed.")}</p>
+        <button type="button" onClick={() => void copyText(YARA_EXAMPLE_RULES)}>{_("Copy example rules")}</button>
+        <p>{_("The example is ClamAV-compatible and inert until you copy it into your rules folder as a .yar file and review it.")}</p>
       </details>
       <div className="button-row">
         <button type="button" onClick={() => void chooseDirectory()}>{_("Choose Folder")}</button>

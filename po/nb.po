@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-28 05:52-0500\n"
+"POT-Creation-Date: 2026-11-28 06:08-0500\n"
 "PO-Revision-Date: 2026-10-17 12:00+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmål\n"
@@ -2672,8 +2672,8 @@ msgstr "An on-demand Linux security scanner using your system's ClamAV tools."
 msgid "Version"
 msgstr "Versjon"
 
-#: desktop/src/App.tsx:1071 desktop/src/pages/SettingsPreferences.tsx:283
-#: desktop/src/pages/SettingsPreferences.tsx:284
+#: desktop/src/App.tsx:1071 desktop/src/pages/SettingsPreferences.tsx:285
+#: desktop/src/pages/SettingsPreferences.tsx:286
 msgid "Language"
 msgstr "Språk"
 
@@ -2731,9 +2731,9 @@ msgstr "Husk valget mitt"
 #: desktop/src/pages/Network.tsx:441 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Profiles.tsx:243 desktop/src/pages/Quarantine.tsx:379
 #: desktop/src/pages/Results.tsx:208 desktop/src/pages/Scan.tsx:790
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
-#: desktop/src/pages/SettingsPreferences.tsx:557
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
+#: desktop/src/pages/SettingsPreferences.tsx:559
 #: desktop/src/pages/Urlscan.tsx:239
 msgid "Cancel"
 msgstr "Avbryt"
@@ -2761,7 +2761,7 @@ msgstr "Avbryt skanningen og lukk"
 #: desktop/src/App.tsx:1105 desktop/src/ConfigurationRecovery.tsx:94
 #: desktop/src/HelperTrustErrorDialog.tsx:87 desktop/src/Modal.tsx:110
 #: desktop/src/pages/Scan.tsx:356 desktop/src/pages/Scan.tsx:362
-#: desktop/src/pages/Scan.tsx:374 desktop/src/pages/SettingsPreferences.tsx:327
+#: desktop/src/pages/Scan.tsx:374 desktop/src/pages/SettingsPreferences.tsx:329
 msgid "Close"
 msgstr "Lukk"
 
@@ -3066,8 +3066,8 @@ msgstr "Kansellert"
 #: desktop/src/pages/Logs.tsx:121 desktop/src/pages/Overview.tsx:35
 #: desktop/src/pages/Overview.tsx:166 desktop/src/pages/Results.tsx:64
 #: desktop/src/pages/Results.tsx:78 desktop/src/pages/Results.tsx:85
-#: desktop/src/pages/SettingsPreferences.tsx:531
-#: desktop/src/pages/SettingsPreferences.tsx:555 desktop/src/protection.ts:131
+#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:557 desktop/src/protection.ts:131
 msgid "Unknown"
 msgstr "Ukjent"
 
@@ -3237,7 +3237,7 @@ msgstr "Kunne ikke kopiere kommandoen: {error}"
 #: desktop/src/pages/Audit.tsx:349 desktop/src/pages/Components.tsx:278
 #: desktop/src/pages/Logs.tsx:406 desktop/src/pages/Logs.tsx:431
 #: desktop/src/pages/Scan.tsx:788 desktop/src/pages/Scan.tsx:793
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Copy"
 msgstr "Kopier"
 
@@ -3326,7 +3326,7 @@ msgid "Running"
 msgstr "Kjører"
 
 #: desktop/src/pages/Components.tsx:147
-#: desktop/src/pages/SettingsPreferences.tsx:318
+#: desktop/src/pages/SettingsPreferences.tsx:320
 msgid "Installed"
 msgstr "Installert"
 
@@ -3335,7 +3335,7 @@ msgid "Stopped"
 msgstr "Stoppet"
 
 #: desktop/src/pages/Components.tsx:149 desktop/src/pages/Logs.tsx:102
-#: desktop/src/pages/SettingsPreferences.tsx:320
+#: desktop/src/pages/SettingsPreferences.tsx:322
 msgid "Not installed"
 msgstr "Ikke installert"
 
@@ -3485,7 +3485,7 @@ msgstr ""
 
 #: desktop/src/pages/ConfigPreferences.tsx:298
 #: desktop/src/pages/ConfigPreferences.tsx:346
-#: desktop/src/pages/SettingsPreferences.tsx:394
+#: desktop/src/pages/SettingsPreferences.tsx:396
 msgid "Add"
 msgstr "Legg til"
 
@@ -3493,7 +3493,7 @@ msgstr "Legg til"
 #: desktop/src/pages/ConfigPreferences.tsx:350
 #: desktop/src/pages/Profiles.tsx:96 desktop/src/pages/Profiles.tsx:103
 #: desktop/src/pages/Profiles.tsx:104 desktop/src/pages/Scan.tsx:773
-#: desktop/src/pages/SettingsPreferences.tsx:324
+#: desktop/src/pages/SettingsPreferences.tsx:326
 msgid "Remove"
 msgstr "Fjern"
 
@@ -3606,7 +3606,7 @@ msgid "Scan Archive Files"
 msgstr "Skann arkivfiler"
 
 #: desktop/src/pages/ConfigPreferences.tsx:765
-#: desktop/src/pages/SettingsPreferences.tsx:296
+#: desktop/src/pages/SettingsPreferences.tsx:298
 msgid "Database Updates"
 msgstr "Databaseoppdateringer"
 
@@ -4004,7 +4004,7 @@ msgstr ""
 "din uten å lagre den som et eksplisitt mål."
 
 #: desktop/src/pages/ConfigPreferences.tsx:895
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Skip on Battery"
 msgstr "Hopp over på batteri"
 
@@ -4474,9 +4474,9 @@ msgstr "Tidligere skanninger og oppdateringer"
 #: desktop/src/pages/Logs.tsx:385 desktop/src/pages/Logs.tsx:418
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:110
 #: desktop/src/pages/Quarantine.tsx:356
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
-#: desktop/src/pages/SettingsPreferences.tsx:550
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
+#: desktop/src/pages/SettingsPreferences.tsx:552
 #: desktop/src/pages/Statistics.tsx:103 desktop/src/pages/Urlscan.tsx:210
 msgid "Refresh"
 msgstr "Oppdater"
@@ -4668,8 +4668,8 @@ msgstr "Oppdaterer …"
 
 #: desktop/src/pages/Network.tsx:397 desktop/src/pages/Overview.tsx:98
 #: desktop/src/pages/Overview.tsx:153
-#: desktop/src/pages/SettingsPreferences.tsx:547
-#: desktop/src/pages/SettingsPreferences.tsx:550
+#: desktop/src/pages/SettingsPreferences.tsx:549
+#: desktop/src/pages/SettingsPreferences.tsx:552
 msgid "Loading…"
 msgstr "Laster inn …"
 
@@ -4844,7 +4844,7 @@ msgid "Scanner engine"
 msgstr "Skannemotor"
 
 #: desktop/src/pages/Overview.tsx:192
-#: desktop/src/pages/SettingsPreferences.tsx:476
+#: desktop/src/pages/SettingsPreferences.tsx:478
 msgid "{count} file"
 msgid_plural "{count} files"
 msgstr[0] "{count} fil"
@@ -4880,8 +4880,8 @@ msgid "See detailed scan history"
 msgstr "Se detaljert skannehistorikk"
 
 #: desktop/src/pages/Preferences.tsx:13
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Behavior"
 msgstr "Oppførsel"
 
@@ -5090,8 +5090,8 @@ msgstr "Kopiere"
 
 #: desktop/src/pages/Profiles.tsx:234 desktop/src/pages/Profiles.tsx:242
 #: desktop/src/pages/Quarantine.tsx:367 desktop/src/pages/Quarantine.tsx:379
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Delete"
 msgstr "Slett"
 
@@ -5722,8 +5722,8 @@ msgstr "Skanner …"
 msgid "Scan with VirusTotal"
 msgstr "Skann med VirusTotal"
 
-#: desktop/src/pages/Scan.tsx:261 desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/Scan.tsx:261 desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "API Key"
 msgstr "API-nøkkel"
 
@@ -6027,8 +6027,8 @@ msgid "Quit completely"
 msgstr "Quit completely"
 
 #: desktop/src/pages/SettingsPreferences.tsx:139
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Always ask"
 msgstr "Spør alltid"
 
@@ -6082,49 +6082,61 @@ msgstr "Suggested documentation"
 msgid ""
 "These links explain the rule format. Nothing is downloaded or enabled "
 "automatically; add only rules you have reviewed."
-msgstr "These links explain the rule format. Nothing is downloaded or enabled automatically; add only rules you have reviewed."
+msgstr ""
+"These links explain the rule format. Nothing is downloaded or enabled "
+"automatically; add only rules you have reviewed."
 
-#: desktop/src/pages/SettingsPreferences.tsx:218
+#: desktop/src/pages/SettingsPreferences.tsx:216
+msgid "Copy example rules"
+msgstr "Copy example rules"
+
+#: desktop/src/pages/SettingsPreferences.tsx:217
+msgid ""
+"The example is ClamAV-compatible and inert until you copy it into your rules "
+"folder as a .yar file and review it."
+msgstr "The example is ClamAV-compatible and inert until you copy it into your rules folder as a .yar file and review it."
+
+#: desktop/src/pages/SettingsPreferences.tsx:220
 msgid "Choose Folder"
 msgstr "Velg mappe"
 
-#: desktop/src/pages/SettingsPreferences.tsx:219
+#: desktop/src/pages/SettingsPreferences.tsx:221
 msgid "Open Folder"
 msgstr "Åpne mappe"
 
-#: desktop/src/pages/SettingsPreferences.tsx:247
+#: desktop/src/pages/SettingsPreferences.tsx:249
 msgid "Unable to read file manager integrations: {error}"
 msgstr "Kan ikke lese filbehandlingsintegrasjoner: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:264
+#: desktop/src/pages/SettingsPreferences.tsx:266
 msgid "{name} integration removed"
 msgstr "{name}-integrasjonen er fjernet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:266
+#: desktop/src/pages/SettingsPreferences.tsx:268
 msgid "{name} integration repaired"
 msgstr "{name}-integrasjon reparert"
 
-#: desktop/src/pages/SettingsPreferences.tsx:267
+#: desktop/src/pages/SettingsPreferences.tsx:269
 msgid "{name} integration installed"
 msgstr "{name}-integrasjon installert"
 
-#: desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/pages/SettingsPreferences.tsx:272
 msgid "install"
 msgstr "install"
 
-#: desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/pages/SettingsPreferences.tsx:272
 msgid "repair"
 msgstr "repair"
 
-#: desktop/src/pages/SettingsPreferences.tsx:270
+#: desktop/src/pages/SettingsPreferences.tsx:272
 msgid "remove"
 msgstr "remove"
 
-#: desktop/src/pages/SettingsPreferences.tsx:271
+#: desktop/src/pages/SettingsPreferences.tsx:273
 msgid "Integration {action} failed: {error}"
 msgstr "Integrasjon {action} mislyktes: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:283
+#: desktop/src/pages/SettingsPreferences.tsx:285
 msgid ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
@@ -6132,36 +6144,36 @@ msgstr ""
 "Override the application language. Restart Linux Defender to apply a "
 "language change."
 
-#: desktop/src/pages/SettingsPreferences.tsx:285
+#: desktop/src/pages/SettingsPreferences.tsx:287
 msgid "Restart Linux Defender to apply the new language"
 msgstr "Restart Linux Defender to apply the new language"
 
-#: desktop/src/pages/SettingsPreferences.tsx:286
+#: desktop/src/pages/SettingsPreferences.tsx:288
 msgid "Automatic (System)"
 msgstr "Automatisk (system)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:288
-#: desktop/src/pages/SettingsPreferences.tsx:291
+#: desktop/src/pages/SettingsPreferences.tsx:290
+#: desktop/src/pages/SettingsPreferences.tsx:293
 msgid "Window Behavior"
 msgstr "Vindusoppførsel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:288
+#: desktop/src/pages/SettingsPreferences.tsx:290
 msgid "Configure what happens when closing the main window."
 msgstr "Konfigurer hva som skjer når du lukker hovedvinduet."
 
-#: desktop/src/pages/SettingsPreferences.tsx:289
+#: desktop/src/pages/SettingsPreferences.tsx:291
 msgid "When closing window"
 msgstr "Når vinduet lukkes"
 
-#: desktop/src/pages/SettingsPreferences.tsx:290
+#: desktop/src/pages/SettingsPreferences.tsx:292
 msgid "Start in System Tray"
 msgstr "Start i varslingsområdet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:290
+#: desktop/src/pages/SettingsPreferences.tsx:292
 msgid "Launch in the background and show only the tray icon."
 msgstr "Start i bakgrunnen og vis bare ikonet i varslingsområdet."
 
-#: desktop/src/pages/SettingsPreferences.tsx:291
+#: desktop/src/pages/SettingsPreferences.tsx:293
 msgid ""
 "System tray is not available. Window behavior settings require an active "
 "system tray."
@@ -6169,31 +6181,31 @@ msgstr ""
 "Varslingsområdet er ikke tilgjengelig. Innstillinger for vindusoppførsel "
 "krever et aktivt varslingsområde."
 
-#: desktop/src/pages/SettingsPreferences.tsx:292
+#: desktop/src/pages/SettingsPreferences.tsx:294
 msgid "Scan Behavior"
 msgstr "Skanneoppførsel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:293
+#: desktop/src/pages/SettingsPreferences.tsx:295
 msgid "Show Live Scan Progress"
 msgstr "Vis skannefremdrift fortløpende"
 
-#: desktop/src/pages/SettingsPreferences.tsx:293
+#: desktop/src/pages/SettingsPreferences.tsx:295
 msgid "Display files being scanned in real time."
 msgstr "Vis filer som skannes i sanntid."
 
-#: desktop/src/pages/SettingsPreferences.tsx:294
+#: desktop/src/pages/SettingsPreferences.tsx:296
 msgid "Desktop Notifications"
 msgstr "Skrivebordsvarsler"
 
-#: desktop/src/pages/SettingsPreferences.tsx:294
+#: desktop/src/pages/SettingsPreferences.tsx:296
 msgid "Allow scan, update, device, and VirusTotal notifications."
 msgstr "Tillat skanning, oppdatering, enhet og VirusTotal-varsler."
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
+#: desktop/src/pages/SettingsPreferences.tsx:299
 msgid "Update inactivity timeout (minutes)"
 msgstr "Tidsgrense for inaktiv oppdatering (minutter)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:297
+#: desktop/src/pages/SettingsPreferences.tsx:299
 msgid ""
 "Minutes without output before stopping a manual database update. Active "
 "updates have no total time limit."
@@ -6201,68 +6213,68 @@ msgstr ""
 "Minutes without output before stopping a manual database update.Active "
 "updates have no total time limit."
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
-#: desktop/src/pages/SettingsPreferences.tsx:311
+#: desktop/src/pages/SettingsPreferences.tsx:312
+#: desktop/src/pages/SettingsPreferences.tsx:313
 msgid "File Manager Integration"
 msgstr "Integrasjon med filbehandleren"
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
+#: desktop/src/pages/SettingsPreferences.tsx:312
 msgid "Add context menu actions for supported file managers."
 msgstr "Legg til kontekstmenyhandlinger for støttede filbehandlere."
 
-#: desktop/src/pages/SettingsPreferences.tsx:310
+#: desktop/src/pages/SettingsPreferences.tsx:312
 msgid "Configure Integration"
 msgstr "Sett opp integrasjon"
 
 #. Translators: 'Scan with Linux Defender' is the installed file-manager menu label; keep it in English.
-#: desktop/src/pages/SettingsPreferences.tsx:312
+#: desktop/src/pages/SettingsPreferences.tsx:314
 msgid ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 msgstr ""
 "Install, repair, or remove 'Scan with Linux Defender' context menu actions."
 
-#: desktop/src/pages/SettingsPreferences.tsx:321
+#: desktop/src/pages/SettingsPreferences.tsx:323
 msgid "Partially installed"
 msgstr "Delvis installert"
 
-#: desktop/src/pages/SettingsPreferences.tsx:323
+#: desktop/src/pages/SettingsPreferences.tsx:325
 msgid "Not available"
 msgstr "Ikke tilgjengelig"
 
-#: desktop/src/pages/SettingsPreferences.tsx:323
+#: desktop/src/pages/SettingsPreferences.tsx:325
 msgid "missing"
 msgstr "mangler"
 
-#: desktop/src/pages/SettingsPreferences.tsx:324
+#: desktop/src/pages/SettingsPreferences.tsx:326
 msgid "Repair"
 msgstr "Reparer"
 
-#: desktop/src/pages/SettingsPreferences.tsx:324
+#: desktop/src/pages/SettingsPreferences.tsx:326
 msgid "Install"
 msgstr "Install"
 
-#: desktop/src/pages/SettingsPreferences.tsx:351
+#: desktop/src/pages/SettingsPreferences.tsx:353
 msgid "This exclusion already exists"
 msgstr "Denne ekskluderingen eksisterer allerede"
 
-#: desktop/src/pages/SettingsPreferences.tsx:367
+#: desktop/src/pages/SettingsPreferences.tsx:369
 msgid "Unable to choose exclusions: {error}"
 msgstr "Kan ikke velge ekskluderinger: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:376
+#: desktop/src/pages/SettingsPreferences.tsx:378
 msgid "Preset Exclusions"
 msgstr "Forhåndsinnstilte ekskluderinger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:376
+#: desktop/src/pages/SettingsPreferences.tsx:378
 msgid "Common directories to exclude from scanning. Changes save immediately."
 msgstr ""
 "Vanlige mapper å ekskludere fra skanning. Endringer lagres umiddelbart."
 
-#: desktop/src/pages/SettingsPreferences.tsx:387
+#: desktop/src/pages/SettingsPreferences.tsx:389
 msgid "Custom Exclusions"
 msgstr "Egendefinerte ekskluderinger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:387
+#: desktop/src/pages/SettingsPreferences.tsx:389
 msgid ""
 "Select files or folders, or enter an absolute file path or pattern. Changes "
 "save immediately."
@@ -6270,88 +6282,88 @@ msgstr ""
 "Velg filer eller mapper, eller skriv inn en absolutt filbane eller et "
 "mønster. Endringer lagres umiddelbart."
 
-#: desktop/src/pages/SettingsPreferences.tsx:393
+#: desktop/src/pages/SettingsPreferences.tsx:395
 msgid "/path/to/exclude or *.tmp"
 msgstr "/path/to/exclude eller *.tmp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:401
+#: desktop/src/pages/SettingsPreferences.tsx:403
 msgid "Remove {pattern}"
 msgstr "Fjern {pattern}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "General"
 msgstr "Generelt"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Automatically scan storage devices when they are connected."
 msgstr "Skann automatisk lagringsenheter når de er tilkoblet."
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Enable Device Auto-Scan"
 msgstr "Slå på automatisk skanning av enheter"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Device Types"
 msgstr "Enhetstyper"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Select which kinds of mounted devices may be scanned."
 msgstr "Velg hvilke typer monterte enheter som kan skannes."
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Options"
 msgstr "Alternativer"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Max Device Size (GB)"
 msgstr "Maks enhetsstørrelse (GB)"
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "0 means no size limit; devices larger than 10,000 GB are not accepted."
 msgstr ""
 "0 betyr ingen størrelsesgrense; enheter større enn 10 000 GB godtas ikke."
 
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Scan Delay (seconds)"
 msgstr "Forsinkelse før skanning (sekunder)"
 
 #. Translators: The en dash marks the inclusive 0–60-second delay range; use your language's usual range typography.
-#: desktop/src/pages/SettingsPreferences.tsx:413
+#: desktop/src/pages/SettingsPreferences.tsx:415
 msgid "Wait after mounting before scanning (0–60 seconds)."
 msgstr "Vent etter montering før skanning (0–60 sekunder)."
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Auto-Quarantine Threats"
 msgstr "Sett trusler i karantene automatisk"
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Notifications"
 msgstr "Varsler"
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Show desktop notifications for device scan events."
 msgstr "Vis skrivebordsvarsler for enhetsskanningshendelser."
 
-#: desktop/src/pages/SettingsPreferences.tsx:416
+#: desktop/src/pages/SettingsPreferences.tsx:418
 msgid "Desktop notifications are globally disabled in Behavior."
 msgstr "Skrivebordsvarsler er globalt deaktivert i Oppførsel."
 
-#: desktop/src/pages/SettingsPreferences.tsx:429
+#: desktop/src/pages/SettingsPreferences.tsx:431
 msgid "VirusTotal API keys must be exactly 64 hexadecimal characters"
 msgstr "VirusTotal-API-nøkler må inneholde nøyaktig 64 heksadesimale tegn"
 
-#: desktop/src/pages/SettingsPreferences.tsx:432
-#: desktop/src/pages/SettingsPreferences.tsx:459
+#: desktop/src/pages/SettingsPreferences.tsx:434
+#: desktop/src/pages/SettingsPreferences.tsx:461
 msgid "Unable to save the API key"
 msgstr "Kan ikke lagre API-nøkkelen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:438
-#: desktop/src/pages/SettingsPreferences.tsx:465
+#: desktop/src/pages/SettingsPreferences.tsx:440
+#: desktop/src/pages/SettingsPreferences.tsx:467
 msgid "Unable to delete the API key"
 msgstr "Kan ikke slette API-nøkkelen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid ""
 "Keys are stored in the operating system keyring or the explicitly enabled "
 "compatibility fallback; they are never returned to the interface."
@@ -6359,72 +6371,72 @@ msgstr ""
 "Nøkler lagres i operativsystemets nøkkelring eller den eksplisitt aktiverte "
 "kompatibilitetsreserven; de blir aldri returnert til grensesnittet."
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 #: desktop/src/pages/Urlscan.tsx:39
 msgid "Configured ({masked}) using {backend}"
 msgstr "Konfigurert ({masked}) med {backend}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 #: desktop/src/pages/Urlscan.tsx:40
 msgid "masked"
 msgstr "maskert"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Keyring is locked"
 msgstr "Nøkkelringen er låst"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Keyring unavailable"
 msgstr "Nøkkelringen er utilgjengelig"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 #: desktop/src/pages/Urlscan.tsx:46
 msgid "Not configured"
 msgstr "Ikke satt opp"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "Exactly 64 hexadecimal characters."
 msgstr "Nøyaktig 64 heksadesimale tegn."
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Save Key"
 msgstr "Lagre nøkkel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "Get a free API key"
 msgstr "Skaff en gratis API-nøkkel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Delete Key"
 msgstr "Slett nøkkel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "When API key is missing"
 msgstr "Når API-nøkkelen mangler"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "Open VirusTotal website"
 msgstr "Åpne nettstedet til VirusTotal"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Show notification only"
 msgstr "Bare vis et varsel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:443
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Information"
 msgstr "Informasjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid ""
 "Free tier: 4 requests per minute, 500 per day. Files up to 650 MB can be "
 "scanned."
@@ -6432,11 +6444,11 @@ msgstr ""
 "Gratis nivå: 4 forespørsler per minutt, 500 per dag. Filer på opptil 650 MB "
 "kan skannes."
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid "Delete VirusTotal API key"
 msgstr "Slett VirusTotal API-nøkkel"
 
-#: desktop/src/pages/SettingsPreferences.tsx:441
+#: desktop/src/pages/SettingsPreferences.tsx:443
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "use VirusTotal scanning."
@@ -6444,29 +6456,29 @@ msgstr ""
 "Dette fjerner nøkkelen fra sikker lagring. Du må angi den på nytt for å "
 "bruke VirusTotal-skanning."
 
-#: desktop/src/pages/SettingsPreferences.tsx:455
+#: desktop/src/pages/SettingsPreferences.tsx:457
 #: desktop/src/pages/Urlscan.tsx:92
 msgid "Enter your urlscan API key."
 msgstr "Enter your urlscan API key."
 
-#: desktop/src/pages/SettingsPreferences.tsx:456
+#: desktop/src/pages/SettingsPreferences.tsx:458
 msgid "The urlscan API key cannot contain spaces."
 msgstr "The urlscan API key cannot contain spaces."
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Paste the API key from your urlscan.io account settings."
 msgstr "Paste the API key from your urlscan.io account settings."
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 #: desktop/src/pages/Urlscan.tsx:214
 msgid "Get an API key"
 msgstr "Get an API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Open urlscan.io website"
 msgstr "Åpne urlscan.io-nettstedet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
@@ -6474,7 +6486,7 @@ msgstr ""
 "urlscan.io visits websites in a remote browser and records page activity. It "
 "is not a local file scan or an antivirus verdict."
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid ""
 "Submitting a URL shares it with urlscan.io, including its query string, and "
 "can expose private or internal addresses. Never submit login links, session "
@@ -6484,11 +6496,11 @@ msgstr ""
 "can expose private or internal addresses. Never submit login links, session "
 "tokens, or confidential information."
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid "Delete urlscan.io API key"
 msgstr "Delete urlscan.io API key"
 
-#: desktop/src/pages/SettingsPreferences.tsx:468
+#: desktop/src/pages/SettingsPreferences.tsx:470
 msgid ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
@@ -6496,182 +6508,182 @@ msgstr ""
 "This removes the key from secure storage. You will need to enter it again to "
 "submit URLs to urlscan.io."
 
-#: desktop/src/pages/SettingsPreferences.tsx:483
+#: desktop/src/pages/SettingsPreferences.tsx:485
 msgid "Unable to read debug logs: {error}"
 msgstr "Kan ikke lese feilsøkingslogger: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:491
+#: desktop/src/pages/SettingsPreferences.tsx:493
 msgid "Unable to read system information: {error}"
 msgstr "Kan ikke lese systeminformasjon: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:498
+#: desktop/src/pages/SettingsPreferences.tsx:500
 msgid "ZIP archives"
 msgstr "ZIP-arkiver"
 
-#: desktop/src/pages/SettingsPreferences.tsx:499
+#: desktop/src/pages/SettingsPreferences.tsx:501
 msgid "All files"
 msgstr "Alle filer"
 
-#: desktop/src/pages/SettingsPreferences.tsx:501
+#: desktop/src/pages/SettingsPreferences.tsx:503
 msgid "Logs exported successfully"
 msgstr "Loggene er eksportert"
 
-#: desktop/src/pages/SettingsPreferences.tsx:503
+#: desktop/src/pages/SettingsPreferences.tsx:505
 msgid "Unable to export logs: {error}"
 msgstr "Kan ikke eksportere logger: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:515
+#: desktop/src/pages/SettingsPreferences.tsx:517
 msgid "{count} log file cleared"
 msgid_plural "{count} log files cleared"
 msgstr[0] "{count} loggfil er slettet"
 msgstr[1] "{count} loggfiler er slettet"
 
-#: desktop/src/pages/SettingsPreferences.tsx:518
+#: desktop/src/pages/SettingsPreferences.tsx:520
 msgid "Unable to clear logs: {error}"
 msgstr "Kan ikke tømme logger: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:525
+#: desktop/src/pages/SettingsPreferences.tsx:527
 msgid "Linux Defender System Information"
 msgstr "Linux Defender System Information"
 
-#: desktop/src/pages/SettingsPreferences.tsx:527
+#: desktop/src/pages/SettingsPreferences.tsx:529
 msgid "Installation Type: {value}"
 msgstr "Installasjonstype: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:528
+#: desktop/src/pages/SettingsPreferences.tsx:530
 msgid "Distribution: {value}"
 msgstr "Distribusjon: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:529
+#: desktop/src/pages/SettingsPreferences.tsx:531
 msgid "Desktop Environment: {value}"
 msgstr "Skrivebordsmiljø: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:530
+#: desktop/src/pages/SettingsPreferences.tsx:532
 msgid "Rust Runtime: {value}"
 msgstr "Rust kjøretid: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:531
+#: desktop/src/pages/SettingsPreferences.tsx:533
 msgid "Tauri Runtime: {value}"
 msgstr "Tauri kjøretid: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:532
+#: desktop/src/pages/SettingsPreferences.tsx:534
 msgid "Platform: {value}"
 msgstr "Plattform: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:533
+#: desktop/src/pages/SettingsPreferences.tsx:535
 msgid "Architecture: {value}"
 msgstr "Arkitektur: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:534
+#: desktop/src/pages/SettingsPreferences.tsx:536
 msgid "Version: {value}"
 msgstr "Versjon: {value}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:538
+#: desktop/src/pages/SettingsPreferences.tsx:540
 msgid "System information copied to clipboard"
 msgstr "Systeminformasjonen er kopiert til utklippstavlen"
 
-#: desktop/src/pages/SettingsPreferences.tsx:540
+#: desktop/src/pages/SettingsPreferences.tsx:542
 msgid "Unable to copy system information: {error}"
 msgstr "Kan ikke kopiere systeminformasjon: {error}"
 
-#: desktop/src/pages/SettingsPreferences.tsx:545
+#: desktop/src/pages/SettingsPreferences.tsx:547
 msgid "Logging Settings"
 msgstr "Logginnstillinger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:545
+#: desktop/src/pages/SettingsPreferences.tsx:547
 msgid "Higher levels produce more detailed logs and apply immediately."
 msgstr "Høyere nivåer produserer mer detaljerte logger og gjelder umiddelbart."
 
-#: desktop/src/pages/SettingsPreferences.tsx:546
+#: desktop/src/pages/SettingsPreferences.tsx:548
 msgid "Log Level"
 msgstr "Loggnivå"
 
-#: desktop/src/pages/SettingsPreferences.tsx:547
+#: desktop/src/pages/SettingsPreferences.tsx:549
 msgid "Log File Location"
 msgstr "Plassering av loggfiler"
 
-#: desktop/src/pages/SettingsPreferences.tsx:549
+#: desktop/src/pages/SettingsPreferences.tsx:551
 msgid "Log Management"
 msgstr "Loggadministrasjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:549
+#: desktop/src/pages/SettingsPreferences.tsx:551
 msgid ""
 "Export a ZIP archive for support or permanently clear the application logs."
 msgstr "Eksporter et ZIP-arkiv for støtte eller tøm programloggene permanent."
 
-#: desktop/src/pages/SettingsPreferences.tsx:550
+#: desktop/src/pages/SettingsPreferences.tsx:552
 msgid "Current Log Size"
 msgstr "Nåværende loggstørrelse"
 
-#: desktop/src/pages/SettingsPreferences.tsx:551
+#: desktop/src/pages/SettingsPreferences.tsx:553
 msgid "Export Logs"
 msgstr "Eksporter logger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:551
+#: desktop/src/pages/SettingsPreferences.tsx:553
 msgid "Save all sanitized debug logs to a ZIP archive."
 msgstr "Lagre alle rensede feilsøkingslogger i et ZIP-arkiv."
 
-#: desktop/src/pages/SettingsPreferences.tsx:552
+#: desktop/src/pages/SettingsPreferences.tsx:554
 msgid "Clear Logs"
 msgstr "Tøm logger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:552
+#: desktop/src/pages/SettingsPreferences.tsx:554
 msgid "This permanently deletes all debug log files."
 msgstr "Dette sletter alle feilsøkingsloggfiler permanent."
 
-#: desktop/src/pages/SettingsPreferences.tsx:552
+#: desktop/src/pages/SettingsPreferences.tsx:554
 msgid "Clear"
 msgstr "Tøm"
 
-#: desktop/src/pages/SettingsPreferences.tsx:554
+#: desktop/src/pages/SettingsPreferences.tsx:556
 msgid "System Information"
 msgstr "Systeminformasjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:554
+#: desktop/src/pages/SettingsPreferences.tsx:556
 msgid "Useful for troubleshooting and bug reports."
 msgstr "Nyttig for feilsøking og feilrapporter."
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Installation Type"
 msgstr "Installasjonstype"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Distribution"
 msgstr "Distribusjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Desktop Environment"
 msgstr "Skrivebordsmiljø"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Rust Runtime"
 msgstr "Rust-kjøretid"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Tauri Runtime"
 msgstr "Tauri-kjøretid"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Platform"
 msgstr "Plattform"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Copy System Info"
 msgstr "Kopier systeminformasjon"
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Copy all system information to the clipboard."
 msgstr "Kopier all systeminformasjon til utklippstavlen."
 
-#: desktop/src/pages/SettingsPreferences.tsx:555
+#: desktop/src/pages/SettingsPreferences.tsx:557
 msgid "Loading system information…"
 msgstr "Laster inn systeminformasjon …"
 
-#: desktop/src/pages/SettingsPreferences.tsx:557
+#: desktop/src/pages/SettingsPreferences.tsx:559
 msgid "Clear logs"
 msgstr "Tøm logger"
 
-#: desktop/src/pages/SettingsPreferences.tsx:557
+#: desktop/src/pages/SettingsPreferences.tsx:559
 msgid ""
 "This permanently deletes {count} log file totaling {size}. This action "
 "cannot be undone."
@@ -6685,7 +6697,7 @@ msgstr[1] ""
 "Dette sletter permanent {count} loggfiler på totalt {size}. Denne handlingen "
 "kan ikke angres."
 
-#: desktop/src/pages/SettingsPreferences.tsx:557
+#: desktop/src/pages/SettingsPreferences.tsx:559
 msgid "Delete Logs"
 msgstr "Slett logger"
 
