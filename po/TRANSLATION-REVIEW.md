@@ -10,16 +10,16 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1476 translated messages. | 51 |
-| en | 1476 translated messages. | baseline |
-| es | 1476 translated messages. | 52 |
-| fr | 1476 translated messages. | 52 |
-| hu | 1476 translated messages. | 52 |
-| it | 1476 translated messages. | 52 |
-| nb | 1476 translated messages. | 52 |
-| pt_BR | 1476 translated messages. | 52 |
-| vi | 1476 translated messages. | 60 |
-| zh_CN | 1476 translated messages. | 52 |
+| de | 1478 translated messages. | 52 |
+| en | 1478 translated messages. | baseline |
+| es | 1478 translated messages. | 53 |
+| fr | 1478 translated messages. | 53 |
+| hu | 1478 translated messages. | 53 |
+| it | 1478 translated messages. | 53 |
+| nb | 1478 translated messages. | 53 |
+| pt_BR | 1478 translated messages. | 53 |
+| vi | 1478 translated messages. | 61 |
+| zh_CN | 1478 translated messages. | 53 |
 
 ## de
 
@@ -52,6 +52,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
@@ -62,8 +63,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
 - `UFW is inactive, but another firewall manager is active and protecting the system.`
-- `URL must use HTTP or HTTPS and cannot contain login credentials`
-- … 11 more
+- … 12 more
 
 ## es
 
@@ -96,6 +96,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
@@ -106,8 +107,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
 - `UFW is inactive, but another firewall manager is active and protecting the system.`
-- `URL must use HTTP or HTTPS and cannot contain login credentials`
-- … 12 more
+- … 13 more
 
 ## fr
 
@@ -140,6 +140,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
@@ -150,8 +151,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
 - `UFW is inactive, but another firewall manager is active and protecting the system.`
-- `URL must use HTTP or HTTPS and cannot contain login credentials`
-- … 12 more
+- … 13 more
 
 ## hu
 
@@ -184,6 +184,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
@@ -194,8 +195,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
 - `UFW is inactive, but another firewall manager is active and protecting the system.`
-- `URL must use HTTP or HTTPS and cannot contain login credentials`
-- … 12 more
+- … 13 more
 
 ## it
 
@@ -228,6 +228,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
@@ -238,8 +239,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
 - `UFW is inactive, but another firewall manager is active and protecting the system.`
-- `URL must use HTTP or HTTPS and cannot contain login credentials`
-- … 12 more
+- … 13 more
 
 ## nb
 
@@ -272,6 +272,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
@@ -282,8 +283,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
 - `UFW is inactive, but another firewall manager is active and protecting the system.`
-- `URL must use HTTP or HTTPS and cannot contain login credentials`
-- … 12 more
+- … 13 more
 
 ## pt_BR
 
@@ -316,6 +316,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
@@ -326,8 +327,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
 - `UFW is inactive, but another firewall manager is active and protecting the system.`
-- `URL must use HTTP or HTTPS and cannot contain login credentials`
-- … 12 more
+- … 13 more
 
 ## vi
 
@@ -366,12 +366,12 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `SSL/TLS certificate error. The mirror may have configuration issues.`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
-- `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- … 20 more
+- … 21 more
 
 ## zh_CN
 
@@ -404,6 +404,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
@@ -414,8 +415,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
 - `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
 - `UFW is inactive, but another firewall manager is active and protecting the system.`
-- `URL must use HTTP or HTTPS and cannot contain login credentials`
-- … 12 more
+- … 13 more
 
 ## Review procedure
 

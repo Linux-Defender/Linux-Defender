@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-27 15:16-0500\n"
+"POT-Creation-Date: 2026-11-27 20:05-0500\n"
 "PO-Revision-Date: 2026-10-20 10:21+0200\n"
 "Last-Translator: Linux Defender Contributors\n"
 "Language-Team: German\n"
@@ -4851,6 +4851,14 @@ msgstr "Scan-Protokolle anzeigen"
 #: desktop/src/pages/Overview.tsx:212 desktop/src/pages/Statistics.tsx:134
 msgid "See detailed scan history"
 msgstr "Detaillierten Scan-Verlauf anzeigen"
+
+#: desktop/src/pages/Overview.tsx:218
+msgid "System Security Check"
+msgstr "System Security Check"
+
+#: desktop/src/pages/Overview.tsx:218
+msgid "Run Lynis, chkrootkit, and rkhunter with administrator authorization"
+msgstr "Run Lynis, chkrootkit, and rkhunter with administrator authorization"
 
 #: desktop/src/pages/Preferences.tsx:13
 #: desktop/src/pages/SettingsPreferences.tsx:428

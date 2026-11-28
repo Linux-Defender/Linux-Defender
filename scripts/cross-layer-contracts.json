@@ -346,7 +346,8 @@
         ],
         "frontend": [
           "rkhunter",
-          "Run all security scans"
+          "Run all security scans",
+          "System Security Check"
         ],
         "site": [
           "rkhunter",

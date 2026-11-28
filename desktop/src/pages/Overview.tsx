@@ -214,6 +214,9 @@ export default function Overview({ active }: { active: boolean }) {
           <button className="group-row" type="button" onClick={() => navigate("quarantine")}>
             {_("Quarantine")}<span>{_("Manage quarantined files")}</span>
           </button>
+          <button className="group-row" type="button" onClick={() => navigate("audit")}>
+            {_("System Security Check")}<span>{_("Run Lynis, chkrootkit, and rkhunter with administrator authorization")}</span>
+          </button>
         </div>
       </section>
     </div>
