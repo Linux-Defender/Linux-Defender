@@ -1,0 +1,19 @@
+{
+  "images": {
+    "screenshots/Linux-Defender-Social-Preview-1280x640.png": "db4623285f49ee11225e32005c2832bfb02104b44636e0f9463ccb8082770d9d",
+    "screenshots/analysis_view.png": "7f91024823b83d68c60ef73b925194e6be395df3a498570429522c89d53f6592",
+    "screenshots/audit_view.png": "7a3b13d54b134b69ea5d3ad2495d8348f62c4bf09eaadb34d5e197ddd9b83b8d",
+    "screenshots/components_view.png": "eed034b60adfbeb01d25e58dcef61b0f38b4be27a6146ace057f184fede8206f",
+    "screenshots/config_view.png": "37bc18563bf5dc0717ac8ad1ee705aee88c3ff6b4ccc024e46e2e5ec19d6e1c6",
+    "screenshots/database_view.png": "e3f5961854008a12f2ab6bb89d1f9501ac7158994046d9d2d3e8d7c92a17d509",
+    "screenshots/history_view.png": "575b64781b0531158e7778ca1ec070524f2cc941154711fa7169e8334939788f",
+    "screenshots/main_view.png": "6b0922e3be34d978acb3c1212876aa035085d985c2890a417f565cc243ecd583",
+    "screenshots/main_view_with_scan_result.png": "346398ec96933ed47116bd6837bae1dd9e02c7e9c26a61fbe8bd1a2fe8f42157",
+    "screenshots/network_view.png": "e42bb56f231d7a4dd843753cc356c3addcc0b6b7d76b0fb4cb9ab7018c0329e2",
+    "screenshots/profile_management.png": "809e91c281d579b778999211f9c6a4b49602ac70481151c0dcd487dc2ca66c01",
+    "screenshots/quarantine_view.png": "12cadf6511777b439499c65e413758d65cb28092799f5a1352360c7f982fd792",
+    "screenshots/results_view.png": "2411102dcd3baa5f917c4264a3f70102bf4e1b496622b4c25ce033d04140c77f",
+    "screenshots/scan_view.png": "71c9e3bd63787367a2a31b5f0e463f47f4b48dcf0018ec6cf5c28f05fab94fc2",
+    "screenshots/social-preview.png": "db4623285f49ee11225e32005c2832bfb02104b44636e0f9463ccb8082770d9d"
+  }
+}

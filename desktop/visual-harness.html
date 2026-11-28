@@ -24,16 +24,47 @@
               id: "quick", name: "Quick Scan", targets: [], exclusions: { paths: [], patterns: [] },
               is_default: true, description: "Fast scan of the Downloads folder for quick threat detection", options: {}
             }] };
-            if (a === "logs.statistics") return {
-              total_scans: 12, files_scanned: 340, threats_detected: 0, clean_scans: 12,
-              average_duration: 1.2, trends: [],
-              protection_status: { level: "protected", message: "No threats found", last_scan_timestamp: "2026-11-25T09:00:00Z" }
-            };
+            if (a === "logs.statistics") {
+              const withThreat = new URLSearchParams(location.search).has("threats");
+              return {
+                total_scans: 12, files_scanned: 340, threats_detected: withThreat ? 1 : 0,
+                clean_scans: withThreat ? 11 : 12, average_duration: 1.2, trends: [],
+                protection_status: {
+                  level: withThreat ? "at_risk" : "protected",
+                  message: withThreat ? "1 threat found" : "No threats found",
+                  last_scan_timestamp: "2026-11-25T09:00:00Z"
+                }
+              };
+            }
             if (a === "scanner.status") return {
               available: true, backend: "clamscan", active_backend: "clamscan",
               configured_backend: "auto", database_available: true,
               daemon_status: { available: false, connected: false, clamdscan_available: false, message: "Daemon not running" }
             };
+            if (a === "updater.status") return {
+              freshclam: { installed: true, version_or_error: "ClamAV 1.5.4", path: "/usr/bin/freshclam" },
+              service: { status: "running", pid: "1234" },
+              database: { available: true, detail: "daily 28194", path: "/var/lib/clamav", age_days: 1,
+                updated_at: "2026-11-27T00:00:00Z", files_detected: 28194, file_names: ["daily.cvd"],
+                base_databases: { main: true, daily: true, bytecode: true }, custom_signatures: 0 }
+            };
+            if (a === "components.status") return {
+              components: [
+                { id: "clamscan", name: "clamscan", status: "available", detail: "ClamAV 1.5.4", version: "1.5.4", install_command: null },
+                { id: "freshclam", name: "freshclam", status: "available", detail: "Ready", version: "1.5.4", install_command: null },
+                { id: "clamd", name: "clamd", status: "unavailable", detail: "Daemon not running", version: null, install_command: null }
+              ],
+              database: { available: true, detail: "daily 28194", path: "/var/lib/clamav" }
+            };
+            if (a === "components.install_commands") return { distro: "arch", commands: {} };
+            if (a === "network.snapshot") return { status: "available", captured_at: "2026-11-27T00:00:00Z", sockets: [], unparsed_lines: 0, limited: false, message: null };
+            if (a === "logs.list" || a === "logs.get" || a === "logs.daemon") return [];
+            if (a === "logs.debug_info") return {};
+            if (a === "quarantine.list") return { entries: [], total_size: 0, entry_count: 0, matched_count: 0, cursor: null, next_cursor: null };
+            if (a === "platform.system_info") return { installation_type: "native", distribution: "CachyOS", desktop_environment: "Sway", platform: "linux", architecture: "x86_64", is_flatpak: false, app_version: "0.6.0", rust_runtime: "stable", tauri_runtime: "2" };
+            if (a === "platform.integrations_status") return { integrations: [] };
+            if (a === "config.load" || a === "config.detect" || a === "config.validate") return {};
+            if (a === "app.credits" || a === "urlhaus.feed_url") return {};
             if (a === "config.needs_elevation") return {};
             if (a === "audit.run") return { timestamp: 0, sections: [
               { category: "clamav_health", title: "ClamAV health", icon_name: "check-circle", overall_status: "pass", checks: [

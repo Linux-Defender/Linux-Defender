@@ -89,3 +89,20 @@ on a mid-tone; use `--accent` in light as `--accent` (#157f3d) already is.
 
 When the mark changes, update the SVG sources and regenerate every PNG so the app
 icon, favicon, and social card stay in step.
+
+### UI screenshots
+
+`screenshots/*.png` are 900×700 captures of the **current Linux Defender UI**,
+not inherited ClamUI material. Regenerate them from `desktop/visual-harness.html`
+served by `bun run --cwd desktop dev`: dispatch a
+`linux-defender-navigate` window event with `{ page, args }`, capture at width
+900, and pad to 900×700. The results capture additionally dispatches
+`linux-defender-scan-result` after navigation; the "with scan result" overview
+uses the harness `?threats` flag. The two social-preview PNGs are copies of
+`website/src/assets/social-preview.png` (the branded card), not upstream art.
+
+`scripts/check-screenshot-branding.py` refuses any pixel change until it has
+been reviewed: every image is pinned by SHA-256 in
+`scripts/screenshot-manifest.json`, and Tesseract OCR additionally rejects the
+old `ClamUI` / `Dashboard` branding when available. Refresh the manifest only
+after inspecting the regenerated images.

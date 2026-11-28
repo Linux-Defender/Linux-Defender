@@ -45,6 +45,7 @@ application runtime dependencies.
 - `scripts/check-release-profile.py` — size-conscious release profile used by every package format.
 - `scripts/check-repo-consistency.py` — versions, identity, workflow/script inventory.
 - `scripts/check-scripts-index.py` — every tracked script is listed in this index.
+- `scripts/check-screenshot-branding.py` — reviewed SHA-256 manifest plus OCR for stale ClamUI/Dashboard screenshots.
 - `scripts/check-signature-feeds.py` — URLhaus export health with key redacted.
 - `scripts/check-signatures.py` — host database age + EICAR.
 - `scripts/check-source-invariants.py` — explicit-apply path, retired event channel, CSP.
@@ -72,4 +73,4 @@ application runtime dependencies.
 - `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).
 - `scripts/validate-sway.sh` — interactive Sway checklist runner.
 - `scripts/hooks/ai-enforcement-context.py`, `scripts/hooks/install-hooks.sh`, `scripts/hooks/pre-commit`, `scripts/hooks/pre-push` — git/AI hooks.
-- `scripts/tests/test_external_links.py`, `scripts/tests/test_release_profile.py`, `scripts/tests/test_update_all.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.
+- `scripts/tests/test_external_links.py`, `scripts/tests/test_release_profile.py`, `scripts/tests/test_update_all.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_screenshot_branding.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.
