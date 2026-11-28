@@ -318,4 +318,6 @@ This section exists so no request from the whole revival conversation is lost. I
 
 | 123 | Upstream PR #378 sync | Reviewed the merged upstream change: AppImage AppDir permission normalization (already ported) and AppStream screenshot refresh. Added 13 current Linux Defender screenshots to AppStream metadata, pinned to this repository commit, and refreshed the parity pin to `9eda12203b1c`; upstream freshness is zero again. |
 
+| 124 | Combined URL inspection | Added a default **Both services** mode to Website URL inspection: one confirmation submits to urlscan.io and VirusTotal, both reports stay visible, and a pure conservative merge helper produces a combined verdict (any detection wins, pending is not clean, single answer is partial) with unit tests. Single-service modes, API-key handling and explicit confirmation are preserved. |
+
 Open (not closable by code alone): human translation decisions on the generated candidate list, deeper interactive tray/menu/minimize behavior on a real desktop, installed-package helper authorization on a packaged install, and real VirusTotal/urlscan requests. The Sway launch/SNI icon is validated; deeper tray interactions remain open. Upstream ClamUI #361 remains an unconfirmed blank-window root cause on Intel/X11 Flatpak; Linux Defender's NVIDIA workaround and React error boundary are not claimed to fix it.

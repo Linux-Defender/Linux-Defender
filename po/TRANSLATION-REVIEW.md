@@ -10,16 +10,16 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1507 translated messages. | 63 |
-| en | 1507 translated messages. | baseline |
-| es | 1507 translated messages. | 64 |
-| fr | 1507 translated messages. | 64 |
-| hu | 1507 translated messages. | 64 |
-| it | 1507 translated messages. | 64 |
-| nb | 1507 translated messages. | 64 |
-| pt_BR | 1507 translated messages. | 64 |
-| vi | 1507 translated messages. | 71 |
-| zh_CN | 1507 translated messages. | 64 |
+| de | 1517 translated messages. | 65 |
+| en | 1517 translated messages. | baseline |
+| es | 1517 translated messages. | 66 |
+| fr | 1517 translated messages. | 66 |
+| hu | 1517 translated messages. | 66 |
+| it | 1517 translated messages. | 66 |
+| nb | 1517 translated messages. | 66 |
+| pt_BR | 1517 translated messages. | 66 |
+| vi | 1517 translated messages. | 73 |
+| zh_CN | 1517 translated messages. | 66 |
 
 ## de
 
@@ -53,6 +53,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `One service did not accept the URL`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
@@ -62,8 +63,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `System keyring is locked; no keyring item was deleted`
-- … 23 more
+- … 25 more
 
 ## es
 
@@ -97,6 +97,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `One service did not accept the URL`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
@@ -106,8 +107,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `System keyring is locked; no keyring item was deleted`
-- … 24 more
+- … 26 more
 
 ## fr
 
@@ -141,6 +141,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `One service did not accept the URL`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
@@ -150,8 +151,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `System keyring is locked; no keyring item was deleted`
-- … 24 more
+- … 26 more
 
 ## hu
 
@@ -185,6 +185,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `One service did not accept the URL`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
@@ -194,8 +195,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `System keyring is locked; no keyring item was deleted`
-- … 24 more
+- … 26 more
 
 ## it
 
@@ -229,6 +229,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `One service did not accept the URL`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
@@ -238,8 +239,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `System keyring is locked; no keyring item was deleted`
-- … 24 more
+- … 26 more
 
 ## nb
 
@@ -273,6 +273,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `One service did not accept the URL`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
@@ -282,8 +283,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `System keyring is locked; no keyring item was deleted`
-- … 24 more
+- … 26 more
 
 ## pt_BR
 
@@ -317,6 +317,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `One service did not accept the URL`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
@@ -326,8 +327,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `System keyring is locked; no keyring item was deleted`
-- … 24 more
+- … 26 more
 
 ## vi
 
@@ -367,11 +367,11 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `One service did not accept the URL`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
-- `Request timed out after retries`
-- … 31 more
+- … 33 more
 
 ## zh_CN
 
@@ -405,6 +405,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
+- `One service did not accept the URL`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
@@ -414,8 +415,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `System keyring is locked; no keyring item was deleted`
-- … 24 more
+- … 26 more
 
 ## Review procedure
 

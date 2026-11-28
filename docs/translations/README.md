@@ -8,7 +8,7 @@ Status and instructions for the **Linux Defender** gettext catalogs.
   locales `de en es fr hu it nb pt_BR vi zh_CN`.
 - **Automated status: green.** `update-pot.sh --check`, `check-potfiles.sh`,
   `check-translations.sh`, `msgfmt -c`, and `msgcmp` all pass. Every active
-  catalog contains all 1,507 source messages.
+  catalog contains all 1,517 source messages.
 - **Human status: still open.** The generated
   [`po/TRANSLATION-REVIEW.md`](../../po/TRANSLATION-REVIEW.md) lists long English
   strings that remain identical in non-English catalogs. Some are legitimate
