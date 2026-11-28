@@ -79,7 +79,7 @@ When running a source build, the helper binary is built next to the desktop exec
 
 ## File-manager action or tray icon is absent
 
-Linux Defender's integration actions depend on the desktop and file-manager version. The in-app **Preferences → Behavior → Configure Integration** manager exists only in the Flatpak build; native packages install the actions through their package scripts. Recheck the manager if you use Flatpak, then restart the affected file manager or desktop session. The tray requires an SNI watcher; GNOME users may need [AppIndicator Support](https://extensions.gnome.org/extension/615/appindicator-support/). Nautilus helper logs under `~/.cache/linux-defender/` record counts and exit status only, never the selected paths. Report the desktop environment and exact file-manager version if an action is missing.
+Linux Defender's integration actions depend on the desktop and file-manager version. The in-app **Preferences → Behavior → Configure Integration** manager exists only in the Flatpak build. DEB, RPM, Snap, AppImage, and AUR install the same actions through their package or builder scripts (AppImage stages the native launcher assets in `usr/share/linux-defender/integrations`). Recheck the manager if you use Flatpak, then restart the affected file manager or desktop session. The tray requires an SNI watcher; GNOME users may need [AppIndicator Support](https://extensions.gnome.org/extension/615/appindicator-support/). Nautilus helper logs under `~/.cache/linux-defender/` record counts and exit status only, never the selected paths. Report the desktop environment and exact file-manager version if an action is missing.
 
 ## Scans are slow or report a false positive
 

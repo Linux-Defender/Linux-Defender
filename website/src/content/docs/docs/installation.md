@@ -9,6 +9,10 @@ Linux Defender **0.6.0 is a development snapshot**. It has no signed Linux Defen
 
 The current source still uses transitional launch, helper, and data identifiers for compatibility. The native source build and the previous Flatpak install use different data locations, but migration from ClamTk's settings, history, schedule, and quarantine is not complete. Keep existing installs and their data backed up while testing this branch.
 
+## Which format?
+
+You do not have to choose from a matrix. All six formats contain the same Linux Defender product — one core, one version, one app id, one host-ClamAV boundary. Run `./scripts/recommend-format.sh` from a source checkout for a read-only recommendation for this host: native DEB or AUR where they exist, the helper RPM plus AppImage on Fedora/RHEL, and AppImage as the universal fallback. Flatpak and Snap add sandboxing or store updates when available.
+
 ## Host ClamAV
 
 Linux Defender calls the host-installed ClamAV tools. Install `clamscan` and `freshclam` using your distribution's package manager. Daemon scans also require `clamd` and `clamdscan`. FreshClam owns the shared signature database through the service or timer configured by your distribution; Linux Defender does not bundle a second database or automatically install arbitrary third-party feeds.

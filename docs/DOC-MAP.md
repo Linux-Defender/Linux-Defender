@@ -66,6 +66,7 @@ complete cross-check that nothing is forgotten or orphaned.
 - [website/src/content/docs/docs/contributing/security](../website/src/content/docs/docs/contributing/security.md)
 - [website/src/content/docs/docs/contributing/signing](../website/src/content/docs/docs/contributing/signing.md)
 - [website/src/content/docs/docs/contributing/translating](../website/src/content/docs/docs/contributing/translating.md)
+- [website/src/content/docs/docs/download](../website/src/content/docs/docs/download.md)
 - [website/src/content/docs/docs/getting-started](../website/src/content/docs/docs/getting-started.md)
 - [website/src/content/docs/docs/guides/faq](../website/src/content/docs/docs/guides/faq.md)
 - [website/src/content/docs/docs/guides/history](../website/src/content/docs/docs/guides/history.md)

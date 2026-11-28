@@ -53,6 +53,18 @@ def check(root: Path = ROOT) -> list[str]:
         if not (root / directory).is_dir():
             failures.append(f"packaging directory {directory} for {fmt} is missing")
 
+    integration_docs = (
+        "README.md",
+        "website/src/content/docs/docs/troubleshooting.md",
+    )
+    for rel in integration_docs:
+        path = root / rel
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        if "Configure Integration" in text and "AppImage" not in text.split("Configure Integration", 1)[1][:600]:
+            failures.append(f"{rel} integration note omits AppImage staging")
+
     release = root / "RELEASE_NOTES.md"
     if release.exists():
         text = release.read_text(encoding="utf-8").lower()

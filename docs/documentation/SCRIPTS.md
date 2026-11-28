@@ -71,6 +71,7 @@ application runtime dependencies.
 - `scripts/capture-all.sh` — one entry point combining the native window and all browser/site captures (site preview: `bun run --cwd website preview`, default `http://127.0.0.1:4321/Linux-Defender/`).
 - `scripts/capture-app-window.sh` — real Tauri/WebKitGTK screenshot.
 - `scripts/capture-browser.mjs` — Playwright capture of every harness view and the site in both color schemes.
+- `scripts/recommend-format.sh` — read-only host detection that recommends one Linux Defender format with a universal fallback.
 - `scripts/inspect-blank-window.py` — read-only local WebKit inspector probe for blank-window diagnosis; never uploads data, and warns that the inspector itself can freeze startup.
 - `scripts/fix-yarn-lock-specs.py` — restores exact-version Yarn lockfile keys for offline Flatpak builds.
 - `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).

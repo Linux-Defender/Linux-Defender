@@ -84,7 +84,7 @@ export default defineConfig({
       sidebar: [
         {
           label: "Start here",
-          items: ["docs", "docs/installation", "docs/getting-started", "docs/troubleshooting"],
+          items: ["docs", "docs/download", "docs/installation", "docs/getting-started", "docs/troubleshooting"],
         },
         {
           label: "Guides",

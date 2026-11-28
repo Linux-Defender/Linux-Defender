@@ -6,7 +6,7 @@
 
 A modern Linux desktop interface for ClamAV, built with Rust, Tauri, and a React frontend.
 
-[Website](https://linux-defender.github.io/Linux-Defender/) · [Documentation](https://linux-defender.github.io/Linux-Defender/docs/) · [Issues](https://github.com/Linux-Defender/Linux-Defender/issues) · [Security](SECURITY.md)
+[Get Linux Defender](website/src/content/docs/docs/download.md) (published at `/Linux-Defender/docs/download/` on the site) · [Website](https://linux-defender.github.io/Linux-Defender/) · [Documentation](https://linux-defender.github.io/Linux-Defender/docs/) · [Issues](https://github.com/Linux-Defender/Linux-Defender/issues) · [Security](SECURITY.md)
 
 [![Build AppImage](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-appimage.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-appimage.yml)
 [![Build AUR](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-aur.yml/badge.svg)](https://github.com/Linux-Defender/Linux-Defender/actions/workflows/build-aur.yml)
@@ -76,7 +76,7 @@ Linux Defender does not bundle an engine or signature database. Scanning, quaran
 - The Rust/Tauri/React foundation provides scanning, quarantine, scheduling, history, database controls, a system audit, and VirusTotal/urlscan integration.
 - Scan supports Files & Folders and Website URL modes with explicit consent before any online submission.
 - Protected host settings go through the version-matched `linux-defender-apply-preferences` helper and Polkit policy; source builds can install the locally built helper from the blocked-settings dialog.
-- File-manager integrations (Nautilus/Nemo/Dolphin/Thunar) and a native SNI/DBusMenu tray ship in every format. The in-app **Preferences → Behavior → Configure Integration** manager is available only in the Flatpak build; native packages install the actions through their package scripts.
+- File-manager integrations (Nautilus/Nemo/Dolphin/Thunar) and a native SNI/DBusMenu tray ship in every format. The in-app **Preferences → Behavior → Configure Integration** manager is available only in the Flatpak build. DEB, RPM, Snap, AppImage, and AUR stage the same file-manager actions through their package or builder scripts; AppImage bundles the native launcher assets under `usr/share/linux-defender/integrations`.
 - Remaining parity work is tracked in [the revival records](docs/revival/RELATED-PROJECT-REVIEW.md) and [the fork status](docs/clamui-fork/STATUS.md).
 
 ## For source development
@@ -107,6 +107,10 @@ See the [development guide](website/src/content/docs/docs/contributing/developme
 - [Revival research index](docs/revival/README.md), [upstream inventory](docs/revival/UPSTREAM-REPOSITORIES.md), [parity matrix](docs/revival/RELATED-PROJECT-REVIEW.md), and [fork status](docs/clamui-fork/STATUS.md) — what was ported, deferred, or superseded.
 - [Full requirement ledger](docs/revival/CHAT-AND-PROJECT-AUDIT.md) — every request and where it is satisfied.
 - [Security policy](SECURITY.md) and [rebrand audit](docs/revival/REBRAND-AUDIT.md) — private reporting and retained upstream notices.
+
+## One product, one choice made for you
+
+All six formats ship the same core, version, app id, host-ClamAV boundary and integration assets — there is no feature fragmentation. Run `./scripts/recommend-format.sh` for a read-only recommendation based on this host; it never installs or downloads anything. Native DEB/RPM give the deepest OS integration, while Flatpak, AppImage and Snap are the cross-distro paths. See [the installation guide](website/src/content/docs/docs/installation.md) for details.
 
 ## Scanner boundary
 

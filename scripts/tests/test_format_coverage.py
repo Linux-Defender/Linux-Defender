@@ -19,6 +19,32 @@ class FormatCoverageTests(unittest.TestCase):
     def test_real_repository_passes(self) -> None:
         self.assertEqual(guard.check(), [])
 
+    def test_universal_entry_is_discoverable(self) -> None:
+        download = ROOT / "website/src/content/docs/docs/download.md"
+        self.assertTrue(download.exists())
+        self.assertIn("docs/download", (ROOT / "website/astro.config.mjs").read_text())
+        self.assertIn("Get Linux Defender", (ROOT / "website/src/components/Hero.astro").read_text())
+        self.assertIn("docs/download/", (ROOT / "README.md").read_text())
+
+    def test_universal_format_chooser_is_linked(self) -> None:
+        self.assertTrue((ROOT / "scripts/recommend-format.sh").exists())
+        self.assertIn("scripts/recommend-format.sh", (ROOT / "docs/documentation/SCRIPTS.md").read_text())
+        self.assertIn("scripts/recommend-format.sh", (ROOT / "README.md").read_text())
+        self.assertIn("scripts/recommend-format.sh", (ROOT / "website/src/content/docs/docs/installation.md").read_text())
+
+    def test_integration_note_must_include_appimage(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="ld-format-") as tmp:
+            root = Path(tmp)
+            for rel in guard.MASTER_DOCS:
+                path = root / rel
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("deb rpm appimage flatpak snap aur; signed; built and verified by CI; source recipes\n")
+            for directory in guard.PACKAGING.values():
+                (root / directory).mkdir(parents=True, exist_ok=True)
+            (root / "README.md").write_text("Configure Integration manager is Flatpak-only; native packages install actions.\n")
+            failures = guard.check(root)
+            self.assertTrue(any("README.md integration note omits AppImage" in f for f in failures))
+
     def test_missing_format_fails_closed(self) -> None:
         with tempfile.TemporaryDirectory(prefix="ld-format-") as tmp:
             root = Path(tmp)
