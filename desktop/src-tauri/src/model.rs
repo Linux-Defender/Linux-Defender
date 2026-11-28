@@ -6,6 +6,7 @@ pub struct StartupState {
     pub virustotal: bool,
     pub tray_available: bool,
     pub version: String,
+    pub debug_log: String,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub active_jobs: Vec<String>,
     #[serde(skip_serializing_if = "Option::is_none")]

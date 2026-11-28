@@ -22,6 +22,16 @@
     return placeholder() === null;
   }
 
+  function debugLogPath() {
+    try {
+      var state = window.__linuxDefenderStartup;
+      if (state && typeof state.debug_log === "string" && state.debug_log) {
+        return state.debug_log;
+      }
+    } catch (ignored) {}
+    return "~/.local/share/linux-defender/debug/linux-defender.log";
+  }
+
   function snapshot() {
     return [
       "readyState=" + document.readyState,
@@ -75,7 +85,7 @@
     show(
       "Linux Defender is still starting after " + STALL_MS / 1000 + " seconds",
       "The window opened but the interface has not appeared. Check the debug log at " +
-        "~/.local/share/linux-defender/debug/linux-defender.log and include this text in a report.\n\n" +
+        debugLogPath() + " and include this text in a report.\n\n" +
         snapshot()
     );
   }, STALL_MS);

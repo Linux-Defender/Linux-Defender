@@ -239,6 +239,7 @@ export type StartupState = {
   virustotal: boolean;
   tray_available: boolean;
   version: string;
+  debug_log?: string;
   active_jobs?: string[];
   accent?: string | null;
 };

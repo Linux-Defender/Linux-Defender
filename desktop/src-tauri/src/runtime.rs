@@ -225,6 +225,9 @@ pub fn run(arguments: Vec<String>) -> Result<(), String> {
             virustotal: targets.virustotal,
             tray_available: false,
             version: env!("CARGO_PKG_VERSION").into(),
+            debug_log: linux_defender_core::logs::debug_log_path(&ctx)
+                .to_string_lossy()
+                .into_owned(),
             active_jobs: Vec::new(),
             accent: None,
         }),
@@ -771,6 +774,9 @@ fn startup_state(app: AppHandle, state: State<'_, AppState>) -> StartupState {
     startup.tray_available = state.tray.available();
     startup.active_jobs = state.active_jobs.snapshot();
     startup.accent = app.state::<crate::accent_color::AccentColor>().current();
+    startup.debug_log = linux_defender_core::logs::debug_log_path(&state.ctx)
+        .to_string_lossy()
+        .into_owned();
     startup
 }
 

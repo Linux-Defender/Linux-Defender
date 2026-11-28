@@ -620,6 +620,12 @@ fn debug_dir(ctx: &Context) -> PathBuf {
     ctx.paths.data_dir.join("debug")
 }
 
+/// Absolute path of the canonical debug log, for native diagnostics that must
+/// respect Flatpak's sandbox-owned data directory.
+pub fn debug_log_path(ctx: &Context) -> PathBuf {
+    debug_dir(ctx).join(DEBUG_FILE)
+}
+
 fn load_entries(ctx: &Context, dir: &Path) -> AppResult<Vec<Value>> {
     if !dir.exists() {
         return Ok(Vec::new());

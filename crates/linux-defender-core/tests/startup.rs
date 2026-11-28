@@ -31,3 +31,10 @@ fn startup_report_does_not_expose_general_dispatch() {
     assert!(dispatch(&context, "app.startup_ready_extra", json!({})).is_err());
     let _ = fs::remove_dir_all(root);
 }
+
+#[test]
+fn debug_log_path_respects_sandbox_data_dir() {
+    let (ctx, _root) = test_context();
+    let path = linux_defender_core::logs::debug_log_path(&ctx);
+    assert_eq!(path, ctx.paths.data_dir.join("debug/linux-defender.log"));
+}

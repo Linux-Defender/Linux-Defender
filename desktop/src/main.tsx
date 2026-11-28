@@ -4,12 +4,19 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import { UiErrorBoundary } from "./UiErrorBoundary";
 import { _, loadCatalog } from "./i18n";
+import { startupState } from "./api";
 import "./styles.css";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error("Linux Defender could not find its application root");
 }
+
+void startupState()
+  .then((state) => {
+    (window as Window & { __linuxDefenderStartup?: unknown }).__linuxDefenderStartup = state;
+  })
+  .catch(() => undefined);
 
 const root = createRoot(rootElement);
 void loadCatalog()
