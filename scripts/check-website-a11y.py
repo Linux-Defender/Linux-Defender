@@ -41,6 +41,7 @@ def check(root: Path = ROOT) -> list[str]:
             "astro:page-load",
             "aria-label",
             "kbd",
+            "String.fromCharCode(10)",
             "aria-hidden",
         ):
             if marker not in text:

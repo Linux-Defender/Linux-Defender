@@ -67,7 +67,7 @@ export default defineConfig({
         },
         {
           tag: "script",
-          content: `(function(){function sync(){var b=document.querySelector('button[data-open-modal]');if(!b)return;Array.prototype.slice.call(b.querySelectorAll('kbd')).forEach(function(k){k.setAttribute('aria-hidden','true')});b.setAttribute('aria-label',b.textContent.replaceAll('\n',' ').replace(/ {2,}/g,' ').trim());}document.addEventListener('DOMContentLoaded',sync);document.addEventListener('astro:page-load',sync);if(document.readyState!=='loading')sync();})();`,
+          content: `(function(){function sync(){var b=document.querySelector('button[data-open-modal]');if(!b)return;Array.prototype.slice.call(b.querySelectorAll('kbd')).forEach(function(k){k.setAttribute('aria-hidden','true')});b.setAttribute('aria-label',b.textContent.split(String.fromCharCode(10)).join(' ').replace(/ {2,}/g,' ').trim());}document.addEventListener('DOMContentLoaded',sync);document.addEventListener('astro:page-load',sync);if(document.readyState!=='loading')sync();setTimeout(sync,700);})();`,
         },
       ],
       logo: {
