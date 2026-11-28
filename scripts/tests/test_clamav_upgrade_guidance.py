@@ -26,6 +26,17 @@ class ClamavUpgradeTests(unittest.TestCase):
             failures = guard.check(root)
             self.assertTrue(any("engine" in f for f in failures))
 
+    def test_host_report_script_is_wired(self) -> None:
+        script = ROOT / "scripts/check-clamav-host.sh"
+        self.assertTrue(script.exists())
+        text = script.read_text()
+        self.assertIn("pacman -Q clamav", text)
+        self.assertIn("for tool in clamscan clamd freshclam", text)
+        self.assertIn("check-signatures.py", text)
+        self.assertNotIn("sudo pacman", text)
+        self.assertIn("scripts/check-clamav-host.sh", (ROOT / "docs/documentation/SCRIPTS.md").read_text())
+        self.assertIn("scripts/check-clamav-host.sh", (ROOT / "website/src/content/docs/docs/troubleshooting.md").read_text())
+
     def test_detection_rate_claim_fails_closed(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

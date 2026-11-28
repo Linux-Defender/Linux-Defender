@@ -76,6 +76,7 @@ python3 scripts/check-yara-boundary.py || fail "YARA boundary"
 python3 scripts/tests/test_yara_boundary.py >/dev/null || fail "YARA guard tests"
 python3 scripts/check-clamav-upgrade-guidance.py || fail "ClamAV upgrade guidance"
 python3 scripts/tests/test_clamav_upgrade_guidance.py >/dev/null || fail "ClamAV upgrade guidance tests"
+bash scripts/check-clamav-host.sh >/dev/null || fail "host ClamAV report"
 
 step "Unused Rust dependencies (cargo machete)"
 if command -v cargo-machete >/dev/null 2>&1; then

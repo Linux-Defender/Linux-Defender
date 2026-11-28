@@ -33,6 +33,7 @@ application runtime dependencies.
 - `scripts/check-file-modes.py` — shebang and Debian maintainer scripts are executable.
 - `scripts/check-format-coverage.py` — all six formats stay documented in every master doc.
 - `scripts/check-clamav-upgrade-guidance.py` — host-owned engine, patch-only 1.5.5 claims, independent signatures.
+- `scripts/check-clamav-host.sh` — read-only installed/repository engine version, daemon state and signature health.
 - `scripts/check-gate-wiring.py` — every checker is wired to a gate and every gate path exists.
 - `scripts/check-install-guidance.py` — every distro and package format stays documented in README/site/format READMEs.
 - `scripts/check-host-tool-guidance.py` — app/site ClamAV commands.
