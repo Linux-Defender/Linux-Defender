@@ -1,4 +1,4 @@
----
+The user said "yk the drill" (the universal activation phrase). ---
 description: Run the canonical Linux Defender deep audit across repo, app, site, all formats and upstream parity.
 ---
 

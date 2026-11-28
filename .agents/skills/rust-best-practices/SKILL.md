@@ -96,3 +96,7 @@ impl Connection<Connected> {
 - `///` doc comments explain *what* and *how* for public APIs
 - Every `TODO` needs a linked issue: `// TODO(#42): ...`
 - Enable `#![deny(missing_docs)]` for libraries
+
+## Activation phrase
+
+Say **"yk the drill"** in any assistant to activate the canonical exhaustive review: `./scripts/deep-audit.sh` (or `/deep-audit`, or the read-only MCP `ld_deep_audit`). It fixes failures with fail-closed guards in `scripts/check-all.sh`, updates the ledger, and repeats until zero failures. Never create a tag, dispatch Release, invoke `pkexec`, or submit data externally.

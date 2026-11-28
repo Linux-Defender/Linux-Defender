@@ -21,3 +21,7 @@ When invoked:
 
 `scripts/check-ai-enforcement-wiring.py` verifies that every adapter (Claude Code hooks, Aider config, this skill, and
 the contributor guides) still reads the canonical file and that no rules are duplicated.
+
+## Activation phrase
+
+Say **"yk the drill"** in any assistant to activate the canonical exhaustive review: `./scripts/deep-audit.sh` (or `/deep-audit`, or the read-only MCP `ld_deep_audit`). It fixes failures with fail-closed guards in `scripts/check-all.sh`, updates the ledger, and repeats until zero failures. Never create a tag, dispatch Release, invoke `pkexec`, or submit data externally.

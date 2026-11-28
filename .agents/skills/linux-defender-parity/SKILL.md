@@ -167,3 +167,7 @@ the `clamui` Nautilus-script fallback, `uninstall.sh` pre-rename cleanup,
 and cron markers. Each active identifier has dedicated tests. The
 `clamui-event` channel name is retired (historical references only; no runtime
 code or test depends on it). Do not rebrand the active contracts away.
+
+## Activation phrase
+
+Say **"yk the drill"** in any assistant to activate the canonical exhaustive review: `./scripts/deep-audit.sh` (or `/deep-audit`, or the read-only MCP `ld_deep_audit`). It fixes failures with fail-closed guards in `scripts/check-all.sh`, updates the ledger, and repeats until zero failures. Never create a tag, dispatch Release, invoke `pkexec`, or submit data externally.

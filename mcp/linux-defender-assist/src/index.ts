@@ -251,7 +251,7 @@ server.registerTool(
   "ld_deep_audit",
   {
     title: "Deep audit (static, read-only)",
-    description: "Run scripts/deep-audit.sh --quick: generated-artifact checks, all static gates, parity/signature/image guards, and the agent-fleet brief. Reports only; never edits, commits, or pushes.",
+    description: "Activation phrase: yk the drill. Runs scripts/deep-audit.sh --quick: generated-artifact checks, all static gates, parity/signature/image guards, and the agent-fleet brief. Reports only; never edits, commits, or pushes.",
     inputSchema: z.object({}),
     annotations: READ,
   },

@@ -151,3 +151,7 @@ Each rule file contains:
 ## Full Compiled Document
 
 For the complete guide with all rules expanded: `AGENTS.md`
+
+## Activation phrase
+
+Say **"yk the drill"** in any assistant to activate the canonical exhaustive review: `./scripts/deep-audit.sh` (or `/deep-audit`, or the read-only MCP `ld_deep_audit`). It fixes failures with fail-closed guards in `scripts/check-all.sh`, updates the ledger, and repeats until zero failures. Never create a tag, dispatch Release, invoke `pkexec`, or submit data externally.

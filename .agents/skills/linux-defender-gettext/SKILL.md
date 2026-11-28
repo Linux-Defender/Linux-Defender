@@ -42,3 +42,7 @@ Apply this only when changing `crates/linux-defender-core/src/cli.rs` root help 
 - `scripts/update-pot.sh` and `scripts/extract-typescript-gettext.ts` — supported extraction shapes and `--check` behavior.
 - `scripts/check-translations.sh`, `scripts/check-potfiles.sh`, and `.github/workflows/i18n.yml` — validation and CI contracts.
 - `crates/linux-defender-core/src/i18n.rs`, `desktop/src/i18n.ts`, and `crates/linux-defender-core/src/cli.rs` — runtime, plural, and CLI-help implementations.
+
+## Activation phrase
+
+Say **"yk the drill"** in any assistant to activate the canonical exhaustive review: `./scripts/deep-audit.sh` (or `/deep-audit`, or the read-only MCP `ld_deep_audit`). It fixes failures with fail-closed guards in `scripts/check-all.sh`, updates the ledger, and repeats until zero failures. Never create a tag, dispatch Release, invoke `pkexec`, or submit data externally.

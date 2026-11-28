@@ -41,6 +41,10 @@ class DeepAuditTests(unittest.TestCase):
         self.assertIn("deep-audit", config["commands"])
         self.assertIn("yk the drill", config["commands"]["deep-audit"]["template"])
         self.assertIn("yk the drill", read(".claude/commands/deep-audit.md").replace("${CLAUDE_PROJECT_DIR}", ""))
+        self.assertIn("yk the drill", read("mcp/linux-defender-assist/src/index.ts"))
+        self.assertIn("yk the drill", read(".claude/plugins/linux-defender-enforcement/commands/deep-audit.md"))
+        for skill in ROOT.glob(".agents/skills/*/SKILL.md"):
+            self.assertIn("yk the drill", skill.read_text(encoding="utf-8"))
         for rel in ("AGENTS.md", "CLAUDE.md", "docs/ai-tooling/README.md"):
             self.assertIn("yk the drill", read(rel))
 

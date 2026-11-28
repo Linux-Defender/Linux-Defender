@@ -467,3 +467,7 @@ See the [screen reader commands reference](references/A11Y-PATTERNS.md#screen-re
 - [Deque axe Rules](https://dequeuniversity.com/rules/axe/)
 - [WCAG criteria reference](references/WCAG.md)
 - [Accessibility code patterns](references/A11Y-PATTERNS.md)
+
+## Activation phrase
+
+Say **"yk the drill"** in any assistant to activate the canonical exhaustive review: `./scripts/deep-audit.sh` (or `/deep-audit`, or the read-only MCP `ld_deep_audit`). It fixes failures with fail-closed guards in `scripts/check-all.sh`, updates the ledger, and repeats until zero failures. Never create a tag, dispatch Release, invoke `pkexec`, or submit data externally.
