@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-28 01:04-0500\n"
+"POT-Creation-Date: 2026-11-28 02:59-0500\n"
 "PO-Revision-Date: 2026-04-27 19:42-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -83,322 +83,322 @@ msgstr "El servicio ClamAV no se está ejecutando"
 msgid "Start the daemon for faster scanning"
 msgstr "Inicie el daemon para acelerar el escaneo"
 
-#: crates/linux-defender-core/src/audit.rs:539
+#: crates/linux-defender-core/src/audit.rs:543
 msgid "Freshclam service is active"
 msgstr "El servicio Freshclam está activo"
 
-#: crates/linux-defender-core/src/audit.rs:547
+#: crates/linux-defender-core/src/audit.rs:551
 msgid "Freshclam automatic update service is not running"
 msgstr ""
 "El servicio de actualización automática de Freshclam no se está ejecutando"
 
-#: crates/linux-defender-core/src/audit.rs:549
+#: crates/linux-defender-core/src/audit.rs:553
 msgid "Enable automatic database updates"
 msgstr "Habilitar las actualizaciones automáticas de la base de datos"
 
-#: crates/linux-defender-core/src/audit.rs:573
+#: crates/linux-defender-core/src/audit.rs:577
 msgid "Scheduled scans are enabled"
 msgstr "Scheduled scans are enabled"
 
-#: crates/linux-defender-core/src/audit.rs:581
+#: crates/linux-defender-core/src/audit.rs:585
 msgid "Scheduled scans are not enabled"
 msgstr "Los análisis programados no están activados"
 
-#: crates/linux-defender-core/src/audit.rs:583
+#: crates/linux-defender-core/src/audit.rs:587
 msgid "Enable scheduled scans in Preferences → Schedule"
 msgstr "Active los análisis programados en Preferencias → Programación"
 
-#: crates/linux-defender-core/src/audit.rs:591
+#: crates/linux-defender-core/src/audit.rs:595
 msgid "No scheduling backend is available on this system"
 msgstr "No hay ningún backend de programación disponible en este sistema"
 
-#: crates/linux-defender-core/src/audit.rs:593
+#: crates/linux-defender-core/src/audit.rs:597
 msgid "Scheduled scans require a systemd user session or cron"
 msgstr ""
 "Los escaneos programados requieren una sesión de usuario systemd o cron"
 
-#: crates/linux-defender-core/src/audit.rs:779
+#: crates/linux-defender-core/src/audit.rs:783
 msgid "Open Ports"
 msgstr "Open Ports"
 
-#: crates/linux-defender-core/src/audit.rs:785
+#: crates/linux-defender-core/src/audit.rs:789
 msgid "{count} port listening, risky ports: {ports}"
 msgid_plural "{count} ports listening, risky ports: {ports}"
 msgstr[0] "{count} puerto a la escucha; puertos de riesgo: {ports}"
 msgstr[1] "{count} puertos a la escucha; puertos de riesgo: {ports}"
 
-#: crates/linux-defender-core/src/audit.rs:796
+#: crates/linux-defender-core/src/audit.rs:800
 msgid "Review if these services need to be exposed"
 msgstr "Compruebe si es necesario dar acceso a estos servicios"
 
-#: crates/linux-defender-core/src/audit.rs:803
+#: crates/linux-defender-core/src/audit.rs:807
 msgid "{count} port listening"
 msgid_plural "{count} ports listening"
 msgstr[0] "{count} puerto a la escucha"
 msgstr[1] "{count} puertos a la escucha"
 
-#: crates/linux-defender-core/src/audit.rs:811
+#: crates/linux-defender-core/src/audit.rs:815
 msgid "Review open ports and close unnecessary services"
 msgstr "Revisar los puertos abiertos y cerrar los servicios innecesarios"
 
-#: crates/linux-defender-core/src/audit.rs:821
+#: crates/linux-defender-core/src/audit.rs:825
 #: crates/linux-defender-core/src/network.rs:220
 msgid "Some network socket rows could not be read."
 msgstr "No se pudieron leer algunas filas de sockets de red."
 
-#: crates/linux-defender-core/src/audit.rs:828
+#: crates/linux-defender-core/src/audit.rs:832
 msgid "No open ports detected"
 msgstr "No se han detectado puertos abiertos"
 
-#: crates/linux-defender-core/src/audit.rs:880
+#: crates/linux-defender-core/src/audit.rs:884
 msgid "AppArmor is enabled"
 msgstr "AppArmor está activado"
 
-#: crates/linux-defender-core/src/audit.rs:890
+#: crates/linux-defender-core/src/audit.rs:894
 msgid "AppArmor module is loaded but not enabled"
 msgstr "El módulo AppArmor está cargado, pero no está habilitado"
 
-#: crates/linux-defender-core/src/audit.rs:892
+#: crates/linux-defender-core/src/audit.rs:896
 msgid "Enable AppArmor for application sandboxing"
 msgstr "Habilitar AppArmor para el aislamiento de aplicaciones"
 
-#: crates/linux-defender-core/src/audit.rs:915
+#: crates/linux-defender-core/src/audit.rs:919
 msgid "SELinux is enforcing"
 msgstr "SELinux está en modo de aplicación estricta"
 
-#: crates/linux-defender-core/src/audit.rs:923
+#: crates/linux-defender-core/src/audit.rs:927
 msgid "SELinux is in permissive mode"
 msgstr "SELinux está en modo permisivo"
 
-#: crates/linux-defender-core/src/audit.rs:925
+#: crates/linux-defender-core/src/audit.rs:929
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr ""
 "Considere cambiar al modo de aplicación estricta para una protección más "
 "sólida"
 
-#: crates/linux-defender-core/src/audit.rs:937
+#: crates/linux-defender-core/src/audit.rs:941
 msgid "SELinux is disabled"
 msgstr "SELinux está desactivado"
 
-#: crates/linux-defender-core/src/audit.rs:939
+#: crates/linux-defender-core/src/audit.rs:943
 msgid "Enable SELinux for mandatory access control"
 msgstr "Habilitar SELinux para el control de acceso obligatorio"
 
-#: crates/linux-defender-core/src/audit.rs:947
-#: crates/linux-defender-core/src/audit.rs:958
+#: crates/linux-defender-core/src/audit.rs:951
+#: crates/linux-defender-core/src/audit.rs:962
 msgid "SELinux status could not be determined"
 msgstr "SELinux status could not be determined"
 
-#: crates/linux-defender-core/src/audit.rs:985
+#: crates/linux-defender-core/src/audit.rs:989
 msgid "Automatic security updates are enabled"
 msgstr "Las actualizaciones de seguridad automáticas están activadas"
 
-#: crates/linux-defender-core/src/audit.rs:996
+#: crates/linux-defender-core/src/audit.rs:1000
 msgid "Unattended upgrades is installed but disabled"
 msgstr "El servicio Unattended Upgrades está instalado, pero desactivado"
 
-#: crates/linux-defender-core/src/audit.rs:998
+#: crates/linux-defender-core/src/audit.rs:1002
 msgid "Enable automatic security updates"
 msgstr "Habilitar las actualizaciones de seguridad automáticas"
 
-#: crates/linux-defender-core/src/audit.rs:1012
+#: crates/linux-defender-core/src/audit.rs:1016
 msgid "DNF automatic updates are enabled"
 msgstr "Las actualizaciones automáticas de DNF están activadas"
 
-#: crates/linux-defender-core/src/audit.rs:1023
+#: crates/linux-defender-core/src/audit.rs:1027
 msgid "DNF automatic is installed but timer is not active"
 msgstr ""
 "El servicio DNF Automatic está instalado, pero el temporizador no está activo"
 
-#: crates/linux-defender-core/src/audit.rs:1025
+#: crates/linux-defender-core/src/audit.rs:1029
 msgid "Enable automatic updates"
 msgstr "Habilitar las actualizaciones automáticas"
 
-#: crates/linux-defender-core/src/audit.rs:1039
+#: crates/linux-defender-core/src/audit.rs:1043
 msgid "Could not determine automatic update status"
 msgstr "No se ha podido determinar el estado de la actualización automática"
 
-#: crates/linux-defender-core/src/audit.rs:1041
+#: crates/linux-defender-core/src/audit.rs:1045
 msgid "Configure automatic security updates"
 msgstr "Configurar las actualizaciones de seguridad automáticas"
 
-#: crates/linux-defender-core/src/audit.rs:1056
+#: crates/linux-defender-core/src/audit.rs:1060
 msgid "System reboot required to apply updates"
 msgstr "Es necesario reiniciar el sistema para aplicar las actualizaciones"
 
-#: crates/linux-defender-core/src/audit.rs:1058
+#: crates/linux-defender-core/src/audit.rs:1062
 msgid "Reboot the system to apply pending security updates"
 msgstr ""
 "Reinicie el sistema para aplicar las actualizaciones de seguridad pendientes"
 
-#: crates/linux-defender-core/src/audit.rs:1104
+#: crates/linux-defender-core/src/audit.rs:1108
 msgid "{name} is installed but not running"
 msgstr "{name} está instalado, pero no se está ejecutando"
 
-#: crates/linux-defender-core/src/audit.rs:1123
+#: crates/linux-defender-core/src/audit.rs:1127
 msgid "No intrusion detection system found"
 msgstr "No se ha encontrado ningún sistema de detección de intrusiones"
 
-#: crates/linux-defender-core/src/audit.rs:1125
+#: crates/linux-defender-core/src/audit.rs:1129
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr "Instale fail2ban o CrowdSec para protegerse contra ataques"
 
-#: crates/linux-defender-core/src/audit.rs:1152
+#: crates/linux-defender-core/src/audit.rs:1156
 msgid "SSH server is not running (no remote attack surface)"
 msgstr ""
 "El servidor SSH no está en funcionamiento (no hay superficie de ataque "
 "remota)"
 
-#: crates/linux-defender-core/src/audit.rs:1163
+#: crates/linux-defender-core/src/audit.rs:1167
 msgid "SSH server is running"
 msgstr "El servidor SSH está en funcionamiento"
 
-#: crates/linux-defender-core/src/audit.rs:1173
+#: crates/linux-defender-core/src/audit.rs:1177
 msgid "Could not read SSH configuration"
 msgstr "No se ha podido leer la configuración de SSH"
 
-#: crates/linux-defender-core/src/audit.rs:1192
+#: crates/linux-defender-core/src/audit.rs:1196
 msgid "Root login: {value}"
 msgstr "Inicio de sesión de root: {value}"
 
-#: crates/linux-defender-core/src/audit.rs:1200
+#: crates/linux-defender-core/src/audit.rs:1204
 msgid "Root login is allowed ({value})"
 msgstr "Se permite el inicio de sesión como root ({value})"
 
-#: crates/linux-defender-core/src/audit.rs:1206
+#: crates/linux-defender-core/src/audit.rs:1210
 msgid "Disable root SSH login for security"
 msgstr ""
 "Desactive el inicio de sesión SSH como usuario root por motivos de seguridad"
 
-#: crates/linux-defender-core/src/audit.rs:1221
+#: crates/linux-defender-core/src/audit.rs:1225
 msgid "Password authentication is disabled (key-only)"
 msgstr "La autenticación mediante contraseña está desactivada (solo con clave)"
 
-#: crates/linux-defender-core/src/audit.rs:1229
+#: crates/linux-defender-core/src/audit.rs:1233
 msgid "Password authentication is enabled"
 msgstr "La autenticación mediante contraseña está activada"
 
-#: crates/linux-defender-core/src/audit.rs:1231
+#: crates/linux-defender-core/src/audit.rs:1235
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr ""
 "Considere deshabilitar la autenticación por contraseña en favor de claves SSH"
 
-#: crates/linux-defender-core/src/audit.rs:1249
+#: crates/linux-defender-core/src/audit.rs:1253
 msgid "X11 forwarding is disabled"
 msgstr "El reenvío de X11 está desactivado"
 
-#: crates/linux-defender-core/src/audit.rs:1257
+#: crates/linux-defender-core/src/audit.rs:1261
 msgid "X11 forwarding is enabled"
 msgstr "El reenvío de X11 está activado"
 
-#: crates/linux-defender-core/src/audit.rs:1259
+#: crates/linux-defender-core/src/audit.rs:1263
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr "Desactive el reenvío de X11 para reducir la superficie de ataque"
 
-#: crates/linux-defender-core/src/audit.rs:1319
+#: crates/linux-defender-core/src/audit.rs:1323
 msgid "Application firewalls"
 msgstr "Application firewalls"
 
-#: crates/linux-defender-core/src/audit.rs:1342
+#: crates/linux-defender-core/src/audit.rs:1346
 msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster se está ejecutando y protege las conexiones"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1365
+#: crates/linux-defender-core/src/audit.rs:1369
 msgid "Authorize Linux Defender in Portmaster for per-module health"
 msgstr ""
 "Autorizar a Linux Defender en Portmaster para consultar el estado de cada "
 "módulo"
 
-#: crates/linux-defender-core/src/audit.rs:1371
+#: crates/linux-defender-core/src/audit.rs:1375
 msgid "Authorize"
 msgstr "Autorizar"
 
-#: crates/linux-defender-core/src/audit.rs:1382
+#: crates/linux-defender-core/src/audit.rs:1386
 msgid "Portmaster is installed but not running"
 msgstr "Portmaster está instalado, pero no se está ejecutando"
 
-#: crates/linux-defender-core/src/audit.rs:1384
+#: crates/linux-defender-core/src/audit.rs:1388
 msgid "Start the Portmaster service to enable network protection"
 msgstr "Inicie el servicio Portmaster para activar la protección de red"
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/linux-defender-core/src/audit.rs:1398
+#: crates/linux-defender-core/src/audit.rs:1402
 msgid "Not detected — optional network monitor and application firewall"
 msgstr "No detectado — monitor de red y cortafuegos de aplicaciones opcional"
 
-#: crates/linux-defender-core/src/audit.rs:1414
+#: crates/linux-defender-core/src/audit.rs:1418
 msgid "Could not probe Portmaster: {error}"
 msgstr "No se pudo sondear Portmaster: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1473
+#: crates/linux-defender-core/src/audit.rs:1477
 msgid "{name} is not installed"
 msgstr "{name} no está instalado"
 
-#: crates/linux-defender-core/src/audit.rs:1480
+#: crates/linux-defender-core/src/audit.rs:1484
 msgid "Install {name} for comprehensive security auditing"
 msgstr "Instale {name} para una auditoría de seguridad exhaustiva"
 
-#: crates/linux-defender-core/src/audit.rs:1486
+#: crates/linux-defender-core/src/audit.rs:1490
 msgid "Install chkrootkit for rootkit detection"
 msgstr "Instale chkrootkit para detectar rootkits"
 
-#: crates/linux-defender-core/src/audit.rs:1489
+#: crates/linux-defender-core/src/audit.rs:1493
 msgid "Install rkhunter for rootkit detection"
 msgstr "Install rkhunter for rootkit detection"
 
-#: crates/linux-defender-core/src/audit.rs:1509
+#: crates/linux-defender-core/src/audit.rs:1513
 msgid "Authentication was cancelled"
 msgstr "Se ha cancelado la autenticación"
 
-#: crates/linux-defender-core/src/audit.rs:1517
+#: crates/linux-defender-core/src/audit.rs:1521
 msgid "Lynis audit timed out after 5 minutes"
 msgstr "La auditoría de Lynis agotó el tiempo de espera tras 5 minutos"
 
-#: crates/linux-defender-core/src/audit.rs:1519
+#: crates/linux-defender-core/src/audit.rs:1523
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr "El análisis de rootkits agotó el tiempo de espera tras 5 minutos"
 
-#: crates/linux-defender-core/src/audit.rs:1538
-#: crates/linux-defender-core/src/audit.rs:1585
+#: crates/linux-defender-core/src/audit.rs:1542
+#: crates/linux-defender-core/src/audit.rs:1589
 msgid "Failed to run Lynis: {error}"
 msgstr "No se pudo ejecutar Lynis: {error}"
 
 #. Translators: Keep `{name}` and `{error}` unchanged; they are placeholders.
-#: crates/linux-defender-core/src/audit.rs:1544
+#: crates/linux-defender-core/src/audit.rs:1548
 msgid "Failed to run {name}: {error}"
 msgstr "Failed to run {name}: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1614
+#: crates/linux-defender-core/src/audit.rs:1618
 msgid "Score: {score}/100"
 msgstr "Puntuación: {score}/100"
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/linux-defender-core/src/audit.rs:1617
+#: crates/linux-defender-core/src/audit.rs:1621
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr ""
 "Ejecute «sudo lynis audit system» para obtener recomendaciones detalladas"
 
-#: crates/linux-defender-core/src/audit.rs:1634
+#: crates/linux-defender-core/src/audit.rs:1638
 msgid "Audit completed (exit code {code})"
 msgstr "Auditoría completada (código de salida {code})"
 
-#: crates/linux-defender-core/src/audit.rs:1688
-#: crates/linux-defender-core/src/audit.rs:1702
+#: crates/linux-defender-core/src/audit.rs:1692
+#: crates/linux-defender-core/src/audit.rs:1706
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr "No se pudo completar el análisis de rootkits (código de salida {code})"
 
-#: crates/linux-defender-core/src/audit.rs:1737
+#: crates/linux-defender-core/src/audit.rs:1741
 msgid "No rootkits detected"
 msgstr "No se han detectado rootkits"
 
-#: crates/linux-defender-core/src/audit.rs:1749
+#: crates/linux-defender-core/src/audit.rs:1753
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] "Se detectó {count} posible rootkit"
 msgstr[1] "Se detectaron {count} posibles rootkits"
 
-#: crates/linux-defender-core/src/audit.rs:1757
+#: crates/linux-defender-core/src/audit.rs:1761
 msgid "Investigate the detected threats immediately"
 msgstr "Investigue inmediatamente las amenazas detectadas"
 

@@ -21,7 +21,8 @@ all of them; adapters only add convenience.
 
 | Adapter | Location | Notes |
 | --- | --- | --- |
-| OpenCode | `opencode.json`, `.editor-adapters/enforcement/` | Instructions plus a configured context-hook adapter that reads the canonical rules at runtime. |
+| OpenCode | `opencode.json`, `.editor-adapters/enforcement/` | Instructions, a configured context-hook adapter that reads the canonical rules at runtime, and `/deep-audit`. |
+| All assistants | `docs/ai-tooling/CONTEXT.md` | Shared vocabulary; the phrase **"yk the drill"** activates the full deep audit everywhere. |
 | Claude Code | `.claude/settings.json`, `.claude/commands/`, `.claude/skills/` | `SessionStart`/`UserPromptSubmit` context, `Stop` checks, pointer skill, capture command. |
 | Claude plugin package | `.claude/plugins/linux-defender-enforcement/` | Optional pointer skill, capture command, reviewer agent; declares **no hooks**. |
 | Aider | `.aider.conf.yml` | Loads `AGENTS.md` and `AI-ENFORCEMENT.md` into every chat. |

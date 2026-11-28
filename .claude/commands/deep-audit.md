@@ -1,0 +1,1 @@
+The user said "yk the drill". Run `${CLAUDE_PROJECT_DIR}/scripts/deep-audit.sh` and read the report. Fix every failure with a fail-closed guard in `scripts/check-all.sh`, update `docs/revival/CHAT-AND-PROJECT-AUDIT.md`, then re-run until zero failures. Use `--quick` for a static-only pass. Never create a tag, dispatch Release, invoke `pkexec`, or submit data externally.

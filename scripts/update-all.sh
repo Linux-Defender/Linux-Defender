@@ -26,6 +26,16 @@ rm -f po/*.po~ po/*.pot~
 echo "== Documentation map =="
 python3 scripts/generate-doc-map.py
 
+if [ "${1:-}" = "--check" ]; then
+    echo "== Verification only =="
+    ./scripts/update-pot.sh --check
+    python3 scripts/generate-translation-review.py --check
+    python3 scripts/generate-doc-map.py --check
+    bash scripts/check-all.sh
+    echo "UPDATE CHECK OK: generated artifacts current and every static check passed"
+    exit 0
+fi
+
 if [ "${1:-}" = "--full" ]; then
     echo "== Locked packaging sources (network/SDK required) =="
     bash scripts/generate-flatpak-sources.sh

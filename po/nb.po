@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: Linux Defender 0.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Linux-Defender/Linux-Defender/"
 "issues\n"
-"POT-Creation-Date: 2026-11-28 01:04-0500\n"
+"POT-Creation-Date: 2026-11-28 02:59-0500\n"
 "PO-Revision-Date: 2026-10-17 12:00+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmål\n"
@@ -133,312 +133,312 @@ msgstr "ClamAV-tjenesten kjører ikke"
 msgid "Start the daemon for faster scanning"
 msgstr "Start tjenesten for raskere skanning"
 
-#: crates/linux-defender-core/src/audit.rs:539
+#: crates/linux-defender-core/src/audit.rs:543
 msgid "Freshclam service is active"
 msgstr "freshclam-tjenesten er aktiv"
 
-#: crates/linux-defender-core/src/audit.rs:547
+#: crates/linux-defender-core/src/audit.rs:551
 msgid "Freshclam automatic update service is not running"
 msgstr "freshclam-tjenesten for automatisk oppdatering kjører ikke"
 
-#: crates/linux-defender-core/src/audit.rs:549
+#: crates/linux-defender-core/src/audit.rs:553
 msgid "Enable automatic database updates"
 msgstr "Slå på automatisk oppdatering av databasen"
 
-#: crates/linux-defender-core/src/audit.rs:573
+#: crates/linux-defender-core/src/audit.rs:577
 msgid "Scheduled scans are enabled"
 msgstr "Scheduled scans are enabled"
 
-#: crates/linux-defender-core/src/audit.rs:581
+#: crates/linux-defender-core/src/audit.rs:585
 msgid "Scheduled scans are not enabled"
 msgstr "Planlagte skanninger er ikke aktivert"
 
-#: crates/linux-defender-core/src/audit.rs:583
+#: crates/linux-defender-core/src/audit.rs:587
 msgid "Enable scheduled scans in Preferences → Schedule"
 msgstr "Aktiver planlagte skanninger under Brukervalg → Rute"
 
-#: crates/linux-defender-core/src/audit.rs:591
+#: crates/linux-defender-core/src/audit.rs:595
 msgid "No scheduling backend is available on this system"
 msgstr "Ingen planleggingsbackend er tilgjengelig på dette systemet"
 
-#: crates/linux-defender-core/src/audit.rs:593
+#: crates/linux-defender-core/src/audit.rs:597
 msgid "Scheduled scans require a systemd user session or cron"
 msgstr "Planlagte skanninger krever systemd-brukersesjon eller cron"
 
-#: crates/linux-defender-core/src/audit.rs:779
+#: crates/linux-defender-core/src/audit.rs:783
 msgid "Open Ports"
 msgstr "Open Ports"
 
-#: crates/linux-defender-core/src/audit.rs:785
+#: crates/linux-defender-core/src/audit.rs:789
 msgid "{count} port listening, risky ports: {ports}"
 msgid_plural "{count} ports listening, risky ports: {ports}"
 msgstr[0] "{count} port lytter, risikable porter: {ports}"
 msgstr[1] "{count} porter lytter, risikable porter: {ports}"
 
-#: crates/linux-defender-core/src/audit.rs:796
+#: crates/linux-defender-core/src/audit.rs:800
 msgid "Review if these services need to be exposed"
 msgstr "Vurder om disse tjenestene må være tilgjengelige utenfra"
 
-#: crates/linux-defender-core/src/audit.rs:803
+#: crates/linux-defender-core/src/audit.rs:807
 msgid "{count} port listening"
 msgid_plural "{count} ports listening"
 msgstr[0] "{count} port lytter"
 msgstr[1] "{count} porter lytter"
 
-#: crates/linux-defender-core/src/audit.rs:811
+#: crates/linux-defender-core/src/audit.rs:815
 msgid "Review open ports and close unnecessary services"
 msgstr "Se over åpne porter og steng unødvendige tjenester"
 
-#: crates/linux-defender-core/src/audit.rs:821
+#: crates/linux-defender-core/src/audit.rs:825
 #: crates/linux-defender-core/src/network.rs:220
 msgid "Some network socket rows could not be read."
 msgstr "Noen nettverkssokkelrader kunne ikke leses."
 
-#: crates/linux-defender-core/src/audit.rs:828
+#: crates/linux-defender-core/src/audit.rs:832
 msgid "No open ports detected"
 msgstr "Fant ingen åpne porter"
 
-#: crates/linux-defender-core/src/audit.rs:880
+#: crates/linux-defender-core/src/audit.rs:884
 msgid "AppArmor is enabled"
 msgstr "AppArmor er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:890
+#: crates/linux-defender-core/src/audit.rs:894
 msgid "AppArmor module is loaded but not enabled"
 msgstr "AppArmor-modulen er lastet, men ikke slått på"
 
-#: crates/linux-defender-core/src/audit.rs:892
+#: crates/linux-defender-core/src/audit.rs:896
 msgid "Enable AppArmor for application sandboxing"
 msgstr "Slå på AppArmor for å isolere programmer"
 
-#: crates/linux-defender-core/src/audit.rs:915
+#: crates/linux-defender-core/src/audit.rs:919
 msgid "SELinux is enforcing"
 msgstr "SELinux håndhever reglene (enforcing)"
 
-#: crates/linux-defender-core/src/audit.rs:923
+#: crates/linux-defender-core/src/audit.rs:927
 msgid "SELinux is in permissive mode"
 msgstr "SELinux er i tillatende modus (permissive)"
 
-#: crates/linux-defender-core/src/audit.rs:925
+#: crates/linux-defender-core/src/audit.rs:929
 msgid "Consider switching to enforcing mode for stronger protection"
 msgstr ""
 "Vurder å bytte til håndhevende modus (enforcing) for sterkere beskyttelse"
 
-#: crates/linux-defender-core/src/audit.rs:937
+#: crates/linux-defender-core/src/audit.rs:941
 msgid "SELinux is disabled"
 msgstr "SELinux er slått av"
 
-#: crates/linux-defender-core/src/audit.rs:939
+#: crates/linux-defender-core/src/audit.rs:943
 msgid "Enable SELinux for mandatory access control"
 msgstr "Slå på SELinux for obligatorisk tilgangskontroll"
 
-#: crates/linux-defender-core/src/audit.rs:947
-#: crates/linux-defender-core/src/audit.rs:958
+#: crates/linux-defender-core/src/audit.rs:951
+#: crates/linux-defender-core/src/audit.rs:962
 msgid "SELinux status could not be determined"
 msgstr "SELinux status could not be determined"
 
-#: crates/linux-defender-core/src/audit.rs:985
+#: crates/linux-defender-core/src/audit.rs:989
 msgid "Automatic security updates are enabled"
 msgstr "Automatiske sikkerhetsoppdateringer er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:996
+#: crates/linux-defender-core/src/audit.rs:1000
 msgid "Unattended upgrades is installed but disabled"
 msgstr "Unattended Upgrades er installert, men slått av"
 
-#: crates/linux-defender-core/src/audit.rs:998
+#: crates/linux-defender-core/src/audit.rs:1002
 msgid "Enable automatic security updates"
 msgstr "Slå på automatiske sikkerhetsoppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:1012
+#: crates/linux-defender-core/src/audit.rs:1016
 msgid "DNF automatic updates are enabled"
 msgstr "Automatiske oppdateringer med DNF er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:1023
+#: crates/linux-defender-core/src/audit.rs:1027
 msgid "DNF automatic is installed but timer is not active"
 msgstr "DNF Automatic er installert, men tidsuret er ikke aktivt"
 
-#: crates/linux-defender-core/src/audit.rs:1025
+#: crates/linux-defender-core/src/audit.rs:1029
 msgid "Enable automatic updates"
 msgstr "Slå på automatiske oppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:1039
+#: crates/linux-defender-core/src/audit.rs:1043
 msgid "Could not determine automatic update status"
 msgstr "Kunne ikke fastslå status for automatiske oppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:1041
+#: crates/linux-defender-core/src/audit.rs:1045
 msgid "Configure automatic security updates"
 msgstr "Sett opp automatiske sikkerhetsoppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:1056
+#: crates/linux-defender-core/src/audit.rs:1060
 msgid "System reboot required to apply updates"
 msgstr "Systemet må startes på nytt for å ta i bruk oppdateringene"
 
-#: crates/linux-defender-core/src/audit.rs:1058
+#: crates/linux-defender-core/src/audit.rs:1062
 msgid "Reboot the system to apply pending security updates"
 msgstr ""
 "Start systemet på nytt for å ta i bruk ventende sikkerhetsoppdateringer"
 
-#: crates/linux-defender-core/src/audit.rs:1104
+#: crates/linux-defender-core/src/audit.rs:1108
 msgid "{name} is installed but not running"
 msgstr "{name} er installert, men kjører ikke"
 
-#: crates/linux-defender-core/src/audit.rs:1123
+#: crates/linux-defender-core/src/audit.rs:1127
 msgid "No intrusion detection system found"
 msgstr "Fant ikke noe system for inntrengingsdeteksjon"
 
-#: crates/linux-defender-core/src/audit.rs:1125
+#: crates/linux-defender-core/src/audit.rs:1129
 msgid "Install fail2ban or CrowdSec to protect against attacks"
 msgstr "Installer fail2ban eller CrowdSec for å beskytte mot angrep"
 
-#: crates/linux-defender-core/src/audit.rs:1152
+#: crates/linux-defender-core/src/audit.rs:1156
 msgid "SSH server is not running (no remote attack surface)"
 msgstr "SSH-serveren kjører ikke (ingen angrepsflate utenfra)"
 
-#: crates/linux-defender-core/src/audit.rs:1163
+#: crates/linux-defender-core/src/audit.rs:1167
 msgid "SSH server is running"
 msgstr "SSH-serveren kjører"
 
-#: crates/linux-defender-core/src/audit.rs:1173
+#: crates/linux-defender-core/src/audit.rs:1177
 msgid "Could not read SSH configuration"
 msgstr "Kunne ikke lese SSH-konfigurasjonen"
 
-#: crates/linux-defender-core/src/audit.rs:1192
+#: crates/linux-defender-core/src/audit.rs:1196
 msgid "Root login: {value}"
 msgstr "Innlogging som root: {value}"
 
-#: crates/linux-defender-core/src/audit.rs:1200
+#: crates/linux-defender-core/src/audit.rs:1204
 msgid "Root login is allowed ({value})"
 msgstr "Innlogging som root er tillatt ({value})"
 
-#: crates/linux-defender-core/src/audit.rs:1206
+#: crates/linux-defender-core/src/audit.rs:1210
 msgid "Disable root SSH login for security"
 msgstr "Slå av innlogging som root over SSH av hensyn til sikkerheten"
 
-#: crates/linux-defender-core/src/audit.rs:1221
+#: crates/linux-defender-core/src/audit.rs:1225
 msgid "Password authentication is disabled (key-only)"
 msgstr "Passordautentisering er slått av (bare nøkler)"
 
-#: crates/linux-defender-core/src/audit.rs:1229
+#: crates/linux-defender-core/src/audit.rs:1233
 msgid "Password authentication is enabled"
 msgstr "Passordautentisering er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:1231
+#: crates/linux-defender-core/src/audit.rs:1235
 msgid "Consider disabling password auth in favor of SSH keys"
 msgstr "Vurder å slå av passordautentisering og bruke SSH-nøkler i stedet"
 
-#: crates/linux-defender-core/src/audit.rs:1249
+#: crates/linux-defender-core/src/audit.rs:1253
 msgid "X11 forwarding is disabled"
 msgstr "X11-videresending er slått av"
 
-#: crates/linux-defender-core/src/audit.rs:1257
+#: crates/linux-defender-core/src/audit.rs:1261
 msgid "X11 forwarding is enabled"
 msgstr "X11-videresending er slått på"
 
-#: crates/linux-defender-core/src/audit.rs:1259
+#: crates/linux-defender-core/src/audit.rs:1263
 msgid "Disable X11 forwarding to reduce attack surface"
 msgstr "Slå av X11-videresending for å redusere angrepsflaten"
 
-#: crates/linux-defender-core/src/audit.rs:1319
+#: crates/linux-defender-core/src/audit.rs:1323
 msgid "Application firewalls"
 msgstr "Application firewalls"
 
-#: crates/linux-defender-core/src/audit.rs:1342
+#: crates/linux-defender-core/src/audit.rs:1346
 msgid "Portmaster is running and protecting connections"
 msgstr "Portmaster kjører og beskytter tilkoblingene"
 
 #
-#: crates/linux-defender-core/src/audit.rs:1365
+#: crates/linux-defender-core/src/audit.rs:1369
 msgid "Authorize Linux Defender in Portmaster for per-module health"
 msgstr "Gi Linux Defender tilgang i Portmaster for å se status for hver modul"
 
-#: crates/linux-defender-core/src/audit.rs:1371
+#: crates/linux-defender-core/src/audit.rs:1375
 msgid "Authorize"
 msgstr "Gi tilgang"
 
-#: crates/linux-defender-core/src/audit.rs:1382
+#: crates/linux-defender-core/src/audit.rs:1386
 msgid "Portmaster is installed but not running"
 msgstr "Portmaster er installert, men kjører ikke"
 
-#: crates/linux-defender-core/src/audit.rs:1384
+#: crates/linux-defender-core/src/audit.rs:1388
 msgid "Start the Portmaster service to enable network protection"
 msgstr "Start Portmaster-tjenesten for å slå på nettverksbeskyttelsen"
 
 #. Translators: The em dash separates the detection result from the component description.
-#: crates/linux-defender-core/src/audit.rs:1398
+#: crates/linux-defender-core/src/audit.rs:1402
 msgid "Not detected — optional network monitor and application firewall"
 msgstr "Ikke funnet – valgfri nettverksovervåking og programbrannmur"
 
-#: crates/linux-defender-core/src/audit.rs:1414
+#: crates/linux-defender-core/src/audit.rs:1418
 msgid "Could not probe Portmaster: {error}"
 msgstr "Kunne ikke undersøke Portmaster: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1473
+#: crates/linux-defender-core/src/audit.rs:1477
 msgid "{name} is not installed"
 msgstr "{name} er ikke installert"
 
-#: crates/linux-defender-core/src/audit.rs:1480
+#: crates/linux-defender-core/src/audit.rs:1484
 msgid "Install {name} for comprehensive security auditing"
 msgstr "Installer {name} for omfattende sikkerhetsrevisjon"
 
-#: crates/linux-defender-core/src/audit.rs:1486
+#: crates/linux-defender-core/src/audit.rs:1490
 msgid "Install chkrootkit for rootkit detection"
 msgstr "Installer chkrootkit for å oppdage rootkits"
 
-#: crates/linux-defender-core/src/audit.rs:1489
+#: crates/linux-defender-core/src/audit.rs:1493
 msgid "Install rkhunter for rootkit detection"
 msgstr "Install rkhunter for rootkit detection"
 
-#: crates/linux-defender-core/src/audit.rs:1509
+#: crates/linux-defender-core/src/audit.rs:1513
 msgid "Authentication was cancelled"
 msgstr "Autentisering avbrutt"
 
-#: crates/linux-defender-core/src/audit.rs:1517
+#: crates/linux-defender-core/src/audit.rs:1521
 msgid "Lynis audit timed out after 5 minutes"
 msgstr "Lynis-revisjon avbrutt etter 5 minutter"
 
-#: crates/linux-defender-core/src/audit.rs:1519
+#: crates/linux-defender-core/src/audit.rs:1523
 msgid "Rootkit scan timed out after 5 minutes"
 msgstr "Skanningen etter rootkits ble avbrutt etter 5 minutter"
 
-#: crates/linux-defender-core/src/audit.rs:1538
-#: crates/linux-defender-core/src/audit.rs:1585
+#: crates/linux-defender-core/src/audit.rs:1542
+#: crates/linux-defender-core/src/audit.rs:1589
 msgid "Failed to run Lynis: {error}"
 msgstr "Kunne ikke kjøre Lynis: {error}"
 
 #. Translators: Keep `{name}` and `{error}` unchanged; they are placeholders.
-#: crates/linux-defender-core/src/audit.rs:1544
+#: crates/linux-defender-core/src/audit.rs:1548
 msgid "Failed to run {name}: {error}"
 msgstr "Failed to run {name}: {error}"
 
-#: crates/linux-defender-core/src/audit.rs:1614
+#: crates/linux-defender-core/src/audit.rs:1618
 msgid "Score: {score}/100"
 msgstr "Poengsum: {score}/100"
 
 #. Translators: Keep the quoted shell command unchanged.
-#: crates/linux-defender-core/src/audit.rs:1617
+#: crates/linux-defender-core/src/audit.rs:1621
 msgid "Run 'sudo lynis audit system' for detailed recommendations"
 msgstr "Kjør «sudo lynis audit system» for detaljerte anbefalinger"
 
-#: crates/linux-defender-core/src/audit.rs:1634
+#: crates/linux-defender-core/src/audit.rs:1638
 msgid "Audit completed (exit code {code})"
 msgstr "Revisjon fullført (statuskode {code})"
 
-#: crates/linux-defender-core/src/audit.rs:1688
-#: crates/linux-defender-core/src/audit.rs:1702
+#: crates/linux-defender-core/src/audit.rs:1692
+#: crates/linux-defender-core/src/audit.rs:1706
 msgid "Rootkit scan could not be completed (exit {code})"
 msgstr ""
 "Skanningen etter rootkits kunne ikke fullføres (avslutningskode {code})"
 
-#: crates/linux-defender-core/src/audit.rs:1737
+#: crates/linux-defender-core/src/audit.rs:1741
 msgid "No rootkits detected"
 msgstr "Ingen rootkits oppdaget"
 
-#: crates/linux-defender-core/src/audit.rs:1749
+#: crates/linux-defender-core/src/audit.rs:1753
 msgid "{count} potential rootkit detected"
 msgid_plural "{count} potential rootkits detected"
 msgstr[0] "{count} mulig rootkit oppdaget"
 msgstr[1] "{count} mulige rootkits oppdaget"
 
-#: crates/linux-defender-core/src/audit.rs:1757
+#: crates/linux-defender-core/src/audit.rs:1761
 msgid "Investigate the detected threats immediately"
 msgstr "Undersøk de oppdagede truslene med en gang"
 

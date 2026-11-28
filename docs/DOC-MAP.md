@@ -37,6 +37,7 @@ complete cross-check that nothing is forgotten or orphaned.
 
 - [docs/DESIGN](DESIGN.md)
 - [docs/README](README.md)
+- [docs/ai-tooling/CONTEXT](ai-tooling/CONTEXT.md)
 - [docs/ai-tooling/README](ai-tooling/README.md)
 - [docs/clamui-fork/README](clamui-fork/README.md)
 - [docs/clamui-fork/STATUS](clamui-fork/STATUS.md)
@@ -90,8 +91,10 @@ complete cross-check that nothing is forgotten or orphaned.
 ## Coding-agent tooling
 
 - [.claude/commands/capture-app](../.claude/commands/capture-app.md)
+- [.claude/commands/deep-audit](../.claude/commands/deep-audit.md)
 - [.claude/plugins/linux-defender-enforcement/agents/enforcement-reviewer](../.claude/plugins/linux-defender-enforcement/agents/enforcement-reviewer.md)
 - [.claude/plugins/linux-defender-enforcement/commands/capture-app](../.claude/plugins/linux-defender-enforcement/commands/capture-app.md)
+- [.claude/plugins/linux-defender-enforcement/commands/deep-audit](../.claude/plugins/linux-defender-enforcement/commands/deep-audit.md)
 - [.claude/plugins/linux-defender-enforcement/skills/linux-defender-enforcement/SKILL](../.claude/plugins/linux-defender-enforcement/skills/linux-defender-enforcement/SKILL.md)
 
 ## Regenerating

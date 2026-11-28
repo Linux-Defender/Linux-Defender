@@ -1,13 +1,25 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "instructions": ["AI-ENFORCEMENT.md"],
-  "skills": ["./.agents/skills"],
-  "plugins": [{ "package": "./.editor-adapters/enforcement" }],
+  "instructions": [
+    "AI-ENFORCEMENT.md"
+  ],
+  "skills": [
+    "./.agents/skills"
+  ],
+  "plugins": [
+    {
+      "package": "./.editor-adapters/enforcement"
+    }
+  ],
   "mcp": {
     "servers": {
       "linux-defender-assist": {
         "type": "local",
-        "command": ["bun", "run", "mcp/linux-defender-assist/src/index.ts"]
+        "command": [
+          "bun",
+          "run",
+          "mcp/linux-defender-assist/src/index.ts"
+        ]
       }
     }
   },
@@ -15,6 +27,10 @@
     "capture-app": {
       "description": "Capture the real Tauri/WebKitGTK app window for visual inspection",
       "template": "Run `bash scripts/capture-app-window.sh`, focus the Linux Defender window first if needed, then read the saved PNG with the read tool and compare it against the browser visual harness. Report any visual difference that affects layout or accessibility."
+    },
+    "deep-audit": {
+      "description": "Run the canonical exhaustive Linux Defender deep audit and report every failure",
+      "template": "The user said \"yk the drill\". Run `./scripts/deep-audit.sh` and read its report. Fix every failure with a fail-closed guard in `scripts/check-all.sh`, update `docs/revival/CHAT-AND-PROJECT-AUDIT.md`, then re-run until zero failures. Use `--quick` for a static-only pass. Never edit during the audit run itself, never commit/push without user direction, never create a tag or dispatch Release."
     }
   }
 }

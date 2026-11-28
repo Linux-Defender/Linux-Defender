@@ -247,6 +247,25 @@ server.registerTool(
   },
 );
 
+server.registerTool(
+  "ld_deep_audit",
+  {
+    title: "Deep audit (static, read-only)",
+    description: "Run scripts/deep-audit.sh --quick: generated-artifact checks, all static gates, parity/signature/image guards, and the agent-fleet brief. Reports only; never edits, commits, or pushes.",
+    inputSchema: z.object({}),
+    annotations: READ,
+  },
+  async () => {
+    const audit = await command("bash", ["scripts/deep-audit.sh", "--quick"]);
+    const output = `${audit.out}\n${audit.err}`.trim();
+    const report = "/tmp/opencode/linux-defender-deep-audit.md";
+    return {
+      content: [{ type: "text" as const, text: output.slice(0, 12000) }],
+      structuredContent: { ok: audit.code === 0, output: output.slice(0, 12000), report },
+    };
+  },
+);
+
 async function main(): Promise<void> {
   await server.connect(new StdioServerTransport());
 }

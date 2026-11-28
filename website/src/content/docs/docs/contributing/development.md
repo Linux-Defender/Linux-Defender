@@ -92,6 +92,10 @@ For a **visual-only** check of the React layout without launching Tauri, start `
 
 To see the **real Tauri/WebKitGTK window** (native form controls can render differently from Chromium), run the app with `bun run --cwd desktop tauri dev`, focus its window, and run `bash scripts/capture-app-window.sh [out.png]`. The script uses Spectacle on KDE/Wayland, gnome-screenshot on GNOME, grim on wlroots/Sway/Hyprland, and ImageMagick/scrot/ffmpeg on X11, then prints the PNG path; open that file with an image-capable tool. Supported assistants expose this as a `/capture-app` command, so any agent can inspect the actual desktop UI rather than assuming the browser rendering matches.
 
+#### Deep audit
+
+Run `./scripts/deep-audit.sh` for the canonical exhaustive review (generated artifacts, every static gate, full builds/tests, parity, signatures, images, CI status, and a 23-domain agent-fleet brief). `--quick` runs only static checks and is safe from a chat turn; `--fleet` prints the brief. Any coding agent can trigger it with the `/deep-audit` command or the read-only `ld_deep_audit` MCP tool. Every failure should be fixed with a fail-closed guard in `scripts/check-all.sh`.
+
 #### Run and capture flow
 
 The shortest known-good local flow, verified on this host, is:

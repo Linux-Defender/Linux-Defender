@@ -91,7 +91,7 @@ cargo test --workspace --locked
 bun run --cwd desktop tauri dev
 ```
 
-See the [development guide](website/src/content/docs/docs/contributing/development.md) for the full validation and packaging workflow. Run `bash scripts/audit-consistency.sh` for a single full local consistency audit.
+Run `./scripts/deep-audit.sh` for the canonical exhaustive audit, or `/deep-audit` in Claude Code. See the [development guide](website/src/content/docs/docs/contributing/development.md) for the full validation and packaging workflow. Run `bash scripts/audit-consistency.sh` for a single full local consistency audit.
 
 ## Documentation
 
