@@ -7,7 +7,7 @@ description: Report vulnerabilities privately and use Linux Defender securely.
 
 **Do not open a public issue with vulnerability details.** Use [GitHub's private vulnerability reporting](https://github.com/Linux-Defender/Linux-Defender/security/advisories/new). If the form is unavailable, contact the maintainers privately without posting exploit details. Include a description, impact, reproduction steps or proof of concept, affected version, and any suggested mitigation.
 
-Linux Defender is a development snapshot and does not yet have a published response-time SLA or signed releases. Once stable releases are published, security fixes should target the latest supported release.
+Linux Defender is a development snapshot and does not yet have a published response-time SLA or signed releases. Once stable releases are published, security fixes should target the latest supported release. All six build formats (DEB, RPM, AppImage, Flatpak, Snap, AUR) keep the same host-ClamAV boundary; only the DEB, RPM, and AppImage artifacts are signed in the draft release workflow, while Flatpak and Snap are CI-verified and AUR is source-only.
 
 ## Relevant reports
 

@@ -4,7 +4,7 @@
 
 **Do not report vulnerabilities in public issues.** Use [GitHub's private vulnerability reporting](https://github.com/Linux-Defender/Linux-Defender/security/advisories/new). If the form is unavailable, contact the repository maintainers privately before sharing technical details; do not publish an exploit or sensitive proof of concept.
 
-Include the affected commit or version, impact, reproduction steps or proof of concept, and a suggested mitigation when known. The project is a development snapshot without a published security-response SLA or a published release. Release workflows already sign Debian, RPM, and AppImage artifacts with the repository's checked-in signing key; verify signatures before installing any future release.
+Include the affected commit or version, impact, reproduction steps or proof of concept, and a suggested mitigation when known. The project is a development snapshot without a published security-response SLA or a published release. Release workflows already sign Debian, RPM, and AppImage artifacts with the repository's checked-in signing key; verify signatures before installing any future release. Flatpak and Snap are built and verified by CI but are not attached as signed release assets, and AUR offers source recipes only. No Linux Defender release packages are currently published.
 
 `SECURITY.txt` provides the machine-readable RFC 9116 contact and policy links.
 

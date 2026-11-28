@@ -241,9 +241,9 @@ Recorded migration evidence includes Rust workspace tests and strict Clippy, rea
 
 ## Packaging boundaries
 
-Linux Defender currently has build definitions for Debian packages, a Flatpak, an x86_64 AppImage, and Fedora helper RPMs. These are packaging targets, not a tested all-distro support guarantee, and no signed Linux Defender release is published. CachyOS/Arch has AUR source recipes in `aur/` for the app and matching helper; they are not submitted to the AUR yet.
+Linux Defender currently has build definitions for all six formats: Debian application and privileged-helper packages (amd64/arm64), a Fedora/RHEL privileged-helper RPM (x86_64/aarch64), an x86_64 AppImage, a GNOME 51 Flatpak (x86_64/aarch64) with Flathub manifests, and a classic-confinement Snap (amd64/arm64). CachyOS/Arch has AUR source recipes in `aur/` for the app and matching helper (x86_64/aarch64); they are not submitted to the AUR yet. These are packaging targets, not a tested all-distro support guarantee, and no signed Linux Defender release is published.
 
-A Debian release is a version- and architecture-matched application/helper pair. Flatpak declares GNOME 51 and dependencies for `x86_64` and `aarch64`, but a local build validates only its native architecture. AppImage remains x86_64. Fedora RPMs are helper-only. Every format retains the host ClamAV boundary.
+A Debian release is a version- and architecture-matched application/helper pair. Flatpak declares GNOME 51 and dependencies for `x86_64` and `aarch64`, but a local build validates only its native architecture. AppImage remains x86_64. Fedora RPMs are helper-only. The Snap uses classic confinement so it can call host ClamAV directly, and the AUR recipes build from the pinned source commit. Every format retains the host ClamAV boundary and the same version and application id.
 
 Build with the maintained native packaging entry points:
 

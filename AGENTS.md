@@ -33,7 +33,7 @@ Security takes precedence over convenience, performance, and package size.
 | `desktop/src-tauri/` | Tauri commands, event bridge, native dialogs, single-instance handling, lifecycle, safe opening/export helpers, and the Rust SNI/DBusMenu tray. |
 | `desktop/src/` | React pages, navigation, rendered translations, notifications, and the typed frontend API. |
 | `data/` | Application identity, AppStream metadata, desktop integration, and icons. |
-| `debian/`, `flathub/`, `appimage/` | Distribution-specific packaging; keep the same app identity and host-ClamAV boundary in every format. |
+| `debian/`, `rpm/`, `flathub/`, `appimage/`, `snap/`, `aur/` | Distribution-specific packaging for all six formats; keep the same app identity and host-ClamAV boundary in every format. |
 | `website/` | The published Astro/Starlight documentation site. |
 
 The frontend has one request path to the native runtime; the runtime forwards only allowlisted operations to the core. Core events currently use `{ event, data }` on the channel `linux-defender-event` (the old `clamui-event` name is retired). Do not add arbitrary frontend filesystem, shell, process, remote-navigation, or generic IPC access. Keep slow work off the UI thread and scope cancellation to its operation ID.
@@ -159,7 +159,7 @@ Reuse existing gettext message IDs and plural behavior from `po/`/`po/LINGUAS`; 
 
 ## Packaging and documentation
 
-Keep Flatpak builds for x86_64 and aarch64 on GNOME 51, the x86_64 AppImage, and architecture-specific Debian application and privileged-helper packages. Native Tauri packages require the system GTK 3 and WebKitGTK 4.1 runtime. Debian application and helper packages must have matching version and architecture. Use checked-in package scripts and manifests rather than copying packaging logic.
+Keep Flatpak builds for x86_64 and aarch64 on GNOME 51, the x86_64 AppImage, the classic-confinement Snap for amd64 and arm64, the AUR app and helper recipes for x86_64 and aarch64, the Fedora/RHEL helper RPM for both architectures, and architecture-specific Debian application and privileged-helper packages. Native Tauri packages require the system GTK 3 and WebKitGTK 4.1 runtime. Debian application and helper packages must have matching version and architecture. Use checked-in package scripts and manifests rather than copying packaging logic.
 
 Published documentation lives in `website/src/content/docs/docs/`. Start with:
 

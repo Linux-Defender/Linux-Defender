@@ -50,6 +50,8 @@ python3 scripts/check-sway-integration.py || fail "Sway integration wiring"
 python3 scripts/check-integration-parity.py || fail "integration asset parity"
 python3 scripts/check-host-tool-guidance.py || fail "host-tool guidance mismatch"
 python3 scripts/check-install-guidance.py || fail "install/download guidance drift"
+python3 scripts/check-format-coverage.py || fail "six-format documentation coverage"
+python3 scripts/tests/test_format_coverage.py >/dev/null || fail "format coverage guard tests"
 
 step "Dev/build wiring (tauri dev -> Vite -> dist, vendored glib patch)"
 python3 scripts/check-build-wiring.py || fail "build wiring"
