@@ -95,8 +95,8 @@
       "patterns": [
         "disable_systemd(ctx)",
         "disable_cron()",
-        "cleanup_systemd = disable_systemd(ctx)",
-        "cleanup_cron = disable_cron()"
+        "detect_backend() != SchedulerBackend::Cron",
+        "detect_backend() != SchedulerBackend::Systemd"
       ],
       "reason": "Enable and disable must both clear systemd and cron so a backend switch cannot double-schedule."
     },

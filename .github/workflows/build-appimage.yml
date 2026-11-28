@@ -57,6 +57,7 @@ jobs:
             libsoup-3.0-dev \
             libxdo-dev \
             patchelf \
+            squashfs-tools \
             pkg-config \
             wget
 
@@ -128,6 +129,8 @@ jobs:
           appimage=(Linux-Defender-*-x86_64.AppImage)
           test "${#appimage[@]}" -eq 1
           "./${appimage[0]}" --appimage-extract
+          # Re-signing preserves squashfs modes; keep entries readable/traversable.
+          chmod -R u+rwX,go+rX,go-w squashfs-root
           sign_args=(--sign --sign-key "$EXPECTED_FINGERPRINT")
           if [[ "${{ startsWith(github.ref, 'refs/tags/') || inputs.sign == true }}" == "true" ]]; then
             sign_args+=(-u "gh-releases-zsync|Linux-Defender|Linux-Defender|latest|Linux-Defender-*-x86_64.AppImage.zsync")

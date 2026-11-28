@@ -15,11 +15,14 @@ set -uo pipefail
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 PROJECT_ROOT="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
 OUT="${1:-/tmp/opencode/captures}"
+CAPTURE_FAILED=0
 mkdir -p "$OUT"
 
 echo "== Real Tauri/WebKitGTK window =="
 if pgrep -f 'target/debug/linux-defender' >/dev/null 2>&1; then
-    bash "$SCRIPT_DIR/capture-app-window.sh" "$OUT/real-app.png"
+    if ! bash "$SCRIPT_DIR/capture-app-window.sh" "$OUT/real-app.png"; then
+        CAPTURE_FAILED=1
+    fi
 else
     echo "SKIP: start 'bun run --cwd desktop tauri dev' to capture the native window"
 fi
@@ -35,7 +38,10 @@ if curl -fsS -o /dev/null "$HARNESS_URL"; then
         else
             echo "SKIP: start 'bun run --cwd website preview' for site captures"
         fi
-        ( cd "$PROJECT_ROOT" && bun scripts/capture-browser.mjs "$OUT" "$HARNESS_URL" "$SITE_FOR_CAPTURE" ) || echo "WARN: some browser captures failed"
+        if ! ( cd "$PROJECT_ROOT" && bun scripts/capture-browser.mjs "$OUT" "$HARNESS_URL" "$SITE_FOR_CAPTURE" ); then
+            echo "WARN: some browser captures failed"
+            CAPTURE_FAILED=1
+        fi
     else
         echo "SKIP: install website dependencies for Playwright browser captures"
     fi
@@ -43,4 +49,5 @@ else
     echo "SKIP: start 'bun run --cwd desktop dev' to serve the visual harness"
 fi
 
-echo "CAPTURE ALL OK: $OUT ($(find "$OUT" -type f -name '*.png' | wc -l) PNGs)"
+printf "CAPTURE ALL %s: %s (%s PNGs)\n" "$([ "$CAPTURE_FAILED" -eq 0 ] && echo OK || echo FAIL)" "$OUT" "$(find "$OUT" -type f -name '*.png' | wc -l)"
+exit "$CAPTURE_FAILED"

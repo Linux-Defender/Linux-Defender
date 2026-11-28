@@ -25,11 +25,19 @@ function asRecord(value: unknown): Record<string, unknown> | null {
 }
 function isScanResult(value: unknown): value is ScanResult {
   const record = asRecord(value);
-  return record !== null && typeof record.status === "string";
+  return record !== null
+    && typeof record.status === "string"
+    && (!("threat_details" in record) || Array.isArray(record.threat_details))
+    && (!("skipped_files" in record) || Array.isArray(record.skipped_files))
+    && (!("nonfatal_warnings" in record) || Array.isArray(record.nonfatal_warnings))
+    && (!("per_target_results" in record) || Array.isArray(record.per_target_results));
 }
 function isVTResult(value: unknown): value is VTResult {
   const record = asRecord(value);
-  return record !== null && typeof record.status === "string" && typeof record.file_path === "string";
+  return record !== null
+    && typeof record.status === "string"
+    && typeof record.file_path === "string"
+    && (!("detection_details" in record) || Array.isArray(record.detection_details));
 }
 
 function threatLabel(severity?: string, category?: string): string {
@@ -274,6 +282,6 @@ export default function Results() {
   const hasResults = useMemo(() => scan !== null || virusTotal !== null, [scan, virusTotal]);
   return <section className="page results-page" aria-label={_("Results")}>
     <header className="page-header"><div><h1>{_("Results")}</h1><p>{_("Review scan findings and take action on detected threats.")}</p></div><button className="button" onClick={() => navigate("scan")}>{_("Back to Scan")}</button></header>
-    {!hasResults ? <div className="empty-state"><h2>{_("No results yet")}</h2><p>{_("Start a scan to see its results here.")}</p></div> : <>{scan && <ScanResultPanel key={`${scan.path}-${scan.status}-${scan.scanned_files}-${scan.infected_count ?? 0}-${scan.threat_details?.length ?? 0}`} result={scan} />}{virusTotal && <VirusTotalPanel key={virusTotal.sha256 || `${virusTotal.file_path}-${virusTotal.status}`} result={virusTotal} />}</>}
+    {!hasResults ? <div className="empty-state"><h2>{_("No results yet")}</h2><p>{_("Start a scan to see its results here.")}</p></div> : <>{scan && <ScanResultPanel key={scan.id ?? `${scan.path}-${scan.status}-${scan.scanned_files}-${scan.infected_count ?? 0}-${scan.threat_details?.length ?? 0}`} result={scan} />}{virusTotal && <VirusTotalPanel key={virusTotal.sha256 || `${virusTotal.file_path}-${virusTotal.status}`} result={virusTotal} />}</>}
   </section>;
 }

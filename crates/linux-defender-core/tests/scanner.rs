@@ -927,9 +927,12 @@ fn daemon_crlf_open_failure_retains_partial_results_and_original_path() {
         result["threat_details"][0]["file_path"],
         infected.to_string_lossy().as_ref()
     );
-    assert!(result["error_message"]
+    // An unreadable input is skipped with a warning, not escalated to a
+    // whole-scan error that would misreport the other files' verdict.
+    assert!(result["error_message"].is_null());
+    assert!(result["warning_message"]
         .as_str()
-        .is_some_and(|message| !message.is_empty()));
+        .is_some_and(|message| message.contains("Skipped unreadable scan input")));
     assert_eq!(result["skipped_count"], 1);
     assert_eq!(
         result["skipped_files"],
@@ -1029,4 +1032,27 @@ fn daemon_crlf_rejects_invalid_nul_wire_target() {
     assert_eq!(result["scanned_files"], 0);
     assert_eq!(result["infected_count"], 0);
     assert_eq!(result["per_target_results"][0]["status"], "error");
+}
+
+#[test]
+fn scan_rejects_operation_ids_cancel_would_refuse() {
+    let tmp = tempfile::tempdir().unwrap();
+    let context = Context::with_paths(Paths {
+        home: tmp.path().join("home"),
+        config_dir: tmp.path().join("config/linux-defender"),
+        data_dir: tmp.path().join("data/linux-defender"),
+    })
+    .expect("context");
+
+    for id in ["", "has space", "has.dot", &"x".repeat(129)] {
+        let result = scanner::dispatch(
+            &context,
+            "scan",
+            json!({"id": id, "paths": [tmp.path().join("target").to_string_lossy()]}),
+        );
+        assert!(
+            result.is_err(),
+            "id {id:?} must be rejected before starting a job"
+        );
+    }
 }

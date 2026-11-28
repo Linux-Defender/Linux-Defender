@@ -290,7 +290,7 @@ export default function Quarantine({ active }: { active: boolean }) {
       if (report.detected > 0) parts.push(ngettext("{count} item is still detected.", "{count} items are still detected.", report.detected, { count: report.detected }));
       if (report.clean > 0) parts.push(`${ngettext("{count} item is no longer detected.", "{count} items are no longer detected.", report.clean, { count: report.clean })} ${_("Consider restoring it.")}`);
       if (report.errors > 0) parts.push(ngettext("{count} item could not be rescanned.", "{count} items could not be rescanned.", report.errors, { count: report.errors }));
-      setBanner({ message: parts.join(" "), type: report.errors > 0 ? "error" : report.clean > 0 ? "warning" : "success" });
+      setBanner({ message: parts.join(" "), type: report.errors > 0 || report.detected > 0 ? "error" : report.clean > 0 ? "warning" : "success" });
     } catch (error) {
       const message = readableError(error);
       setBanner({ message: _("Failed to rescan quarantined files: {error}", { error: message }), type: "error" });

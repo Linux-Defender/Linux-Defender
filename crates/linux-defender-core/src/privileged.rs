@@ -60,7 +60,8 @@ const HOST_STAT: &str = "/usr/bin/stat";
 // argument-only POSIX shell transaction runs under pkexec using trusted host
 // tools. It never evaluates user data and copies through GNU dd with
 // O_NOFOLLOW before apt receives a root-owned package path.
-const FIRST_INSTALL_SCRIPT: &str = r#"set -efu
+const FIRST_INSTALL_SCRIPT: &str = concat!(
+    r#"set -efu
 src=$1 size=$2 digest=$3 version=$4 arch=$5
 case "$size" in ''|*[!0-9]*) exit 2;; esac
 case "$digest" in *[!0123456789abcdef]*) exit 2;; esac
@@ -90,16 +91,33 @@ $version
 $arch" ] || exit 5
 # Caller-supplied digest/NEVRA are not an authenticity boundary. Verify the
 # Debian builder signature against the pinned release key before root install.
-key=$(/usr/bin/mktemp /var/tmp/linux-defender-key.XXXXXX) || exit 4
-trap '/usr/bin/rm -rf -- "$stage"; /usr/bin/rm -f -- "$key"' EXIT HUP INT TERM
-printf '%s\n' "$SIGNING_KEY" > "$key" || exit 4
-sig=$(/usr/bin/dpkg-sig --verify "$target") || exit 5
+gnupg=$stage/gnupg
+/usr/bin/mkdir -m 700 -- "$gnupg" || exit 4
+key=$stage/linux-defender-signing-key.asc
+/usr/bin/cat > "$key" <<'LINUX_DEFENDER_PINNED_KEY'
+"#,
+    include_str!("../../../signing-key.asc"),
+    r#"
+LINUX_DEFENDER_PINNED_KEY
+gpg=
+for candidate in /usr/bin/gpg2 /usr/bin/gpg; do
+  if [ -f "$candidate" ] && [ ! -L "$candidate" ] && [ -x "$candidate" ] && [ "$(/usr/bin/stat -c %u -- "$candidate")" = 0 ]; then
+    gpg=$candidate
+    break
+  fi
+done
+[ -n "$gpg" ] || exit 5
+"$gpg" --batch --no-options --homedir "$gnupg" --import "$key" || exit 5
+keyring=$stage/trusted.gpg
+/usr/bin/cp -- "$gnupg/pubring.gpg" "$keyring" || exit 5
+sig=$(/usr/bin/dpkg-sig --verify --keyring "$keyring" "$target") || exit 5
 printf '%s\n' "$sig" | /usr/bin/grep -q '^GOODSIG _gpgbuilder 28CA212A766A6D51273EBBD277B8EC8622C91282 ' || exit 5
 set +e
 /usr/bin/timeout 300 /usr/bin/apt-get install -y -- "$target"
 status=$?
 exit "$status"
-"#;
+"#
+);
 
 // RPM helper packages have an embedded RPM signature and an independently
 // published detached signature. The latter is verified against this compiled

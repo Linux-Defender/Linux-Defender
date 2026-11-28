@@ -10,16 +10,16 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1480 translated messages. | 57 |
-| en | 1480 translated messages. | baseline |
-| es | 1480 translated messages. | 58 |
-| fr | 1480 translated messages. | 58 |
-| hu | 1480 translated messages. | 58 |
-| it | 1480 translated messages. | 58 |
-| nb | 1480 translated messages. | 58 |
-| pt_BR | 1480 translated messages. | 58 |
-| vi | 1480 translated messages. | 65 |
-| zh_CN | 1480 translated messages. | 58 |
+| de | 1497 translated messages. | 62 |
+| en | 1497 translated messages. | baseline |
+| es | 1497 translated messages. | 63 |
+| fr | 1497 translated messages. | 63 |
+| hu | 1497 translated messages. | 63 |
+| it | 1497 translated messages. | 63 |
+| nb | 1497 translated messages. | 63 |
+| pt_BR | 1497 translated messages. | 63 |
+| vi | 1497 translated messages. | 70 |
+| zh_CN | 1497 translated messages. | 63 |
 
 ## de
 
@@ -45,25 +45,25 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
+- `Invalid JSON response from API`
 - `Invalid integration destination: {path}`
 - `Keyring is unavailable; the stored key could not be checked`
 - `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `Malformed response: missing analysis stats`
+- `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
-- `The scan had already finished; no cancellation was needed.`
-- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
-- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
-- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- … 17 more
+- `System keyring is locked; no keyring item was deleted`
+- … 22 more
 
 ## es
 
@@ -89,25 +89,25 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
+- `Invalid JSON response from API`
 - `Invalid integration destination: {path}`
 - `Keyring is unavailable; the stored key could not be checked`
 - `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `Malformed response: missing analysis stats`
+- `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
-- `The scan had already finished; no cancellation was needed.`
-- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
-- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
-- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- … 18 more
+- `System keyring is locked; no keyring item was deleted`
+- … 23 more
 
 ## fr
 
@@ -133,25 +133,25 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
+- `Invalid JSON response from API`
 - `Invalid integration destination: {path}`
 - `Keyring is unavailable; the stored key could not be checked`
 - `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `Malformed response: missing analysis stats`
+- `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
-- `The scan had already finished; no cancellation was needed.`
-- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
-- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
-- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- … 18 more
+- `System keyring is locked; no keyring item was deleted`
+- … 23 more
 
 ## hu
 
@@ -177,25 +177,25 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
+- `Invalid JSON response from API`
 - `Invalid integration destination: {path}`
 - `Keyring is unavailable; the stored key could not be checked`
 - `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `Malformed response: missing analysis stats`
+- `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
-- `The scan had already finished; no cancellation was needed.`
-- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
-- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
-- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- … 18 more
+- `System keyring is locked; no keyring item was deleted`
+- … 23 more
 
 ## it
 
@@ -221,25 +221,25 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
+- `Invalid JSON response from API`
 - `Invalid integration destination: {path}`
 - `Keyring is unavailable; the stored key could not be checked`
 - `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `Malformed response: missing analysis stats`
+- `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
-- `The scan had already finished; no cancellation was needed.`
-- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
-- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
-- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- … 18 more
+- `System keyring is locked; no keyring item was deleted`
+- … 23 more
 
 ## nb
 
@@ -265,25 +265,25 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
+- `Invalid JSON response from API`
 - `Invalid integration destination: {path}`
 - `Keyring is unavailable; the stored key could not be checked`
 - `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `Malformed response: missing analysis stats`
+- `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
-- `The scan had already finished; no cancellation was needed.`
-- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
-- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
-- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- … 18 more
+- `System keyring is locked; no keyring item was deleted`
+- … 23 more
 
 ## pt_BR
 
@@ -309,25 +309,25 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
+- `Invalid JSON response from API`
 - `Invalid integration destination: {path}`
 - `Keyring is unavailable; the stored key could not be checked`
 - `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `Malformed response: missing analysis stats`
+- `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
-- `The scan had already finished; no cancellation was needed.`
-- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
-- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
-- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- … 18 more
+- `System keyring is locked; no keyring item was deleted`
+- … 23 more
 
 ## vi
 
@@ -359,19 +359,19 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
+- `Invalid JSON response from API`
 - `Invalid integration destination: {path}`
 - `Keyring is unavailable; the stored key could not be checked`
 - `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `Malformed response: missing analysis stats`
+- `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
-- `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
-- `SELinux status could not be determined`
-- `SSL/TLS certificate error. The mirror may have configuration issues.`
-- `Submit a website for inspection`
-- … 25 more
+- `Request timed out after retries`
+- … 30 more
 
 ## zh_CN
 
@@ -397,25 +397,25 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Install rkhunter for rootkit detection`
 - `Integration destination contains a symlink: {path}`
 - `Integration destination escapes {path}`
+- `Invalid JSON response from API`
 - `Invalid integration destination: {path}`
 - `Keyring is unavailable; the stored key could not be checked`
 - `Lynis, chkrootkit, and rkhunter are never run automatically. Run all security scans to perform every check in sequence; each may request administrator authorization.`
+- `Malformed response: missing analysis stats`
+- `Network connection failed after retries`
 - `No local OpenSnitch system service was detected. A manually started daemon was not checked.`
 - `No readable files were found in this folder.`
 - `Permission denied. You may need elevated privileges to update the database.`
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
+- `Request timed out after retries`
 - `Run Lynis, chkrootkit, and rkhunter with administrator authorization`
 - `SELinux status could not be determined`
 - `Submit a website for inspection`
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
-- `The OpenSnitch graphical interface is available. Its connection status was not checked.`
-- `The scan had already finished; no cancellation was needed.`
-- `This action includes hidden files, skips symbolic links, and is limited to 100 files and 1 GiB total. Individual files must be no larger than 650 MiB.`
-- `This profile includes scan options that require standalone clamscan. Change the scan backend preference to automatic or clamscan.`
-- `UFW and Firewalld are both active; review which one is meant to control your firewall rules.`
-- … 18 more
+- `System keyring is locked; no keyring item was deleted`
+- … 23 more
 
 ## Review procedure
 

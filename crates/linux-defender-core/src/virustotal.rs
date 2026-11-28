@@ -1114,11 +1114,14 @@ impl VirusTotalClient {
                 "Malformed response: missing report attributes",
             );
         };
-        let stats = attributes
+        let Some(stats) = attributes
             .get("last_analysis_stats")
             .and_then(Value::as_object)
             .cloned()
-            .unwrap_or_default();
+            .filter(|stats| !stats.is_empty() && stats.values().any(|value| value.is_u64()))
+        else {
+            return VTScanResult::error("", sha256, "Malformed response: missing analysis stats");
+        };
         let malicious = stats.get("malicious").and_then(Value::as_u64).unwrap_or(0);
         let suspicious = stats.get("suspicious").and_then(Value::as_u64).unwrap_or(0);
         let total_engines = stats.values().filter_map(Value::as_u64).sum();
@@ -1256,6 +1259,30 @@ fn tr(ctx: &Context, message: &str) -> String {
     crate::i18n::translate(ctx, message)
 }
 
+/// Translate a known static error literal. Dynamic host text is never passed
+/// to gettext: xgettext cannot extract it, so it would ship English-only.
+fn localize_known(ctx: &Context, message: &str) -> String {
+    match message {
+        "Scan cancelled" => tr(ctx, "Scan cancelled"),
+        "API rate limit exceeded" => tr(ctx, "API rate limit exceeded"),
+        "Invalid API key" => tr(ctx, "Invalid API key"),
+        "Request timed out after retries" => tr(ctx, "Request timed out after retries"),
+        "Network connection failed after retries" => {
+            tr(ctx, "Network connection failed after retries")
+        }
+        "Request failed" => tr(ctx, "Request failed"),
+        "API request failed" => tr(ctx, "API request failed"),
+        "Invalid JSON response from API" => tr(ctx, "Invalid JSON response from API"),
+        "Upload failed" => tr(ctx, "Upload failed"),
+        "Analysis still in progress" => tr(ctx, "Analysis still in progress"),
+        "Malformed response: missing analysis stats" => {
+            tr(ctx, "Malformed response: missing analysis stats")
+        }
+        "API key not configured" => tr(ctx, "API key not configured"),
+        _ => message.to_owned(),
+    }
+}
+
 fn localize_result(ctx: &Context, result: &mut VTScanResult) {
     let Some(message) = result.error_message.take() else {
         return;
@@ -1278,7 +1305,7 @@ fn localize_result(ctx: &Context, result: &mut VTScanResult) {
     } else if message == "File changed during upload" {
         tr(ctx, "File changed during upload")
     } else {
-        tr(ctx, &message)
+        localize_known(ctx, &message)
     };
     result.error_message = Some(localized);
 }
@@ -1452,11 +1479,14 @@ fn parse_url_analysis(
     analysis_url: &str,
     attributes: &Value,
 ) -> VTUrlScanResult {
-    let stats = attributes
+    let Some(stats) = attributes
         .get("stats")
         .and_then(Value::as_object)
         .cloned()
-        .unwrap_or_default();
+        .filter(|stats| !stats.is_empty() && stats.values().any(|value| value.is_u64()))
+    else {
+        return VTUrlScanResult::error(url, "Malformed response: missing analysis stats");
+    };
     let detections = stats.get("malicious").and_then(Value::as_u64).unwrap_or(0)
         + stats.get("suspicious").and_then(Value::as_u64).unwrap_or(0);
     let total_engines = stats.values().filter_map(Value::as_u64).sum();
@@ -1585,13 +1615,12 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
             let deleted = store.delete(Account::VirusTotalApiKey)?;
             let info = store.status(Account::VirusTotalApiKey)?;
             let message = if deleted {
-                "API key deleted"
+                tr(ctx, "API key deleted")
             } else if info.status == crate::credentials::CredentialStatus::Locked {
-                "System keyring is locked; no keyring item was deleted"
+                tr(ctx, "System keyring is locked; no keyring item was deleted")
             } else {
-                "No API key was configured"
+                tr(ctx, "No API key was configured")
             };
-            let message = tr(ctx, message);
             Ok(json!({
                 "present": info.present,
                 "backend": info.backend,
@@ -1722,12 +1751,15 @@ pub fn dispatch(ctx: &Context, action: &str, args: Value) -> AppResult<Value> {
                 .unwrap_or_else(generated_id);
             let job = ctx.job(&id)?;
             let key = CredentialStore::new(ctx).get(Account::VirusTotalApiKey)?;
-            let result = match key {
+            let mut result = match key {
                 Some(key) => {
                     VirusTotalClient::new_for_context(ctx, &key)?.scan_url(url, &job.cancelled)
                 }
                 None => VTUrlScanResult::error(url, "API key not configured"),
             };
+            if let Some(message) = result.error_message.take() {
+                result.error_message = Some(localize_known(ctx, &message));
+            }
             let result_value = serde_json::to_value(&result)
                 .map_err(|_| "Unable to serialize VirusTotal URL result")?;
             ctx.emit(

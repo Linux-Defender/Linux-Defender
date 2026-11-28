@@ -1016,6 +1016,8 @@ impl QuarantineManager {
         drop(target);
         if hash != expected_hash {
             let _ = unlink_name(parent.as_raw_fd(), &name);
+            // Persist the removal so a tampered copy cannot reappear after a crash.
+            parent.sync_all()?;
             return Err(io::Error::other(HashMismatch));
         }
         parent.sync_all()?;
@@ -1408,6 +1410,9 @@ fn open_destination_parent(destination: &Path) -> io::Result<(File, CString)> {
                     0,
                 )?;
                 fchmod(created.as_raw_fd(), 0o700)?;
+                // Sync the containing directory before descending, otherwise a
+                // crash can lose the ancestor entry while the leaf was fsynced.
+                directory.sync_all()?;
                 created
             }
             Err(error) => return Err(error),
@@ -1430,8 +1435,10 @@ fn copy_hash_fsync(source: &mut File, destination: &mut File, mode: u32) -> io::
         hash.update(&buffer[..read]);
         destination.write_all(&buffer[..read])?;
     }
-    destination.sync_all()?;
+    // Apply the restored mode before the durable flush so a crash cannot
+    // leave the umask-created permission bits behind.
     fchmod(destination.as_raw_fd(), mode)?;
+    destination.sync_all()?;
     Ok(hex::encode(hash.finalize()))
 }
 

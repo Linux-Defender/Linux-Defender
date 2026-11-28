@@ -400,10 +400,10 @@ export default function Network(): JSX.Element {
 
     {loading && !snapshot ? <div className="status-banner" role="status">{_("Loading network connections…")}</div> : null}
     {error ? <section className="network-state error-banner" role="alert"><span>{error}</span><button className="button" onClick={() => void refresh()} type="button">{_("Retry")}</button></section> : null}
-    {isUnavailable ? <section className="network-state notice warning" role="status"><span>{_("Network information is unavailable. Check that the system socket tool is installed and try again.")}</span><button className="button" disabled={loading} onClick={() => void refresh()} type="button">{_("Retry")}</button></section> : null}
+    {isUnavailable ? <section className="network-state notice warning" role="status"><span>{snapshot?.message ?? _("Network information is unavailable. Check that the system socket tool is installed and try again.")}</span><button className="button" disabled={loading} onClick={() => void refresh()} type="button">{_("Retry")}</button></section> : null}
 
     {snapshot && !isUnavailable ? <>
-      {(snapshot.status === "partial" || snapshot.limited) ? <p className="notice warning" role="status">{snapshot.limited ? _("The socket list was limited. This snapshot may be incomplete.") : _("Some socket records could not be read. This snapshot may be incomplete.")}</p> : null}
+      {(snapshot.status === "partial" || snapshot.limited) ? <p className="notice warning" role="status">{snapshot.message ?? (snapshot.limited ? _("The socket list was limited. This snapshot may be incomplete.") : _("Some socket records could not be read. This snapshot may be incomplete."))}</p> : null}
       <p className="network-capture-time muted">{_(
         // Translators: Preserve the {time} placeholder. It is the native UTC/ISO snapshot timestamp.
         "Captured at {time}",

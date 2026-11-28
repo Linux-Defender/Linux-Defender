@@ -456,7 +456,7 @@ export default function Scan() {
     setLiveThreats([]);
     setResult(null);
     setNotice({ kind: "info", message: _("Starting scan…") });
-    await refreshLiveProgress(id);
+    void refreshLiveProgress(id);
     if (activeIdRef.current !== id) return;
     try {
       const response = await request<ScanResult>("scanner.scan", {

@@ -60,4 +60,5 @@ jobs:
         with:
           name: linux-defender-flatpak-${{ matrix.arch }}
           path: linux-defender-${{ matrix.arch }}.flatpak
+          if-no-files-found: error
           retention-days: 7

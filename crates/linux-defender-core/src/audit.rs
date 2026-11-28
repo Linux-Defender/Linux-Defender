@@ -64,6 +64,7 @@ pub enum AuditCategory {
     AutoUpdates,
     IntrusionDetection,
     SshHardening,
+    #[serde(rename = "portmaster")]
     ApplicationFirewalls,
     DeepScanLynis,
     DeepScanRootkit,
@@ -728,7 +729,11 @@ fn database_age(ctx: &Context) -> Option<(i64, String)> {
             let output = run_command("head", &["-c", "512", &path], Duration::from_secs(5));
             (output.code == Some(0)).then_some(output.stdout.into_bytes())
         } else {
-            fs::read(path).ok()
+            fs::File::open(path).ok().and_then(|file| {
+                let mut bytes = Vec::with_capacity(512);
+                let mut limited = file.take(512);
+                limited.read_to_end(&mut bytes).ok().map(|_| bytes)
+            })
         };
         if let Some(bytes) = bytes {
             if let Some((timestamp, header_date)) = parse_cvd_header(&bytes) {
@@ -1687,7 +1692,9 @@ fn deep_rootkit(
     url: &str,
     tool: &str,
 ) -> AuditSection {
-    if output.code != Some(0) {
+    if output.code != Some(0)
+        && !(tool == "rkhunter" && !rkhunter_findings(&output.stdout).is_empty())
+    {
         let detail = if output.stderr.is_empty() {
             text(
                 ctx,

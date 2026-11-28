@@ -46,6 +46,7 @@ def main() -> int:
     tracked = set(tracked_files())
     checkers = sorted(path for path in tracked if CHECKER.match(path))
 
+    missing_gates = [path for path in GATES if not path.exists()]
     gate_paths = [path for path in GATES if path.exists()]
     gate_paths += sorted(WORKFLOW_DIR.glob("*.yml")) + sorted(WORKFLOW_DIR.glob("*.yaml"))
     if not gate_paths:
@@ -69,6 +70,8 @@ def main() -> int:
                 )
 
     failures: list[str] = []
+    for gate in missing_gates:
+        failures.append(f"declared gate {gate.relative_to(ROOT)} is missing")
     for missing in sorted(set(referenced) - tracked):
         failures.append(
             f"{', '.join(sorted(referenced[missing]))} invokes {missing}, which is not tracked"

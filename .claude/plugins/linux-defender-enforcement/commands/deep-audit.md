@@ -1,8 +1,8 @@
-The user said "yk the drill" (the universal activation phrase). ---
+---
 description: Run the canonical Linux Defender deep audit across repo, app, site, all formats and upstream parity.
 ---
 
-Run the single deep-audit entry point and report every failure with file:line and a concrete fix:
+The user said "yk the drill" (the universal activation phrase). Run the single deep-audit entry point and report every failure with file:line and a concrete fix:
 
 ```bash
 ${CLAUDE_PROJECT_DIR}/scripts/deep-audit.sh

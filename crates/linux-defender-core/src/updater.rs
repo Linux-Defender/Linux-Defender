@@ -136,6 +136,18 @@ fn redact_result(result: &mut UpdateResult) {
     if let Some(message) = result.error_message.take() {
         result.error_message = Some(crate::common::sanitize_line(&crate::logs::redact(&message)));
     }
+    result.rate_limited_databases = result
+        .rate_limited_databases
+        .iter()
+        .map(|(database, cooldown)| {
+            (
+                crate::common::sanitize_line(&crate::logs::redact(database)),
+                cooldown
+                    .as_ref()
+                    .map(|value| crate::common::sanitize_line(&crate::logs::redact(value))),
+            )
+        })
+        .collect();
 }
 
 fn localize_result(ctx: &Context, result: &mut UpdateResult) {
@@ -863,8 +875,12 @@ fn append_update_line(
         json!({"id": id, "line": sanitize_line(line)}),
     );
     let target = if is_stderr { stderr } else { stdout };
-    target.push_str(line);
-    target.push('\n');
+    if target.len() < 4 * 1024 * 1024 {
+        target.push_str(line);
+        target.push('\n');
+    } else if !target.ends_with("... truncated\n") {
+        target.push_str("... truncated\n");
+    }
 }
 
 fn drain_update_output(

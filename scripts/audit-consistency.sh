@@ -55,7 +55,7 @@ elif command -v gh >/dev/null 2>&1; then
     CI_RC=$?
     set -e
     [ "$CI_RC" -eq 0 ] || fail "could not query GitHub Actions status: $CI_JSON"
-    FAILED=$(printf '%s' "$CI_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(sum(1 for r in d if r.get("conclusion") in ("failure","cancelled")))')
+    FAILED=$(printf '%s' "$CI_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(sum(1 for r in d if r.get("conclusion") in ("failure","cancelled","timed_out","startup_failure")))')
     [ "$FAILED" = "0" ] || fail "$FAILED workflow(s) failed/cancelled on HEAD"
 else
     echo "gh not available; skipping CI check"

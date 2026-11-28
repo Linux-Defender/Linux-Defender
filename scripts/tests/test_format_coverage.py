@@ -38,7 +38,7 @@ class FormatCoverageTests(unittest.TestCase):
             for rel in guard.MASTER_DOCS:
                 path = root / rel
                 path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text("deb rpm appimage flatpak snap aur; signed; built and verified by CI; source recipes\n")
+                path.write_text("deb rpm appimage flatpak snap aur; signed; built and verified by CI; source recipes; Configure Integration staging includes AppImage\n")
             for directory in guard.PACKAGING.values():
                 (root / directory).mkdir(parents=True, exist_ok=True)
             (root / "README.md").write_text("Configure Integration manager is Flatpak-only; native packages install actions.\n")
@@ -51,11 +51,14 @@ class FormatCoverageTests(unittest.TestCase):
             for rel in guard.MASTER_DOCS:
                 path = root / rel
                 path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text("all six: deb rpm appimage flatpak snap aur\n")
+                path.write_text("all six: deb rpm appimage flatpak snap aur; Configure Integration staging includes AppImage\n")
             for directory in guard.PACKAGING.values():
                 (root / directory).mkdir(parents=True, exist_ok=True)
             (root / "RELEASE_NOTES.md").write_text(
                 "deb rpm appimage flatpak snap aur; signed; built and verified by CI; source recipes\n"
+            )
+            (root / "website/src/content/docs/docs/troubleshooting.md").write_text(
+                "Configure Integration staging includes AppImage and Snap\n"
             )
             self.assertEqual(guard.check(root), [])
             security = root / "SECURITY.md"

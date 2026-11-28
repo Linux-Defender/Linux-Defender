@@ -199,8 +199,16 @@ pub fn apply(ctx: &Context, schedule: &ScheduleConfig) -> AppResult<Value> {
     }
     // A previous backend may still be active; clean both before provisioning
     // so a backend switch cannot leave two scans scheduled.
-    let cleanup_systemd = disable_systemd(ctx);
-    let cleanup_cron = disable_cron();
+    let cleanup_systemd = if detect_backend() != SchedulerBackend::Cron {
+        disable_systemd(ctx)
+    } else {
+        Ok(())
+    };
+    let cleanup_cron = if detect_backend() != SchedulerBackend::Systemd {
+        disable_cron()
+    } else {
+        Ok(())
+    };
     let cleanup_error = match (cleanup_systemd, cleanup_cron) {
         (Err(a), Err(b)) => Some(format!("{a}; {b}")),
         (Err(error), Ok(())) | (Ok(()), Err(error)) => Some(error),
@@ -223,8 +231,16 @@ pub fn apply(ctx: &Context, schedule: &ScheduleConfig) -> AppResult<Value> {
 fn disable(ctx: &Context, backend: SchedulerBackend) -> AppResult<Value> {
     // A backend switch or a stale timer can leave a schedule active in the
     // other backend. Always remove both so "disable" really disables.
-    let systemd = disable_systemd(ctx);
-    let cron = disable_cron();
+    let systemd = if detect_backend() != SchedulerBackend::Cron {
+        disable_systemd(ctx)
+    } else {
+        Ok(())
+    };
+    let cron = if detect_backend() != SchedulerBackend::Systemd {
+        disable_cron()
+    } else {
+        Ok(())
+    };
     let error = match (systemd, cron) {
         (Err(a), Err(b)) => Some(format!("{a}; {b}")),
         (Err(a), Ok(())) | (Ok(()), Err(a)) => Some(a),
@@ -421,10 +437,11 @@ fn systemd_status() -> AppResult<Value> {
 
 fn cron_status() -> AppResult<Value> {
     let output = run_host("crontab", &["-l"])?;
+    let lines = String::from_utf8_lossy(&output.stdout);
+    let collected: Vec<&str> = lines.lines().collect();
     let active = output.status.success()
-        && String::from_utf8_lossy(&output.stdout)
-            .lines()
-            .any(is_our_cron_marker);
+        && collected.iter().any(|line| is_our_cron_marker(line))
+        && collected.iter().any(|line| is_scheduled_scan_command(line));
     Ok(json!({"backend":"cron", "available":true, "active":active, "next_run":Value::Null}))
 }
 

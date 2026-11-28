@@ -536,6 +536,14 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
         );
     }
     let id = request.id.unwrap_or_else(new_scan_id);
+    if id.is_empty()
+        || id.len() > 128
+        || !id
+            .bytes()
+            .all(|byte| byte.is_ascii_alphanumeric() || byte == b'_' || byte == b'-')
+    {
+        return Err("scanner.scan has an invalid operation id".into());
+    }
     let job = ctx.job(&id)?;
     let started = Instant::now();
     let configured = request
@@ -601,7 +609,7 @@ fn scan(ctx: &Context, request: ScanRequest) -> AppResult<Value> {
     let aggregate = aggregate_result(&id, results, started.elapsed(), request.scheduled);
     // History persistence is best-effort: a full log directory or disk failure
     // must never erase a completed scan verdict from the caller.
-    if let Err(error) = save_result(ctx, &aggregate, request.scheduled) {
+    if let Err(error) = save_result(ctx, &id, &aggregate, request.scheduled) {
         let _ = crate::logs::write_debug(
             ctx,
             "WARNING",
@@ -910,7 +918,26 @@ fn scan_daemon_target(
             let file = match open_daemon_stdin_file(path) {
                 Ok(file) => file,
                 Err(error) => {
-                    let mut result = ScanResult::error(raw_path, error, "daemon");
+                    // One unreadable input must not poison the whole daemon
+                    // verdict: clamd's own open failure is a skipped file.
+                    let mut result = ScanResult {
+                        status: ScanStatus::Clean,
+                        path: raw_path.into(),
+                        stdout: String::new(),
+                        stderr: String::new(),
+                        exit_code: 0,
+                        infected_files: Vec::new(),
+                        scanned_files: 0,
+                        scanned_dirs: 0,
+                        infected_count: 0,
+                        error_message: None,
+                        threat_details: Vec::new(),
+                        skipped_files: Vec::new(),
+                        skipped_count: 0,
+                        warning_message: Some(format!("Skipped unreadable scan input: {error}")),
+                        nonfatal_warnings: Vec::new(),
+                        backend: "daemon".into(),
+                    };
                     result.skipped_files.push(wire_path);
                     result.skipped_count = 1;
                     accumulator.add(result);
@@ -1988,6 +2015,14 @@ fn process_group_alive(group: i32) -> bool {
         || std::io::Error::last_os_error().raw_os_error() == Some(libc::EPERM)
 }
 
+fn bounded_join<'a>(values: impl Iterator<Item = &'a str>) -> String {
+    let mut joined = String::new();
+    for value in values {
+        append_bounded_text(&mut joined, value);
+    }
+    joined
+}
+
 fn aggregate_result(
     id: &str,
     results: Vec<ScanResult>,
@@ -2028,8 +2063,8 @@ fn aggregate_result(
         "infected_count": results.iter().map(|result| result.infected_count).sum::<u64>(),
         "threat_details": threats,
         "infected_files": results.iter().flat_map(|result| result.infected_files.clone()).collect::<Vec<_>>(),
-        "stdout": results.iter().map(|result| result.stdout.as_str()).collect::<Vec<_>>().join("\n"),
-        "stderr": results.iter().map(|result| result.stderr.as_str()).collect::<Vec<_>>().join("\n"),
+        "stdout": bounded_join(results.iter().map(|result| result.stdout.as_str())),
+        "stderr": bounded_join(results.iter().map(|result| result.stderr.as_str())),
         "error_message": errors.first(),
         "errors": errors,
         "skipped_files": results.iter().flat_map(|result| result.skipped_files.clone()).collect::<Vec<_>>(),
@@ -2045,12 +2080,12 @@ fn aggregate_result(
     })
 }
 
-fn save_result(ctx: &Context, aggregate: &Value, scheduled: bool) -> AppResult<()> {
+fn save_result(ctx: &Context, id: &str, aggregate: &Value, scheduled: bool) -> AppResult<()> {
     crate::dispatch(
         ctx,
         "logs.save",
         json!({
-            "type": "scan", "status": aggregate["status"], "path": Value::Null,
+            "type": "scan", "id": id, "status": aggregate["status"], "path": Value::Null,
             "scanned_files": aggregate["scanned_files"], "scanned_dirs": aggregate["scanned_dirs"],
             "infected_count": aggregate["infected_count"], "threat_details": aggregate["threat_details"],
             "error_message": aggregate["error_message"], "duration": aggregate["duration_seconds"],

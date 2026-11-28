@@ -71,6 +71,7 @@ python3 scripts/tests/test_screenshot_branding.py >/dev/null || fail "screenshot
 python3 scripts/tests/test_capture_wiring.py >/dev/null || fail "capture wiring tests"
 python3 scripts/tests/test_fleet_fixes.py >/dev/null || fail "fine-comb fleet fixes"
 python3 scripts/tests/test_deep_audit.py >/dev/null || fail "deep audit wiring"
+python3 scripts/tests/test_fleet2_fixes.py >/dev/null || fail "fine-comb wave 2 fixes"
 
 step "Unused Rust dependencies (cargo machete)"
 if command -v cargo-machete >/dev/null 2>&1; then

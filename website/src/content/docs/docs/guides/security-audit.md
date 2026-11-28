@@ -15,6 +15,8 @@ The AppArmor row is omitted when its `enabled` parameter is unreadable, its secu
 
 ## Firewall inventory
 
+OpenSnitch is optional and inventory-only: the audit notes whether its service and GUI launcher exist, without claiming to verify filtering rules.
+
 The firewall check inventories supported host components independently: UFW, firewalld, native nftables rules, legacy or compatibility `iptables` rules for IPv4 and IPv6, and the optional Gufw, Firewall Config, and Plasma Firewall interfaces. A package, graphical interface, startup setting, active-exited service, or non-empty ruleset is not by itself evidence that the host accepts or blocks incoming traffic.
 
 [Plasma Firewall](https://github.com/KDE/plasma-firewall) is a KDE settings module that manages UFW or firewalld; it is not a separate firewall. Its presence, like Gufw or Firewall Config, is inventory only and does not make the host protected or require an interface to be installed.

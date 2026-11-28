@@ -217,7 +217,14 @@ export default function Audit(): JSX.Element {
   };
 
   const launch = async (command: string): Promise<void> => {
-    if (command !== "gufw" && command !== "firewall-config") {
+    if (command === "__ufw_status__") {
+      try {
+        const response = await request<{ cancelled: boolean; section?: unknown }>("audit.ufw_status");
+        if (!response.cancelled && response.section) applySection(response.section as never);
+      } catch (ufwError) { setError(errorText(ufwError)); }
+      return;
+    }
+    if (command !== "gufw" && command !== "firewall-config" && command !== "opensnitch-ui") {
       setError(_("The audit supplied an unsupported GUI launch action."));
       return;
     }

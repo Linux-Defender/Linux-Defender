@@ -387,7 +387,9 @@ pub fn check_tool(binary: &str) -> Probe {
     match run_host(binary, &args, Some(10)) {
         Ok(output) if output.status.success() => Probe {
             available: true,
-            detail: Some(String::from_utf8_lossy(&output.stdout).trim().to_owned()),
+            detail: Some(crate::common::sanitize_line(
+                String::from_utf8_lossy(&output.stdout).trim(),
+            )),
             path: Some(path),
         },
         Ok(output) => Probe {

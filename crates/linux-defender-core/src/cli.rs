@@ -19,22 +19,26 @@ pub fn is_cli(args: &[String]) -> bool {
         .iter()
         .find(|arg| !matches!(arg.as_str(), "--json" | "-v" | "--verbose"))
         .map(String::as_str);
-    matches!(
-        command,
+    match command {
         Some(
             "scan"
-                | "quarantine"
-                | "profile"
-                | "status"
-                | "history"
-                | "help"
-                | "install-privileged-helper"
-                | "--help"
-                | "-h"
-                | "--version"
-                | "-V"
-        )
-    )
+            | "quarantine"
+            | "profile"
+            | "status"
+            | "history"
+            | "help"
+            | "install-privileged-helper"
+            | "--help"
+            | "-h"
+            | "--version"
+            | "-V",
+        ) => true,
+        // Leading flags alone are still a CLI parse error, never a GUI launch.
+        None => args
+            .iter()
+            .any(|arg| matches!(arg.as_str(), "--json" | "-v" | "--verbose")),
+        _ => false,
+    }
 }
 
 /// Runs the Linux Defender headless CLI. `args` excludes argv0.
@@ -43,24 +47,33 @@ pub fn run(args: &[String]) -> i32 {
     // into per-command arguments so they never fall through to the GUI.
     // Only flags the target command actually accepts may precede it; the
     // root help describes them as per-command options, not true globals.
-    let mut leading = 0;
-    for arg in args {
-        let next = args.get(leading + 1).map(String::as_str).unwrap_or("");
-        let accepted = match arg.as_str() {
-            "--json" => next != "help",
-            "-v" | "--verbose" => next == "scan",
-            _ => false,
-        };
-        if !accepted {
-            break;
-        }
-        leading += 1;
-    }
+    let leading = args
+        .iter()
+        .take_while(|arg| matches!(arg.as_str(), "--json" | "-v" | "--verbose"))
+        .count();
     if leading > 0 && leading < args.len() {
-        let mut normalized = vec![args[leading].clone()];
-        normalized.extend_from_slice(&args[..leading]);
-        normalized.extend_from_slice(&args[leading + 1..]);
+        let command = args[leading].as_str();
+        let flags = &args[..leading];
+        if flags
+            .iter()
+            .any(|flag| matches!(flag.as_str(), "-v" | "--verbose") && command != "scan")
+            || (flags.iter().any(|flag| flag == "--json") && command == "help")
+        {
+            return run(args); // let the command's strict parser report the error
+        }
+        // Nested actions own their flags: insert after the action token.
+        let insert_at = if matches!(command, "quarantine" | "profile") && args.len() > leading + 1 {
+            leading + 2
+        } else {
+            leading + 1
+        };
+        let mut normalized = args[..insert_at].to_vec();
+        normalized.extend_from_slice(flags);
+        normalized.extend_from_slice(&args[insert_at..]);
         return run(&normalized);
+    }
+    if leading > 0 && leading == args.len() {
+        return root_help();
     }
     match args.first().map(String::as_str) {
         None | Some("--help") | Some("-h") => root_help(),
@@ -993,13 +1006,15 @@ fn run_quarantine(ctx: &Context, args: &[String]) -> i32 {
                     } else {
                         tr(Some(ctx), "Deleted")
                     };
-                    let path = entry["original_path"].as_str().unwrap_or_default();
+                    let path = crate::common::sanitize_line(
+                        entry["original_path"].as_str().unwrap_or_default(),
+                    );
                     println!(
                         "{}",
                         trf(
                             Some(ctx),
                             "{verb}: {path}",
-                            &[("{verb}", &verb), ("{path}", path)]
+                            &[("{verb}", &verb), ("{path}", &path)]
                         )
                     );
                     0

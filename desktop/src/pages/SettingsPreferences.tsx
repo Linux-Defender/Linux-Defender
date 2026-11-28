@@ -261,7 +261,8 @@ function BehaviorPage({ settings, saveSetting, trayAvailable, isFlatpak }: { set
           : _("{name} integration installed", { name: integration.display_name }), "success");
       await refreshIntegrations();
     } catch (error) {
-      notify(_("Integration {action} failed: {error}", { action, error: String(error) }), "error");
+      const actionLabel = action === "install" ? _("install") : action === "repair" ? _("repair") : _("remove");
+      notify(_("Integration {action} failed: {error}", { action: actionLabel, error: String(error) }), "error");
     } finally {
       setBusyManager(null);
     }

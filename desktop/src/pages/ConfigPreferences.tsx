@@ -415,9 +415,9 @@ export default function ConfigPreferences({ section }: { section: string }) {
     try {
       const status = await request<ScannerStatus>("scanner.status");
       setScanner(status);
-      // The save flow owns the dropdown value; a late status response must
-      // not overwrite a newer user selection.
-      setBackend((current) => current);
+      // Adopt the host's configured backend on load; later saves update it
+      // explicitly through saveBackend, so no stale-response guard is needed.
+      setBackend(status.configured_backend);
     } catch (error) {
       notify(String(error), "error");
     }

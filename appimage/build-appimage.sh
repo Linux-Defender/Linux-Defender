@@ -217,6 +217,26 @@ EOF
     chmod 0755 "$APPDIR/AppRun"
 }
 
+normalize_appdir_permissions() {
+    # Extracted Tauri AppDirs recreate owner-only directories. World-readable,
+    # non-writable modes keep loop mounts (firejail, catalog tests) usable.
+    chmod -R u+rwX,go+rX,go-w "$APPDIR"
+}
+
+check_appimage_permissions() {
+    local image="$1" offset closed
+    command -v unsquashfs >/dev/null 2>&1 || {
+        log "unsquashfs not found; skipping squashfs permission check"
+        return 0
+    }
+    offset="$("$image" --appimage-offset)"
+    closed="$(unsquashfs -o "$offset" -lln "$image" | awk '
+        $1 !~ /^l/ && (substr($1, 2, 1) != "r" || substr($1, 5, 1) != "r" || substr($1, 8, 1) != "r" ||
+            ($1 ~ /^d/ && (substr($1, 4, 1) != "x" || substr($1, 7, 1) != "x" || substr($1, 10, 1) != "x"))) {print}')"
+    [ -z "$closed" ] || die "AppImage contains entries not readable by all users:
+$closed"
+}
+
 create_appimage() {
     local version="$1"
     local appimagetool="$2"
@@ -230,6 +250,7 @@ create_appimage() {
     "$appimagetool" "${args[@]}" "$APPDIR" "$output"
     [ -f "$output" ] || die "appimagetool did not produce $output"
     chmod 0755 "$output"
+    check_appimage_permissions "$output"
     if [ -n "${UPDATE_INFORMATION:-}" ] && [ ! -f "$output.zsync" ]; then
         die "UPDATE_INFORMATION was supplied but no zsync sidecar was generated"
     fi
@@ -246,6 +267,7 @@ main() {
     install_packaging_assets
     verify_bundled_gui_runtime
     write_clean_apprun
+    normalize_appdir_permissions
     appimagetool="$(appimagetool_path)"
     create_appimage "$version" "$appimagetool"
     rm -rf "$BUILD_DIR"

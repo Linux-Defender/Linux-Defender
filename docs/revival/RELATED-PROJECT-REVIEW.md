@@ -505,3 +505,17 @@ were reviewed and deliberately deferred with reasons; none is a regression:
 - **Imported-skill payload wording**: `.agents/skills` payloads are hash-locked;
   changing a line requires a reviewed upstream diff and both hashes in
   `skills-lock.json`, not an incidental edit.
+
+## Fine-comb fleet waves 1-5 residual deferrals (2026-11-28)
+
+Reviewed at `ca283909` with 50+ read-only agents across every layer. These residuals are real but deliberately deferred with reasons; none is a regression and all are guarded or documented so they cannot be forgotten:
+
+- **Host command joined-reader hang** (`host.rs:93`, `audit.rs:259`): a descendant inheriting stdout after the direct child exits can block `join()` past the deadline. No current caller backgrounds such a child; fixing needs process-group kill plus nonblocking bounded reads in both helpers.
+- **Crontab UTF-8 rewrite** (`scheduler.rs:435-499`): a lossy round-trip could alter unrelated non-UTF-8 entries. Needs byte-preserving rewrite or an explicit refusal path and a multi-distro crontab test.
+- **Profile storage invalid-shape backup / invalid entry drops** (`profiles.rs:446-477`): valid JSON with a bad shape or one invalid entry is overwritten without backup. Needs a normalization/backup contract like `settings.rs` plus compatibility tests.
+- **Config save validates untouched directives** (`config.rs:727`): a pre-existing invalid value blocks an unrelated save. Needs a split between submitted-key validation and merged-document cross-key invariants.
+- **Legacy migration symlinks and aside-name cap** (`common.rs:170-228`): symlinked entries are followed and only five `.migrated-N` candidates are tried. Needs a preflight rejection of symlinks and an unbounded unique-name loop.
+- **Scheduler cancellation during auto-quarantine** (`scheduler.rs:1117-1153`): cancellation is checked after the scan but not inside the per-threat loop. Needs a prompt `Ok(130)` per iteration with rollback-safe state.
+- **Release tag preflight** (`release.yml:19-47`): tag/ref validation still runs in the final job after signed builds. Moving it earlier changes a human-only workflow and is deferred until a release is prepared.
+
+Fixed in these waves (not deferred): MCP endpoint/path/mode, gettext plural and dynamic literals, scheduler launcher injection and dual-backend cleanup guard, quarantine overflow/fsync/name validation, CLI argv/flag/nested-action/path sanitization, Debian helper key embedding, AppImage squashfs permissions (upstream PR #378), VT stats fail-open, scanner id/output/history/stdin, rkhunter warning parsing, bounded CVD header, host probe sanitization, frontend races and IPC validation, fail-open gates, audit launch buttons, and six-format docs.

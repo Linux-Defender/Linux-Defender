@@ -9,6 +9,8 @@ wired, so a future edit cannot quietly half-document the matrix.
 """
 from __future__ import annotations
 
+import re
+
 import sys
 from pathlib import Path
 
@@ -44,8 +46,15 @@ def check(root: Path = ROOT) -> list[str]:
         if not path.exists():
             failures.append(f"master document {rel} is missing")
             continue
-        text = path.read_text(encoding="utf-8").lower()
-        missing = [fmt for fmt in FORMATS if fmt not in text]
+        text = path.read_text(encoding="utf-8")
+        aliases = {"deb": ("DEB", "Debian"), "rpm": ("RPM",), "appimage": ("AppImage",),
+                   "flatpak": ("Flatpak",), "snap": ("Snap",), "aur": ("AUR",)}
+        missing = [
+            fmt
+            for fmt in FORMATS
+            if not any(re.search(rf"\b{re.escape(alias)}s?\b", text, re.IGNORECASE)
+                       for alias in aliases[fmt])
+        ]
         if missing:
             failures.append(f"{rel} does not mention: {', '.join(missing)}")
 
@@ -60,9 +69,13 @@ def check(root: Path = ROOT) -> list[str]:
     for rel in integration_docs:
         path = root / rel
         if not path.exists():
+            failures.append(f"integration note {rel} is missing")
             continue
         text = path.read_text(encoding="utf-8")
-        if "Configure Integration" in text and "AppImage" not in text.split("Configure Integration", 1)[1][:600]:
+        if "Configure Integration" not in text:
+            failures.append(f"{rel} lost the Configure Integration note")
+            continue
+        if "AppImage" not in text.split("Configure Integration", 1)[1][:600]:
             failures.append(f"{rel} integration note omits AppImage staging")
 
     release = root / "RELEASE_NOTES.md"
