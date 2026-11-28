@@ -4,7 +4,7 @@ use std::collections::BTreeSet;
 use std::ffi::OsString;
 use std::fs;
 use std::os::unix::ffi::OsStrExt;
-use std::os::unix::fs::PermissionsExt;
+use std::os::unix::fs::{symlink, PermissionsExt};
 use std::path::Path;
 use std::sync::{Arc, LazyLock, Mutex, MutexGuard};
 use std::thread;
@@ -1055,4 +1055,52 @@ fn scan_rejects_operation_ids_cancel_would_refuse() {
             "id {id:?} must be rejected before starting a job"
         );
     }
+}
+
+#[test]
+fn local_yara_loading_enforces_file_and_total_bounds() {
+    let root = tempfile::tempdir().unwrap();
+    let home = root.path().join("home");
+    let config = root.path().join("config/linux-defender");
+    let data = root.path().join("data/linux-defender");
+    fs::create_dir_all(&home).unwrap();
+    fs::create_dir_all(&config).unwrap();
+    fs::create_dir_all(&data).unwrap();
+    let rules = root.path().join("rules");
+    fs::create_dir_all(&rules).unwrap();
+
+    // Oversized single rule is rejected, not silently passed to clamscan.
+    let big = rules.join("oversized.yar");
+    fs::write(&big, vec![b'a'; 8 * 1024 * 1024 + 1]).unwrap();
+    let settings = config.join("settings.json");
+    fs::write(
+        &settings,
+        format!("{{\"yara_rules_directory\":\"{}\"}}", rules.display()),
+    )
+    .unwrap();
+    let ctx = Context::with_paths(Paths {
+        home: home.clone(),
+        config_dir: config.clone(),
+        data_dir: data.clone(),
+    })
+    .unwrap();
+    let status = scanner::dispatch(&ctx, "status", json!({})).unwrap();
+    assert!(status["local_yara_error"]
+        .as_str()
+        .is_some_and(|message| message.contains("exceeds")));
+
+    fs::remove_file(&big).unwrap();
+    // Non-rule files and symlinks are skipped.
+    fs::write(rules.join("notes.txt"), "not a rule").unwrap();
+    symlink(rules.join("notes.txt"), rules.join("link.yar")).unwrap();
+    fs::write(rules.join("clean.yar"), "rule ok { condition: false }").unwrap();
+    // Reload settings into a fresh context so the directory is re-read.
+    let ctx2 = Context::with_paths(Paths {
+        home,
+        config_dir: config,
+        data_dir: data,
+    })
+    .unwrap();
+    let status = scanner::dispatch(&ctx2, "status", json!({})).unwrap();
+    assert_eq!(status["local_yara_rule_count"], 1);
 }

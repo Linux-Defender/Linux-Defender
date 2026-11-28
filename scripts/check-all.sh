@@ -72,6 +72,8 @@ python3 scripts/tests/test_capture_wiring.py >/dev/null || fail "capture wiring 
 python3 scripts/tests/test_fleet_fixes.py >/dev/null || fail "fine-comb fleet fixes"
 python3 scripts/tests/test_deep_audit.py >/dev/null || fail "deep audit wiring"
 python3 scripts/tests/test_fleet2_fixes.py >/dev/null || fail "fine-comb wave 2 fixes"
+python3 scripts/check-yara-boundary.py || fail "YARA boundary"
+python3 scripts/tests/test_yara_boundary.py >/dev/null || fail "YARA guard tests"
 
 step "Unused Rust dependencies (cargo machete)"
 if command -v cargo-machete >/dev/null 2>&1; then

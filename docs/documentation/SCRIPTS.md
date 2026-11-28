@@ -56,6 +56,7 @@ application runtime dependencies.
 - `scripts/check-upstream-freshness.py` — imported skill drift.
 - `scripts/check-upstream-urls.py` — upstream inventory URLs.
 - `scripts/check-workflows.py` — workflow YAML parses, named, triggerable.
+- `scripts/check-yara-boundary.py` — no bundled YARA rules, bounded user rules, accurate docs.
 - `scripts/check-watchers.py` — every scheduled workflow is indexed in `WATCHERS.md`.
 - `scripts/check-website-a11y.py` — Starlight search-button accessible name and light-header hover contract.
 - `scripts/extract-typescript-gettext.ts` — TS/TSX extraction.
@@ -78,4 +79,4 @@ application runtime dependencies.
 - `scripts/release-readiness.py` — read-only release checks and safe local tag preparation (never pushes).
 - `scripts/validate-sway.sh` — interactive Sway checklist runner.
 - `scripts/hooks/ai-enforcement-context.py`, `scripts/hooks/install-hooks.sh`, `scripts/hooks/pre-commit`, `scripts/hooks/pre-push` — git/AI hooks.
-- `scripts/tests/test_capture_wiring.py`, `scripts/tests/test_deep_audit.py`, `scripts/tests/test_external_links.py`, `scripts/tests/test_fleet_fixes.py`, `scripts/tests/test_fleet2_fixes.py`, `scripts/tests/test_format_coverage.py`, `scripts/tests/test_release_profile.py`, `scripts/tests/test_update_all.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_screenshot_branding.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.
+- `scripts/tests/test_capture_wiring.py`, `scripts/tests/test_deep_audit.py`, `scripts/tests/test_external_links.py`, `scripts/tests/test_fleet_fixes.py`, `scripts/tests/test_fleet2_fixes.py`, `scripts/tests/test_format_coverage.py`, `scripts/tests/test_yara_boundary.py`, `scripts/tests/test_release_profile.py`, `scripts/tests/test_update_all.py`, `scripts/tests/test_signature_check.py`, `scripts/tests/test_screenshot_branding.py`, `scripts/tests/test_support_parity.py`, `scripts/tests/test_ui_guards.py`, `scripts/tests/test_url_list_layout.py` — checker regression tests.

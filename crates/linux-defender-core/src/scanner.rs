@@ -22,6 +22,11 @@ use std::thread;
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
 const OUTPUT_LIMIT: usize = 64 * 1024 * 1024;
+/// User-supplied rules are bounded so a local directory cannot turn a scan
+/// into an unbounded command line or a huge clamscan database load.
+const MAX_LOCAL_YARA_FILES: usize = 1000;
+const MAX_LOCAL_YARA_FILE_BYTES: u64 = 8 * 1024 * 1024;
+const MAX_LOCAL_YARA_TOTAL_BYTES: u64 = 64 * 1024 * 1024;
 const EICAR: &[u8] = b"X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*";
 static REQUEST_SEQUENCE: AtomicU64 = AtomicU64::new(0);
 
@@ -1294,6 +1299,7 @@ fn yara_database_paths(ctx: &Context) -> AppResult<Vec<PathBuf>> {
         )
     })?;
     let mut rules = Vec::new();
+    let mut total_bytes = 0_u64;
     for entry in entries {
         let entry = entry.map_err(|error| error.to_string())?;
         let kind = entry.file_type().map_err(|error| error.to_string())?;
@@ -1301,14 +1307,38 @@ fn yara_database_paths(ctx: &Context) -> AppResult<Vec<PathBuf>> {
             continue;
         }
         let path = entry.path();
+        // clamscan receives each rule as a UTF-8 --database argument; a
+        // non-UTF-8 name would be silently corrupted by to_string_lossy.
+        if path.to_str().is_none() {
+            continue;
+        }
         let extension = path
             .extension()
             .and_then(|extension| extension.to_str())
             .unwrap_or_default()
             .to_ascii_lowercase();
-        if matches!(extension.as_str(), "yar" | "yara") {
-            rules.push(path);
+        if !matches!(extension.as_str(), "yar" | "yara") {
+            continue;
         }
+        if rules.len() >= MAX_LOCAL_YARA_FILES {
+            return Err(format!(
+                "Local YARA rules directory contains more than {MAX_LOCAL_YARA_FILES} rule files"
+            ));
+        }
+        let size = entry.metadata().map_err(|error| error.to_string())?.len();
+        if size > MAX_LOCAL_YARA_FILE_BYTES {
+            return Err(format!(
+                "Local YARA rule {} exceeds the {MAX_LOCAL_YARA_FILE_BYTES}-byte limit",
+                path.display()
+            ));
+        }
+        total_bytes = total_bytes.saturating_add(size);
+        if total_bytes > MAX_LOCAL_YARA_TOTAL_BYTES {
+            return Err(format!(
+                "Local YARA rules exceed the {MAX_LOCAL_YARA_TOTAL_BYTES}-byte total limit"
+            ));
+        }
+        rules.push(path);
     }
     rules.sort();
     Ok(rules)

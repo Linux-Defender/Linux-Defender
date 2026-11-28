@@ -19,7 +19,7 @@ Daemon scans batch ordinary paths in a private file list. Files whose names cont
 
 Both ClamAV backends use the host's configured database directory, including compatible files such as official CVD/CLD databases and supported custom signature formats. The Database page lists file types it recognizes; that inventory cannot prove which signatures a running `clamd` has loaded. Linux Defender does not automatically install or update third-party feeds. FreshClam updates the shared host database using the system configuration and service or timer.
 
-Selected `.yar` and `.yara` files can be added in **Preferences → YARA Rules**. ClamAV implements a subset of YARA syntax, and Linux Defender combines these rules with the host database for standalone `clamscan`; it refuses a YARA-only scan without a readable ClamAV database. See the [ClamAV signature-format guide](https://docs.clamav.net/manual/Signatures.html) and [YARA support notes](https://docs.clamav.net/manual/Signatures/YaraRules.html).
+Linux Defender ships **no YARA rules by default** — no rules are bundled in any package format. Selected `.yar` and `.yara` files can be added in **Preferences → YARA Rules** (at most 1,000 files, 8 MiB per file, 64 MiB total; symlinks and non-UTF-8 names are skipped). ClamAV implements a subset of YARA syntax, and Linux Defender combines these rules with the host database for standalone `clamscan`; it refuses a YARA-only scan without a readable ClamAV database. See the [ClamAV signature-format guide](https://docs.clamav.net/manual/Signatures.html) and [YARA support notes](https://docs.clamav.net/manual/Signatures/YaraRules.html).
 
 ## Install a daemon
 

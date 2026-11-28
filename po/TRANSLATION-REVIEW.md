@@ -10,16 +10,16 @@ translator decides. No machine translation is applied by this script. Where an m
 
 | Locale | msgfmt statistics | Long identical strings |
 | --- | --- | ---: |
-| de | 1497 translated messages. | 62 |
-| en | 1497 translated messages. | baseline |
-| es | 1497 translated messages. | 63 |
-| fr | 1497 translated messages. | 63 |
-| hu | 1497 translated messages. | 63 |
-| it | 1497 translated messages. | 63 |
-| nb | 1497 translated messages. | 63 |
-| pt_BR | 1497 translated messages. | 63 |
-| vi | 1497 translated messages. | 70 |
-| zh_CN | 1497 translated messages. | 63 |
+| de | 1499 translated messages. | 63 |
+| en | 1499 translated messages. | baseline |
+| es | 1499 translated messages. | 64 |
+| fr | 1499 translated messages. | 64 |
+| hu | 1499 translated messages. | 64 |
+| it | 1499 translated messages. | 64 |
+| nb | 1499 translated messages. | 64 |
+| pt_BR | 1499 translated messages. | 64 |
+| vi | 1499 translated messages. | 71 |
+| zh_CN | 1499 translated messages. | 64 |
 
 ## de
 
@@ -63,7 +63,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
 - `System keyring is locked; no keyring item was deleted`
-- … 22 more
+- … 23 more
 
 ## es
 
@@ -107,7 +107,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
 - `System keyring is locked; no keyring item was deleted`
-- … 23 more
+- … 24 more
 
 ## fr
 
@@ -151,7 +151,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
 - `System keyring is locked; no keyring item was deleted`
-- … 23 more
+- … 24 more
 
 ## hu
 
@@ -195,7 +195,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
 - `System keyring is locked; no keyring item was deleted`
-- … 23 more
+- … 24 more
 
 ## it
 
@@ -239,7 +239,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
 - `System keyring is locked; no keyring item was deleted`
-- … 23 more
+- … 24 more
 
 ## nb
 
@@ -283,7 +283,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
 - `System keyring is locked; no keyring item was deleted`
-- … 23 more
+- … 24 more
 
 ## pt_BR
 
@@ -327,7 +327,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
 - `System keyring is locked; no keyring item was deleted`
-- … 23 more
+- … 24 more
 
 ## vi
 
@@ -371,7 +371,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Private and local network addresses cannot be submitted`
 - `Recognized database and signature files`
 - `Request timed out after retries`
-- … 30 more
+- … 31 more
 
 ## zh_CN
 
@@ -415,7 +415,7 @@ translator decides. No machine translation is applied by this script. Where an m
 - `Suggested reveals the RFXN and InterServer entries already in this draft. Remove any entry you do not want, then use Save & Apply to write the draft.`
 - `Supported keys: MaxFileSize, MaxScanSize, MaxRecursion, MaxFiles, DetectPUA, AlertBrokenExecutables, AlertMacros, Thorough, HeuristicAlerts, FollowDirectorySymlinks, FollowFileSymlinks, Recursive, ScanHidden, and SizeLimit. These options use standalone clamscan; automatic mode selects it, while daemon-only mode reports an error.`
 - `System keyring is locked; no keyring item was deleted`
-- … 23 more
+- … 24 more
 
 ## Review procedure
 

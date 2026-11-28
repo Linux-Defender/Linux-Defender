@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 import { isOpaqueApiToken, copyText, notify, openExternal, openPath, openPaths, request, saveBinary } from "../api";
 import { _, activeCatalog, ngettext } from "../i18n";
 import { Icon } from "../Icon";
+import { SUGGESTED_YARA_SOURCES } from "../suggestedYara";
 import { Modal } from "../Modal";
 type Settings = Record<string, unknown>;
 type SaveSetting = (key: string, value: unknown) => Promise<boolean>;
@@ -208,6 +209,11 @@ function YaraPage({ settings, saveSetting }: { settings: Settings; saveSetting: 
       </Field>
       <p>{_("Rules are used only with the standalone clamscan backend. Automatic scanning selects it when rules are present; an explicitly selected daemon backend cannot load these rules.")}</p>
       <p>{_("Use rules only from sources you trust. ClamAV supports a subset of YARA rules.")}</p>
+      <details className="suggested-yara">
+        <summary>{_("Suggested documentation")}</summary>
+        <ul>{SUGGESTED_YARA_SOURCES.map((source) => <li key={source.url}><button type="button" onClick={() => void openExternal(source.url)}>{source.label}</button></li>)}</ul>
+        <p>{_("These links explain the rule format. Nothing is downloaded or enabled automatically; add only rules you have reviewed.")}</p>
+      </details>
       <div className="button-row">
         <button type="button" onClick={() => void chooseDirectory()}>{_("Choose Folder")}</button>
         <button type="button" disabled={!directory.trim()} onClick={() => void openDirectory()}>{_("Open Folder")}</button>
