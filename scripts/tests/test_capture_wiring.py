@@ -43,6 +43,24 @@ class CaptureWiringTests(unittest.TestCase):
             self.assertIn(phrase, guide)
         self.assertIn("DESIGN.md#ui-screenshots", guide)
 
+    def test_ai_entry_points_and_readme_inventory_every_tool(self) -> None:
+        for rel in ("AGENTS.md", "CLAUDE.md"):
+            text = read(rel)
+            for tool in (
+                "update-all.sh", "check-all.sh", "audit-consistency.sh",
+                "capture-all.sh", "tauri dev", "ld_support_parity",
+                "ld_desktop_capture", "capture-app-window.sh",
+            ):
+                self.assertIn(tool, text)
+        readme = read("README.md")
+        for doc in (
+            "docs/DESIGN.md", "docs/documentation/SCRIPTS.md",
+            "docs/DOC-MAP.md", "docs/translations/README.md",
+            "docs/revival/README.md", "docs/clamui-fork/STATUS.md",
+            "docs/revival/CHAT-AND-PROJECT-AUDIT.md", "AI-ENFORCEMENT.md",
+        ):
+            self.assertIn(doc, readme)
+
     def test_scripts_index_and_design_guide_are_linked(self) -> None:
         index = read("docs/documentation/SCRIPTS.md")
         for rel in (

@@ -99,6 +99,14 @@ See the [development guide](website/src/content/docs/docs/contributing/developme
 - [First scan](website/src/content/docs/docs/getting-started.md) — get a local scan running.
 - [User guides and troubleshooting](website/src/content/docs/docs/) — scanning, quarantine, schedules, privacy, recovery.
 - [Development, architecture, and packaging](website/src/content/docs/docs/contributing/development.md) — source, validation, packaging.
+- [Visual identity and screenshot regeneration](docs/DESIGN.md) — color tokens, components, brand assets.
+- [Contributor rules](AGENTS.md) and [canonical enforcement](AI-ENFORCEMENT.md) — AI/tool-neutral rules and the single source of truth.
+- [Script inventory](docs/documentation/SCRIPTS.md) — every maintenance script and checker, including `update-all.sh` and `capture-all.sh`.
+- [Generated documentation map](docs/DOC-MAP.md) — every tracked project document.
+- [Translation workflow](docs/translations/README.md) and [translation guide](website/src/content/docs/docs/contributing/translating.md) — catalogs, plural forms, human review.
+- [Revival research index](docs/revival/README.md), [upstream inventory](docs/revival/UPSTREAM-REPOSITORIES.md), [parity matrix](docs/revival/RELATED-PROJECT-REVIEW.md), and [fork status](docs/clamui-fork/STATUS.md) — what was ported, deferred, or superseded.
+- [Full requirement ledger](docs/revival/CHAT-AND-PROJECT-AUDIT.md) — every request and where it is satisfied.
+- [Security policy](SECURITY.md) and [rebrand audit](docs/revival/REBRAND-AUDIT.md) — private reporting and retained upstream notices.
 
 ## Scanner boundary
 

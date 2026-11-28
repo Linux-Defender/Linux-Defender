@@ -114,6 +114,14 @@ CI builds native artifacts on the Ubuntu 22.04-compatible baseline. A build on a
 - Configure release profile settings in the workspace `Cargo.toml` for size (`lto`, reduced `codegen-units`, optimized `opt-level`, `panic = "abort"`, `strip`). Check scan responsiveness and failure handling under the release profile before shipping.
 - Keep the system WebKitGTK WebView; do not bundle a browser runtime. Keep Tauri, Rust dependencies, and frontend packages current through the repository's locked dependency workflows. Run `cargo audit`, `bun audit --cwd desktop`, and `bun audit --cwd website` when updating dependencies and address relevant advisories.
 
+## Developer tooling and command inventory
+
+One entry point regenerates every checked-in derived artifact and verifies the tree: `./scripts/update-all.sh` (`--full` also refreshes locked Flatpak/Dependabot sources). The single static gate is `bash scripts/check-all.sh`; the full audit adds builds, tests, clippy, git/CI sync and external links via `bash scripts/audit-consistency.sh`. Both are enforced by the git hooks and Consistency Audit CI.
+
+Visual verification has two complementary paths: the browser harness (`bun run --cwd desktop dev` then `http://127.0.0.1:1420/visual-harness.html`) renders the real React components with mocked IPC, while `bun run --cwd desktop tauri dev` plus `bash scripts/capture-app-window.sh` captures the actual WebKitGTK window. `./scripts/capture-all.sh [out-dir]` combines both with the site preview (`bun run --cwd website preview`, default `http://127.0.0.1:4321/Linux-Defender/`). `scripts/inspect-blank-window.py` is the read-only local WebKit probe for blank-window reports.
+
+The read-only `linux-defender-assist` MCP server exposes `ld_repo_status`, `ld_support_parity`, `ld_helper_probe`, `ld_tray_probe`, `ld_desktop_capture`, `ld_translation_candidates`, `ld_translation_suggest`, and `ld_online_preflight`. It never runs `pkexec`, writes catalogs, or submits data externally. All 24 workflows are badged in README and indexed by `check-badges.py`/`check-watchers.py`; 9 scheduled workflows keep dependencies, skills, signatures, docs and packaging fresh. Scripts are inventoried in `docs/documentation/SCRIPTS.md` (`check-scripts-index.py`); checkers are wired into gates (`check-gate-wiring.py`). Release stays human-only: never create a `v*` tag or dispatch Release.
+
 ## Coding-agent skills
 
 Project-local coding-agent skills are optional development aids, not build or runtime dependencies. Their canonical imports are in `.agents/skills`; `.claude/skills` provides compatibility links. For installation details, see the [Development guide](website/src/content/docs/docs/contributing/development.md).
